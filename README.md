@@ -1,4 +1,4 @@
-# FinPersona: Financial Personality Simulation Engine
+# <img width="80" alt="FinPersona Logo" src="https://github.com/user-attachments/assets/5e09882c-f303-4fff-a112-438520448771" /> FinPersona: Financial Personality Simulation Engine
 FinPersona is a framework for simulating diverse investor behaviors using LLMs. It utilizes a **"Prompt-as-Policy"** architecture to condition AI agents with specific MBTI profiles (e.g., ENTJ, INFP) and evaluates their trading performance in a historical market environment.
 
 ## Architecture
@@ -11,7 +11,7 @@ FinPersona is a framework for simulating diverse investor behaviors using LLMs. 
 
 **Prerequisites:** Python 3.9+ and a Google Gemini API Key.
 
-**Instructions**
+**Instructions** Follow the steps below:
 
 1. Clone the repository
 ```
@@ -24,8 +24,7 @@ cd FinPersona
 pip install -e .[dev]
 ```
 
-3. Configure API Key
-Create a .env file in the root directory:
+3. Configure API Key by creating a .env file in the root directory:
 ```
 echo "GOOGLE_API_KEY=your_actual_key_here" > .env
 ```
