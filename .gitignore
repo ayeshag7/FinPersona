@@ -1,0 +1,15 @@
+# Environment
+.env
+
+# Distribution / Packaging
+build/
+dist/
+*.egg-info/
+var/
+
+# Virtual Environment
+venv
+
+# Miscellaneous
+__pycache__
+results
