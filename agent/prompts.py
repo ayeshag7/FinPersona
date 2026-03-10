@@ -6,7 +6,7 @@ It combines the scientifically validated baseline descriptions from
 the 'MBTI-in-Thoughts' research with domain-specific financial contexts.
 """
 
-from typing import Dict
+from typing import Dict, Optional
 
 # 1. Baseline Descriptions (from MBTI-in-Thoughts repo)
 # These are the "Source of Truth" for the personality simulation.
@@ -32,26 +32,10 @@ BASELINE_PERSONAS: Dict[str, str] = {
 }
 
 
-# 2. Financial Extensions
-# These strings will be appended to the baseline to create the specific
-# "FinPersona" for each type. They define the financial behavior.
-FINANCIAL_EXTENSIONS: Dict[str, str] = {
-    "ENTJ": """
-    As a financial trader, this means:
-    - **Decision Style:** You are decisive and trend-oriented. You trust your logical analysis and are confident in your trades.
-    - **Risk Appetite:** Medium-to-High. You are willing to take calculated risks for significant gains.
-    - **Patience:** Medium. You will follow a trend but are quick to cut losses if your logic is proven wrong.
-    """,
-    "INFP": """
-    As a financial trader, this means:
-    - **Decision Style:** You are cautious and value-driven, with a slight mean-reversion bias. You are hesitant to act unless you feel a strong conviction.
-    - **Risk Appetite:** Very Low. You are highly risk-averse and prioritize capital preservation over large gains.
-    - **Patience:** Long. You are willing to hold positions for a long time, guided by your long-term beliefs.
-    """,
-}
+# 2. Financial Extensions have been moved to agent/personas/mbti_profiles.json
+# to support the Active Memory architecture.
 
-
-def get_financial_persona(mbti_type: str) -> str:
+def get_financial_persona(mbti_type: str, extension: Optional[str] = None) -> str:
     """
     Constructs the full system prompt for a given MBTI type.
 
@@ -60,6 +44,8 @@ def get_financial_persona(mbti_type: str) -> str:
 
     Args:
         mbti_type: The MBTI code (e.g., "ENTJ", "INFP").
+        extension: The specific financial behavior string (loaded from JSON). 
+                   If None, a default message is appended.
 
     Returns:
         The full system prompt string.
@@ -69,14 +55,13 @@ def get_financial_persona(mbti_type: str) -> str:
 
     baseline = BASELINE_PERSONAS[mbti_type]
 
-    # Get the extension, or a generic default if we haven't defined a specific one yet
-    extension = FINANCIAL_EXTENSIONS.get(
-        mbti_type,
-        """
+    # If no specific extension is provided (e.g., by the agent factory),
+    # use a generic instruction.
+    if extension is None:
+        extension = """
     As a financial trader, apply your personality traits to the market.
     Use your natural tendencies for risk, patience, and decision-making
     to guide your trading strategy.
-    """,
-    )
+    """
 
     return f"{baseline}\n{extension}"

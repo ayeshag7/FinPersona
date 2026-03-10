@@ -27,11 +27,13 @@ class TradeDecision(BaseModel):
         ge=0.0,
         le=1.0,
         description="The quantity to trade expressed as a percentage (0.0 to 1.0). "
-        "For BUY: % of available cash. For SELL: % of current holdings.",
+        "For BUY: % of available cash. For SELL: % of current holdings. "
+        "REQUIRED: If action is HOLD, you MUST set this to 0.0.",
     )
 
     rationale: str = Field(
         ...,
         description="A concise explanation (max 2-3 sentences) linking the "
-        "decision to the agent's personality and the current market indicators.",
+        "decision to the agent's personality and the current market indicators. "
+        "REQUIRED: You MUST provide a reason even if the decision is HOLD.",
     )

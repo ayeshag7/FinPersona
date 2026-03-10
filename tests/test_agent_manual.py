@@ -3,7 +3,7 @@ Manual Test Script for FinPersonaAgent
 Run: python test_agent_manual.py
 """
 
-from agent.finpersona_agent import FinPersonaAgent
+from agent.legacy_agent import FinPersonaAgent
 
 
 def test_entj_agent():
