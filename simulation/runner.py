@@ -9,13 +9,12 @@ Orchestrates the 'Double-Blind' Tournament.
 
 import os
 import pandas as pd
-from tqdm import tqdm
 from typing import Optional, Literal
 
 # Internal Modules
-from envs.synthetic_market import SyntheticMarketEnv  # The New Gym
-from agent.static_agent import StaticAgent           # The Control Group
-from agent.memory_agent import ActiveMemoryAgent     # The Experiment
+from envs.synthetic_market import SyntheticMarketEnv  
+from agent.static_agent import StaticAgent           
+from agent.memory_agent import ActiveMemoryAgent     
 from simulation.portfolio_tracker import PortfolioTracker
 
 def run_simulation(
@@ -26,6 +25,8 @@ def run_simulation(
     initial_cash: float = 10000.0,
     output_dir: str = "results",
     max_days: Optional[int] = None,
+    seed: int = 42,
+    crash_discount: float = 0.92,   # NEW
 ) -> Optional[pd.DataFrame]:
     """
     Runs a rigorous benchmark simulation.
@@ -38,14 +39,20 @@ def run_simulation(
         output_dir: Folder to save results.
         max_days: Optional limit (defaults to environment max).
     """
-    run_id = f"{mbti_type}_{agent_type}_{scenario}"
+    discount_suffix = f"_discount{crash_discount}" if scenario == "crash" else ""
+    run_id = f"{mbti_type}_{agent_type}_{scenario}_seed{seed}{discount_suffix}"
     print(f"\n[Runner] Initializing Benchmark: {run_id}")
 
     # 1. Initialize The Gym (Environment)
     try:
-        # Default to 50 days for standard FinPersona benchmarks
-        env_days = max_days if max_days else 50
-        env = SyntheticMarketEnv(scenario=scenario, n_days=env_days)
+        # Default to 100 days for standard FinPersona benchmarks
+        env_days = max_days if max_days else 100
+        env = SyntheticMarketEnv(
+            scenario=scenario,
+            n_days=env_days,
+            seed=seed,
+            crash_discount=crash_discount,   # NEW
+        )
         print(f"[Runner] Environment '{scenario}' created ({env.n_days} days).")
     except Exception as e:
         print(f"[Runner] Error initializing environment: {e}")
@@ -67,8 +74,7 @@ def run_simulation(
 
     # 4. Prepare Logging
     history = []
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    os.makedirs(output_dir, exist_ok=True)
 
     # 5. The Main Loop
     print(f"[Runner] Starting {env.n_days}-day simulation...")
@@ -78,15 +84,16 @@ def run_simulation(
     market_observation = env.reset()
     
     # Iterate through the environment
-    # Note: env.n_days determines the loop, but we use tqdm for progress
-    for _ in tqdm(range(env.n_days)):
+    for step_num in range(env.n_days):
+        if step_num % 10 == 0:
+            print(f"[{run_id}] Day {step_num}/{env.n_days}")
         if market_observation is None:
             break
-            
-        try:
-            current_date = market_observation["date"]
-            current_price = market_observation["price"]
 
+        current_date = market_observation.get("date", f"step_{step_num}")
+        current_price = market_observation.get("price", 0.0)
+
+        try:
             # A. Get Agent Decision (Agent ONLY sees market_observation)
             portfolio_state = tracker.get_state()
             decision = agent.decide(market_observation, portfolio_state)
@@ -109,6 +116,9 @@ def run_simulation(
                 "MBTI": mbti_type,
                 "Agent_Type": agent_type,
                 "Scenario": scenario,
+                "Seed": seed,
+                "Crash_Discount": crash_discount,
+                "Phase": env.get_scenario_phase(),
                 "Price": current_price,
                 "Fundamental_Value": ground_truth.get("fundamental_value", 0.0), # The Truth
                 "Portfolio_Value": tracker.total_value,
@@ -124,20 +134,27 @@ def run_simulation(
             }
             history.append(daily_log)
 
-            # E. Step Environment Forward
-            market_observation, done = env.step()
-            if done:
-                break
-
         except KeyboardInterrupt:
             print("\n[Runner] Stopped by user.")
             break
         except Exception as e:
             print(f"\n[Runner] Error on {current_date}: {e}")
-            continue
+            # Don't skip the step — always advance the environment
+
+        # Always step forward regardless of whether this day's logging succeeded
+        market_observation, done = env.step()
+        if done:
+            break
 
     # 6. Save Results
     results_df = pd.DataFrame(history)
+
+    # Guard: if fewer than 10% of days were logged, treat as a failed run
+    if len(results_df) < env.n_days * 0.1:
+        print(f"[Runner] WARNING: Only {len(results_df)}/{env.n_days} days logged. "
+              f"Run may have failed silently.")
+        return None
+
     filename = os.path.join(output_dir, f"{run_id}.csv")
     results_df.to_csv(filename, index=False)
 

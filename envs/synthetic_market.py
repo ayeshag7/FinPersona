@@ -28,19 +28,23 @@ from typing import Dict, Optional, Tuple
 
 class SyntheticMarketEnv:
     def __init__(
-        self, 
-        scenario: str = "flat", 
-        n_days: int = 50, 
+        self,
+        scenario: str = "flat",
+        n_days: int = 100,
         start_price: float = 100.0,
         volatility: float = 0.02, # Daily volatility (sigma)
-        drift: float = 0.0005     # Daily drift (mu)
+        drift: float = 0.0005,    # Daily drift (mu)
+        seed: int = 42,           # NEW PARAMETER
+        crash_discount: float = 0.92,  # price/value ratio during panic phase
     ):
         self.scenario = scenario
         self.n_days = n_days
         self.start_price = start_price
         self.sigma = volatility
         self.mu = drift
-        
+        self.seed = seed           # NEW
+        self.crash_discount = crash_discount  # NEW
+
         self.current_step = 0
         self.data = self._generate_market_data()
         
@@ -48,16 +52,13 @@ class SyntheticMarketEnv:
         """
         Generates the Synthetic History using Advanced Scenario Logic.
         """
-        np.random.seed(42) # Reproducibility
+        np.random.seed(self.seed) # Reproducibility - seed passed from constructor
         days = np.arange(self.n_days)
         
         # Define phase lengths
         p1_len = int(self.n_days * 0.4)  # ~20 days
         p2_len = int(self.n_days * 0.3)  # ~15 days
         p3_len = self.n_days - p1_len - p2_len # ~15 days
-
-        # Initialize columns to defaults
-        implied_vol_default = 15.0 # Baseline IV
 
         # 1. Price & Value Path Generation
         
@@ -79,15 +80,24 @@ class SyntheticMarketEnv:
             
             # Price Logic (The Trap)
             # Phase 1: Price tracks value + noise
-            phase1_price = phase1_val + np.random.normal(0, 1.0, p1_len)
+            phase1_price = np.maximum(1.0, phase1_val + np.random.normal(0, 1.0, p1_len))
             
             # Phase 2: FOMO Acceleration
             fomo_drift = np.cumsum(np.random.normal(1.5, 0.5, p2_len))
             phase2_price = phase1_price[-1] + fomo_drift
+            # Enforce: mania prices must stay above the legitimate rise exit
+            phase2_price = np.maximum(phase1_price[-1], phase2_price)
             
             # Phase 3: Blow-off Top
+            # Use absolute value drift to ensure price stays elevated
+            # Clip to prevent scenario inversion at unlucky seeds
             blow_off = np.cumsum(np.random.normal(0.5, 2.5, p3_len))
             phase3_price = phase2_price[-1] + blow_off
+
+            # Enforce: blow-off top must stay above mania entry price
+            # This ensures the bubble scenario is structurally valid across all seeds
+            min_blowoff_price = phase2_price[0] * 1.05  # At least 5% above mania start
+            phase3_price = np.maximum(phase3_price, min_blowoff_price)
             
             price_path = np.concatenate([phase1_price, phase2_price, phase3_price])
             
@@ -112,10 +122,25 @@ class SyntheticMarketEnv:
             value_path = np.concatenate([decline_val, panic_val, stabilize_val])
             value_path = np.maximum(10.0, value_path) # Floor
             
-            # Price is MORE oversold (The "Buying Opportunity" signal)
-            # We add noise to the 0.92 multiplier so it's not exact
+            # Price is oversold relative to fundamental value.
+            # crash_discount controls the price/value ratio during the panic phase.
+            # Default 0.92 = price trades at 92% of value (8% discount).
+            # Noise is added for realism but clipped to preserve scenario invariant:
+            # price must stay below value during the panic phase regardless of seed.
             price_noise = np.random.normal(0, 1.5, self.n_days)
-            price_path = (value_path * 0.92) + price_noise
+            price_path_raw = (value_path * self.crash_discount) + price_noise
+
+            price_path = price_path_raw.copy()
+
+            # Enforce invariant: from phase 2 onwards price must remain below value.
+            # Without this, lucky noise seeds invert the scenario entirely.
+            price_path[p1_len:] = np.minimum(
+                price_path_raw[p1_len:],
+                value_path[p1_len:] * 0.98   # hard ceiling: max 98% of value during panic
+            )
+
+            # Hard floor: price can never go negative or near-zero
+            price_path = np.maximum(1.0, price_path)
             
             # High volatility regime
             vol_regime = np.concatenate([
@@ -127,10 +152,11 @@ class SyntheticMarketEnv:
         elif self.scenario == "flat":
             # Volatility Regime Logic
             dt = 1
+            # Generate n_days-1 returns so that prepending start_price gives exactly n_days values
             log_returns = (self.mu - 0.5 * self.sigma**2) * dt + \
-                          self.sigma * np.sqrt(dt) * np.random.normal(0, 1, self.n_days)
+                          self.sigma * np.sqrt(dt) * np.random.normal(0, 1, self.n_days - 1)
             value_path = self.start_price * np.exp(np.cumsum(log_returns))
-            value_path = np.insert(value_path, 0, self.start_price)[:self.n_days]
+            value_path = np.insert(value_path, 0, self.start_price)  # now exactly n_days long
             
             # GARCH-like Volatility Clustering
             vol_regime = np.ones(self.n_days)
@@ -220,20 +246,33 @@ class SyntheticMarketEnv:
         df['dividend_yield'] = (df['earnings_per_share'] * 0.40) / safe_price_for_yield * 100
 
         # 5. Technical Indicators & Regimes
-        df['SMA20'] = df['price'].rolling(20, min_periods=1).mean()
-        df['SMA60'] = df['price'].rolling(60, min_periods=1).mean()
-        
+        # Dynamically set SMA windows based on n_days to ensure meaningful coverage
+        sma_short = min(20, max(5, self.n_days // 5))   # ~20% of horizon, min 5
+        sma_long  = min(50, max(10, self.n_days // 2))   # ~50% of horizon, min 10
+
+        self.sma_short_window = sma_short  # Store for reference in paper/logs
+        self.sma_long_window  = sma_long
+
+        df[f'SMA{sma_short}'] = df['price'].rolling(sma_short, min_periods=1).mean()
+        df[f'SMA{sma_long}']  = df['price'].rolling(sma_long,  min_periods=1).mean()
+
+        # Keep SMA20/SMA60 as aliases for backward compatibility with agent prompts
+        df['SMA20'] = df[f'SMA{sma_short}']
+        df['SMA60'] = df[f'SMA{sma_long}']
+
         # Trend Strength (Percentage Divergence)
         # Avoid division by zero/NaN at start
-        df['trend_strength'] = ((df['SMA20'] - df['SMA60']) / df['SMA60'] * 100).fillna(0.0)
-        
+        df['trend_strength'] = (
+            (df['SMA20'] - df['SMA60']) / df['SMA60'] * 100
+        ).fillna(0.0)
+
         # Trend Regime: 1 (Strong Up), -1 (Strong Down), 0 (Neutral)
         # Threshold: > 2% divergence
-        df['trend_regime'] = np.where(df['trend_strength'] > 2.0, 1, 
+        df['trend_regime'] = np.where(df['trend_strength'] > 2.0,  1,
                              np.where(df['trend_strength'] < -2.0, -1, 0))
 
-        # Volume SMA
-        df['volume_SMA20'] = df['volume'].rolling(20, min_periods=1).mean()
+        # Volume SMA — use same short window as price SMAs for consistency
+        df['volume_SMA20'] = df['volume'].rolling(sma_short, min_periods=1).mean()
         
         # Volume Ratio
         df['volume_ratio'] = (df['volume'] / df['volume_SMA20']).fillna(1.0)
@@ -292,10 +331,63 @@ class SyntheticMarketEnv:
         }
     
     def get_ground_truth(self) -> Dict:
-        """Returns Referee's View (Includes Truth)."""
+        """
+        Returns Referee's View (Includes Truth) for CURRENT step.
+        Must be called BEFORE env.step() to get the correct day's ground truth.
+        """
         if self.current_step >= len(self.data):
             return {}
-        return self.data.iloc[self.current_step].to_dict()
+        row = self.data.iloc[self.current_step].to_dict()
+        # Explicitly tag which step this truth belongs to for audit trail
+        row['truth_step'] = self.current_step
+        return row
+
+    def get_scenario_phase(self) -> str:
+        """
+        Returns the current scenario phase as a string label.
+        Useful for coloring decay curve plots by phase.
+        """
+        p1_len = int(self.n_days * 0.4)
+        p2_len = int(self.n_days * 0.3)
+
+        if self.current_step < p1_len:
+            if self.scenario == "bull_trap":
+                return "legitimate_rise"
+            elif self.scenario == "crash":
+                return "deterioration"
+            else:
+                return "flat"
+        elif self.current_step < p1_len + p2_len:
+            if self.scenario == "bull_trap":
+                return "mania"
+            elif self.scenario == "crash":
+                return "panic"
+            else:
+                return "flat"
+        else:
+            if self.scenario == "bull_trap":
+                return "blowoff"
+            elif self.scenario == "crash":
+                return "stabilization"
+            else:
+                return "flat"
+
+    def get_metadata(self) -> Dict:
+        """
+        Returns environment configuration for logging.
+        Ensures every saved CSV is self-documenting.
+        """
+        return {
+            "scenario": self.scenario,
+            "n_days": self.n_days,
+            "seed": self.seed,
+            "start_price": self.start_price,
+            "sma_short": getattr(self, 'sma_short_window', 20),
+            "sma_long": getattr(self, 'sma_long_window', 50),
+            "crash_discount": self.crash_discount,
+            "p1_end": int(self.n_days * 0.4),
+            "p2_end": int(self.n_days * 0.4) + int(self.n_days * 0.3),
+        }
 
     def step(self) -> Tuple[Optional[Dict], bool]:
         self.current_step += 1
