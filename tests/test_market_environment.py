@@ -6,7 +6,7 @@ import pytest
 import pandas as pd
 
 # Import the modules we want to test
-from market_data.market_environment import MarketEnvironment
+from legacy_market_data.market_environment import MarketEnvironment
 
 
 # This fixture creates a single 'env' object that all the tests can use.

@@ -20,8 +20,8 @@ from simulation.runner import run_simulation
 
 MODELS = [
     "gemini-2.5-flash",
-    "claude-3-7-sonnet-20250219",
-    "gpt-5-mini"
+    "claude-sonnet-4-6",
+    "gpt-4o-mini"
 ]
 
 PERSONAS    = ["ENTJ", "ISFJ", "INTJ"]
@@ -197,7 +197,7 @@ def run_single(config: tuple) -> dict:
             initial_cash=10000.0,
             max_days=T,
             seed=seed,
-            crash_discount=crash_discount,   # NEW
+            crash_discount=crash_discount, 
         )
         # Guard: treat None return as a failed run — do NOT checkpoint
         if df is None:

@@ -34,7 +34,7 @@ class SyntheticMarketEnv:
         start_price: float = 100.0,
         volatility: float = 0.02, # Daily volatility (sigma)
         drift: float = 0.0005,    # Daily drift (mu)
-        seed: int = 42,           # NEW PARAMETER
+        seed: int = 42,           
         crash_discount: float = 0.92,  # price/value ratio during panic phase
     ):
         self.scenario = scenario
@@ -42,8 +42,8 @@ class SyntheticMarketEnv:
         self.start_price = start_price
         self.sigma = volatility
         self.mu = drift
-        self.seed = seed           # NEW
-        self.crash_discount = crash_discount  # NEW
+        self.seed = seed           
+        self.crash_discount = crash_discount
 
         self.current_step = 0
         self.data = self._generate_market_data()

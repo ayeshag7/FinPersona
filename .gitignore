@@ -13,3 +13,6 @@ venv
 # Miscellaneous
 __pycache__
 results
+outputs
+claude_targeted_outputs/
+outputs_v2/

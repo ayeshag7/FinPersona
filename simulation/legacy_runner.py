@@ -11,7 +11,7 @@ from tqdm import tqdm
 from typing import Optional
 
 # Internal Modules
-from market_data.market_environment import MarketEnvironment
+from legacy_market_data.market_environment import MarketEnvironment
 from agent.legacy_agent import FinPersonaAgent
 from simulation.portfolio_tracker import PortfolioTracker
 

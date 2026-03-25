@@ -13,9 +13,9 @@ from typing import Dict, Any, Optional
 
 # Import our modular components
 # Import our modular components
-import market_data.config as config
-import market_data.data_loader as data_loader
-import market_data.indicator_calculator as indicator_calculator
+import legacy_market_data.config as config
+import legacy_market_data.data_loader as data_loader
+import legacy_market_data.indicator_calculator as indicator_calculator
 
 
 class MarketEnvironment:

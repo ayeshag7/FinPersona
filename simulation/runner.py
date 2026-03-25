@@ -26,7 +26,7 @@ def run_simulation(
     output_dir: str = "results",
     max_days: Optional[int] = None,
     seed: int = 42,
-    crash_discount: float = 0.92,   # NEW
+    crash_discount: float = 0.92,   
 ) -> Optional[pd.DataFrame]:
     """
     Runs a rigorous benchmark simulation.
@@ -51,7 +51,7 @@ def run_simulation(
             scenario=scenario,
             n_days=env_days,
             seed=seed,
-            crash_discount=crash_discount,   # NEW
+            crash_discount=crash_discount,   
         )
         print(f"[Runner] Environment '{scenario}' created ({env.n_days} days).")
     except Exception as e:
@@ -113,6 +113,7 @@ def run_simulation(
             # D. Log Everything (Public + Private Data)
             daily_log = {
                 "Date": current_date,
+                "Model": model_name,
                 "MBTI": mbti_type,
                 "Agent_Type": agent_type,
                 "Scenario": scenario,
@@ -128,9 +129,20 @@ def run_simulation(
                 "Quantity_Percent": decision.quantity,
                 "Rationale": decision.rationale,
                 # Log the new metrics for debugging
+                "SMA20": market_observation.get("SMA20"),
+                "SMA60": market_observation.get("SMA60"),
+                "RSI14": market_observation.get("RSI14"),
+                "MACD": market_observation.get("MACD"),
+                "Volume": market_observation.get("volume"),
+                "Volume_Ratio": market_observation.get("volume_ratio"),
+                "Implied_Volatility": market_observation.get("implied_volatility"),
                 "Reported_PE": market_observation.get("reported_PE"),
+                "Dividend_Yield": market_observation.get("dividend_yield"),
+                "Trend_Strength": market_observation.get("trend_strength"),
+                "Trend_Regime": market_observation.get("trend_regime"),
                 "Sentiment": market_observation.get("news_sentiment"),
-                "Trend_Regime": market_observation.get("trend_regime")
+                "Sentiment_MA5": market_observation.get("sentiment_MA5"),
+                "Sentiment_Change": market_observation.get("sentiment_change")
             }
             history.append(daily_log)
 
