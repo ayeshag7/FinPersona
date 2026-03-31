@@ -1,5 +1,6 @@
 import os
 import json
+import time
 from typing import Dict, Any
 from dotenv import load_dotenv
 
@@ -75,6 +76,13 @@ class StaticAgent(BaseAgent):
             self.llm = ChatOpenAI(
                 model=self.model_name, temperature=temperature, api_key=api_key
             )
+        elif "deepseek" in self.model_name.lower():
+            api_key = os.getenv("DEEPSEEK_API_KEY")
+            if not api_key: raise ValueError("DEEPSEEK_API_KEY missing.")
+            self.llm = ChatOpenAI(
+                model=self.model_name, temperature=temperature, api_key=api_key,
+                base_url="https://api.deepseek.com",
+            )
         else:
             raise ValueError(f"Unsupported model name: {self.model_name}")
 
@@ -105,11 +113,16 @@ class StaticAgent(BaseAgent):
         - Cash: ${portfolio_state['cash']:.2f}
         - Holdings Value: ${portfolio_state['holdings_value']:.2f}
         """
-        try:
-            return self.chain.invoke({"input_data": input_data})
-        except Exception as e:
-            print(f"[{self.get_uid()}] Error: {e}")
-            return TradeDecision(action="HOLD", quantity=0.0, rationale=f"Error: {str(e)}")
+        last_error = None
+        for attempt in range(3):
+            try:
+                return self.chain.invoke({"input_data": input_data})
+            except Exception as e:
+                last_error = e
+                print(f"[{self.get_uid()}] Parse error (attempt {attempt + 1}/3): {e}")
+                if attempt < 2:
+                    time.sleep(1)
+        return TradeDecision(action="HOLD", quantity=0.0, rationale=f"Error after 3 attempts: {str(last_error)}")
 
     def reset(self):
         pass

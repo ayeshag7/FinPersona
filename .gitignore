@@ -14,5 +14,7 @@ venv
 __pycache__
 results
 outputs
-claude_targeted_outputs/
-outputs_v2/
+outputs_frontier_final
+
+figure_and_targeted_runs/
+figures/

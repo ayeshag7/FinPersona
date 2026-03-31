@@ -1,5 +1,6 @@
 import os
 import json
+import time
 from typing import Dict, Any
 from dotenv import load_dotenv
 
@@ -103,11 +104,16 @@ class ActiveMemoryAgent(StaticAgent):
         Evaluate this trade ONLY through the lens of this mandate.
         """
 
-        try:
-            return self.chain.invoke({
-                "input_data": input_data,
-                "context_refresh": context_refresh
-            })
-        except Exception as e:
-            print(f"[{self.get_uid()}] Error: {e}")
-            return TradeDecision(action="HOLD", quantity=0.0, rationale=f"Error: {e}")
+        last_error = None
+        for attempt in range(3):
+            try:
+                return self.chain.invoke({
+                    "input_data": input_data,
+                    "context_refresh": context_refresh
+                })
+            except Exception as e:
+                last_error = e
+                print(f"[{self.get_uid()}] Parse error (attempt {attempt + 1}/3): {e}")
+                if attempt < 2:
+                    time.sleep(1)
+        return TradeDecision(action="HOLD", quantity=0.0, rationale=f"Error after 3 attempts: {str(last_error)}")
