@@ -29,7 +29,7 @@ SCENARIO = "flat"
 Q1_STEPS = (1, 50)      # stable window  (memory agents, early trading)
 Q4_STEPS = (151, 200)   # drifted window (static agents, late trading)
 
-SAMPLES_PER_CELL = 3
+SAMPLES_PER_CELL = 8
 MIN_RATIONALE_LEN = 20
 
 MANDATE_DESCRIPTIONS = {
@@ -53,7 +53,7 @@ PERSONA_DISPLAY_NAMES = {
     "INTJ": "INTJ — System Architect",
 }
 
-RESULTS_DIR = Path("results")
+RESULTS_DIR = Path(__file__).parent.parent / "results"
 RANDOM_SEED = 42
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -372,8 +372,9 @@ def main() -> None:
     annotator_df, gt_df = build_pairs(drifted, stable)
 
     # Save outputs
-    annotator_path = Path("annotation_pairs_for_annotator.csv")
-    gt_path = Path("annotation_pairs_ground_truth.csv")
+    out_dir = Path(__file__).parent
+    annotator_path = out_dir / "annotation_pairs_for_annotator.csv"
+    gt_path = out_dir / "annotation_pairs_ground_truth.csv"
     annotator_df.to_csv(annotator_path, index=False)
     gt_df.to_csv(gt_path, index=False)
     log.info("Saved: %s (%d pairs)", annotator_path, len(annotator_df))
@@ -382,7 +383,7 @@ def main() -> None:
     # Summary report
     summary_text = build_summary(drifted, stable, gt_df, failed=[])
     print("\n" + summary_text)
-    summary_path = Path("annotation_sample_summary.txt")
+    summary_path = out_dir / "annotation_sample_summary.txt"
     summary_path.write_text(summary_text, encoding="utf-8")
     log.info("Saved: %s", summary_path)
 
