@@ -128,3 +128,4 @@ Aggregated metrics are written to `results/master_summary_YYYYMMDD_HHMMSS.csv`.
 | `MAS_Deviation` | Mean Absolute Deviation from target cash allocation (`cideal`) |
 | `Avg_Buy_PE` | Average P/E ratio at buy decisions (bubble participation proxy) |
 | `Cideal` | Personality-specific target cash allocation (ISFJ: 1.0, INTJ: 0.5, ENTJ: 0.2) |
+
