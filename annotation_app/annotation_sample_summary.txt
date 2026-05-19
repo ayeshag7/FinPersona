@@ -1,0 +1,28 @@
+============================================================
+ANNOTATION SAMPLE SUMMARY
+============================================================
+
+Total annotation pairs generated: 36
+
+Pairs by persona:
+  ENTJ — Momentum Commander: 12
+  INTJ — System Architect: 12
+  ISFJ — Guardian Investor: 12
+
+Pairs by model:
+  claude_sonnet_4_6_200: 9
+  deepseek_chat_200: 9
+  gemini_2_5_pro_200: 9
+  gpt_4o_200: 9
+
+Mean rationale length (chars):
+  Drifted (Q4 static): 367
+  Stable  (Q1 memory): 338
+
+Mean cash_fraction (sanity check — drifted should be lower):
+  Drifted: 0.1825
+  Stable:  0.6111
+
+No sampling failures detected.
+
+============================================================

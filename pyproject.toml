@@ -25,6 +25,7 @@ dependencies = [
     "langchain-openai",
     "python-dotenv",
     "tqdm",
+    "streamlit>=1.30",
 ]
 
 [project.optional-dependencies]
@@ -35,8 +36,9 @@ dev = [
     "black"
 ]
 
-[tool.setuptools]
-packages = ["market_data"]
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests*", "results*", ".venv*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
