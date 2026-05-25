@@ -1,0 +1,11 @@
+{
+  "model": "distilbert (C:\\Users\\ayesha.gull01\\FinPersona\\finpersona_classifier_model\\model)",
+  "static_accuracy": 0.665,
+  "memory_accuracy": 0.8725,
+  "placebo_accuracy": 0.627,
+  "personas": [
+    "ENTJ",
+    "ISFJ",
+    "INTJ"
+  ]
+}
