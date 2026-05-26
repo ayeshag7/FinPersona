@@ -1,0 +1,33 @@
+display_model,model_category,Agent_Type,Quartile,lcr,n,lcr_pct
+Claude Sonnet 4.6,flagship,memory,Q1,0.44,750,44.0
+Claude Sonnet 4.6,flagship,memory,Q2,0.608,750,60.8
+Claude Sonnet 4.6,flagship,memory,Q3,0.7293333333333333,750,72.9
+Claude Sonnet 4.6,flagship,memory,Q4,0.46,750,46.0
+Claude Sonnet 4.6,flagship,static,Q1,0.428,750,42.8
+Claude Sonnet 4.6,flagship,static,Q2,0.544,750,54.4
+Claude Sonnet 4.6,flagship,static,Q3,0.6706666666666666,750,67.1
+Claude Sonnet 4.6,flagship,static,Q4,0.4066666666666667,750,40.7
+GPT-4.1-mini,mini,memory,Q1,0.256,750,25.6
+GPT-4.1-mini,mini,memory,Q2,0.3466666666666667,750,34.7
+GPT-4.1-mini,mini,memory,Q3,0.556,750,55.6
+GPT-4.1-mini,mini,memory,Q4,0.31066666666666665,750,31.1
+GPT-4.1-mini,mini,static,Q1,0.12533333333333332,750,12.5
+GPT-4.1-mini,mini,static,Q2,0.15733333333333333,750,15.7
+GPT-4.1-mini,mini,static,Q3,0.31866666666666665,750,31.9
+GPT-4.1-mini,mini,static,Q4,0.18,750,18.0
+GPT-4o,flagship,memory,Q1,0.058666666666666666,750,5.9
+GPT-4o,flagship,memory,Q2,0.14266666666666666,750,14.3
+GPT-4o,flagship,memory,Q3,0.30533333333333335,750,30.5
+GPT-4o,flagship,memory,Q4,0.07733333333333334,750,7.7
+GPT-4o,flagship,static,Q1,0.088,750,8.8
+GPT-4o,flagship,static,Q2,0.12,750,12.0
+GPT-4o,flagship,static,Q3,0.19866666666666666,750,19.9
+GPT-4o,flagship,static,Q4,0.088,750,8.8
+GPT-4o-mini,mini,memory,Q1,0.13466666666666666,750,13.5
+GPT-4o-mini,mini,memory,Q2,0.2853333333333333,750,28.5
+GPT-4o-mini,mini,memory,Q3,0.33066666666666666,750,33.1
+GPT-4o-mini,mini,memory,Q4,0.224,750,22.4
+GPT-4o-mini,mini,static,Q1,0.168,750,16.8
+GPT-4o-mini,mini,static,Q2,0.13866666666666666,750,13.9
+GPT-4o-mini,mini,static,Q3,0.11333333333333333,750,11.3
+GPT-4o-mini,mini,static,Q4,0.13333333333333333,750,13.3

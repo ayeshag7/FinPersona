@@ -1,0 +1,9 @@
+Model,Category,Condition,Mean_P_intended_Q3Q4,LCR_Q3_pct,N_Q3
+GPT-4o-mini,mini,static,0.7586,11.3,750
+GPT-4o-mini,mini,memory,0.9794,33.1,750
+GPT-4.1-mini,mini,static,0.7751,31.9,750
+GPT-4.1-mini,mini,memory,0.9867,55.6,750
+GPT-4o,flagship,static,0.7477,19.9,750
+GPT-4o,flagship,memory,0.9845,30.5,750
+Claude Sonnet 4.6,flagship,static,0.6539,67.1,750
+Claude Sonnet 4.6,flagship,memory,0.8657,72.9,750
