@@ -62,7 +62,17 @@ class StaticAgent(BaseAgent):
             self.llm = ChatGoogleGenerativeAI(
                 model=self.model_name, temperature=temperature, google_api_key=api_key
             )
-            
+
+        elif self.model_name.startswith("openrouter/"):
+            api_key = os.getenv("OPENROUTER_API_KEY")
+            if not api_key: raise ValueError("OPENROUTER_API_KEY missing.")
+            # Strip the "openrouter/" prefix to get the actual model id
+            actual_model = self.model_name[len("openrouter/"):]
+            self.llm = ChatOpenAI(
+                model=actual_model, temperature=temperature, api_key=api_key,
+                base_url="https://openrouter.ai/api/v1",
+            )
+
         elif "claude" in self.model_name.lower():
             api_key = os.getenv("ANTHROPIC_API_KEY")
             if not api_key: raise ValueError("ANTHROPIC_API_KEY missing.")
