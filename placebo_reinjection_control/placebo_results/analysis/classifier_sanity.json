@@ -1,0 +1,23 @@
+{
+  "source_file": "persona_classifier/metrics.json",
+  "model": "distilbert (C:\\Users\\ayesha.gull01\\FinPersona\\finpersona_classifier_model\\model)",
+  "personas": [
+    "ENTJ",
+    "ISFJ",
+    "INTJ"
+  ],
+  "metric": "P(intended_persona) -- classifier accuracy on rationales",
+  "note": "Sanity check: placebo should sit near static (~66%), not near memory (~87%), confirming boilerplate did not accidentally activate persona-associated language.",
+  "per_arm": {
+    "static": {
+      "accuracy": 0.665
+    },
+    "placebo": {
+      "accuracy": 0.627
+    },
+    "memory": {
+      "accuracy": 0.8725
+    }
+  },
+  "sanity_check_passed": true
+}

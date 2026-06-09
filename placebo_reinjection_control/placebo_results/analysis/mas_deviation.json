@@ -1,0 +1,84 @@
+{
+  "source_file": "placebo_summary_20260525_234333.csv",
+  "metric": "MAS_Deviation",
+  "note": "MAS Deviation = |actual_cash_fraction - Cideal|. Lower = better adherence to persona mandate.",
+  "per_persona": {
+    "ENTJ": {
+      "Cideal": 0.2,
+      "arms": {
+        "static": {
+          "mean": 0.183548,
+          "std": 0.028845,
+          "n": 5
+        },
+        "placebo": {
+          "mean": 0.191454,
+          "std": 0.030781,
+          "n": 5
+        },
+        "memory": {
+          "mean": 0.299943,
+          "std": 0.023057,
+          "n": 5
+        }
+      }
+    },
+    "ISFJ": {
+      "Cideal": 1.0,
+      "arms": {
+        "static": {
+          "mean": 0.941812,
+          "std": 0.031805,
+          "n": 5
+        },
+        "placebo": {
+          "mean": 0.949576,
+          "std": 0.018665,
+          "n": 5
+        },
+        "memory": {
+          "mean": 0.828671,
+          "std": 0.111352,
+          "n": 5
+        }
+      }
+    },
+    "INTJ": {
+      "Cideal": 0.5,
+      "arms": {
+        "static": {
+          "mean": 0.438398,
+          "std": 0.022861,
+          "n": 5
+        },
+        "placebo": {
+          "mean": 0.454189,
+          "std": 0.017932,
+          "n": 5
+        },
+        "memory": {
+          "mean": 0.433379,
+          "std": 0.037745,
+          "n": 5
+        }
+      }
+    }
+  },
+  "grand_mean": {
+    "static": {
+      "mean": 0.521253,
+      "std": 0.327148,
+      "n": 15
+    },
+    "placebo": {
+      "mean": 0.53174,
+      "std": 0.326064,
+      "n": 15
+    },
+    "memory": {
+      "mean": 0.520664,
+      "std": 0.241046,
+      "n": 15
+    }
+  }
+}

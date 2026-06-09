@@ -1,0 +1,43 @@
+{
+  "source_file": "placebo_summary_20260525_234333.csv",
+  "metric": "MAS_Deviation",
+  "note": "Positive mean_diff means arm_A has higher (worse) MAS deviation. n=15 pairs (3 personas x 5 seeds).",
+  "tests": {
+    "Static vs. Placebo": {
+      "arm_A": "static",
+      "arm_B": "placebo",
+      "test": "Wilcoxon signed-rank (paired, two-tailed)",
+      "n_pairs": 15,
+      "pairing": "Persona x Seed",
+      "W": 24.0,
+      "p_value": 0.04126,
+      "significant_at_0.05": true,
+      "mean_diff_A_minus_B": -0.010487,
+      "interpretation": "static MAS lower than placebo by 0.0105 on average"
+    },
+    "Placebo vs. Memory": {
+      "arm_A": "placebo",
+      "arm_B": "memory",
+      "test": "Wilcoxon signed-rank (paired, two-tailed)",
+      "n_pairs": 15,
+      "pairing": "Persona x Seed",
+      "W": 53.0,
+      "p_value": 0.719727,
+      "significant_at_0.05": false,
+      "mean_diff_A_minus_B": 0.011075,
+      "interpretation": "placebo MAS higher than memory by 0.0111 on average"
+    },
+    "Static vs. Memory": {
+      "arm_A": "static",
+      "arm_B": "memory",
+      "test": "Wilcoxon signed-rank (paired, two-tailed)",
+      "n_pairs": 15,
+      "pairing": "Persona x Seed",
+      "W": 57.0,
+      "p_value": 0.890381,
+      "significant_at_0.05": false,
+      "mean_diff_A_minus_B": 0.000588,
+      "interpretation": "static MAS higher than memory by 0.0006 on average"
+    }
+  }
+}

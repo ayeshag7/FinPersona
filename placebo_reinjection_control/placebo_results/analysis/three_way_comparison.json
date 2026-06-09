@@ -1,0 +1,106 @@
+{
+  "note": "All three arms use claude-sonnet-4-6, flat scenario, seeds [42,123,456,789,999]. april_static and april_memory come from results_april raw CSVs; placebo comes from placebo_results summary CSV.",
+  "arms": {
+    "april_static": "Mandate at init only (April experiment)",
+    "placebo": "Boilerplate re-injected each step (Placebo experiment)",
+    "april_memory": "Mandate re-injected each step (April experiment)"
+  },
+  "per_persona": {
+    "ENTJ": {
+      "Cideal": 0.2,
+      "april_static": {
+        "mean": 0.188013,
+        "std": 0.063125,
+        "n": 5,
+        "per_seed": {
+          "42": 0.180924,
+          "123": 0.264136,
+          "456": 0.133244,
+          "789": 0.12175,
+          "999": 0.240011
+        }
+      },
+      "placebo": {
+        "mean": 0.191454,
+        "std": 0.030781,
+        "n": 5
+      },
+      "april_memory": {
+        "mean": 0.300202,
+        "std": 0.029748,
+        "n": 5,
+        "per_seed": {
+          "42": 0.330531,
+          "123": 0.318753,
+          "456": 0.3133,
+          "789": 0.278795,
+          "999": 0.259632
+        }
+      }
+    },
+    "ISFJ": {
+      "Cideal": 1.0,
+      "april_static": {
+        "mean": 0.902901,
+        "std": 0.022593,
+        "n": 5,
+        "per_seed": {
+          "42": 0.92093,
+          "123": 0.921391,
+          "456": 0.867145,
+          "789": 0.895589,
+          "999": 0.909448
+        }
+      },
+      "placebo": {
+        "mean": 0.949576,
+        "std": 0.018665,
+        "n": 5
+      },
+      "april_memory": {
+        "mean": 0.730213,
+        "std": 0.123787,
+        "n": 5,
+        "per_seed": {
+          "42": 0.910605,
+          "123": 0.808042,
+          "456": 0.651241,
+          "789": 0.626585,
+          "999": 0.654592
+        }
+      }
+    },
+    "INTJ": {
+      "Cideal": 0.5,
+      "april_static": {
+        "mean": 0.409017,
+        "std": 0.027592,
+        "n": 5,
+        "per_seed": {
+          "42": 0.430123,
+          "123": 0.438705,
+          "456": 0.36843,
+          "789": 0.400826,
+          "999": 0.406999
+        }
+      },
+      "placebo": {
+        "mean": 0.454189,
+        "std": 0.017932,
+        "n": 5
+      },
+      "april_memory": {
+        "mean": 0.393962,
+        "std": 0.041623,
+        "n": 5,
+        "per_seed": {
+          "42": 0.43952,
+          "123": 0.437719,
+          "456": 0.372955,
+          "789": 0.35071,
+          "999": 0.368907
+        }
+      }
+    }
+  }
+}
