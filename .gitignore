@@ -13,9 +13,9 @@ venv
 
 # Miscellaneous
 __pycache__
-results
-outputs
-outputs_frontier_final
+results/
+outputs/
+outputs_frontier_final/
 
 figure_and_targeted_runs/
 figures/
@@ -25,3 +25,8 @@ analysis_may/
 analysis_april/
 analysis/
 extended_results/
+finpersona_classifier_model/
+results_long_horizon/
+results_long_horizon/claude-sonnet-4-6
+results_long_horizon/claude-sonnet-4-6/crash/discount0.85
+results_long_horizon/claude-sonnet-4-6/crash/discount0.92
