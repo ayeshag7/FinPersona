@@ -1,5 +1,6 @@
 # Environment
 .env
+env
 
 # Distribution / Packaging
 build/
@@ -18,3 +19,9 @@ outputs_frontier_final
 
 figure_and_targeted_runs/
 figures/
+results_may/
+results_april/
+analysis_may/
+analysis_april/
+analysis/
+extended_results/
