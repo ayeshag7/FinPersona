@@ -32,6 +32,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from tqdm import tqdm
 
+# Make the repo root importable regardless of the current working directory.
+import sys as _sys, pathlib as _pathlib
+_sys.path.insert(0, str(_pathlib.Path(__file__).resolve().parents[1]))
+
 from simulation.ocean_runner import run_ocean_simulation
 from agent.ocean_prompts import OCEAN_CIDEAL_MAP
 

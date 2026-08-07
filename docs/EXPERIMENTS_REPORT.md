@@ -69,14 +69,14 @@ The original FinPersona panel evaluates 3 closed-source models. We extend this t
 cd /lustre/scratch/users/duzhen.zhang/FinPersona_mine
 
 # Full panel (resumes via checkpoint if interrupted)
-python run_experiments.py
+python experiments/run_experiments.py
 
 # Restrict to one phase:
-python run_experiments.py --only api  --workers 60   # Gemini Flash, Sonnet
-python run_experiments.py --only vllm                # Open-weight, sequential
+python experiments/run_experiments.py --only api  --workers 60   # Gemini Flash, Sonnet
+python experiments/run_experiments.py --only vllm                # Open-weight, sequential
 
 # Restrict to one model:
-python run_experiments.py --only vllm --models Qwen/Qwen2.5-7B-Instruct
+python experiments/run_experiments.py --only vllm --models Qwen/Qwen2.5-7B-Instruct
 ```
 
 ### 2.3 Outputs

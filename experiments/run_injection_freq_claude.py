@@ -35,7 +35,10 @@ import pandas as pd
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-PROJECT_ROOT = Path(__file__).parent
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+# Make the repo root importable regardless of the current working directory.
+import sys as _sys
+_sys.path.insert(0, str(PROJECT_ROOT))
 load_dotenv(PROJECT_ROOT / "env", override=True)
 load_dotenv(PROJECT_ROOT / ".env", override=False)
 

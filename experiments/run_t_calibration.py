@@ -44,6 +44,11 @@ import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from scipy import stats
 from tqdm import tqdm
+
+# Make the repo root importable regardless of the current working directory.
+import sys as _sys, pathlib as _pathlib
+_sys.path.insert(0, str(_pathlib.Path(__file__).resolve().parents[1]))
+
 from simulation.runner import run_simulation
 
 # ── Configuration ──────────────────────────────────────────────────────────
