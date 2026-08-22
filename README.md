@@ -4,6 +4,16 @@ FinPersona-Bench is a simulation benchmark for measuring **Mandate Salience Deca
 
 ---
 
+## Environment v2 rebuild (Aug 2026)
+
+The synthetic market, harness and evaluation layer are being rebuilt per
+`docs/FinPersona-Bench_Synthetic_Environment_v2_Plan_Aug2026` (reviewer-identified defects: the P/E leak of the hidden
+value, fixed phase indices, no volatility clustering, inert crash severity, 100%-cash start, asymmetric BUY/SELL).
+The v1 generator used for every result below is frozen at tag `v1-env-freeze` (`envs/v1/`). The v2 generator lives in
+`envs/v2/` behind the same `envs/synthetic_market.py` API; the v2 harness is `agent/v2_agent.py` +
+`simulation/runner_v2.py` + `experiments/arms_v2.py`; the evaluation layer is `evaluation/`. Status, validation
+tables, decisions and open issues: **`docs/env_v2/`** (start with `docs/env_v2/README.md` and `E1_E4_STATUS.md`).
+
 ## Architecture
 
 ### 1. Market Environment (`envs/`)

@@ -16,6 +16,7 @@ from envs.synthetic_market import SyntheticMarketEnv
 from agent.static_agent import StaticAgent           
 from agent.memory_agent import ActiveMemoryAgent     
 from simulation.portfolio_tracker import PortfolioTracker
+from simulation.provenance import env_provenance, agent_provenance
 
 def run_simulation(
     mbti_type: str,
@@ -71,6 +72,11 @@ def run_simulation(
 
     # 3. Initialize Accounting
     tracker = PortfolioTracker(initial_cash=initial_cash)
+
+    # 3b. Provenance: generator config/code hashes and prompt hash, logged in every row
+    #     (v2 plan Section 2.1 block 10, Section 8 item 5; review F28).
+    provenance = {**env_provenance(env), **agent_provenance(agent)}
+    print(f"[Runner] Provenance: {provenance}")
 
     # 4. Prepare Logging
     history = []
@@ -142,7 +148,8 @@ def run_simulation(
                 "Trend_Regime": market_observation.get("trend_regime"),
                 "Sentiment": market_observation.get("news_sentiment"),
                 "Sentiment_MA5": market_observation.get("sentiment_MA5"),
-                "Sentiment_Change": market_observation.get("sentiment_change")
+                "Sentiment_Change": market_observation.get("sentiment_change"),
+                **provenance,
             }
             history.append(daily_log)
 

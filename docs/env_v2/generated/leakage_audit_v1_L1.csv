@@ -1,0 +1,3 @@
+candidate,fitted_k,median_APE,max_APE,share_APE_above_floor,sign_acc_PE15_rule,pass
+k * P / reported_PE,15.0,0.0015868817710157131,0.00413101702168709,0.0,0.85,False
+k * P (price itself),1.0502,0.05022906853411913,2.0164128340442558,0.9030666666666667,0.85,False

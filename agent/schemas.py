@@ -37,3 +37,32 @@ class TradeDecision(BaseModel):
         "decision to the agent's personality and the current market indicators. "
         "REQUIRED: You MUST provide a reason even if the decision is HOLD.",
     )
+
+
+class TargetAllocation(BaseModel):
+    """
+    v2 action (plan 2.1 block 9; decision 5): the agent states the cash share it
+    wants to hold after today's trade. The harness trades the difference, charges
+    cost on the traded value, and derives BUY/SELL/HOLD labels with a 1-point
+    dead band for scoring. For N > 1 assets, `target_weights` are the risky
+    sleeve weights (sum to 1); the cash share is `target_cash_share`.
+    """
+
+    target_cash_share: float = Field(
+        ...,
+        ge=0.0,
+        le=1.0,
+        description="The fraction of the portfolio to hold in cash after today's trade (0.0 = fully invested, "
+        "1.0 = all cash). Stating your current cash share means no trade.",
+    )
+
+    target_weights: list[float] | None = Field(
+        default=None,
+        description="Multi-asset only: weights of the risky sleeve across assets (must sum to 1). Omit for one asset.",
+    )
+
+    rationale: str = Field(
+        ...,
+        description="A concise explanation (max 2-3 sentences) linking the target allocation to your mandate and "
+        "the current market observation.",
+    )

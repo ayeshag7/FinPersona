@@ -1,0 +1,3 @@
+item,property,statistic,criterion,pass,n_seeds
+14,"Value leak (L1, L2; L3 separate)","L1 best inversion 'k * P / reported_PE' (k=15.0): median APE 0.16%, 0% of steps above the 1% floor; L2 best calm R2(x) = 0.90, calm sign acc = nan; event R2(x) = 1.00, event MAPE(V) = 0.7%",no algebraic inversion; calm R2 <= 0.30 & sign acc <= 0.70; event R2 < 0.90 & MAPE >= 10%,False,30000
+16,Composite phase clock (L2b),macro-class accuracy full 99.8% vs price-only 94.9% (day-only 60.0%; majority 40.0%); selectivity +5.0%,selectivity <= 10%,True,27000

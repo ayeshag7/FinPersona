@@ -16,6 +16,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 from agent.base import BaseAgent
 from agent.schemas import TradeDecision
 from agent.prompts import get_financial_persona
+from agent.render import render_static_input, HUMAN_TEMPLATE_STATIC
 
 load_dotenv()
 
@@ -55,6 +56,7 @@ class StaticAgent(BaseAgent):
         Factory method to initialize the correct LLM based on model_name.
         """
         temperature = 0.2
+        self.temperature = temperature  # logged in every output row (plan Section 7, D22)
         
         if "gemini" in self.model_name.lower():
             api_key = os.getenv("GOOGLE_API_KEY")
@@ -100,29 +102,22 @@ class StaticAgent(BaseAgent):
         self.parser = PydanticOutputParser(pydantic_object=TradeDecision)
         self.prompt_template = ChatPromptTemplate.from_messages([
             ("system", "{persona}"),
-            ("human", "{input_data}\n\nIMPORTANT: You must return a valid JSON object with ALL 3 fields: 'action', 'quantity' (0.0 if HOLD), and 'rationale'.\n\n{format_instructions}")
+            ("human", HUMAN_TEMPLATE_STATIC)
         ])
+        self.human_template = HUMAN_TEMPLATE_STATIC
         self.chain = self.prompt_template.partial(
             persona=self.full_system_prompt,
             format_instructions=self.parser.get_format_instructions()
         ) | self.llm | self.parser
 
+    def prompt_components(self) -> Dict[str, str]:
+        """Everything constant across steps that enters the prompt (for Prompt_Hash)."""
+        return {"system": self.full_system_prompt, "human": self.human_template,
+                "format_instructions": self.parser.get_format_instructions(), "mandate": ""}
+
     def decide(self, market_state: Dict[str, Any], portfolio_state: Dict[str, float]) -> TradeDecision:
-        input_data = f"""
-        DATE: {market_state['date']}
-        MARKET OBSERVATION:
-        - Price: ${market_state['price']:.2f}
-        - Trend (SMA20/60): {market_state['SMA20']} / {market_state['SMA60']} ({market_state.get('trend_regime', 0)})
-        - RSI: {market_state['RSI14']}
-        - P/E Ratio: {market_state.get('reported_PE', 'N/A')}
-        - Implied Volatility: {market_state.get('implied_volatility', 'N/A')}%
-        - Volume Ratio: {market_state.get('volume_ratio', 'N/A')}
-        - News Sentiment: {market_state.get('news_sentiment', 'Neutral')}
-        
-        PORTFOLIO STATUS:
-        - Cash: ${portfolio_state['cash']:.2f}
-        - Holdings Value: ${portfolio_state['holdings_value']:.2f}
-        """
+        # Rendering lives in agent/render.py (byte-identical to the v1 inline f-string; see tests).
+        input_data = render_static_input(market_state, portfolio_state)
         last_error = None
         for attempt in range(3):
             try:

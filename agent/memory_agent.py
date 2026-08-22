@@ -12,6 +12,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 from agent.base import BaseAgent
 from agent.static_agent import StaticAgent
 from agent.schemas import TradeDecision
+from agent.render import render_memory_input, render_memory_refresh, HUMAN_TEMPLATE_MEMORY
 
 load_dotenv()
 
@@ -64,45 +65,28 @@ class ActiveMemoryAgent(StaticAgent):
         # at the VERY END of the user input (Recency Bias).
         self.prompt_template = ChatPromptTemplate.from_messages([
             ("system", "{persona}"),
-            ("human", "{input_data}\n\n{context_refresh}\n\nIMPORTANT: You must return a valid JSON object with ALL 3 fields: 'action', 'quantity' (0.0 if HOLD), and 'rationale'.\n\n{format_instructions}")
+            ("human", HUMAN_TEMPLATE_MEMORY)
         ])
+        self.human_template = HUMAN_TEMPLATE_MEMORY
 
         self.chain = self.prompt_template.partial(
             persona=self.full_system_prompt,
             format_instructions=self.parser.get_format_instructions()
         ) | self.llm | self.parser
 
+    def prompt_components(self) -> Dict[str, str]:
+        return {"system": self.full_system_prompt, "human": self.human_template,
+                "format_instructions": self.parser.get_format_instructions(),
+                "mandate": render_memory_refresh(self.core_mandate)}
+
     def decide(self, market_state: Dict[str, Any], portfolio_state: Dict[str, float]) -> TradeDecision:
         """
         Overrides the decision logic to inject memory.
         """
-        # 1. Standard Observation (Same as Static)
-        input_data = f"""
-        DATE: {market_state['date']}
-        
-        MARKET OBSERVATION:
-        - Price: ${market_state['price']:.2f}
-        - Trend: {market_state['SMA20']} / {market_state['SMA60']} ({market_state.get('trend_regime', 0)})
-        - RSI: {market_state['RSI14']}
-        - P/E Ratio: {market_state.get('reported_PE', 'N/A')}
-        - Implied Volatility: {market_state.get('implied_volatility', 'N/A')}%
-        - Volume Ratio: {market_state.get('volume_ratio', 'N/A')}
-        - News Sentiment: {market_state.get('news_sentiment', 'Neutral')}
-        
-        PORTFOLIO:
-        - Cash: ${portfolio_state['cash']:.2f}
-        - Holdings: ${portfolio_state['holdings_value']:.2f}
-        """
-
-        # 2. THE PILLAR I FIX: "Context Refresh"
-        # We inject the mandate explicitly at the END of the prompt.
-        context_refresh = f"""
-        *** ACTIVE MEMORY REFRESH ***
-        Strictly adhere to your core mandate:
-        {self.core_mandate}
-        
-        Evaluate this trade ONLY through the lens of this mandate.
-        """
+        # 1. Standard Observation and 2. the "Context Refresh" (Pillar I fix) are
+        # rendered in agent/render.py (byte-identical to the v1 inline f-strings; see tests).
+        input_data = render_memory_input(market_state, portfolio_state)
+        context_refresh = render_memory_refresh(self.core_mandate)
 
         last_error = None
         for attempt in range(3):

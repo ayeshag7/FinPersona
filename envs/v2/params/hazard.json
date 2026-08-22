@@ -1,0 +1,10 @@
+{
+ "h0": 0.0003,
+ "b": 6.0,
+ "g_max": 0.012,
+ "seeds": 60,
+ "T": 200,
+ "topped_share": 0.4666666666666667,
+ "peak_pv_topped_median": 2.1245448689989814,
+ "note": "h_t = h0 * exp(b * x_t); calibrated by tools/calibrate_hazard.py"
+}
