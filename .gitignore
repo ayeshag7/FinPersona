@@ -32,3 +32,7 @@ results_long_horizon/claude-sonnet-4-6/crash/discount0.85
 results_long_horizon/claude-sonnet-4-6/crash/discount0.92
 # Downloaded reference papers (copyrighted PDFs)
 references/
+
+# v2 harness outputs (per-run CSVs; reports are regenerated into docs/env_v2/generated/)
+results_v2/
+results_v2_pilot/

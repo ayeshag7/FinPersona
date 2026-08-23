@@ -1,0 +1,6 @@
+Model,Arm,n,fallback,zero_trade,degenerate_rg
+gemini-2.5-flash,memory,11,0.0,0.0,1.0
+gemini-2.5-flash,placebo_directive,9,0.0,0.0,1.0
+gemini-2.5-flash,stateful_memory,3,0.0,0.0,1.0
+gemini-2.5-flash,static,20,0.0,0.0,1.0
+gemini-2.5-flash,swapped,9,0.0,0.0,1.0
