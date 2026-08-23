@@ -53,6 +53,11 @@ ARMS: Dict[str, Dict] = {
     "stateful_memory": {"mandate_block": "mandate", "mandate_in_system": True, "context_mode": "rolling"},
     "stateful_full_static": {"mandate_block": "none", "mandate_in_system": True, "context_mode": "full"},
     "stateful_full_memory": {"mandate_block": "mandate", "mandate_in_system": True, "context_mode": "full"},
+    "stateful_summary_static": {"mandate_block": "none", "mandate_in_system": True, "context_mode": "summary"},
+    "stateful_summary_memory": {"mandate_block": "mandate", "mandate_in_system": True, "context_mode": "summary"},
+    # matched control for the summary arm (same raw-turn count, no summary): rolling window of 5
+    "stateful_r5_static": {"mandate_block": "none", "mandate_in_system": True, "context_mode": "rolling", "context_window": 5},
+    "stateful_r5_memory": {"mandate_block": "mandate", "mandate_in_system": True, "context_mode": "rolling", "context_window": 5},
 }
 
 # Multi-asset extension (decision 8): the scenario asset, a correlated peer and a low-volatility

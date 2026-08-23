@@ -90,11 +90,12 @@ def pilot_stats(params: "FWParams", engine: str = "fw_single", n_steps: int = 20
     return out
 
 
-def fallback_single_stock() -> FWParams:
+def fallback_single_stock(half_life_days: float = None) -> FWParams:
     """Index set with phi raised so that mu * n_bar * phi = ln2 / 90 (calm
     half-life ~90 d) at the REALISED fundamentalist share n_bar (fixed point of
     three pilot iterations)."""
-    target = math.log(2.0) / HALF_LIFE_FALLBACK_DAYS
+    hl = float(half_life_days) if half_life_days else HALF_LIFE_FALLBACK_DAYS
+    target = math.log(2.0) / hl
     base = FW_INDEX_2012
     n_bar = 0.5
     phi = target / (base.mu * n_bar)
@@ -102,9 +103,9 @@ def fallback_single_stock() -> FWParams:
         trial = FWParams(phi=phi, name="fw_single_stock_fallback_trial")
         n_bar = pilot_stats(trial)["n_bar"]
         phi = target / (base.mu * max(n_bar, 1e-3))
-    return FWParams(phi=phi, name="fw_single_stock_fallback",
+    return FWParams(phi=phi, name="fw_single_stock_fallback" if not half_life_days else f"fw_fallback_hl{int(hl)}",
                     source=("DESIGN CHOICE (no SMM estimate available): FW 2012 functional form with phi set for a "
-                            f"~{HALF_LIFE_FALLBACK_DAYS:.0f}-day calm half-life at the realised fundamentalist share "
+                            f"~{hl:.0f}-day stationary calm half-life at the realised fundamentalist share "
                             f"n_bar={n_bar:.3f}; see DECISION_LOG.md row 2"))
 
 
@@ -123,6 +124,8 @@ def load_params(engine: str = "fw_single") -> FWParams:
         return fallback_single_stock()
     if engine == "ar1":
         return FWParams(name="ar1")
+    if engine.startswith("fw_hl"):          # half-life sensitivities, e.g. fw_hl60, fw_hl300
+        return fallback_single_stock(float(engine[5:]))
     raise ValueError(f"unknown mispricing engine {engine!r}")
 
 

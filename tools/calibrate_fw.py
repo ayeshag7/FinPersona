@@ -117,12 +117,35 @@ def objective(theta, target, W):
     return float(d @ W @ d) + pen
 
 
+def j_profile(target, W, phis=(0.03, 0.06, 0.12, 0.25, 0.5, 1.0, 2.0), base=None) -> pd.DataFrame:
+    """Objective J along phi with the other parameters at the index set: a flat profile is
+    the non-identification evidence the integrity review asked for."""
+    b = base if base is not None else [FW_INDEX_2012.phi, FW_INDEX_2012.chi, FW_INDEX_2012.alpha_0, FW_INDEX_2012.alpha_n, FW_INDEX_2012.alpha_p]
+    rows = []
+    for ph in phis:
+        th = list(b); th[0] = ph
+        m = simulate_moments(th)
+        d = m - target
+        rows.append({"phi": ph, "J": float(d @ W @ d), **{f"m{i}": float(v) for i, v in enumerate(m)}})
+    return pd.DataFrame(rows)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tickers", nargs="+", default=TICKERS)
     ap.add_argument("--start", default="2000-01-01"); ap.add_argument("--end", default="2024-12-31")
     ap.add_argument("--maxiter", type=int, default=150)
+    ap.add_argument("--profile", action="store_true", help="only compute the J-profile over phi from the stored REJECTED run")
     a = ap.parse_args()
+    if a.profile:
+        rej = os.path.join(PARAM_DIR, "fw_single_stock.REJECTED.json")
+        d = json.load(open(rej, encoding="utf-8"))
+        target = np.array(d["target_moments"])
+        # the bootstrap weights are not stored; use the diagonal of 1/target^2 as a scale-free proxy and state it
+        W = np.diag(1.0 / np.maximum(target ** 2, 1e-4))
+        prof = j_profile(target, W)
+        out = os.path.join(ROOT, "docs", "env_v2", "generated", "fw_J_profile.csv")
+        prof.to_csv(out, index=False); print(prof.round(3).to_string(index=False)); print("written", out); return 0
     try:
         rets = download(a.tickers, a.start, a.end)
     except Exception as exc:

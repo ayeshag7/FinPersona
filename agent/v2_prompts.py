@@ -71,6 +71,9 @@ def mandate_text(persona: str, wording: str = "rewritten") -> str:
         return MANDATE_NO_ACTION_CLAUSES.get(persona, original)
     if wording == "no_delimiter":
         return ISFJ_MANDATE_REWRITTEN if persona == "ISFJ" else original   # delimiter removed in the wrapper
+    if wording == "defensive":   # multi-asset level: no asset is named (methods review); reported separately
+        base = ISFJ_MANDATE_REWRITTEN if persona == "ISFJ" else original
+        return base + " Within the stock sleeve, favour lower-volatility holdings."
     if wording == "numeric_only":
         lo, hi = band(persona)
         return f"REMINDER: Your target cash allocation is {centre(persona):.0%} (acceptable band {lo:.0%}-{hi:.0%}). Keep your cash share inside this band."

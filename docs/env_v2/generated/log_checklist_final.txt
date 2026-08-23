@@ -1,0 +1,22 @@
+ item                                                     property  pass
+    1 No linear autocorrelation of returns in calm phases (Cont 1)  True
+    2                                      Heavy tails (Cont 2, 7) False
+    3                               Volatility clustering (Cont 6) False
+    4                                     Decay of ACF|r| (Cont 8)  None
+    5                                GARCH persistence recoverable  True
+    6                                     Leverage effect (Cont 9) False
+    7                                  Volume-volatility (Cont 10) False
+    8                        Gain/loss asymmetry in crash (Cont 3)  True
+    9                           Mispricing persistence (FW regime)  True
+   10                                                Delta matters False
+   11                                 Bubble shape and populations  True
+   12                                           Sentiment dynamics  True
+   13                                                   IV realism False
+   14                                                   Value leak  None
+   15                                      Phase/time separability  True
+   16                                        Composite phase clock  None
+   17                                                 Conditioning False
+   18                                         Start design applied  None
+   19                                    Action-space reachability  None
+   20                                                   Magnitudes  True
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\checklist_v2.md

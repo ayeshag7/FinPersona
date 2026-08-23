@@ -126,6 +126,94 @@ def mixed_effects(per_run: pd.DataFrame, metric: str) -> pd.DataFrame:
         return pd.DataFrame([{"term": "ERROR", "coef": np.nan, "se": np.nan, "p": np.nan, "metric": metric, "note": str(exc)[:120]}])
 
 
+RUN_KEYS = ["Model", "Persona", "Arm", "Scenario", "Seed", "Decode_Replicate"]
+
+
+def window_means(per_step: pd.DataFrame, metric: str, window: int = 25) -> pd.DataFrame:
+    """Per-run x 25-day-window means (the unit for temporal claims; per-day series are near-unit-root)."""
+    d = per_step.dropna(subset=[metric]).copy()
+    d["w"] = (d["Day"] - 1) // window
+    keys = [k for k in RUN_KEYS if k in d.columns]
+    g = d.groupby(keys + ["w"], sort=False)
+    out = g.agg(y=(metric, "mean"), day_c=("Day", "mean"), phase=("Phase", lambda s: s.mode().iloc[0] if len(s) else "calm"),
+                ordering=("Ordering", "first") if "Ordering" in d.columns else ("Day", "size")).reset_index()
+    out["day_c"] = out["day_c"] / 100.0
+    out["run"] = out[keys].astype(str).agg("|".join, axis=1)
+    return out
+
+
+def phase_time_model(per_step: pd.DataFrame, metric: str = "band_mas_t", window: int = 25) -> pd.DataFrame:
+    """Plan Section 6 (methods review): on WINDOW means, y ~ C(phase) + day_c + C(ordering) with a random
+    intercept per RUN (and a random slope for phase by model when > 1 model via a variance component).
+    Day and phase are only identified across schedule types, hence the ordering factor."""
+    import statsmodels.formula.api as smf
+    w = window_means(per_step, metric, window)
+    if w["phase"].nunique() < 2 or len(w) < 20:
+        return pd.DataFrame()
+    form = "y ~ C(phase) + day_c" + (" + C(ordering)" if "ordering" in w.columns and w["ordering"].nunique() > 1 else "")
+    try:
+        vc = {"model_phase": "0 + C(Model):C(phase)"} if "Model" in w.columns and w["Model"].nunique() > 1 else None
+        md = smf.mixedlm(form, w, groups=w["run"], re_formula="1", vc_formula=vc)
+        r = md.fit(reml=True, method="lbfgs", maxiter=300)
+        return pd.DataFrame({"term": r.params.index, "coef": r.params.values, "se": r.bse.values, "p": r.pvalues.values, "metric": metric})
+    except Exception as exc:
+        return pd.DataFrame([{"term": "ERROR", "coef": np.nan, "se": np.nan, "p": np.nan, "metric": metric, "note": str(exc)[:120]}])
+
+
+def windowed_trend_vs_null(per_step: pd.DataFrame, metric: str = "band_mas_t", window: int = 25,
+                           n_perm: int = 500, seed: int = 0, null: str = "circular") -> Dict[str, float]:
+    """'Temporal claims use windowed statistics, not expanding minima.' Per run: mean metric per
+    25-day window; trend = slope of window means on window index.  Null (methods review): a
+    CIRCULAR SHIFT of the window sequence within each run (preserves autocorrelation and the
+    within-run distribution; a constant-exposure run has zero slope under every shift) --
+    appropriate for PHASE-FREE runs; for runs with phases use `paired_sign_flip` against the
+    stateless arm on the same seeds instead. Returns the observed mean slope, the shift-null
+    p-value and the expanding-minimum statistic (monotone by construction; shown for contrast)."""
+    rng = np.random.default_rng(seed)
+    d = per_step.dropna(subset=[metric]).copy()
+    d["w"] = (d["Day"] - 1) // window
+    keys = [k for k in RUN_KEYS if k in d.columns]
+    runs = []
+    for key, g in d.groupby(keys, sort=False):
+        wm = g.groupby("w")[metric].mean().to_numpy(dtype=float)
+        if len(wm) >= 3:
+            runs.append(wm)
+    if not runs:
+        return {"n_runs": 0}
+    def slope(wm):
+        x = np.arange(len(wm)); return float(np.polyfit(x, wm, 1)[0])
+    obs = float(np.mean([slope(w) for w in runs]))
+    if null == "circular":
+        null_s = np.array([np.mean([slope(np.roll(w, rng.integers(1, len(w)))) for w in runs]) for _ in range(n_perm)])
+    else:
+        null_s = np.array([np.mean([slope(rng.permutation(w)) for w in runs]) for _ in range(n_perm)])
+    p = float((np.sum(np.abs(null_s) >= abs(obs)) + 1) / (n_perm + 1))
+    expanding = float(np.mean([np.minimum.accumulate(w)[-1] - w[0] for w in runs]))
+    return {"n_runs": len(runs), "mean_window_slope": obs, "null": null, "perm_p": p, "null_sd": float(null_s.std()),
+            "expanding_min_change": expanding}
+
+
+def paired_sign_flip(per_step: pd.DataFrame, metric: str = "band_mas_t", arm: str = "stateful_memory",
+                     reference: str = "memory", window: int = 25, n_perm: int = 2000, seed: int = 0) -> Dict[str, float]:
+    """Time-beyond-phase test: window-trend of `arm` minus window-trend of the stateless `reference`
+    arm on the SAME (model, persona, scenario, seed) -- phases cancel in the pair; sign-flip
+    permutation across pairs."""
+    rng = np.random.default_rng(seed)
+    d = per_step.dropna(subset=[metric]).copy(); d["w"] = (d["Day"] - 1) // window
+    keys = [k for k in ("Model", "Persona", "Scenario", "Seed", "Decode_Replicate") if k in d.columns]
+    def trend(g):
+        wm = g.groupby("w")[metric].mean().to_numpy(dtype=float)
+        return float(np.polyfit(np.arange(len(wm)), wm, 1)[0]) if len(wm) >= 3 else np.nan
+    ta = d[d["Arm"] == arm].groupby(keys).apply(trend, include_groups=False)
+    tr = d[d["Arm"] == reference].groupby(keys).apply(trend, include_groups=False)
+    diff = (ta - tr).dropna().to_numpy(dtype=float)
+    if len(diff) < 2:
+        return {"n_pairs": int(len(diff))}
+    obs = float(diff.mean())
+    flips = np.array([np.mean(diff * rng.choice([-1, 1], len(diff))) for _ in range(n_perm)])
+    return {"n_pairs": int(len(diff)), "mean_trend_diff": obs, "p_signflip": float((np.sum(np.abs(flips) >= abs(obs)) + 1) / (n_perm + 1))}
+
+
 def run_stats(per_run: pd.DataFrame, out_prefix: str) -> Dict[str, pd.DataFrame]:
     con = arm_contrasts(per_run)
     if len(con):

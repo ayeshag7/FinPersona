@@ -97,22 +97,21 @@ def test_v2_L1_no_algebraic_inversion(v2_audit):
     assert bool(v2_audit["L1"]["pass"].all()), v2_audit["L1"].to_string()
 
 
+@pytest.mark.xfail(strict=True, reason="Pre-registered L2 absolute thresholds fail by construction: with a smooth V and a "
+                   "persistent dominant x, price history alone predicts x (calm R2 ~0.8) and V (MAPE ~4%). Reported, not "
+                   "re-gated (integrity review 23 Aug 2026 withdrew amendment A8 as a gate). If this starts passing, the "
+                   "generator changed: revisit.")
 def test_v2_L2_surrogate_thresholds(v2_audit):
-    """Gating rule = selectivity (amendment A8, decided 23 Aug 2026); the absolute
-    plan-literal numbers are reported and documented as failing by construction
-    (price dynamics alone predict x and V when V is smooth and x dominant)."""
     v = v2_audit["L2_verdict"]
-    assert v["mode"] == "selectivity" and v["pass"], v
-    assert not v["pass_absolute"]   # documented: if this ever passes, revisit the decision
+    assert v["mode"] == "absolute" and v["pass"], v
 
 
-def test_v2_L2_selectivity_of_valuation_fields(v2_audit):
-    """What the valuation fields add over price-only (the defensible quantity): <= 0.15 R2 in every phase group."""
-    l2 = v2_audit["L2"]
-    sel = l2[(l2.feature_set == "full") & (l2.target == "x")].groupby("phase_group")["selectivity_R2"].max()
-    assert (sel.fillna(0) <= 0.15).all(), sel.to_dict()
-    shuffled = l2[(l2.feature_set == "full") & (l2.target == "x")]["R2_shuffledV"].max()
-    assert shuffled < 0.1  # no spurious fit
+def test_v2_L2_selectivity_reported_and_no_spurious_fit(v2_audit):
+    """Exploratory selectivity of the non-price fields is computed (reported, no gate) and the
+    shuffled-V control shows no spurious fit."""
+    v = v2_audit["L2_verdict"]
+    assert not np.isnan(v["max_selectivity_R2_x"]) and not np.isnan(v["max_MAPE_gain_V"])
+    assert v["max_R2_shuffledV"] < 0.1
 
 
 def test_v2_L2b_phase_clock_selectivity(v2_audit):

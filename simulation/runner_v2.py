@@ -56,7 +56,7 @@ class RunConfig:
     engine: str = "fw_single"
     temperature: float = 0.2
     probe_every: int = 0                  # 0 = no restatement probe
-    context_mode: str = "stateless"       # stateless | rolling | full   (E5 stateful arm)
+    context_mode: str = "stateless"       # stateless | rolling | full | summary   (E5 stateful arm)
     context_window: int = 20              # rolling: steps retained
     context_token_budget: int = 60000     # full: token budget
     initial_value: float = 10000.0
@@ -164,7 +164,8 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
         if hasattr(agent, "context_log"):
             row.update(agent.context_log())
         else:
-            row.update({"Context_Mode": "stateless", "Context_Tokens": None, "Mandate_Offset_Tokens": None, "Context_Turns": 0})
+            row.update({"Context_Mode": "stateless", "Context_Tokens": None, "Mandate_Offset_Tokens": None, "Context_Turns": 0,
+                        "Summary_Calls": 0, "Summary_Mentions_Mandate": False, "Summary_Text": ""})
         row.update(prov)
         rows.append(row)
         obs, done = env.step()

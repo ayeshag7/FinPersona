@@ -259,25 +259,61 @@ def _path_data(env: SyntheticMarketEnv):
     return PathData(env.scenario, env.seed, df, meta)
 
 
-def checklist_paths(n_seeds: int = 50, T: int = 200, deltas=(0.55, 0.70, 0.85)) -> Dict[str, list]:
+def checklist_paths(n_seeds: int = 50, T: int = 200, deltas=(0.55, 0.70, 0.85), config: Optional[Dict] = None,
+                    engine: Optional[str] = None) -> Dict[str, list]:
     """Paths for the Section 9 checklist: flat, bull_trap, crash (per delta),
-    sustained_bull, a mirrored/phase-free mix for item 15, and flat T=800."""
+    sustained_bull, a mirrored/phase-free mix for item 15, and flat T=800.
+    `config` / `engine` override the generator (sensitivity runs)."""
+    kw = {"config": config}
+    if engine:
+        kw["engine"] = engine
     out = {"flat": [], "bull_trap": [], "crash": [], "sustained_bull": [], "mixed": [], "flat_T800": []}
     for s in range(n_seeds):
-        out["flat"].append(_path_data(SyntheticMarketEnv("flat", T, s)))
-        out["bull_trap"].append(_path_data(SyntheticMarketEnv("bull_trap", T, s)))
-        out["sustained_bull"].append(_path_data(SyntheticMarketEnv("sustained_bull", T, s)))
+        out["flat"].append(_path_data(SyntheticMarketEnv("flat", T, s, **kw)))
+        out["bull_trap"].append(_path_data(SyntheticMarketEnv("bull_trap", T, s, **kw)))
+        out["sustained_bull"].append(_path_data(SyntheticMarketEnv("sustained_bull", T, s, **kw)))
         for d in deltas:
-            out["crash"].append(_path_data(SyntheticMarketEnv("crash", T, s, crash_discount=d)))
+            out["crash"].append(_path_data(SyntheticMarketEnv("crash", T, s, crash_discount=d, **kw)))
     # mixed set for phase/time separability: setup-first, event-first, phase-free
     for s in range(n_seeds):
         sc = ("crash", "bull_trap")[s % 2]
-        out["mixed"].append(_path_data(SyntheticMarketEnv(sc, T, 1000 + s, ordering="event_first")))
-        out["mixed"].append(_path_data(SyntheticMarketEnv(sc, T, 2000 + s, ordering="setup_first")))
-        out["mixed"].append(_path_data(SyntheticMarketEnv("flat", T, 3000 + s)))
+        out["mixed"].append(_path_data(SyntheticMarketEnv(sc, T, 1000 + s, ordering="event_first", **kw)))
+        out["mixed"].append(_path_data(SyntheticMarketEnv(sc, T, 2000 + s, ordering="setup_first", **kw)))
+        out["mixed"].append(_path_data(SyntheticMarketEnv("flat", T, 3000 + s, **kw)))
     for s in range(min(n_seeds, 20)):
-        out["flat_T800"].append(_path_data(SyntheticMarketEnv("flat", 800, s)))
+        out["flat_T800"].append(_path_data(SyntheticMarketEnv("flat", 800, s, **kw)))
     return out
+
+
+def audit_panel_multi(seeds: int = 10, T: int = 200, n_assets: int = 3, target_asset: int = 0,
+                      asset_vol_scale=(1.0, 1.0, 0.5)) -> pd.DataFrame:
+    """Rendered-field panel for the multi-asset audit: features = the FULL N-asset rendered vector
+    (suffix _aK), target = x of `target_asset`; the own-block columns (suffix _a{target}) are the
+    control (methods review: cross-asset leakage through the common factor must be measured)."""
+    frames = []
+    for s in range(seeds):
+        for sc in ("flat", "bull_trap", "crash", "sustained_bull"):
+            env = SyntheticMarketEnv(sc, T, s, n_assets=n_assets,
+                                     config={"asset_vol_scale": list(asset_vol_scale), "rho_common": 0.3})
+            rows = []
+            env.reset()
+            for t in range(T):
+                o = env.get_observation(); gt = env.get_ground_truth()
+                row = {"scenario": sc, "seed": s, "day": t + 1, "phase": gt["phase"],
+                       "V": float(gt["assets"][target_asset]["fundamental_value"]),
+                       "P": float(gt["assets"][target_asset]["price"])}
+                for k_, a in enumerate(o["assets"]):
+                    for k, v in a.items():
+                        if k != "date" and isinstance(v, (int, float)):
+                            row[f"{k}_a{k_}"] = float(v)
+                # keep the target asset's own fields also under the plain names (price-only control keys)
+                for k, v in o["assets"][target_asset].items():
+                    if k != "date" and isinstance(v, (int, float)):
+                        row[k] = float(v)
+                rows.append(row); env.step()
+            df = pd.DataFrame(rows); df["macro"] = df["phase"].map(MACRO_OF).fillna("calm"); df["x"] = np.log(df["P"] / df["V"])
+            frames.append(df)
+    return pd.concat(frames, ignore_index=True)
 
 
 def audit_panel(seeds: int = 30, T: int = 200, deltas=(0.55, 0.70, 0.85)) -> pd.DataFrame:

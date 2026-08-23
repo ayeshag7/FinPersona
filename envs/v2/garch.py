@@ -24,7 +24,7 @@ from dataclasses import dataclass
 import numpy as np
 
 OMEGA_MULT = {"calm": 1.0, "deterioration": 1.5, "panic": 4.0, "stabilisation": 1.5,
-              "mania": 1.5, "blow-off": 2.0, "post-top": 3.0, "sustained-bull": 0.25}
+              "mania": 1.5, "blow-off": 2.0, "post-top": 3.0, "sustained-bull": 1.0}   # reviewer D5: no vol reduction in the control (would be a volatility clock)
 
 
 @dataclass

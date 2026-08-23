@@ -509,7 +509,8 @@ def to_markdown(df: pd.DataFrame, title: str, preamble: str = "") -> str:
     lines = [f"# {title}", "", preamble, "", "| # | Property | Statistic | Pass criterion | Result | n |", "|---|---|---|---|---|---|"]
     for _, r in df.iterrows():
         lines.append(f"| {r['item']} | {r['property']} | {r['statistic']} | {r['criterion']} | {fmt(r['pass'])} | {r['n_seeds']} |")
-    n_pass = int(sum(1 for p in df["pass"] if p is True)); n_fail = int(sum(1 for p in df["pass"] if p is False))
+    vals = [None if (p is None or (isinstance(p, float) and math.isnan(p))) else bool(p) for p in df["pass"]]
+    n_pass = int(sum(1 for p in vals if p is True)); n_fail = int(sum(1 for p in vals if p is False))
     lines += ["", f"**Pass {n_pass} / fail {n_fail} / not applicable {len(df) - n_pass - n_fail}.**", "", REFERENCE_NOTE, ""]
     return "\n".join(lines)
 
@@ -528,15 +529,20 @@ if __name__ == "__main__":
     ap.add_argument("--seeds", type=int, default=50)
     ap.add_argument("--T", type=int, default=200)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--config", default=None, help="JSON dict of SyntheticMarketEnv config overrides (sensitivity runs)")
+    ap.add_argument("--engine", default=None, help="mispricing engine override: fw_single | fw_index | pruna | ar1")
     a = ap.parse_args()
+    import json as _json
+    cfg = _json.loads(a.config) if a.config else None
     if a.env == "v1":
         paths = v1_paths(a.seeds, a.T)
     else:
         from envs.synthetic_market import checklist_paths  # provided by the v2 generator
-        paths = checklist_paths(a.seeds, a.T)
+        paths = checklist_paths(a.seeds, a.T, config=cfg, engine=a.engine)
     df = run_checklist(paths)
     out = a.out or os.path.join(ROOT, "docs", "env_v2", "generated", f"checklist_{a.env}.md")
-    pre = (f"Generator {a.env}; {a.seeds} seeds per scenario (crash: per delta), T = {a.T}. "
+    pre = (f"Generator {a.env}; {a.seeds} seeds per scenario (crash: per delta), T = {a.T}; "
+           f"config overrides {cfg or '{}'}; engine {a.engine or 'default'}. "
            "Items 14 and 16 are filled by `python -m evaluation.leakage_audit`; 18 and 19 are unit tests.")
     with open(out, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(to_markdown(df, f"Section 9 validation checklist ({a.env})", pre))

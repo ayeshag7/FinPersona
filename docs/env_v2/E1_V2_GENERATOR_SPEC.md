@@ -27,9 +27,11 @@ FW DCA-HPM recursion with ONE innovation (`mispricing.py`):
 - Parameter sets: `fw_index_2012` (phi 0.12, chi 1.50, sigma_f 0.758, sigma_c 2.087, alpha_0 -0.327, alpha_n 1.79,
   alpha_p 18.43, beta 1, mu 0.01), `pruna_2016`, `ar1` (flag), and `fw_single` = `envs/v2/params/fw_single_stock.json`
   if `tools/calibrate_fw.py` has produced it, else the **documented fallback**: the index set with phi raised so that
-  `mu n_bar phi = ln2 / 120` at the realised fundamentalist share n_bar (pilot simulation) -> phi = 0.579, calm
-  half-life 120 d **[calib: 120 d chosen inside the plan's 60-120 d window so that the sample ACF(1) of x on long
-  windows clears 0.98]**. Pilot statistics (20,000 calm steps): n_bar = 0.997, w_bar = 0.762, stationary sd(x) = 0.11.
+  `mu n_bar phi = ln2 / 150` at the realised fundamentalist share n_bar (pilot simulation) -> phi = 0.463, a 150-day
+  STATIONARY design value; the REALISED half-life on T=800 paths with GARCH-t + jump noise is ~72 d (item 9) **[calib:
+  chosen so that the realised half-life clears the plan's 60 d floor; short relative to the months-to-years persistence
+  of stock-level mispricing in the literature; bracketed by the `fw_hl60` and `fw_index` (~580 d) sensitivities]**.
+  Pilot statistics (20,000 calm steps): n_bar = 0.997, w_bar = 0.762.
 - **Units [stated interpretation]:** FW measure log price in percent (x 100); the misalignment term therefore uses
   `price_scale = 100` (`(100 x)^2`). The linear pull is unit-free (the plan's 580-day half-life calculation holds). To
   be verified against the FW 2012 PDF before the paper cites the index set as a sensitivity; the single-stock
@@ -53,8 +55,9 @@ path tracks the scripted target x* despite the FW pull and GARCH noise (lam: pan
   day ~106; the score penalises early tops that the max-x >= 0.30 criterion would reject); blow-off
   = last third of the realised mania run (ex post label); post-top reversal leg -U(30, 50)% of price over U(10, 30) d,
   then post-top label (d_t = 0) to T.
-- Sustained bull: d_t = -lam_sb x_t with lam_sb = 0.15 and conditional-variance multiplier 0.25 **[deviation: the plan
-  says d_t = 0; with FW persistence and fat tails the plan's own validity band x in [-0.10, +0.15] throughout 200 days
+- Sustained bull: d_t = -lam_sb x_t with lam_sb = 0.15 and conditional-variance multiplier 1.0 (the 0.25 used during E1
+  was reverted after review R1-D5: a volatility reduction would make the control identifiable from IV alone) **[deviation:
+  the plan says d_t = 0; with FW persistence and fat tails the plan's own validity band x in [-0.10, +0.15] throughout 200 days
   is violated in > 50% of draws; the anchoring makes the no-mispricing control hold; the residual rejection rate is
   published (checklist 17) and exceeds the 5% target]**.
 - Schedule (`schedule.py`): setup-first L1 ~ U(0.25T, 0.55T); event-first setup U(5, 20); phase-free; +/-5 d jitter per
@@ -64,7 +67,7 @@ path tracks the scripted target x* despite the FW pull and GARCH noise (lam: pan
 GJR-GARCH(1,1) with standardised t(5) innovations on the x-innovation: alpha = 0.10, gamma = 0.10, beta = 0.83
 **[calib: plan 0.05/0.08/0.89; top of the plan's alpha anchor, persistence 0.98 unchanged; checklist 3/6/8/13]**,
 sbar = 0.017/day **[calib: plan 0.016; the sample median of calm daily sigma with t tails sits below the population
-value]**, rare jumps ON (Poisson 0.008/day, N(-4%, 3%)) **[calib: plan 'optional' at 0.004; checklist 2/8]**, panic
+value]**, rare jumps ON (Poisson 0.010/day, N(-4%, 3%)) **[calib: plan 'optional' at 0.004; checklist 2/8]**, panic
 multiplier 5 **[calib: plan 4, sensitivity 3-6]**. Variant table: `generated/e1_calibration_variants.md`;
 DECISION_LOG addendum lists the open issues (items 3, 10, 17).
 Phase multipliers (calm 1, deterioration 1.5, panic 4, stabilisation 1.5, mania 1.5, blow-off 2, post-top 3,
@@ -86,27 +89,27 @@ premium of 0.35 instead of a label-based "panic" premium **[deviation: a label-t
 Quarterly EPS = V(quarter end)/(4k) x exp(N(0, 0.10)) so that trailing-4Q P/E = k x P/V on average (k ~ U(14, 22)).
 
 ## 7. Validation status (final E1/E2 calibration; 50 seeds per scenario, crash per delta, T = 200)
-`generated/checklist_v2.md` — **9 pass / 6 fail / 7 n-a** (v1 baseline: 3 / 10 / 7).
+`generated/checklist_v2.md` — **8 pass / 7 fail / 7 n-a** (v1 baseline: 3 / 10 / 7).
 
 | # | Result | Statistic (50 seeds) | Note |
 |---|---|---|---|
 | 1 | PASS | LB p>0.05 in 88%; median abs ACF(1) 0.080 | |
-| 2 | PASS | kurtosis>1.5 in 80%; Hill 3.35 | |
+| 2 | FAIL (margin) | kurtosis>1.5 in 79% (need 80%); Hill 3.36 | sampling margin (80% in the previous 50-seed run) |
 | 3 | FAIL | LB abs-r p<0.01 in 60% (need 80%); ACF abs-r(1) 0.151 (in band) | **structural**: inside the plan's GARCH anchor with t(5) innovations the 200-day LB share tops out at ~60% (open issue 1) |
 | 5 | PASS | alpha+beta 0.964 | |
 | 6 | FAIL | negative in 68% (need 70%); gamma 0.044 > 0 | sampling margin |
 | 7 | FAIL | Spearman 0.37, AC(1) 0.81, Shapiro p>0.01 in 49% (need 50%) | sampling margin (amendment A1) |
 | 8 | PASS | skew -0.39; worst>best in 70% | |
-| 9 | PASS | T=800: ACF(1) 0.9905, half-life 72 d, sd(x) 0.128 (200-day windows: 0.951 / 14 d / 0.053 reported) | amendment A2 |
+| 9 | PASS | T=800: ACF(1) 0.9905, half-life 72 d, sd(x) 0.128 (200-day windows: 0.951 / 14 d / 0.053 reported) | amendment A2; **calibration target** (phi set for it), not an independent validation |
 | 10 | FAIL | event-window MDD (A7): means -53/-43/-35% at delta 0.55/0.70/0.85, spread 18.0 pp (need 20), partial R2 0.38 (need 0.7); whole-path: 16.5 pp / 0.35 | **structural** (decision 2, 23 Aug): the plan's panic variance adds ~9 pp of drawdown noise; v1 spread was 0.5 pp |
-| 11 | PASS | convex in 66%; topped 44%; topped peak P/V 2.21 | |
+| 11 | PASS | convex in 66%; topped 44%; topped peak P/V 2.21 | **calibration target** (hazard/cap grid-searched for it), not an independent validation |
 | 12 | PASS | ACF 0.874; corr(s,r) 0.363; lagged corr -0.010 | |
 | 13 | FAIL | calm IV 28.6%, panic 59.4% (need 60); corr(IV, RV) 0.39 (need 0.40); IV-RV +6.7 / +21.6 pts | sampling margin |
 | 15 | PASS | day-only macro accuracy 64.8% on the mixed set (within-scenario 73.7%); corr 0.03 | |
-| 17 | FAIL | rejection flat 0%, crash 1.3%, bull 5.7%, sustained-bull 24.2%; topped 44% | open issue 3 |
+| 17 | FAIL | rejection flat 0%, crash ~1%, bull 5.7%, sustained-bull 39.8% (variance x1.0 after review R1-D5); topped 44% | open issue 3; rates and reasons published |
 | 20 | PASS | crash MDD -48%; calm sigma 1.53%; worst panic day -7.9% | |
 | 4 | n/a | ACF abs-r lags 1/5/10/20/50 = 0.23/0.18/0.15/0.08/0.02 (T=800) | descriptive |
-| 14 | PASS (A6, A8) | L1: no formula beats price itself (median APE >= 13%); L2 selectivity of non-price fields (best vs best, worst group): see audit; margins 0.20 R2 / 5 pp MAPE (A8); absolute L2 (reported): calm R2 0.93, event 0.97, MAPE 4.1% | decision 3, 23 Aug |
+| 14 | FAIL (L2 absolute) / L1 PASS (A6) | L1: no formula beats price itself (median APE >= 13%); L2 absolute: calm R2(x) 0.93, event 0.97, MAPE(V) 4.1% -- fails by construction (price-only control already 0.83 / 3.8%); selectivity of non-price fields reported as exploratory (best-vs-best +0.10 R2 / +2.2 pp; worst-model +0.13 / +2.9 pp); shuffled-V ~0 | A8 withdrawn as a gate after review; 'hidden value' is hidden from algebra and from the fields, not from price dynamics |
 | 16 | PASS | L2b macro-class accuracy full 88.6% vs price-only 81.1% (day-only 51.5%): selectivity +7.5 pp <= 10 pp | |
 | 18, 19 | unit tests pass (`tests/test_action_space.py`) | | |
 

@@ -22,7 +22,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 from envs.synthetic_market import SyntheticMarketEnv  # noqa: E402
-from evaluation.metrics_v2 import score_run, floors_and_ceilings, beats_k_of_n, normalise, HIGHER_BETTER  # noqa: E402
+from evaluation.metrics_v2 import score_run, floors_and_ceilings, beats_k_of_n, normalise, HIGHER_BETTER, multi_asset_regrets  # noqa: E402
 from evaluation.baselines_v2 import baseline_metrics  # noqa: E402
 from evaluation.salience import salience_by_window, separability_gate  # noqa: E402
 
@@ -66,6 +66,8 @@ def build_tables(runs: List[pd.DataFrame]) -> Dict[str, pd.DataFrame]:
         r0 = df.iloc[0]
         persona = str(r0["Persona"])
         m = score_run(df, persona if persona != "NONE" else "TRADER", float(r0["Start_Cash_Share"]))
+        if any(c.startswith("x_asset") for c in df.columns):
+            m.update(multi_asset_regrets(df, persona if persona != "NONE" else "TRADER"))
         bm = cell_baselines(df)
         fc = floors_and_ceilings(bm, persona)
         bk = beats_k_of_n(m, bm)

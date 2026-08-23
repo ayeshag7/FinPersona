@@ -30,7 +30,7 @@ LAM_STAB = 0.05
 LAM_POSTTOP = 0.10
 STAB_RAMP_DAYS = 30
 G_MAX = 0.02          # cap on the compounding mania drift (2%/day); a parameter of the scripted drift, not a price clip
-LAM_SB = 0.15         # sustained-bull anchoring pull on x (half-life ~4.6 d): keeps the no-mispricing control inside its
+LAM_SB = 0.15         # sustained-bull anchoring pull on x (half-life ~4.6 d; variance multiplier 1.0 after review D5): keeps the no-mispricing control inside its
                       # validity band [-0.10, +0.15] with a rejection rate < 5%; documented in the generator spec
 
 

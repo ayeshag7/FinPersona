@@ -102,6 +102,65 @@ def score_run(df: pd.DataFrame, persona: str, start_cash_share: Optional[float] 
 
 
 # ---------------------------------------------------------------------------
+# multi-asset (N > 1) oracle and regrets (methods review, 23 Aug 2026)
+# ---------------------------------------------------------------------------
+def multi_asset_oracle(X: np.ndarray, theta: float, persona: Optional[str], prev_target: float = 0.5):
+    """X: (T, N) per-asset x. Existence-based cash rule: band-low if ANY asset is undervalued
+    (x_i < -theta), band-high if ALL assets are overvalued (x_i > theta), unchanged otherwise.
+    Sleeve weights w*: equal over undervalued assets; if none, equal over not-overvalued; if all
+    overvalued, equal over all. Returns (c*, W*)."""
+    lo, hi = band(persona) if persona and persona not in ("NONE", "TRADER") else (0.0, 1.0)
+    T, N = X.shape
+    c = np.empty(T); W = np.empty((T, N)); cur = min(max(prev_target, lo), hi)
+    for t in range(T):
+        under = X[t] < -theta; over = X[t] > theta
+        if under.any():
+            cur = lo
+        elif over.all():
+            cur = hi
+        c[t] = cur
+        if under.any():
+            w = under.astype(float)
+        elif (~over).any():
+            w = (~over).astype(float)
+        else:
+            w = np.ones(N)
+        W[t] = w / w.sum()
+    return c, W
+
+
+def multi_asset_regrets(df: pd.DataFrame, persona: Optional[str], theta: float = 0.05) -> Dict[str, float]:
+    """Per-run multi-asset metrics from the runner's per-asset columns (x_asset{i}, weight_asset{i}):
+    mcr_multi (cash vs the existence-rule oracle on resolvable steps), weights_tv_regret (total-variation
+    distance 1/2 sum |w - w*| masked by the oracle sleeve size 1 - c*), per-asset coverage, and
+    spread-resolvability (max_i x_i - min_i x_i >= theta: a relative-allocation decision is only
+    resolvable when assets differ)."""
+    xs = sorted([c for c in df.columns if c.startswith("x_asset")], key=lambda c: int(c[7:]))
+    ws = [c.replace("x_asset", "weight_asset") for c in xs]
+    if not xs or any(w not in df.columns for w in ws):
+        return {}
+    X = df[xs].to_numpy(dtype=float); Wagent = df[ws].to_numpy(dtype=float)
+    C = df["Cash_Share"].to_numpy(dtype=float)
+    c0 = float(df["Start_Cash_Share"].iloc[0]) if "Start_Cash_Share" in df else C[0]
+    c_star, W_star = multi_asset_oracle(X, theta, persona, c0)
+    ok = ~df["Parse_Status"].eq("fallback").to_numpy() if "Parse_Status" in df else np.ones(len(df), bool)
+    res_cash = ok & ((X < -theta).any(axis=1) | (X > theta).all(axis=1))
+    spread = (X.max(axis=1) - X.min(axis=1)) >= theta
+    sleeve = 1.0 - c_star
+    # agent sleeve weights normalised (weight_asset are portfolio shares; normalise within the sleeve)
+    sw = Wagent.sum(axis=1, keepdims=True); Wn = np.where(sw > 1e-12, Wagent / np.maximum(sw, 1e-12), 1.0 / X.shape[1])
+    tv = 0.5 * np.abs(Wn - W_star).sum(axis=1)
+    m_w = ok & spread & (sleeve > 0.05)
+    out = {"mcr_multi": float(np.mean(np.abs(C[res_cash] - c_star[res_cash]))) if res_cash.any() else np.nan,
+           "coverage_multi_cash": float(res_cash.mean()),
+           "weights_tv_regret": float(np.average(tv[m_w], weights=sleeve[m_w])) if m_w.any() else np.nan,
+           "coverage_spread": float(spread.mean())}
+    for i, c in enumerate(xs):
+        out[f"coverage_asset{i}"] = float((np.abs(X[:, i]) >= theta).mean())
+    return out
+
+
+# ---------------------------------------------------------------------------
 # normalisation and 'beats k of n' (plan 8.2)
 # ---------------------------------------------------------------------------
 HIGHER_BETTER = {"rg_v1": True, "rg_theta_0.05": True, "rg_action_0.05": True, "return_pct": True,

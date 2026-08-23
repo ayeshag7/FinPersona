@@ -254,14 +254,15 @@ def l2_surrogate(df: pd.DataFrame, feature_keys: List[str], theta: float = 0.05,
     return out
 
 
-# Amendment A8 margins, frozen after the E1 calibration run with headroom above the observed 20-seed
-# values (0.13 R2, 2.9 pp MAPE), as the plan does for the L2b margin (10 pp vs observed 7.5):
-L2_SELECTIVITY_R2 = 0.20     # best-full minus best-price-only R2(x), worst phase group
-L2_SELECTIVITY_MAPE = 0.05   # best-price-only minus best-full MAPE(V), worst phase group
+# Selectivity of the non-price fields is REPORTED (exploratory; amendment A8 withdrawn after the
+# integrity review of 23 Aug 2026 -- margins chosen after seeing the data are not a gate).  The
+# pre-registered absolute thresholds remain the gate and are reported as failing by construction.
+L2_SELECTIVITY_R2 = 0.20     # reference only
+L2_SELECTIVITY_MAPE = 0.05   # reference only
 L2_SHUFFLED_MAX = 0.10
 
 
-def l2_verdict(l2: pd.DataFrame, mode: str = "selectivity") -> Dict[str, object]:
+def l2_verdict(l2: pd.DataFrame, mode: str = "absolute") -> Dict[str, object]:
     """Pass rules from Section 5 applied to the BEST (max R2) full-feature model.
     mode='absolute'   : the plan's literal thresholds (calm R2 <= 0.30 & sign <= 0.70; event R2 < 0.90 & MAPE >= 10%).
     mode='selectivity': amendment A8 -- the non-price (valuation/sentiment/volume/IV) fields must not add more than
@@ -327,6 +328,38 @@ def l2b_phase_clock(df: pd.DataFrame, feature_keys: List[str], margin: float = L
 
 
 # --------------------------------------------------------------------------
+# Scenario-discrimination audit (added after review D5): price/IV-only classifier
+# distinguishing sustained-bull days from bull-trap mania/blow-off days and from
+# calm days. A control regime that is identifiable from volatility alone would be
+# a scenario clock through a non-valuation channel.
+# --------------------------------------------------------------------------
+def scenario_discrimination(df: pd.DataFrame, feature_keys: List[str]) -> Dict[str, object]:
+    from sklearn.ensemble import HistGradientBoostingClassifier
+    from sklearn.model_selection import GroupKFold, cross_val_predict
+    d = df[(df["scenario"].isin(["sustained_bull", "bull_trap", "flat"]))].copy()
+    lab = np.where(d["scenario"] == "sustained_bull", "sustained", np.where(d["phase"].isin(["mania", "blow-off"]), "mania", "calm"))
+    d["lab"] = lab
+    d = d[d["lab"].isin(["sustained", "mania", "calm"])]
+    dfl, cols = add_lags_and_returns(d, feature_keys)
+    dfl = dfl.dropna(subset=cols).reset_index(drop=True)
+    price_iv = [c for c in cols if c.split("_lag")[0] in (PRICE_ONLY_KEYS | {"implied_volatility"})]
+    price_only = [c for c in cols if c.split("_lag")[0] in PRICE_ONLY_KEYS]
+    y = dfl["lab"].to_numpy(dtype=object)
+    groups = (dfl["scenario"].astype(str) + "-" + dfl["seed"].astype(str)).to_numpy(dtype=object)
+    if len(np.unique(y)) < 2:
+        return {"n": len(y)}
+    cv = GroupKFold(n_splits=min(5, len(np.unique(groups))))
+    out = {"n": int(len(y)), "majority": float(pd.Series(y).value_counts(normalize=True).iloc[0])}
+    for name, fc in (("price_only", price_only), ("price_iv", price_iv), ("full", cols)):
+        pred = cross_val_predict(HistGradientBoostingClassifier(max_iter=200, max_depth=4, random_state=0),
+                                 dfl[fc].to_numpy(dtype=float), y, cv=cv, groups=groups)
+        out[f"acc_{name}"] = float(np.mean(pred == y))
+        m = y == "sustained"
+        out[f"recall_sustained_{name}"] = float(np.mean(pred[m] == "sustained")) if m.any() else np.nan
+    return out
+
+
+# --------------------------------------------------------------------------
 # L4 resolvability
 # --------------------------------------------------------------------------
 def l4_resolvability(df: pd.DataFrame, thetas=THETAS) -> pd.DataFrame:
@@ -372,7 +405,8 @@ def run_audit(panel: pd.DataFrame, shown_fields: List[str], theta: float = 0.05,
     l2v = l2_verdict(l2)
     l2b = l2b_phase_clock(panel, feature_keys, margin=margin)
     l4 = l4_resolvability(panel)
-    return {"L1": l1, "L2": l2, "L2_verdict": l2v, "L2b": l2b, "L4": l4,
+    sd = scenario_discrimination(panel, feature_keys) if "sustained_bull" in set(panel["scenario"]) else {}
+    return {"L1": l1, "L2": l2, "L2_verdict": l2v, "L2b": l2b, "L4": l4, "scenario_discrimination": sd,
             "shown_fields": feature_keys, "n_rows": int(len(panel))}
 
 
@@ -387,7 +421,7 @@ def checklist_rows(res: Dict[str, object]) -> List[Dict]:
               f"L2 selectivity (A8): max non-price R2 gain {v['max_selectivity_R2_x']:.2f}, max MAPE(V) gain {v['max_MAPE_gain_V']:.1%}, "
               f"shuffled-V R2 {v['max_R2_shuffledV']:.2f}")
     r14 = {"item": 14, "property": "Value leak (L1, L2; L3 separate)", "statistic": stat14,
-           "criterion": "no algebraic inversion (A6); non-price fields add <= 0.15 R2(x) and <= 3 pp MAPE(V) over price-only, shuffled-V ~0 (A8); absolute L2 numbers reported",
+           "criterion": "no algebraic inversion (A6); L2 absolute: calm R2 <= 0.30 & sign <= 0.70, event R2 < 0.90 & MAPE >= 10% (gate); selectivity of non-price fields reported (exploratory)",
            "pass": bool(l1_pass and v["pass"]), "n_seeds": res["n_rows"]}
     b = res["L2b"]
     r16 = {"item": 16, "property": "Composite phase clock (L2b)",
@@ -418,15 +452,24 @@ def to_markdown(res: Dict[str, object], title: str) -> str:
           f"Absolute (plan literal, reported): calm best R2(x) = {v['calm_best_R2_x']:.3f}, sign accuracy on resolvable steps = {v['calm_sign_acc']:.3f} -> "
           f"{'PASS' if v['calm_pass_absolute'] else 'FAIL'} (R2 <= 0.30, sign <= 0.70); event best R2(x) = {v['event_best_R2_x']:.3f}, MAPE(V) = {v['event_best_MAPE_V']:.1%} -> "
           f"{'PASS' if v['event_pass_absolute'] else 'FAIL'} (R2 < 0.90, MAPE >= 10%).", "",
-          f"Selectivity (amendment A8, gating): max R2(x) gain of the full set over price-only = {v['max_selectivity_R2_x']:.3f} (<= {L2_SELECTIVITY_R2}), "
-          f"max MAPE(V) gain = {v['max_MAPE_gain_V']:.1%} (<= {L2_SELECTIVITY_MAPE:.0%}), max shuffled-V R2 = {v['max_R2_shuffledV']:.3f} (< {L2_SHUFFLED_MAX}) -> "
-          f"{'PASS' if v['pass_selectivity'] else 'FAIL'}.", "",
+          f"Selectivity of the non-price fields (exploratory, NOT a gate): best-full minus best-price-only R2(x) = {v['max_selectivity_R2_x']:.3f} "
+          f"(worst phase group), MAPE(V) gain = {v['max_MAPE_gain_V']:.1%}, max shuffled-V R2 = {v['max_R2_shuffledV']:.3f}. "
+          f"Interpretation: the absolute fail is a property of the price process (smooth V, persistent dominant x -> x is "
+          f"inferable from price history), not of the valuation fields; 'hidden value' is hidden from algebra and from the "
+          f"fields, NOT from price dynamics -- the rule-based baselines quantify how much a price-only policy captures.", "",
           _md_table(res["L2"].round(3)), ""]
     b = res["L2b"]
     L += ["## L2b composite phase clock", "",
           f"Macro-class accuracy: full {b['acc_full']:.1%}, price-only {b['acc_price_only']:.1%}, day-only {b['acc_day_only']:.1%}, "
           f"majority class {b.get('majority_class', float('nan')):.1%}. Selectivity = {b['selectivity']:+.1%} vs margin {b['margin']:.0%} -> "
           f"{'PASS' if b['pass'] else 'FAIL'}.", ""]
+    sd = res.get("scenario_discrimination") or {}
+    if sd:
+        L += ["## Scenario discrimination (review D5): sustained-bull vs bull-trap mania vs calm days", "",
+              f"n = {sd.get('n')}, majority {sd.get('majority', float('nan')):.1%}; accuracy price-only {sd.get('acc_price_only', float('nan')):.1%}, "
+              f"price+IV {sd.get('acc_price_iv', float('nan')):.1%}, full {sd.get('acc_full', float('nan')):.1%}; recall of sustained-bull days: "
+              f"price-only {sd.get('recall_sustained_price_only', float('nan')):.1%}, price+IV {sd.get('recall_sustained_price_iv', float('nan')):.1%}, "
+              f"full {sd.get('recall_sustained_full', float('nan')):.1%} (reported; no pre-registered threshold).", ""]
     L += ["## L4 resolvability (|x| >= theta)", "", _md_table(res["L4"].round(3)), ""]
     return "\n".join(L)
 
