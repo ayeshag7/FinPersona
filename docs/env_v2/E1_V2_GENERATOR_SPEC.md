@@ -109,8 +109,8 @@ Quarterly EPS = V(quarter end)/(4k) x exp(N(0, 0.10)) so that trailing-4Q P/E = 
 | 17 | FAIL | rejection flat 0%, crash ~1%, bull 5.7%, sustained-bull 39.8% (variance x1.0 after review R1-D5); topped 44% | open issue 3; rates and reasons published |
 | 20 | PASS | crash MDD -48%; calm sigma 1.53%; worst panic day -7.9% | |
 | 4 | n/a | ACF abs-r lags 1/5/10/20/50 = 0.23/0.18/0.15/0.08/0.02 (T=800) | descriptive |
-| 14 | FAIL (L2 absolute) / L1 PASS (A6) | L1: no formula beats price itself (median APE >= 13%); L2 absolute: calm R2(x) 0.93, event 0.97, MAPE(V) 4.1% -- fails by construction (price-only control already 0.83 / 3.8%); selectivity of non-price fields reported as exploratory (best-vs-best +0.10 R2 / +2.2 pp; worst-model +0.13 / +2.9 pp); shuffled-V ~0 | A8 withdrawn as a gate after review; 'hidden value' is hidden from algebra and from the fields, not from price dynamics |
-| 16 | PASS | L2b macro-class accuracy full 88.6% vs price-only 81.1% (day-only 51.5%): selectivity +7.5 pp <= 10 pp | |
+| 14 | FAIL (L2 absolute) / L1 PASS (A6) | 50 seeds: L1 no formula beats price itself (median APE >= 12%); L2 absolute calm R2(x) 0.90, event 0.96, MAPE(V) 4.9% -- fails by construction (price-only control 0.83 / ~4%); selectivity of non-price fields reported as exploratory (+0.11 R2 / +2.9 pp); shuffled-V -0.06 | A8 withdrawn as a gate after review; 'hidden value' is hidden from algebra and from the fields, not from price dynamics |
+| 16 | PASS | 50 seeds: macro-class accuracy full 84.9% vs price-only 78.3% (day-only 54.6%): selectivity +6.6 pp <= 10 pp; scenario-discrimination: sustained-bull days recalled 82% from price alone (reported) | |
 | 18, 19 | unit tests pass (`tests/test_action_space.py`) | | |
 
 Items 3 and 10 cannot be met without leaving the plan's parameter anchors or its own persistent-mispricing / panic-variance

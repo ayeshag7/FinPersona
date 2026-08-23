@@ -44,42 +44,44 @@ Open issues and amendments: `DECISION_LOG.md` (addendum), `PREREGISTRATION_AMEND
 | 0.000 | 6.000 | 0.015 | 0.600 | 2.407 | 1.734 | 2.799 | 2.024 | 103.000 | 1.033 | 0.502 |
 | 0.000 | 8.000 | 0.010 | 0.383 | 2.084 | 1.751 | 2.493 | 1.846 | 102.000 | 1.067 | 0.571 |
 
-## 4. Section 5 audit (20 seeds; `leakage_audit_v2.md`)
-### L1 algebraic inversion (A6 rule)
+## 4. Section 5 audit (50 seeds, 27,000 steps after path subsampling; `leakage_audit_v2.md`)
+### L1 algebraic inversion (A6 rule) -- PASS
 | candidate | fitted_k | median_APE | max_APE | share_APE_above_floor | sign_acc_PE15_rule | pass |
 |---|---|---|---|---|---|---|
-| k * P (price itself) | 1.042 | 0.131 | 2.184 | 0.966 | 0.673 | True |
-| k * P * dividend_yield | 0.520 | 0.163 | 0.784 | 0.967 | 0.673 | True |
-| k * P / reported_PE | 18.130 | 0.164 | 0.773 | 0.980 | 0.673 | True |
-| k * analyst_fair_value | 1.025 | 0.270 | 1.554 | 0.981 | 0.673 | True |
-### L2 surrogate, best models (held-out seeds) — pre-registered absolute thresholds are the gate (FAIL); selectivity reported as exploratory
+| k * P (price itself) | 1.0506 | 0.1236 | 2.3639 | 0.9592 | 0.6872 | True |
+| k * P / reported_PE | 17.5239 | 0.1546 | 0.7136 | 0.9717 | 0.6872 | True |
+| k * P * dividend_yield | 0.5019 | 0.1558 | 0.7224 | 0.9706 | 0.6872 | True |
+| k * analyst_fair_value | 0.9839 | 0.2235 | 1.5688 | 0.9762 | 0.6872 | True |
+### L2 surrogate, best models (held-out seeds) -- pre-registered absolute thresholds are the gate: FAIL (calm R2(x) 0.90, event 0.96, MAPE(V) 4.9%); exploratory selectivity of non-price fields +0.11 R2 / +2.9 pp; shuffled-V -0.06
 | target | phase_group | n | R2 | sign_acc_resolvable | MAPE_V | R2_price_only | selectivity_R2 | R2_shuffledV |
 |---|---|---|---|---|---|---|---|---|
-| x | calm | 11099 | 0.931 | 0.983 | nan | 0.828 | 0.103 | -0.165 |
-| x | event | 9348 | 0.974 | 0.992 | nan | 0.948 | 0.026 | -0.223 |
-| x | resolution | 6553 | 0.941 | 0.988 | nan | 0.882 | 0.059 | -0.326 |
-| x | all | 27000 | 0.962 | 0.988 | nan | 0.919 | 0.043 | -0.236 |
-| logV | calm | 11099 | 0.907 | nan | 0.021 | 0.735 | 0.172 | -0.208 |
-| logV | event | 9348 | 0.760 | nan | 0.041 | 0.538 | 0.222 | -0.279 |
-| logV | resolution | 6553 | 0.773 | nan | 0.047 | 0.566 | 0.207 | -0.307 |
-| logV | all | 27000 | 0.890 | nan | 0.035 | 0.766 | 0.124 | -0.252 |
+| x | calm | 11700 | 0.898 | 0.969 | nan | 0.787 | 0.111 | -0.279 |
+| x | event | 9239 | 0.961 | 0.977 | nan | 0.926 | 0.034 | -0.254 |
+| x | resolution | 6061 | 0.942 | 0.986 | nan | 0.872 | 0.070 | -0.227 |
+| x | all | 27000 | 0.947 | 0.976 | nan | 0.892 | 0.055 | -0.248 |
+| logV | calm | 11700 | 0.805 | nan | 0.035 | 0.634 | 0.171 | -0.175 |
+| logV | event | 9239 | 0.690 | nan | 0.049 | 0.425 | 0.266 | -0.258 |
+| logV | resolution | 6061 | 0.711 | nan | 0.051 | 0.353 | 0.358 | -0.215 |
+| logV | all | 27000 | 0.832 | nan | 0.044 | 0.670 | 0.162 | -0.198 |
+### L2b composite phase clock -- PASS: full 84.9% vs price-only 78.3% (day-only 54.6%, majority 43.3%), selectivity +6.6 pp (margin 10 pp)
+### Scenario discrimination (review R1-D5; reported, no threshold): sustained-bull vs mania vs calm days, n = 13,320 (majority 46%): accuracy price-only 75.3%, price+IV 78.0%, full 78.0%; recall of sustained-bull days 82-84% under every feature set -- the control is identifiable from PRICE DYNAMICS (a trend without mispricing), not from IV specifically (price+IV adds 2.7 pp over price-only).
 ### L4 resolvability
 | scenario | phase | n_steps | median_abs_x | coverage_theta_0.03 | coverage_theta_0.05 | coverage_theta_0.08 |
 |---|---|---|---|---|---|---|
-| flat | calm | 3800 | 0.107 | 0.857 | 0.754 | 0.604 |
-| bull_trap | calm | 1537 | 0.111 | 0.891 | 0.798 | 0.640 |
-| bull_trap | mania | 2866 | 0.141 | 0.888 | 0.812 | 0.703 |
-| bull_trap | blow-off | 1414 | 0.598 | 1.000 | 1.000 | 0.999 |
-| bull_trap | post-top | 1583 | 0.177 | 0.901 | 0.846 | 0.775 |
-| sustained_bull | sustained-bull | 3800 | 0.008 | 0.052 | 0.012 | 0.002 |
-| crash | calm | 4635 | 0.110 | 0.893 | 0.807 | 0.642 |
-| crash | deterioration | 2132 | 0.110 | 0.860 | 0.740 | 0.604 |
-| crash | panic | 3263 | 0.244 | 0.955 | 0.925 | 0.871 |
-| crash | stabilisation | 4970 | 0.185 | 0.911 | 0.862 | 0.789 |
-| flat | ALL | 3800 | 0.107 | 0.857 | 0.754 | 0.604 |
-| bull_trap | ALL | 7400 | 0.182 | 0.913 | 0.852 | 0.762 |
-| sustained_bull | ALL | 3800 | 0.008 | 0.052 | 0.012 | 0.002 |
-| crash | ALL | 15000 | 0.151 | 0.908 | 0.841 | 0.735 |
+| flat | calm | 4000 | 0.115 | 0.828 | 0.717 | 0.596 |
+| bull_trap | calm | 1720 | 0.149 | 0.913 | 0.848 | 0.763 |
+| bull_trap | mania | 2826 | 0.135 | 0.905 | 0.815 | 0.686 |
+| bull_trap | blow-off | 1395 | 0.582 | 0.993 | 0.986 | 0.981 |
+| bull_trap | post-top | 1459 | 0.288 | 0.951 | 0.926 | 0.867 |
+| crash | calm | 5316 | 0.137 | 0.902 | 0.824 | 0.726 |
+| crash | deterioration | 2038 | 0.128 | 0.877 | 0.797 | 0.678 |
+| crash | panic | 3244 | 0.259 | 0.962 | 0.936 | 0.887 |
+| crash | stabilisation | 4602 | 0.170 | 0.880 | 0.810 | 0.731 |
+| sustained_bull | sustained-bull | 3400 | 0.014 | 0.185 | 0.057 | 0.005 |
+| flat | ALL | 4000 | 0.115 | 0.828 | 0.717 | 0.596 |
+| bull_trap | ALL | 7400 | 0.206 | 0.932 | 0.877 | 0.795 |
+| crash | ALL | 15200 | 0.166 | 0.905 | 0.840 | 0.755 |
+| sustained_bull | ALL | 3400 | 0.014 | 0.185 | 0.057 | 0.005 |
 
 ## 5. Generator sensitivities (25 seeds per scenario; checklist pass/fail counts; `generated/checklist_v2_sens_*.md`)
 | Sensitivity | Pass / fail | Note |
