@@ -1,0 +1,169 @@
+{
+ "block": "R21_footers",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R21_footers",
+   "item": 39,
+   "statistic": "checklist_v2: CSV pass/fail vs .md footer",
+   "mine": "CSV 8/7; footer 8/7",
+   "n": 20,
+   "ci": null,
+   "reviewer": "footer 8/7",
+   "rev_source": "W 39 / LOG \u00a75",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "footer correct"
+  },
+  {
+   "block": "R21_footers",
+   "item": 39,
+   "statistic": "checklist_v2_sens_fw_index: CSV pass/fail vs .md footer",
+   "mine": "CSV 8/7; footer 7/6",
+   "n": 20,
+   "ci": null,
+   "reviewer": "footer 7/6",
+   "rev_source": "W 39 / LOG \u00a75",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "footer wrong"
+  },
+  {
+   "block": "R21_footers",
+   "item": 39,
+   "statistic": "checklist_v2_sens_pruna: CSV pass/fail vs .md footer",
+   "mine": "CSV 7/8; footer 6/7",
+   "n": 20,
+   "ci": null,
+   "reviewer": "footer 6/7",
+   "rev_source": "W 39 / LOG \u00a75",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "footer wrong"
+  },
+  {
+   "block": "R21_footers",
+   "item": 39,
+   "statistic": "checklist_v2_sens_hl60: CSV pass/fail vs .md footer",
+   "mine": "CSV 7/8; footer 7/8",
+   "n": 20,
+   "ci": null,
+   "reviewer": "footer 7/8",
+   "rev_source": "W 39 / LOG \u00a75",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "footer correct"
+  },
+  {
+   "block": "R21_footers",
+   "item": 39,
+   "statistic": "checklist_v2_sens_omega_mode: CSV pass/fail vs .md footer",
+   "mine": "CSV 7/8; footer 6/7",
+   "n": 20,
+   "ci": null,
+   "reviewer": "footer 6/7",
+   "rev_source": "W 39 / LOG \u00a75",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "footer wrong"
+  },
+  {
+   "block": "R21_footers",
+   "item": 39,
+   "statistic": "checklist_v2_sens_panic3: CSV pass/fail vs .md footer",
+   "mine": "CSV 9/6; footer 8/5",
+   "n": 20,
+   "ci": null,
+   "reviewer": "footer 8/5",
+   "rev_source": "W 39 / LOG \u00a75",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "footer wrong"
+  },
+  {
+   "block": "R21_footers",
+   "item": 39,
+   "statistic": "checklist_v2_sens_panic6: CSV pass/fail vs .md footer",
+   "mine": "CSV 8/7; footer 7/6",
+   "n": 20,
+   "ci": null,
+   "reviewer": "footer 7/6",
+   "rev_source": "W 39 / LOG \u00a75",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "footer wrong"
+  }
+ ],
+ "detail": {
+  "checklist_v2": {
+   "csv": [
+    8,
+    7
+   ],
+   "footer": [
+    8,
+    7
+   ]
+  },
+  "checklist_v2_sens_fw_index": {
+   "csv": [
+    8,
+    7
+   ],
+   "footer": [
+    7,
+    6
+   ]
+  },
+  "checklist_v2_sens_pruna": {
+   "csv": [
+    7,
+    8
+   ],
+   "footer": [
+    6,
+    7
+   ]
+  },
+  "checklist_v2_sens_hl60": {
+   "csv": [
+    7,
+    8
+   ],
+   "footer": [
+    7,
+    8
+   ]
+  },
+  "checklist_v2_sens_omega_mode": {
+   "csv": [
+    7,
+    8
+   ],
+   "footer": [
+    6,
+    7
+   ]
+  },
+  "checklist_v2_sens_panic3": {
+   "csv": [
+    9,
+    6
+   ],
+   "footer": [
+    8,
+    5
+   ]
+  },
+  "checklist_v2_sens_panic6": {
+   "csv": [
+    8,
+    7
+   ],
+   "footer": [
+    7,
+    6
+   ]
+  }
+ }
+}

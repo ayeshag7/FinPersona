@@ -1,0 +1,36 @@
+{
+ "label": "Phase 0 freeze (v2.1), 29 Aug 2026",
+ "written": "2026-08-29",
+ "patterns": [
+  "envs/v2/**/*.py",
+  "envs/synthetic_market.py",
+  "envs/v2/params/*.json",
+  "evaluation/stylized_facts.py",
+  "evaluation/leakage_audit.py",
+  "evaluation/observables_oracle.py",
+  "evaluation/metrics_v2.py",
+  "evaluation/baselines_v2.py",
+  "evaluation/targets.py"
+ ],
+ "line_endings": "CRLF normalised to LF before hashing",
+ "manifest_hash": "92ddcf527be61986e180c78d3ec69270cfaeea779b240f0fb9b709c9d094edc2",
+ "files": {
+  "envs/synthetic_market.py": "cb24205520cbce6b9407fb5d7163fb6310e317f4b7196830127389df19c24e6c",
+  "envs/v2/__init__.py": "24dd6056b3dd032e240ee0b5aa4aed7c68689d2afdc99f35903a0aab4f336040",
+  "envs/v2/events.py": "cad0afdfd8307a94fccd77d16a22b9f8ef97bcbe0e9ed35ec32514d392a275c9",
+  "envs/v2/garch.py": "6f7a1a474c3e65dd7e6692effb556465e8bdd6cc4e77faf6f3b567017cbf9985",
+  "envs/v2/generator.py": "3a9c4db4389a64f78639001f3325e1f5eb018ac415b9ad078a89761f1a9811d3",
+  "envs/v2/mispricing.py": "5000905b293c39965922a22e1c647178640e4db0c1445da4450e14a2a4d5e144",
+  "envs/v2/observables.py": "21123a20a898c4096458ef7713373544867901990f287aad60e208e061454852",
+  "envs/v2/params/fw_single_stock.REJECTED.json": "c1bb7127834c39a77a16dd7e3c1b800602968f3bb6be4023dee63bc4e42aa4ba",
+  "envs/v2/params/hazard.json": "2e764d082ec070f388340822f81b268c44d0a104516c28422f1e3004ca0524f0",
+  "envs/v2/rng.py": "809da14442bb043a3d74612274567813be4e57ec29c4f8cb98395245a3d4ed7a",
+  "envs/v2/schedule.py": "612cca82c7b999531674e49bc0969456996152fb05d804551c69203ce10ddd5b",
+  "evaluation/baselines_v2.py": "8bb6acb179c9ba012a34209c003a8b42495c5c0ef879144f3a4618394f73cf97",
+  "evaluation/leakage_audit.py": "8fc0f80fd5d6bab69b92220ca1b4b854764ff5aa9a0821793b41473aa2d667e3",
+  "evaluation/metrics_v2.py": "b420595779c7b9afd4190160994a7b90adc2411f9b8d7962a7b7746c1a6bbc5e",
+  "evaluation/observables_oracle.py": "c68266605b0bbb785de65165082dc7342ca7fb38882146dcbb6a14274970fec5",
+  "evaluation/stylized_facts.py": "16a2e4c16b00b1047ba999ba9d422c3a74e7570a4a3beffa2ae5ad26a9877362",
+  "evaluation/targets.py": "83fc576e87fc1f7f2732492883d5e3f7723ab47c6c0f1d5c22f778a910744459"
+ }
+}

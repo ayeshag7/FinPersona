@@ -100,3 +100,18 @@ def test_table2_in_sync(tmp_path):
     rendered = [r["obs_key"] for r in rows if r["rendered_static"]]
     assert rendered == ["date", "price", "implied_volatility", "news_sentiment", "reported_PE",
                         "SMA20", "SMA60", "trend_regime", "volume_ratio", "RSI14"]
+
+
+def test_v1_bull_trap_value_plateau_frozen():
+    """E0 record of the frozen v1 generator (v2.1 Phase 0, item 0.5). tests/test_env_logic.py (written in March 2026
+    against an earlier draft generator) asserted a value plateau (|V_1 - V_50| < 1) and P_50 > 140 in a 50-day bull
+    trap. Neither holds on the frozen v1 at the test's own seed (42): V_1 = 100.60, V_50 = 96.32 (the v1 bull-trap
+    value is a log random walk N(0.001, 0.01) in phase 1, not a plateau) and P_50 = 125.93. The v1 facts are
+    asserted positively here so that the baseline is on record; the v2 contract is tested in tests/test_env_logic.py."""
+    from envs.v1.synthetic_market_v1 import SyntheticMarketEnv as V1Env
+    env = V1Env(scenario="bull_trap", n_days=50, start_price=100.0)
+    df = env.data
+    dV = abs(df.iloc[0]["fundamental_value"] - df.iloc[-1]["fundamental_value"])
+    assert dV >= 1.0, f"frozen v1 bull-trap value moved by {dV:.2f} on record; the legacy plateau assertion never held on v1"
+    assert abs(df.iloc[0]["fundamental_value"] - 100.598) < 0.01 and abs(df.iloc[-1]["fundamental_value"] - 96.324) < 0.01
+    assert abs(df.iloc[-1]["price"] - 125.93) < 0.01

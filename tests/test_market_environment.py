@@ -5,8 +5,10 @@ Unit Tests for testing the Market Data Environment
 import pytest
 import pandas as pd
 
-# Import the modules we want to test
-from legacy_market_data.market_environment import MarketEnvironment
+# The legacy real-data environment needs vectorbt, which is not part of the v2 environment's
+# requirements; skip cleanly instead of breaking collection (v2.1 plan, Phase 0, item 0.5).
+pytest.importorskip("vectorbt")
+from legacy_market_data.market_environment import MarketEnvironment  # noqa: E402
 
 
 # This fixture creates a single 'env' object that all the tests can use.

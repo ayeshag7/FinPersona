@@ -24,10 +24,15 @@ import pandas as pd
 from evaluation.targets import band, centre, V1_POINT_TARGETS, HALF_WIDTH
 
 THETAS = (0.03, 0.05, 0.08)
+# v1 rationality rule: a HOLD while undervalued counts as rational only if the agent holds a position; "holds a
+# position" = holdings value above $1 (v1 convention carried over for the re-scoring; DESIGN, documented in v2.1 Phase 0,
+# weakness item 73). Fractional shares make a strictly-positive test meaningless, hence a dollar threshold.
+V1_RULE_HOLDINGS_THRESHOLD = 1.0
 
 
 def v1_rule(action: np.ndarray, x: np.ndarray, holdings_value: np.ndarray) -> np.ndarray:
-    """v1 rationality indicator per row (nan where not applicable)."""
+    """v1 rationality indicator per row (nan where not applicable): BUY rational iff undervalued, SELL rational iff
+    overvalued, HOLD rational iff overvalued or (undervalued and holdings_value > V1_RULE_HOLDINGS_THRESHOLD)."""
     out = np.full(len(action), np.nan)
     over = x > 0
     for i, a in enumerate(action):
@@ -36,7 +41,7 @@ def v1_rule(action: np.ndarray, x: np.ndarray, holdings_value: np.ndarray) -> np
         elif a == "SELL":
             out[i] = 1.0 if over[i] else 0.0
         elif a == "HOLD":
-            out[i] = 1.0 if over[i] else (1.0 if holdings_value[i] > 1.0 else 0.0)
+            out[i] = 1.0 if over[i] else (1.0 if holdings_value[i] > V1_RULE_HOLDINGS_THRESHOLD else 0.0)
     return out
 
 
@@ -175,9 +180,16 @@ def normalise(agent_val: float, floor: float, ceiling: float) -> float:
 
 
 def floors_and_ceilings(baselines: Dict[str, Dict[str, float]], persona: str) -> Dict[str, Dict[str, float]]:
-    """baselines: {policy_name: metrics}. Returns {metric: {floor, ceiling, degenerate}} using:
-    RG/return-type: floor = best of {always_hold, random, buy_day1_hold}, ceiling = mandate_conditional_oracle;
-    MAS-type: ceiling = constant_mix (0 by construction), floor = worst of {always_buy, always_sell, random}."""
+    """baselines: {policy_name: metrics}. Returns {metric: {floor, ceiling, degenerate}}.
+
+    Convention actually implemented (v2.1 Phase 0 made this docstring exact; weakness item 53):
+      higher-is-better metrics (rg_v1, rg_theta_0.05, rg_action_0.05, return_pct, mdd_pct):
+          floor = best of {always_hold, random, buy_day1_hold}, ceiling = mandate_conditional_oracle;
+      lower-is-better metrics (point_mas_v1, point_mas_v2, band_mas, relative_mas AND mcr_0.05):
+          ceiling = constant_mix, floor = worst (largest) of {always_buy, always_sell, random}.
+    So the published normalised MCR ("norm_mcr_0.05") is normalised AGAINST CONSTANT-MIX (1.0 = as good as the
+    constant-mix policy), NOT against the mandate-conditional oracle as tools/report_v2.py and PILOT_NOTES.md said
+    before Phase 0. Which convention v2.1 adopts, and the regret decomposition, is Phase 7 (plan E7.2; amendment A9)."""
     out = {}
     trivial = [baselines[k] for k in ("always_hold", "random", "buy_day1_hold") if k in baselines]
     worst_pool = [baselines[k] for k in ("always_buy", "always_sell", "random") if k in baselines]

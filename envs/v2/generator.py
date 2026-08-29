@@ -2,7 +2,10 @@
 Core path generator v2: fundamental V, mispricing x, price P = V exp(x), phases,
 GARCH state, event metadata, rejection sampling; N-asset capable.
 
-    log V_t = log V_{t-1} + mu_V,t + sigma_V z_t,     z ~ t(5) (common factor across assets)
+    log V_t = log V_{t-1} + mu_V,t + sigma_V z_t,     z_t standardised t(5) for N = 1; for N > 1 assets
+                                                      z = sqrt(rho) f + sqrt(1 - rho) z_i with f (common) and z_i
+                                                      independent standardised t(5) -- the mixture is NOT t(5)
+                                                      (weakness item 73; documented in v2.1 Phase 0, Phase 1/4 decide)
     x_{t+1} = x_t + FW(x_t, x_{t-1}) + d_t + w_t e_t,  e_t ~ GJR-GARCH(1,1)-t(5)
     log P_t = log V_t + x_t
 
@@ -30,26 +33,43 @@ import numpy as np
 from envs.v2.rng import Streams, standardised_t
 from envs.v2.schedule import Schedule, draw_schedule
 from envs.v2.garch import GJRParams, GJRGarch
-from envs.v2.mispricing import FWParams, MispricingState, load_params
+from envs.v2.mispricing import FWParams, MispricingState, load_params, ENGINE_DEFAULT
 from envs.v2.events import make_driver, relabel_blowoff, MU_V_BASE, G_MAX
 from envs.v2.observables import SentimentState, SENT_SD_REF
 
 BURN_IN = 260
 MAX_ATTEMPTS = 50
 
-# hazard top calibration (tools/calibrate_hazard.py; ~50% topped in T=200, peak P/V 1.6-2.5).
-# Defaults are overridden by envs/v2/params/hazard.json when the calibration has been run.
-HAZARD_H0 = 0.0015
+# Bubble hazard h_t = h0 exp(b x_t) and the mania drift cap: CAL (tools/calibrate_hazard.py, 60 seeds, grid search
+# to the plan's ~50 % topped / peak P/V 1.6-2.5 targets; weakness items 17, 41). The module constants ARE the
+# calibrated values and envs/v2/params/hazard.json must agree with them: the loader raises at import if the file
+# is missing or differs (v2.1 Phase 0, item 69: before, HAZARD_H0 = 0.0015 and G_MAX = 0.02 were silently
+# overridden by the file, and a missing file would have run different parameters without warning).
+HAZARD_H0 = 0.0003
 HAZARD_B = 6.0
-try:
+G_MAX_CAL = 0.012
+
+
+def load_hazard_params(path: Optional[str] = None) -> Dict[str, float]:
+    """Read hazard.json and check it against the module constants. Raises RuntimeError if the file is missing or
+    disagrees (no silent override)."""
     import json as _json
     from envs.v2.mispricing import PARAM_DIR as _PD
-    with open(os.path.join(_PD, "hazard.json"), encoding="utf-8") as _fh:
-        _hz = _json.load(_fh)
-    HAZARD_H0, HAZARD_B = float(_hz["h0"]), float(_hz["b"])
-    _G_MAX_CAL = float(_hz.get("g_max", 0.02))
-except Exception:  # no calibration file yet
-    _G_MAX_CAL = 0.02
+    path = path or os.path.join(_PD, "hazard.json")
+    if not os.path.exists(path):
+        raise RuntimeError(f"{path} is missing: the calibrated hazard file must be present (h0 {HAZARD_H0}, b {HAZARD_B}, "
+                           f"g_max {G_MAX_CAL}); regenerate it with tools/calibrate_hazard.py and log the decision")
+    with open(path, encoding="utf-8") as fh:
+        hz = _json.load(fh)
+    got = {"h0": float(hz["h0"]), "b": float(hz["b"]), "g_max": float(hz["g_max"])}
+    want = {"h0": HAZARD_H0, "b": HAZARD_B, "g_max": G_MAX_CAL}
+    if any(abs(got[k] - want[k]) > 1e-12 for k in want):
+        raise RuntimeError(f"{path} disagrees with the module constants: file {got} vs code {want}; a change of the "
+                           f"calibrated hazard is a logged decision that must update both")
+    return got
+
+
+_HAZARD = load_hazard_params()
 
 
 @dataclass
@@ -65,7 +85,7 @@ class GenConfig:
     sigma_V: float = 0.006
     df_V: float = 5.0
     rho_common: float = 0.3                # common-factor share of V shocks (N > 1)
-    engine: str = "fw_single"              # fw_single | fw_index | pruna | ar1
+    engine: str = ENGINE_DEFAULT           # fw_fallback_hl150 (default) | fw_index | pruna | ar1 | fw_hl<d> | fw_single (accepted estimate only)
     garch: Dict = field(default_factory=dict)   # overrides for GJRParams
     jumps: bool = True                      # rare jumps on by default (E1 calibration; plan block 4 'optional')
     jump_rate: float = 0.010               # plan 0.004 'optional'; E1 calibration 0.010 (checklist 2, 8)
@@ -73,7 +93,7 @@ class GenConfig:
     jump_sd: float = 0.03
     hazard_h0: float = HAZARD_H0
     hazard_b: float = HAZARD_B
-    g_max: float = _G_MAX_CAL               # cap on the compounding mania drift (calibrated with the hazard)
+    g_max: float = G_MAX_CAL                # cap on the compounding mania drift (CAL, with the hazard)
     lam_panic: float = 0.10                # error-correction gain of the panic target path
     burn_in: int = BURN_IN
     reject: bool = True

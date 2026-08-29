@@ -5,7 +5,7 @@ Category & Variable & Definition / generation logic & In obs. & Static prompt & 
 Index & \texttt{date} & Trading-day index 1..T; rendered as 'Day-N' under key 'date' (T appended only in the disclosed-horizon arm). & yes & yes & yes \\
 Index & \texttt{asset} & Asset index (0 = the scenario asset; N $>$ 1 only in the multi-asset extension). & no & no & no \\
 Price action & \texttt{price} & P\_t = V\_t exp(x\_t). x\_t follows the FW recursion (calm) plus scripted event drifts; one GJR-GARCH-t innovation. & yes & yes & yes \\
-Hidden & \texttt{fundamental\_value} & V\_t: GBM, mu\_V = 0.00025/day (sustained bull U(0.0015,0.0025); crash deterioration log-linear drift delivering D\_V \~{} U(10,30)\%, then flat), sigma\_V = 0.6\%/day, t(5) shocks. Never rendered. & no & no & no \\
+Hidden & \texttt{fundamental\_value} & V\_t: GBM, mu\_V = 0.00025/day (sustained bull U(0.0015,0.0025); crash deterioration log-linear drift delivering D\_V \~{} U(10,30)\%, then flat), sigma\_V = 0.6\%/day, standardised t(5) shocks (N $>$ 1: sqrt(rho) f + sqrt(1-rho) z\_i with f, z\_i t(5) -- not itself t(5)). Never rendered. & no & no & no \\
 Hidden & \texttt{x} & log(P/V): referee's mispricing; resolvable iff $|$x$|$ $>$= theta. & no & no & no \\
 Hidden & \texttt{phase} & Phase label (calm, deterioration, panic, stabilisation, mania, blow-off, post-top, sustained-bull). Never rendered. & no & no & no \\
 Hidden & \texttt{garch\_sigma} & Conditional sd of the x-innovation (GJR-GARCH state). Never rendered. & no & no & no \\
@@ -30,7 +30,7 @@ Valuation & \texttt{reported\_PE} & P\_t / trailing\_eps, capped at 200. & yes &
 Valuation (internal) & \texttt{dps\_quarterly} & Sticky quarterly dividend: DPS\_q = 0.7 DPS\_\{q-1\} + 0.3 x 0.35 x EPS\_q. & no & no & no \\
 Valuation & \texttt{dividend\_yield} & 4 x DPS\_quarterly / P\_t x 100. & yes & yes & yes \\
 Valuation & \texttt{days\_since\_eps\_announcement} & Days since the last earnings announcement. & yes & yes & yes \\
-Valuation & \texttt{analyst\_fair\_value} & F\_t = V\_t exp(u\_t), u AR(1) rho 0.95, stationary sd 0.15 (fixed ex ante), updated weekly. & yes & yes & yes \\
+Valuation & \texttt{analyst\_fair\_value} & F\_t = V\_t exp(u\_t), u AR(1) rho 0.95 per weekly update, stationary sd 0.15 (fixed ex ante; the sqrt(5) scaling that made it 0.335 was removed in v2.1 Phase 0). & yes & yes & yes \\
 Hidden & \texttt{analyst\_error\_u} & Analyst log error u\_t (never rendered). & no & no & no \\
 Risk & \texttt{implied\_volatility} & sqrt(252 (sigma\_V\^\{\}2 + w\_t\^\{\}2 fvar21\_t)) x (1 + premium) x 100; fvar21 = mean 21-day GARCH variance forecast; premium 0.20, 0.35 when the GARCH variance is in its top decile (state-based); floor 12\%. & yes & yes & yes \\
 Hidden & \texttt{macro\_phase} & Macro class \{calm, down-event, up-event, resolution\} for the L2b audit. Never rendered. & no & no & no \\

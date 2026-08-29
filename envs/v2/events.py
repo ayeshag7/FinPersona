@@ -29,7 +29,9 @@ LAM_PANIC = 0.10
 LAM_STAB = 0.05
 LAM_POSTTOP = 0.10
 STAB_RAMP_DAYS = 30
-G_MAX = 0.02          # cap on the compounding mania drift (2%/day); a parameter of the scripted drift, not a price clip
+G_MAX = 0.012         # CAL: cap on the compounding mania drift, calibrated jointly with the hazard (envs/v2/params/hazard.json,
+                      # tools/calibrate_hazard.py); a parameter of the scripted drift, not a price clip. The generator always passes
+                      # cfg.g_max, which equals this value (v2.1 Phase 0 aligned the constant, previously 0.02, with the file; item 69)
 LAM_SB = 0.15         # sustained-bull anchoring pull on x (half-life ~4.6 d; variance multiplier 1.0 after review D5): keeps the no-mispricing control inside its
                       # validity band [-0.10, +0.15] with a rejection rate < 5%; documented in the generator spec
 
@@ -124,7 +126,11 @@ class CrashDriver(CalmDriver):
         xs0, xs1 = self._target(day, x)
         lam = self.lam_panic if ph == "panic" else LAM_STAB
         d = (xs1 - xs0) + lam * (xs0 - x)
-        return d, 0.0, ph          # V flat after the deterioration ("then flat")
+        # mu_V = 0 in panic and stabilisation: the crash's fundamental decline D_V is delivered entirely inside the
+        # deterioration phase and V is flat afterwards (spec section 1, "then flat"). Stated design choice (weakness
+        # item 73): it contradicts the MU_V_BASE drift used in every other phase; Phase 4 (E4.8) tests it against
+        # the episode tables' fundamental-decline shapes.
+        return d, 0.0, ph
 
 
 class BubbleDriver(CalmDriver):

@@ -107,6 +107,11 @@ def salience_tables(runs: List[pd.DataFrame]) -> Dict[str, pd.DataFrame]:
     if allr["Persona"].nunique() >= 2 and allr["Seed"].nunique() >= 2:
         out["salience_primary"] = salience_by_window(allr, include_state=False)
         out["salience_with_state"] = salience_by_window(allr, include_state=True, null_reps=0)
+    # The t = 0 separability gate is pre-registered on the COMMON-START design (C_1 levels, PREREGISTRATION.md 4).
+    # Under start-at-target every persona starts at its own centre, so C_1 - C_0 ~ 0 for a persona-consistent agent and a
+    # gate that tests level ordering and band membership cannot pass (weakness item 54). v2.1 Phase 0: the gate is
+    # computed on common-start cells only; the delta-C_1 table is kept as EXPLORATORY with the reason; Phase 7 (E7.5)
+    # re-specifies it.
     common = allr[(allr["Start_Design"] == "common") & (allr["Day"] == 1)]
     if len(common):
         g = common.rename(columns={"Cash_Share": "C1"})
@@ -114,7 +119,10 @@ def salience_tables(runs: List[pd.DataFrame]) -> Dict[str, pd.DataFrame]:
     tgt = allr[(allr["Start_Design"] == "target") & (allr["Day"] == 1)].copy()
     if len(tgt):
         tgt["C1"] = tgt["Cash_Share"] - tgt["Start_Cash_Share"]   # delta C_1 under start-at-target
-        out["gate_start_at_target_deltaC1"] = pd.DataFrame([{"Model": m, **separability_gate(dm)} for m, dm in tgt.groupby("Model")])
+        ex = pd.DataFrame([{"Model": m, **separability_gate(dm)} for m, dm in tgt.groupby("Model")])
+        ex["note"] = ("EXPLORATORY, not a gate: delta C_1 fed to a level/band-membership test is ill-posed under "
+                      "start-at-target (item 54); re-specified in Phase 7")
+        out["exploratory_deltaC1_start_at_target"] = ex
     return out
 
 
@@ -127,14 +135,17 @@ def write_report(tables: Dict[str, pd.DataFrame], out_prefix: str):
         s = tables["summary"]
         L += ["## Per-cell means (model x persona x arm x scenario)", "",
               "Primary RG-type metric is the mandate-conditional regret MCR (mean |C_t - c*_t| over resolvable steps; "
-              "lower is better; ceiling = mandate-conditional oracle, floor = best trivial policy). RG_v1 is shown for "
-              "comparability; its normalisation is degenerate whenever buy-and-hold scores ~100 (flagged per run).", "",
+              "lower is better). norm_mcr_0.05 is normalised against constant-mix (ceiling; 1.0 = as good as the "
+              "constant-mix policy) and the worst of {always-buy, always-sell, random} (floor), the convention of "
+              "evaluation/metrics_v2.py::floors_and_ceilings for every lower-is-better metric; the mandate-oracle "
+              "convention is decided in Phase 7 (v2.1). RG_v1 is shown for comparability; its normalisation is "
+              "degenerate whenever buy-and-hold scores ~100 (flagged per run).", "",
               s.round(3).to_string(index=False), ""]
     if "reliability" in tables:
         L += ["## Reliability", "", tables["reliability"].round(3).to_string(index=False), ""]
     if "bull_trap_strata" in tables:
         L += ["## Bull-trap strata (topped / un-topped)", "", tables["bull_trap_strata"].round(3).to_string(index=False), ""]
-    for k in ("salience_primary", "salience_with_state", "gate_common_start", "gate_start_at_target_deltaC1"):
+    for k in ("salience_primary", "salience_with_state", "gate_common_start", "exploratory_deltaC1_start_at_target"):
         if k in tables:
             L += [f"## {k}", "", tables[k].round(3).to_string(index=False), ""]
     with open(out_prefix + ".md", "w", encoding="utf-8", newline="\n") as fh:

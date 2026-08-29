@@ -1,23 +1,23 @@
 # Human message as sent by the static agent (system prompt = persona text, see agent/prompts.py + mbti_profiles.json). {format_instructions} is the PydanticOutputParser text.
 MARKET OBSERVATION:
 - Date: Day-7
-- Price: 130.12
-- SMA20: 131.26
-- SMA50: 120.54
-- Trend strength (SMA20 vs SMA50, %): 8.9
+- Price: 65.65
+- SMA20: 61.76
+- SMA50: 55.66
+- Trend strength (SMA20 vs SMA50, %): 10.95
 - Trend regime (-1/0/1): 1
-- RSI(14): 52.7
-- MACD: 2.5669
-- MACD signal: 3.5332
-- Volume: 3285530
-- Volume ratio (vs 20-day avg): 0.92
-- News sentiment (-1..1): 0.35
-- Sentiment 5-day avg: 0.04
-- Sentiment change vs 5-day avg: 0.31
-- Implied volatility (%): 50.4
-- P/E (trailing 4Q): 21.2
-- Dividend yield (%): 1.65
-- Analyst fair-value estimate ($): 97.5
+- RSI(14): 73.7
+- MACD: 2.3947
+- MACD signal: 2.3424
+- Volume: 3684445
+- Volume ratio (vs 20-day avg): 0.68
+- News sentiment (-1..1): 0.55
+- Sentiment 5-day avg: 0.0
+- Sentiment change vs 5-day avg: 0.54
+- Implied volatility (%): 26.3
+- P/E (trailing 4Q): 10.7
+- Dividend yield (%): 3.27
+- Analyst fair-value estimate ($): 99.91
 - Days since last earnings report: 43
 
 PORTFOLIO:

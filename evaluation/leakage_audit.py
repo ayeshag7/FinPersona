@@ -454,9 +454,12 @@ def to_markdown(res: Dict[str, object], title: str) -> str:
           f"{'PASS' if v['event_pass_absolute'] else 'FAIL'} (R2 < 0.90, MAPE >= 10%).", "",
           f"Selectivity of the non-price fields (exploratory, NOT a gate): best-full minus best-price-only R2(x) = {v['max_selectivity_R2_x']:.3f} "
           f"(worst phase group), MAPE(V) gain = {v['max_MAPE_gain_V']:.1%}, max shuffled-V R2 = {v['max_R2_shuffledV']:.3f}. "
-          f"Interpretation: the absolute fail is a property of the price process (smooth V, persistent dominant x -> x is "
-          f"inferable from price history), not of the valuation fields; 'hidden value' is hidden from algebra and from the "
-          f"fields, NOT from price dynamics -- the rule-based baselines quantify how much a price-only policy captures.", "",
+          f"Interpretation (v2.1 Phase 0): the price-only strength is dominated by the fixed start price V_1 = P_1 = 100 acting as "
+          f"an answer key, not by price dynamics -- a level-free reader reaches R2(x) ~0.49 (sign accuracy 0.74) instead of 0.85 "
+          f"(0.95) on the anchored panel, and with the start price randomised the non-price fields add ~+0.6 R2(x) in calm "
+          f"(generated/v2_1/findings_reproduction.md, block R3; reviews C.2-C.3). The earlier reading 'hidden from the fields, "
+          f"NOT from price dynamics' is withdrawn. Phase 1 removes the anchor and re-runs this audit with a level-free control; "
+          f"Phase 5 redesigns the fields; Phase 6 derives the gate.", "",
           _md_table(res["L2"].round(3)), ""]
     b = res["L2b"]
     L += ["## L2b composite phase clock", "",

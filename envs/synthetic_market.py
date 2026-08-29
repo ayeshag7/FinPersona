@@ -29,6 +29,7 @@ import numpy as np
 import pandas as pd
 
 from envs.v2.generator import GenConfig, PathResult, generate, BURN_IN
+from envs.v2.mispricing import ENGINE_DEFAULT
 from envs.v2.rng import Streams
 from envs.v2 import observables as obs
 from envs.v2.schedule import SCENARIOS, ORDERINGS
@@ -58,7 +59,7 @@ TABLE2_DEFINITIONS = {
     "asset": ("Index", "Asset index (0 = the scenario asset; N > 1 only in the multi-asset extension).", "synthetic_market.py"),
     "day": ("Index", "Trading-day index 1..T; rendered as 'Day-N' under key 'date' (T appended only in the disclosed-horizon arm).", "synthetic_market.py get_observation"),
     "price": ("Price action", "P_t = V_t exp(x_t). x_t follows the FW recursion (calm) plus scripted event drifts; one GJR-GARCH-t innovation.", "v2/generator.py, v2/mispricing.py, v2/events.py"),
-    "fundamental_value": ("Hidden", "V_t: GBM, mu_V = 0.00025/day (sustained bull U(0.0015,0.0025); crash deterioration log-linear drift delivering D_V ~ U(10,30)%, then flat), sigma_V = 0.6%/day, t(5) shocks. Never rendered.", "v2/generator.py"),
+    "fundamental_value": ("Hidden", "V_t: GBM, mu_V = 0.00025/day (sustained bull U(0.0015,0.0025); crash deterioration log-linear drift delivering D_V ~ U(10,30)%, then flat), sigma_V = 0.6%/day, standardised t(5) shocks (N > 1: sqrt(rho) f + sqrt(1-rho) z_i with f, z_i t(5) -- not itself t(5)). Never rendered.", "v2/generator.py"),
     "x": ("Hidden", "log(P/V): referee's mispricing; resolvable iff |x| >= theta.", "v2/generator.py"),
     "phase": ("Hidden", "Phase label (calm, deterioration, panic, stabilisation, mania, blow-off, post-top, sustained-bull). Never rendered.", "v2/events.py, v2/schedule.py"),
     "macro_phase": ("Hidden", "Macro class {calm, down-event, up-event, resolution} for the L2b audit. Never rendered.", "synthetic_market.py"),
@@ -88,7 +89,7 @@ TABLE2_DEFINITIONS = {
     "dps_quarterly": ("Valuation (internal)", "Sticky quarterly dividend: DPS_q = 0.7 DPS_{q-1} + 0.3 x 0.35 x EPS_q.", "v2/observables.py earnings_block"),
     "dividend_yield": ("Valuation", "4 x DPS_quarterly / P_t x 100.", "v2/observables.py earnings_block"),
     "days_since_eps_announcement": ("Valuation", "Days since the last earnings announcement.", "v2/observables.py earnings_block"),
-    "analyst_fair_value": ("Valuation", "F_t = V_t exp(u_t), u AR(1) rho 0.95, stationary sd 0.15 (fixed ex ante), updated weekly.", "v2/observables.py analyst_block"),
+    "analyst_fair_value": ("Valuation", "F_t = V_t exp(u_t), u AR(1) rho 0.95 per weekly update, stationary sd 0.15 (fixed ex ante; the sqrt(5) scaling that made it 0.335 was removed in v2.1 Phase 0).", "v2/observables.py analyst_block"),
     "analyst_error_u": ("Hidden", "Analyst log error u_t (never rendered).", "v2/observables.py analyst_block"),
     "fvar21": ("Hidden", "21-day mean GARCH variance forecast (never rendered; enters IV).", "v2/garch.py forecast_var"),
     "fw_weight": ("Hidden", "FW innovation weight w_t (never rendered).", "v2/mispricing.py"),
@@ -105,7 +106,7 @@ class SyntheticMarketEnv:
 
     def __init__(self, scenario: str = "flat", n_days: int = 200, seed: int = 42, start_price: float = 100.0,
                  crash_discount: float = 0.70, ordering: str = "setup_first", n_assets: int = 1,
-                 engine: str = "fw_single", b_pred: Optional[float] = None, disclose_horizon: bool = False,
+                 engine: str = ENGINE_DEFAULT, b_pred: Optional[float] = None, disclose_horizon: bool = False,
                  field_order: str = "canonical", config: Optional[Dict] = None,
                  volatility: float = None, drift: float = None):
         # `volatility` / `drift` are accepted for v1 call-compatibility and ignored (v2 uses plan parameters)
@@ -227,7 +228,8 @@ class SyntheticMarketEnv:
         return {
             "env_version": ENV_VERSION, "scenario": self.scenario, "n_days": self.n_days, "seed": self.seed,
             "start_price": self.start_price, "crash_discount": self.crash_discount, "ordering": self.ordering,
-            "n_assets": self.n_assets, "engine": self.engine, "disclose_horizon": self.disclose_horizon,
+            "n_assets": self.n_assets, "engine": self.engine, "engine_used": self.result.params.name,
+            "disclose_horizon": self.disclose_horizon,
             "field_order": self.field_order, "burn_in": self.cfg.burn_in,
             "gen_config": self.cfg.to_dict(), "fw_params": self.result.params.to_dict(),
             "garch_params": asdict(self.result.garch_params), "schedule": sched,

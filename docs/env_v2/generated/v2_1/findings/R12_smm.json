@@ -1,0 +1,46 @@
+{
+ "block": "R12_smm",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R12_smm",
+   "item": 35,
+   "statistic": "REJECTED.json: J",
+   "mine": 408.1543211948086,
+   "n": 0,
+   "ci": null,
+   "reviewer": 408.15,
+   "rev_source": "B row 12",
+   "rev_n": null,
+   "verdict": "D",
+   "note": "start-J recorded: False; tickers 10 (survivors); price_scale 100.0"
+  },
+  {
+   "block": "R12_smm",
+   "item": 35,
+   "statistic": "J-profile over phi (diagonal 1/target\u00b2 proxy weights): min\u2013max of J",
+   "mine": "2.89\u20133.16",
+   "n": 7,
+   "ci": null,
+   "reviewer": "2.9\u20133.2 (flat)",
+   "rev_source": "CALIBRATION_REPORT \u00a76",
+   "rev_n": null,
+   "verdict": "D",
+   "note": "phi grid 0.03, 0.06, 0.12, 0.25, 0.5, 1.0, 2.0"
+  },
+  {
+   "block": "R12_smm",
+   "item": 35,
+   "statistic": "pilot n\u0304 at every phi of the profile grid (price_scale 100, 20,000 steps, seed 12345)",
+   "mine": "\u03c6 0.03: 0.9991; \u03c6 0.06: 0.9988; \u03c6 0.12: 0.9985; \u03c6 0.25: 0.9979; \u03c6 0.5: 0.9974; \u03c6 1.0: 0.9970; \u03c6 2.0: 0.9954",
+   "n": 7,
+   "ci": null,
+   "reviewer": "n_f \u2248 1 throughout",
+   "rev_source": "B row 12 / C \u00a7A.1",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "the profile was computed where chartists never act"
+  }
+ ],
+ "detail": {}
+}

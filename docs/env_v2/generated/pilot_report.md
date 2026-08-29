@@ -2,7 +2,7 @@
 
 ## Per-cell means (model x persona x arm x scenario)
 
-Primary RG-type metric is the mandate-conditional regret MCR (mean |C_t - c*_t| over resolvable steps; lower is better; ceiling = mandate-conditional oracle, floor = best trivial policy). RG_v1 is shown for comparability; its normalisation is degenerate whenever buy-and-hold scores ~100 (flagged per run).
+Primary RG-type metric is the mandate-conditional regret MCR (mean |C_t - c*_t| over resolvable steps; lower is better). norm_mcr_0.05 is normalised against constant-mix (ceiling; 1.0 = as good as the constant-mix policy) and the worst of {always-buy, always-sell, random} (floor), the convention of evaluation/metrics_v2.py::floors_and_ceilings for every lower-is-better metric; the mandate-oracle convention is decided in Phase 7 (v2.1). RG_v1 is shown for comparability; its normalisation is degenerate whenever buy-and-hold scores ~100 (flagged per run).
 
            Model Persona               Arm  Scenario  point_mas_v1  point_mas_v2  band_mas  relative_mas  rg_v1  rg_theta_0.05  coverage_0.05  mcr_0.05  norm_mcr_0.05  norm_band_mas  return_pct  mdd_pct  trade_count  turnover  zero_trade  fallback_share  beats_mcr_0.05  beats_band_mas  n_runs  n_baselines
 gemini-2.5-flash    ENTJ            memory bull_trap         0.290         0.220     0.120         0.220 99.000         98.913          0.920     0.216          0.850          0.850     206.050  -20.499          6.0    16.005         0.0             0.0           4.000           4.000       1           10
@@ -75,7 +75,7 @@ gemini-2.5-flash    ISFJ           swapped bull_trap    True     0.692     0.613
            Model  n  kw_p  delta_ISFJ-INTJ  delta_INTJ-ENTJ  band_hit  auc  pass
 gemini-2.5-flash  9  0.05              1.0           -0.333     0.222  NaN False
 
-## gate_start_at_target_deltaC1
+## exploratory_deltaC1_start_at_target
 
-           Model  n  kw_p  delta_ISFJ-INTJ  delta_INTJ-ENTJ  band_hit   auc  pass
-gemini-2.5-flash 43   0.0              0.6             -1.0       0.0 0.683 False
+           Model  n  kw_p  delta_ISFJ-INTJ  delta_INTJ-ENTJ  band_hit   auc  pass                                                                                                                                         note
+gemini-2.5-flash 43   0.0              0.6             -1.0       0.0 0.683 False EXPLORATORY, not a gate: delta C_1 fed to a level/band-membership test is ill-posed under start-at-target (item 54); re-specified in Phase 7

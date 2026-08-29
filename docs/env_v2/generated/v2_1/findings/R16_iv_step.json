@@ -1,0 +1,103 @@
+{
+ "block": "R16_iv_step",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R16_iv_step",
+   "item": 46,
+   "statistic": "calm day-to-day sd of log IV (pooled, crash + bull calm days)",
+   "mine": 0.07980161912108744,
+   "n": 100,
+   "ci": [
+    0.07303780383857283,
+    0.08642216854612458
+   ],
+   "reviewer": 0.089,
+   "rev_source": "C \u00a7A.6 (30+30 seeds); LOG 0.086",
+   "rev_n": 60,
+   "verdict": "R",
+   "note": ""
+  },
+  {
+   "block": "R16_iv_step",
+   "item": 46,
+   "statistic": "mean \u0394log IV at deterioration \u2192 panic",
+   "mine": 0.6177924783409025,
+   "n": 50,
+   "ci": [
+    0.5911179163332492,
+    0.6456549431707946
+   ],
+   "reviewer": 0.62,
+   "rev_source": "C \u00a7A.6",
+   "rev_n": 30,
+   "verdict": "R",
+   "note": "z = +7.74 (\u00d71.85)"
+  },
+  {
+   "block": "R16_iv_step",
+   "item": 46,
+   "statistic": "mean \u0394log IV at panic \u2192 stabilisation",
+   "mine": -0.5912555981425883,
+   "n": 50,
+   "ci": [
+    -0.6154916444833929,
+    -0.5664720096433988
+   ],
+   "reviewer": -0.64,
+   "rev_source": "C \u00a7A.6",
+   "rev_n": 30,
+   "verdict": "N",
+   "note": "z = -7.41 (\u00d70.55)"
+  },
+  {
+   "block": "R16_iv_step",
+   "item": 46,
+   "statistic": "mean \u0394log IV at calm \u2192 deterioration",
+   "mine": 0.1723176630481364,
+   "n": 50,
+   "ci": [
+    0.15763708482656552,
+    0.19060236462576413
+   ],
+   "reviewer": 0.15,
+   "rev_source": "C \u00a7A.6",
+   "rev_n": 30,
+   "verdict": "R",
+   "note": "z = +2.16 (\u00d71.19)"
+  },
+  {
+   "block": "R16_iv_step",
+   "item": 46,
+   "statistic": "mean \u0394log IV at calm \u2192 mania",
+   "mine": 0.1722634303396591,
+   "n": 50,
+   "ci": [
+    0.15707619240516915,
+    0.19074962256893058
+   ],
+   "reviewer": 0.15,
+   "rev_source": "C \u00a7A.6",
+   "rev_n": 30,
+   "verdict": "R",
+   "note": "z = +2.16 (\u00d71.19)"
+  },
+  {
+   "block": "R16_iv_step",
+   "item": 46,
+   "statistic": "mean \u0394log IV at blow-off \u2192 post-top",
+   "mine": 0.32353346851711123,
+   "n": 31,
+   "ci": [
+    0.303278129080711,
+    0.34396952502195216
+   ],
+   "reviewer": 0.33,
+   "rev_source": "C \u00a7A.6",
+   "rev_n": 30,
+   "verdict": "R",
+   "note": "z = +4.05 (\u00d71.38)"
+  }
+ ],
+ "detail": {}
+}

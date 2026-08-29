@@ -53,7 +53,7 @@ class RunConfig:
     disclose_horizon: bool = False
     field_order: str = "canonical"
     b_pred: Optional[float] = None
-    engine: str = "fw_single"
+    engine: str = "fw_fallback_hl150"     # the engine that runs (envs.v2.mispricing.ENGINE_DEFAULT)
     temperature: float = 0.2
     probe_every: int = 0                  # 0 = no restatement probe
     context_mode: str = "stateless"       # stateless | rolling | full | summary   (E5 stateful arm)
@@ -97,7 +97,9 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
     port = PortfolioV2(cfg.initial_value, c0, p0, n_assets=cfg.n_assets)
     prov = {**env_provenance(env), **agent_provenance(agent)}
     meta = env.get_metadata()
-    lo, hi = band(persona_for_start) if persona_for_start != "TRADER" else (0.4, 0.6)
+    # the no-persona trader is band-free, (0, 1), as in evaluation/metrics_v2.py and baselines_v2.py (v2.1 Phase 0, item 73;
+    # the runner previously logged (0.4, 0.6))
+    lo, hi = band(persona_for_start) if persona_for_start != "TRADER" else (0.0, 1.0)
     run_id = cfg.run_id()
     if verbose:
         print(f"[RunnerV2] {run_id}  C0={c0:.2f}  attempts={env.attempts}  {prov['Prompt_Hash']}")

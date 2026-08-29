@@ -18,7 +18,7 @@ Generator v2; 50 seeds per scenario (crash: per delta), T = 200; config override
 | 12 | Sentiment dynamics | median ACF(1) = 0.873; median corr(s_t, r_t) = 0.365; median calm corr(s_t-1, r_t) = -0.010 (configured b_pred = 0.0008) | ACF(1) 0.7-0.9; corr 0.25-0.55; lagged corr equals configured b_pred within CI | PASS | 470 |
 | 13 | IV realism | mean IV calm 28.6%, panic 59.4%; median corr(IV, next-20d RV) = 0.39; IV-RV calm +6.7 pts, panic +21.6 pts; sd of calm IV across seeds 14.82 | calm 25-35%, panic 60-100%; corr 0.4-0.8; IV-RV +3..+8 calm, +10..+25 panic; non-degenerate across seeds | FAIL | 470 |
 | 14 | Value leak | see evaluation.leakage_audit (L1-L3) | calm R2 <= 0.30; event R2 < 0.90 & MAPE >= 10%; no inversion | n/a | 0 |
-| 15 | Phase/time separability | macro-phase accuracy from day alone = 64.8% (mixed set, 470 paths; within-scenario mean 73.6%); |corr(day, phase id)| = 0.03 | < 80% on the mixed set; < 0.9 | PASS | 470 |
+| 15 | Phase/time separability | macro-phase accuracy from day alone = 64.8% (mixed set, 470 paths; within-scenario mean 73.7%); |corr(day, phase id)| = 0.03 | < 80% on the mixed set; < 0.9 | PASS | 470 |
 | 16 | Composite phase clock | see evaluation.leakage_audit (L2b) | selectivity <= 10 pp | n/a | 0 |
 | 17 | Conditioning | flat: rejection rate 0.0%; bull_trap: rejection rate 5.7%; crash: rejection rate 1.3%; sustained_bull: rejection rate 39.8%; mixed: rejection rate 1.3%; flat_T800: rejection rate 0.0%; bull-trap topped share 44% | rejection < 5% per scenario; joint conditioning published | FAIL | 470 |
 | 18 | Start design applied | unit test (tests/) | C_0 as configured | n/a | 0 |

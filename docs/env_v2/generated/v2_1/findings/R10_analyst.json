@@ -1,0 +1,105 @@
+{
+ "block": "R10_analyst",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R10_analyst",
+   "item": 68,
+   "statistic": "pooled sd(u), full 460-day timeline",
+   "mine": 0.33511752470214873,
+   "n": 100,
+   "ci": [
+    0.3139869395885582,
+    0.35539167525810583
+   ],
+   "reviewer": 0.306,
+   "rev_source": "LOG \u00a71 (30 crash seeds); PLAN 0.350",
+   "rev_n": 30,
+   "verdict": "R",
+   "note": ""
+  },
+  {
+   "block": "R10_analyst",
+   "item": 68,
+   "statistic": "pooled sd(u), benchmark days",
+   "mine": 0.35236036779185137,
+   "n": 100,
+   "ci": [
+    0.3234938817147822,
+    0.3772808976011029
+   ],
+   "reviewer": 0.333,
+   "rev_source": "C \u00a7D.24 measured 0.333; LOG 0.330; analytic 0.15\u221a5 = 0.335",
+   "rev_n": 30,
+   "verdict": "R",
+   "note": ""
+  },
+  {
+   "block": "R10_analyst",
+   "item": 68,
+   "statistic": "median |u|, benchmark days",
+   "mine": 0.24745157892761227,
+   "n": 100,
+   "ci": [
+    0.22353817626776232,
+    0.2721226794049729
+   ],
+   "reviewer": 0.222,
+   "rev_source": "LOG \u00a71; B 0.21",
+   "rev_n": 30,
+   "verdict": "R",
+   "note": ""
+  },
+  {
+   "block": "R10_analyst",
+   "item": 68,
+   "statistic": "documented stationary sd",
+   "mine": 0.15,
+   "n": 0,
+   "ci": null,
+   "reviewer": 0.15,
+   "rev_source": "observables.py docstring, spec \u00a76, slide 5",
+   "rev_n": null,
+   "verdict": "D",
+   "note": "analytic implemented value 0.15 \u00d7 \u221a5 = 0.335"
+  },
+  {
+   "block": "R10_analyst",
+   "item": 68,
+   "statistic": "crash \u03b4 0.70 envs: pooled sd(u) on benchmark days",
+   "mine": 0.3385565709253448,
+   "n": 50,
+   "ci": [
+    0.30294586682727087,
+    0.3702586457459306
+   ],
+   "reviewer": 0.33,
+   "rev_source": "LOG \u00a71",
+   "rev_n": 30,
+   "verdict": "R",
+   "note": ""
+  },
+  {
+   "block": "R10_analyst",
+   "item": 21,
+   "statistic": "median |F/V \u2212 1| of the analyst field (all four scenarios)",
+   "mine": 0.24473632199220913,
+   "n": 200,
+   "ci": [
+    0.22760275542159336,
+    0.26146289430121533
+   ],
+   "reviewer": 0.2235,
+   "rev_source": "leakage_audit_v2.md k\u00b7analyst median APE",
+   "rev_n": 150,
+   "verdict": "R",
+   "note": ""
+  }
+ ],
+ "detail": {
+  "sd_full": 0.33511752470214873,
+  "sd_bench": 0.35236036779185137,
+  "median_abs_u": 0.24745157892761227,
+  "median_ape": 0.24473632199220913
+ }
+}

@@ -1,38 +1,23 @@
 """
-Test script to verify Synthetic Market Logic
+Bull-trap contract of the v2 generator (rewritten in v2.1 Phase 0, item 0.5).
+
+The v1 form of this test asserted that the fundamental value stays flat (|V_1 - V_50| < 1) in a bull trap;
+that was true of v1's plateau and is false by design in v2, where V grows at mu_V throughout (spec section 1).
+The v1 assertion is kept as an E0 record in tests/test_provenance_and_freeze.py::test_v1_bull_trap_value_plateau_frozen.
+The assertion that carries over: the price leaves the value (max x >= 0.30, the bull-trap rejection criterion).
 """
-import pandas as pd
-import matplotlib.pyplot as plt
+import numpy as np
+
 from envs.synthetic_market import SyntheticMarketEnv
 
-def test_bull_trap_generation():
-    print("Testing 'Bull Trap' Scenario Generation...")
-    
-    # Initialize env
-    env = SyntheticMarketEnv(scenario="bull_trap", n_days=50, start_price=100.0)
-    
-    # Extract data directly for inspection
-    df = env.data
-    
-    print(f"Data Shape: {df.shape}")
-    print("First 5 Rows:")
-    print(df[['day', 'price', 'fundamental_value']].head())
-    print("Last 5 Rows:")
-    print(df[['day', 'price', 'fundamental_value']].tail())
-    
-    # Assertions
-    start_val = df.iloc[0]['fundamental_value']
-    end_val = df.iloc[-1]['fundamental_value']
-    end_price = df.iloc[-1]['price']
-    
-    # 1. Value should be flat (approx 100)
-    assert abs(start_val - end_val) < 1.0, "Fundamental Value should remain flat in Bull Trap"
-    
-    # 2. Price should be high (~150)
-    assert end_price > 140.0, "Price should bubble up to ~150"
-    
-    print("\nSUCCESS: Bull Trap logic confirmed.")
-    print(f"Value stayed at ${end_val:.2f}, Price rose to ${end_price:.2f}")
 
-if __name__ == "__main__":
-    test_bull_trap_generation()
+def test_bull_trap_generation():
+    env = SyntheticMarketEnv(scenario="bull_trap", n_days=200, seed=42, start_price=100.0)
+    df = env.data
+    V = df["fundamental_value"].to_numpy(float); P = df["price"].to_numpy(float); x = df["x"].to_numpy(float)
+    assert abs(V[0] - 100.0) < 1e-9                       # V_1 = start price (v2 convention; Phase 1 revisits)
+    assert np.isfinite(P).all() and (P > 0).all()
+    assert x.max() >= 0.30                                 # the price leaves the value: rejection criterion
+    assert np.allclose(P, V * np.exp(x))                   # log P = log V + x
+    # V is a drifting random walk, not a plateau: it moves over the run and does so by far less than the price
+    assert abs(V[-1] / V[0] - 1) > 1e-6 and (P.max() / P[0]) > (V.max() / V[0])

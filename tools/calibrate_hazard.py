@@ -25,7 +25,7 @@ from envs.v2.generator import GenConfig, generate  # noqa: E402
 from envs.v2.mispricing import PARAM_DIR  # noqa: E402
 
 
-def evaluate(h0: float, b: float, seeds: int, T: int = 200, g_max: float = 0.02) -> dict:
+def evaluate(h0: float, b: float, seeds: int, T: int = 200, g_max: float = 0.012) -> dict:
     topped, peak_t, peak_u, top_days, att = [], [], [], [], []
     for s in range(seeds):
         r = generate(GenConfig(scenario="bull_trap", seed=s, T=T, hazard_h0=h0, hazard_b=b, g_max=g_max))

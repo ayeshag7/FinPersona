@@ -40,7 +40,7 @@
    "column": "fundamental_value",
    "obs_key": "",
    "category": "Hidden",
-   "definition": "V_t: GBM, mu_V = 0.00025/day (sustained bull U(0.0015,0.0025); crash deterioration log-linear drift delivering D_V ~ U(10,30)%, then flat), sigma_V = 0.6%/day, t(5) shocks. Never rendered.",
+   "definition": "V_t: GBM, mu_V = 0.00025/day (sustained bull U(0.0015,0.0025); crash deterioration log-linear drift delivering D_V ~ U(10,30)%, then flat), sigma_V = 0.6%/day, standardised t(5) shocks (N > 1: sqrt(rho) f + sqrt(1-rho) z_i with f, z_i t(5) -- not itself t(5)). Never rendered.",
    "in_dataframe": true,
    "in_observation": false,
    "rounding": "",
@@ -340,7 +340,7 @@
    "column": "analyst_fair_value",
    "obs_key": "analyst_fair_value",
    "category": "Valuation",
-   "definition": "F_t = V_t exp(u_t), u AR(1) rho 0.95, stationary sd 0.15 (fixed ex ante), updated weekly.",
+   "definition": "F_t = V_t exp(u_t), u AR(1) rho 0.95 per weekly update, stationary sd 0.15 (fixed ex ante; the sqrt(5) scaling that made it 0.335 was removed in v2.1 Phase 0).",
    "in_dataframe": true,
    "in_observation": true,
    "rounding": "2 dp",
@@ -467,11 +467,11 @@
  ],
  "provenance": {
   "Env_Version": "v2",
-  "Gen_Config_Hash": "3270a3f919604dcc",
-  "Env_Code_Hash": "26309c3dbc8dd097"
+  "Gen_Config_Hash": "aa571a946bb5d103",
+  "Env_Code_Hash": "26b265dd68d1c06e"
  },
  "sample_prompt_hashes": {
-  "static": "41759d551c1c76b7",
-  "memory": "5923c80d3ddfa757"
+  "static": "d4b2d26e69466987",
+  "memory": "b05e9c44dab396d7"
  }
 }

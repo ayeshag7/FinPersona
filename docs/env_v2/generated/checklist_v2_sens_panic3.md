@@ -25,6 +25,6 @@ Generator v2; 25 seeds per scenario (crash: per delta), T = 200; config override
 | 19 | Action-space reachability | unit test (tests/) | any allocation reachable; SELL feasible at t=1 | n/a | 0 |
 | 20 | Magnitudes | median crash MDD = -48.5%; median calm daily sigma (flat) = 1.49%; median worst panic day = -6.4% | crash MDD -20..-65%; calm sigma 1.4-2.2%/day; worst day -6..-15% in panic | PASS | 100 |
 
-**Pass 8 / fail 5 / not applicable 7.**
+**Pass 9 / fail 6 / not applicable 5.**
 
 Reference values (plan Section 9): S&P 500 daily excess kurtosis ~7-10; |r| ACF(1) ~0.2; TwinMarket SSE-50 kurtosis 7.26, leverage 0.14, GARCH alpha+beta 0.95; Hashimoto 18 JPX stocks kurtosis 7.85 +/- 1.07, |r| ACF(1) 0.19, |r|-volume correlation 0.46.

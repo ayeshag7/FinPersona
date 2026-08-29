@@ -1,0 +1,61 @@
+{
+ "analyst_sd_bench_before": 0.35236036779185137,
+ "analyst_median_ape_before": 0.24473632199220913,
+ "pull_rate_half_life_days": 149.99999039443415,
+ "phi_live": 0.4631873331666089,
+ "n_bar_20k": 0.9976485039121478,
+ "w_bar_20k": 0.7611251383007557,
+ "sd_x_engine_200k_e016": 0.16495257107569578,
+ "sd_x_engine_200k_e017": 0.17522297957332983,
+ "sd_x_raw_200k_e016": 0.1257118155146249,
+ "sd_x_raw_200k_e017": 0.1335040847350702,
+ "long_pilot_half_life_mean": 146.59213839192415,
+ "long_pilot_half_life_min": 141.5014227190903,
+ "long_pilot_half_life_max": 155.40358980892395,
+ "sample_half_life_T200_median": 20.059554628035833,
+ "sample_half_life_T800_median": 61.92046957526033,
+ "sensitivity_counts_csv": {
+  "checklist_v2": [
+   8,
+   7
+  ],
+  "checklist_v2_sens_fw_index": [
+   8,
+   7
+  ],
+  "checklist_v2_sens_pruna": [
+   7,
+   8
+  ],
+  "checklist_v2_sens_hl60": [
+   7,
+   8
+  ],
+  "checklist_v2_sens_omega_mode": [
+   7,
+   8
+  ],
+  "checklist_v2_sens_panic3": [
+   9,
+   6
+  ],
+  "checklist_v2_sens_panic6": [
+   8,
+   7
+  ]
+ },
+ "analyst_sd_bench_after": 0.1578933650612322,
+ "analyst_median_ape_after": 0.11214333137048871,
+ "sustained_bull_variance_multiplier": 1.0,
+ "jump_rate": 0.01,
+ "jump_mean": -0.04,
+ "jump_sd": 0.03,
+ "analyst_sd_documented": 0.15,
+ "analyst_rho": 0.95,
+ "hazard_h0": 0.0003,
+ "hazard_b": 6.0,
+ "g_max": 0.012,
+ "pilot_scenarios": 3,
+ "pilot_runs": 48,
+ "burn_in": 260
+}

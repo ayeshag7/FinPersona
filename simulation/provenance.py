@@ -9,8 +9,14 @@ Every output row of a simulation carries:
                          exposes through get_metadata()) -- a change in any
                          parameter changes the hash, so two rows with the same
                          hash were produced by identical generator settings.
-  - Env_Code_Hash      : sha256[:16] of the generator source file, so a code
-                         change with unchanged parameters is still visible.
+  - Env_Code_Hash      : v1: sha256[:16] of the generator source file. v2 (from v2.1
+                         Phase 0): sha256[:16] of the FREEZE MANIFEST -- the sorted
+                         "path:sha256" lines of every file in V2_FREEZE_PATTERNS
+                         (envs/v2/**/*.py, the facade, envs/v2/params/*.json and the six
+                         evaluation modules), hashed after CRLF -> LF normalisation -- so
+                         a change to the GARCH, event, mispricing or observables code, or
+                         to a parameter file, changes the hash on every logged row
+                         (weakness item 65). The frozen manifest is tests/v2_freeze_manifest.json.
   - Prompt_Hash        : sha256[:16] of the complete prompt *template* the agent
                          uses (system prompt + human template + format
                          instructions + mandate text if any), i.e. everything
@@ -32,10 +38,35 @@ import subprocess
 from typing import Any, Dict, Iterable, Optional
 
 HASH_LEN = 16
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+V2_FREEZE_PATTERNS = ("envs/v2/**/*.py", "envs/synthetic_market.py", "envs/v2/params/*.json",
+                      "evaluation/stylized_facts.py", "evaluation/leakage_audit.py", "evaluation/observables_oracle.py",
+                      "evaluation/metrics_v2.py", "evaluation/baselines_v2.py", "evaluation/targets.py")
+MANIFEST_PATH = os.path.join(REPO_ROOT, "tests", "v2_freeze_manifest.json")
 
 
 def _sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()[:HASH_LEN]
+
+
+def code_manifest(root: str = REPO_ROOT) -> Dict[str, str]:
+    """{relative path: full sha256} of every file in V2_FREEZE_PATTERNS under `root`, line endings normalised."""
+    import glob
+    out = {}
+    for pat in V2_FREEZE_PATTERNS:
+        for p in glob.glob(os.path.join(root, pat), recursive=True):
+            if "__pycache__" in p:
+                continue
+            with open(p, "rb") as fh:
+                data = fh.read().replace(b"\r\n", b"\n")
+            out[os.path.relpath(p, root).replace("\\", "/")] = hashlib.sha256(data).hexdigest()
+    return dict(sorted(out.items()))
+
+
+def manifest_hash(files: Dict[str, str]) -> str:
+    """Full sha256 of the sorted 'path:hash' lines."""
+    payload = "\n".join(f"{k}:{files[k]}" for k in sorted(files)).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def stable_hash(obj: Any) -> str:
@@ -95,8 +126,11 @@ def env_provenance(env) -> Dict[str, Any]:
     meta = env.get_metadata()
     version = getattr(env, "ENV_VERSION", None) or meta.get("env_version", "v1")
     try:
-        src = inspect.getsourcefile(type(env))
-        code_hash = file_hash(src) if src else "unknown"
+        if version == "v2":
+            code_hash = manifest_hash(code_manifest(REPO_ROOT))[:HASH_LEN]
+        else:
+            src = inspect.getsourcefile(type(env))
+            code_hash = file_hash(src) if src else "unknown"
     except Exception:
         code_hash = "unknown"
     return {

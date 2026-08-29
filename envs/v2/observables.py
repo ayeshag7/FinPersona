@@ -8,8 +8,11 @@ the phase label -- so that the composite phase clock (L2b) is passable.
                  x exp(N(0, 0.10)); announced quarter end + U(25, 35) d; trailing-4Q P/E,
                  warm from the burn-in; cap 200.
   Dividend       payout 0.35, sticky: DPS_q = 0.7 DPS_{q-1} + 0.3 x 0.35 x EPS_q; yield = 4 DPS / P.
-  Analyst FV     F_t = V_t exp(u_t), u AR(1) rho = 0.95, stationary sd 0.15, updated weekly.
-                 The error sd is FIXED ex ante (not tuned to the audit).
+  Analyst FV     F_t = V_t exp(u_t), u AR(1) rho = 0.95 per weekly (5-day) update, stationary sd 0.15.
+                 The error sd is FIXED ex ante (not tuned to the audit). v2.1 Phase 0 removed a sqrt(5) innovation
+                 scaling that had made the implemented stationary sd 0.15 sqrt(5) = 0.335 (weakness item 68); whether
+                 0.15 is the right sd is Phase 5's question (the read anchor is a 45 % absolute target-price error,
+                 V2_1_PLAN_VERIFICATION_LOG.md §4.3).
   Sentiment      s_t = m_t + 0.85 (s_{t-1} - m_{t-1}) + 0.25 r_t / sigma_r + 0.25 eps_t, tanh-squashed,
                  m_t = 0.6 tanh(2 x_{t-j}) + 0.3 tanh(ret20_t / 0.15), j = |jitter| days;
                  predictive component b_pred (default +8 bp next-day return per +1 sd of s,
@@ -127,7 +130,8 @@ def analyst_block(day: np.ndarray, V: np.ndarray, rng: np.random.Generator) -> D
     u_state = rng.normal(0.0, ANALYST_SD)
     for i in range(L):
         if i % ANALYST_UPDATE_DAYS == 0:
-            u_state = ANALYST_RHO * u_state + rng.normal(0.0, sd_inn) * math.sqrt(ANALYST_UPDATE_DAYS)
+            # AR(1) per update with innovation sd ANALYST_SD sqrt(1 - rho^2): stationary sd = ANALYST_SD (Phase 0 fix, item 68)
+            u_state = ANALYST_RHO * u_state + rng.normal(0.0, sd_inn)
         u[i] = u_state
     return {"analyst_fair_value": V * np.exp(u), "analyst_error_u": u}
 
