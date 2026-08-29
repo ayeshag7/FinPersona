@@ -1,3 +1,0 @@
-item,property,statistic,criterion,pass,n_seeds
-14,"Value leak (L1, L2; L3 separate)","L1 best inversion 'k * analyst_fair_value' (k=0.993): median APE 10.08%, 95% of steps above the 1% floor; L2 absolute (reported): calm R2(x) = 0.92, calm sign acc = 0.97, event R2(x) = 0.97, event MAPE(V) = 4.5%; L2 selectivity (A8): max non-price R2 gain 0.13, max MAPE(V) gain 3.2%, shuffled-V R2 -0.06","no algebraic inversion (A6); L2 absolute: calm R2 <= 0.30 & sign <= 0.70, event R2 < 0.90 & MAPE >= 10% (gate); selectivity of non-price fields reported (exploratory)",False,30000
-16,Composite phase clock (L2b),macro-class accuracy full 85.2% vs price-only 78.3% (day-only 54.6%; majority 43.3%); selectivity +6.9%,selectivity <= 10%,True,27000
