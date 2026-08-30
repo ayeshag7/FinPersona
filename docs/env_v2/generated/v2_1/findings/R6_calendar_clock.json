@@ -1,0 +1,116 @@
+{
+ "block": "R6_calendar_clock",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R6_calendar_clock",
+   "item": 6,
+   "statistic": "crash setup-first: P(calm | day <= 50)",
+   "mine": 1.0,
+   "n": 50,
+   "ci": [
+    0.9984657739140513,
+    1.0000000000000002
+   ],
+   "reviewer": 1.0,
+   "rev_source": "C \u00a7C.20 (40 seeds)",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "2500 path-days"
+  },
+  {
+   "block": "R6_calendar_clock",
+   "item": 6,
+   "statistic": "crash setup-first: P(event | day >= 170)",
+   "mine": 1.0,
+   "n": 50,
+   "ci": [
+    0.9975277665174016,
+    1.0
+   ],
+   "reviewer": 1.0,
+   "rev_source": "C \u00a7C.20",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "1550 path-days"
+  },
+  {
+   "block": "R6_calendar_clock",
+   "item": 6,
+   "statistic": "crash setup-first: day-only macro-phase accuracy (within scenario)",
+   "mine": 0.8278000000000001,
+   "n": 50,
+   "ci": [
+    0.7921449999999999,
+    0.8484524999999999
+   ],
+   "reviewer": 0.804,
+   "rev_source": "C \u00a7C.20 (40 seeds)",
+   "rev_n": 40,
+   "verdict": "R",
+   "note": "majority class 0.400 (reviewer 0.40); bootstrap 60 resamples"
+  },
+  {
+   "block": "R6_calendar_clock",
+   "item": 6,
+   "statistic": "bull_trap setup-first: P(calm | day <= 50)",
+   "mine": 1.0,
+   "n": 50,
+   "ci": [
+    0.9984657739140513,
+    1.0000000000000002
+   ],
+   "reviewer": 1.0,
+   "rev_source": "C \u00a7C.20 (40 seeds)",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "2500 path-days"
+  },
+  {
+   "block": "R6_calendar_clock",
+   "item": 6,
+   "statistic": "bull_trap setup-first: P(event | day >= 170)",
+   "mine": 1.0,
+   "n": 50,
+   "ci": [
+    0.9975277665174016,
+    1.0
+   ],
+   "reviewer": 1.0,
+   "rev_source": "C \u00a7C.20",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "1550 path-days"
+  },
+  {
+   "block": "R6_calendar_clock",
+   "item": 6,
+   "statistic": "bull_trap setup-first: day-only macro-phase accuracy (within scenario)",
+   "mine": 0.8087,
+   "n": 50,
+   "ci": [
+    0.7809,
+    0.845665
+   ],
+   "reviewer": 0.872,
+   "rev_source": "C \u00a7C.20 (40 seeds)",
+   "rev_n": 40,
+   "verdict": "N",
+   "note": "majority class 0.492 (reviewer 0.54); bootstrap 60 resamples"
+  },
+  {
+   "block": "R6_calendar_clock",
+   "item": 6,
+   "statistic": "mixed set (event-first + setup-first + flat): day-only macro accuracy (checklist item 15 statistic)",
+   "mine": 0.535,
+   "n": 150,
+   "ci": null,
+   "reviewer": 0.648,
+   "rev_source": "checklist_v2.md (470 paths)",
+   "rev_n": null,
+   "verdict": "N",
+   "note": "macro-phase accuracy from day alone = 53.5% (mixed set, 150 paths; within-scenario mean 53.5%); |corr(day, phase id)| = 0.47"
+  }
+ ],
+ "detail": {}
+}

@@ -25,11 +25,11 @@ def _bench_x(r):
 
 
 # ---------------------------------------------------------------------------------------------------
-@pytest.mark.xfail(strict=True, reason="known defect 4 (registry): rare jumps with mean -4 %/day enter x, so the flat "
-                                       "control has E[x] ~ -0.09; fixed in Phase 1 (jump placement, E1.4)")
 def test_flat_x_unbiased():
     """SFLAT100 (seeds 16000-16099): |mean of path means| <= 1.96 SE (cluster by seed). Size 5 %; power vs the
-    -0.087 bias ~ 1 (SE ~ 0.013)."""
+    -0.087 bias ~ 1 (SE ~ 0.013). Hard since v2.1 Phase 1 (E1.4: jump placement x_zero; the v2 -4 %/day jump mean no
+    longer enters x). The residual engine mean (~ +0.012 at 1,000 seeds) is below this test's resolution; it is the
+    subject of test_v2_1_phase_1.py::test_flat_x_equivalence (registered, Phase 2)."""
     means = np.array([_bench_x(r).mean() for r in _paths("flat", range(16000, 16100))])
     se = means.std(ddof=1) / math.sqrt(len(means))
     assert abs(means.mean()) <= 1.96 * se, f"mean x {means.mean():+.4f}, SE {se:.4f}, z {means.mean() / se:+.2f}"

@@ -1,0 +1,10 @@
+[chain] sep_after: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state sep --tag after
+SEP after: 1600 paths, 320000 rows, 1562 s
+[chain] sep_after: rc=0 1565 s
+[chain] hashes_after: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state hashes --tag after
+95 configurations hashed -> C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\path_hashes_phase1_after.json
+[chain] hashes_after: rc=0 14 s
+[chain] numbers: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.phase1_numbers
+written ['analysis_sets', 'e1_1', 'e1_2_A', 'e1_2_B', 'e1_2_C', 'e1_2_decision', 'e1_2_misc', 'e1_2_recovery', 'e1_2_two_component_exploratory', 'e1_3', 'e1_4_confirm', 'e1_4_generator', 'e1_4_panel', 'e1_5_n2000', 'e1_5_n500', 'e3_1', 'frozen_equivalent_check', 'value_json', 'value_json_labels']
+[chain] numbers: rc=0 1 s
+[chain] all stages done

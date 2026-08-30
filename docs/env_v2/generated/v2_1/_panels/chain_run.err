@@ -1,0 +1,25 @@
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\numpy\lib\_function_base_impl.py:2599: RuntimeWarning: ks_2samp: Exact calculation unsuccessful. Switching to method=asymp.
+  outputs = ufunc(*args, out=...)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\ayesha.gull01\FinPersona\tools\phase1\before_state.py", line 162, in <module>
+    s11(a.tag or "fixed", a.workers, config=_json.loads(a.config) if a.config else None)
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ayesha.gull01\FinPersona\tools\phase1\before_state.py", line 68, in s11
+    res = list(ex.map(_env_panel, jobs, chunksize=4))
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 617, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+concurrent.futures.process.BrokenProcessPool: A process in the process pool was terminated abruptly while the future was running or pending.

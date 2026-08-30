@@ -43,10 +43,21 @@ def test_streams_are_separate_and_append_only():
 
 
 def test_price_decomposition_and_start():
+    """v2.1 Phase 1 (D13, revised to mechanism C on 30 Aug 2026): the day-1 HIDDEN price is the normalisation constant
+    and V_1 = P_1 e^-x_1, exactly as under B -- C adds a per-seed render scale applied at render time only, so the hidden
+    path is unchanged. v2's V_1 = 100 (the answer key) is the 'fixed' mechanism, kept behind the switch."""
     r, P, V, x, ph = _path("flat", 1)
     np.testing.assert_allclose(P, V * np.exp(x))
-    assert abs(V[0] - 100.0) < 1e-9
-    assert len(P) == 200 and r.day[0] == 1 - r.cfg.burn_in
+    assert r.cfg.start_price_mode == "both"
+    rb, Pb, _, _, _ = _path("flat", 1, start_price_mode="normalise")
+    np.testing.assert_allclose(P, Pb)                 # C's hidden path is B's; only the rendered fields differ
+    assert r.k_render != 1.0 and rb.k_render == 1.0
+    assert abs(P[0] - 100.0) < 1e-9 and abs(V[0] - 100.0 * np.exp(-x[0])) < 1e-9
+    rf, Pf, Vf, xf, _ = _path("flat", 1, start_price_mode="fixed")
+    assert abs(Vf[0] - 100.0) < 1e-9
+    from envs.v2 import value_params as VP
+    burn = r.cfg.burn_in if r.cfg.burn_in is not None else VP.BURN_IN["days"].get(r.cfg.engine, VP.BURN_IN["days"]["default"])
+    assert len(P) == 200 and r.day[0] == 1 - burn      # v2.1 Phase 1: the burn-in comes from value.json (E1.5)
 
 
 def test_schedule_ranges():

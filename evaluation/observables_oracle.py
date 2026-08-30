@@ -24,25 +24,29 @@ import numpy as np
 import pandas as pd
 
 from envs.synthetic_market import SyntheticMarketEnv, CANONICAL_FIELDS
-from evaluation.leakage_audit import panel_from_env, add_lags_and_returns
+from evaluation.leakage_audit import panel_from_env, add_lags_and_returns, add_level_free_columns
 from evaluation.targets import band
 
 FEATURE_KEYS = [k for k in CANONICAL_FIELDS if k != "date"]
-PRICE_ONLY_KEYS = ["price", "SMA20", "SMA50", "trend_strength", "trend_regime", "RSI14", "MACD", "MACD_signal"]
+PRICE_ONLY_KEYS = ["price", "SMA20", "SMA50", "trend_strength", "trend_regime", "RSI14", "MACD", "MACD_signal"]   # v2 (contains the level)
+# v2.1 Phase 1 (E1.6): the level-free price-only oracle -- returns (added as lags/returns), log P/SMA, RSI, MACD/P, trend
+LEVEL_FREE_KEYS = ["lp_sma20", "lp_sma50", "trend_strength", "trend_regime", "RSI14", "macd_p", "macds_p"]
 
 
 class ObservablesOracle:
     def __init__(self, theta: float = 0.05, train_seeds: Optional[List[int]] = None, T: int = 200,
                  scenarios=("flat", "bull_trap", "crash", "sustained_bull"), deltas=(0.55, 0.70, 0.85),
-                 feature_set: str = "full"):
-        """feature_set 'full' (all rendered fields) or 'price_only' (price + technicals): the gap between the
-        two L5 policies decomposes the withheld information into price-dynamics vs non-price fields."""
+                 feature_set: str = "full", config: Optional[Dict] = None):
+        """feature_set 'full' (all rendered fields), 'price_only' (the v2 price + technicals set, which contains the
+        price level) or 'level_free' (v2.1 Phase 1: returns, log P/SMA, RSI, MACD/P, trend -- no level): the gap between
+        the L5 policies decomposes the withheld information into price-dynamics vs non-price fields."""
         self.theta = theta
         self.feature_set = feature_set
-        self.keys = FEATURE_KEYS if feature_set == "full" else PRICE_ONLY_KEYS
+        self.keys = {"full": FEATURE_KEYS, "price_only": PRICE_ONLY_KEYS, "level_free": LEVEL_FREE_KEYS}[feature_set]
         self.oos = {}                     # per-phase OOS R2 / sign accuracy of x_hat on the training pool
         self.train_seeds = list(train_seeds) if train_seeds is not None else list(range(500, 512))
         self.T, self.scenarios, self.deltas = T, scenarios, deltas
+        self.config = dict(config) if config else None      # GenConfig overrides (v2.1 Phase 1: the before/after L5 runs)
         self.model = None
         self.cols: List[str] = []
 
@@ -52,16 +56,18 @@ class ObservablesOracle:
             for sc in self.scenarios:
                 if sc == "crash":
                     for d in self.deltas:
-                        f = panel_from_env(SyntheticMarketEnv("crash", self.T, s, crash_discount=d), "crash", s)
+                        f = panel_from_env(SyntheticMarketEnv("crash", self.T, s, crash_discount=d, config=self.config), "crash", s)
                         f["seed"] = s * 100 + int(round(d * 100)); frames.append(f)
                 else:
-                    frames.append(panel_from_env(SyntheticMarketEnv(sc, self.T, s), sc, s))
+                    frames.append(panel_from_env(SyntheticMarketEnv(sc, self.T, s, config=self.config), sc, s))
         return pd.concat(frames, ignore_index=True)
 
     def fit(self):
         from sklearn.ensemble import HistGradientBoostingRegressor
         from sklearn.model_selection import GroupKFold
         panel = self._panel(self.train_seeds)
+        if self.feature_set == "level_free":
+            panel = add_level_free_columns(panel)
         dfl, cols = add_lags_and_returns(panel, [k for k in self.keys if k in panel.columns])
         dfl = dfl.dropna(subset=cols).reset_index(drop=True)
         self.cols = cols
@@ -97,6 +103,8 @@ class ObservablesOracle:
         env.reset()
         f = pd.DataFrame(rows); f["scenario"] = env.scenario; f["seed"] = env.seed; f["day"] = np.arange(1, len(f) + 1)
         f["P"] = d["price"].values; f["V"] = d["fundamental_value"].values; f["x"] = d["x"].values
+        if self.feature_set == "level_free":
+            f = add_level_free_columns(f)
         fl, cols = add_lags_and_returns(f, [k for k in self.keys if k in f.columns])
         X = fl[self.cols].to_numpy(dtype=float)
         # early rows have NaN lags: fall back to 0 prediction there (no information)

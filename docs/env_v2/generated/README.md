@@ -1,0 +1,14 @@
+# generated/ — machine-written results
+
+Nothing in this folder is edited by hand; every file is written by the command named below and is overwritten when that command runs. File names are referenced by code and tests, so do not rename them. Results of the v2.1 phases will go to `generated/v2_1/`.
+
+| Group | Files | Written by |
+|---|---|---|
+| v1 baseline (E0) | `table2_v1_from_code.{md,json,tex}`, `rendered_prompt_v1_{static,memory}.txt`, `e0_v1_freeze_sha256.txt`, `E0_SEPARABILITY_GATE_V1.md` + `e0_gate_v1_*.csv`, `E0_RESCORE_V1.md` + `e0_rescore_v1_*.csv`, `checklist_v1.{md,csv}`, `leakage_audit_v1.{md,pkl}` + `leakage_audit_v1_*.csv` | `tools/gen_table2.py --env v1`, `tests/test_provenance_and_freeze.py`, `evaluation/separability_gate.py`, `evaluation/rescore_v1.py`, `evaluation/stylized_facts.py --env v1`, `evaluation/leakage_audit.py --env v1` |
+| v2 observation contract | `table2_v2_from_code.{md,json,tex}`, `rendered_prompt_v2_{static,memory}.txt` | `tools/gen_table2.py --env v2` |
+| v2 stylized-facts checklist | `checklist_v2.{md,csv}` (50 seeds per scenario) and the sensitivities `checklist_v2_sens_{fw_index,pruna,hl60,omega_mode,panic3,panic6}.{md,csv}` (25 seeds). The `.md` footers of five sensitivity files disagreed with their own tables until v2.1 Phase 0 regenerated them from the CSVs (`tools/regen_checklist_md.py`; weakness item 39) | `evaluation/stylized_facts.py --env v2 [--engine ... --config ...]` |
+| v2 leakage and phase-clock audit | `leakage_audit_v2.{md,pkl}`, `leakage_audit_v2_{L1,L2,L4,checklist_rows}.csv` (50 seeds; L2 absolute gate fails by construction, reported) | `evaluation/leakage_audit.py --env v2` |
+| Calibration | `hazard_calibration.csv` (bubble hazard grid), `e1_calibration_variants.md` (GARCH/jump variants A–K), `fw_single_stock_calibration.md` + `fw_J_profile.csv` (the rejected single-stock SMM and the J-profile over phi) | `tools/calibrate_hazard.py`, `tools/calibrate_fw.py [--profile]` |
+| Observables oracle (L5) | `l5_observables_oracle.{md,csv}` (12 training seeds, 10 evaluation seeds) | `tools/l5_report.py` |
+| Pilot (Gemini 2.5 Flash, 48 runs, three scenarios) | `pilot_report.md` + `pilot_report_*.csv` (the start-at-target delta-C_1 table is `pilot_report_exploratory_deltaC1_start_at_target.csv`, exploratory), `pilot_stats.md` + `pilot_stats_*.csv` | `tools/report_v2.py --results results_v2_pilot`, `tools/stats_v2.py` |
+| v2.1 Phase 0 | `v2_1/findings_reproduction.md` + `v2_1/findings/*.json` (every computational review finding recomputed, before and after the analyst fix), `v2_1/phase0_numbers.json` (the canonical numbers the documents and `tests/test_docs_numbers.py` use), `v2_1/path_hashes_{before,after}.json` (the no-distribution-change fixture) | `tools/verify_v2_findings.py`, `tools/path_hashes.py` |

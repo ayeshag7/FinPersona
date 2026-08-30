@@ -1,0 +1,39 @@
+{
+ "variant": "B_x_zero",
+ "config_override": {
+  "jump_placement": "x_zero"
+ },
+ "seeds": [
+  71000,
+  71999
+ ],
+ "T": 200,
+ "margin": 0.02,
+ "n_boot": 1000,
+ "full": {
+  "n": 1000,
+  "E_x": 0.01256676608932963,
+  "ci95": [
+   0.0038467447337450517,
+   0.021396780677724925
+  ],
+  "se": 0.004438440214923976,
+  "sd_path_means": 0.1403558033764703,
+  "pass_tost": false,
+  "pass_two_condition": false
+ },
+ "first_200": {
+  "n": 200,
+  "E_x": 0.018193126248763937,
+  "ci95": [
+   -0.0012523321392639679,
+   0.0359892245333484
+  ],
+  "se": 0.009576083421628205,
+  "sd_path_means": 0.13542627049282763,
+  "pass_tost": false,
+  "pass_two_condition": true
+ },
+ "rule": "new-b: 95 % bootstrap interval of the mean of path means inside +/- 0.02 (PREREG_PHASE_1_ADDENDUM.md)",
+ "seconds": 12
+}

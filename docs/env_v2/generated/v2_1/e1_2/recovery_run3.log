@@ -1,0 +1,13 @@
+3000 recovery jobs in 24 cells
+AB h=30 sv=0.006: 200 reps in 226 s
+AB h=30 sv=0.012: 200 reps in 479 s
+AB h=60 sv=0.006: 200 reps in 329 s
+AB h=60 sv=0.012: 200 reps in 548 s
+AB h=120 sv=0.006: 200 reps in 425 s
+AB h=120 sv=0.012: 200 reps in 422 s
+AB h=150 sv=0.006: 200 reps in 335 s
+AB h=150 sv=0.012: 200 reps in 464 s
+AB h=250 sv=0.006: 200 reps in 808 s
+AB h=250 sv=0.012: 200 reps in 929 s
+AB h=500 sv=0.006: 200 reps in 1288 s
+AB h=500 sv=0.012: 200 reps in 1068 s

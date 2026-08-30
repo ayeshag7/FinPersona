@@ -1,0 +1,55 @@
+{
+ "block": "R15_uncapped",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R15_uncapped",
+   "item": 41,
+   "statistic": "bull_trap (g_max = 1.0, reject=False): share of runs with peak P/V > 3",
+   "mine": 0.18,
+   "n": 50,
+   "ci": [
+    0.09770192623042152,
+    0.30796053788389155
+   ],
+   "reviewer": 1.0,
+   "rev_source": "A5 / spec \u00a73: 'without a cap every run reaches P/V > 3'",
+   "rev_n": null,
+   "verdict": "N",
+   "note": "topped share 0.86; median peak P/V 2.32; mean attempts 1.00"
+  },
+  {
+   "block": "R15_uncapped",
+   "item": 41,
+   "statistic": "bull_trap (g_max = 1.0, rejection sampling): share of runs with peak P/V > 3",
+   "mine": 0.18,
+   "n": 50,
+   "ci": [
+    0.09770192623042152,
+    0.30796053788389155
+   ],
+   "reviewer": null,
+   "rev_source": "",
+   "rev_n": null,
+   "verdict": "D",
+   "note": "topped share 0.86; median peak P/V 2.32; mean attempts 1.00"
+  },
+  {
+   "block": "R15_uncapped",
+   "item": 41,
+   "statistic": "bull_trap (live cap 0.012, rejection sampling): share of runs with peak P/V > 3",
+   "mine": 0.0,
+   "n": 50,
+   "ci": [
+    0.0,
+    0.07134760017861413
+   ],
+   "reviewer": null,
+   "rev_source": "",
+   "rev_n": null,
+   "verdict": "D",
+   "note": "topped share 0.62; median peak P/V 1.92; mean attempts 1.02"
+  }
+ ],
+ "detail": {}
+}

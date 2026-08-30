@@ -1,0 +1,47 @@
+[chain] e1_3: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.e1_3_sweep --workers 3
+sV 0.004 gaussian sx 0.1 R2 calm 0.159 [0.073, 0.195] bound 0.145/0.251/0.445; sd_x5000 0.102; cov flat 0.05 0.62; item9 70 d; 212 s
+sV 0.004 gaussian sx 0.13 R2 calm 0.156 [0.093, 0.178] bound 0.157/0.274/0.533; sd_x5000 0.130; cov flat 0.05 0.70; item9 70 d; 162 s
+sV 0.004 gaussian sx 0.165 R2 calm 0.151 [0.099, 0.169] bound 0.165/0.288/0.607; sd_x5000 0.164; cov flat 0.05 0.76; item9 68 d; 145 s
+sV 0.004 gaussian sx 0.2 R2 calm 0.136 [0.100, 0.153] bound 0.169/0.297/0.662; sd_x5000 0.197; cov flat 0.05 0.80; item9 66 d; 159 s
+sV 0.004 t5 sx 0.1 R2 calm 0.165 [0.070, 0.204] bound 0.145/0.251/0.445; sd_x5000 0.101; cov flat 0.05 0.62; item9 73 d; 207 s
+sV 0.004 t5 sx 0.13 R2 calm 0.154 [0.095, 0.175] bound 0.157/0.274/0.533; sd_x5000 0.130; cov flat 0.05 0.70; item9 70 d; 199 s
+sV 0.004 t5 sx 0.165 R2 calm 0.162 [0.109, 0.180] bound 0.165/0.288/0.607; sd_x5000 0.163; cov flat 0.05 0.76; item9 67 d; 149 s
+sV 0.004 t5 sx 0.2 R2 calm 0.140 [0.106, 0.158] bound 0.169/0.297/0.662; sd_x5000 0.197; cov flat 0.05 0.80; item9 67 d; 201 s
+sV 0.006 gaussian sx 0.1 R2 calm 0.152 [0.045, 0.196] bound 0.118/0.199/0.308; sd_x5000 0.101; cov flat 0.05 0.62; item9 71 d; 169 s
+sV 0.006 gaussian sx 0.13 R2 calm 0.141 [0.074, 0.165] bound 0.137/0.235/0.396; sd_x5000 0.130; cov flat 0.05 0.70; item9 70 d; 171 s
+sV 0.006 gaussian sx 0.165 R2 calm 0.145 [0.089, 0.164] bound 0.150/0.260/0.477; sd_x5000 0.164; cov flat 0.05 0.76; item9 68 d; 161 s
+sV 0.006 gaussian sx 0.2 R2 calm 0.131 [0.095, 0.148] bound 0.158/0.276/0.541; sd_x5000 0.197; cov flat 0.05 0.80; item9 66 d; 128 s
+sV 0.006 t5 sx 0.1 R2 calm 0.159 [0.057, 0.199] bound 0.118/0.199/0.308; sd_x5000 0.101; cov flat 0.05 0.62; item9 72 d; 131 s
+sV 0.006 t5 sx 0.13 R2 calm 0.161 [0.084, 0.188] bound 0.137/0.235/0.396; sd_x5000 0.130; cov flat 0.05 0.70; item9 70 d; 148 s
+sV 0.006 t5 sx 0.165 R2 calm 0.153 [0.092, 0.173] bound 0.150/0.260/0.477; sd_x5000 0.163; cov flat 0.05 0.76; item9 68 d; 150 s
+sV 0.006 t5 sx 0.2 R2 calm 0.140 [0.101, 0.156] bound 0.158/0.276/0.541; sd_x5000 0.196; cov flat 0.05 0.80; item9 66 d; 171 s
+sV 0.01 gaussian sx 0.1 R2 calm 0.110 [-0.021, 0.165] bound 0.074/0.120/0.162; sd_x5000 0.101; cov flat 0.05 0.61; item9 72 d; 162 s
+sV 0.01 gaussian sx 0.13 R2 calm 0.131 [0.033, 0.169] bound 0.097/0.161/0.231; sd_x5000 0.130; cov flat 0.05 0.70; item9 70 d; 133 s
+sV 0.01 gaussian sx 0.165 R2 calm 0.126 [0.060, 0.147] bound 0.117/0.198/0.304; sd_x5000 0.164; cov flat 0.05 0.76; item9 67 d; 164 s
+sV 0.01 gaussian sx 0.2 R2 calm 0.119 [0.072, 0.135] bound 0.132/0.224/0.369; sd_x5000 0.197; cov flat 0.05 0.80; item9 67 d; 140 s
+sV 0.01 t5 sx 0.1 R2 calm 0.116 [-0.033, 0.178] bound 0.074/0.120/0.162; sd_x5000 0.100; cov flat 0.05 0.61; item9 72 d; 140 s
+sV 0.01 t5 sx 0.13 R2 calm 0.138 [0.035, 0.177] bound 0.097/0.161/0.231; sd_x5000 0.130; cov flat 0.05 0.69; item9 69 d; 164 s
+sV 0.01 t5 sx 0.165 R2 calm 0.145 [0.061, 0.176] bound 0.117/0.198/0.304; sd_x5000 0.163; cov flat 0.05 0.75; item9 68 d; 178 s
+sV 0.01 t5 sx 0.2 R2 calm 0.127 [0.068, 0.146] bound 0.132/0.224/0.369; sd_x5000 0.196; cov flat 0.05 0.80; item9 66 d; 143 s
+sV 0.015 gaussian sx 0.1 R2 calm 0.013 [-0.242, 0.123] bound 0.043/0.068/0.086; sd_x5000 0.101; cov flat 0.05 0.61; item9 70 d; 65 s
+sV 0.015 gaussian sx 0.13 R2 calm 0.078 [-0.102, 0.151] bound 0.062/0.100/0.131; sd_x5000 0.130; cov flat 0.05 0.69; item9 70 d; 32 s
+sV 0.015 gaussian sx 0.165 R2 calm 0.105 [-0.012, 0.149] bound 0.082/0.135/0.185; sd_x5000 0.164; cov flat 0.05 0.76; item9 67 d; 44 s
+sV 0.015 gaussian sx 0.2 R2 calm 0.104 [0.025, 0.128] bound 0.099/0.165/0.238; sd_x5000 0.197; cov flat 0.05 0.80; item9 66 d; 67 s
+sV 0.015 t5 sx 0.1 R2 calm -0.001 [-0.301, 0.121] bound 0.043/0.068/0.086; sd_x5000 0.100; cov flat 0.05 0.61; item9 73 d; 68 s
+sV 0.015 t5 sx 0.13 R2 calm 0.077 [-0.117, 0.155] bound 0.062/0.100/0.131; sd_x5000 0.129; cov flat 0.05 0.69; item9 67 d; 58 s
+sV 0.015 t5 sx 0.165 R2 calm 0.116 [-0.020, 0.170] bound 0.082/0.135/0.185; sd_x5000 0.162; cov flat 0.05 0.75; item9 67 d; 83 s
+sV 0.015 t5 sx 0.2 R2 calm 0.117 [0.024, 0.149] bound 0.099/0.165/0.238; sd_x5000 0.196; cov flat 0.05 0.80; item9 66 d; 65 s
+sV 0.02 gaussian sx 0.1 R2 calm -0.109 [-0.467, 0.044] bound 0.027/0.042/0.052; sd_x5000 0.101; cov flat 0.05 0.61; item9 70 d; 72 s
+sV 0.02 gaussian sx 0.13 R2 calm 0.016 [-0.219, 0.115] bound 0.041/0.065/0.082; sd_x5000 0.130; cov flat 0.05 0.69; item9 68 d; 67 s
+sV 0.02 gaussian sx 0.165 R2 calm 0.088 [-0.082, 0.155] bound 0.058/0.093/0.121; sd_x5000 0.163; cov flat 0.05 0.76; item9 66 d; 135 s
+sV 0.02 gaussian sx 0.2 R2 calm 0.096 [-0.019, 0.136] bound 0.074/0.120/0.162; sd_x5000 0.196; cov flat 0.05 0.80; item9 66 d; 42 s
+sV 0.02 t5 sx 0.1 R2 calm -0.148 [-0.613, 0.048] bound 0.027/0.042/0.052; sd_x5000 0.100; cov flat 0.05 0.61; item9 71 d; 48 s
+sV 0.02 t5 sx 0.13 R2 calm -0.006 [-0.316, 0.122] bound 0.041/0.065/0.082; sd_x5000 0.129; cov flat 0.05 0.69; item9 68 d; 52 s
+sV 0.02 t5 sx 0.165 R2 calm 0.066 [-0.136, 0.149] bound 0.058/0.093/0.121; sd_x5000 0.162; cov flat 0.05 0.75; item9 67 d; 65 s
+sV 0.02 t5 sx 0.2 R2 calm 0.093 [-0.046, 0.148] bound 0.074/0.120/0.162; sd_x5000 0.195; cov flat 0.05 0.80; item9 66 d; 52 s
+mu_V 0.0 R2 calm 0.169 [0.087, 0.244] bound 0.153/0.265/0.497; sd_x5000 0.173; cov flat 0.05 0.76; item9 68 d; 20 s
+mu_V 0.00025 R2 calm 0.165 [0.081, 0.237] bound 0.153/0.265/0.497; sd_x5000 0.173; cov flat 0.05 0.76; item9 67 d; 14 s
+mu_V 0.0005 R2 calm 0.152 [0.072, 0.223] bound 0.153/0.265/0.497; sd_x5000 0.173; cov flat 0.05 0.76; item9 66 d; 12 s
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_3 4952 s
+[chain] e1_3: rc=0 4959 s
+[chain] audit_before_levelfree: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m evaluation.leakage_audit --env v2 --panel-pickle C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_before.pkl --control level_free --no-subsample --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6\audit_before_levelfree.md

@@ -1,0 +1,55 @@
+{
+ "block": "R19_burn_in",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R19_burn_in",
+   "item": 50,
+   "statistic": "fw_single (live): sd of x on day 1 across seeds / long-run sd (200k pilot)",
+   "mine": 0.83129796489783,
+   "n": 50,
+   "ci": [
+    0.7119729369639137,
+    0.9292006074385146
+   ],
+   "reviewer": null,
+   "rev_source": "",
+   "rev_n": null,
+   "verdict": "D",
+   "note": "sd(x_1) 0.1496; pilot sd 0.1800, pilot half-life 155 d; burn-in 260 d = 1.67 half-lives"
+  },
+  {
+   "block": "R19_burn_in",
+   "item": 50,
+   "statistic": "fw_index: sd of x on day 1 across seeds / long-run sd (200k pilot)",
+   "mine": 0.6076917562115105,
+   "n": 50,
+   "ci": [
+    0.5159430261050305,
+    0.6918628488427166
+   ],
+   "reviewer": 0.6,
+   "rev_source": "C \u00a7A.9 (fw_index \u2248 0.6 \u03c3_stat)",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "sd(x_1) 0.2197; pilot sd 0.3616, pilot half-life 628 d; burn-in 260 d = 0.41 half-lives"
+  },
+  {
+   "block": "R19_burn_in",
+   "item": 50,
+   "statistic": "pruna: sd of x on day 1 across seeds / long-run sd (200k pilot)",
+   "mine": 0.6072231915741771,
+   "n": 50,
+   "ci": [
+    0.5152138046983022,
+    0.6885362489692982
+   ],
+   "reviewer": null,
+   "rev_source": "",
+   "rev_n": null,
+   "verdict": "D",
+   "note": "sd(x_1) 0.2184; pilot sd 0.3597, pilot half-life 622 d; burn-in 260 d = 0.42 half-lives"
+  }
+ ],
+ "detail": {}
+}

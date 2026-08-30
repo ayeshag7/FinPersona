@@ -1,0 +1,53 @@
+[chain] e1_5: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.e1_5_burn_in --write-states --n 2000 --workers 3
+fw_fallback_hl150 current_260 {'x': (0.047, 0.077), 'sigma2': (0.026, 0.058), 'n_f': (0.012, 0.026)} pass
+fw_fallback_hl150 A_long_750 {'x': (0.017, 0.05), 'sigma2': (0.036, 0.067), 'n_f': (0.012, 0.027)} pass
+fw_fallback_hl150 B_stored_60 {'x': (0.023, 0.059), 'sigma2': (0.033, 0.064), 'n_f': (0.014, 0.03)} pass
+fw_hl60 current_260 {'x': (0.046, 0.078), 'sigma2': (0.026, 0.058), 'n_f': (0.007, 0.027)} pass
+fw_hl60 A_long_300 {'x': (0.042, 0.07), 'sigma2': (0.022, 0.057), 'n_f': (0.021, 0.041)} pass
+fw_hl60 B_stored_60 {'x': (0.023, 0.057), 'sigma2': (0.033, 0.064), 'n_f': (0.01, 0.03)} pass
+fw_index current_260 {'x': (0.172, 0.197), 'sigma2': (0.026, 0.058), 'n_f': (0.024, 0.036)} FAIL
+fw_index A_long_3140 {'x': (0.024, 0.056), 'sigma2': (0.022, 0.054), 'n_f': (0.004, 0.014)} pass
+fw_index B_stored_60 {'x': (0.031, 0.067), 'sigma2': (0.033, 0.064), 'n_f': (0.009, 0.019)} pass
+pruna current_260 {'x': (0.17, 0.194), 'sigma2': (0.026, 0.058), 'n_f': (0.017, 0.027)} FAIL
+pruna A_long_3110 {'x': (0.028, 0.062), 'sigma2': (0.02, 0.055), 'n_f': (0.01, 0.018)} pass
+pruna B_stored_60 {'x': (0.031, 0.067), 'sigma2': (0.033, 0.064), 'n_f': (0.008, 0.018)} pass
+ar1 current_260 {'x': (0.052, 0.082), 'sigma2': (0.026, 0.058), 'n_f': (0.0, 0.0)} pass
+ar1 A_long_750 {'x': (0.018, 0.051), 'sigma2': (0.036, 0.067), 'n_f': (0.0, 0.0)} pass
+ar1 B_stored_60 {'x': (0.023, 0.056), 'sigma2': (0.033, 0.064), 'n_f': (0.0, 0.0)} pass
+{
+ "fw_fallback_hl150": {
+  "adopted": "A",
+  "reason": "both pass: A for the default engine (no artefact), B for the slow sensitivities",
+  "current_passes": true,
+  "burn_in_days": 750
+ },
+ "fw_hl60": {
+  "adopted": "B",
+  "reason": "both pass: A for the default engine (no artefact), B for the slow sensitivities",
+  "current_passes": true,
+  "burn_in_days": 60
+ },
+ "fw_index": {
+  "adopted": "B",
+  "reason": "both pass: A for the default engine (no artefact), B for the slow sensitivities",
+  "current_passes": false,
+  "burn_in_days": 60
+ },
+ "pruna": {
+  "adopted": "B",
+  "reason": "both pass: A for the default engine (no artefact), B for the slow sensitivities",
+  "current_passes": false,
+  "burn_in_days": 60
+ },
+ "ar1": {
+  "adopted": "B",
+  "reason": "both pass: A for the default engine (no artefact), B for the slow sensitivities",
+  "current_passes": true,
+  "burn_in_days": 60
+ }
+} 1987 s
+[chain] e1_5: rc=0 1991 s
+[chain] apply_e1_5: exists, skipped
+[chain] s11_fixed: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state s11 --tag fixed --workers 3 --config {"start_price_mode": "fixed"}
+[chain] s11_fixed: rc=1 56 s
+[chain] STOP at s11_fixed

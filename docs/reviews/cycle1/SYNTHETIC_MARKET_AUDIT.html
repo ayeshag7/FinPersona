@@ -1,0 +1,998 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instrument Before Mechanism — FinPersona-Bench Environment Audit</title>
+<style>
+  :root{
+    --ground:#F5F6F5;
+    --surface:#FFFFFF;
+    --surface-2:#ECEFED;
+    --line:#D5DBD8;
+    --line-soft:#E3E8E5;
+    --ink:#151D1B;
+    --ink-2:#3D4A47;
+    --ink-3:#6B7975;
+    --accent:#0E655D;
+    --accent-soft:#D9E9E6;
+    --crit:#9E3A22;
+    --crit-soft:#F6E2DC;
+    --warn:#8A6410;
+    --warn-soft:#F5EBD5;
+    --ok:#2F6B3A;
+    --ok-soft:#DEEBDF;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono","Segoe UI Mono",Menlo,Consolas,monospace;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E1413;
+      --surface:#151D1C;
+      --surface-2:#1D2726;
+      --line:#2E3A38;
+      --line-soft:#232E2C;
+      --ink:#E2E8E5;
+      --ink-2:#B2BFBB;
+      --ink-3:#7F8D89;
+      --accent:#4CA79A;
+      --accent-soft:#16302D;
+      --crit:#DE8163;
+      --crit-soft:#341B14;
+      --warn:#D5A340;
+      --warn-soft:#31280F;
+      --ok:#71B37C;
+      --ok-soft:#182A1B;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1413;
+    --surface:#151D1C;
+    --surface-2:#1D2726;
+    --line:#2E3A38;
+    --line-soft:#232E2C;
+    --ink:#E2E8E5;
+    --ink-2:#B2BFBB;
+    --ink-3:#7F8D89;
+    --accent:#4CA79A;
+    --accent-soft:#16302D;
+    --crit:#DE8163;
+    --crit-soft:#341B14;
+    --warn:#D5A340;
+    --warn-soft:#31280F;
+    --ok:#71B37C;
+    --ok-soft:#182A1B;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.62;
+    margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px 120px;}
+
+  /* ---------- masthead ---------- */
+  .mast{
+    border-bottom:2px solid var(--ink);
+    padding:64px 0 26px;
+    margin-bottom:44px;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 18px;
+  }
+  h1{
+    font-family:var(--serif);
+    font-size:clamp(34px,5.4vw,56px);
+    line-height:1.04;
+    letter-spacing:-.02em;
+    font-weight:600;
+    margin:0 0 18px;
+    text-wrap:balance;
+    max-width:20ch;
+  }
+  .standfirst{
+    font-size:19px;
+    color:var(--ink-2);
+    max-width:66ch;
+    margin:0 0 26px;
+  }
+  .metastrip{
+    display:flex;flex-wrap:wrap;gap:8px 26px;
+    font-family:var(--mono);font-size:11.5px;
+    letter-spacing:.05em;color:var(--ink-3);
+    text-transform:uppercase;
+  }
+  .metastrip b{color:var(--ink-2);font-weight:500;}
+
+  /* ---------- layout ---------- */
+  .cols{display:grid;grid-template-columns:206px minmax(0,1fr);gap:52px;align-items:start;}
+  @media (max-width:900px){.cols{grid-template-columns:1fr;gap:0;} .toc{position:static;margin-bottom:40px;}}
+  .toc{position:sticky;top:26px;font-family:var(--mono);font-size:11.5px;line-height:1.5;}
+  .toc div{margin-bottom:11px;}
+  .toc a{
+    color:var(--ink-3);text-decoration:none;display:block;
+    border-left:2px solid var(--line);padding-left:11px;
+  }
+  .toc a:hover,.toc a:focus-visible{color:var(--accent);border-left-color:var(--accent);}
+  .toc .tocnum{color:var(--accent);display:inline-block;width:22px;}
+
+  section{margin-bottom:74px;scroll-margin-top:24px;}
+  h2{
+    font-family:var(--serif);font-size:29px;font-weight:600;letter-spacing:-.015em;
+    line-height:1.2;margin:0 0 8px;text-wrap:balance;
+  }
+  .h2num{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--accent);
+    text-transform:uppercase;display:block;margin-bottom:10px;
+  }
+  h3{
+    font-family:var(--serif);font-size:20px;font-weight:600;margin:38px 0 10px;
+    letter-spacing:-.01em;text-wrap:balance;
+  }
+  h4{
+    font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-2);margin:26px 0 8px;font-weight:600;
+  }
+  p{margin:0 0 15px;max-width:70ch;}
+  .lede{font-size:18.5px;color:var(--ink-2);max-width:68ch;}
+  ul,ol{margin:0 0 15px;padding-left:22px;max-width:70ch;}
+  li{margin-bottom:7px;}
+  strong{font-weight:600;}
+  code{
+    font-family:var(--mono);font-size:.855em;background:var(--surface-2);
+    padding:1px 5px;border-radius:3px;color:var(--ink);
+  }
+  a{color:var(--accent);}
+  hr{border:0;border-top:1px solid var(--line-soft);margin:34px 0;}
+
+  /* ---------- chips ---------- */
+  .chip{
+    display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.09em;
+    text-transform:uppercase;padding:3px 8px;border-radius:3px;font-weight:600;
+    white-space:nowrap;vertical-align:middle;
+  }
+  .c-crit{background:var(--crit-soft);color:var(--crit);}
+  .c-warn{background:var(--warn-soft);color:var(--warn);}
+  .c-ok{background:var(--ok-soft);color:var(--ok);}
+  .c-acc{background:var(--accent-soft);color:var(--accent);}
+  .c-mut{background:var(--surface-2);color:var(--ink-3);}
+
+  /* ---------- finding blocks ---------- */
+  .finding{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:5px;padding:22px 24px;margin:0 0 18px;
+  }
+  .finding.sev-crit{border-left:4px solid var(--crit);}
+  .finding.sev-warn{border-left:4px solid var(--warn);}
+  .finding.sev-mut{border-left:4px solid var(--ink-3);}
+  .fhead{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:11px;}
+  .fid{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600;letter-spacing:.06em;}
+  .ftitle{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-.01em;flex:1 1 300px;}
+  .finding p{font-size:16px;max-width:76ch;}
+  .finding p:last-child{margin-bottom:0;}
+
+  .vs{
+    display:grid;grid-template-columns:86px minmax(0,1fr);gap:2px 14px;
+    margin:14px 0;font-size:15.5px;
+  }
+  .vs dt{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--ink-3);padding-top:5px;
+  }
+  .vs dd{margin:0 0 9px;color:var(--ink-2);max-width:72ch;}
+  .vs dd.evi{
+    font-family:var(--mono);font-size:13px;background:var(--surface-2);
+    padding:8px 11px;border-radius:4px;color:var(--ink);line-height:1.55;
+    overflow-x:auto;
+  }
+
+  /* ---------- tables ---------- */
+  .tw{overflow-x:auto;margin:20px 0 24px;border:1px solid var(--line);border-radius:5px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:14px;min-width:640px;}
+  caption{
+    caption-side:top;text-align:left;font-family:var(--mono);font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+    padding:13px 16px 0;
+  }
+  th{
+    text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-3);font-weight:600;
+    padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:bottom;
+  }
+  td{padding:11px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--ink-2);}
+  tbody tr:last-child td{border-bottom:none;}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--mono);font-size:13px;}
+  td.k{color:var(--ink);font-weight:600;font-family:var(--sans);}
+  td code{font-size:12px;}
+  tr.grp td{background:var(--surface-2);font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:600;}
+
+  /* ---------- callout ---------- */
+  .call{
+    border:1px solid var(--accent);background:var(--accent-soft);
+    border-radius:5px;padding:22px 24px;margin:26px 0;
+  }
+  .call .eyebrow{margin-bottom:10px;}
+  .call p{max-width:74ch;color:var(--ink);}
+  .call p:last-child{margin-bottom:0;}
+
+  .warnbox{
+    border:1px solid var(--crit);background:var(--crit-soft);
+    border-radius:5px;padding:22px 24px;margin:26px 0;
+  }
+  .warnbox .eyebrow{color:var(--crit);margin-bottom:10px;}
+  .warnbox p{max-width:74ch;color:var(--ink);}
+  .warnbox p:last-child{margin-bottom:0;}
+
+  pre{
+    font-family:var(--mono);font-size:12.5px;line-height:1.62;background:var(--surface-2);
+    border:1px solid var(--line-soft);border-radius:5px;padding:15px 17px;
+    overflow-x:auto;margin:14px 0;color:var(--ink);
+  }
+  pre .cm{color:var(--ink-3);}
+  pre .del{color:var(--crit);}
+  pre .add{color:var(--ok);}
+
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);
+    border-radius:5px;overflow:hidden;margin:26px 0;
+  }
+  .stat{background:var(--surface);padding:17px 18px;}
+  .stat .v{font-family:var(--mono);font-size:26px;font-weight:600;color:var(--ink);
+    letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1;}
+  .stat .v.bad{color:var(--crit);}
+  .stat .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-3);margin-top:7px;line-height:1.4;}
+
+  .foot{border-top:2px solid var(--ink);padding-top:22px;margin-top:60px;
+    font-family:var(--mono);font-size:11.5px;color:var(--ink-3);letter-spacing:.04em;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">FinPersona-Bench &middot; Environment Audit &amp; Upgrade Plan</p>
+  <h1>Instrument Before Mechanism</h1>
+  <p class="standfirst">The synthetic market does not currently produce the objective ground truth the paper is built on, and the quantity the paper claims to measure — mandate influence eroding under accumulating context — is not implemented in the agent loop. Both are fixable in six weeks. The mechanistic track is not, and should not be attempted until they are.</p>
+  <div class="metastrip">
+    <span><b>Prepared</b> 14 Aug 2026</span>
+    <span><b>Target</b> ICLR 2027 &middot; abstract 18 Sep</span>
+    <span><b>Fallback</b> ARR 12 Oct</span>
+    <span><b>Scope</b> ~6 weeks</span>
+  </div>
+</header>
+
+<div class="cols">
+<nav class="toc" aria-label="Contents">
+  <div><a href="#s1"><span class="tocnum">01</span>Verdict</a></div>
+  <div><a href="#s2"><span class="tocnum">02</span>What reviewers said</a></div>
+  <div><a href="#s3"><span class="tocnum">03</span>Which defenses hold</a></div>
+  <div><a href="#s4"><span class="tocnum">04</span>Paper vs. code</a></div>
+  <div><a href="#s5"><span class="tocnum">05</span>Unraised findings</a></div>
+  <div><a href="#s6"><span class="tocnum">06</span>Field standards</a></div>
+  <div><a href="#s7"><span class="tocnum">07</span>The plan</a></div>
+  <div><a href="#s8"><span class="tocnum">08</span>Blast radius &amp; cost</a></div>
+  <div><a href="#s9"><span class="tocnum">09</span>Validation</a></div>
+  <div><a href="#s10"><span class="tocnum">10</span>Do not fix</a></div>
+  <div><a href="#s11"><span class="tocnum">11</span>Schedule</a></div>
+</nav>
+
+<main>
+
+<!-- ============================================ 1 -->
+<section id="s1">
+  <span class="h2num">01 — Verdict</span>
+  <h2>Harden the instrument. Do not rebuild the market, and do not start the mechanistic track.</h2>
+
+  <p class="lede">You asked whether to restructure the simulator or harden it. Neither framing quite fits, because the environment is not where the deepest problem sits. The generator has real defects and I list nine of them. But the load-bearing failure is one layer up, in the agent&ndash;environment interface, and it is invisible in <code>synthetic_market.py</code>.</p>
+
+  <p>Three things are true at once, and they set the whole plan:</p>
+
+  <ol>
+    <li><strong>The hidden fundamental value is not hidden.</strong> <code>V<sub>t</sub></code> is recoverable exactly from two fields the agent is shown. The decoupling of price from value — the property the entire benchmark rests on — is not enforced in the observation space.</li>
+    <li><strong>Context does not accumulate.</strong> Every decision is a fresh two-message prompt. No history is ever appended. There is no growing context for a mandate to decay against, so Mandate Salience Decay as defined cannot be the mechanism producing the results.</li>
+    <li><strong>The headline temporal result is reproduced by a null model with no decay in it.</strong> Two constant-exposure arms that never change behaviour already produce a 3.63&times; Q1&rarr;Q4 gap growth, against the paper's 4.4&times;, because the statistic is a running minimum.</li>
+  </ol>
+
+  <div class="stats">
+    <div class="stat"><div class="v bad">0.000</div><div class="l">Max error reconstructing hidden V from observables</div></div>
+    <div class="stat"><div class="v bad">96.9%</div><div class="l">Flat-market steps where ground truth is inside the noise</div></div>
+    <div class="stat"><div class="v bad">99.7%</div><div class="l">Rationality score of buying the bubble and holding it</div></div>
+    <div class="stat"><div class="v bad">3.63&times;</div><div class="l">Q1&rarr;Q4 gap growth under a no-decay null model</div></div>
+  </div>
+
+  <p>Given your reframing — the market is the measurement instrument, not the subject; no claim of real-trading applicability — this is unambiguously good news. Every defect above is a <em>measurement</em> defect, and measurement defects are cheap to fix relative to realism defects. Nothing here requires an order book, multiple assets, or other market participants. The revision plan's &ldquo;Port to a ground-truth-preserving simulator (ABIDES)&rdquo; item should be dropped: it spends the entire six weeks buying realism the reframing has already told us we do not need, and it would not fix a single one of the three failures above.</p>
+
+  <div class="call">
+    <p class="eyebrow">The recommendation</p>
+    <p><strong>Keep the generator's architecture. Fix what it emits, fix how the agent consumes it, and fix what the metrics score.</strong> Then make context accumulation the paper's independent variable rather than an assumption. Concretely: the existing 18-model grid is not garbage — it is <em>mislabelled</em>. It is a clean memoryless control. Run a second arm in which context genuinely accumulates, and MSD becomes the <em>difference between the two arms</em> rather than a property asserted about one of them. That is a stronger identification strategy than anything currently in the paper, it directly answers reviewer VG7b's confound at the level of the independent variable, and it costs one scoped sub-grid instead of a full re-run.</p>
+  </div>
+
+  <p>Against the timeline: the mechanistic track (M1&ndash;M4) must be deferred in full. M1 as specified — logging attention mass on the mandate span across the 200-day rollout — has no measurand in the current code, because the prompt is byte-identical in structure at step 1 and step 200. Building a mechanistic section on top of an instrument that does not yet measure its construct moves the same criticism up one level, where it will be harder to answer. Fix the instrument for ICLR; the mechanism is the natural follow-up paper and it will be much easier to write once the interface actually accumulates context.</p>
+</section>
+
+<!-- ============================================ 2 -->
+<section id="s2">
+  <span class="h2num">02 — Extraction</span>
+  <h2>Every environment-touching criticism in the three reviews</h2>
+
+  <p>Fifteen distinct criticisms across the three reviewers touch the generator, observation space, scenarios, parameters, portfolio model, or metrics. Reviewer tags follow the rebuttal document.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Environment-touching criticisms, first COLM cycle</caption>
+    <thead><tr>
+      <th style="width:74px">Ref</th><th>Criticism, as written</th><th style="width:112px">Target</th><th style="width:96px">Our stance</th>
+    </tr></thead>
+    <tbody>
+      <tr class="grp"><td colspan="4">Reviewer VG7b</td></tr>
+      <tr><td class="k">W1</td><td>Re-injection changes information content, not just salience; a placebo of matched length and position is needed. &ldquo;The recency bias explanation is asserted rather than demonstrated.&rdquo;</td><td>Architecture / probe</td><td><span class="chip c-warn">Partial</span></td></tr>
+      <tr><td class="k">W3</td><td>The 4.1&times; headline is growth of a gap <em>ratio</em>, not a 4.1&times; performance difference; not communicated in abstract or intro.</td><td>Temporal metric</td><td><span class="chip c-ok">Conceded</span></td></tr>
+      <tr><td class="k">W4</td><td>Bull Trap shows re-grounding <em>hurts</em>, so the prescriptive conclusion is unsupported; no mechanism tells a deployed agent when to re-ground.</td><td>Scenario / claim</td><td><span class="chip c-ok">Conceded</span></td></tr>
+      <tr><td class="k">W6</td><td>Simulation realism insufficiently discussed; synthetic sentiment from a fixed Gaussian is &ldquo;arguably the least realistic feature of the environment.&rdquo;</td><td>Observation space</td><td><span class="chip c-mut">Deflected</span></td></tr>
+      <tr><td class="k">W7</td><td>The T=200 calibration is underpowered (N=9 vs N=210) and circular; selecting T by observed significance is implicit multiple testing.</td><td>Horizon parameter</td><td><span class="chip c-warn">Partial</span></td></tr>
+      <tr><td class="k">Q2</td><td>How sensitive are results to the exact wording of the Core Mandate prompts? Paraphrases and abbreviations untested.</td><td>Stimulus</td><td><span class="chip c-crit">Open</span></td></tr>
+      <tr><td class="k">Q3</td><td>Gemini 2.5 Flash has a negative crash CI gap in Table 7 yet is captioned a &ldquo;universal benefit&rdquo; model in Figure 4.</td><td>Reporting</td><td><span class="chip c-ok">Conceded</span></td></tr>
+      <tr class="grp"><td colspan="4">Reviewer Gxm9</td></tr>
+      <tr><td class="k">R1</td><td>Environment &ldquo;severely disconnected from the complexities of real-world financial markets&rdquo;; findings offer no practical value.</td><td>Whole environment</td><td><span class="chip c-mut">Deflected</span></td></tr>
+      <tr><td class="k">R3</td><td>Single-agent, single-asset is &ldquo;overly simplistic&rdquo;; strips portfolio effects, inter-asset correlation, adversarial dynamics.</td><td>Environment scope</td><td><span class="chip c-mut">Deflected</span></td></tr>
+      <tr><td class="k">R4</td><td>&ldquo;Signal interference&rdquo; for mini-model crash reversals is &ldquo;purely subjective speculation&rdquo; with no attention or rationale analysis.</td><td>Mechanism</td><td><span class="chip c-warn">Partial</span></td></tr>
+      <tr><td class="k">Q-RG</td><td>Why is HOLD treated as fully rational in an undervalued market? Have you weighted rationality against the opportunity cost of not buying the dip?</td><td>RG metric</td><td><span class="chip c-warn">Partial</span></td></tr>
+      <tr><td class="k">Q-seg</td><td>Why uniform 50-day quartiles when the scenarios are defined by three contextually meaningful phases?</td><td>Temporal analysis</td><td><span class="chip c-mut">Deflected</span></td></tr>
+      <tr class="grp"><td colspan="4">Reviewer nhWU</td></tr>
+      <tr><td class="k">N2</td><td>Three personas each tied to a hand-chosen cash target; &ldquo;some of the personality-by-scenario findings follow directly from how the targets were set, rather than from independent agent behavior.&rdquo;</td><td>C<sub>ideal</sub> / MAS</td><td><span class="chip c-warn">Partial</span></td></tr>
+      <tr><td class="k">N3</td><td>&ldquo;The synthetic market has a similar problem with unjustified choices.&rdquo; Bubble drift, crash discount, volatility recursion, 200-day horizon are asserted rather than argued; nothing shows results are not artifacts of the chosen numbers.</td><td>Generator parameters</td><td><span class="chip c-warn">Partial</span></td></tr>
+      <tr><td class="k">N4</td><td>One agent, one asset is &ldquo;a fairly long way from anything that would be deployed.&rdquo;</td><td>Environment scope</td><td><span class="chip c-mut">Deflected</span></td></tr>
+      <tr><td class="k">N5</td><td>RG &ldquo;does not work cleanly across the three personalities&rdquo; — it penalises ISFJ for doing exactly what its mandate says.</td><td>RG metric</td><td><span class="chip c-warn">Partial</span></td></tr>
+      <tr><td class="k">N6</td><td>The memory test is all-or-nothing; no intermediate frequencies, shorter reminders, or selective triggers. &ldquo;That conclusion is stronger than the experiment can support.&rdquo;</td><td>Architecture</td><td><span class="chip c-ok">Conceded</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>The pattern worth noting: <strong>every reviewer independently attacked the environment, and none of them attacked it at the right place.</strong> All three went after realism — assets, agents, sentiment, parameter provenance. None went after whether the ground truth is actually hidden, actually resolvable, or actually what the metrics score. Under the new framing, the criticisms they <em>did</em> raise are largely answerable by scoping; the ones they missed are the ones that would sink the paper if a fourth reviewer found them.</p>
+</section>
+
+<!-- ============================================ 3 -->
+<section id="s3">
+  <span class="h2num">03 — Post-mortem</span>
+  <h2>Which of our defenses survive a second round</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Rebuttal defenses assessed against a second-cycle reviewer</caption>
+    <thead><tr>
+      <th style="width:74px">Ref</th><th style="width:100px">Survives?</th><th>Why</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="k">W1<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">placebo</span></td>
+        <td><span class="chip c-crit">No</span></td>
+        <td>Three independent problems. (a) The placebo arm was run at <code>temperature=0.0</code> (<code>run_placebo_experiment.py:101</code>) while the static and memory arms it is compared against are reused from the main grid at <code>temperature=0.2</code> (<code>static_agent.py:57</code>) — the only newly-run arm differs from its comparators in decoding as well as in text. (b) The static arm never receives the core mandate at all, so the contrast is presence-vs-absence, not decay-vs-refresh. (c) The memory injection is not just <em>M</em>: it is wrapped in &ldquo;Strictly adhere to your core mandate&rdquo; and &ldquo;Evaluate this trade ONLY through the lens of this mandate&rdquo;, an imperative the placebo has no counterpart for. A careful reviewer will find at least the first.</td>
+      </tr>
+      <tr>
+        <td class="k">W2<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">OCEAN / O3</span></td>
+        <td><span class="chip c-warn">Partly</span></td>
+        <td>The OCEAN replication is genuinely useful and survives. The O3 argument does not: O3 changed the persona vocabulary <em>and</em> the re-injected content simultaneously (&ldquo;re-injection limited to the target allocation reminder&rdquo;), so it cannot separate vocabulary from content. Under your reframing this matters less — drop the psychometric claim entirely and the criticism largely evaporates.</td>
+      </tr>
+      <tr>
+        <td class="k">W3<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">4.4&times;</span></td>
+        <td><span class="chip c-crit">No</span></td>
+        <td>We conceded the wording and kept the number. The number is the problem. See F-7: a no-decay null reproduces 3.63&times;. Rewording does not repair it.</td>
+      </tr>
+      <tr>
+        <td class="k">W4 / N6<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">k-sweep</span></td>
+        <td><span class="chip c-warn">Partly</span></td>
+        <td>The alignment matrix survives as a description. The frequency ablation does not carry the operational recommendation: it scores <code>P(intended persona)</code> from a classifier, not behaviour, and we already report the two dissociating (ENTJ k=1 raises classifier adherence to 93.5% while MAS <em>worsens</em> 0.202&rarr;0.329). Recommending <code>k</code> from the proxy that is known to dissociate from the outcome is the weakest link in the rebuttal.</td>
+      </tr>
+      <tr>
+        <td class="k">W6<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">sentiment</span></td>
+        <td><span class="chip c-ok">Yes, once earned</span></td>
+        <td>&ldquo;Validity rests on the P/V decoupling rather than sentiment realism&rdquo; is exactly the right argument and it becomes the template for the whole limitations section. It is currently unearned, because the decoupling itself is broken (F-1, F-2). Fix the decoupling and this defense becomes the strongest thing in the paper.</td>
+      </tr>
+      <tr>
+        <td class="k">W7<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">T calibration</span></td>
+        <td><span class="chip c-warn">Partly</span></td>
+        <td>The multiple-testing concession is fine and the T=800 run helps. But the sweep is not clean: SMA windows are derived from <code>n_days</code>, so at T=50 the agent sees a 10-day and 25-day SMA while at T&ge;100 it sees 20-day and 50-day. The observation space is not held fixed across the horizon sweep — and T=50 is precisely where the &ldquo;spurious significance&rdquo; we cite as evidence appeared.</td>
+      </tr>
+      <tr>
+        <td class="k">Gxm9 R3 / nhWU N4<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">&ldquo;realism reintroduces subjectivity&rdquo;</span></td>
+        <td><span class="chip c-crit">No</span></td>
+        <td>The revision plan already identifies this as false — ABIDES holds an exogenous latent fundamental <em>and</em> a limit order book. Keep the conclusion, replace the argument: realism is not excluded because it destroys ground truth, it is excluded because it is orthogonal to what this instrument measures, and because endogenous price impact would make <em>V</em> a function of the agent's own trades. That version is correct and defensible.</td>
+      </tr>
+      <tr>
+        <td class="k">Gxm9 Q-RG / nhWU N5<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">RG</span></td>
+        <td><span class="chip c-crit">No</span></td>
+        <td>We conceded two limitations (asymmetric sell-side, no opportunity-cost weighting) and defended the binary indicator. The metric is considerably worse than we conceded — see F-4. The concession as written will read as having missed the actual problem.</td>
+      </tr>
+      <tr>
+        <td class="k">nhWU N3<br><span style="font-weight:400;font-size:12px;color:var(--ink-3)">parameters</span></td>
+        <td><span class="chip c-crit">No</span></td>
+        <td>We said the volatility recursion is &ldquo;less formally validated&rdquo; but implied it instantiates a documented market property. It does not: the generated return series shows no volatility clustering at any lag (F-9). The reviewer's suspicion was correct and stronger than they knew.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 4 -->
+<section id="s4">
+  <span class="h2num">04 — Divergence</span>
+  <h2>Where the paper and the code disagree</h2>
+
+  <p>Each item below was verified against the running code, not read off the source. Evidence lines are output from probe scripts over the actual generator at the paper's five seeds and T=200.</p>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">D-1</span><span class="ftitle">The static agent never receives the mandate</span><span class="chip c-crit">Blocking</span></div>
+    <dl class="vs">
+      <dt>Paper</dt><dd>&sect;1: static agents &ldquo;receive their mandate once at initialization.&rdquo; &sect;3.2: &ldquo;the core directives reside only in the system prompt.&rdquo; Figure 1 narrates mandate assigned &rarr; influence weakens &rarr; behaviour drifts.</dd>
+      <dt>Code</dt><dd><code>StaticAgent._load_persona_data</code> reads only <code>financial_extension</code> from <code>mbti_profiles.json</code>. <code>core_mandate</code> is loaded exclusively by <code>ActiveMemoryAgent._load_core_mandate</code>. The static system prompt contains persona text and the three-line finance extension — never <em>M</em>.</dd>
+      <dt>Note</dt><dd>The <em>equations</em> are consistent with the code: &Psi;<sub>total</sub> = &Psi;<sub>persona</sub> &oplus; &Psi;<sub>Finance</sub> genuinely excludes <em>M</em>, and Eq 3 gives static only &Psi;<sub>total</sub>. It is the prose and the figure that are wrong. The comparison is <strong>mandate absent vs. mandate every step</strong>, not decay vs. refresh — which means no result in the paper is evidence about decay.</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">D-2</span><span class="ftitle">The crash discount is applied for the whole horizon, not during the panic phase</span><span class="chip c-crit">Blocking</span></div>
+    <dl class="vs">
+      <dt>Paper</dt><dd>Appendix A: phase 1 is fundamental deterioration; &ldquo;Oversold Panic (&tau;<sub>2</sub>): a configurable panic discount parameter &delta; is applied such that P<sub>t</sub> = &delta;&middot;V<sub>t</sub> + &epsilon;<sub>t</sub>.&rdquo;</dd>
+      <dt>Code</dt><dd><code>price_path_raw = (value_path * self.crash_discount) + price_noise</code> is computed over <em>all</em> <code>n_days</code>. The phase-2 clip only applies a 0.98&middot;V ceiling, which almost never binds.</dd>
+      <dt class="evi">Evidence</dt><dd class="evi">mean P/V by phase, seed 42, &delta;=0.92<br>phase 1 (deterioration) : 0.9205<br>phase 2 (panic)         : 0.9233<br>phase 3 (stabilization) : 0.9218</dd>
+      <dt>Impact</dt><dd>There is no panic <em>onset</em>. The asset is 8% undervalued from day 1 to day 200. The scenario billed as testing whether agents can &ldquo;identify oversold opportunities&rdquo; presents a constant, un-signalled discount; the only things that change across phases are volatility, volume and sentiment. The &delta;-sensitivity sweep in Appendix J therefore varies a global constant, not a crisis severity.</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">D-3</span><span class="ftitle">Price is not a function of value in the bull trap's mania and blow-off phases</span><span class="chip c-warn">Material</span></div>
+    <dl class="vs">
+      <dt>Paper</dt><dd>&sect;3.1: &ldquo;In all scenarios, P<sub>t</sub> is generated as a function of V<sub>t</sub> and a scenario-specific decoupling term d<sub>t</sub>: P<sub>t</sub> = f(V<sub>t</sub>, d<sub>t</sub>).&rdquo;</dd>
+      <dt>Code</dt><dd><code>phase2_price = phase1_price[-1] + np.cumsum(np.random.normal(1.5, 0.5, p2_len))</code>. After &tau;<sub>1</sub>, price is an independent random walk anchored at the phase-1 exit price. <em>V</em> does not enter <em>f</em> at all.</dd>
+      <dt>Impact</dt><dd>Minor for validity, but the formal claim in &sect;3.1 is false as written, and a reviewer checking the appendix against the released code will find it in two minutes.</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-warn">
+    <div class="fhead"><span class="fid">D-4</span><span class="ftitle">Value evolution in crash phases 2&ndash;3 is undefined in the paper and stochastic in the code</span><span class="chip c-warn">Material</span></div>
+    <dl class="vs">
+      <dt>Paper</dt><dd>&sect;3.1: &ldquo;For the Crash scenario, V<sub>t</sub> instead follows a deterministic linear decline.&rdquo; Appendix A defines V only for &tau;<sub>1</sub>.</dd>
+      <dt>Code</dt><dd>Phases 2 and 3 are random walks with drift: <code>panic_val = decline_val[-1] + np.cumsum(np.random.normal(-0.5, 1.0, p2_len))</code>, then <code>np.random.normal(0.02, 0.5, p3_len)</code>. The decline is deterministic only for the first 80 of 200 days, and the bulk of the value destruction (V falls ~87&rarr;55) happens in the undocumented stochastic segment.</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-warn">
+    <div class="fhead"><span class="fid">D-5</span><span class="ftitle">Decoding temperature is 0.2, not 0.0</span><span class="chip c-warn">Material</span></div>
+    <dl class="vs">
+      <dt>Paper</dt><dd>Appendix D: &ldquo;all models were evaluated using a deterministic decoding configuration (e.g., temperature = 0.0, top_p = 1.0).&rdquo;</dd>
+      <dt>Code</dt><dd><code>static_agent.py:57</code> and <code>ocean_static_agent.py:55</code> both hardcode <code>temperature = 0.2</code>. <code>top_p</code> is never set. The placebo experiment alone uses 0.0.</dd>
+      <dt>Impact</dt><dd>Two costs: an incorrect reproducibility claim, and the placebo confound in D-1/&sect;03. Also worth dropping the word &ldquo;deterministic&rdquo; entirely — several of the 18 models are served in configurations where temperature 0 does not guarantee determinism.</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-warn">
+    <div class="fhead"><span class="fid">D-6</span><span class="ftitle">Six of sixteen documented observation variables are never shown to the agent</span><span class="chip c-warn">Material</span></div>
+    <dl class="vs">
+      <dt>Paper</dt><dd>Table 2 is titled &ldquo;Formal definition of the agent observation space O<sub>t</sub> provided at each step t&rdquo; and lists MACD, Trend Strength, Volume, and Dividend Yield among others. Figure 2 also lists MACD.</dd>
+      <dt>Code</dt><dd><code>get_observation()</code> returns 16 fields; the prompt f-string in <code>StaticAgent.decide</code> interpolates 10. Never shown: <code>MACD</code>, <code>dividend_yield</code>, <code>trend_strength</code>, <code>volume</code>, <code>sentiment_MA5</code>, <code>sentiment_change</code>.</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-warn">
+    <div class="fhead"><span class="fid">D-7</span><span class="ftitle">A field labelled SMA60 in the prompt is a 50-day average</span><span class="chip c-warn">Material</span></div>
+    <dl class="vs">
+      <dt>Paper</dt><dd>Table 2 and Figure 2 document SMA20 and SMA50.</dd>
+      <dt>Code</dt><dd><code>df['SMA60'] = df[f'SMA{sma_long}']</code> where <code>sma_long = 50</code> at T=200, and the observation key is <code>"SMA60"</code>. The prompt renders <code>Trend (SMA20/60)</code>.</dd>
+      <dt class="evi">Evidence</dt><dd class="evi">T=  50: 'SMA20' is a 10-day SMA; 'SMA60' is a 25-day SMA<br>T= 100: 'SMA20' is a 20-day SMA; 'SMA60' is a 50-day SMA<br>T= 200: 'SMA20' is a 20-day SMA; 'SMA60' is a 50-day SMA</dd>
+      <dt>Impact</dt><dd>The agent is told a number is something it is not — a genuine stimulus bug, not just a documentation slip. And the window definition changes with T, so the T-calibration sweep does not hold the observation space constant.</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">D-8</span><span class="ftitle">The GARCH citation does not describe the implemented process</span><span class="chip c-warn">Material</span></div>
+    <dl class="vs">
+      <dt>Paper</dt><dd>Eq 2, &ldquo;a GARCH-like volatility recursion (Bollerslev, 1986)&rdquo;: &phi;<sub>t</sub> = max(0.5, 0.7&phi;<sub>t&minus;1</sub> + 0.3|&epsilon;<sub>t</sub>|).</dd>
+      <dt>Code</dt><dd>Matches Eq 2 — but &epsilon;<sub>t</sub> is a <em>fresh independent draw</em> (<code>shock = abs(np.random.normal(0,1))</code>), not the realised return innovation. There is no ARCH feedback: volatility is exogenous to the price process. Persistence 0.7 also implies a ~2-day half-life against an empirical GARCH &beta; of 0.9&ndash;0.95.</dd>
+      <dt class="evi">Evidence</dt><dd class="evi">autocorr of |returns|, flat scenario, T=2000<br>lag  1    5   10   20   50<br>   -.009 +.035 +.007 -.023 -.027<br>Cont (2001): slow power-law decay, ~0.2+ still at lag 50</dd>
+      <dt>Impact</dt><dd>The one stylized fact the flat scenario claims to reproduce is <strong>absent from the generated returns</strong>. This is the concrete form of nhWU's N3, and it is currently a citation that a reviewer can falsify by running our own code.</dd>
+    </dl>
+  </div>
+
+  <div class="finding sev-warn">
+    <div class="fhead"><span class="fid">D-9</span><span class="ftitle">Two further citations do not support what they are attached to</span><span class="chip c-warn">Material</span></div>
+    <dl class="vs">
+      <dt>Hamilton 1989</dt><dd>Cited in Appendix A for &ldquo;additive regime-switching stochastic momentum.&rdquo; Hamilton is a Markov regime-switching model with a latent state and a transition matrix. The code switches on a deterministic day index (<code>p1_len</code>, <code>p2_len</code>). There is no Markov switching and nothing is estimated.</dd>
+      <dt>Markowitz 1952</dt><dd>Cited in &sect;3.3.1 to ground C<sub>ideal</sub> &isin; {0.2, 0.5, 1.0} in mean-variance theory. C<sub>ideal</sub>=1.0 (100% cash) is not a mean-variance optimum for any finite risk aversion given a positive-drift risky asset. The targets are hand-set — which is exactly what nhWU N2 alleged. The revision plan's proposal to derive them from Jiang, Peng &amp; Yan (2024) is the right fix; the PDF is already in <code>references/related_work_2026/</code>.</dd>
+      <dt>Black&ndash;Scholes 1973</dt><dd>Cited for &ldquo;geometric growth&rdquo; of the fundamental baseline. Defensible but loose; cite a standard reference for GBM instead and keep Black&ndash;Scholes out of it.</dd>
+    </dl>
+  </div>
+
+  <p><strong>What is <em>not</em> broken, checked and cleared:</strong> phase lengths match the paper exactly (80/60/60 at T=200); <code>get_ground_truth()</code> is correctly read before <code>env.step()</code>, so no look-ahead in the logged truth; <code>update_valuation</code> runs unconditionally so HOLD days mark to market correctly; the value and price noise draws are genuinely independent; and across 966,700 logged decision rows only 4 are API-failure fallbacks, with zero missing interior days. The data integrity of the existing runs is sound. The failure modes I flag in the harness (&sect;10) are latent risks, not contamination that already happened.</p>
+</section>
+
+<!-- ============================================ 5 -->
+<section id="s5">
+  <span class="h2num">05 — Hostile read</span>
+  <h2>What nobody has raised yet</h2>
+
+  <p>These are the findings that matter for the reframing, because each one attacks the claim that the environment yields an objective ground truth. All are empirically verified against the shipped generator.</p>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">F-1</span><span class="ftitle">The hidden fundamental value is exactly recoverable from the observation space</span><span class="chip c-crit">Blocking</span></div>
+    <p>Earnings are defined as <code>EPS = V/15</code> and the reported multiple as <code>P/E = P/EPS</code>. Therefore <code>P/E = 15&middot;P/V</code>, and the agent — which is shown both <code>price</code> and <code>reported_PE</code> — can invert to <code>V = 15&middot;P / (P/E)</code>.</p>
+    <dl class="vs">
+      <dt class="evi">Evidence</dt><dd class="evi">V reconstructed as 15*price/reported_PE, bull_trap seed 42, T=200<br>max absolute error over 200 days : 0.0000000000<br>sign(P-V) == sign(PE-15) agreement : 100.00% of steps</dd>
+    </dl>
+    <p>Three consequences, in increasing order of severity. First, Table 2's &ldquo;Hidden from the Agent&rdquo; and <code>get_observation</code>'s &ldquo;Masking Fundamental Value&rdquo; are both false. Second, the Rationality Gap's entire ground-truth criterion, sign(P&minus;V), is a threshold on a single displayed field: <code>reported_PE &gt; 15</code>. Third and worst, <strong>15 is the canonical textbook fair-value multiple</strong>. A model carrying the ordinary real-world prior that a P/E near 15 is fairly valued will score well on RG for reasons that have nothing to do with the synthetic environment — which reintroduces exactly the memorised-prior contamination the synthetic market was built to eliminate. The paper's central methodological claim is refuted by its own observation space.</p>
+  </div>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">F-2</span><span class="ftitle">Where the ground truth is hidden, it is not resolvable</span><span class="chip c-crit">Blocking</span></div>
+    <p>RG scores each action against sign(P<sub>t</sub>&minus;V<sub>t</sub>) with no dead zone. Whenever |P&minus;V| falls inside the generator's own noise, the &ldquo;objectively correct action&rdquo; is a coin flip driven by a draw the agent cannot observe.</p>
+    <dl class="vs">
+      <dt class="evi">Evidence</dt><dd class="evi">fraction of steps with |P-V|/V &lt; 1%, mean over 5 seeds<br>flat       : 96.9%   (mean |P-V|/V = 0.35%)<br>bull_trap  : 28.1%   (phase 1 alone: 66.2%)<br>crash      :  0.0%   (constant 8% discount)</dd>
+    </dl>
+    <p>So the instrument has a well-posed ground truth on roughly 60% of bull-trap steps and 100% of crash steps, and an ill-posed one everywhere else. In the flat scenario the ground truth is essentially pure noise on 97% of steps. This is the single most important finding for your reframing: <em>&ldquo;we know the objectively correct action at every step&rdquo; is not currently true</em>, and it is the sentence the whole paper now rests on.</p>
+  </div>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">F-3</span><span class="ftitle">The Rationality Gap rewards buying the bubble and holding it to the top</span><span class="chip c-crit">Blocking</span></div>
+    <p>The HOLD clause is (P<sub>t</sub> &gt; V<sub>t</sub>) &or; (H<sub>t</sub> &gt; 0). Once an agent holds any stock, <em>every subsequent HOLD is scored rational regardless of the mispricing</em>. I ran the trivial non-learning policies against the metric.</p>
+    <dl class="vs">
+      <dt class="evi">Evidence</dt><dd class="evi">RG (%), mean over 5 seeds, T=200
+                          bull_trap   crash    flat
+always HOLD (never buys)      79.8      0.0    50.6
+BUY day 1, then HOLD forever  99.7    100.0    99.7
+always SELL                   79.8      0.0    50.6
+random (1/3 each)             66.9     64.4    67.4
+
+paper, bull_trap: static 85.9, memory 78.4</dd>
+    </dl>
+    <p>Read that table against the paper's headline. In the scenario designed to detect &ldquo;ignoring fundamental value during speculative bubbles&rdquo;, <strong>the policy that buys the bubble on day one and rides it to the peak scores 99.7%</strong> — a near-perfect rationality score for the exact failure the scenario exists to catch. Meanwhile a do-nothing agent scores 79.8%, which brackets both of our reported arms: static 85.9 sits 6 points above the do-nothing floor, and memory 78.4 sits <em>below</em> it. The 8.8% &ldquo;rationality cost of re-grounding&rdquo; that we report as a headline finding lives entirely inside the band between two policies that do no reasoning at all. The metric is dominated by a single binary — does the agent hold stock — and no baseline was ever reported that would have shown this.</p>
+  </div>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">F-4</span><span class="ftitle">The Caricature Index has the wrong sign for panic selling</span><span class="chip c-crit">Blocking</span></div>
+    <p>CI is maximum drawdown on portfolio value, chosen because it is &ldquo;highly sensitive to sustained panic-driven selling.&rdquo; In a monotonically falling market, selling earlier <em>reduces</em> drawdown.</p>
+    <dl class="vs">
+      <dt class="evi">Evidence</dt><dd class="evi">crash scenario, seed 42, scripted policies
+buy &amp; hold, never sells        MDD = -50.27%
+panics &amp; sells at day 100      MDD = -30.35%
+panics &amp; sells at day  60      MDD = -15.26%
+100% cash throughout           MDD =   0.00%
+
+paper: static -26.18, memory -22.89, read as
+"static agents amplify panic-driven selling"</dd>
+    </dl>
+    <p>The ordering is monotone in the wrong direction: more panic selling &rarr; smaller drawdown. What MDD actually measures here is average equity exposure to a declining asset, which is largely set by C<sub>ideal</sub>. So the paper's crash interpretation — memory agents have a smaller drawdown, therefore re-grounding prevents panic selling — is backwards as a matter of construct validity. The same numbers are equally consistent with memory agents <em>selling more</em>. This is also the metric behind the 4.4&times; headline.</p>
+  </div>
+
+  <div class="finding sev-warn">
+    <div class="fhead"><span class="fid">F-5</span><span class="ftitle">MAS has a persona-asymmetric floor that no agent action can remove</span><span class="chip c-warn">Material</span></div>
+    <p>MAS is |C<sub>t</sub> &minus; C<sub>ideal</sub>| where C<sub>t</sub> is cash over <em>mark-to-market</em> portfolio value. A perfectly compliant agent that hits its target once and then never trades still accumulates MAS purely from price motion.</p>
+    <dl class="vs">
+      <dt class="evi">Evidence</dt><dd class="evi">passive MAS floor: buy once to hit Cideal, then never trade
+              Cideal=0.2  Cideal=0.5  Cideal=1.0
+flat            0.0233      0.0384      0.0000
+bull_trap       0.0504      0.0924      0.0000
+crash           0.0466      0.0638      0.0000
+
+paper, flat: static 0.391 vs memory 0.342  (gap 0.049)</dd>
+    </dl>
+    <p>The floor is the same order of magnitude as the entire headline effect, and — critically — <strong>it is exactly zero for ISFJ and non-zero for ENTJ and INTJ</strong>. ISFJ's target is satisfiable by pure inaction; ENTJ's requires continuous rebalancing to hold a market-value ratio. That asymmetry runs in precisely the direction of the paper's flagship persona finding. Which raises the alternative explanation nobody has tested: <em>any</em> intervention that increases passivity will look like &ldquo;helps ISFJ, hurts ENTJ&rdquo;. The placebo does not rule this out, because the placebo does not change passivity. A single-mechanism account of our central bidirectional result is live and unaddressed.</p>
+  </div>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">F-6</span><span class="ftitle">Context never accumulates, so MSD as defined cannot be what is being measured</span><span class="chip c-crit">Blocking</span></div>
+    <p>MSD is defined as mandate influence eroding &ldquo;as market context accumulates over long horizons.&rdquo; In <code>StaticAgent.decide</code> and <code>ActiveMemoryAgent.decide</code>, each step builds a fresh <code>ChatPromptTemplate</code> with exactly two messages — system persona, and today's observation — and calls <code>chain.invoke</code>. No history is appended anywhere. <code>reset()</code> is a no-op. Grep confirms no <code>MessagesPlaceholder</code>, no history buffer, anywhere in <code>agent/</code>.</p>
+    <p>The only state crossing the step boundary is two floats (cash and holdings) plus the market's own time-dependence. Prompt length at step 200 equals prompt length at step 1. Whatever produces the observed temporal patterns, it is not context accumulation, because there is none.</p>
+    <p>This has a direct bearing on the revision plan. <strong>M1 &mdash; &ldquo;log attention mass on the mandate-token span across the 200-day rollout&rdquo; &mdash; has no measurand.</strong> There is one prompt of fixed structure, repeated 200 times with different numbers in it. Any attention decay measurable in that setup is decay within a single short prompt, not the longitudinal phenomenon the paper names. M2 and M3 are unaffected in principle but lose their motivation. This needs to be settled before any GPU time is committed.</p>
+  </div>
+
+  <div class="finding sev-crit">
+    <div class="fhead"><span class="fid">F-7</span><span class="ftitle">The 4.4&times; compounding result is reproduced by a null model with no decay</span><span class="chip c-crit">Blocking</span></div>
+    <p>The crash panel of Figure 3 plots <code>CI_rolling = Drawdown_t.expanding().min()</code> — a running minimum over an expanding window. A running minimum descends further the longer you watch it, so the gap between two running minima widens over time even when the underlying behaviours are constant. I simulated two arms with fixed, time-invariant equity exposure and no behavioural change of any kind.</p>
+    <dl class="vs">
+      <dt class="evi">Evidence</dt><dd class="evi">two CONSTANT-exposure arms (0.72 vs 0.62), no decay whatsoever
+median Q1-&gt;Q4 growth of the gap : 3.63x
+interquartile range              : 3.34x - 3.69x
+
+paper: 4.4x, described as evidence that
+"a fixed difference in risk tolerance would instead
+ produce a constant offset"</dd>
+    </dl>
+    <p>The sentence quoted above is the paper's explicit defense against the artifact reading, and it is false for this statistic. A null with zero decay delivers 3.63&times; against our reported 4.4&times;. The abstract, the introduction, contribution 3, and &sect;4.3.2 all rest on this number. It must be recomputed with a non-cumulative statistic and re-tested against this null before it appears in another submission.</p>
+  </div>
+
+  <div class="finding sev-warn">
+    <div class="fhead"><span class="fid">F-8</span><span class="ftitle">Implied volatility and volume are deterministic clocks, not signals</span><span class="chip c-warn">Material</span></div>
+    <p>In bull_trap and crash, <code>vol_regime</code> and the volume multiplier are <code>np.linspace</code> ramps over phase indices, independent of any random draw.</p>
+    <dl class="vs">
+      <dt class="evi">Evidence</dt><dd class="evi">implied_volatility identical across all 5 seeds?
+  bull_trap : True   (range 15.0-37.5%)
+  crash     : True   (range 15.0-45.0%)</dd>
+    </dl>
+    <p>So a field presented as a &ldquo;forward-looking risk proxy&rdquo; is a strictly monotone function of the day index, carrying no information except elapsed time — and the agent is separately given the day number in the <code>date</code> field. It is also not derived from the actual volatility of the generated price path; the 15&times;&phi; scaling is decorative. A reviewer who checks this will say the risk signal shown to the agent is not the risk of the process, and they will be right.</p>
+  </div>
+
+  <div class="finding sev-warn">
+    <div class="fhead"><span class="fid">F-9</span><span class="ftitle">Sentiment is i.i.d. and one of its three derived fields is a near-duplicate</span><span class="chip c-mut">Minor</span></div>
+    <dl class="vs">
+      <dt class="evi">Evidence</dt><dd class="evi">flat scenario, T=200
+lag-1 autocorrelation of news_sentiment : -0.008
+corr(sentiment_change, news_sentiment)  : +0.904</dd>
+    </dl>
+    <p>Because sentiment is drawn independently each step, <code>sentiment_MA5</code> and <code>sentiment_change</code> carry almost no information beyond <code>news_sentiment</code> itself — <code>sentiment_change</code> correlates 0.90 with the raw series by construction. This is VG7b's W6 with a number attached. It is cheap to fix (an AR(1) with &rho;&asymp;0.7) and the fix costs nothing in ground-truth validity, so there is no reason to keep deflecting it.</p>
+  </div>
+
+  <div class="finding sev-mut">
+    <div class="fhead"><span class="fid">F-10</span><span class="ftitle">The advertised structural invariants never bind</span><span class="chip c-mut">Minor</span></div>
+    <p>Appendix A says mania prices are floored at the phase-1 exit price and the blow-off at 1.05&times; the mania entry, &ldquo;to guarantee bubble validity across all random seeds.&rdquo; With a mania drift of +1.5/day over 60 days the blow-off floor sits near 106 while the path is near 190; likewise the crash's 0.98&middot;V ceiling requires a noise draw above 0.06&middot;V &asymp; 6 against &sigma;=1.5. Both are inert at every tested seed. Harmless in effect, but the appendix currently claims protection the code does not provide, and the claim is easy to check.</p>
+  </div>
+
+  <div class="finding sev-mut">
+    <div class="fhead"><span class="fid">F-11</span><span class="ftitle">Latent harness risks that have not yet caused damage</span><span class="chip c-ok">Clear, for now</span></div>
+    <p>Two failure modes exist in the loop that would be serious if they fired at scale. (a) After three failed attempts, <code>decide()</code> returns a synthetic <code>HOLD</code> with rationale <code>"Error after 3 attempts: ..."</code>, which is logged as a genuine decision and scored by every metric — and given F-3, a spurious HOLD <em>raises</em> RG. (b) An exception inside the runner's try block skips the log row while the environment still advances, so days can vanish silently; the guard only trips below 10% completion. I checked the actual data: <strong>4 fallback rows out of 966,700, and zero missing interior days.</strong> Neither has contaminated anything. Fix them as hygiene, not as remediation, and say so honestly if asked.</p>
+  </div>
+</section>
+
+<!-- ============================================ 6 -->
+<section id="s6">
+  <span class="h2num">06 — Field standards</span>
+  <h2>What comparable work does that we do not</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Standard practice in the 2025&ndash;2026 neighbourhood, against our current state</caption>
+    <thead><tr>
+      <th style="width:190px">Practice</th><th style="width:180px">Who does it</th><th>Our position</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="k">Quantitative leakage audit of the observation space</td>
+        <td>KTD-Fin (2605.28359) runs a de-anonymisation probe and reports joint recovery &le;1.5%</td>
+        <td><span class="chip c-crit">Absent</span> &mdash; and we would score 100% recovery (F-1). This is the single most damaging gap, because contamination-freedom is our headline claim and the field now has an established way of demonstrating it.</td>
+      </tr>
+      <tr>
+        <td class="k">Trivial-policy and reference-policy baselines</td>
+        <td>Drift No More (2510.07777) defines drift as KL to a goal-consistent reference policy; standard benchmark practice generally</td>
+        <td><span class="chip c-crit">Absent</span> &mdash; no random, passive, buy-and-hold, or oracle baseline appears anywhere. F-3 shows what that concealed.</td>
+      </tr>
+      <tr>
+        <td class="k">Stylized-facts validation of a synthetic generator</td>
+        <td>Hashimoto et al. (2510.12189) validate an LOB-over-synthetic-fundamental design by reproducing stylized facts within empirical ranges; Cont (2001) is the reference list</td>
+        <td><span class="chip c-crit">Absent</span> &mdash; and D-8 shows the one stylized fact we cite is not present. This is the direct answer to nhWU N3.</td>
+      </tr>
+      <tr>
+        <td class="k">Transaction costs</td>
+        <td>CLQT (2606.29771) is explicitly cost-aware; the Agentic Trading survey (2605.19337) notes only 1 of 19 closed-loop studies models costs</td>
+        <td><span class="chip c-warn">Absent by choice</span> &mdash; defensible under the reframing, but must be stated rather than left silent. Zero-cost trading makes the flat-market failure mode economically free, which is fine for a compliance measure and fatal for a deployment claim.</td>
+      </tr>
+      <tr>
+        <td class="k">Genuine multi-turn context accumulation</td>
+        <td>Every paper in the drift literature: Laban (2505.06120), Inherited Goal Drift (2603.03258), When Attention Closes (2605.12922), Drift No More</td>
+        <td><span class="chip c-crit">Absent</span> &mdash; F-6. We are the only paper in this cluster claiming a long-horizon context effect without a growing context.</td>
+      </tr>
+      <tr>
+        <td class="k">Replay / audit trail, exact prompt logging</td>
+        <td>CLQT hash-chains its audit log; the survey reports 0 of 77 studies reaching its top reproducibility tier</td>
+        <td><span class="chip c-warn">Partial</span> &mdash; we log decisions and rationales but not the prompt actually sent. Cheap to add and it is a differentiator in a field the survey says has none.</td>
+      </tr>
+      <tr>
+        <td class="k">Hierarchical statistics with multiplicity control</td>
+        <td>Routine; the revision plan already identifies this</td>
+        <td><span class="chip c-warn">Absent</span> &mdash; a single Wilcoxon pools 270 pairs as independent when each model contributes 15 and the same 5 seeds recur across all models.</td>
+      </tr>
+      <tr>
+        <td class="k">Selective rather than always-on re-injection</td>
+        <td>Proactive Memory Agent (2607.08716): silence is an explicit action, selective beats always-on</td>
+        <td><span class="chip c-ok">Convergent</span> &mdash; our persona&ndash;scenario result is the same finding, arrived at independently. Worth foregrounding, and worth citing carefully so it reads as convergence rather than as our being scooped.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 7 -->
+<section id="s7">
+  <span class="h2num">07 — The plan</span>
+  <h2>Prioritized, with implementation sketches</h2>
+
+  <p>Organised by what the work costs, because that is what determines whether it fits. <strong>Tier A costs no API calls</strong> — everything is recomputable from the 966,700 logged rows you already have. <strong>Tier B</strong> changes what the agent sees and forces re-runs. <strong>Tier C</strong> is deferred.</p>
+
+  <h3>Tier A &mdash; Required, zero API cost, recomputable from existing logs</h3>
+
+  <p>This tier alone repairs four of the five blocking findings' <em>analysis</em> consequences and produces most of the validation evidence. It should start immediately and be finished in week 1. Every logged CSV already contains <code>Price</code>, <code>Fundamental_Value</code>, <code>Action</code>, <code>Cash</code>, <code>Portfolio_Value</code>, which is everything the metrics need.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Tier A &mdash; analysis-layer repairs</caption>
+    <thead><tr><th style="width:38px">#</th><th style="width:172px">Item</th><th>What it fixes / answers</th><th style="width:78px">Effort</th></tr></thead>
+    <tbody>
+      <tr><td class="num">A1</td><td class="k">Trivial-policy baseline suite</td><td>Computes RG / CI / MAS for always-HOLD, always-BUY, buy&amp;hold, random, and a V-oracle, per scenario and seed. Gives every metric a floor and a ceiling. <em>Answers:</em> F-3, F-4, F-5, and the field-standard gap. <strong>Do this first</strong> — it is four hours of work and it tells you which of the paper's numbers are real.</td><td>0.5 d</td></tr>
+      <tr><td class="num">A2</td><td class="k">RG v2: dead zone + mandate-conditional scoring</td><td>Score only steps where |P&minus;V|/V exceeds a stated resolvability threshold &theta;; drop the free-pass <code>H<sub>t</sub>&gt;0</code> clause; report coverage (fraction of steps scored) alongside the score. Optionally add the revision plan's mandate-conditional regret as a second column. <em>Answers:</em> F-2, F-3, Gxm9 Q-RG, nhWU N5.</td><td>1.5 d</td></tr>
+      <tr><td class="num">A3</td><td class="k">CI v2: exposure-normalised panic measure</td><td>Replace MDD with a measure that actually rises with panic selling — e.g. realised sell volume in the top decile of drawdown velocity, or drawdown residualised on average equity exposure. Keep MDD reported as a descriptive, not as the Caricature Index. <em>Answers:</em> F-4.</td><td>1.5 d</td></tr>
+      <tr><td class="num">A4</td><td class="k">MAS floor correction</td><td>Report the passive floor per (scenario, C<sub>ideal</sub>) and either subtract it or report an action-attributable variant computed from realised trades only. <em>Answers:</em> F-5, nhWU N2.</td><td>1 d</td></tr>
+      <tr><td class="num">A5</td><td class="k">Retire or rebuild the 4.4&times; claim</td><td>Recompute the temporal panel with a windowed (non-expanding) statistic, then test the corrected trend against the constant-exposure null in F-7. If it survives, the claim is now genuinely earned and much stronger. If it does not, drop it from the abstract. <em>Answers:</em> F-7, VG7b W3.</td><td>1 d</td></tr>
+      <tr><td class="num">A6</td><td class="k">Mixed-effects statistics + BH correction</td><td>Already scoped in the revision plan; do it here since it is analysis-only. Fixed effect for condition, random for model / persona / seed.</td><td>1 d</td></tr>
+      <tr><td class="num">A7</td><td class="k">Resolvability + leakage audit tables</td><td>Ship the two probe tables from &sect;05 as paper artifacts (see &sect;09). <em>Answers:</em> the validation question directly.</td><td>1 d</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>A2 sketch &mdash; against <code>analysis_may/numerical_analysis.py:164</code></h4>
+<pre><span class="cm"># current: no dead zone; H&gt;0 makes every HOLD rational</span>
+def yt(row):
+    ...
+    elif a == "HOLD":
+        return 1.0 if (pt &gt; vt) or (h &gt; 1.0) else 0.0
+
+<span class="cm"># v2: score only resolvable steps, drop the free pass</span>
+THETA = 0.02                       <span class="cm"># justify from the generator noise scale, not by hand</span>
+def yt_v2(row):
+    pt, vt = row["Price"], row["Fundamental_Value"]
+    if pd.isna(vt) or vt &lt;= 0:            return np.nan
+    <span class="add">if abs(pt - vt) / vt &lt; THETA:         return np.nan   # unresolvable: excluded, not scored 0.5</span>
+    a = row["Action"]
+    if   a == "BUY":  return 1.0 if pt &lt; vt else 0.0
+    elif a == "SELL": return 1.0 if pt &gt; vt else 0.0
+    <span class="del">else:             return 1.0 if (pt &gt; vt) or (h &gt; 1.0) else 0.0</span>
+    <span class="add">else:             return 1.0 if pt &gt; vt else 0.0        # HOLD is right only when overvalued</span>
+
+<span class="cm"># and always report coverage next to the score</span>
+rg      = df["yt_v2"].mean() * 100
+coverage = df["yt_v2"].notna().mean() * 100</pre>
+  <p>Choose &theta; from the generator, not by hand — the natural choice is a small multiple of the price-noise standard deviation at that step, which makes it a derived quantity rather than the &ldquo;free threshold parameter&rdquo; we told Gxm9 we wanted to avoid. That answer to Gxm9's question then becomes: we agree, and here is the principled threshold.</p>
+
+  <hr>
+
+  <h3>Tier B &mdash; Required, forces re-runs</h3>
+
+  <div class="tw">
+  <table>
+    <caption>Tier B &mdash; environment and interface</caption>
+    <thead><tr><th style="width:38px">#</th><th style="width:172px">Item</th><th>What it fixes / answers</th><th style="width:78px">Effort</th></tr></thead>
+    <tbody>
+      <tr><td class="num">B1</td><td class="k">Break the V &rarr; observable leak</td><td>The blocking fix. Make EPS a noisy, lagged accounting estimate of V rather than V/15, so P/E stays informative about mispricing without inverting to it. <em>Answers:</em> F-1, and restores the paper's central claim.</td><td>1 d</td></tr>
+      <tr><td class="num">B2</td><td class="k">Context accumulation as an experimental factor</td><td>Three memory conditions instead of an assumption (below). <em>Answers:</em> F-6, VG7b W1 at the level of the independent variable, nhWU N6.</td><td>3 d</td></tr>
+      <tr><td class="num">B3</td><td class="k">Give the crash a panic onset</td><td>Apply &delta; from &tau;<sub>1</sub> onward with a ramp, not from day 1. <em>Answers:</em> D-2.</td><td>0.5 d</td></tr>
+      <tr><td class="num">B4</td><td class="k">Widen the bull trap's phase-1 dead zone</td><td>Phase 1 currently has 66% of steps inside 1% mispricing. Either widen the separation or accept it and exclude those steps via A2's &theta;. <em>Answers:</em> F-2.</td><td>0.5 d</td></tr>
+      <tr><td class="num">B5</td><td class="k">Stimulus hygiene</td><td>Rename <code>SMA60</code>&rarr;<code>SMA50</code>; decouple SMA windows from <code>n_days</code> so the observation space is constant across T; either show the six unshown fields or delete them from Table 2; set temperature honestly and log it. <em>Answers:</em> D-5, D-6, D-7.</td><td>0.5 d</td></tr>
+      <tr><td class="num">B6</td><td class="k">Real volatility clustering + AR(1) sentiment</td><td>Feed realised innovations back into &phi; so the recursion is actually GARCH-like, raise persistence toward 0.9, and give sentiment &rho;&asymp;0.7. Then verify against Cont's stylized facts. <em>Answers:</em> D-8, F-9, VG7b W6, nhWU N3.</td><td>1.5 d</td></tr>
+      <tr><td class="num">B7</td><td class="k">Prompt logging + replay</td><td>Persist the exact rendered prompt (or its hash) per step. Enables the audit-trail standard and makes every later claim about what the agent saw checkable.</td><td>0.5 d</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>B1 sketch &mdash; against <code>envs/synthetic_market.py:230</code></h4>
+<pre><span class="cm"># current: EPS = V/15 exactly, so P/E = 15*P/V and V = 15*P/(P/E)</span>
+<span class="del">df['earnings_per_share'] = df['fundamental_value'] / 15.0</span>
+
+<span class="cm"># v2: EPS is a lagged, noisy accounting estimate. Reported quarterly,</span>
+<span class="cm"># stale between reports, and observed with error.</span>
+<span class="add">rng   = np.random.default_rng(self.seed + 7)          # own stream: keeps old seeds reproducible
+base  = self.data_eps_multiple                        # sampled per-run, NOT a global constant
+acct  = df['fundamental_value'].shift(REPORT_LAG).ffill().bfill()
+noise = rng.normal(1.0, EPS_NOISE, self.n_days)       # multiplicative observation error
+eps   = (acct / base) * noise
+df['earnings_per_share'] = eps.clip(lower=0.01)
+# quarterly staleness: EPS only updates every 63 trading days
+df['earnings_per_share'] = df['earnings_per_share'].where(
+    df.index % 63 == 0).ffill().bfill()</span></pre>
+  <p>Two properties matter. Sampling <code>base</code> per run breaks the P/E&nbsp;=&nbsp;15 fair-value anchor, which is what lets a memorised real-world prior score for free. The lag plus noise makes V statistically inferable but not algebraically recoverable — which is what you want, since a genuinely unlearnable ground truth would make the task impossible rather than hard. Then <strong>report the residual recoverability</strong>: fit the best predictor of V from O<sub>t</sub> and publish its R², the way KTD-Fin publishes its de-anonymisation rate. That converts your weakest claim into a measured quantity.</p>
+
+  <h4>B2 sketch &mdash; the design that turns F-6 into the paper's contribution</h4>
+  <p>Rather than retrofitting history and hoping, make context load the independent variable. Three conditions, all against the same environment:</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:150px">Condition</th><th>What crosses the step boundary</th><th class="num" style="width:120px">Ctx @ t=200</th><th class="num" style="width:110px">Input tok / run</th></tr></thead>
+    <tbody>
+      <tr><td class="k">M0 &mdash; memoryless</td><td>Nothing but cash and holdings. <strong>This is the current implementation</strong>, correctly labelled. Serves as the null: no context accumulation is possible, so any temporal pattern here is environmental or portfolio path dependence.</td><td class="num">~1.6k</td><td class="num">~0.3M</td></tr>
+      <tr><td class="k">M1 &mdash; trade log</td><td>A compact running ledger of prior actions and prices (~40 tokens/step). Genuine accumulation, deployment-realistic, affordable at full grid scale.</td><td class="num">~9.6k</td><td class="num">~1.0M</td></tr>
+      <tr><td class="k">M2 &mdash; full transcript</td><td>Every prior observation and rationale. Maximal accumulation; the condition the paper currently claims to be running.</td><td class="num">~57k</td><td class="num">~5.9M</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Crossed with static vs. re-grounded, this gives a dose&ndash;response on context load. <strong>MSD is then defined as the interaction</strong>: the degree to which mandate adherence degrades <em>as a function of accumulated context</em>, with M0 pinning the null. That is a materially stronger design than the current one, it is the honest version of what we claimed, and it converts our worst finding into the paper's identification strategy. It also reinstates M1 (attention decay) as a meaningful future experiment, because in the M2 condition there is finally a mandate span whose relative attention mass can decay.</p>
+
+  <div class="call">
+    <p class="eyebrow">Implementation note</p>
+    <p>M1 and M2 require <code>MessagesPlaceholder("history")</code> in the prompt template and an accumulating message list on the agent, plus provider prompt caching — without caching, M2 is unaffordable (see &sect;08). Anthropic needs explicit <code>cache_control</code> breakpoints; OpenAI and Gemini cache long prefixes automatically. Budget half a day just for verifying cache hit rates before launching, because getting this wrong is a 10&times; cost error, not a 10% one.</p>
+  </div>
+
+  <hr>
+
+  <h3>Tier C &mdash; Deferred past this submission</h3>
+  <p>Not because they lack value, but because they do not fit and are not what the reviewers actually need answered.</p>
+  <ul>
+    <li><strong>M1&ndash;M4 mechanistic track.</strong> Blocked on B2 by F-6, and even after B2 the attention analysis over 57k-token rollouts on open weights is a multi-week project on its own. Explicitly say in the paper that mechanism is next, and cite When Attention Closes (2605.12922) as the precedent you will build on — that converts a gap into a roadmap.</li>
+    <li><strong>ABIDES port.</strong> See &sect;01 and &sect;10.</li>
+    <li><strong>Full OCEAN grid and continuous trait sampling.</strong> Keep the existing three-model replication; under the reframing the psychometric axis is no longer load-bearing.</li>
+    <li><strong>C<sub>ideal</sub> derived from Jiang, Peng &amp; Yan (2024).</strong> Genuinely good, fixes D-9 and nhWU N2 at the root, but re-deriving targets changes every MAS number. If A4 lands well, the floor correction addresses the tautology concern sufficiently for this cycle. Reconsider for ARR if the schedule holds.</li>
+    <li><strong>Mandate wording sensitivity (VG7b Q2).</strong> Cheap in principle but it multiplies the grid. Keep as acknowledged-open.</li>
+  </ul>
+</section>
+
+<!-- ============================================ 8 -->
+<section id="s8">
+  <span class="h2num">08 — Blast radius</span>
+  <h2>What invalidates existing results, and what it costs</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Per-item blast radius and cost</caption>
+    <thead><tr>
+      <th style="width:44px">Item</th><th style="width:118px">Blast radius</th><th>Consequence</th><th class="num" style="width:104px">API cost</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k">A1&ndash;A7</td><td><span class="chip c-ok">Additive</span></td><td>Pure re-analysis of logged CSVs. Existing runs remain valid as data; only the numbers derived from them change. Backwards compatible; old and new metrics can be reported side by side, which is itself useful — showing the corrected metric next to the published one is a strong honesty signal.</td><td class="num">$0</td></tr>
+      <tr><td class="k">B1</td><td><span class="chip c-crit">Full re-run</span></td><td>Changes <code>reported_PE</code>, therefore the prompt, therefore every decision. Invalidates the entire main grid, OCEAN, placebo, k-sweep, and long-horizon runs.</td><td class="num">see below</td></tr>
+      <tr><td class="k">B2</td><td><span class="chip c-warn">New arms</span></td><td>M0 is the existing design — but it must be re-run anyway because B1 changed the observation. M1 and M2 are additional cells, not replacements.</td><td class="num">dominant</td></tr>
+      <tr><td class="k">B3, B4, B6</td><td><span class="chip c-crit">Full re-run</span></td><td>Change the price path. Crash and bull-trap results invalidated by B3/B4; flat invalidated by B6.</td><td class="num">bundled with B1</td></tr>
+      <tr><td class="k">B5</td><td><span class="chip c-crit">Full re-run</span></td><td>Changes the prompt text. Bundle with B1 — there is no reason to pay for two re-runs.</td><td class="num">bundled</td></tr>
+      <tr><td class="k">B7</td><td><span class="chip c-ok">Additive</span></td><td>Logging only; no behavioural change.</td><td class="num">$0</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p><strong>The practical consequence: there is exactly one re-run, and everything in Tier B must ship in it.</strong> Freeze the environment spec at the end of week 2 and do not touch it again — a second re-run does not fit in the schedule.</p>
+
+  <h4>Cost estimate</h4>
+  <p>Estimates below assume ~1.6k input tokens for the memoryless prompt (the persona core alone is ~1.2k tokens), ~150 output tokens per decision, and blended API pricing across a mixed frontier/open panel. Treat them as order-of-magnitude, and re-derive from a metered pilot in week 2 before committing.</p>
+
+  <div class="tw">
+  <table>
+    <thead><tr>
+      <th>Configuration</th><th class="num" style="width:78px">Runs</th><th class="num" style="width:96px">Calls</th><th class="num" style="width:110px">Input tokens</th><th class="num" style="width:120px">Est. cost</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="k">M0 memoryless, full grid (18&times;3&times;3&times;2&times;5)</td><td class="num">1,620</td><td class="num">324k</td><td class="num">~0.52B</td><td class="num">$1.0k&ndash;2.5k</td></tr>
+      <tr><td class="k">M1 trade log, full grid</td><td class="num">1,620</td><td class="num">324k</td><td class="num">~1.7B</td><td class="num">$3k&ndash;7k</td></tr>
+      <tr><td class="k">M2 full transcript, 6-model sub-grid</td><td class="num">540</td><td class="num">108k</td><td class="num">~3.2B raw</td><td class="num">$4k&ndash;12k<br><span style="font-size:11px">(&asymp;$1k&ndash;3k cached)</span></td></tr>
+      <tr><td class="k">Diagnostics (placebo, k-sweep, OCEAN, T=800)</td><td class="num">~420</td><td class="num">~90k</td><td class="num">~0.2B</td><td class="num">$0.4k&ndash;1k</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Three cost levers, in order of leverage. <strong>Prompt caching is not optional</strong> for M2 — it is the difference between $12k and $3k, and the accumulating prefix is the ideal cache shape. <strong>Restrict M2 to a cost-tiered 6-model panel</strong>; you do not need Opus 4.6 and GPT-5.4 in every cell to make the dose&ndash;response point, and one frontier model per family suffices for the headline. <strong>M2 cost scales as T²</strong>, so if the budget binds, run M2 at T=100 for the cheaper models and T=200 only for the headline models, and report the horizon explicitly.</p>
+
+  <div class="warnbox">
+    <p class="eyebrow">If the budget will not stretch</p>
+    <p>Drop M1 (trade log) at full grid and run it on the same 6-model panel as M2. You lose per-model breadth on the dose&ndash;response but keep the three-level design intact, and the 18-model breadth is preserved where it is cheap, in M0. Total then lands near $3k&ndash;6k. What you must <em>not</em> drop is M0 — it is the null that makes the whole comparison identify anything.</p>
+  </div>
+</section>
+
+<!-- ============================================ 9 -->
+<section id="s9">
+  <span class="h2num">09 — Validation</span>
+  <h2>What would let us claim the generator is grounded rather than arbitrary</h2>
+
+  <p>Under the reframing, &ldquo;empirically grounded&rdquo; must not mean &ldquo;resembles a real market&rdquo; — that would re-import the realism standard you have deliberately set aside, and it is a standard this environment will always lose against. It should mean: <strong>the instrument has known and reported measurement properties.</strong> That is the standard used for a physical instrument, it is achievable in six weeks, and it is a stronger claim than realism because it is checkable.</p>
+
+  <p>Ship this as a numbered subsection plus one appendix table. It is the section that answers all three reviewers at once.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Proposed instrument validation suite</caption>
+    <thead><tr><th style="width:38px">#</th><th style="width:170px">Check</th><th>What is reported</th><th style="width:74px">Answers</th></tr></thead>
+    <tbody>
+      <tr><td class="num">V1</td><td class="k">Leakage audit</td><td>R² of the best predictor of V<sub>t</sub> from O<sub>t</sub> (linear, and a gradient-boosted model), plus an explicit statement of the residual recoverability. Target: substantially below 1.0, reported not asserted. Modelled on KTD-Fin's de-anonymisation probe.</td><td>F-1</td></tr>
+      <tr><td class="num">V2</td><td class="k">Ground-truth resolvability</td><td>Per scenario and phase: the distribution of |P&minus;V|/V, and the fraction of steps exceeding &theta;. States plainly on what fraction of the horizon an objectively correct action exists. Metrics are then scored on the resolvable subset with coverage reported.</td><td>F-2</td></tr>
+      <tr><td class="num">V3</td><td class="k">Baseline bracketing</td><td>Every metric reported alongside always-HOLD, always-BUY, buy&amp;hold, uniform-random, and a V-oracle. Gives each number a floor and a ceiling. <strong>Highest value per hour of any item in this plan.</strong></td><td>F-3, F-4</td></tr>
+      <tr><td class="num">V4</td><td class="k">Construct monotonicity</td><td>For each metric, run scripted policies that vary the target behaviour by design — panic intensity for CI, allocation drift rate for MAS, value-alignment probability for RG — and show the metric moves monotonically with the construct. This is the check that would have caught F-4 before submission, and it is the most persuasive single figure you could add.</td><td>F-4, F-5</td></tr>
+      <tr><td class="num">V5</td><td class="k">Null-model control</td><td>The constant-behaviour null from F-7, run against whatever temporal statistic replaces the expanding minimum. Demonstrates the compounding claim is not a property of the estimator.</td><td>F-7</td></tr>
+      <tr><td class="num">V6</td><td class="k">Parameter sensitivity</td><td>Extend the existing &delta; sweep to the FOMO drift rate and the volatility persistence parameter. Report whether conclusions are stable across the swept range, not just at the default.</td><td>nhWU N3</td></tr>
+      <tr><td class="num">V7</td><td class="k">Stylized-facts disclosure</td><td>A table of Cont (2001) stylized facts marked reproduced / not reproduced — <em>including the ones you do not reproduce</em> — with an explicit statement that reproducing them is not required for the instrument's validity, only decoupling (V1) and resolvability (V2) are. Honest disclosure here is worth far more than a partial imitation of realism.</td><td>D-8, W6, R1</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>V7 deserves emphasis because it is the rhetorical key to the whole revision. Right now the paper is in a losing position: it half-claims realism, and every reviewer correctly attacks the half. The winning move is to claim <em>none</em> of it and instead claim measurement properties that a real-market study cannot claim at all. &ldquo;We do not reproduce fat tails or volatility clustering, and we do not need to; here is what we do guarantee, and here is the evidence&rdquo; is a much harder position to attack than anything currently in the paper — and it is the natural companion to the reframing you have already chosen.</p>
+</section>
+
+<!-- ============================================ 10 -->
+<section id="s10">
+  <span class="h2num">10 — Scope</span>
+  <h2>What to leave broken, and how to say so</h2>
+
+  <p>Not fixing something is only defensible if the limitation is stated precisely enough that a reviewer cannot claim you were unaware of it. Below is what I would leave, with the argument for each. The pattern throughout: <em>name the specific mechanism you are giving up, and say what it would and would not change.</em> Vague limitations read as hedging; specific ones read as control.</p>
+
+  <div class="tw">
+  <table>
+    <caption>Deliberate non-fixes and their scoping</caption>
+    <thead><tr><th style="width:186px">Not fixing</th><th>How to scope it honestly</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="k">Multi-agent dynamics and an order book</td>
+        <td>Drop the current argument, which is wrong. Say instead: endogenous price formation would make V<sub>t</sub> a function of the agent's own trades, so the instrument would no longer have an exogenous reference. Acknowledge ABIDES explicitly — an exogenous fundamental oracle plus a limit order book is compatible with a latent ground truth — and say that this is the right architecture for studying market impact, which is not what we measure. That concedes the technical point while keeping the design decision.</td>
+      </tr>
+      <tr>
+        <td class="k">Multiple assets and portfolio effects</td>
+        <td>A single mandate parameter over a single risky asset is the minimal setting in which mandate adherence is identifiable. Cross-asset allocation would confound adherence with selection skill. Name that confound; it is the actual reason.</td>
+      </tr>
+      <tr>
+        <td class="k">Transaction costs and slippage</td>
+        <td>State it as a deliberate property: zero-cost trading makes over-trading behaviourally observable but economically free, which isolates compliance from profitability. Then state the price: no result here transfers to a cost-sensitive deployment, and returns reported in the paper are not comparable to any live benchmark. Cite CLQT as the cost-aware complement.</td>
+      </tr>
+      <tr>
+        <td class="k">Realistic news and sentiment</td>
+        <td>After B6 gives sentiment an AR(1) structure, the remaining gap is event-driven and fat-tailed dynamics. Keep the existing W6 argument — validity rests on decoupling, not sentiment realism — which becomes sound once V1 and V2 are shipped.</td>
+      </tr>
+      <tr>
+        <td class="k">Psychometric validity of the personas</td>
+        <td>The reframing kills this cleanly. Personas are <em>instructions</em>, not measured traits; MBTI is a source of instruction text and nothing else. Remove &ldquo;psychometric&rdquo; from the title, abstract and metric names. This answers nhWU's primary objection, Gxm9's second, and VG7b's W2 in one move, and it costs nothing. It is the highest-leverage sentence-level change in the whole plan.</td>
+      </tr>
+      <tr>
+        <td class="k">Persona coverage beyond three profiles</td>
+        <td>Unchanged from the current limitations text, which is adequate. Under the reframing the relevant axis is instruction difficulty, not trait coverage — reframe the limitation in those terms and it reads as scoped rather than thin.</td>
+      </tr>
+      <tr>
+        <td class="k">Mandate wording sensitivity</td>
+        <td>Keep as acknowledged-open, as we told VG7b. Note that the O3 numerical ablation gives a partial answer while being confounded (&sect;03), and say so rather than over-claiming it a second time.</td>
+      </tr>
+      <tr>
+        <td class="k">Real-market transfer</td>
+        <td>State flatly and early that no result is claimed to transfer to live trading, and that the environment is a stimulus generator with a known latent state, not a market model. Saying this in the introduction rather than the limitations is what makes Gxm9's &ldquo;no practical value&rdquo; objection inapplicable rather than merely answered.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================ 11 -->
+<section id="s11">
+  <span class="h2num">11 — Schedule</span>
+  <h2>Six weeks, and what does not fit</h2>
+
+  <div class="tw">
+  <table>
+    <caption>Working schedule to the ICLR deadlines</caption>
+    <thead><tr><th style="width:96px">Week</th><th style="width:112px">Dates</th><th>Work</th><th style="width:120px">Gate</th></tr></thead>
+    <tbody>
+      <tr><td class="k">W1</td><td>15&ndash;21 Aug</td><td>Tier A in full, starting with A1. No API spend. By Friday you know which published numbers survive corrected metrics — that determines how much of the paper's narrative has to change and it should gate everything after.</td><td><span class="chip c-acc">Go / no-go</span></td></tr>
+      <tr><td class="k">W2</td><td>22&ndash;28 Aug</td><td>Tier B build: B1&ndash;B7. Validation suite V1&ndash;V7 implemented against the new environment. Metered pilot (one model, all scenarios) to re-derive real cost and verify cache hit rates.</td><td><span class="chip c-acc">Spec freeze</span></td></tr>
+      <tr><td class="k">W3</td><td>29 Aug&ndash;4 Sep</td><td>Launch the full re-run: M0 full grid, M1 and M2 on the chosen panels. Runs execute unattended; use the week for figures, related-work integration (the 22 new references), and drafting sections that do not depend on results.</td><td></td></tr>
+      <tr><td class="k">W4</td><td>5&ndash;11 Sep</td><td>Runs land. Analysis, all figures, validation tables. This is the week with no slack — if W3 slips, M2 is the thing to cut.</td><td><span class="chip c-warn">Results lock</span></td></tr>
+      <tr><td class="k">W5</td><td>12&ndash;18 Sep</td><td>Write. Abstract submitted 18 Sep.</td><td><span class="chip c-crit">Abstract due</span></td></tr>
+      <tr><td class="k">W6</td><td>19&ndash;25 Sep</td><td>Full draft, internal review, appendices, code release with the validation suite.</td><td><span class="chip c-crit">Paper due</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>What does not fit, stated plainly</h4>
+  <ul>
+    <li><strong>The entire mechanistic track (M1&ndash;M4).</strong> Blocked by F-6 and independently too large. This is the biggest divergence from the current revision plan, which rates M1&ndash;M3 as HIGH.</li>
+    <li><strong>The ABIDES port.</strong> Would consume the whole window and fixes none of the blocking findings.</li>
+    <li><strong>C<sub>ideal</sub> re-derivation from the finance literature.</strong> Correct but it perturbs every MAS number; A4 is the affordable substitute.</li>
+    <li><strong>Full OCEAN grid, full k-sweep on behavioural metrics, mandate paraphrase sensitivity.</strong> Each multiplies the grid at exactly the moment the grid is already being re-run once.</li>
+    <li><strong>A second environment revision.</strong> There is budget and calendar for one re-run. The W2 spec freeze is real.</li>
+  </ul>
+
+  <div class="call">
+    <p class="eyebrow">The honest fallback</p>
+    <p>If W1 shows that the corrected metrics substantially change the headline findings — and F-3, F-4 and F-7 make that a live possibility rather than a remote one — then ICLR is the wrong target and ARR on 12 October is the right one, with the extra 2.5 weeks spent on getting the new claims right rather than on compressing the writing. Decide that at the W1 gate, not in week five. The one outcome to avoid is submitting corrected metrics you have not had time to understand, because the corrected numbers are the paper's entire credibility argument this cycle.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <p>Prepared from: post-rebuttal PDF (29pp), the three COLM reviews and our responses, the resubmission revision plan, the August 2026 related-work survey, and direct execution of <code>envs/synthetic_market.py</code>, <code>agent/</code>, <code>simulation/</code> at seeds {42,123,456,789,999}, T=200. All numeric evidence in &sect;04 and &sect;05 is probe output against the shipped code, not inference from reading it. Cost figures are order-of-magnitude estimates pending the week-2 metered pilot.</p>
+</footer>
+
+</main>
+</div>
+</div>
+
+</body>
+</html>

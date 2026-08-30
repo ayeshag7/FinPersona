@@ -1,0 +1,136 @@
+{
+ "spec": {
+  "root": "C:\\Users\\ayesha.gull01\\FinPersona\\datasets",
+  "price_dir": "01_prices/daily",
+  "price_col": "Adj Close",
+  "level_col": "Close",
+  "fundamentals_dir": "03_fundamentals/by_ticker",
+  "reuse_screen": "_manifests/ticker_reuse_screen.csv",
+  "survivorship": "_manifests/survivorship_accounting.csv",
+  "sectors_file": "02_constituents/wikipedia_current_20250611.csv",
+  "shiller_file": "04_shiller/shiller_monthly.csv",
+  "start": "2000-01-03",
+  "end": "2024-12-31",
+  "min_days_short": 1000,
+  "sub_periods": [
+   [
+    "2000-07",
+    "2000-01-03",
+    "2007-12-31"
+   ],
+   [
+    "2008-12",
+    "2008-01-01",
+    "2012-12-31"
+   ],
+   [
+    "2013-19",
+    "2013-01-01",
+    "2019-12-31"
+   ],
+   [
+    "2020-24",
+    "2020-01-01",
+    "2024-12-31"
+   ]
+  ],
+  "source_note": "E1.0 free panel (Yahoo via yfinance 1.6.0, SEC EDGAR company-facts, Shiller), 29 Aug 2026"
+ },
+ "set": "A",
+ "n_stocks": 415,
+ "window": [
+  "2009-01-01",
+  "2024-12-31"
+ ],
+ "window_days": 10,
+ "z_threshold": 4.0,
+ "n_boot_over_stocks": 1000,
+ "point": {
+  "window_share_of_days": 0.14520256884467828,
+  "q_share_of_jumps_in_window": 0.4344634276561666,
+  "enrichment": 2.992119430895935,
+  "jump_rate_in_window": 0.013416981653153507,
+  "jump_rate_outside": 0.0029666983385228966,
+  "rate_ratio": 4.5225298032268935,
+  "excess_kurtosis_in": 16.15946705739199,
+  "excess_kurtosis_out": 14.982323809447841,
+  "r_jump_in_mean": -0.01353629834506554,
+  "r_jump_in_sd": 0.10981170460701602,
+  "r_jump_in_neg_share": 0.5615975422427035,
+  "r_jump_out_mean": -0.018686146034593273,
+  "r_jump_out_sd": 0.12111396992458577,
+  "r_jump_out_neg_share": 0.6075053103611046,
+  "n_jumps": 7492,
+  "n_jumps_in": 3255,
+  "n_days": 1670790,
+  "n_window_days": 242603
+ },
+ "ci95": {
+  "window_share_of_days": [
+   0.14345007451564828,
+   0.14689162013179397
+  ],
+  "q_share_of_jumps_in_window": [
+   0.411762052496224,
+   0.45637001045609116
+  ],
+  "enrichment": [
+   2.8328435347598697,
+   3.1448521532757128
+  ],
+  "jump_rate_in_window": [
+   0.012443306546396462,
+   0.01433549418543637
+  ],
+  "jump_rate_outside": [
+   0.0028275577860793462,
+   0.003110079161849933
+  ],
+  "rate_ratio": [
+   4.11023112836891,
+   4.947579614946159
+  ],
+  "excess_kurtosis_in": [
+   14.205651069992538,
+   18.218919698238324
+  ],
+  "excess_kurtosis_out": [
+   8.342141596018433,
+   24.08810235016443
+  ],
+  "r_jump_in_mean": [
+   -0.017378807980803556,
+   -0.009633066217750135
+  ],
+  "r_jump_in_sd": [
+   0.1029865502239226,
+   0.11727913816751874
+  ],
+  "r_jump_in_neg_share": [
+   0.5432094254068651,
+   0.5786610655005676
+  ],
+  "r_jump_out_mean": [
+   -0.022429411381879105,
+   -0.015104593936495613
+  ],
+  "r_jump_out_sd": [
+   0.11511611312560074,
+   0.12809980287595624
+  ],
+  "r_jump_out_neg_share": [
+   0.5904699521224385,
+   0.6246872881962169
+  ]
+ },
+ "literature_beside": {
+  "ABD 2007 (REStat; S&P 500 futures 1990-2002; read by the third pass, LOG 4.2)": "jump variation 14.4 % of realised variance; 27.9 % of days with a significant jump (index level)",
+  "Boudoukh, Feldman, Kogan & Richardson 2019 (RFS; read)": "identified news explains 49.6 % of overnight idiosyncratic volatility (firm level)"
+ },
+ "caveats": [
+  "filing dates, not 8-K release dates: the window is 10 trading days ending on the 10-Q/10-K filing",
+  "set A survivors only (REG-15): crash-related jumps of delisted names are absent",
+  "EDGAR coverage starts 2009, so 2000-2008 residuals are not split"
+ ],
+ "seconds": 102
+}

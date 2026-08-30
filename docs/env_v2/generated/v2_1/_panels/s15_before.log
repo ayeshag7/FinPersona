@@ -1,0 +1,6 @@
+  fw_fallback_hl150: sd(x_1) 0.1818, mean sigma2 2.63e-04, mean n_f 0.9980
+  fw_hl60: sd(x_1) 0.1219, mean sigma2 2.63e-04, mean n_f 0.9970
+  fw_index: sd(x_1) 0.2506, mean sigma2 2.63e-04, mean n_f 0.9986
+  pruna: sd(x_1) 0.2523, mean sigma2 2.63e-04, mean n_f 0.9995
+  ar1: sd(x_1) 0.1821, mean sigma2 2.63e-04, mean n_f 0.5000
+S15 before: 40 s

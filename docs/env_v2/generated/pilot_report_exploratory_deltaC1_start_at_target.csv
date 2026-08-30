@@ -1,0 +1,2 @@
+Model,n,kw_p,delta_ISFJ-INTJ,delta_INTJ-ENTJ,band_hit,auc,pass,note
+gemini-2.5-flash,43,0.0001711808785176607,0.6000000000000001,-1.0,0.0,0.6833333333333332,False,"EXPLORATORY, not a gate: delta C_1 fed to a level/band-membership test is ill-posed under start-at-target (item 54); re-specified in Phase 7"

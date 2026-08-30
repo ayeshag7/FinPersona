@@ -1,0 +1,169 @@
+{
+ "estimates": {
+  "A": {
+   "name": "variance ratios (set A, full sample)",
+   "h": 4.897221642216058,
+   "h_ci": [
+    4.211974962014168,
+    5.614475430381737
+   ],
+   "h_ci_block": [
+    0.944251675274151,
+    13.279780850945485
+   ],
+   "s_x": 0.02372996238833469,
+   "s_x_ci": [
+    0.021645370410933513,
+    0.025803977234842585
+   ],
+   "sigma_V": 0.02048341058017436,
+   "sigma_V_ci": [
+    0.019729330031622336,
+    0.021292366023603168
+   ],
+   "sigma_V_ci_block": [
+    0.01674757624219891,
+    0.024304359672315527
+   ],
+   "n": 417
+  },
+  "B": {
+   "name": "log(P/V_hat) AR(1), median-unbiased (set A, EPS basic, sector multiple)",
+   "h": 255.78469816743845,
+   "h_ci": [
+    222.94606824623867,
+    276.619921735051
+   ],
+   "s_x": 0.3898195883792335,
+   "s_x_ci": [
+    0.36124033700962405,
+    0.4370436265249498
+   ],
+   "sigma_V": null,
+   "sigma_V_ci": null,
+   "n": 367,
+   "note": "sigma_V from dlog V_hat is overstated by measurement noise and is not used (PREREG 4.2)"
+  },
+  "C": {
+   "name": "SMM on persistence-carrying moments (set A)",
+   "h": 4.824109112705985,
+   "h_ci": [
+    4.166130668323864,
+    5.422012905642471
+   ],
+   "s_x": 0.12857809971634016,
+   "s_x_ci": [
+    0.12474117720396251,
+    0.13459706622814746
+   ],
+   "sigma_V": 0.019572114532101025,
+   "sigma_V_ci": [
+    0.01892494449362432,
+    0.020357152969418254
+   ],
+   "n": 417,
+   "J": 66.61950005264137
+  }
+ },
+ "usability": {
+  "A": {
+   "nearest_h": 5,
+   "h_in_grid": false,
+   "cells": [
+    {
+     "cell_h": 5,
+     "cell_sigma_V": 0.012,
+     "median_rel_error": 0.2636674679373284,
+     "rmse_rel": 0.2673961206518486,
+     "coverage": 0.0,
+     "usable": false,
+     "n_reps": 200
+    }
+   ],
+   "usable": false,
+   "rmse_rel": 0.2673961206518486
+  },
+  "B": {
+   "nearest_h": 250,
+   "h_in_grid": true,
+   "cells": [
+    {
+     "cell_h": 250,
+     "cell_sigma_V": 0.006,
+     "median_rel_error": 0.8321902507962777,
+     "rmse_rel": 0.8322917045152619,
+     "coverage": 0.0,
+     "usable": false,
+     "n_reps": 200,
+     "rho_m_0.9": {
+      "median_rel_error": 0.6179169681111565,
+      "coverage": 0.0,
+      "usable": false
+     }
+    },
+    {
+     "cell_h": 250,
+     "cell_sigma_V": 0.012,
+     "median_rel_error": 0.8324177078011419,
+     "rmse_rel": 0.8324758259421002,
+     "coverage": 0.0,
+     "usable": false,
+     "n_reps": 200,
+     "rho_m_0.9": {
+      "median_rel_error": 0.60202343448849,
+      "coverage": 0.0,
+      "usable": false
+     }
+    }
+   ],
+   "usable": false,
+   "rmse_rel": 0.8323837652286811
+  },
+  "C": {
+   "nearest_h": 5,
+   "h_in_grid": false,
+   "cells": [
+    {
+     "cell_h": 5,
+     "cell_sigma_V": 0.012,
+     "median_rel_error": 0.05299186888050924,
+     "rmse_rel": 0.07484084374821391,
+     "coverage": null,
+     "usable": true,
+     "n_reps": 50
+    }
+   ],
+   "usable": true,
+   "rmse_rel": 0.07484084374821391
+  }
+ },
+ "decision": {
+  "usable": [
+   "C"
+  ],
+  "h_s_x": {
+   "adopted": "C",
+   "h": 4.824109112705985,
+   "h_ci": [
+    4.166130668323864,
+    5.422012905642471
+   ],
+   "s_x": 0.12857809971634016,
+   "s_x_ci": [
+    0.12474117720396251,
+    0.13459706622814746
+   ],
+   "reason": "smallest RMSE among usable estimators whose data interval contains the other usable estimators' points (usable: ['C'])"
+  },
+  "sigma_V": {
+   "adopted": "C",
+   "value": 0.019572114532101025,
+   "ci": [
+    0.01892494449362432,
+    0.020357152969418254
+   ],
+   "reason": "the only usable estimator with a sigma_V"
+  }
+ },
+ "rule": "PREREG_PHASE_1.md 4.4-4.5; nearest-cell convention stated in tools/phase1/apply_e1_2.py"
+}

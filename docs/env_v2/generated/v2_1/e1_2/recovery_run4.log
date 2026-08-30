@@ -1,0 +1,22 @@
+2448 recovery jobs in 18 cells
+AB h=30 sv=0.006: cached
+AB h=30 sv=0.012: cached
+AB h=60 sv=0.006: cached
+AB h=60 sv=0.012: cached
+AB h=120 sv=0.006: cached
+AB h=120 sv=0.012: cached
+AB h=150 sv=0.006: cached
+AB h=150 sv=0.012: cached
+AB h=250 sv=0.006: cached
+AB h=250 sv=0.012: cached
+AB h=500 sv=0.006: cached
+AB h=500 sv=0.012: cached
+C h=30 sv=0.006: 8 reps in 913 s
+C h=30 sv=0.012: 8 reps in 2498 s
+C h=150 sv=0.006: 8 reps in 3745 s
+C h=150 sv=0.012: 8 reps in 1719 s
+C h=250 sv=0.006: 8 reps in 1109 s
+C h=250 sv=0.012: 8 reps in 1737 s
+recovery done 11730 s
+SMM on data: {"sigma_V": 0.019572114532101025, "sbar": 0.012476185474759035, "s_x": 0.12857809971634016, "h": 4.824109112705985, "J": 66.61950005264177, "nfev": 160} [4.459309879372251, 5.319087231126992]
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_2 12809 s

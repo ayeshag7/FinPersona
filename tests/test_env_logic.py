@@ -15,7 +15,7 @@ def test_bull_trap_generation():
     env = SyntheticMarketEnv(scenario="bull_trap", n_days=200, seed=42, start_price=100.0)
     df = env.data
     V = df["fundamental_value"].to_numpy(float); P = df["price"].to_numpy(float); x = df["x"].to_numpy(float)
-    assert abs(V[0] - 100.0) < 1e-9                       # V_1 = start price (v2 convention; Phase 1 revisits)
+    assert abs(P[0] - 100.0) < 1e-9                       # v2.1 Phase 1 (D13, provisional B): P_1 = start price, V_1 = P_1 e^-x_1 (v2 had V_1 = 100)
     assert np.isfinite(P).all() and (P > 0).all()
     assert x.max() >= 0.30                                 # the price leaves the value: rejection criterion
     assert np.allclose(P, V * np.exp(x))                   # log P = log V + x

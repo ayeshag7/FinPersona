@@ -1,0 +1,37 @@
+{
+ "panel": {
+  "n_seeds": 40,
+  "point": "sigma_V 0.006, t5, s_x 0.165 (the in-force grid row)"
+ },
+ "runs": {
+  "early_stopping='auto' (as _models() builds it) | OMP=1": {
+   "calm_R2": 0.12137190578719714,
+   "all_R2": 0.5959909642287531,
+   "n_rows": 28800,
+   "n_features": 45
+  },
+  "early_stopping='auto' (as _models() builds it) | OMP=4": {
+   "calm_R2": 0.12137190578719714,
+   "all_R2": 0.5959909642287531,
+   "n_rows": 28800,
+   "n_features": 45
+  },
+  "early_stopping=False | OMP=1": {
+   "calm_R2": 0.13000064439568582,
+   "all_R2": 0.6001035201437707,
+   "n_rows": 28800,
+   "n_features": 45
+  },
+  "early_stopping=False | OMP=4": {
+   "calm_R2": 0.13000064439568582,
+   "all_R2": 0.6001035201437707,
+   "n_rows": 28800,
+   "n_features": 45
+  }
+ },
+ "environment": {
+  "python": "3.13.13",
+  "sklearn": "1.9.0",
+  "numpy": "2.4.6"
+ }
+}

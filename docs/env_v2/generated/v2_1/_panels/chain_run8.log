@@ -1,0 +1,39 @@
+[chain] audit_after_levelfree: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m evaluation.leakage_audit --env v2 --panel-pickle C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_after.pkl --control level_free --no-subsample --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6\audit_after_levelfree.md
+                candidate  fitted_k  median_APE   max_APE    p5_APE   p10_APE   p25_APE  within_1pct  within_2pct  within_5pct  share_APE_above_floor  sign_acc_PE15_rule  pass
+0    k * P (price itself)    1.0091    0.125692  2.371966  0.007150  0.014657  0.044047     0.069569     0.133700     0.272966               0.930431            0.728237  True
+1  k * P * dividend_yield    0.5182    0.135136  0.857173  0.013651  0.027745  0.069471     0.036784     0.073200     0.178253               0.963216            0.728237  True
+2     k * P / reported_PE   17.9463    0.137217  0.933552  0.013520  0.027593  0.068499     0.037275     0.072909     0.183219               0.962725            0.728237  True
+3  k * analyst_fair_value    2.2877    0.671796  6.802450  0.082905  0.177297  0.404530     0.006872     0.012497     0.031225               0.993128            0.728237  True
+{'calm_best_R2_x': 0.8234841754455295, 'calm_sign_acc': 0.9147144669081129, 'event_best_R2_x': 0.9438027957123134, 'event_best_MAPE_V': 0.122388467738247, 'calm_pass_absolute': False, 'event_pass_absolute': False, 'pass_absolute': False, 'max_selectivity_R2_x': 0.7372017606371372, 'max_MAPE_gain_V': 0.03751320384121282, 'max_R2_shuffledV': -0.0022066407392082876, 'pass_selectivity': False, 'mode': 'absolute', 'pass': False, 'calm_pass': False, 'event_pass': False}
+{'acc_full': 0.8380902777777778, 'acc_price_only': 0.7211111111111111, 'acc_day_only': 0.5352048611111111, 'majority_class': 0.4154965277777778, 'selectivity': 0.11697916666666663, 'margin': 0.1, 'pass': False, 'n': 288000, 'control': 'level_free'}
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6\audit_after_levelfree.md
+[chain] audit_after_levelfree: rc=0 8934 s
+[chain] audit_after_level: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m evaluation.leakage_audit --env v2 --panel-pickle C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_after.pkl --control level --no-subsample --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6\audit_after_level.md
+                candidate  fitted_k  median_APE   max_APE    p5_APE   p10_APE   p25_APE  within_1pct  within_2pct  within_5pct  share_APE_above_floor  sign_acc_PE15_rule  pass
+0    k * P (price itself)    1.0091    0.125692  2.371966  0.007150  0.014657  0.044047     0.069569     0.133700     0.272966               0.930431            0.728237  True
+1  k * P * dividend_yield    0.5182    0.135136  0.857173  0.013651  0.027745  0.069471     0.036784     0.073200     0.178253               0.963216            0.728237  True
+2     k * P / reported_PE   17.9463    0.137217  0.933552  0.013520  0.027593  0.068499     0.037275     0.072909     0.183219               0.962725            0.728237  True
+3  k * analyst_fair_value    2.2877    0.671796  6.802450  0.082905  0.177297  0.404530     0.006872     0.012497     0.031225               0.993128            0.728237  True
+{'calm_best_R2_x': 0.8234841754455295, 'calm_sign_acc': 0.9147144669081129, 'event_best_R2_x': 0.9438027957123134, 'event_best_MAPE_V': 0.122388467738247, 'calm_pass_absolute': False, 'event_pass_absolute': False, 'pass_absolute': False, 'max_selectivity_R2_x': 0.6619953870618741, 'max_MAPE_gain_V': 0.029883858481765835, 'max_R2_shuffledV': -0.0022066407392082876, 'pass_selectivity': False, 'mode': 'absolute', 'pass': False, 'calm_pass': False, 'event_pass': False}
+{'acc_full': 0.8380902777777778, 'acc_price_only': 0.7141770833333333, 'acc_day_only': 0.5352048611111111, 'majority_class': 0.4154965277777778, 'selectivity': 0.12391319444444449, 'margin': 0.1, 'pass': False, 'n': 288000, 'control': 'level'}
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6\audit_after_level.md
+[chain] audit_after_level: rc=0 11056 s
+[chain] l5_after: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe C:\Users\ayesha.gull01\FinPersona\tools\l5_report.py --train 40 --eval 50 --T 200 --feature-sets full,price_only,level_free --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6\l5_after
+ISFJ flat done
+ISFJ bull_trap done
+ISFJ crash done
+ISFJ sustained_bull done
+INTJ flat done
+INTJ bull_trap done
+INTJ crash done
+INTJ sustained_bull done
+ENTJ flat done
+ENTJ bull_trap done
+ENTJ crash done
+ENTJ sustained_bull done
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6\l5_after.md
+[chain] l5_after: rc=0 1176 s
+[chain] numbers: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.phase1_numbers
+written ['analysis_sets', 'e1_1', 'e1_2_A', 'e1_2_B', 'e1_2_C', 'e1_2_decision', 'e1_2_misc', 'e1_2_recovery', 'e1_2_two_component_exploratory', 'e1_3', 'e1_4_confirm', 'e1_4_generator', 'e1_4_panel', 'e1_5_n2000', 'e1_5_n500', 'e3_1', 'frozen_equivalent_check', 'value_json', 'value_json_labels']
+[chain] numbers: rc=0 0 s
+[chain] all stages done

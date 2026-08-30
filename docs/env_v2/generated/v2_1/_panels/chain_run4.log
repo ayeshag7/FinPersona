@@ -1,0 +1,15 @@
+[chain] s11_fixed: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state s11 --tag fixed --workers 3 --config {"start_price_mode": "fixed"}
+S11 fixed: 2000 paths, 400000 rows, 967 s
+[chain] s11_fixed: rc=0 972 s
+[chain] s11_A: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state s11 --tag A --workers 3 --config {"start_price_mode": "randomise"}
+S11 A: 2000 paths, 400000 rows, 783 s
+[chain] s11_A: rc=0 788 s
+[chain] s11_B: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state s11 --tag B --workers 3 --config {"start_price_mode": "normalise"}
+S11 B: 2000 paths, 400000 rows, 386 s
+[chain] s11_B: rc=0 388 s
+[chain] s11_C: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state s11 --tag C --workers 3 --config {"start_price_mode": "both"}
+S11 C: 2000 paths, 400000 rows, 396 s
+[chain] s11_C: rc=0 398 s
+[chain] e1_1: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.e1_1_start_price
+[chain] e1_1: rc=1 0 s
+[chain] STOP at e1_1

@@ -1,0 +1,105 @@
+[chain] confirm_e1_4: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.e1_4_confirm --variant B_x_zero --workers 3
+B_x_zero: n=1000 E[x]=+0.0126 [+0.0038, +0.0214] SE=0.0044 TOST pass=False two-condition pass=False (12 s)
+[chain] confirm_e1_4: rc=0 17 s
+[chain] apply_e1_4: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.apply_e1_4
+{
+ "chosen": "B_x_zero",
+ "placement": "x_zero",
+ "why": "KS rule: both bootstrap upper limits < 0.10, smallest window-day distance among passers",
+ "passers": [
+  "B_x_zero",
+  "A_V_announce",
+  "C_both"
+ ],
+ "E_x": {
+  "E_x": 0.010365482468322848,
+  "ci95_200": [
+   -0.008459898140391458,
+   0.029931012958447637
+  ],
+  "old_tost_200": false,
+  "new_a_two_condition_200": true,
+  "n_confirm": 1000,
+  "E_x_confirm": 0.01256676608932963,
+  "ci95_confirm": [
+   0.0038467447337450517,
+   0.021396780677724925
+  ],
+  "new_b_tost_confirm": false
+ }
+}
+FIT/DESIGN E1.4 (29 Aug 2026): placement 'x_zero' by the pre-registered KS rule (KS rule: both bootstrap upper limits < 0.10, smallest window-day distance among passers); E[x] on 200 flat paths +0.0104 [-0.0085, +0.0299]: pre-registered TOST FAIL (undecidable at 200 seeds, PREREG_PHASE_1_ADDENDUM.md); two-condition reading pass; 1,000-seed TOST +0.0126 [+0.0038, +0.0214] FAIL -> provisional (new-a passed; new-b failed -> team decision). Total rate 0.010/day and size sd 0.03 CAL (v2 E1 calibration; Phase 3 re-fits); p_ann and lam_res FIT from the panel's window share of jump days q (e1_4/panel_split.json)
+value.json updated: jump.placement = x_zero
+[chain] apply_e1_4: rc=0 0 s
+[chain] e1_5: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.e1_5_burn_in --write-states --workers 3
+fw_fallback_hl150 current_260 {'x': (0.056, 0.116), 'sigma2': (0.038, 0.1), 'n_f': (0.018, 0.05)} FAIL
+fw_fallback_hl150 A_long_750 {'x': (0.066, 0.132), 'sigma2': (0.052, 0.114), 'n_f': (0.012, 0.044)} FAIL
+fw_fallback_hl150 B_stored_60 {'x': (0.044, 0.114), 'sigma2': (0.042, 0.11), 'n_f': (0.016, 0.046)} FAIL
+fw_hl60 current_260 {'x': (0.066, 0.128), 'sigma2': (0.038, 0.1), 'n_f': (0.026, 0.066)} FAIL
+fw_hl60 A_long_300 {'x': (0.054, 0.118), 'sigma2': (0.058, 0.128), 'n_f': (0.042, 0.082)} FAIL
+fw_hl60 B_stored_60 {'x': (0.058, 0.124), 'sigma2': (0.042, 0.11), 'n_f': (0.054, 0.094)} FAIL
+fw_index current_260 {'x': (0.162, 0.214), 'sigma2': (0.038, 0.1), 'n_f': (0.052, 0.078)} FAIL
+fw_index A_long_3140 {'x': (0.056, 0.11), 'sigma2': (0.052, 0.118), 'n_f': (0.012, 0.03)} FAIL
+fw_index B_stored_60 {'x': (0.052, 0.12), 'sigma2': (0.042, 0.11), 'n_f': (0.016, 0.034)} FAIL
+pruna current_260 {'x': (0.158, 0.21), 'sigma2': (0.038, 0.1), 'n_f': (0.038, 0.062)} FAIL
+pruna A_long_3110 {'x': (0.044, 0.114), 'sigma2': (0.044, 0.116), 'n_f': (0.01, 0.026)} FAIL
+pruna B_stored_60 {'x': (0.052, 0.12), 'sigma2': (0.042, 0.11), 'n_f': (0.02, 0.04)} FAIL
+ar1 current_260 {'x': (0.058, 0.12), 'sigma2': (0.038, 0.1), 'n_f': (0.0, 0.0)} FAIL
+ar1 A_long_750 {'x': (0.07, 0.13), 'sigma2': (0.052, 0.114), 'n_f': (0.0, 0.0)} FAIL
+ar1 B_stored_60 {'x': (0.042, 0.114), 'sigma2': (0.042, 0.11), 'n_f': (0.0, 0.0)} FAIL
+{
+ "fw_fallback_hl150": {
+  "adopted": "current",
+  "reason": "neither option passes: current burn-in kept, shortfall stated",
+  "current_passes": false,
+  "burn_in_days": 260
+ },
+ "fw_hl60": {
+  "adopted": "current",
+  "reason": "neither option passes: current burn-in kept, shortfall stated",
+  "current_passes": false,
+  "burn_in_days": 260
+ },
+ "fw_index": {
+  "adopted": "current",
+  "reason": "neither option passes: current burn-in kept, shortfall stated",
+  "current_passes": false,
+  "burn_in_days": 260
+ },
+ "pruna": {
+  "adopted": "current",
+  "reason": "neither option passes: current burn-in kept, shortfall stated",
+  "current_passes": false,
+  "burn_in_days": 260
+ },
+ "ar1": {
+  "adopted": "current",
+  "reason": "neither option passes: current burn-in kept, shortfall stated",
+  "current_passes": false,
+  "burn_in_days": 260
+ }
+} 343 s
+[chain] e1_5: rc=0 347 s
+[chain] apply_e1_5: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.apply_e1_5
+{
+ "mode": "long",
+ "days": {
+  "fw_fallback_hl150": 260,
+  "fw_hl60": 260,
+  "fw_index": 260,
+  "pruna": 260,
+  "ar1": 260,
+  "default": 260
+ },
+ "modes": {
+  "fw_fallback_hl150": "long",
+  "fw_hl60": "long",
+  "fw_index": "long",
+  "pruna": "long",
+  "ar1": "long"
+ }
+}
+FIT/DESIGN E1.5 (29 Aug 2026; REG-17 rule: every variable's KS upper limit < 0.10 against the day-5000 reference of 500 flat paths): fw_fallback_hl150: current (260 d; neither option passes: current burn-in kept, shortfall stated; current 260 d FAILS); fw_hl60: current (260 d; neither option passes: current burn-in kept, shortfall stated; current 260 d FAILS); fw_index: current (260 d; neither option passes: current burn-in kept, shortfall stated; current 260 d FAILS); pruna: current (260 d; neither option passes: current burn-in kept, shortfall stated; current 260 d FAILS); ar1: current (260 d; neither option passes: current burn-in kept, shortfall stated; current 260 d FAILS)
+value.json updated: burn_in
+[chain] apply_e1_5: rc=0 0 s
+[chain] s11_fixed: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state s11 --tag fixed --workers 3 --config {"start_price_mode": "fixed"}

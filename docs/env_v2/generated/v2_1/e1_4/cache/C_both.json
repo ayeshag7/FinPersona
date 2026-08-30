@@ -1,0 +1,26 @@
+{
+ "n_paths": 200,
+ "n_days": 39800,
+ "window_share": 0.1507537688442211,
+ "q_share_of_jumps_in_window": 0.26956521739130435,
+ "n_jumps": 115,
+ "jump_rate_in_window": 0.005166666666666667,
+ "jump_rate_outside": 0.002485207100591716,
+ "excess_kurtosis_in": 3.0906262397766113,
+ "excess_kurtosis_out": 3.049170970916748,
+ "n_ann_jumps_mean_per_path": 3.26,
+ "ks_window": 0.01607581865571872,
+ "ks_window_upper95": 0.03086166124407883,
+ "ks_other": 0.019558489728047357,
+ "ks_other_upper95": 0.023960684985387996,
+ "ks_pass": true,
+ "E_x": 0.008348695238322393,
+ "E_x_ci95": [
+  -0.01039577752692187,
+  0.028155341767907776
+ ],
+ "E_x_pass": false,
+ "share_kurt_gt_1p5": 0.655,
+ "median_kurt": 2.3634595703801913,
+ "seconds": 606
+}

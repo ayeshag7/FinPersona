@@ -93,12 +93,10 @@ def test_v1_L1_exact_inversion_documented(v1_audit):
 
 
 # ---------------- v2: must pass ----------------
-@pytest.mark.xfail(strict=True, reason="known defect (registry; items 5, 21, 32): after the v2.1 Phase-0 analyst fix (sd 0.15 as "
-                                       "documented, not 0.335) the k*analyst candidate lands inside the 1 % floor on about as many "
-                                       "steps as price itself, so amendment A6's L1 rule is marginal: PASS by 0.26 pp at 50 seeds, "
-                                       "FAIL at these 8 CI seeds. The rule is re-derived from the x noise floor in Phase 6 (E6.5) "
-                                       "after Phase 5 decides the analyst field; the rule is not moved here.")
 def test_v2_L1_no_algebraic_inversion(v2_audit):
+    """A6's L1 rule. v2.1 Phase 0 registered it as marginal (FAIL at these 8 CI seeds); under the Phase-1 state (mechanism B,
+    x_zero jumps, 750-day burn-in) it passes at the CI seeds, so the registry entry is removed (XPASS rule) -- the rule is still
+    marginal (PHASE_1_REPORT.md section 4.7) and is re-derived in Phase 6 (E6.5)."""
     assert bool(v2_audit["L1"]["pass"].all()), v2_audit["L1"].to_string()
 
 
@@ -119,8 +117,21 @@ def test_v2_L2_selectivity_reported_and_no_spurious_fit(v2_audit):
     assert v["max_R2_shuffledV"] < 0.1
 
 
+@pytest.mark.xfail(strict=True, reason="registered (Phase 6): with the level-free control (v2.1 Phase 1 default) the macro-phase "
+                                       "selectivity of the non-price fields is +11.7 pp on the published 1,600-path audit against the "
+                                       "pre-registered 10 pp margin (the v2 level control passed at +8.6 pp only because the price level "
+                                       "itself carried the phase); the gate is re-derived in Phase 6 with the level-free reference.")
 def test_v2_L2b_phase_clock_selectivity(v2_audit):
-    assert v2_audit["L2b"]["pass"], v2_audit["L2b"]
+    """The evidence is the published audit on the standard evaluation panel (1,600 paths), not this module's 8-seed CI
+    panel: at 8 seeds the statistic cannot decide a 10 pp margin and happens to pass. The stored result decides; the CI
+    panel is kept as a live guard that the statistic is still computed and in range."""
+    import pandas as pd
+    rows = pd.read_csv(os.path.join(ROOT, "docs", "env_v2", "generated", "v2_1", "e1_6",
+                                    "audit_after_levelfree_checklist_rows.csv"))
+    l2b = rows[rows["item"] == 16].iloc[0]
+    live = v2_audit["L2b"]
+    assert 0.0 <= float(live["selectivity"]) <= 1.0, live      # live guard: the statistic is computed and in range
+    assert bool(l2b["pass"]), l2b.to_dict()                    # the published 1,600-path result decides
 
 
 def test_v2_phase_time_separability():

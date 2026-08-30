@@ -1,0 +1,151 @@
+{
+ "spec": {
+  "root": "C:\\Users\\ayesha.gull01\\FinPersona\\datasets",
+  "price_dir": "01_prices/daily",
+  "price_col": "Adj Close",
+  "level_col": "Close",
+  "fundamentals_dir": "03_fundamentals/by_ticker",
+  "reuse_screen": "_manifests/ticker_reuse_screen.csv",
+  "survivorship": "_manifests/survivorship_accounting.csv",
+  "sectors_file": "02_constituents/wikipedia_current_20250611.csv",
+  "shiller_file": "04_shiller/shiller_monthly.csv",
+  "start": "2000-01-03",
+  "end": "2024-12-31",
+  "min_days_short": 1000,
+  "sub_periods": [
+   [
+    "2000-07",
+    "2000-01-03",
+    "2007-12-31"
+   ],
+   [
+    "2008-12",
+    "2008-01-01",
+    "2012-12-31"
+   ],
+   [
+    "2013-19",
+    "2013-01-01",
+    "2019-12-31"
+   ],
+   [
+    "2020-24",
+    "2020-01-01",
+    "2024-12-31"
+   ]
+  ],
+  "source_note": "E1.0 free panel (Yahoo via yfinance 1.6.0, SEC EDGAR company-facts, Shiller), 29 Aug 2026"
+ },
+ "mu_V": {
+  "adopted_window": {
+   "label": "2000-01..2024-12 (the panel's window; adopted)",
+   "n_months": 300,
+   "mean_monthly_log_change": 0.0047894165756020525,
+   "per_trading_day": 0.00022806745598105013,
+   "ci95_per_day": [
+    -5.13487668927438e-05,
+    0.00047873441048181437
+   ],
+   "annualised_pct": 5.747299890722463
+  },
+  "long_run": {
+   "label": "1871-02..2024-12 (beside)",
+   "n_months": 1847,
+   "mean_monthly_log_change": 0.003903993944921222,
+   "per_trading_day": 0.00018590447356767723,
+   "ci95_per_day": [
+    7.066614700475187e-05,
+    0.00029382140933569776
+   ],
+   "annualised_pct": 4.684792733905466
+  },
+  "source": "Shiller ie_data.xls via shillerdata.com (E1.0 need #4), column P (nominal S&P composite price), price-only",
+  "literature_beside": "DMS 2025 (read by the third pass, LOG 4.1): US 1900-2024 nominal equity return 9.7 %/yr (total return, incl. dividends); v2 used mu_V = 0.00025/day (6.5 %/yr, 'plan')"
+ },
+ "df_V": {
+  "n_stocks": 409,
+  "n_obs": 25859,
+  "statistic": "seasonal quarterly EPS change / own sd, pooled",
+  "ks_to_normal": 0.1925787419739327,
+  "ks_to_normal_upper95": 0.2005825526671454,
+  "ks_to_t5": 0.17257889083479633,
+  "ks_to_t5_upper95": 0.18117120044640173,
+  "excess_kurtosis": 8.339196371956708,
+  "excess_kurtosis_ci95": [
+   7.638884261298133,
+   9.194572099233142
+  ],
+  "rule": "FIT gaussian if only the normal upper limit < 0.10; FIT t5 if only the t5 upper limit < 0.10; else DESIGN",
+  "verdict": "DESIGN (both variants carried)"
+ },
+ "vhat_noise": {
+  "n_stocks": 406,
+  "sd_log_epsttm_growth_median": 0.5690627100700585,
+  "iqr": [
+   0.3421957959745571,
+   0.8601145266725296
+  ],
+  "use": "measurement-error sd (per year) of V_hat in the recovery study; persistence bracketed {0, 0.9}/quarter (DESIGN)"
+ },
+ "start_price_range": {
+  "P_lo": 7.468991470336914,
+  "P_hi": 240.02200012206998,
+  "ci95_P_lo": [
+   6.266562712192536,
+   9.030429236888885
+  ],
+  "ci95_P_hi": [
+   196.78339380264276,
+   290.39092708587646
+  ],
+  "median": 43.988929748535156,
+  "n_obs": 16680,
+  "n_dates": 40,
+  "date_seed": 20260829,
+  "dates": [
+   "2001-01-26",
+   "2001-06-20",
+   "2002-02-13",
+   "2002-12-13",
+   "2003-07-10",
+   "2004-05-28",
+   "2005-10-10",
+   "2007-04-03",
+   "2007-12-24",
+   "2008-05-08",
+   "2010-01-11",
+   "2010-02-01",
+   "2010-06-11",
+   "2010-11-04",
+   "2011-10-03",
+   "2012-03-28",
+   "2013-03-19",
+   "2015-01-13",
+   "2015-08-25",
+   "2016-01-19",
+   "2016-04-14",
+   "2016-09-21",
+   "2017-02-15",
+   "2017-04-04",
+   "2017-05-23",
+   "2018-07-25",
+   "2019-01-11",
+   "2020-02-05",
+   "2020-03-20",
+   "2020-05-14",
+   "2020-08-13",
+   "2020-08-25",
+   "2020-09-02",
+   "2021-04-08",
+   "2022-10-24",
+   "2023-02-24",
+   "2023-05-15",
+   "2023-10-17",
+   "2024-08-09",
+   "2024-09-19"
+  ],
+  "column": "Close",
+  "set": "A"
+ },
+ "seconds": 197
+}

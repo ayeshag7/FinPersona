@@ -81,8 +81,29 @@ class SentimentState:
 # --------------------------------------------------------------------------
 # post-hoc observables from the generated arrays (one asset)
 # --------------------------------------------------------------------------
+def announcement_schedule(day: np.ndarray, rng: np.random.Generator) -> Dict[int, int]:
+    """v2.1 Phase 1: {quarter-end day: announcement day} for every quarter end on the timeline plus the four pre-history
+    quarters, lags U(25, 35) drawn from the `announce` stream (shared by the V jump of jump_placement 'V_announce'/'both'
+    and the EPS field, so that the field carries the jump)."""
+    L = len(day)
+    q_ends = [int(day[i]) for i in range(L) if day[i] % QUARTER_DAYS == 0]
+    first = int(day[0]); pre = []
+    d = (first // QUARTER_DAYS) * QUARTER_DAYS
+    while len(pre) < 4:
+        d -= QUARTER_DAYS
+        pre.append(d)
+    out = {}
+    for dq in sorted(pre) + q_ends:
+        out[dq] = dq + int(rng.integers(ANN_LAG[0], ANN_LAG[1] + 1))
+    return out
+
+
 def earnings_block(day: np.ndarray, V: np.ndarray, P: np.ndarray, rng_mult: np.random.Generator,
-                   rng_eps: np.random.Generator, rng_div: np.random.Generator) -> Dict[str, np.ndarray]:
+                   rng_eps: np.random.Generator, rng_div: np.random.Generator,
+                   ann: Optional[Dict[int, int]] = None, ann_jumps: Optional[Dict[int, float]] = None) -> Dict[str, np.ndarray]:
+    """`ann` = announcement_schedule() (v2.1 Phase 1; if None the lags are drawn here from rng_eps as v2 did);
+    `ann_jumps` = {announcement day: log V jump J} -- the announced quarterly EPS of that quarter is computed from
+    V(quarter end) e^J, so the EPS field carries the announcement jump (variants 'V_announce' and 'both')."""
     L = len(day)
     k = float(rng_mult.uniform(*K_RANGE))
     # quarter ends at days congruent to 0 mod 63 (day 0 is a quarter end), on the full timeline
@@ -94,18 +115,25 @@ def earnings_block(day: np.ndarray, V: np.ndarray, P: np.ndarray, rng_mult: np.r
     while len(pre) < 4:
         d -= QUARTER_DAYS
         pre.append(d)
+    ann_jumps = ann_jumps or {}
+    def _ann_day(dq: int) -> int:
+        if ann is not None:
+            return int(ann[dq])
+        return dq + int(rng_eps.integers(ANN_LAG[0], ANN_LAG[1] + 1))
     eps_ann = []   # (announce_day, eps_q, dps_q)
     dps_prev = PAYOUT * (V[0] / (4.0 * k))   # initial quarterly DPS = payout x quarterly EPS
     for dq in sorted(pre):
-        eps_q = V[0] / (4.0 * k) * math.exp(rng_eps.normal(0.0, EPS_NOISE_SD))
+        a = _ann_day(dq)
+        eps_q = V[0] * math.exp(ann_jumps.get(a, 0.0)) / (4.0 * k) * math.exp(rng_eps.normal(0.0, EPS_NOISE_SD))
         dps_q = DPS_STICKY * dps_prev + (1 - DPS_STICKY) * PAYOUT * eps_q
         dps_prev = dps_q
-        eps_ann.append((dq + int(rng_eps.integers(ANN_LAG[0], ANN_LAG[1] + 1)), eps_q, dps_q))
+        eps_ann.append((a, eps_q, dps_q))
     for i in q_end_idx:
-        eps_q = V[i] / (4.0 * k) * math.exp(rng_eps.normal(0.0, EPS_NOISE_SD))   # quarterly EPS: annual V/k over 4 quarters
+        a = _ann_day(int(day[i]))
+        eps_q = V[i] * math.exp(ann_jumps.get(a, 0.0)) / (4.0 * k) * math.exp(rng_eps.normal(0.0, EPS_NOISE_SD))   # quarterly EPS: annual V/k over 4 quarters
         dps_q = DPS_STICKY * dps_prev + (1 - DPS_STICKY) * PAYOUT * eps_q
         dps_prev = dps_q
-        eps_ann.append((int(day[i]) + int(rng_eps.integers(ANN_LAG[0], ANN_LAG[1] + 1)), eps_q, dps_q))
+        eps_ann.append((a, eps_q, dps_q))
     eps_ann.sort()
     trailing = np.full(L, np.nan); dps = np.full(L, np.nan); last_ann_day = np.full(L, np.nan)
     last_eps = np.full(L, np.nan)

@@ -1,0 +1,39 @@
+{
+ "block": "R14_item10",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R14_item10",
+   "item": 40,
+   "statistic": "crash: event-window MDD partial R\u00b2 of \u03b4 (controlling D_V)",
+   "mine": 0.37292606133611755,
+   "n": 150,
+   "ci": [
+    0.29535333952088333,
+    0.49328472610575297
+   ],
+   "reviewer": 0.38,
+   "rev_source": "checklist_v2.md (150 paths)",
+   "rev_n": 150,
+   "verdict": "R",
+   "note": ""
+  },
+  {
+   "block": "R14_item10",
+   "item": 40,
+   "statistic": "crash: event-window MDD spread \u03b4 0.55 vs 0.85 (pp)",
+   "mine": 17.270936510253115,
+   "n": 150,
+   "ci": [
+    15.810719491484903,
+    18.755824877573566
+   ],
+   "reviewer": 18.0,
+   "rev_source": "checklist_v2.md",
+   "rev_n": 150,
+   "verdict": "R",
+   "note": "event-window MDD: partial R2 of delta (controlling D_V) = 0.37, spread between delta 0.55 and 0.85 = 17.3 pp, means 0.55: -53.9%, 0.7: -44.1%, 0.85: -36.6%; whole-path MDD (reported): partial R2 0.41, spread 15.9 pp, means 0.55: -57.6%, 0.7: -48.5%, 0.85: -41.6%"
+  }
+ ],
+ "detail": {}
+}

@@ -1,6 +1,6 @@
 {
- "label": "Phase 0 freeze (v2.1), 29 Aug 2026",
- "written": "2026-08-29",
+ "label": "v2.1 Phase 1 freeze (30 Aug 2026): D13 mechanism C, jump placement x_zero, per-engine burn-in, sigma_V adopted-not-yet-applied",
+ "written": "2026-08-30",
  "patterns": [
   "envs/v2/**/*.py",
   "envs/synthetic_market.py",
@@ -13,23 +13,25 @@
   "evaluation/targets.py"
  ],
  "line_endings": "CRLF normalised to LF before hashing",
- "manifest_hash": "92ddcf527be61986e180c78d3ec69270cfaeea779b240f0fb9b709c9d094edc2",
+ "manifest_hash": "691368e32ffff8891d39c7ae3f094e9124b3a25b8e987c27eb83110b389d104d",
  "files": {
-  "envs/synthetic_market.py": "cb24205520cbce6b9407fb5d7163fb6310e317f4b7196830127389df19c24e6c",
+  "envs/synthetic_market.py": "b61cbfe6a4510ae054e5ff71c39a7ff151d9f96dbcfea861dfa0f8de2bccdc30",
   "envs/v2/__init__.py": "24dd6056b3dd032e240ee0b5aa4aed7c68689d2afdc99f35903a0aab4f336040",
-  "envs/v2/events.py": "cad0afdfd8307a94fccd77d16a22b9f8ef97bcbe0e9ed35ec32514d392a275c9",
+  "envs/v2/events.py": "1fd7c2f0a2ee9e00732afb2a401edc5eb1b4465010ef629c1146f51f8d50c497",
   "envs/v2/garch.py": "6f7a1a474c3e65dd7e6692effb556465e8bdd6cc4e77faf6f3b567017cbf9985",
-  "envs/v2/generator.py": "3a9c4db4389a64f78639001f3325e1f5eb018ac415b9ad078a89761f1a9811d3",
+  "envs/v2/generator.py": "a77d8068c345a48eee9dd4d1dfa1fe299c2e3abf7f1421504bb550adadcb6ae1",
   "envs/v2/mispricing.py": "5000905b293c39965922a22e1c647178640e4db0c1445da4450e14a2a4d5e144",
-  "envs/v2/observables.py": "21123a20a898c4096458ef7713373544867901990f287aad60e208e061454852",
+  "envs/v2/observables.py": "17c29a3dcc814f81ad78e5767047b06401cb25f613453b57f5ffff21a7d72ad7",
   "envs/v2/params/fw_single_stock.REJECTED.json": "c1bb7127834c39a77a16dd7e3c1b800602968f3bb6be4023dee63bc4e42aa4ba",
   "envs/v2/params/hazard.json": "2e764d082ec070f388340822f81b268c44d0a104516c28422f1e3004ca0524f0",
-  "envs/v2/rng.py": "809da14442bb043a3d74612274567813be4e57ec29c4f8cb98395245a3d4ed7a",
+  "envs/v2/params/value.json": "a1b29fa7c2e29f1b0635e2578904fe9d6f0c857bff814a02fa5ab388379ce755",
+  "envs/v2/rng.py": "fdbfe64ec7997449e455c0db48cf1e1a14bcb41fd504bf48fc2e90485bc8b3c9",
   "envs/v2/schedule.py": "612cca82c7b999531674e49bc0969456996152fb05d804551c69203ce10ddd5b",
+  "envs/v2/value_params.py": "d1651d0ec804b34b5c294d6720a2c6a538f7957bb4a5602216f30d1654343f45",
   "evaluation/baselines_v2.py": "8bb6acb179c9ba012a34209c003a8b42495c5c0ef879144f3a4618394f73cf97",
-  "evaluation/leakage_audit.py": "8fc0f80fd5d6bab69b92220ca1b4b854764ff5aa9a0821793b41473aa2d667e3",
+  "evaluation/leakage_audit.py": "db6e6851a0b73a2639f751e937beae5b3a9e04bf27c3dc0d6a542ff085c51ad2",
   "evaluation/metrics_v2.py": "b420595779c7b9afd4190160994a7b90adc2411f9b8d7962a7b7746c1a6bbc5e",
-  "evaluation/observables_oracle.py": "c68266605b0bbb785de65165082dc7342ca7fb38882146dcbb6a14274970fec5",
+  "evaluation/observables_oracle.py": "eb643e31f48dea7bbba4fa7e7e0bd23ddf590bfe17e160597943f69afabc45fd",
   "evaluation/stylized_facts.py": "16a2e4c16b00b1047ba999ba9d422c3a74e7570a4a3beffa2ae5ad26a9877362",
   "evaluation/targets.py": "83fc576e87fc1f7f2732492883d5e3f7723ab47c6c0f1d5c22f778a910744459"
  }

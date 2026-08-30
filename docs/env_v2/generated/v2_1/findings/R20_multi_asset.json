@@ -1,0 +1,71 @@
+{
+ "block": "R20_multi_asset",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R20_multi_asset",
+   "item": 58,
+   "statistic": "3-asset crash: mean pairwise correlation of x across assets",
+   "mine": 0.545690319871007,
+   "n": 50,
+   "ci": [
+    0.45648779325868555,
+    0.6319812345703505
+   ],
+   "reviewer": 0.55,
+   "rev_source": "C \u00a7G.41: 0.46\u20130.65 (10 seeds)",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "min/max over pairs of the seed means: -0.21\u20130.93"
+  },
+  {
+   "block": "R20_multi_asset",
+   "item": 58,
+   "statistic": "3-asset crash: spread-resolvable share (max x \u2212 min x >= 0.05)",
+   "mine": 0.8661000000000001,
+   "n": 50,
+   "ci": [
+    0.8422000000000002,
+    0.8889025000000002
+   ],
+   "reviewer": 0.87,
+   "rev_source": "C \u00a7G.41",
+   "rev_n": 10,
+   "verdict": "R",
+   "note": ""
+  },
+  {
+   "block": "R20_multi_asset",
+   "item": 58,
+   "statistic": "3-asset crash: mean IV / realised-21-day-vol ratio, asset 0",
+   "mine": 1.3284506772774127,
+   "n": 50,
+   "ci": [
+    1.2818311507251805,
+    1.3749037843994305
+   ],
+   "reviewer": 1.28,
+   "rev_source": "C \u00a7G.41 (10 seeds)",
+   "rev_n": 10,
+   "verdict": "R",
+   "note": ""
+  },
+  {
+   "block": "R20_multi_asset",
+   "item": 58,
+   "statistic": "3-asset crash: mean IV / realised-21-day-vol ratio, asset 2",
+   "mine": 1.411768006907326,
+   "n": 50,
+   "ci": [
+    1.359407379900068,
+    1.4637853919673314
+   ],
+   "reviewer": 1.06,
+   "rev_source": "C \u00a7G.41 (10 seeds)",
+   "rev_n": 10,
+   "verdict": "N",
+   "note": ""
+  }
+ ],
+ "detail": {}
+}

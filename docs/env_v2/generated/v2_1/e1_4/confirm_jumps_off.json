@@ -1,0 +1,39 @@
+{
+ "variant": "jumps_off",
+ "config_override": {
+  "jumps": false
+ },
+ "seeds": [
+  71000,
+  71999
+ ],
+ "T": 200,
+ "margin": 0.02,
+ "n_boot": 1000,
+ "full": {
+  "n": 1000,
+  "E_x": 0.011264710440921987,
+  "ci95": [
+   0.0026633579482032038,
+   0.01994499894722304
+  ],
+  "se": 0.004342683626616183,
+  "sd_path_means": 0.13732771417627357,
+  "pass_tost": true,
+  "pass_two_condition": false
+ },
+ "first_200": {
+  "n": 200,
+  "E_x": 0.016798289283301522,
+  "ci95": [
+   -0.0020721668132200324,
+   0.03380004933077089
+  ],
+  "se": 0.009286975267720125,
+  "sd_path_means": 0.13133766377033307,
+  "pass_tost": false,
+  "pass_two_condition": true
+ },
+ "rule": "new-b: 95 % bootstrap interval of the mean of path means inside +/- 0.02 (PREREG_PHASE_1_ADDENDUM.md)",
+ "seconds": 20
+}

@@ -58,8 +58,8 @@ TABLE2_OBS_ROUNDING = {
 TABLE2_DEFINITIONS = {
     "asset": ("Index", "Asset index (0 = the scenario asset; N > 1 only in the multi-asset extension).", "synthetic_market.py"),
     "day": ("Index", "Trading-day index 1..T; rendered as 'Day-N' under key 'date' (T appended only in the disclosed-horizon arm).", "synthetic_market.py get_observation"),
-    "price": ("Price action", "P_t = V_t exp(x_t). x_t follows the FW recursion (calm) plus scripted event drifts; one GJR-GARCH-t innovation.", "v2/generator.py, v2/mispricing.py, v2/events.py"),
-    "fundamental_value": ("Hidden", "V_t: GBM, mu_V = 0.00025/day (sustained bull U(0.0015,0.0025); crash deterioration log-linear drift delivering D_V ~ U(10,30)%, then flat), sigma_V = 0.6%/day, standardised t(5) shocks (N > 1: sqrt(rho) f + sqrt(1-rho) z_i with f, z_i t(5) -- not itself t(5)). Never rendered.", "v2/generator.py"),
+    "price": ("Price action", "P_t = V_t exp(x_t); P_1 = 100 under the provisional start-price mechanism B (v2.1 Phase 1, D13; under C every price-denominated rendered field is multiplied by a per-seed k_render). x_t follows the FW recursion (calm) plus scripted event drifts; one GJR-GARCH-t innovation.", "v2/generator.py, v2/mispricing.py, v2/events.py"),
+    "fundamental_value": ("Hidden", "V_t: GBM, mu_V and sigma_V from envs/v2/params/value.json (v2.1 Phase 1: FIT; sustained bull U(0.0015,0.0025); crash deterioration log-linear drift delivering D_V ~ U(10,30)%, then flat), standardised t(df_V) shocks (N > 1: sqrt(rho) f + sqrt(1-rho) z_i -- not itself t); announcement jumps in log V under jump_placement 'V_announce'/'both'. Start price: mode B (P_1 = 100, V_1 = 100 e^-x_1) in Phases 1-6 (D13). Never rendered.", "v2/generator.py"),
     "x": ("Hidden", "log(P/V): referee's mispricing; resolvable iff |x| >= theta.", "v2/generator.py"),
     "phase": ("Hidden", "Phase label (calm, deterioration, panic, stabilisation, mania, blow-off, post-top, sustained-bull). Never rendered.", "v2/events.py, v2/schedule.py"),
     "macro_phase": ("Hidden", "Macro class {calm, down-event, up-event, resolution} for the L2b audit. Never rendered.", "synthetic_market.py"),
@@ -148,7 +148,8 @@ class SyntheticMarketEnv:
                  "fw_weight": r.w[a], "news_sentiment": r.sent[a]}
             d.update(obs.technicals_block(P))
             d.update(obs.volume_block(day, ret, x, st.get("volume", a), lag=self.schedule.jitter.get("volume", 0)))
-            d.update(obs.earnings_block(day, V, P, st.get("multiple", a), st.get("eps", a), st.get("dividend", a)))
+            d.update(obs.earnings_block(day, V, P, st.get("multiple", a), st.get("eps", a), st.get("dividend", a),
+                                        ann=r.ann[a] if r.ann else None, ann_jumps=r.ann_jumps[a] if r.ann_jumps else None))
             d.update(obs.analyst_block(day, V, st.get("analyst", a)))
             d.update(obs.iv_block(r.fvar21[a], r.w[a], r.sigma[a] ** 2, self.cfg.sigma_V))
             df = pd.DataFrame(d)
@@ -177,14 +178,19 @@ class SyntheticMarketEnv:
     def _row(self, asset: int = 0):
         return self.data[self.data["asset"] == asset].iloc[self.current_step]
 
+    # price-denominated rendered fields: scaled by k_render under start_price_mode 'both' (mechanism C); ratios,
+    # shares, RSI and trend fields are invariant and are not scaled (tests/test_v2_1_phase_1.py::test_render_scale_invariance)
+    PRICE_DENOMINATED = ("price", "SMA20", "SMA50", "MACD", "MACD_signal", "analyst_fair_value")
+
     def _render_asset(self, row) -> Dict:
         d = int(row["day"])
+        k = float(self.result.k_render)
         vals = {
             "date": f"Day-{d} of {self.n_days}" if self.disclose_horizon else f"Day-{d}",
-            "price": round(float(row["price"]), 2), "SMA20": round(float(row["SMA20"]), 2),
-            "SMA50": round(float(row["SMA50"]), 2), "trend_strength": round(float(row["trend_strength"]), 2),
+            "price": round(float(row["price"]) * k, 2), "SMA20": round(float(row["SMA20"]) * k, 2),
+            "SMA50": round(float(row["SMA50"]) * k, 2), "trend_strength": round(float(row["trend_strength"]), 2),
             "trend_regime": int(row["trend_regime"]), "RSI14": round(float(row["RSI14"]), 1),
-            "MACD": round(float(row["MACD"]), 4), "MACD_signal": round(float(row["MACD_signal"]), 4),
+            "MACD": round(float(row["MACD"]) * k, 4), "MACD_signal": round(float(row["MACD_signal"]) * k, 4),
             "volume": int(row["volume"]), "volume_ratio": round(float(row["volume_ratio"]), 2),
             "news_sentiment": round(float(row["news_sentiment"]), 2),
             "sentiment_MA5": round(float(row["sentiment_MA5"]), 2),
@@ -192,7 +198,7 @@ class SyntheticMarketEnv:
             "implied_volatility": round(float(row["implied_volatility"]), 1),
             "reported_PE": round(float(row["reported_PE"]), 1),
             "dividend_yield": round(float(row["dividend_yield"]), 2),
-            "analyst_fair_value": round(float(row["analyst_fair_value"]), 2),
+            "analyst_fair_value": round(float(row["analyst_fair_value"]) * k, 2),
             "days_since_eps_announcement": int(row["days_since_eps_announcement"]),
         }
         out = {k: vals[k] for k in self._perm}
@@ -230,7 +236,9 @@ class SyntheticMarketEnv:
             "start_price": self.start_price, "crash_discount": self.crash_discount, "ordering": self.ordering,
             "n_assets": self.n_assets, "engine": self.engine, "engine_used": self.result.params.name,
             "disclose_horizon": self.disclose_horizon,
-            "field_order": self.field_order, "burn_in": self.cfg.burn_in,
+            "field_order": self.field_order, "burn_in": self.cfg.burn_in, "burn_in_mode": self.cfg.burn_in_mode,
+            "start_price_mode": self.cfg.start_price_mode, "k_render": float(self.result.k_render),
+            "jump_placement": self.cfg.jump_placement, "value_params_file": "envs/v2/params/value.json",
             "gen_config": self.cfg.to_dict(), "fw_params": self.result.params.to_dict(),
             "garch_params": asdict(self.result.garch_params), "schedule": sched,
             "attempts": self.attempts, "rejections": list(self.rejections),
@@ -262,27 +270,28 @@ def _path_data(env: SyntheticMarketEnv):
 
 
 def checklist_paths(n_seeds: int = 50, T: int = 200, deltas=(0.55, 0.70, 0.85), config: Optional[Dict] = None,
-                    engine: Optional[str] = None) -> Dict[str, list]:
+                    engine: Optional[str] = None, seed0: int = 0) -> Dict[str, list]:
     """Paths for the Section 9 checklist: flat, bull_trap, crash (per delta),
     sustained_bull, a mirrored/phase-free mix for item 15, and flat T=800.
-    `config` / `engine` override the generator (sensitivity runs)."""
+    `config` / `engine` override the generator (sensitivity runs). `seed0` offsets every seed (v2.1 Phase 1: the
+    standard checklist panel SCL uses seed0 = 40000; the published v2 file used 0)."""
     kw = {"config": config}
     if engine:
         kw["engine"] = engine
     out = {"flat": [], "bull_trap": [], "crash": [], "sustained_bull": [], "mixed": [], "flat_T800": []}
-    for s in range(n_seeds):
+    for s in range(seed0, seed0 + n_seeds):
         out["flat"].append(_path_data(SyntheticMarketEnv("flat", T, s, **kw)))
         out["bull_trap"].append(_path_data(SyntheticMarketEnv("bull_trap", T, s, **kw)))
         out["sustained_bull"].append(_path_data(SyntheticMarketEnv("sustained_bull", T, s, **kw)))
         for d in deltas:
             out["crash"].append(_path_data(SyntheticMarketEnv("crash", T, s, crash_discount=d, **kw)))
     # mixed set for phase/time separability: setup-first, event-first, phase-free
-    for s in range(n_seeds):
+    for s in range(seed0, seed0 + n_seeds):
         sc = ("crash", "bull_trap")[s % 2]
         out["mixed"].append(_path_data(SyntheticMarketEnv(sc, T, 1000 + s, ordering="event_first", **kw)))
         out["mixed"].append(_path_data(SyntheticMarketEnv(sc, T, 2000 + s, ordering="setup_first", **kw)))
         out["mixed"].append(_path_data(SyntheticMarketEnv("flat", T, 3000 + s, **kw)))
-    for s in range(min(n_seeds, 20)):
+    for s in range(seed0, seed0 + min(n_seeds, 20)):
         out["flat_T800"].append(_path_data(SyntheticMarketEnv("flat", 800, s, **kw)))
     return out
 
@@ -318,12 +327,13 @@ def audit_panel_multi(seeds: int = 10, T: int = 200, n_assets: int = 3, target_a
     return pd.concat(frames, ignore_index=True)
 
 
-def audit_panel(seeds: int = 30, T: int = 200, deltas=(0.55, 0.70, 0.85)) -> pd.DataFrame:
+def audit_panel(seeds: int = 30, T: int = 200, deltas=(0.55, 0.70, 0.85), seed0: int = 0) -> pd.DataFrame:
     """Rendered-field panel for the Section 5 audits: setup-first, event-first and
-    phase-free runs mixed, as the plan requires."""
+    phase-free runs mixed, as the plan requires. `seed0` offsets every seed (v2.1 Phase 1: the standard evaluation
+    panel SEP uses seed0 = 30000, event-first paths at 1000 + seed; the published v2 audit used 0)."""
     from evaluation.leakage_audit import panel_from_env
     frames = []
-    for s in range(seeds):
+    for s in range(seed0, seed0 + seeds):
         frames.append(panel_from_env(SyntheticMarketEnv("flat", T, s), "flat", s))
         frames.append(panel_from_env(SyntheticMarketEnv("bull_trap", T, s), "bull_trap", s))
         frames.append(panel_from_env(SyntheticMarketEnv("bull_trap", T, 1000 + s, ordering="event_first"), "bull_trap", 1000 + s))

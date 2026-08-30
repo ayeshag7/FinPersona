@@ -24,7 +24,8 @@ import numpy as np
 
 from envs.v2.schedule import Schedule
 
-MU_V_BASE = 0.00025   # ~6.5%/year price-only fundamental drift
+MU_V_BASE = 0.00025   # v2 value (~6.5%/year, stipulated). v2.1 Phase 1: the drift in force is value_params.MU_V (FIT, Shiller
+                      # price-only 2000-2024), passed to every driver as `mu_V`; this constant is kept only as the documented v2 value.
 LAM_PANIC = 0.10
 LAM_STAB = 0.05
 LAM_POSTTOP = 0.10
@@ -49,13 +50,14 @@ class CalmDriver:
     """flat / phase-free: no event; calm dynamics throughout."""
     phase_name = "calm"
 
-    def __init__(self, sched: Schedule):
+    def __init__(self, sched: Schedule, mu_V: float = MU_V_BASE):
         self.s = sched
+        self.mu_V = float(mu_V)
         self.topped: Optional[bool] = None
         self.top_day: Optional[int] = None
 
     def begin(self, day: int, x: float) -> Tuple[float, float, str]:
-        return 0.0, MU_V_BASE, "calm"
+        return 0.0, self.mu_V, "calm"
 
     def end(self, day: int, x: float, u: float) -> None:
         pass
@@ -69,14 +71,14 @@ class SustainedBullDriver(CalmDriver):
 
     def begin(self, day: int, x: float) -> Tuple[float, float, str]:
         # anchoring drift toward x = 0 in the episode AND the burn-in (so x_1 starts near 0)
-        return -LAM_SB * x, (self.s.mu_bull if day >= 1 else MU_V_BASE), ("sustained-bull" if day >= 1 else "calm")
+        return -LAM_SB * x, (self.s.mu_bull if day >= 1 else self.mu_V), ("sustained-bull" if day >= 1 else "calm")
 
 
 class CrashDriver(CalmDriver):
     """deterioration -> panic -> stabilisation."""
 
-    def __init__(self, sched: Schedule, lam_panic: float = LAM_PANIC):
-        super().__init__(sched)
+    def __init__(self, sched: Schedule, lam_panic: float = LAM_PANIC, mu_V: float = MU_V_BASE):
+        super().__init__(sched, mu_V)
         self.lam_panic = lam_panic
         s = sched
         self.det_start = s.event_start
@@ -120,7 +122,7 @@ class CrashDriver(CalmDriver):
     def begin(self, day: int, x: float) -> Tuple[float, float, str]:
         ph = self.phase(day)
         if ph == "calm":
-            return 0.0, MU_V_BASE, ph
+            return 0.0, self.mu_V, ph
         if ph == "deterioration":
             return 0.0, self.mu_det, ph
         xs0, xs1 = self._target(day, x)
@@ -136,8 +138,8 @@ class CrashDriver(CalmDriver):
 class BubbleDriver(CalmDriver):
     """mania (compounding drift) -> hazard top -> post-top reversal leg -> post-top."""
 
-    def __init__(self, sched: Schedule, h0: float, b: float, g_max: float = G_MAX):
-        super().__init__(sched)
+    def __init__(self, sched: Schedule, h0: float, b: float, g_max: float = G_MAX, mu_V: float = MU_V_BASE):
+        super().__init__(sched, mu_V)
         self.h0, self.b, self.g_max = h0, b, g_max
         self.g = sched.g0
         self.top_day = None
@@ -158,12 +160,12 @@ class BubbleDriver(CalmDriver):
     def begin(self, day: int, x: float) -> Tuple[float, float, str]:
         ph = self.phase(day)
         if ph == "calm":
-            return 0.0, MU_V_BASE, ph
+            return 0.0, self.mu_V, ph
         if ph == "mania":
             d = self.g
             self.g = min(self.g * (1.0 + self.s.kappa), self.g_max)   # the DRIFT compounds (super-exponential), capped
             self.mania_days += 1
-            return d, MU_V_BASE, ph
+            return d, self.mu_V, ph
         # post-top: reversal leg of -post_top_drop (price fraction) over post_top_len days, then nothing
         if day <= self._leg_end():
             goal = self.x_top + math.log(1.0 - self.s.post_top_drop)
@@ -173,8 +175,8 @@ class BubbleDriver(CalmDriver):
             xs0 = self.x_top + (goal - self.x_top) * k0
             xs1 = self.x_top + (goal - self.x_top) * k1
             d = (xs1 - xs0) + LAM_POSTTOP * (xs0 - x)
-            return d, MU_V_BASE, ph
-        return 0.0, MU_V_BASE, ph
+            return d, self.mu_V, ph
+        return 0.0, self.mu_V, ph
 
     def end(self, day: int, x: float, u: float) -> None:
         # hazard evaluated on days inside the mania run, using the new x
@@ -191,14 +193,14 @@ class BubbleDriver(CalmDriver):
 
 
 def make_driver(sched: Schedule, hazard_h0: float, hazard_b: float, g_max: float = G_MAX,
-                lam_panic: float = LAM_PANIC):
+                lam_panic: float = LAM_PANIC, mu_V: float = MU_V_BASE):
     if sched.scenario == "crash":
-        return CrashDriver(sched, lam_panic)
+        return CrashDriver(sched, lam_panic, mu_V)
     if sched.scenario == "bull_trap":
-        return BubbleDriver(sched, hazard_h0, hazard_b, g_max)
+        return BubbleDriver(sched, hazard_h0, hazard_b, g_max, mu_V)
     if sched.scenario == "sustained_bull":
-        return SustainedBullDriver(sched)
-    return CalmDriver(sched)
+        return SustainedBullDriver(sched, mu_V)
+    return CalmDriver(sched, mu_V)
 
 
 def relabel_blowoff(phases: np.ndarray, days: np.ndarray, sched: Schedule, top_day: Optional[int]) -> np.ndarray:

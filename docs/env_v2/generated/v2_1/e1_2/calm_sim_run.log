@@ -1,0 +1,32 @@
+{
+ "n_paths": 100,
+ "T": 5000,
+ "sd_x": {
+  "generator_mean": 0.1745775623326173,
+  "generator_ci95": [
+   0.16195793301614048,
+   0.18864618797180446
+  ],
+  "simulator_mean": 0.15161021512648104,
+  "inside": false
+ },
+ "acf1_x": {
+  "generator_mean": 0.9948616542142065,
+  "generator_ci95": [
+   0.9943553133507723,
+   0.9952926456027554
+  ],
+  "simulator_mean": 0.9936024708949965,
+  "inside": false
+ },
+ "kurtosis_r": {
+  "generator_mean": 30.56653143728048,
+  "generator_ci95": [
+   17.854258562039778,
+   49.120865241104944
+  ],
+  "simulator_mean": 26.4092878219844,
+  "inside": true
+ },
+ "passed": false
+}

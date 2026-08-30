@@ -40,7 +40,12 @@ def test_code_constants_match_canonical_numbers(num):
     assert mp.HALF_LIFE_FALLBACK_DAYS == 150.0 and abs(num["pull_rate_half_life_days"] - 150.0) < 0.5
     assert abs(mp.load_params(mp.ENGINE_DEFAULT).phi - num["phi_live"]) < 1e-9
     assert obs.ANALYST_SD == num["analyst_sd_documented"] == 0.15 and obs.ANALYST_RHO == num["analyst_rho"]
-    assert cfg.burn_in == num["burn_in"] == 260
+    # v2.1 Phase 1: burn-in and jump placement moved to params/value.json; the Phase-1 numbers file is canonical for them
+    # (phase0_numbers.json keeps the frozen v2 values 260 d / x_negmean for the record)
+    from envs.v2 import value_params as VP
+    num1 = json.load(open(os.path.join(DOCS, "generated", "v2_1", "phase1_numbers.json"), encoding="utf-8"))
+    assert cfg.burn_in == VP.BURN_IN["days"]["default"] == num1["value_json"]["burn_in"]["days"]["default"]
+    assert cfg.jump_placement == num1["value_json"]["jump"]["placement"] and num["burn_in"] == 260
 
 
 def test_long_pilot_numbers_are_the_documented_ones(num):

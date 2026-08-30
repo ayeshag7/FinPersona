@@ -31,15 +31,22 @@ def main():
     ap.add_argument("--train", type=int, default=12)
     ap.add_argument("--eval", type=int, default=10)
     ap.add_argument("--T", type=int, default=200)
+    ap.add_argument("--feature-sets", default="full,price_only,level_free",
+                    help="comma list of L5 variants: full | price_only (v2, contains the level) | level_free (v2.1 Phase 1)")
+    ap.add_argument("--out", default=None, help="output stem (default docs/env_v2/generated/l5_observables_oracle)")
+    ap.add_argument("--config", default=None, help="JSON GenConfig overrides (v2.1 Phase 1: the BEFORE run uses the frozen-equivalent settings)")
     a = ap.parse_args()
+    import json as _json
+    cfg = _json.loads(a.config) if a.config else None
     train_seeds = list(range(500, 500 + a.train))
-    oracles = {fs: ObservablesOracle(train_seeds=train_seeds, T=a.T, feature_set=fs).fit() for fs in ("full", "price_only")}
+    fsets = [f.strip() for f in a.feature_sets.split(",") if f.strip()]
+    oracles = {fs: ObservablesOracle(train_seeds=train_seeds, T=a.T, feature_set=fs, config=cfg).fit() for fs in fsets}
     rows = []
     for persona in ("ISFJ", "INTJ", "ENTJ"):
         c0 = centre(persona)
         for sc in ("flat", "bull_trap", "crash", "sustained_bull"):
             for s in range(a.eval):
-                env = SyntheticMarketEnv(sc, a.T, s)
+                env = SyntheticMarketEnv(sc, a.T, s, config=cfg)
                 base = run_baselines(env, persona, c0, random_seeds=2)
                 ref = {k: score_run(v, persona, c0) for k, v in base.items() if k in ("v_oracle", "mandate_conditional_oracle", "always_hold", "constant_mix")}
                 for fs, orc in oracles.items():
@@ -49,19 +56,19 @@ def main():
                     rows.append({"persona": persona, "scenario": sc, "seed": s, "policy": k, **{kk: m[kk] for kk in ("mcr_0.05", "band_mas", "turnover", "cost_paid", "return_pct", "mdd_pct", "coverage_0.05")}})
             print(persona, sc, "done", flush=True)
     df = pd.DataFrame(rows)
-    out = os.path.join(ROOT, "docs", "env_v2", "generated", "l5_observables_oracle")
+    out = a.out or os.path.join(ROOT, "docs", "env_v2", "generated", "l5_observables_oracle")
     df.to_csv(out + ".csv", index=False)
     agg = df.groupby(["persona", "scenario", "policy"])[["mcr_0.05", "band_mas", "turnover", "return_pct", "mdd_pct"]].mean().round(3)
     gap = []
     for (p, sc), g in df.groupby(["persona", "scenario"]):
         mco = g[g.policy == "mandate_conditional_oracle"]["mcr_0.05"].mean()
-        for fs in ("full", "price_only"):
+        for fs in fsets:
             l5 = g[g.policy == f"L5_{fs}"]["mcr_0.05"].mean()
             gap.append({"persona": p, "scenario": sc, "L5": fs, "MCR_L5": l5, "MCR_true_oracle": mco, "withheld_info_gap": l5 - mco})
     gap = pd.DataFrame(gap).round(3)
     with open(out + ".md", "w", encoding="utf-8", newline="\n") as fh:
         fh.write("# L5 observables oracle vs true-V oracle\n\n"
-                 f"Training seeds {train_seeds[0]}..{train_seeds[-1]} (disjoint from evaluated seeds 0..{a.eval-1}); T = {a.T}; "
+                 f"Training seeds {train_seeds[0]}..{train_seeds[-1]} (disjoint from evaluated seeds 0..{a.eval-1}); T = {a.T}; generator config overrides {cfg or '{}'}; "
                  "GBT on rendered fields + 5 lags -> x_hat; policy = mandate-conditional rule on x_hat. The gap is a LOWER "
                  "bound on what observables allow (this model class), i.e. an UPPER bound on the information withheld.\n\n"
                  "## Per-phase OOS R2 / sign accuracy of x_hat on the training pool\n\n")

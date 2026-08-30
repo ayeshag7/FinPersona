@@ -1,0 +1,1557 @@
+{
+ "frozen_cfg": {
+  "start_price_mode": "fixed",
+  "sigma_V": 0.006,
+  "df_V": 5.0,
+  "mu_V": 0.00025,
+  "jump_placement": "x_negmean",
+  "jump_rate": 0.01,
+  "jump_mean": -0.04,
+  "jump_sd": 0.03,
+  "burn_in": 260,
+  "burn_in_mode": "long"
+ },
+ "n_configs": 95,
+ "hidden_columns_identical": 95,
+ "all_columns_identical": 0,
+ "differing_columns": [
+  "days_since_eps_announcement",
+  "dividend_yield",
+  "dps_quarterly",
+  "last_quarter_eps",
+  "reported_PE",
+  "trailing_eps"
+ ],
+ "rows": [
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 0
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 0,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 0,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 0,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 1
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 1
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 1
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 1,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 1,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 1,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 2
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 2
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 2
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 2,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 2,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 2,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 3
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 3
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 3
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 3,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 3,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 3,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 4
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 4
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 4
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 4,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 4,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 4,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 5
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 5
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 5
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 5,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 5,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 5,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 6
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 6
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 6
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 6,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 6,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 6,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 7,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 7,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 7,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 8
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 8
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 8
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 8,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 8,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 8,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 9
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 9
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "sustained_bull",
+    "n_days": 200,
+    "seed": 9
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 9,
+    "crash_discount": 0.55
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 9,
+    "crash_discount": 0.7
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 9,
+    "crash_discount": 0.85
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 0,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0,
+    "engine": "fw_index"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0,
+    "engine": "pruna"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0,
+    "engine": "ar1"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0,
+    "engine": "fw_hl60"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 0,
+    "n_assets": 3,
+    "config": {
+     "asset_vol_scale": [
+      1.0,
+      1.0,
+      0.5
+     ],
+     "rho_common": 0.3
+    }
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 1,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 1,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 1,
+    "engine": "fw_index"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 1,
+    "engine": "pruna"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 1,
+    "engine": "ar1"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 1,
+    "engine": "fw_hl60"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 1,
+    "n_assets": 3,
+    "config": {
+     "asset_vol_scale": [
+      1.0,
+      1.0,
+      0.5
+     ],
+     "rho_common": 0.3
+    }
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 2,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 2,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 2,
+    "engine": "fw_index"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 2,
+    "engine": "pruna"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 2,
+    "engine": "ar1"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 2,
+    "engine": "fw_hl60"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 2,
+    "n_assets": 3,
+    "config": {
+     "asset_vol_scale": [
+      1.0,
+      1.0,
+      0.5
+     ],
+     "rho_common": 0.3
+    }
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 3,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 3,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 3,
+    "engine": "fw_index"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 3,
+    "engine": "pruna"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 3,
+    "engine": "ar1"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 3,
+    "engine": "fw_hl60"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 3,
+    "n_assets": 3,
+    "config": {
+     "asset_vol_scale": [
+      1.0,
+      1.0,
+      0.5
+     ],
+     "rho_common": 0.3
+    }
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 4,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 4,
+    "ordering": "event_first"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 4,
+    "engine": "fw_index"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 4,
+    "engine": "pruna"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 4,
+    "engine": "ar1"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 4,
+    "engine": "fw_hl60"
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  },
+  {
+   "config": {
+    "scenario": "crash",
+    "n_days": 200,
+    "seed": 4,
+    "n_assets": 3,
+    "config": {
+     "asset_vol_scale": [
+      1.0,
+      1.0,
+      0.5
+     ],
+     "rho_common": 0.3
+    }
+   },
+   "differ": [
+    "trailing_eps",
+    "last_quarter_eps",
+    "reported_PE",
+    "dps_quarterly",
+    "dividend_yield",
+    "days_since_eps_announcement"
+   ]
+  }
+ ]
+}

@@ -37,10 +37,10 @@ references/
 results_v2/
 results_v2_pilot/
 
-# Documentation: everything under docs/ is local only for now (29 Aug 2026).
-# To push docs/env_v2 again, replace the next line with:
-#   docs/*  !docs/env_v2/  !docs/README.md  docs/env_v2/slides/  docs/env_v2/reviews/  docs/env_v2/v2_1/
-docs/
+# Documentation: tracked again from 31 Aug 2026 (Phase 1 hand-over) at the user's request.
+# Exception: the Phase-1 intermediate panels (~1.2 GB; five exceed GitHub's 100 MB per-file limit).
+# They are regenerable -- python -m tools.phase1.before_state {sep,s11} --tag <tag>.
+docs/env_v2/generated/v2_1/_panels/*.pkl
 tools/build_slides.py
 tools/script_to_docx.py
 tools/md_to_docx.py

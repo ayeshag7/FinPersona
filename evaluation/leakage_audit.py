@@ -56,9 +56,52 @@ from evaluation.stylized_facts import V1_PHASE_MAP, MACRO_OF, CALM, DOWN, UP, RE
 THETAS = (0.03, 0.05, 0.08)
 NOISE_FLOOR = 0.01
 L2B_MARGIN = 0.10
+# The v2 control set ("price and technicals only"): it CONTAINS THE LEVEL (price, SMAs, MACD in price units), which is why
+# the fixed start price V_1 = P_1 = 100 made it an answer key (v2.1 Phase 0, block R3; weakness items 1, 3, 43). Kept as
+# control="level" for the record.
 PRICE_ONLY_KEYS = {"price", "SMA20", "SMA60", "SMA50", "SMA200", "RSI14", "MACD", "MACD_signal",
                    "trend_strength", "trend_regime", "ret_1", "ret_5", "ret_20"}
+# v2.1 Phase 1 (E1.6, PREREG_PHASE_1.md section 9): the LEVEL-FREE control set -- returns, ratios to moving averages, RSI,
+# MACD scaled by price, trend fields. No feature depends on the price level. This is the default control from Phase 1.
+LEVEL_FREE_KEYS = {"ret_1", "ret_5", "ret_20", "lp_sma20", "lp_sma50", "lp_sma60", "lp_sma200", "RSI14", "macd_p",
+                   "macds_p", "trend_strength", "trend_regime"}
+DERIVED_LEVEL_FREE = ("lp_sma20", "lp_sma50", "lp_sma60", "lp_sma200", "macd_p", "macds_p")
+CONTROLS = {"level": PRICE_ONLY_KEYS, "level_free": LEVEL_FREE_KEYS}
 N_LAGS = 5
+N_BOOT = 500      # cluster-bootstrap resamples over paths for the L2 intervals (PREREG_PHASE_1.md section 2)
+
+
+def add_level_free_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Derived level-free columns from the rendered fields: log(P/SMA_k), MACD/P, MACD_signal/P (returns are added by
+    add_lags_and_returns). Only the fields present in `df` are used (v1 renders SMA20/SMA60/SMA200, v2 SMA20/SMA50)."""
+    out = df.copy()
+    if "price" not in out:
+        return out
+    P = out["price"].astype(float).clip(lower=1e-6)
+    for k in ("SMA20", "SMA50", "SMA60", "SMA200"):
+        if k in out:
+            out[f"lp_{k.lower()}"] = np.log(P / out[k].astype(float).clip(lower=1e-6))
+    if "MACD" in out:
+        out["macd_p"] = out["MACD"].astype(float) / P
+    if "MACD_signal" in out:
+        out["macds_p"] = out["MACD_signal"].astype(float) / P
+    return out
+
+
+def control_columns(cols: List[str], control: str) -> List[str]:
+    keys = CONTROLS[control]
+    return [c for c in cols if c.split("_lag")[0] in keys]
+
+
+def _prepare(df: pd.DataFrame, feature_keys: List[str], control: str):
+    """Lagged frame, the full feature columns (rendered fields + lags + returns, as in v2) and the control columns."""
+    d = add_level_free_columns(df) if control == "level_free" else df
+    derived = [k for k in DERIVED_LEVEL_FREE if k in d.columns] if control == "level_free" else []
+    dfl, cols = add_lags_and_returns(d, list(feature_keys) + derived)
+    dfl = dfl.dropna(subset=cols).reset_index(drop=True)
+    full_cols = [c for c in cols if c.split("_lag")[0] not in DERIVED_LEVEL_FREE]
+    ctrl_cols = control_columns(cols, control)
+    return dfl, full_cols, ctrl_cols
 
 
 # --------------------------------------------------------------------------
@@ -152,6 +195,10 @@ def l1_algebraic(df: pd.DataFrame, shown_fields: List[str]) -> pd.DataFrame:
         ape = np.abs(vhat - V) / V
         rows.append({"candidate": name, "fitted_k": round(float(k), 4),
                      "median_APE": float(np.nanmedian(ape)), "max_APE": float(np.nanmax(ape)),
+                     "p5_APE": float(np.nanpercentile(ape, 5)), "p10_APE": float(np.nanpercentile(ape, 10)),
+                     "p25_APE": float(np.nanpercentile(ape, 25)),
+                     "within_1pct": float(np.nanmean(ape <= 0.01)), "within_2pct": float(np.nanmean(ape <= 0.02)),
+                     "within_5pct": float(np.nanmean(ape <= 0.05)),
                      "share_APE_above_floor": float(np.nanmean(ape > NOISE_FLOOR)),
                      "sign_acc_PE15_rule": float(np.mean(np.sign(df["reported_PE"].values - 15) == np.sign(df["x"].values)))
                      if "reported_PE" in df else np.nan})
@@ -199,14 +246,31 @@ def _r2(y, p):
     return float(1 - ((y[ok] - p[ok]) ** 2).sum() / ss) if ss > 0 else np.nan
 
 
+def _cluster_ci(stat_by_path: Callable, n_paths: int, n_boot: int, seed: int = 0):
+    """Percentile cluster bootstrap over paths of a statistic computed from per-path sufficient statistics.
+    `stat_by_path(idx)` returns the statistic for the resampled path indices `idx`."""
+    if n_paths < 2 or n_boot <= 0:
+        return (float("nan"), float("nan"))
+    rng = np.random.default_rng(seed)
+    vals = np.empty(n_boot)
+    for b in range(n_boot):
+        vals[b] = stat_by_path(rng.integers(0, n_paths, n_paths))
+    ok = np.isfinite(vals)
+    if ok.sum() < 10:
+        return (float("nan"), float("nan"))
+    return (float(np.percentile(vals[ok], 2.5)), float(np.percentile(vals[ok], 97.5)))
+
+
 def l2_surrogate(df: pd.DataFrame, feature_keys: List[str], theta: float = 0.05,
-                 models: Optional[Dict] = None, shuffle_seed: int = 0) -> pd.DataFrame:
-    """OOS (held-out seeds) R2 of x, sign accuracy on resolvable steps, MAPE of
-    V_hat, per phase group and feature set (full / price-only / shuffled-V)."""
+                 models: Optional[Dict] = None, shuffle_seed: int = 0, control: str = "level_free",
+                 n_boot: int = N_BOOT) -> pd.DataFrame:
+    """OOS (held-out seeds) R2 of x, sign accuracy on resolvable steps, MAPE of V_hat, per phase group and feature set
+    (full / control / shuffled-V). `control` = 'level_free' (v2.1 Phase 1 default: returns and ratios, no price level) or
+    'level' (the v2 price-and-technicals set, which contains the level). Every statistic carries a percentile cluster-
+    bootstrap 95 % interval over paths (`n_boot` resamples; 0 disables). The control's feature-set label stays
+    'price_only' in the output for continuity with the v2 tables (it is the level-free set unless control='level')."""
     models = models or _models()
-    dfl, cols = add_lags_and_returns(df, feature_keys)
-    dfl = dfl.dropna(subset=cols).reset_index(drop=True)
-    price_cols = [c for c in cols if c.split("_lag")[0] in PRICE_ONLY_KEYS]
+    dfl, cols, price_cols = _prepare(df, feature_keys, control)
     groups = (dfl["scenario"].astype(str) + "-" + dfl["seed"].astype(str)).to_numpy(dtype=object)
     y_x = dfl["x"].to_numpy(dtype=float); y_lv = np.log(dfl["V"].to_numpy(dtype=float))
     # shuffled-V control: permute the target across groups (keeps each path's
@@ -223,6 +287,8 @@ def l2_surrogate(df: pd.DataFrame, feature_keys: List[str], theta: float = 0.05,
         if len(dst) > n:
             shuffled_x[dst[n:]] = y_x[src[-1]]; shuffled_lv[dst[n:]] = y_lv[src[-1]]
     phase_group = dfl["macro"].replace({"down-event": "event", "up-event": "event"}).to_numpy(dtype=object)
+    path_of = pd.factorize(pd.Series(groups))[0]
+    n_paths = int(path_of.max()) + 1
     rows = []
     for fs_name, fcols in (("full", cols), ("price_only", price_cols)):
         X = dfl[fcols].to_numpy(dtype=float)
@@ -236,16 +302,46 @@ def l2_surrogate(df: pd.DataFrame, feature_keys: List[str], theta: float = 0.05,
                         continue
                     row = {"feature_set": fs_name, "model": mname, "target": tgt_name, "phase_group": pg,
                            "n": int(m.sum()), "R2": _r2(y[m], p[m])}
+                    ok = m & np.isfinite(p)
+                    # per-path sufficient statistics for the cluster bootstrap
+                    cnt = np.bincount(path_of[ok], minlength=n_paths).astype(float)
+                    sy = np.bincount(path_of[ok], weights=y[ok], minlength=n_paths)
+                    syy = np.bincount(path_of[ok], weights=y[ok] ** 2, minlength=n_paths)
+                    sres = np.bincount(path_of[ok], weights=(y[ok] - p[ok]) ** 2, minlength=n_paths)
+
+                    def r2_boot(idx, cnt=cnt, sy=sy, syy=syy, sres=sres):
+                        n = cnt[idx].sum()
+                        if n < 30:
+                            return float("nan")
+                        ss = syy[idx].sum() - sy[idx].sum() ** 2 / n
+                        return float(1 - sres[idx].sum() / ss) if ss > 0 else float("nan")
+                    row["R2_lo"], row["R2_hi"] = _cluster_ci(r2_boot, n_paths, n_boot)
                     if tgt_name == "x":
-                        res = m & (np.abs(y_x) >= theta)
+                        res = m & (np.abs(y_x) >= theta) & np.isfinite(p)
                         row["sign_acc_resolvable"] = float(np.mean(np.sign(p[res]) == np.sign(y_x[res]))) if res.sum() > 10 else np.nan
                         row["n_resolvable"] = int(res.sum())
+                        c_ok = np.bincount(path_of[res], weights=(np.sign(p[res]) == np.sign(y_x[res])).astype(float), minlength=n_paths)
+                        c_n = np.bincount(path_of[res], minlength=n_paths).astype(float)
+
+                        def sg_boot(idx, c_ok=c_ok, c_n=c_n):
+                            n = c_n[idx].sum()
+                            return float(c_ok[idx].sum() / n) if n > 10 else float("nan")
+                        row["sign_lo"], row["sign_hi"] = _cluster_ci(sg_boot, n_paths, n_boot)
                     else:
-                        row["MAPE_V"] = float(np.mean(np.abs(np.exp(p[m]) - np.exp(y[m])) / np.exp(y[m])))
+                        ape = np.abs(np.exp(p[ok]) - np.exp(y[ok])) / np.exp(y[ok])
+                        row["MAPE_V"] = float(np.mean(ape))
+                        s_ape = np.bincount(path_of[ok], weights=ape, minlength=n_paths)
+
+                        def mp_boot(idx, s_ape=s_ape, cnt=cnt):
+                            n = cnt[idx].sum()
+                            return float(s_ape[idx].sum() / n) if n > 0 else float("nan")
+                        row["MAPE_lo"], row["MAPE_hi"] = _cluster_ci(mp_boot, n_paths, n_boot)
                     if psh is not None:
                         row["R2_shuffledV"] = _r2(ysh[m], psh[m])
                     rows.append(row)
     out = pd.DataFrame(rows)
+    out.attrs["control"] = control
+    out.attrs["n_paths"] = n_paths
     # selectivity of valuation (non-price) fields = full R2 - price-only R2
     key = ["model", "target", "phase_group"]
     po = out[out.feature_set == "price_only"][key + ["R2"]].rename(columns={"R2": "R2_price_only"})
@@ -304,12 +400,11 @@ def l2_verdict(l2: pd.DataFrame, mode: str = "absolute") -> Dict[str, object]:
 # --------------------------------------------------------------------------
 # L2b composite phase clock
 # --------------------------------------------------------------------------
-def l2b_phase_clock(df: pd.DataFrame, feature_keys: List[str], margin: float = L2B_MARGIN) -> Dict[str, object]:
+def l2b_phase_clock(df: pd.DataFrame, feature_keys: List[str], margin: float = L2B_MARGIN,
+                    control: str = "level_free") -> Dict[str, object]:
     from sklearn.ensemble import HistGradientBoostingClassifier
     from sklearn.model_selection import GroupKFold, cross_val_predict
-    dfl, cols = add_lags_and_returns(df, feature_keys)
-    dfl = dfl.dropna(subset=cols).reset_index(drop=True)
-    price_cols = [c for c in cols if c.split("_lag")[0] in PRICE_ONLY_KEYS]
+    dfl, cols, price_cols = _prepare(df, feature_keys, control)
     y = dfl["macro"].to_numpy(dtype=object)
     groups = (dfl["scenario"].astype(str) + "-" + dfl["seed"].astype(str)).to_numpy(dtype=object)
     if len(np.unique(y)) < 2:
@@ -324,7 +419,8 @@ def l2b_phase_clock(df: pd.DataFrame, feature_keys: List[str], margin: float = L
     majority = float(pd.Series(y).value_counts(normalize=True).iloc[0])
     sel = acc["full"] - acc["price_only"]
     return {"acc_full": acc["full"], "acc_price_only": acc["price_only"], "acc_day_only": acc["day_only"],
-            "majority_class": majority, "selectivity": sel, "margin": margin, "pass": bool(sel <= margin), "n": int(len(y))}
+            "majority_class": majority, "selectivity": sel, "margin": margin, "pass": bool(sel <= margin), "n": int(len(y)),
+            "control": control}
 
 
 # --------------------------------------------------------------------------
@@ -333,23 +429,21 @@ def l2b_phase_clock(df: pd.DataFrame, feature_keys: List[str], margin: float = L
 # calm days. A control regime that is identifiable from volatility alone would be
 # a scenario clock through a non-valuation channel.
 # --------------------------------------------------------------------------
-def scenario_discrimination(df: pd.DataFrame, feature_keys: List[str]) -> Dict[str, object]:
+def scenario_discrimination(df: pd.DataFrame, feature_keys: List[str], control: str = "level_free") -> Dict[str, object]:
     from sklearn.ensemble import HistGradientBoostingClassifier
     from sklearn.model_selection import GroupKFold, cross_val_predict
     d = df[(df["scenario"].isin(["sustained_bull", "bull_trap", "flat"]))].copy()
     lab = np.where(d["scenario"] == "sustained_bull", "sustained", np.where(d["phase"].isin(["mania", "blow-off"]), "mania", "calm"))
     d["lab"] = lab
     d = d[d["lab"].isin(["sustained", "mania", "calm"])]
-    dfl, cols = add_lags_and_returns(d, feature_keys)
-    dfl = dfl.dropna(subset=cols).reset_index(drop=True)
-    price_iv = [c for c in cols if c.split("_lag")[0] in (PRICE_ONLY_KEYS | {"implied_volatility"})]
-    price_only = [c for c in cols if c.split("_lag")[0] in PRICE_ONLY_KEYS]
+    dfl, cols, price_only = _prepare(d, feature_keys, control)
+    price_iv = price_only + [c for c in cols if c.split("_lag")[0] == "implied_volatility"]
     y = dfl["lab"].to_numpy(dtype=object)
     groups = (dfl["scenario"].astype(str) + "-" + dfl["seed"].astype(str)).to_numpy(dtype=object)
     if len(np.unique(y)) < 2:
         return {"n": len(y)}
     cv = GroupKFold(n_splits=min(5, len(np.unique(groups))))
-    out = {"n": int(len(y)), "majority": float(pd.Series(y).value_counts(normalize=True).iloc[0])}
+    out = {"n": int(len(y)), "majority": float(pd.Series(y).value_counts(normalize=True).iloc[0]), "control": control}
     for name, fc in (("price_only", price_only), ("price_iv", price_iv), ("full", cols)):
         pred = cross_val_predict(HistGradientBoostingClassifier(max_iter=200, max_depth=4, random_state=0),
                                  dfl[fc].to_numpy(dtype=float), y, cv=cv, groups=groups)
@@ -397,17 +491,23 @@ def subsample_paths(panel: pd.DataFrame, max_rows: int = MAX_ROWS, seed: int = 0
 
 
 def run_audit(panel: pd.DataFrame, shown_fields: List[str], theta: float = 0.05,
-              margin: float = L2B_MARGIN, max_rows: int = MAX_ROWS) -> Dict[str, object]:
-    panel = subsample_paths(panel, max_rows)
+              margin: float = L2B_MARGIN, max_rows: Optional[int] = MAX_ROWS, control: str = "level_free",
+              n_boot: int = N_BOOT, models: Optional[Dict] = None) -> Dict[str, object]:
+    """`max_rows=None` disables the path subsampling (v2.1 Phase 1: the published audit runs on every path);
+    `control` selects the price-derived control set ('level_free' from Phase 1, 'level' = the v2 set)."""
+    n_paths_in = int(panel[["scenario", "seed"]].drop_duplicates().shape[0])
+    panel = subsample_paths(panel, max_rows) if max_rows else panel
     feature_keys = [k for k in shown_fields if k in panel.columns and k not in ("date",)]
     l1 = l1_algebraic(panel, shown_fields)
-    l2 = l2_surrogate(panel, feature_keys, theta=theta)
+    l2 = l2_surrogate(panel, feature_keys, theta=theta, control=control, n_boot=n_boot, models=models)
     l2v = l2_verdict(l2)
-    l2b = l2b_phase_clock(panel, feature_keys, margin=margin)
+    l2b = l2b_phase_clock(panel, feature_keys, margin=margin, control=control)
     l4 = l4_resolvability(panel)
-    sd = scenario_discrimination(panel, feature_keys) if "sustained_bull" in set(panel["scenario"]) else {}
+    sd = scenario_discrimination(panel, feature_keys, control=control) if "sustained_bull" in set(panel["scenario"]) else {}
+    n_paths = int(panel[["scenario", "seed"]].drop_duplicates().shape[0])
     return {"L1": l1, "L2": l2, "L2_verdict": l2v, "L2b": l2b, "L4": l4, "scenario_discrimination": sd,
-            "shown_fields": feature_keys, "n_rows": int(len(panel))}
+            "shown_fields": feature_keys, "n_rows": int(len(panel)), "n_paths": n_paths, "n_paths_input": n_paths_in,
+            "control": control, "subsampled": n_paths < n_paths_in}
 
 
 def checklist_rows(res: Dict[str, object]) -> List[Dict]:
@@ -445,7 +545,13 @@ def _md_table(df, floatfmt=".3f"):
 
 
 def to_markdown(res: Dict[str, object], title: str) -> str:
-    L = [f"# {title}", "", f"Rendered fields audited: {', '.join('`'+k+'`' for k in res['shown_fields'])}; {res['n_rows']} steps.", ""]
+    ctrl = res.get("control", "level")
+    ctrl_txt = ("LEVEL-FREE (returns, log P/SMA, RSI, MACD/P, trend; no price level -- v2.1 Phase 1, E1.6)" if ctrl == "level_free"
+                else "the v2 price-and-technicals set (contains the price level; kept for the record)")
+    L = [f"# {title}", "", f"Rendered fields audited: {', '.join('`'+k+'`' for k in res['shown_fields'])}; {res['n_rows']} steps "
+         f"({res.get('n_paths', '?')} paths{'; MAX_ROWS subsampling applied' if res.get('subsampled') else '; no subsampling'}). "
+         f"Price-derived control set ('price_only' in the tables): {ctrl_txt}. Intervals (columns *_lo/*_hi): percentile "
+         f"cluster bootstrap over paths ({N_BOOT} resamples).", ""]
     L += ["## L1 algebraic inversion", "", _md_table(res["L1"], ".4f"), ""]
     v = res["L2_verdict"]
     L += ["## L2 statistical surrogate (held-out seeds, best model per phase group)", "",
@@ -483,6 +589,10 @@ if __name__ == "__main__":
     ap.add_argument("--seeds", type=int, default=30)
     ap.add_argument("--T", type=int, default=200)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--control", default="level_free", choices=list(CONTROLS), help="price-derived control set (v2.1 Phase 1: level_free)")
+    ap.add_argument("--no-subsample", action="store_true", help="audit every path (no MAX_ROWS subsampling)")
+    ap.add_argument("--seed0", type=int, default=0, help="first seed of the panel (v2 only; the published v2 audit used 0)")
+    ap.add_argument("--panel-pickle", default=None, help="v2: load a stored panel (DataFrame pickle) instead of generating one")
     a = ap.parse_args()
     from agent.render import rendered_market_fields
     if a.env == "v1":
@@ -491,15 +601,16 @@ if __name__ == "__main__":
     else:
         from envs.synthetic_market import audit_panel  # provided by the v2 generator
         shown = rendered_market_fields("v2")
-        panel = audit_panel(a.seeds, a.T)
+        panel = pd.read_pickle(a.panel_pickle) if a.panel_pickle else audit_panel(a.seeds, a.T, seed0=a.seed0)
     out = a.out or os.path.join(ROOT, "docs", "env_v2", "generated", f"leakage_audit_{a.env}.md")
-    res = run_audit(panel, shown)
+    res = run_audit(panel, shown, max_rows=None if a.no_subsample else MAX_ROWS, control=a.control)
     import pickle  # persist the computation before any rendering step can fail
     with open(out.replace(".md", ".pkl"), "wb") as fh:
         pickle.dump(res, fh)
     res["L1"].to_csv(out.replace(".md", "_L1.csv"), index=False)
     with open(out, "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(to_markdown(res, f"Section 5 leakage / phase-clock / resolvability audit ({a.env}, {a.seeds} seeds, T={a.T})"))
+        label = f"stored panel {os.path.basename(a.panel_pickle)}, {res.get('n_paths', '?')} paths" if a.panel_pickle else f"{a.seeds} seeds"
+        fh.write(to_markdown(res, f"Section 5 leakage / phase-clock / resolvability audit ({a.env}, {label}, T={a.T})"))
     res["L2"].to_csv(out.replace(".md", "_L2.csv"), index=False)
     res["L4"].to_csv(out.replace(".md", "_L4.csv"), index=False)
     pd.DataFrame(checklist_rows(res)).to_csv(out.replace(".md", "_checklist_rows.csv"), index=False)

@@ -1,0 +1,271 @@
+{
+ "block": "R5_L1_candidates",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R5_L1_candidates",
+   "item": 5,
+   "statistic": "L1 median APE: k * P (price itself)",
+   "mine": 0.09370756035671103,
+   "n": 200,
+   "ci": [
+    0.07564271557362978,
+    0.11275279621461065
+   ],
+   "reviewer": 0.1236,
+   "rev_source": "leakage_audit_v2.md (150 paths)",
+   "rev_n": 150,
+   "verdict": "N",
+   "note": "p5 0.006, p10 0.011, p25 0.028; within 1/2/5 %: 0.09/0.18/0.37"
+  },
+  {
+   "block": "R5_L1_candidates",
+   "item": 5,
+   "statistic": "L1 median APE: k * P / reported_PE",
+   "mine": 0.13102646354951958,
+   "n": 200,
+   "ci": [
+    0.11959540209357739,
+    0.14389217925359585
+   ],
+   "reviewer": 0.1546,
+   "rev_source": "leakage_audit_v2.md (150 paths)",
+   "rev_n": 150,
+   "verdict": "N",
+   "note": "p5 0.014, p10 0.026, p25 0.065; within 1/2/5 %: 0.04/0.08/0.19"
+  },
+  {
+   "block": "R5_L1_candidates",
+   "item": 5,
+   "statistic": "L1 median APE: k * P * dividend_yield",
+   "mine": 0.12966617702951222,
+   "n": 200,
+   "ci": [
+    0.11533248603197752,
+    0.14413313863852356
+   ],
+   "reviewer": 0.1558,
+   "rev_source": "leakage_audit_v2.md (150 paths)",
+   "rev_n": 150,
+   "verdict": "N",
+   "note": "p5 0.012, p10 0.026, p25 0.066; within 1/2/5 %: 0.04/0.08/0.18"
+  },
+  {
+   "block": "R5_L1_candidates",
+   "item": 5,
+   "statistic": "L1 median APE: k * analyst_fair_value",
+   "mine": 0.23966479544626335,
+   "n": 200,
+   "ci": [
+    0.22364283559220613,
+    0.25825060548291123
+   ],
+   "reviewer": 0.2235,
+   "rev_source": "leakage_audit_v2.md (150 paths)",
+   "rev_n": 150,
+   "verdict": "R",
+   "note": "p5 0.021, p10 0.043, p25 0.116; within 1/2/5 %: 0.02/0.05/0.11"
+  },
+  {
+   "block": "R5_L1_candidates",
+   "item": 5,
+   "statistic": "L1 median APE: k * SMA50",
+   "mine": 0.09276707918076288,
+   "n": 200,
+   "ci": [
+    0.07055274654041598,
+    0.10776874079997963
+   ],
+   "reviewer": null,
+   "rev_source": "",
+   "rev_n": null,
+   "verdict": "D",
+   "note": "p5 0.005, p10 0.011, p25 0.027; within 1/2/5 %: 0.10/0.19/0.38"
+  },
+  {
+   "block": "R5_L1_candidates",
+   "item": 5,
+   "statistic": "L1 median APE: mean(k*SMA50, k*P/PE, k*analyst)",
+   "mine": 0.1070175819163583,
+   "n": 200,
+   "ci": [
+    0.09889001891363765,
+    0.1165077571062377
+   ],
+   "reviewer": 0.092,
+   "rev_source": "B row 5 (64 paths): 9.2 %, 27 % within 5 %",
+   "rev_n": 150,
+   "verdict": "R",
+   "note": "p5 0.010, p10 0.021, p25 0.051; within 1/2/5 %: 0.05/0.10/0.24"
+  },
+  {
+   "block": "R5_L1_candidates",
+   "item": 5,
+   "statistic": "substance: the best single candidate is price itself (median APE = median |x|), and a three-term mean beats it",
+   "mine": "price 0.094 vs three-term 0.107",
+   "n": 200,
+   "ci": null,
+   "reviewer": "0.124 vs 0.092",
+   "rev_source": "B rows 3, 5",
+   "rev_n": null,
+   "verdict": "N",
+   "note": ""
+  }
+ ],
+ "detail": {
+  "l1_audit_table": [
+   {
+    "candidate": "k * P (price itself)",
+    "fitted_k": 1.0153,
+    "median_APE": 0.09370756035671103,
+    "max_APE": 1.792167568629358,
+    "share_APE_above_floor": 0.9129,
+    "sign_acc_PE15_rule": 0.654375,
+    "pass": true
+   },
+   {
+    "candidate": "k * P * dividend_yield",
+    "fitted_k": 0.5208,
+    "median_APE": 0.12966617702951222,
+    "max_APE": 0.8182626963496828,
+    "share_APE_above_floor": 0.95835,
+    "sign_acc_PE15_rule": 0.654375,
+    "pass": true
+   },
+   {
+    "candidate": "k * P / reported_PE",
+    "fitted_k": 18.124,
+    "median_APE": 0.13102646354951958,
+    "max_APE": 0.9247987154294789,
+    "share_APE_above_floor": 0.964125,
+    "sign_acc_PE15_rule": 0.654375,
+    "pass": true
+   },
+   {
+    "candidate": "k * analyst_fair_value",
+    "fitted_k": 1.0626,
+    "median_APE": 0.23966479544626335,
+    "max_APE": 2.353508490158603,
+    "share_APE_above_floor": 0.9765,
+    "sign_acc_PE15_rule": 0.654375,
+    "pass": true
+   }
+  ],
+  "candidates": {
+   "k * P (price itself)": {
+    "median_APE": 0.09370756035671103,
+    "ci": [
+     0.07564271557362978,
+     0.11275279621461065
+    ],
+    "percentiles": {
+     "5": 0.005703715516061692,
+     "10": 0.011444955398142232,
+     "25": 0.028484543479128523,
+     "50": 0.09370756035671103
+    },
+    "share_within": {
+     "0.01": 0.0871,
+     "0.02": 0.177425,
+     "0.05": 0.36895
+    },
+    "share_above_floor": 0.9129
+   },
+   "k * P / reported_PE": {
+    "median_APE": 0.13102646354951958,
+    "ci": [
+     0.11959540209357739,
+     0.14389217925359585
+    ],
+    "percentiles": {
+     "5": 0.013638178876748746,
+     "10": 0.025668774944176444,
+     "25": 0.06523077838647323,
+     "50": 0.13102646354951958
+    },
+    "share_within": {
+     "0.01": 0.035875,
+     "0.02": 0.0763,
+     "0.05": 0.19205
+    },
+    "share_above_floor": 0.964125
+   },
+   "k * P * dividend_yield": {
+    "median_APE": 0.12966617702951222,
+    "ci": [
+     0.11533248603197752,
+     0.14413313863852356
+    ],
+    "percentiles": {
+     "5": 0.012216394633202357,
+     "10": 0.026207328052467175,
+     "25": 0.06553940641708215,
+     "50": 0.12966617702951222
+    },
+    "share_within": {
+     "0.01": 0.04165,
+     "0.02": 0.077925,
+     "0.05": 0.183425
+    },
+    "share_above_floor": 0.95835
+   },
+   "k * analyst_fair_value": {
+    "median_APE": 0.23966479544626335,
+    "ci": [
+     0.22364283559220613,
+     0.25825060548291123
+    ],
+    "percentiles": {
+     "5": 0.02076451630955934,
+     "10": 0.04345733224179241,
+     "25": 0.11568627779756402,
+     "50": 0.23966479544626335
+    },
+    "share_within": {
+     "0.01": 0.0235,
+     "0.02": 0.047875,
+     "0.05": 0.11205
+    },
+    "share_above_floor": 0.9765
+   },
+   "k * SMA50": {
+    "median_APE": 0.09276707918076288,
+    "ci": [
+     0.07055274654041598,
+     0.10776874079997963
+    ],
+    "percentiles": {
+     "5": 0.005362266118084538,
+     "10": 0.01053847212374355,
+     "25": 0.027301766500788444,
+     "50": 0.09276707918076288
+    },
+    "share_within": {
+     "0.01": 0.095075,
+     "0.02": 0.1872,
+     "0.05": 0.3794
+    },
+    "share_above_floor": 0.904925
+   },
+   "mean(k*SMA50, k*P/PE, k*analyst)": {
+    "median_APE": 0.1070175819163583,
+    "ci": [
+     0.09889001891363765,
+     0.1165077571062377
+    ],
+    "percentiles": {
+     "5": 0.010397600188196307,
+     "10": 0.02077075625108314,
+     "25": 0.05134743838656432,
+     "50": 0.1070175819163583
+    },
+    "share_within": {
+     "0.01": 0.047875,
+     "0.02": 0.09585,
+     "0.05": 0.244
+    },
+    "share_above_floor": 0.952125
+   }
+  }
+ }
+}

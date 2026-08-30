@@ -1,0 +1,1 @@
+frozen check: hidden columns identical on 95/95; all columns on 0; differing: ['days_since_eps_announcement', 'dividend_yield', 'dps_quarterly', 'last_quarter_eps', 'reported_PE', 'trailing_eps']

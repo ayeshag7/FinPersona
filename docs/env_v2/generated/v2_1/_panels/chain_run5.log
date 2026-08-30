@@ -1,0 +1,16 @@
+[chain] e1_1: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.e1_1_start_price
+fixed attacker {'flat': (0.638, [0.5819038372492378, 0.6974050023622343]), 'crash': (0.57, [0.5085141543396522, 0.6484857605349803]), 'bull_trap': (0.331, [0.30638211555386546, 0.35210007590901865]), 'sustained_bull': (-6.807, [-7.406551638090793, -6.32279762351833])} False 467 s
+fixed rule100 {'flat': (0.015, 0.003, False), 'crash': (0.011, 0.003, False), 'bull_trap': (0.009, 0.004, False), 'sustained_bull': (0.083, 0.002, False)}
+A attacker {'flat': (0.019, [-0.01591741004013306, 0.056841599291199675]), 'crash': (-0.013, [-0.045259977781328176, 0.022395805205285974]), 'bull_trap': (0.004, [-0.01235030605772514, 0.02009401660269603]), 'sustained_bull': (-1.323, [-1.7265036175731878, -0.994075627360946])} True 1293 s
+A rule100 {'flat': (0.097, 0.003, True), 'crash': (0.061, 0.003, True), 'bull_trap': (0.115, 0.004, True), 'sustained_bull': (0.105, 0.002, True)}
+B attacker {'flat': (0.077, [0.005173500454663045, 0.13738895310877217]), 'crash': (0.206, [0.14218609610303998, 0.26043558350886475]), 'bull_trap': (0.117, [0.09690138348108779, 0.13758419049766105]), 'sustained_bull': (-1.363, [-1.6039181226804504, -1.1849913759326252])} False 691 s
+B rule100 {'flat': (0.072, 0.003, False), 'crash': (0.045, 0.003, False), 'bull_trap': (0.046, 0.004, False), 'sustained_bull': (0.084, 0.002, False)}
+C attacker {'flat': (-0.027, [-0.053041618980193536, -0.0005701727074946408]), 'crash': (-0.056, [-0.07912171159034555, -0.033219306030180674]), 'bull_trap': (-0.028, [-0.041944103546803446, -0.015208890104168744]), 'sustained_bull': (-0.611, [-0.8172319953788227, -0.4326658764992279])} True 829 s
+C rule100 {'flat': (0.096, 0.003, True), 'crash': (0.062, 0.003, True), 'bull_trap': (0.113, 0.004, True), 'sustained_bull': (0.104, 0.002, True)}
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_1 8671 s
+[chain] e1_1: rc=0 8674 s
+[chain] e1_3: exists, skipped
+[chain] sep_after: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state sep --tag after
+SEP after: 1600 paths, 320000 rows, 875 s
+[chain] sep_after: rc=0 882 s
+[chain] audit_after_levelfree: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m evaluation.leakage_audit --env v2 --panel-pickle C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_after.pkl --control level_free --no-subsample --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6\audit_after_levelfree.md

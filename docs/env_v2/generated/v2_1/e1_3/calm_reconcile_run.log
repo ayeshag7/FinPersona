@@ -1,0 +1,16 @@
+panels {'grid': {'rows': 160000, 'paths': 800, 'calm_rows': 111843}, 'sep': {'rows': 320000, 'paths': 1600, 'calm_rows': 148697}}
+R_grid on grid {'R2': 0.1547123303605018, 'ci95': [0.09017643712075184, 0.17551949868287967], 'sign_acc': 0.6193482941371315, 'n': 95843}
+R_grid on sep {'R2': 0.0862824148083926, 'ci95': [0.042373906112166286, 0.12199786462187942], 'sign_acc': 0.5681168722015923, 'n': 119663}
+R_sep on sep {'R2': 0.08628241480839238, 'ci95': [0.042373906112166404, 0.12199786462187942], 'n': 119663}
+R_sep on grid {'R2': 0.15471233036050203, 'ci95': [0.09017643712075184, 0.17551949868287967], 'n': 95843}
+# Calm-reference reconciliation (PREREG_PHASE_1_ADDENDUM.md section 6.2)
+
+Grid panel: 800 paths, 160000 rows, 111843 calm rows (generator phase label). SEP-after panel: 1600 paths, 320000 rows, 148697 calm rows.
+
+| reader \ panel | E1.3 grid panel (in-force point) | SEP-after panel |
+|---|---|---|
+| E1.3 surrogate (calm = generator phase label) | 0.155 [0.090, 0.176] (n 95843) | 0.086 [0.042, 0.122] (n 119663) |
+| audit l2_surrogate, level-free (calm = audit phase group) | 0.155 [0.090, 0.176] (n 95843) | 0.086 [0.042, 0.122] (n 119663) |
+| E1.3 surrogate, flat scenario only | 0.152 [0.063, 0.170] (n 36000) | 0.067 [0.000, 0.121] (n 36000) |
+
+Reading: a row difference is the panel (composition, hidden vs rendered features); a column difference is the reader (feature construction, calm definition). The Phase-6 reference should be the cell that matches the published audit (audit reader on the SEP).

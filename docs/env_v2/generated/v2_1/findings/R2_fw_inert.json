@@ -1,0 +1,123 @@
+{
+ "block": "R2_fw_inert",
+ "tag": "",
+ "rows": [
+  {
+   "block": "R2_fw_inert",
+   "item": 2,
+   "statistic": "flat: share of days with n_f > 0.99",
+   "mine": 0.9846,
+   "n": 50,
+   "ci": [
+    0.9784,
+    0.9904
+   ],
+   "reviewer": 0.983,
+   "rev_source": "C \u00a7A.1 (10 seeds)",
+   "rev_n": 10,
+   "verdict": "R",
+   "note": "mean n_f 0.9984"
+  },
+  {
+   "block": "R2_fw_inert",
+   "item": 2,
+   "statistic": "crash: share of days with n_f > 0.99",
+   "mine": 0.9897,
+   "n": 50,
+   "ci": [
+    0.9851975,
+    0.9938
+   ],
+   "reviewer": 0.987,
+   "rev_source": "C \u00a7A.1 (10 seeds)",
+   "rev_n": 10,
+   "verdict": "R",
+   "note": "mean n_f 0.9989"
+  },
+  {
+   "block": "R2_fw_inert",
+   "item": 2,
+   "statistic": "bull_trap: share of days with n_f > 0.99",
+   "mine": 0.9907,
+   "n": 50,
+   "ci": [
+    0.987,
+    0.9941025
+   ],
+   "reviewer": 0.991,
+   "rev_source": "C \u00a7A.1 (10 seeds)",
+   "rev_n": 10,
+   "verdict": "R",
+   "note": "mean n_f 0.9990"
+  },
+  {
+   "block": "R2_fw_inert",
+   "item": 2,
+   "statistic": "pilot n\u0304 at price_scale 100, index set (20,000 steps, seed 12345)",
+   "mine": 0.9985046003217847,
+   "n": 1,
+   "ci": null,
+   "reviewer": 0.9985,
+   "rev_source": "LOG \u00a71",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "live engine (phi 0.463) n\u0304 0.9976"
+  },
+  {
+   "block": "R2_fw_inert",
+   "item": 2,
+   "statistic": "pilot n\u0304 at price_scale 1, index set (20,000 steps, seed 12345)",
+   "mine": 0.826799971093733,
+   "n": 1,
+   "ci": null,
+   "reviewer": 0.8268,
+   "rev_source": "LOG \u00a71 / C (0.83)",
+   "rev_n": null,
+   "verdict": "R",
+   "note": "chartist share 0.173; SABCEMM DCA-HPM 0.2285 (simulated, own noise)"
+  }
+ ],
+ "detail": {
+  "pilots": {
+   "live_20k": {
+    "n_bar": 0.9976485039121478,
+    "w_bar_raw": 0.7611251383007557,
+    "sd_x": 0.1422746056415533,
+    "acf1_x": 0.9962964544488975,
+    "half_life": 186.8109426987732,
+    "share_nf_gt_099": 0.978,
+    "seed": 12345,
+    "n_steps": 20000,
+    "sd_e": 0.016,
+    "w_norm": 1.0,
+    "burn": 2000
+   },
+   "index_scale100_20k": {
+    "n_bar": 0.9985046003217847,
+    "w_bar_raw": 0.7599873861723482,
+    "sd_x": 0.25450050757071024,
+    "acf1_x": 0.9988522257266674,
+    "half_life": 603.5588462519859,
+    "share_nf_gt_099": 0.9861111111111112,
+    "seed": 12345,
+    "n_steps": 20000,
+    "sd_e": 0.016,
+    "w_norm": 1.0,
+    "burn": 2000
+   },
+   "index_scale1_20k": {
+    "n_bar": 0.826799971093733,
+    "w_bar_raw": 0.9881828384164287,
+    "sd_x": 0.348558007546716,
+    "acf1_x": 0.9988661596116369,
+    "half_life": 610.9803057244516,
+    "share_nf_gt_099": 0.18922222222222224,
+    "seed": 12345,
+    "n_steps": 20000,
+    "sd_e": 0.016,
+    "w_norm": 1.0,
+    "burn": 2000
+   }
+  }
+ }
+}

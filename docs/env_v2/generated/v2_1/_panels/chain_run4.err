@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 159, in _get_module_details
+  File "<frozen importlib._bootstrap_external>", line 1157, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1087, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\ayesha.gull01\FinPersona\tools\phase1\e1_1_start_price.py", line 58
+    predv = {name: _oos_predictions(dfl[fc].to_numpy(float), yv, groups, model) for name, fc in ("level", fs["level"]), ("full", fs["full"])}
+                                                                                                                      ^
+SyntaxError: invalid syntax

@@ -1,0 +1,179 @@
+{
+ "_note": "v2.1 Phase 1 value-and-price-structure parameters in force (PREREG_PHASE_1.md; PHASE_1_REPORT.md). Every entry: value + provenance. Stage 1 (29 Aug 2026): pending values are labelled PENDING and replaced in logged stages.",
+ "sigma_V": {
+  "value": 0.006,
+  "fitted": {
+   "value": 0.019572114532101025,
+   "interval": [
+    0.01892494449362432,
+    0.020357152969418254
+   ],
+   "estimator": "C (SMM on persistence-carrying moments, set A, 417 stocks)",
+   "n_boot_refits": 30
+  },
+  "label": "ADOPTED-NOT-YET-APPLIED (E1.2, full-scale recovery study 30 Aug 2026): estimator C is the only usable estimator by the pre-registered rule (median relative error 0.05 at its own cell, A fails on coverage, B is not identified), so its sigma_V = 0.01957 [0.01892, 0.02036] is the adopted FIT. It is NOT yet written into the generator: sigma_V changes every path, so applying it triggers the plan's execution-order rule (E1.4, E1.5, E1.1 and the Phase-1 after-state were all measured at 0.006). The value in force stays v2's stipulated 0.006 until the team decides whether to re-run the cascade now or fold the change into Phase 2's engine re-fit \u2014 DECISION_LOG P1-15. Caveat carried with the adoption: the recovery panels come from C's own model, so the usability test favours C by construction, and C's J = 66.6 on the real panel shows the model does not fit the data well.",
+  "source": "e1_2/decision.json, e1_2/recovery.md, e1_2/smm_fit.json",
+  "date": "2026-08-30",
+  "interval": null,
+  "n": 417
+ },
+ "mu_V": {
+  "value": 0.0002281,
+  "label": "FIT",
+  "source": "Shiller ie_data.xls (shillerdata.com), nominal S&P composite price, mean monthly log change 2000-01..2024-12 / 21 (e1_2/misc_fits.json)",
+  "date": "2026-08-29",
+  "interval": [
+   -5.13e-05,
+   0.0004787
+  ],
+  "n": 300,
+  "beside": {
+   "long_run_1871_2024": 0.0001859,
+   "v2": 0.00025,
+   "DMS_2025_US_nominal_total_return_pct_per_yr": 9.7
+  }
+ },
+ "df_V": {
+  "value": 5.0,
+  "label": "DESIGN (both variants carried; E1.3 runs Gaussian and t5): the panel's EPS-surprise tails are equivalent to neither N(0,1) nor t5 (KS upper limits 0.20 / 0.18; excess kurtosis 8.3)",
+  "source": "e1_2/misc_fits.json df_V",
+  "date": "2026-08-29",
+  "interval": null,
+  "n": 25859
+ },
+ "s_x_fit": {
+  "value": 0.12857809971634016,
+  "label": "FIT target for Phase 2 (E1.2 estimator C; not a generator parameter, so applied immediately)",
+  "source": "e1_2/decision.json",
+  "date": "2026-08-30",
+  "interval": [
+   0.12474117720396251,
+   0.13459706622814746
+  ],
+  "n": 417
+ },
+ "h_fit": {
+  "value": 4.824109112705985,
+  "label": "FIT target for Phase 2 (E1.2 estimator C; days; not a generator parameter, so applied immediately). The engine's own pull-rate half-life in force is 150 d (CAL, v2 pilot) -- Phase 2 (E2.4/E2.6) reconciles them.",
+  "source": "e1_2/decision.json",
+  "date": "2026-08-30",
+  "interval": [
+   4.166130668323864,
+   5.422012905642471
+  ],
+  "n": 417
+ },
+ "start_price_mode": {
+  "value": "both",
+  "label": "DESIGN (D13 revised 30 Aug 2026 by the team after E1.1: the provisional B fails the attacker and rule-100 tests, A and C pass; C keeps the hidden paths identical to B's and applies a per-seed render scale to every price-denominated rendered field; REG-1's LLM test in Phase 9 decides A vs C finally)",
+  "source": "e1_1/start_price.md; PREREG_PHASE_1_ADDENDUM.md section 6; DECISION_LOG P1-13",
+  "date": "2026-08-30",
+  "interval": null,
+  "n": 2000,
+  "previous": {
+   "value": "normalise",
+   "label": "DESIGN (D13, provisional B for Phases 1-6)"
+  }
+ },
+ "start_price_range": {
+  "value": [
+   7.47,
+   240.02
+  ],
+  "label": "FIT (P5-P95 of unadjusted Close, set A, 40 random dates; used by mechanisms A and C)",
+  "source": "e1_2/misc_fits.json start_price_range",
+  "date": "2026-08-29",
+  "interval": {
+   "P_lo": [
+    6.27,
+    9.03
+   ],
+   "P_hi": [
+    196.78,
+    290.39
+   ]
+  },
+  "n": 16680
+ },
+ "jump": {
+  "value": {
+   "placement": "x_zero",
+   "jump_rate_x": 0.01,
+   "jump_mean_x": -0.04,
+   "jump_sd": 0.03,
+   "p_ann": 0.2737,
+   "lam_res": 0.005655,
+   "q_panel": 0.4345
+  },
+  "label": "FIT/DESIGN E1.4 (29 Aug 2026): placement 'x_zero' by the pre-registered KS rule (KS rule: both bootstrap upper limits < 0.10, smallest window-day distance among passers); E[x] on 200 flat paths +0.0104 [-0.0085, +0.0299]: pre-registered TOST FAIL (undecidable at 200 seeds, PREREG_PHASE_1_ADDENDUM.md); two-condition reading pass; 1,000-seed TOST +0.0126 [+0.0038, +0.0214] FAIL -> provisional (new-a passed; new-b failed -> team decision). Total rate 0.010/day and size sd 0.03 CAL (v2 E1 calibration; Phase 3 re-fits); p_ann and lam_res FIT from the panel's window share of jump days q (e1_4/panel_split.json)",
+  "source": "e1_4/generator_split.json (variants, KS rule), e1_4/confirm_*.json (E[x] at 1,000 seeds), e1_4/panel_split.json (q)",
+  "date": "2026-08-29",
+  "interval": {
+   "q": [
+    0.411762052496224,
+    0.45637001045609116
+   ]
+  },
+  "n": 7492,
+  "decision": {
+   "chosen": "B_x_zero",
+   "placement": "x_zero",
+   "why": "KS rule: both bootstrap upper limits < 0.10, smallest window-day distance among passers",
+   "passers": [
+    "B_x_zero",
+    "A_V_announce",
+    "C_both"
+   ],
+   "E_x": {
+    "E_x": 0.010365482468322848,
+    "ci95_200": [
+     -0.008459898140391458,
+     0.029931012958447637
+    ],
+    "old_tost_200": false,
+    "new_a_two_condition_200": true,
+    "n_confirm": 1000,
+    "E_x_confirm": 0.01256676608932963,
+    "ci95_confirm": [
+     0.0038467447337450517,
+     0.021396780677724925
+    ],
+    "new_b_tost_confirm": false
+   }
+  }
+ },
+ "burn_in": {
+  "value": {
+   "mode": "long",
+   "days": {
+    "fw_fallback_hl150": 750,
+    "fw_hl60": 60,
+    "fw_index": 60,
+    "pruna": 60,
+    "ar1": 60,
+    "default": 750
+   },
+   "stored_days": 60,
+   "modes_by_engine": {
+    "fw_fallback_hl150": "long",
+    "fw_hl60": "stored",
+    "fw_index": "stored",
+    "pruna": "stored",
+    "ar1": "stored"
+   }
+  },
+  "label": "FIT/DESIGN E1.5 (29 Aug 2026; REG-17 rule: every variable's KS upper limit < 0.10 against the day-5000 reference of 2000 flat paths; PREREG_PHASE_1_ADDENDUM.md section 4): fw_fallback_hl150: A (750 d; both pass: A for the default engine (no artefact), B for the slow sensitivities; current 260 d passes); fw_hl60: B (60 d; both pass: A for the default engine (no artefact), B for the slow sensitivities; current 260 d passes); fw_index: B (60 d; both pass: A for the default engine (no artefact), B for the slow sensitivities; current 260 d FAILS); pruna: B (60 d; both pass: A for the default engine (no artefact), B for the slow sensitivities; current 260 d FAILS); ar1: B (60 d; both pass: A for the default engine (no artefact), B for the slow sensitivities; current 260 d passes). GenConfig.burn_in_mode = 'long' (the default engine's choice); engines adopting the other option keep their own days here and the report states the split",
+  "source": "e1_5/burn_in.json",
+  "date": "2026-08-29"
+ },
+ "analysis_set": {
+  "value": {
+   "A": 417,
+   "B": 155,
+   "exclusion_rule": "reuse flag > 0 excluded (86); '.'-spelled duplicates dropped (2); window 2000-01-03..2024-12-31; Adj Close returns"
+  },
+  "label": "DESIGN (PREREG_PHASE_1.md section 1)",
+  "source": "generated/v2_1/e1_0_analysis_sets.csv",
+  "date": "2026-08-29"
+ }
+}

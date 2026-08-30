@@ -1,0 +1,71 @@
+{
+ "passed": true,
+ "tolerance": 0.0005,
+ "rows": [
+  {
+   "sigma_V": 0.006,
+   "s_x": 0.13,
+   "h": 150,
+   "T": 200,
+   "window_avg": 0.13701928555787718,
+   "day_T": 0.2345030379934575,
+   "steady_state": 0.3958683631848511,
+   "log_window_avg": 0.137,
+   "log_day_T": 0.235,
+   "log_steady": 0.396,
+   "match": true
+  },
+  {
+   "sigma_V": 0.006,
+   "s_x": 0.165,
+   "h": 150,
+   "T": 200,
+   "window_avg": 0.1503034273910507,
+   "day_T": 0.25991853641149876,
+   "steady_state": 0.47733203647290723,
+   "log_window_avg": 0.15,
+   "log_day_T": 0.26,
+   "log_steady": 0.477,
+   "match": true
+  },
+  {
+   "sigma_V": 0.01,
+   "s_x": 0.13,
+   "h": 150,
+   "T": 200,
+   "window_avg": 0.09695672047659634,
+   "day_T": 0.16087372542333622,
+   "steady_state": 0.23094379526503528,
+   "log_window_avg": 0.097,
+   "log_day_T": 0.161,
+   "log_steady": 0.231,
+   "match": true
+  },
+  {
+   "sigma_V": 0.02,
+   "s_x": 0.13,
+   "h": 150,
+   "T": 200,
+   "window_avg": 0.04098374881288568,
+   "day_T": 0.06516771854580361,
+   "steady_state": 0.08222479304433128,
+   "log_window_avg": 0.041,
+   "log_day_T": 0.065,
+   "log_steady": 0.082,
+   "match": true
+  },
+  {
+   "sigma_V": 0.03,
+   "s_x": 0.13,
+   "h": 150,
+   "T": 200,
+   "window_avg": 0.020899602677863456,
+   "day_T": 0.03273592276436277,
+   "steady_state": 0.03998555797498782,
+   "log_window_avg": 0.021,
+   "log_day_T": 0.033,
+   "log_steady": 0.04,
+   "match": true
+  }
+ ]
+}

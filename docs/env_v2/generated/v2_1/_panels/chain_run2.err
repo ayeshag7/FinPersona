@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\ayesha.gull01\FinPersona\tools\phase1\e1_5_burn_in.py", line 142, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ayesha.gull01\FinPersona\tools\phase1\e1_5_burn_in.py", line 71, in main
+    ap.add_argument("--n", type=int, default=N, help="paths per engine (500 pre-registered; 2,000 under PREREG_PHASE_1_ADDENDUM.md section 4)")
+                                             ^
+UnboundLocalError: cannot access local variable 'N' where it is not associated with a value

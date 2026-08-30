@@ -1,0 +1,72 @@
+[chain] checklist_after: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state checklist --tag after
+ item                                                     property  pass
+    1 No linear autocorrelation of returns in calm phases (Cont 1)  True
+    2                                      Heavy tails (Cont 2, 7) False
+    3                               Volatility clustering (Cont 6) False
+    4                                     Decay of ACF|r| (Cont 8)  None
+    5                                GARCH persistence recoverable  True
+    6                                     Leverage effect (Cont 9)  True
+    7                                  Volume-volatility (Cont 10) False
+    8                        Gain/loss asymmetry in crash (Cont 3) False
+    9                           Mispricing persistence (FW regime) False
+   10                                                Delta matters False
+   11                                 Bubble shape and populations False
+   12                                           Sentiment dynamics  True
+   13                                                   IV realism False
+   14                                                   Value leak  None
+   15                                      Phase/time separability  True
+   16                                        Composite phase clock  None
+   17                                                 Conditioning False
+   18                                         Start design applied  None
+   19                                    Action-space reachability  None
+   20                                                   Magnitudes False
+checklist after: 336 s -> C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e1_6_checklist_after.md
+[chain] checklist_after: rc=0 341 s
+[chain] s15_after: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state s15 --tag after --workers 3
+  fw_fallback_hl150: sd(x_1) 0.1789, mean sigma2 2.17e-04, mean n_f 0.9978
+  fw_hl60: sd(x_1) 0.1189, mean sigma2 2.28e-04, mean n_f 0.9951
+  fw_index: sd(x_1) 0.5313, mean sigma2 2.28e-04, mean n_f 0.9993
+  pruna: sd(x_1) 0.5292, mean sigma2 2.28e-04, mean n_f 0.9995
+  ar1: sd(x_1) 0.2724, mean sigma2 2.28e-04, mean n_f 0.5000
+S15 after: 35 s
+[chain] s15_after: rc=0 37 s
+[chain] hashes_after: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.before_state hashes --tag after
+95 configurations hashed -> C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\path_hashes_phase1_after.json
+[chain] hashes_after: rc=0 10 s
+[chain] audit_before_levelfree: exists, skipped
+[chain] audit_before_level: exists, skipped
+[chain] l5_before: exists, skipped
+[chain] numbers: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m tools.phase1.phase1_numbers
+written ['analysis_sets', 'e1_1', 'e1_2_A', 'e1_2_B', 'e1_2_misc', 'e1_2_two_component_exploratory', 'e1_3', 'e1_4_confirm', 'e1_4_generator', 'e1_4_panel', 'e1_5_n2000', 'e1_5_n500', 'e3_1', 'frozen_equivalent_check', 'value_json', 'value_json_labels']
+[chain] numbers: rc=0 0 s
+[chain] tests: C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -m pytest -q -x tests
+............................F
+================================== FAILURES ===================================
+__________________________ test_bull_trap_generation __________________________
+
+    def test_bull_trap_generation():
+        env = SyntheticMarketEnv(scenario="bull_trap", n_days=200, seed=42, start_price=100.0)
+        df = env.data
+        V = df["fundamental_value"].to_numpy(float); P = df["price"].to_numpy(float); x = df["x"].to_numpy(float)
+>       assert abs(V[0] - 100.0) < 1e-9                       # V_1 = start price (v2 convention; Phase 1 revisits)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       assert np.float64(1.3608355157085015) < 1e-09
+E        +  where np.float64(1.3608355157085015) = abs((np.float64(101.3608355157085) - 100.0))
+
+tests\test_env_logic.py:18: AssertionError
+======== known-defect registry (v2 generator; v2.1 acceptance = empty) ========
+  tests/test_v2_1_phase_1.py::test_flat_x_equivalence  items [4, 13]  -> Phase 2  [not run]  Phase 1 removed the jump bias (E1.4: placement x_zero, E[x] -0.069 -> +0.013); the residual +0.013 [+0.004, +0.021] at 1,000 seeds is the calm engine's own (jumps off: +0.011 [+0.003, +0.020]) and fails the +/- 0.02 equivalence margin by its upper limit; owned by the engine re-fit (Phase 2)
+  tests/test_v2_1_stats.py::test_fundamentalist_share  items [2, 11]  -> Phase 2  [not run]  FW switching inert at price_scale = 100: n_f > 0.99 on ~98 % of days
+  tests/test_v2_1_stats.py::test_iv_continuity  items [46, 25]  -> Phase 3  [not run]  the phase multiplier enters IV deterministically: one-day log-IV step of z ~ 7
+  tests/test_v2_1_stats.py::test_sustained_bull_selection  items [18, 42]  -> Phase 4  [not run]  rejection sampling keeps the quiet sub-population of sustained-bull draws
+  tests/test_leakage_ci.py::test_v2_L2_surrogate_thresholds  items [5, 32, 1, 3]  -> Phase 6  [not run]  pre-registered L2 absolute gate fails (anchor + field channels); gate re-derived in Phase 6 after Phases 1 and 5
+  tests/test_leakage_ci.py::test_v2_L1_no_algebraic_inversion  items [5, 21, 32]  -> Phase 6  [not run]  A6's L1 rule is marginal once the analyst field has its documented sd 0.15 (Phase 0 fix): k*analyst is inside the 1 % floor about as often as price itself (PASS by 0.26 pp at 50 seeds, FAIL at the 8 CI seeds); rule re-derived in Phase 6 (E6.5) after Phase 5 decides the field
+v1 baseline defects (permanent):
+  tests/test_leakage_ci.py::test_v1_L1_no_algebraic_inversion  [not run]
+  tests/test_leakage_ci.py::test_v1_L2_surrogate_thresholds  [not run]
+=========================== short test summary info ===========================
+FAILED tests/test_env_logic.py::test_bull_trap_generation - assert np.float64...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 28 passed, 1 skipped in 40.53s
+[chain] tests: rc=1 53 s
+[chain] STOP at tests
