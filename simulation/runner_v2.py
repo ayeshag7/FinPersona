@@ -18,6 +18,7 @@ from typing import Any, Dict, Optional
 import pandas as pd
 
 from envs.synthetic_market import SyntheticMarketEnv
+from envs.v2.mispricing import ENGINE_DEFAULT
 from evaluation.targets import start_cash_share, band, centre, category
 from simulation.portfolio_v2 import PortfolioV2
 from simulation.provenance import env_provenance, agent_provenance
@@ -53,7 +54,10 @@ class RunConfig:
     disclose_horizon: bool = False
     field_order: str = "canonical"
     b_pred: Optional[float] = None
-    engine: str = "fw_fallback_hl150"     # the engine that runs (envs.v2.mispricing.ENGINE_DEFAULT)
+    engine: str = ENGINE_DEFAULT          # the engine that runs; v2.1 Phase 2: read from
+                                          # envs/v2/params/mispricing.json, never hard-coded here (a
+                                          # literal would silently run a different engine from the one
+                                          # the parameter file names -- test_engine_named_honestly)
     temperature: float = 0.2
     probe_every: int = 0                  # 0 = no restatement probe
     context_mode: str = "stateless"       # stateless | rolling | full | summary   (E5 stateful arm)

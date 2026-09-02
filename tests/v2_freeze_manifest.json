@@ -1,6 +1,6 @@
 {
- "label": "v2.1 Phase 1 freeze (30 Aug 2026): D13 mechanism C, jump placement x_zero, per-engine burn-in, sigma_V adopted-not-yet-applied",
- "written": "2026-08-30",
+ "label": "v2.1 Phase 2 freeze (post-review)",
+ "written": "2026-09-02",
  "patterns": [
   "envs/v2/**/*.py",
   "envs/synthetic_market.py",
@@ -13,18 +13,20 @@
   "evaluation/targets.py"
  ],
  "line_endings": "CRLF normalised to LF before hashing",
- "manifest_hash": "691368e32ffff8891d39c7ae3f094e9124b3a25b8e987c27eb83110b389d104d",
+ "manifest_hash": "502abb00dc1c4450798880e85f18393ff7140bc99ab41b80ac743c0a47af9c95",
  "files": {
   "envs/synthetic_market.py": "b61cbfe6a4510ae054e5ff71c39a7ff151d9f96dbcfea861dfa0f8de2bccdc30",
   "envs/v2/__init__.py": "24dd6056b3dd032e240ee0b5aa4aed7c68689d2afdc99f35903a0aab4f336040",
   "envs/v2/events.py": "1fd7c2f0a2ee9e00732afb2a401edc5eb1b4465010ef629c1146f51f8d50c497",
   "envs/v2/garch.py": "6f7a1a474c3e65dd7e6692effb556465e8bdd6cc4e77faf6f3b567017cbf9985",
   "envs/v2/generator.py": "a77d8068c345a48eee9dd4d1dfa1fe299c2e3abf7f1421504bb550adadcb6ae1",
-  "envs/v2/mispricing.py": "5000905b293c39965922a22e1c647178640e4db0c1445da4450e14a2a4d5e144",
+  "envs/v2/mispricing.py": "5d91530cf10dda6ba0b42e9139bd536ad571640c8b295732489adce592026801",
+  "envs/v2/mispricing_params.py": "c277ece79706bd46cec2ea0d8a260ed6abe17290f35d18d40107e89ee7a4ab34",
   "envs/v2/observables.py": "17c29a3dcc814f81ad78e5767047b06401cb25f613453b57f5ffff21a7d72ad7",
   "envs/v2/params/fw_single_stock.REJECTED.json": "c1bb7127834c39a77a16dd7e3c1b800602968f3bb6be4023dee63bc4e42aa4ba",
   "envs/v2/params/hazard.json": "2e764d082ec070f388340822f81b268c44d0a104516c28422f1e3004ca0524f0",
-  "envs/v2/params/value.json": "a1b29fa7c2e29f1b0635e2578904fe9d6f0c857bff814a02fa5ab388379ce755",
+  "envs/v2/params/mispricing.json": "5557fa72403feaed40f4a4f9f04487185e6580ea1f1c98968a44b7863de32542",
+  "envs/v2/params/value.json": "e2d621ffe3715fb39a853e43d81224a2685fd547ac8b936b2b24c14f28959e22",
   "envs/v2/rng.py": "fdbfe64ec7997449e455c0db48cf1e1a14bcb41fd504bf48fc2e90485bc8b3c9",
   "envs/v2/schedule.py": "612cca82c7b999531674e49bc0969456996152fb05d804551c69203ce10ddd5b",
   "envs/v2/value_params.py": "d1651d0ec804b34b5c294d6720a2c6a538f7957bb4a5602216f30d1654343f45",

@@ -1,0 +1,47 @@
+{
+ "what": "Phase 1's s_x_fit is the calm engine's stationary sd(x) at the REFERENCE half-life of 150 d, not at the half-life the fit returned; e1_2_recovery.smm_fit computes s_x = sbar/0.017*0.1752 unconditionally.",
+ "phase1_fit": {
+  "sigma_V": 0.019572114532101025,
+  "sbar": 0.012476185474759035,
+  "s_x": 0.12857809971634016,
+  "h": 4.824109112705985,
+  "J": 66.61950005264137,
+  "nfev": 160
+ },
+ "phase1_reported_s_x": 0.12857809971634016,
+ "phase1_reported_s_x_ci95": [
+  0.12474117720396251,
+  0.13459706622814746
+ ],
+ "measured": {
+  "sd_x": 0.024984005906061556,
+  "acf1_x": 0.8609373301183525,
+  "half_life_acf1": 4.629203764502002
+ },
+ "n_paths": 50,
+ "T": 20000,
+ "burn": 1000,
+ "seed": 4242,
+ "corrected_s_x": 0.024984005906061556,
+ "corrected_s_x_corner_range": [
+  0.022717530802620484,
+  0.027537549646087518
+ ],
+ "corner_detail": {
+  "sbar0.01210|h4.17": 0.022717530802620484,
+  "sbar0.01210|h5.42": 0.025597788306424965,
+  "sbar0.01306|h4.17": 0.024438735211614267,
+  "sbar0.01306|h5.42": 0.027537549646087518
+ },
+ "note_on_the_interval": "Phase 1 stored only the percentiles of its 30 bootstrap refits, not the (sbar, h) pairs, so a proper bootstrap interval for the corrected s_x cannot be recomputed from the stored output. The corner range above pairs the endpoints of the sbar and h intervals independently and is therefore WIDER than the true interval; it is reported as a bound, not as an interval.",
+ "cross_check_estimator_A": {
+  "s_x": 0.02372996238833469,
+  "ci95": [
+   0.021645370410933513,
+   0.025803977234842585
+  ],
+  "source": "e1_2/decision.json (estimator A, variance ratios, set A full sample)",
+  "comment": "the corrected value agrees with estimator A, which measures s_x by a completely different route; the published 0.129 did not"
+ },
+ "date": "2026-09-01"
+}

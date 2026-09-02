@@ -1,0 +1,92 @@
+{
+ "what": "E2.4 diagnostic (not pre-registered as a criterion; reported as evidence): the realised switching behaviour of each FITTED engine, measured by simulating it for 20 paths x 20,000 days after a 1,000-day burn-in (seed 118001).",
+ "engines": {
+  "fw_v2|full": {
+   "params": {
+    "sigma_V": 0.011454747092679643,
+    "sbar": 0.010824724224515622,
+    "phi": 30.779039282976747,
+    "chi": 0.22085157895935004,
+    "alpha_0": -0.061874005564374265,
+    "alpha_n": 8.31342992804284,
+    "alpha_p": 8.409178001519471
+   },
+   "J": 29.240242506674985,
+   "n_bar": 0.9570376359363081,
+   "chartist_share": 0.042962364063691916,
+   "share_days_nf_gt_099": 0.9571475,
+   "share_days_nf_lt_05": 0.04282,
+   "sd_x": 0.07961292539402409,
+   "acf1_x": 0.8964957631706449,
+   "half_life_acf1_days": 6.343916532251154,
+   "pull_rate_half_life_days": 2.353105420106939,
+   "mu_phi": 0.3077903928297675
+  },
+  "fw_v2|train": {
+   "params": {
+    "sigma_V": 0.011621817560469204,
+    "sbar": 0.007674399345790484,
+    "phi": 12.507947868029623,
+    "chi": 1.4847766290459548,
+    "alpha_0": 3.967743125440516,
+    "alpha_n": 3.909743692619292,
+    "alpha_p": 0.557960244541756
+   },
+   "J": 70.75143104138715,
+   "n_bar": 0.999619891654663,
+   "chartist_share": 0.00038010834533697135,
+   "share_days_nf_gt_099": 1.0,
+   "share_days_nf_lt_05": 0.0,
+   "sd_x": 0.0169167543027447,
+   "acf1_x": 0.8838680950615974,
+   "half_life_acf1_days": 5.614917358921476,
+   "pull_rate_half_life_days": 5.543761127641106,
+   "mu_phi": 0.12507947868029623
+  },
+  "fw_plus|full": {
+   "params": {
+    "sigma_V": 0.0117141127179075,
+    "sigma_f": 0.8742391529787679,
+    "sigma_c": 0.5959680141922877,
+    "phi": 15.59408190580971,
+    "chi": 2.879152087699202,
+    "alpha_0": 0.6573366346941696,
+    "alpha_n": 0.9822026718008066,
+    "alpha_p": 3.990614415586459
+   },
+   "J": 110.29716040941086,
+   "n_bar": 0.7645888511420024,
+   "chartist_share": 0.23541114885799763,
+   "share_days_nf_gt_099": 0.0,
+   "share_days_nf_lt_05": 0.0,
+   "sd_x": 0.015094329058246165,
+   "acf1_x": 0.889969705730004,
+   "half_life_acf1_days": 5.946297789668714,
+   "pull_rate_half_life_days": 5.8135001635607475,
+   "mu_phi": 0.15594081905809712
+  },
+  "fw_plus|train": {
+   "params": {
+    "sigma_V": 0.011303302966044555,
+    "sigma_f": 0.979386808844235,
+    "sigma_c": 0.8412515810674959,
+    "phi": 24.005153966328276,
+    "chi": 0.013177477530443406,
+    "alpha_0": 0.046153973530072556,
+    "alpha_n": 1.736897994925306,
+    "alpha_p": 0.1833719544466702
+   },
+   "J": 91.68568126918468,
+   "n_bar": 0.5820793574192208,
+   "chartist_share": 0.4179206425807792,
+   "share_days_nf_gt_099": 0.0,
+   "share_days_nf_lt_05": 0.0,
+   "sd_x": 0.013680236315985968,
+   "acf1_x": 0.8698620105486905,
+   "half_life_acf1_days": 4.9716235669702575,
+   "pull_rate_half_life_days": 4.960652066462055,
+   "mu_phi": 0.24005153966328277
+  }
+ },
+ "note": "On the TRAINING period the fw_v2 optimiser drives alpha_0 = 3.97 and alpha_n = 3.91, which pins n_f at 1 on 100 % of days: with n_f == 1 the FW recursion IS an AR(1) with rho = 1 - mu phi. Its fitted (sigma_V, sbar) then match the ar1 engine's train fit to four significant figures (0.01162 / 0.00767 against 0.01163 / 0.00765) and its J is 70.8 against 70.7. Given the freedom, the switching mechanism turns itself off."
+}

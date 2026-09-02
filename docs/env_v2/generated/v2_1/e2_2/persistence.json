@@ -1,0 +1,495 @@
+{
+ "note": "E2.2 assembles the three estimators; usability is Phase 1's full-scale recovery study (e1_2/recovery.md), not repeated here.",
+ "recovery_verdicts": {
+  "A": {
+   "usable": false,
+   "why": "median relative error 0.11 -> 20.0 as h grows and interval coverage 0.00-0.01 in every cell",
+   "source": "e1_2/recovery.md"
+  },
+  "B": {
+   "usable": false,
+   "why": "h-hat ~ 36-47 d whatever the truth, and the same on a panel with x == 0: it measures the EDGAR V-hat error, not x",
+   "source": "e1_2/recovery.md"
+  },
+  "C": {
+   "usable": true,
+   "range": "h <= 150 d (median relative error 0.03-0.16); unusable at h >= 250",
+   "caveat": "the recovery panels come from C's own model, so the usability test favours C by construction",
+   "source": "e1_2/recovery.md, PHASE_1_REPORT.md 4.2"
+  }
+ },
+ "estimators": {
+  "A": {
+   "method": "Lo-MacKinlay variance ratios, pooled weighted minimum distance (E1.2)",
+   "periods": {
+    "full": {
+     "h_days": 4.897221642216058,
+     "ci95_stocks": [
+      4.211974962014168,
+      5.614475430381737
+     ],
+     "ci95_blocks": [
+      0.944251675274151,
+      13.279780850945485
+     ],
+     "sigma_V": 0.02048341058017436,
+     "s_x": 0.02372996238833469,
+     "J": 80.0221146543698,
+     "n": 417
+    },
+    "2000-07": {
+     "h_days": 7.677881053913318,
+     "ci95_stocks": [
+      6.4984973556576255,
+      9.020297856827701
+     ],
+     "ci95_blocks": [
+      3.6777720406644647,
+      19.371145287805437
+     ],
+     "sigma_V": 0.020629455520763965,
+     "s_x": 0.033751485568342586,
+     "J": 17.085537985255563,
+     "n": 417
+    },
+    "2008-12": {
+     "h_days": 0.8101495939843592,
+     "ci95_stocks": [
+      0.5454171945369221,
+      1.026032557603308
+     ],
+     "ci95_blocks": [
+      0.021123842762496882,
+      8.92521005481806
+     ],
+     "sigma_V": 0.025853448801743343,
+     "s_x": 0.01231904903893562,
+     "J": 38.078300569499675,
+     "n": 417
+    },
+    "2013-19": {
+     "h_days": 16.729314822006646,
+     "ci95_stocks": [
+      13.880812902950334,
+      20.022241167206346
+     ],
+     "ci95_blocks": [
+      8.512236525738121,
+      65.05195232431784
+     ],
+     "sigma_V": 0.013902803476266894,
+     "s_x": 0.03224208507562922,
+     "J": 3.9030950043449177,
+     "n": 417
+    },
+    "2020-24": {
+     "h_days": 13.844320724717736,
+     "ci95_stocks": [
+      11.003579934324428,
+      16.9983437792202
+     ],
+     "ci95_blocks": [
+      2.3372662431874542,
+      42.60491910026453
+     ],
+     "sigma_V": 0.019320032612995704,
+     "s_x": 0.04970163007212817,
+     "J": 94.70038942533647,
+     "n": 417
+    }
+   },
+   "cross_section": {
+    "n": 417,
+    "median_h": 6.373012731588651,
+    "p25_p75": [
+     2.3861265589342113,
+     21.742320256858605
+    ],
+    "median_sigma_V": 0.01636113030930314,
+    "median_s_x": 0.025246284544489943,
+    "share_h_above_500": 0.11990407673860912,
+    "weights": "1/Var of each moment across stocks"
+   },
+   "usable": false
+  },
+  "B": {
+   "method": "log(P/V_hat) AR(1), monthly, Andrews median-unbiased (E1.2)",
+   "window": [
+    "2009-06-30",
+    "2024-12-31"
+   ],
+   "variants": {
+    "EarningsPerShareBasic|sector": {
+     "n_stocks": 367,
+     "median_h_days": 255.78469816743845,
+     "ci95": [
+      222.94606824623867,
+      276.619921735051
+     ],
+     "p25_p75": [
+      151.7542465887514,
+      626.3590551699499
+     ],
+     "median_h_ols": 167.33840121456453,
+     "s_x_median": 0.3898195883792335,
+     "share_at_grid_top": 0.14986376021798364
+    },
+    "EarningsPerShareBasic|market": {
+     "n_stocks": 367,
+     "median_h_days": 289.83780577199263,
+     "ci95": [
+      268.4927992835388,
+      350.3475318681875
+     ],
+     "p25_p75": [
+      174.82938413215723,
+      756.399929631362
+     ],
+     "median_h_ols": 187.41219641290036,
+     "s_x_median": 0.4036965868584457,
+     "share_at_grid_top": 0.1880108991825613
+    },
+    "EarningsPerShareDiluted|sector": {
+     "n_stocks": 366,
+     "median_h_days": 259.15525334629643,
+     "ci95": [
+      227.25320839178954,
+      285.51897002691703
+     ],
+     "p25_p75": [
+      154.75753982068466,
+      596.0580802563427
+     ],
+     "median_h_ols": 167.79522247047177,
+     "s_x_median": 0.39519302071452733,
+     "share_at_grid_top": 0.14207650273224043
+    },
+    "EarningsPerShareDiluted|market": {
+     "n_stocks": 366,
+     "median_h_days": 293.66562601268004,
+     "ci95": [
+      265.9710081641048,
+      353.401532920989
+     ],
+     "p25_p75": [
+      176.94180774996784,
+      779.6715795723075
+     ],
+     "median_h_ols": 186.3007014875433,
+     "s_x_median": 0.4083942876963531,
+     "share_at_grid_top": 0.17759562841530055
+    }
+   },
+   "usable": false
+  },
+  "C": {
+   "method": "SMM on FW's nine moments plus the persistence-carrying moments (E2.3, this phase)",
+   "engines": {
+    "ar1": {
+     "full": {
+      "period": "full",
+      "J": 80.3604980379063,
+      "df": 14,
+      "chi2_accept": false,
+      "fw_p": 0.0,
+      "accept_fw_p": false,
+      "params": {
+       "sigma_V": 0.012203561517323533,
+       "sbar": 0.008698868151339125,
+       "h": 7.498029274686622
+      },
+      "ci95": {
+       "sigma_V": [
+        0.01065588076354027,
+        0.014190693608542412
+       ],
+       "sbar": [
+        0.006588277221513501,
+        0.012982117459916507
+       ],
+       "h": [
+        3.8098855550023334,
+        23.6074232208472
+       ]
+      },
+      "half_life_days": 7.498029274686622,
+      "half_life_kind": "AR(1) half-life from rho = 2^(-1/h)",
+      "sd_x_stationary": 0.022648187194401388,
+      "half_life_acf1_days": 8.065630674983446
+     },
+     "p1": {
+      "period": "p1",
+      "J": 100.08578570543442,
+      "df": 14,
+      "chi2_accept": false,
+      "fw_p": 0.0,
+      "accept_fw_p": false,
+      "params": {
+       "sigma_V": 0.01156596306890062,
+       "sbar": 0.014605586324538945,
+       "h": 13.091484620111606
+      },
+      "ci95": null,
+      "half_life_days": 13.091484620111606,
+      "half_life_kind": "AR(1) half-life from rho = 2^(-1/h)",
+      "sd_x_stationary": 0.048894267488190105,
+      "half_life_acf1_days": 13.829487694048135
+     },
+     "p2": {
+      "period": "p2",
+      "J": 74.26412189123457,
+      "df": 14,
+      "chi2_accept": false,
+      "fw_p": 0.06,
+      "accept_fw_p": true,
+      "params": {
+       "sigma_V": 0.011405054954803718,
+       "sbar": 0.009871620263493508,
+       "h": 8.859290994420759
+      },
+      "ci95": null,
+      "half_life_days": 8.859290994420759,
+      "half_life_kind": "AR(1) half-life from rho = 2^(-1/h)",
+      "sd_x_stationary": 0.027690802731537064,
+      "half_life_acf1_days": 9.487812615651679
+     },
+     "p3": {
+      "period": "p3",
+      "J": 44.68429158645737,
+      "df": 14,
+      "chi2_accept": false,
+      "fw_p": 1.0,
+      "accept_fw_p": true,
+      "params": {
+       "sigma_V": 0.013151701444682926,
+       "sbar": 0.008990128222035015,
+       "h": 9.249395090933298
+      },
+      "ci95": null,
+      "half_life_days": 9.249395090933298,
+      "half_life_kind": "AR(1) half-life from rho = 2^(-1/h)",
+      "sd_x_stationary": 0.025764171435084558,
+      "half_life_acf1_days": 9.917188960138617
+     },
+     "train": {
+      "period": "train",
+      "J": 70.74981638770177,
+      "df": 14,
+      "chi2_accept": false,
+      "fw_p": null,
+      "accept_fw_p": null,
+      "params": {
+       "sigma_V": 0.01162509800474979,
+       "sbar": 0.007647156601750106,
+       "h": 5.181745758293026
+      },
+      "ci95": null,
+      "half_life_days": 5.181745758293026,
+      "half_life_kind": "AR(1) half-life from rho = 2^(-1/h)",
+      "sd_x_stationary": 0.016903795365820817,
+      "half_life_acf1_days": 5.606557615791508
+     }
+    },
+    "fw_plus": {
+     "full": {
+      "period": "full",
+      "J": 110.29716040941086,
+      "df": 9,
+      "chi2_accept": false,
+      "fw_p": 0.0,
+      "accept_fw_p": false,
+      "params": {
+       "sigma_V": 0.0117141127179075,
+       "sigma_f": 0.8742391529787679,
+       "sigma_c": 0.5959680141922877,
+       "phi": 15.59408190580971,
+       "chi": 2.879152087699202,
+       "alpha_0": 0.6573366346941696,
+       "alpha_n": 0.9822026718008066,
+       "alpha_p": 3.990614415586459
+      },
+      "ci95": {
+       "sigma_V": [
+        0.010838155951791119,
+        0.013842606647211455
+       ],
+       "sigma_f": [
+        0.8425964607369529,
+        1.0178634631232781
+       ],
+       "sigma_c": [
+        0.47851435840999834,
+        0.8377668983743999
+       ],
+       "phi": [
+        13.850642233018462,
+        34.754865981750484
+       ],
+       "chi": [
+        2.940255509313875,
+        14.92875357576516
+       ],
+       "alpha_0": [
+        0.1689420442022298,
+        1.1095279568732863
+       ],
+       "alpha_n": [
+        0.9766019725040288,
+        0.9885702714376348
+       ],
+       "alpha_p": [
+        1.3468271161766068,
+        5.147514027130048
+       ]
+      },
+      "half_life_days": 5.8135001635607475,
+      "half_life_kind": "pull-rate ln2/(mu n_bar phi) -- filled by fill_pull_half_life()",
+      "n_bar_fitted": 0.7645888511420024,
+      "chartist_share_fitted": 0.23541114885799763,
+      "half_life_acf1_days": 5.946297789668714,
+      "sd_x_stationary": 0.015094329058246165
+     },
+     "train": {
+      "period": "train",
+      "J": 91.68568126918468,
+      "df": 9,
+      "chi2_accept": false,
+      "fw_p": null,
+      "accept_fw_p": null,
+      "params": {
+       "sigma_V": 0.011303302966044555,
+       "sigma_f": 0.979386808844235,
+       "sigma_c": 0.8412515810674959,
+       "phi": 24.005153966328276,
+       "chi": 0.013177477530443406,
+       "alpha_0": 0.046153973530072556,
+       "alpha_n": 1.736897994925306,
+       "alpha_p": 0.1833719544466702
+      },
+      "ci95": null,
+      "half_life_days": 4.960652066462055,
+      "half_life_kind": "pull-rate ln2/(mu n_bar phi) -- filled by fill_pull_half_life()",
+      "n_bar_fitted": 0.5820793574192208,
+      "chartist_share_fitted": 0.4179206425807792,
+      "half_life_acf1_days": 4.9716235669702575,
+      "sd_x_stationary": 0.013680236315985968
+     }
+    },
+    "fw_v2": {
+     "full": {
+      "period": "full",
+      "J": 29.240242506674985,
+      "df": 10,
+      "chi2_accept": false,
+      "fw_p": 0.005,
+      "accept_fw_p": false,
+      "params": {
+       "sigma_V": 0.011454747092679643,
+       "sbar": 0.010824724224515622,
+       "phi": 30.779039282976747,
+       "chi": 0.22085157895935004,
+       "alpha_0": -0.061874005564374265,
+       "alpha_n": 8.31342992804284,
+       "alpha_p": 8.409178001519471
+      },
+      "ci95": {
+       "sigma_V": [
+        0.00952817951150019,
+        0.01259223112324181
+       ],
+       "sbar": [
+        0.009571076425331951,
+        0.011009532879070959
+       ],
+       "phi": [
+        30.72643613128251,
+        50.28090047805477
+       ],
+       "chi": [
+        0.20839413531470008,
+        0.2636329652880008
+       ],
+       "alpha_0": [
+        -0.06400203523676788,
+        -0.045090615712196254
+       ],
+       "alpha_n": [
+        7.935592305028567,
+        8.76949400481274
+       ],
+       "alpha_p": [
+        8.28096594602307,
+        11.992964258785197
+       ]
+      },
+      "half_life_days": 2.353105420106939,
+      "half_life_kind": "pull-rate ln2/(mu n_bar phi) -- filled by fill_pull_half_life()",
+      "n_bar_fitted": 0.9570376359363081,
+      "chartist_share_fitted": 0.042962364063691916,
+      "half_life_acf1_days": 6.343916532251154,
+      "sd_x_stationary": 0.07961292539402409
+     },
+     "train": {
+      "period": "train",
+      "J": 70.75143104138715,
+      "df": 10,
+      "chi2_accept": false,
+      "fw_p": null,
+      "accept_fw_p": null,
+      "params": {
+       "sigma_V": 0.011621817560469204,
+       "sbar": 0.007674399345790484,
+       "phi": 12.507947868029623,
+       "chi": 1.4847766290459548,
+       "alpha_0": 3.967743125440516,
+       "alpha_n": 3.909743692619292,
+       "alpha_p": 0.557960244541756
+      },
+      "ci95": null,
+      "half_life_days": 5.543761127641106,
+      "half_life_kind": "pull-rate ln2/(mu n_bar phi) -- filled by fill_pull_half_life()",
+      "n_bar_fitted": 0.999619891654663,
+      "chartist_share_fitted": 0.00038010834533697135,
+      "half_life_acf1_days": 5.614917358921476,
+      "sd_x_stationary": 0.0169167543027447
+     }
+    }
+   }
+  }
+ },
+ "reg5": {
+  "usable_estimators": [
+   "C"
+  ],
+  "rule": "adopt the usable estimator with the smallest RMSE whose data interval contains the other usable estimators' point estimates; if the usable intervals are disjoint, adopt none and sweep the union",
+  "outcome": "Only C survived usability, so the rule reduces to 'adopt the only usable estimator'. It is therefore NOT evidence that C is right on the real panel; E2.3's acceptance test is what can reject C's model, and its verdict is reported beside.",
+  "qualifications": [
+   "the recovery panels come from C's own model (favourable to C by construction)",
+   "Phase 1's data-side J = 66.6 already indicated misspecification on the real panel"
+  ]
+ },
+ "e2_6_levels": {
+  "plan_levels": [
+   30,
+   60,
+   120,
+   250,
+   500
+  ],
+  "fitted_range": [
+   2.353105420106939,
+   23.6074232208472
+  ],
+  "levels": [
+   5,
+   10,
+   15,
+   30,
+   60,
+   120,
+   250,
+   500
+  ],
+  "rule": "the union of C's fitted interval for the adopted engine and the plan's own sweep levels; the nearest decade below is added when the fit falls below 30 d"
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "what": "E2.8 (post-review extension, PREREG_PHASE_2_ADDENDUM.md section 4): is the level-free surrogate optimistically\nbiased, or is the excess over the Appendix-B bound a real channel?",
+ "rule": "if the 95 % interval of the measured level-free R2(x) lies entirely above the analytic window-average bound, the surrogate is optimistically biased (explanation a); otherwise (a) is not supported and the generator's excess is an unmodelled channel (explanation b)",
+ "design": {
+  "process": "Gaussian random-walk log V + Gaussian AR(1) x from its stationary prior; no events, jumps, GARCH or sentiment feedback",
+  "features": "technicals_block on the price path, then the audit's own add_level_free_columns and 5-lag block -- identical to the SEP audit",
+  "estimators": "evaluation.leakage_audit.l2_surrogate, control='level_free', GroupKFold by path, 500-resample cluster bootstrap",
+  "n_paths": 200,
+  "T": 200,
+  "seed0": 160000
+ },
+ "cases": [
+  {
+   "label": "in force (Phase 2: sigma_V 0.0122, s_x 0.0386, h 7.5)",
+   "sigma_V": 0.012203561517323533,
+   "s_x": 0.0386,
+   "h": 7.498029274686622,
+   "n_paths": 200,
+   "T": 200,
+   "seed": 160000,
+   "bound_window_avg": 0.24521083120251788,
+   "bound_day_T": 0.25587659091061066,
+   "bound_steady_state": 0.2558765909312598,
+   "levelfree_best_model": "ridge",
+   "levelfree_R2": 0.2414019573875552,
+   "levelfree_ci95": [
+    0.2135319303505704,
+    0.2681825667282228
+   ],
+   "fullfield_best_model": "ridge",
+   "fullfield_R2": 0.23981728418858572,
+   "levelfree_all_models": {
+    "ridge": 0.2414019573875552,
+    "gbt": 0.22783341945728586,
+    "mlp": 0.21112309290799203
+   },
+   "exceeds_bound_significantly": false,
+   "realised_sd_x": 0.0392628439120458,
+   "n_rows": 40000,
+   "seconds": 643
+  },
+  {
+   "label": "the v2 state Phase 1 handed over (0.006, 0.175, 150)",
+   "sigma_V": 0.006,
+   "s_x": 0.175,
+   "h": 150.0,
+   "n_paths": 200,
+   "T": 200,
+   "seed": 161000,
+   "bound_window_avg": 0.15300129337875545,
+   "bound_day_T": 0.26514286635940476,
+   "bound_steady_state": 0.4970986688613833,
+   "levelfree_best_model": "ridge",
+   "levelfree_R2": 0.0911098315655291,
+   "levelfree_ci95": [
+    0.04357599602715659,
+    0.12638629031747334
+   ],
+   "fullfield_best_model": "ridge",
+   "fullfield_R2": 0.8965612937835374,
+   "levelfree_all_models": {
+    "ridge": 0.0911098315655291,
+    "gbt": 0.05803503379986619,
+    "mlp": 0.039212851007891514
+   },
+   "exceeds_bound_significantly": false,
+   "realised_sd_x": 0.18449370730215345,
+   "n_rows": 40000,
+   "seconds": 388
+  },
+  {
+   "label": "the panel's own fit (estimator C corrected: 0.0196, 0.0250, 4.82)",
+   "sigma_V": 0.019572,
+   "s_x": 0.02498,
+   "h": 4.824,
+   "n_paths": 200,
+   "T": 200,
+   "seed": 162000,
+   "bound_window_avg": 0.09379057865364196,
+   "bound_day_T": 0.09556721099056209,
+   "bound_steady_state": 0.09556721099056209,
+   "levelfree_best_model": "ridge",
+   "levelfree_R2": 0.0853460746958894,
+   "levelfree_ci95": [
+    0.06954895779304503,
+    0.1001865146166474
+   ],
+   "fullfield_best_model": "ridge",
+   "fullfield_R2": 0.0823140000460626,
+   "levelfree_all_models": {
+    "ridge": 0.0853460746958894,
+    "gbt": 0.0755891206854804,
+    "mlp": 0.038264087186944074
+   },
+   "exceeds_bound_significantly": false,
+   "realised_sd_x": 0.024559762571339776,
+   "n_rows": 40000,
+   "seconds": 426
+  }
+ ],
+ "verdict": "surrogate not shown to be biased (explanation a not supported)"
+}

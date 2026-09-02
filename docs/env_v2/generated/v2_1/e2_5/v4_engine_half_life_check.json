@@ -1,0 +1,49 @@
+{
+ "engine": "fw_fallback_hl150",
+ "phi": 0.4631873331666089,
+ "price_scale": 100.0,
+ "pull_rate_half_life": 149.93252802221772,
+ "pilots": [
+  {
+   "n_bar": 0.9980973973951025,
+   "w_bar_raw": 0.7605285588619087,
+   "sd_x": 0.17995240295816753,
+   "acf1_x": 0.9955496288488481,
+   "half_life": 155.40358980892395,
+   "share_nf_gt_099": 0.9821230769230769,
+   "n_steps": 200000,
+   "sd_e": 0.017,
+   "seed": 9001,
+   "w_norm": 0.7611251383007557,
+   "burn": 5000
+  },
+  {
+   "n_bar": 0.9981114158456941,
+   "w_bar_raw": 0.7605099283410727,
+   "sd_x": 0.1759160998741733,
+   "acf1_x": 0.9952945834066939,
+   "half_life": 146.96150952757844,
+   "share_nf_gt_099": 0.9821076923076923,
+   "n_steps": 200000,
+   "sd_e": 0.017,
+   "seed": 9002,
+   "w_norm": 0.7611251383007557,
+   "burn": 5000
+  },
+  {
+   "n_bar": 0.9980616311460381,
+   "w_bar_raw": 0.7605760922069152,
+   "sd_x": 0.1740008247786956,
+   "acf1_x": 0.9952293913721832,
+   "half_life": 144.9484855723281,
+   "share_nf_gt_099": 0.9813538461538461,
+   "n_steps": 200000,
+   "sd_e": 0.017,
+   "seed": 9003,
+   "w_norm": 0.7611251383007557,
+   "burn": 5000
+  }
+ ],
+ "seconds": 2,
+ "note": "V4: Phase 0 (P0-6) reported pull-rate 150.0 d and long-pilot ACF(1) 147 d (five pilots, 141-155); sd(x) 0.175 at sd_e 0.017. Recomputed here on the reference machine before Phase 2 changed anything."
+}

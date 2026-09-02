@@ -147,7 +147,10 @@ def test_metadata_and_provenance():
     assert env_provenance(a) == env_provenance(b) and env_provenance(a)["Gen_Config_Hash"] != env_provenance(c)["Gen_Config_Hash"]
     assert env_provenance(a)["Env_Version"] == "v2"
     md = a.get_metadata()
-    assert md["fw_params"]["name"] == "fw_fallback_hl150" == md["engine_used"] and md["schedule"]["T"] == 50 and "attempts" in md
+    # v2.1 Phase 2: the engine that runs is whatever params/mispricing.json names (E2.4); the assertion is
+    # that the metadata reports the code path that ran, not that it is any particular engine.
+    from envs.v2.mispricing import ENGINE_DEFAULT
+    assert md["fw_params"]["name"] == ENGINE_DEFAULT == md["engine_used"] and md["schedule"]["T"] == 50 and "attempts" in md
 
 
 def test_engine_sensitivity_sets_load():

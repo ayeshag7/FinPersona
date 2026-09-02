@@ -1,8 +1,16 @@
 {
  "_note": "v2.1 Phase 1 value-and-price-structure parameters in force (PREREG_PHASE_1.md; PHASE_1_REPORT.md). Every entry: value + provenance. Stage 1 (29 Aug 2026): pending values are labelled PENDING and replaced in logged stages.",
  "sigma_V": {
-  "value": 0.006,
-  "fitted": {
+  "value": 0.012203561517323533,
+  "label": "FIT, CONDITIONAL ON THE ENGINE (E2.3, v2.1 Phase 2). sigma_V was a FREE parameter of the SMM and is jointly identified with the engine's pull rate (D3 = (b), the option the execution prompt defaults to when the blank is empty), so it is NOT a panel constant: on the same panel and the same moment family Phase 1's estimator C returned 0.01957 [0.01892, 0.02036] and estimator A 0.0205 [0.0197, 0.0213], intervals that do not overlap this one. The value here is conditional on (i) the adopted engine `ar1_fit` and (ii) E3.1's GJR-GARCH-t shape, which was held fixed inside the fit and which Phase 3 re-fits (DECISION_LOG P2-12) -- so sigma_V is EXPECTED TO MOVE AGAIN when Phase 3 changes the volatility block. Quote it as 'sigma_V of the adopted engine', never as 'the panel's sigma_V'. DECISION_LOG P2-8, P2-16.",
+  "source": "e2_3/smm_ar1_full.json; e2_4/decision.json",
+  "date": "2026-09-01",
+  "interval": [
+   0.01065588076354027,
+   0.014190693608542412
+  ],
+  "n": 417,
+  "phase1_estimator_C": {
    "value": 0.019572114532101025,
    "interval": [
     0.01892494449362432,
@@ -11,11 +19,33 @@
    "estimator": "C (SMM on persistence-carrying moments, set A, 417 stocks)",
    "n_boot_refits": 30
   },
-  "label": "ADOPTED-NOT-YET-APPLIED (E1.2, full-scale recovery study 30 Aug 2026): estimator C is the only usable estimator by the pre-registered rule (median relative error 0.05 at its own cell, A fails on coverage, B is not identified), so its sigma_V = 0.01957 [0.01892, 0.02036] is the adopted FIT. It is NOT yet written into the generator: sigma_V changes every path, so applying it triggers the plan's execution-order rule (E1.4, E1.5, E1.1 and the Phase-1 after-state were all measured at 0.006). The value in force stays v2's stipulated 0.006 until the team decides whether to re-run the cascade now or fold the change into Phase 2's engine re-fit \u2014 DECISION_LOG P1-15. Caveat carried with the adoption: the recovery panels come from C's own model, so the usability test favours C by construction, and C's J = 66.6 on the real panel shows the model does not fit the data well.",
-  "source": "e1_2/decision.json, e1_2/recovery.md, e1_2/smm_fit.json",
-  "date": "2026-08-30",
-  "interval": null,
-  "n": 417
+  "previous": {
+   "value": 0.006,
+   "label": "ADOPTED-NOT-YET-APPLIED (E1.2, full-scale recovery study 30 Aug 2026): estimator C is the only usable estimator by the p ..."
+  },
+  "conditional_on": {
+   "engine": "ar1_fit",
+   "garch_shape": "E3.1 set-A full-sample medians (alpha 0.027, gamma 0.058, beta 0.932, nu 4.86), held fixed in the fit",
+   "moment_set": "FW's nine plus the eight persistence-carrying moments",
+   "expected_to_move": "Phase 3's volatility re-fit (E3.1/E3.4)"
+  },
+  "phase1_estimators_on_the_same_panel": {
+   "C_smm": {
+    "value": 0.019572114532101025,
+    "interval": [
+     0.01892494449362432,
+     0.020357152969418254
+    ]
+   },
+   "A_variance_ratios": {
+    "value": 0.02048341058017436,
+    "interval": [
+     0.019729330031622336,
+     0.021292366023603168
+    ]
+   },
+   "note": "neither interval overlaps the Phase-2 value: sigma_V is not identified independently of the engine"
+  }
  },
  "mu_V": {
   "value": 0.0002281,
@@ -42,15 +72,24 @@
   "n": 25859
  },
  "s_x_fit": {
-  "value": 0.12857809971634016,
-  "label": "FIT target for Phase 2 (E1.2 estimator C; not a generator parameter, so applied immediately)",
-  "source": "e1_2/decision.json",
-  "date": "2026-08-30",
+  "value": 0.024984005906061556,
+  "label": "FIT target for Phase 2, CORRECTED (v2.1 Phase 2, verification V6b): Phase 1 reported 0.1286, which is the calm engine's stationary sd(x) at the REFERENCE half-life of 150 d; e1_2_recovery.smm_fit applies s_x = sbar/0.017*0.1752 whatever half-life it fitted, and the fit returned h = 4.82 d. Re-measured on the fitted process itself: sd(x) = 0.0250 (50 paths x 20,000 d), ACF(1) half-life 4.63 d. This agrees with estimator A's independent 0.0237 [0.0216, 0.0258]. Not a generator parameter, so no path changes.",
+  "source": "e2_2/s_x_correction.json; e1_2/smm_fit.json",
+  "date": "2026-09-01",
   "interval": [
-   0.12474117720396251,
-   0.13459706622814746
+   0.022717530802620484,
+   0.027537549646087518
   ],
-  "n": 417
+  "interval_note": "Phase 1 stored only the percentiles of its 30 bootstrap refits, not the (sbar, h) pairs, so a proper bootstrap interval for the corrected s_x cannot be recomputed from the stored output. The corner range above pairs the endpoints of the sbar and h intervals independently and is therefore WIDER than the true interval; it is reported as a bound, not as an interval.",
+  "n": 417,
+  "previous": {
+   "value": 0.12857809971634016,
+   "label": "FIT target for Phase 2 (E1.2 estimator C; not a generator parameter, so applied immediately)",
+   "interval": [
+    0.12474117720396251,
+    0.13459706622814746
+   ]
+  }
  },
  "h_fit": {
   "value": 4.824109112705985,

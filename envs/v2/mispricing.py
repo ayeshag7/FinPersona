@@ -43,9 +43,17 @@ import os
 from dataclasses import dataclass, asdict
 from typing import Optional
 
+from envs.v2 import mispricing_params as MP
+
 PARAM_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "params")
-HALF_LIFE_FALLBACK_DAYS = 150.0  # CAL: pull-rate half-life ln2/(mu n_bar phi) of the default engine (see the module docstring; Phase 2 replaces it by a FIT value)
-ENGINE_DEFAULT = "fw_fallback_hl150"  # the engine that actually runs (v2.1 Phase 0: named explicitly; item 70)
+HALF_LIFE_FALLBACK_DAYS = 150.0  # CAL: pull-rate half-life ln2/(mu n_bar phi) of the v2 fallback engine (see the module docstring)
+# v2.1 Phase 2: the engine that actually runs comes from envs/v2/params/mispricing.json when that file exists
+# (E2.4's decision, with its provenance); until then it is v2's CAL fallback, unchanged.  The LEGACY engines
+# below (fw_fallback_hl*, fw_index, pruna, ar1, fw_hl*) keep v2's price_scale = 100 deliberately, so that every
+# v2 number and every Phase-1 stored artefact (params/burn_in_states_*.npz) stays reproducible; E2.1's units
+# bug fix (price_scale = 1, LIT) is applied to the FITTED engine and to tools/phase2/fw_pure.py, which is what
+# reproduces Franke & Westerhoff's own published statistics.  DECISION_LOG P2-2.
+ENGINE_DEFAULT = MP.ENGINE
 
 
 @dataclass
@@ -76,7 +84,11 @@ PRUNA_2016 = FWParams(phi=0.121, chi=1.555, sigma_f=0.592, sigma_c=1.917, alpha_
 _PILOT_CACHE: dict = {}
 
 
-def pilot_stats(params: "FWParams", engine: str = ENGINE_DEFAULT, n_steps: int = 20000, sd_e: float = 0.016,
+FW_PILOT_ENGINE = "fw_pilot"   # a non-AR(1) engine label for the FW population pilots (v2.1 Phase 2:
+# ENGINE_DEFAULT is an AR(1) engine now, and using it here would make every pilot report n_bar = 0.5)
+
+
+def pilot_stats(params: "FWParams", engine: str = FW_PILOT_ENGINE, n_steps: int = 20000, sd_e: float = 0.016,
                 seed: int = 12345) -> dict:
     """Long calm-phase simulation with Gaussian innovations of sd `sd_e` (the
     unconditional GARCH scale) to obtain the realised mean fundamentalist share
@@ -106,7 +118,7 @@ def pilot_stats(params: "FWParams", engine: str = ENGINE_DEFAULT, n_steps: int =
     return out
 
 
-def long_pilot_stats(params: "FWParams", engine: str = ENGINE_DEFAULT, n_steps: int = 200_000, sd_e: float = 0.017,
+def long_pilot_stats(params: "FWParams", engine: str = FW_PILOT_ENGINE, n_steps: int = 200_000, sd_e: float = 0.017,
                      seed: int = 9001, w_norm: Optional[float] = None, burn: int = 5000) -> dict:
     """Long calm-engine pilot for REPORTED statistics (v2.1 Phase 0, item 71): ACF(1)-implied half-life,
     stationary sd(x), mean fundamentalist share. Unlike `pilot_stats` it uses the engine's unit-mean weight
@@ -140,7 +152,7 @@ def fallback_single_stock(half_life_days: float = None) -> FWParams:
     phi = target / (base.mu * n_bar)
     for _ in range(3):
         trial = FWParams(phi=phi, name="fw_single_stock_fallback_trial")
-        n_bar = pilot_stats(trial)["n_bar"]
+        n_bar = pilot_stats(trial, FW_PILOT_ENGINE)["n_bar"]
         phi = target / (base.mu * max(n_bar, 1e-3))
     return FWParams(phi=phi, name=f"fw_fallback_hl{int(hl)}",
                     source=("CAL (no accepted SMM estimate): FW 2012 functional form with phi set for a "
@@ -148,15 +160,70 @@ def fallback_single_stock(half_life_days: float = None) -> FWParams:
                             f"n_bar={n_bar:.3f}; see DECISION_LOG.md row 2 and the v2.1 Phase 0 report"))
 
 
+def fitted_params(half_life_days: Optional[float] = None) -> FWParams:
+    """The engine E2.4 adopted, from envs/v2/params/mispricing.json (v2.1 Phase 2).  For the FW families the
+    structural parameters are the SMM estimate and `price_scale` is E2.1's confirmed convention; for the AR(1)
+    family only the innovation scale and the half-life are carried (the FW fields are unused).  A half-life
+    other than the fitted one (the E2.6 sweep) rescales phi so that ln2/(mu n_bar phi) equals it, at the fitted
+    engine's own realised n_bar."""
+    if not MP.PRESENT:
+        raise RuntimeError("envs/v2/params/mispricing.json is absent: no fitted engine exists yet "
+                           "(tools/phase2/apply_e2.py writes it)")
+    st = dict(MP.STRUCTURAL)
+    name = MP.ENGINE if half_life_days is None else f"{MP.ENGINE}_hl{int(half_life_days)}"
+    if MP.ENGINE_FAMILY == "ar1":
+        p = FWParams(name=name, price_scale=MP.PRICE_SCALE,
+                     source=f"FIT (E2.3 SMM, v2.1 Phase 2): AR(1)+GJR-GARCH-t, half-life "
+                            f"{half_life_days or MP.HALF_LIFE:.2f} d")
+        return p
+    fields = {k: float(v) for k, v in st.items() if k in FWParams.__dataclass_fields__}
+    p = FWParams(**{**fields, "price_scale": MP.PRICE_SCALE, "name": name,
+                    "source": "FIT (E2.3 SMM on FW's nine moments plus the persistence-carrying moments, "
+                              "block-bootstrap weight matrix; v2.1 Phase 2, DECISION_LOG P2-*)"})
+    if half_life_days is not None:
+        n_bar = pilot_stats(p, MP.ENGINE)["n_bar"]
+        p = FWParams(**{**asdict(p), "phi": math.log(2.0) / (float(half_life_days) * p.mu * max(n_bar, 1e-3))})
+    return p
+
+
+def ar1_rho(engine: str = ENGINE_DEFAULT) -> float:
+    """rho of the AR(1) engines.  v2's `ar1` keeps its historical rho = 1 - ln2/150 (a first-order
+    approximation) so its stored burn-in state stays valid; the Phase-2 engines use the exact 2^(-1/h)."""
+    if engine == "ar1":
+        return 1.0 - math.log(2.0) / HALF_LIFE_FALLBACK_DAYS
+    if engine.startswith("ar1_hl"):
+        return 2.0 ** (-1.0 / float(engine[6:]))
+    if MP.PRESENT and MP.ENGINE_FAMILY == "ar1":
+        if engine == MP.ENGINE:
+            return 2.0 ** (-1.0 / float(MP.HALF_LIFE))
+        if engine.startswith(f"{MP.ENGINE}_hl"):
+            return 2.0 ** (-1.0 / float(engine.split("_hl")[-1]))
+    return 1.0 - math.log(2.0) / HALF_LIFE_FALLBACK_DAYS
+
+
+def is_ar1(engine: str) -> bool:
+    return engine == "ar1" or engine.startswith("ar1_hl") or (
+        MP.PRESENT and MP.ENGINE_FAMILY == "ar1" and (engine == MP.ENGINE or engine.startswith(f"{MP.ENGINE}_hl")))
+
+
 def load_params(engine: str = ENGINE_DEFAULT) -> FWParams:
     """Parameter set for a named engine. No silent fallback (v2.1 Phase 0, item 70): `fw_single` loads only an
-    ACCEPTED single-stock estimate; the engine that runs by default is `fw_fallback_hl150`."""
+    ACCEPTED single-stock estimate. The engine that runs by default is `mispricing.json`'s when that file exists
+    (v2.1 Phase 2) and v2's CAL `fw_fallback_hl150` otherwise."""
+    if MP.PRESENT and engine == MP.ENGINE:
+        return fitted_params()
+    if MP.PRESENT and engine.startswith(f"{MP.ENGINE}_hl"):
+        return fitted_params(float(engine.split("_hl")[-1]))
+    if engine.startswith("ar1_hl"):
+        return FWParams(name=engine, source=f"AR(1) sensitivity at half-life {engine[6:]} d (v2.1 Phase 2)")
     if engine == "fw_index":
         return FW_INDEX_2012
     if engine == "pruna":
         return PRUNA_2016
     if engine == ENGINE_DEFAULT:
         return fallback_single_stock()
+    if engine.startswith("fw_fallback_hl"):   # the v2 CAL engine by its own name, whatever ENGINE_DEFAULT is now
+        return fallback_single_stock(float(engine[len("fw_fallback_hl"):]))
     if engine == "fw_single":
         path = os.path.join(PARAM_DIR, "fw_single_stock.json")
         if not os.path.exists(path):
@@ -187,10 +254,20 @@ class MispricingState:
         self.x = float(x0)
         self.x_prev = float(x0)
         self.n_f = 0.5
-        self.rho_ar1 = 1.0 - math.log(2.0) / HALF_LIFE_FALLBACK_DAYS
-        # unit-mean normalisation of the FW weight (pilot mean of n_f sigma_f + n_c sigma_c)
-        self.w_norm = float(w_norm) if w_norm is not None else (
-            pilot_stats(params, engine)["w_bar"] if engine != "ar1" else 1.0)
+        self.is_ar1 = is_ar1(engine)
+        self.rho_ar1 = ar1_rho(engine)
+        # unit-mean normalisation of the FW weight (pilot mean of n_f sigma_f + n_c sigma_c).  For the FITTED
+        # engine it is the constant the SMM used (recorded in params/mispricing.json), not a fresh pilot: inside
+        # the fit only the product w_bar x sbar is identified, so re-deriving w_bar here would silently rescale
+        # the innovation and move the engine's persistence away from the value that was fitted.
+        if w_norm is not None:
+            self.w_norm = float(w_norm)
+        elif self.is_ar1:
+            self.w_norm = 1.0
+        elif MP.PRESENT and (engine == MP.ENGINE or engine.startswith(f"{MP.ENGINE}_hl")) and "w_bar" in MP.STRUCTURAL:
+            self.w_norm = float(MP.STRUCTURAL["w_bar"])
+        else:
+            self.w_norm = pilot_stats(params, engine)["w_bar"]
 
     def raw_weight(self) -> float:
         p = self.p
@@ -202,7 +279,7 @@ class MispricingState:
     def step(self, e: float, d: float) -> float:
         """Advance x by one day given the GARCH innovation e and the scripted drift d."""
         p = self.p
-        if self.engine == "ar1":
+        if self.is_ar1:
             x_new = self.rho_ar1 * self.x + d + e
             self.x_prev, self.x = self.x, x_new
             return x_new

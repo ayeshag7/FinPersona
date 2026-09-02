@@ -106,10 +106,18 @@ def test_engine_named_honestly(tmp_path, monkeypatch):
     from envs.v2.generator import GenConfig
     from envs.synthetic_market import SyntheticMarketEnv
     from simulation.runner_v2 import RunConfig
-    assert mp.ENGINE_DEFAULT == "fw_fallback_hl150"
+    # v2.1 Phase 2: the engine that runs is whatever `envs/v2/params/mispricing.json` names (E2.4's decision,
+    # `ar1_fit`); before that file existed it was v2's CAL `fw_fallback_hl150`.  Both are asserted from the
+    # source of truth rather than hard-coded, and the LEGACY engine is asserted to be unchanged behind its own
+    # name, which is what P2-2 promises.
+    from envs.v2 import mispricing_params as MP
+    expected = MP.ENGINE if MP.PRESENT else "fw_fallback_hl150"
+    assert mp.ENGINE_DEFAULT == expected
     assert GenConfig().engine == mp.ENGINE_DEFAULT and RunConfig().engine == mp.ENGINE_DEFAULT
     p = mp.load_params(mp.ENGINE_DEFAULT)
-    assert p.name == "fw_fallback_hl150" and abs(p.phi - 0.4632) < 5e-4 and p.price_scale == 100.0
+    assert p.name == expected
+    legacy = mp.load_params("fw_fallback_hl150")
+    assert legacy.name == "fw_fallback_hl150" and abs(legacy.phi - 0.4632) < 5e-4 and legacy.price_scale == 100.0
     with pytest.raises(FileNotFoundError):
         mp.load_params("fw_single")           # no accepted single-stock estimate exists
     # a renamed REJECTED file must not switch the engine
@@ -122,7 +130,7 @@ def test_engine_named_honestly(tmp_path, monkeypatch):
     assert mp.load_params("fw_single").name == "fw_single_stock"
     monkeypatch.undo()
     md = SyntheticMarketEnv("flat", 20, 1).get_metadata()
-    assert md["engine"] == "fw_fallback_hl150" and md["engine_used"] == "fw_fallback_hl150" and md["fw_params"]["name"] == "fw_fallback_hl150"
+    assert md["engine"] == expected and md["engine_used"] == expected and md["fw_params"]["name"] == expected
 
 
 # ----------------------------------------------------------------------------------------- item 73

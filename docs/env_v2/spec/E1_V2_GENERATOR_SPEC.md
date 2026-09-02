@@ -34,15 +34,24 @@ FW DCA-HPM recursion with ONE innovation (`mispricing.py`):
   established in v2.1 Phase 0 (`generated/v2_1/findings_reproduction.md`, block R13): long-pilot ACF(1) half-life
   147 d (five 200,000-step pilots, 141–155 d; the earlier 188 d was one 20,000-step pilot's sampling error);
   sample half-life −ln2/ln ACF(1) ≈ 20 d on the 200-day windows the benchmark runs (14–35 d across seed sets) and
-  62–72 d on T = 800 paths — the estimator is biased down on windows shorter than a few half-lives (review B; a pure
-  AR(1) with a true 150-d half-life gives 20 / 59 / 96 / 124 d at T = 200 / 800 / 2000 / 5000), so neither sample
+  62–72 d on T = 800 paths — the estimator is biased down on windows shorter than a few half-lives (review B; **[v2.1 Phase 2, E2.5, 200 seeds per cell]** a pure
+  AR(1) with a true 150-d half-life gives a median naive estimate of 28.8 / 74.7 / 105.5 / 132.0 d at
+  T = 200 / 800 / 2000 / 5000, and at T = 200 the estimate is 18-30 d for *any* true half-life between 30
+  and 600 d, so a 200-day sample half-life carries no information about the process's persistence -- the
+  earlier 20 / 59 / 96 / 124 figures came from a smaller pilot and are superseded: `e2_5/hl_table.md`), so neither sample
   value is the process's half-life; stationary sd(x) 0.165 (sd_e 0.016) / 0.175 (sd_e 0.017) with the engine's
   unit-mean innovation weight — the pilot's 0.142 and the T = 800 sample's 0.128 understate it (raw weights ×0.76;
   window bias). Pilot statistics (20,000 calm steps, raw weights): n_bar = 0.998, w_bar = 0.761.
-- **Units [stated interpretation]:** FW measure log price in percent (x 100); the misalignment term therefore uses
-  `price_scale = 100` (`(100 x)^2`). The linear pull is unit-free (the plan's 580-day half-life calculation holds). To
-  be verified against the FW 2012 PDF before the paper cites the index set as a sensitivity; the single-stock
-  re-estimation is done in the same convention so the main results do not depend on it.
+- **Units [v2.1 Phase 2, E2.1 — settled at source; the earlier "stated interpretation" is withdrawn]:** FW 2012
+  eq. (1) reads `r_t := 100 (p_t - p_{t-1})`, i.e. **p is the natural-log price** and only the *returns* are in
+  percentage points; the misalignment term takes natural-log deviations, so the correct convention is
+  **`price_scale = 1`**. Evidence: FW's own model at their DCA-HPM parameters reproduces their published joint
+  moment coverage ratio (Table 4, 10.1 %) at scale 1 — measured 10.0 % [6.6, 14.9] over 200 runs of 6,750 days —
+  and gives 0.0 % [0.0, 1.9] at scale 100, where the switching term saturates (chartist share 0.0028, ACF of |r|
+  0.000 at every lag). `generated/v2_1/e2_1/fw_repro.md`; DECISION_LOG P2-2 (LIT bug fix). **The legacy engines
+  named in this section keep `price_scale = 100`** so that every v2 number and every Phase-1 stored burn-in state
+  stays reproducible; the fix is applied to the engine Phase 2 adopts (`params/mispricing.json`) and to
+  `tools/phase2/fw_pure.py`.
 - `w_t` is normalised by its pilot mean (unit mean), not by equal population shares **[deviation from my own first
   implementation, not from the plan]**; with n_bar ~ 1 the weight is ~1 in calm and rises to ~2.7 on the rare
   chartist-dominated days (FW's structural stochastic volatility).

@@ -14,12 +14,12 @@ prints this registry with the observed outcomes at the end of every pytest sessi
 """
 
 V2_DEFECTS = [
-    {"test": "tests/test_v2_1_phase_1.py::test_flat_x_equivalence", "items": [4, 13],
-     "phase": 2, "reason": "Phase 1 removed the jump bias (E1.4: placement x_zero, E[x] -0.069 -> +0.013); the residual +0.013 "
-                           "[+0.004, +0.021] at 1,000 seeds is the calm engine's own (jumps off: +0.011 [+0.003, +0.020]) and "
-                           "fails the +/- 0.02 equivalence margin by its upper limit; owned by the engine re-fit (Phase 2)"},
-    {"test": "tests/test_v2_1_stats.py::test_fundamentalist_share", "items": [2, 11],
-     "phase": 2, "reason": "FW switching inert at price_scale = 100: n_f > 0.99 on ~98 % of days"},
+    {"test": "tests/test_v2_1_phase_2.py::test_garch_shape_matches_e3_1", "items": [12],
+     "phase": 3, "reason": "Phase 2's E2.3 fitted the mispricing engine against E3.1's per-stock GJR-GARCH-t shape "
+                           "(alpha 0.027, gamma 0.058, beta 0.932, nu 4.86 -- the plan's own prescription for E2.3) "
+                           "while the generator still runs v2's CAL shape (0.10 / 0.10 / 0.83 / 5); the engine's "
+                           "fitted parameters are therefore conditional on a volatility block Phase 3 owns and "
+                           "re-fits (E3.2-E3.6), which must then re-check the engine's persistence"},
     {"test": "tests/test_v2_1_stats.py::test_iv_continuity", "items": [46, 25],
      "phase": 3, "reason": "the phase multiplier enters IV deterministically: one-day log-IV step of z ~ 7"},
     {"test": "tests/test_v2_1_stats.py::test_sustained_bull_selection", "items": [18, 42],

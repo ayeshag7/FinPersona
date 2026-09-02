@@ -72,16 +72,18 @@ def test_iv_continuity():
     assert all(abs(v) <= 3.0 for v in z.values()), f"z at transitions {z} (calm sd {sd:.3f})"
 
 
-@pytest.mark.xfail(strict=True, reason="known defects 2, 11 (registry): at price_scale = 100 the switching term "
-                                       "saturates (n_f > 0.99 on ~98 % of days); resolved in Phase 2 (E2.1)")
-def test_fundamentalist_share():
-    """SNF30 (flat, seeds 17100-17129): the share of days with n_f > 0.99 must be below 0.50 (switching active on
-    at least half the days -- the majority boundary of 'inert'). The mean chartist share is printed beside
-    SABCEMM's DCA-HPM 0.2285 (LOG §4.2, read 26 Aug 2026); its tolerance is Phase 2's, not set here."""
-    nf = np.concatenate([r.n_f[0, r.day >= 1] for r in _paths("flat", range(17100, 17130))])
-    share = float(np.mean(nf > 0.99))
-    print(f"mean chartist share {1 - nf.mean():.4f} (SABCEMM DCA-HPM 0.2285); share of days n_f > 0.99 = {share:.3f}")
-    assert share < 0.50, f"n_f > 0.99 on {share:.1%} of days: the switching is inert"
+# `test_fundamentalist_share` was REMOVED here in v2.1 Phase 2, as PREREG_PHASE_2.md section 6 fixed in advance
+# for the case the AR(1) engine is adopted.  Its content was: on 30 flat paths, the share of days with n_f > 0.99
+# must be below 0.50, i.e. the Franke-Westerhoff switching must not be inert (weakness items 2 and 11); it was a
+# strict xfail because at `price_scale = 100` the misalignment term saturated and n_f exceeded 0.99 on ~98 % of
+# days.  E2.4 adopted `ar1_fit` (AR(1)+GJR-GARCH-t): the engine that runs has no fundamentalist/chartist
+# population at all, so the statistic has no referent and a test of it would be theatre.  What replaces it:
+#   * E2.1 (`tests/test_v2_1_phase_2.py::test_fw_units`) locks the units bug fix that made the switching inert,
+#     by reproducing Franke & Westerhoff's own published moment coverage ratio at `price_scale = 1`;
+#   * `e2_4/engine_diagnostics.json` records the realised chartist share of every FITTED FW engine (0.043 for
+#     `fw_v2` on the full sample, 0.0004 on the training period, 0.235 for `fw_plus`), which is the number the
+#     removed test was trying to protect;
+#   * the registry entry for items 2 and 11 is cleared (DECISION_LOG P2-7).
 
 
 def test_half_life_consistency():
@@ -90,13 +92,25 @@ def test_half_life_consistency():
     ln2/(mu n_bar phi) within 8 d (PREREG §6: Bartlett SE of ACF(1) at rho 0.9954 over 200,000 steps is 2.2e-4,
     i.e. 7.0 d per pilot and 3.1 d for the mean of five; 8 d ~ 2.6 SE, size ~ 1 %; the withdrawn 188-d figure
     is rejected with power ~ 1). Hard test from Phase 0 (plan 0.4, LOG §1)."""
-    from envs.v2.mispricing import load_params, pilot_stats, long_pilot_stats, ENGINE_DEFAULT
+    from envs.v2 import mispricing_params as MP
+    from envs.v2.mispricing import ENGINE_DEFAULT, MispricingState, load_params, long_pilot_stats, pilot_stats
     p = load_params(ENGINE_DEFAULT)
-    ps = pilot_stats(p, ENGINE_DEFAULT)
+    if MP.PRESENT and MP.ENGINE_FAMILY == "ar1":
+        # v2.1 Phase 2: the engine that runs is an AR(1), whose analytic half-life is -ln2/ln(rho) exactly; the
+        # 200,000-step pilot is run on the FW sensitivity `fw_fallback_hl150` instead, where the pull-rate vs
+        # ACF(1) agreement is the thing worth locking (the check Phase 0 wrote this test for).
+        st = MispricingState(p, ENGINE_DEFAULT)
+        analytic = -math.log(2) / math.log(st.rho_ar1)
+        assert abs(analytic - float(MP.HALF_LIFE)) <= 0.01, (analytic, MP.HALF_LIFE)
+        p = load_params("fw_fallback_hl150")
+        engine = "fw_fallback_hl150"
+    else:
+        engine = ENGINE_DEFAULT
+    ps = pilot_stats(p, engine)
     pull_hl = math.log(2) / (p.mu * ps["n_bar"] * p.phi)
-    hls = [long_pilot_stats(p, ENGINE_DEFAULT, n_steps=200_000, sd_e=0.017, seed=s)["half_life"] for s in (9001, 9002, 9003, 9004, 9005)]
+    hls = [long_pilot_stats(p, engine, n_steps=200_000, sd_e=0.017, seed=s)["half_life"] for s in (9001, 9002, 9003, 9004, 9005)]
     mean_hl = float(np.mean(hls))
-    print(f"pull-rate half-life {pull_hl:.1f} d; pilots {[round(h, 1) for h in hls]} (mean {mean_hl:.1f} d)")
+    print(f"[{engine}] pull-rate half-life {pull_hl:.1f} d; pilots {[round(h, 1) for h in hls]} (mean {mean_hl:.1f} d)")
     assert abs(mean_hl - pull_hl) <= 8.0, f"ACF(1) half-life {mean_hl:.1f} d vs pull rate {pull_hl:.1f} d"
 
 

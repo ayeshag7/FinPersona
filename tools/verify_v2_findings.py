@@ -301,7 +301,7 @@ def block_R2(paths: dict, pilots: dict, out) -> Rows:
     R.add(2, "pilot n̄ at price_scale 100, index set (20,000 steps, seed 12345)", p100i["n_bar"], 1, None, 0.9985, "LOG §1",
           verdict_R(p100i["n_bar"], None, None, 0.9985, tol=0.001), note=f"live engine (phi 0.463) n̄ {p100['n_bar']:.4f}")
     R.add(2, "pilot n̄ at price_scale 1, index set (20,000 steps, seed 12345)", p1["n_bar"], 1, None, 0.8268, "LOG §1 / C (0.83)",
-          verdict_R(p1["n_bar"], None, None, 0.8268, tol=0.001), note=f"chartist share {1 - p1['n_bar']:.3f}; SABCEMM DCA-HPM 0.2285 (simulated, own noise)")
+          verdict_R(p1["n_bar"], None, None, 0.8268, tol=0.001), note=f"chartist share {1 - p1['n_bar']:.3f}; SABCEMM DCA-HPM 0.1674 (simulated, own noise; the 0.2285 quoted here before is their DCA-WP row -- re-read at source 1 Sep 2026, DECISION_LOG P2-1)")
     R.detail = {"pilots": {k: v for k, v in pilots.items() if k.endswith("20k")}}
     return R
 

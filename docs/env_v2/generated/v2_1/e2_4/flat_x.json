@@ -1,0 +1,46 @@
+{
+ "engine": "ar1_fit",
+ "T": 200,
+ "seed0": 150000,
+ "design": "the same design Phase 1 used for the registered defect: flat scenario, T = 200, rejection off, E[x] over benchmark days, 2,000-resample bootstrap over paths, TOST against +/- 0.02",
+ "phase1_incumbent": {
+  "jumps_on": {
+   "E_x": 0.01256676608932963,
+   "ci95": [
+    0.0038467447337450517,
+    0.021396780677724925
+   ]
+  },
+  "jumps_off": {
+   "E_x": 0.0113,
+   "ci95": [
+    0.0027,
+    0.0199
+   ]
+  },
+  "source": "e1_4/confirm_B_x_zero.json, e1_4/confirm_jumps_off.json (1,000 flat paths each)"
+ },
+ "jumps_on": {
+  "n": 1000,
+  "E_x": -0.0001289328078746834,
+  "ci95": [
+   -0.000868595948190453,
+   0.0006427159767223111
+  ],
+  "tost_pass": true,
+  "margin": 0.02,
+  "sd_across_paths": 0.012351151103898814
+ },
+ "jumps_off": {
+  "n": 1000,
+  "E_x": -0.0002899478106979206,
+  "ci95": [
+   -0.0010236135353172873,
+   0.00046431777535111605
+  ],
+  "tost_pass": true,
+  "margin": 0.02,
+  "sd_across_paths": 0.012121967175464678
+ },
+ "seconds": 46
+}

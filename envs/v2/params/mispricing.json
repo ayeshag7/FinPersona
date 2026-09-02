@@ -1,0 +1,154 @@
+{
+ "_note": "v2.1 Phase 2 mispricing-engine parameters in force (PREREG_PHASE_2.md; PHASE_2_REPORT.md). Every entry: value + provenance. The engine name here is the engine that RUNS; get_metadata()['engine_used'] must equal it (test_engine_named_honestly).",
+ "engine": {
+  "value": "ar1_fit",
+  "label": "FIT (E2.4 decision: no FW engine met both legs of the asymmetric rule; ties go to the simpler model)",
+  "source": "e2_4/decision.json, e2_3/smm_ar1_full.json",
+  "date": "2026-09-01",
+  "interval": null,
+  "n": 417,
+  "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15), so the panel's tails and unconditional variance understate the full universe; every moment this fit targets inherits that gap and the WRDS re-run (D1 = C) is the remedy the plan foresees",
+  "candidates": [
+   "ar1",
+   "fw_v2",
+   "fw_plus"
+  ],
+  "family": "ar1"
+ },
+ "price_scale": {
+  "value": 1.0,
+  "label": "LIT bug fix (E2.1): FW 2012 works in natural-log price units; the convention that reproduces their published joint moment coverage ratio is price_scale = 1",
+  "source": "e2_1/fw_repro.md; FW 2012 eqs (1), (5)-(7), Table 4",
+  "date": "2026-09-01",
+  "interval": [
+   6.5669941171571224,
+   14.940686356308555
+  ],
+  "n": 200,
+  "survivor_vs_literature_gap": null,
+  "published_joint_mcr_pct": 10.1,
+  "measured_joint_mcr_pct": 10.0
+ },
+ "structural": {
+  "value": {
+   "sigma_V": 0.012203561517323533,
+   "sbar": 0.008698868151339125,
+   "h": 7.498029274686622
+  },
+  "label": "FIT (E2.3 SMM: FW's nine moments plus the persistence-carrying VR(20-500) and the ACF of log(P/SMA250); block-bootstrap weight matrix stored to disk) CONDITIONAL: every value here is conditional on E3.1's GJR-GARCH-t shape, which was held fixed inside the fit and which Phase 3 re-fits (DECISION_LOG P2-12); sigma_V is additionally conditional on the engine (P2-8, P2-16).",
+  "source": "e2_3/smm_ar1_full.json",
+  "date": "2026-09-01",
+  "interval": {
+   "sigma_V": [
+    0.01065588076354027,
+    0.014190693608542412
+   ],
+   "sbar": [
+    0.006588277221513501,
+    0.012982117459916507
+   ],
+   "h": [
+    3.8098855550023334,
+    23.6074232208472
+   ]
+  },
+  "n": 417,
+  "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15), so the panel's tails and unconditional variance understate the full universe; every moment this fit targets inherits that gap and the WRDS re-run (D1 = C) is the remedy the plan foresees",
+  "free_parameters": [
+   "sigma_V",
+   "sbar",
+   "h"
+  ],
+  "fixed_in_the_fit": "beta = 1 and mu = 0.01 are FW's normalisations; w_bar is the v2 reference unit-mean weight constant 0.76113 -- inside the fit only the product w_bar x sbar is identified, so the engine keeps this constant rather than re-deriving it from a fresh pilot",
+  "n_bootstrap_refits": 30,
+  "J": 80.3604980379063,
+  "df": 14,
+  "chi2_crit_95": 23.684791304840576,
+  "chi2_accept": false,
+  "fw_bootstrap_p": 0.0,
+  "accept_fw_p": false,
+  "n_paths_per_evaluation": 200,
+  "K_report": 20
+ },
+ "applied": {
+  "value": {
+   "engine": "ar1_fit",
+   "price_scale": 1.0,
+   "half_life_days": 7.498029274686622,
+   "sigma_V_to_value_json": 0.012203561517323533
+  },
+  "label": "WHICH fitted quantities actually govern the generator. The engine name, the units convention, the half-life and sigma_V are applied. **sbar (the unconditional x-innovation scale) is RECORDED AND NOT APPLIED**: it is a volatility parameter and Phase 3 owns it (PLAN section 7, E3.1 adopts the per-stock median unconditional sd; E3.4 decides how the regime enters the variance). Applying E2.3's sbar here would set a Phase-3 parameter from a Phase-2 fit, and the generator keeps v2's CAL 0.017 until Phase 3 re-fits it. The consequence is stated in PHASE_2_REPORT.md section 4: the engine's stationary sd(x) in the handed-over generator is the one E2.6 measures at sbar = 0.017, not the one the SMM fitted.",
+  "source": "e2_3/smm_ar1_full.json; PLAN section 7",
+  "date": "2026-09-01",
+  "interval": null,
+  "n": 417,
+  "survivor_vs_literature_gap": null,
+  "sbar_fitted_not_applied": 0.008698868151339125,
+  "sbar_in_force": 0.017,
+  "sbar_in_force_source": "envs/v2/garch.py GJRParams.sbar (CAL, v2 E1 calibration); Phase 3 re-fits"
+ },
+ "half_life": {
+  "value": 7.498029274686622,
+  "label": "FIT (E2.3, the engine's own persistence) Conditional on the same GARCH shape; the point estimate is stable across every window of the panel (13.1 / 8.9 / 9.2 / 7.5 / 5.2 d) but a single fit identifies it only to within a factor of about three.",
+  "source": "e2_3/smm_ar1_full.json; e2_2/persistence.md",
+  "date": "2026-09-01",
+  "interval": [
+   3.8098855550023334,
+   23.6074232208472
+  ],
+  "n": 417,
+  "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15), so the panel's tails and unconditional variance understate the full universe; every moment this fit targets inherits that gap and the WRDS re-run (D1 = C) is the remedy the plan foresees",
+  "kind": "AR(1) half-life from rho = 2^(-1/h)"
+ },
+ "garch_shape": {
+  "value": {
+   "alpha": 0.027,
+   "gamma": 0.058,
+   "beta": 0.932,
+   "df": 4.86
+  },
+  "label": "FIT (E3.1, set-A full-sample per-stock medians; held FIXED inside the SMM, only the unconditional scale sbar was free)",
+  "source": "e3_1/summary.md, garch_fits.csv",
+  "date": "2026-09-01",
+  "interval": null,
+  "n": 417,
+  "survivor_vs_literature_gap": "set B (shorter, partly delisted names) has fatter tails (nu 4.33 vs 4.86) and higher variance (0.0243 vs 0.0218): the survivor panel understates both"
+ },
+ "moments": {
+  "value": [
+   "rAC1",
+   "invHill",
+   "vMean",
+   "vAC1",
+   "vAC5",
+   "vAC10",
+   "vAC25",
+   "vAC50",
+   "vAC100",
+   "VR20",
+   "VR60",
+   "VR120",
+   "VR250",
+   "VR500",
+   "acfSMA20",
+   "acfSMA60",
+   "acfSMA120"
+  ],
+  "label": "DESIGN (PREREG_PHASE_2.md section 4.1): FW 2012's nine plus eight persistence-carrying moments, pooled as the cross-sectional mean over set A",
+  "source": "e2_3/data_moments.md",
+  "date": "2026-09-01",
+  "interval": null,
+  "n": 417,
+  "survivor_vs_literature_gap": null,
+  "weight_matrix": "joint stock x block bootstrap, 500 resamples, blocks 250/750/1250 d by moment group (FW 2012 Appendix A2 extended), 10 % ridge toward the diagonal; stored as e2_3/weight_<period>.npy"
+ },
+ "estimator_table": {
+  "value": "e2_5/hl_table.md",
+  "label": "DESIGN (E2.5): the naive-vs-median-unbiased half-life lookup used whenever a half-life is quoted at a finite horizon",
+  "source": "e2_5/hl_table.json",
+  "date": "2026-09-01",
+  "interval": null,
+  "n": 200,
+  "survivor_vs_literature_gap": null
+ }
+}

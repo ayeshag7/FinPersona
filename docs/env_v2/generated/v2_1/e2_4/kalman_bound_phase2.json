@@ -1,0 +1,50 @@
+{
+ "note": "Appendix B bound recomputed at the Phase-2 parameters. The bound's model is log P = log V + x with log V a random walk and x an AR(1); the engine E2.4 adopted IS that model exactly, so the bound now applies to the generator without the approximation Phase 1 had to carry.",
+ "cases": {
+  "adopted engine (E2.3 fit, sbar in force 0.017)": {
+   "sigma_V": 0.012203561517323533,
+   "s_x": 0.0386,
+   "h": 7.498,
+   "T": 200,
+   "window_avg": 0.24521142922678102,
+   "day_T": 0.2558771820043514,
+   "steady_state": 0.25587718202499976
+  },
+  "adopted engine at the FITTED sbar 0.0087": {
+   "sigma_V": 0.012203561517323533,
+   "s_x": 0.0227,
+   "h": 7.498,
+   "T": 200,
+   "window_avg": 0.11901100865894161,
+   "day_T": 0.12293664395358905,
+   "steady_state": 0.12293664395359372
+  },
+  "v2 state Phase 1 handed over": {
+   "sigma_V": 0.006,
+   "s_x": 0.175,
+   "h": 150.0,
+   "T": 200,
+   "window_avg": 0.15300129337875545,
+   "day_T": 0.26514286635940476,
+   "steady_state": 0.4970986688613833
+  },
+  "panel estimate (estimator A)": {
+   "sigma_V": 0.0205,
+   "s_x": 0.0237,
+   "h": 4.9,
+   "T": 200,
+   "window_avg": 0.07843711466398498,
+   "day_T": 0.07989816225389379,
+   "steady_state": 0.07989816225389379
+  },
+  "panel estimate (estimator C, corrected)": {
+   "sigma_V": 0.019572,
+   "s_x": 0.02498,
+   "h": 4.824,
+   "T": 200,
+   "window_avg": 0.09379057865364196,
+   "day_T": 0.09556721099056209,
+   "steady_state": 0.09556721099056209
+  }
+ }
+}

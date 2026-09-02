@@ -1,0 +1,69 @@
+{
+ "what": "Calibration of the block-bootstrap weight matrix per period, and why the chi-square and the Franke-Westerhoff bootstrap criteria diverge. For a well-calibrated W = Sigma^-1 the data bootstrap's own J distribution should be chi-square(q) with q = 17 moments: median 16.3, 95 % point 27.6. Where the bootstrap median is far above that, Sigma understates the moments' sampling variability, the yardstick J_0.95 inflates, and a model can be 'not rejected' by the bootstrap criterion simply because the bar moved.",
+ "chi2_17_median": 16.338182377392467,
+ "chi2_17_p95": 27.58711163827534,
+ "periods": {
+  "full": {
+   "n_days": 6289,
+   "bootstrap_J_median": 14.197954591243672,
+   "bootstrap_J95": 26.700196536481386,
+   "ratio_median_to_chi2": 0.8690045357119848,
+   "well_calibrated": true,
+   "engine_J": 80.3604980379063,
+   "chi2_crit_95": 23.684791304840576,
+   "chi2_accept": false,
+   "fw_p": 0.0
+  },
+  "p1": {
+   "n_days": 2263,
+   "bootstrap_J_median": 40.9162109114987,
+   "bootstrap_J95": 62.33311492115288,
+   "ratio_median_to_chi2": 2.5043306511326153,
+   "well_calibrated": false,
+   "engine_J": 100.08578570543442,
+   "chi2_crit_95": 23.684791304840576,
+   "chi2_accept": false,
+   "fw_p": 0.0
+  },
+  "p2": {
+   "n_days": 2014,
+   "bootstrap_J_median": 43.98216057150232,
+   "bootstrap_J95": 66.16370642237851,
+   "ratio_median_to_chi2": 2.6919861435970676,
+   "well_calibrated": false,
+   "engine_J": 74.26412189123457,
+   "chi2_crit_95": 23.684791304840576,
+   "chi2_accept": false,
+   "fw_p": 0.06
+  },
+  "p3": {
+   "n_days": 2012,
+   "bootstrap_J_median": 35.21070675979831,
+   "bootstrap_J95": 54.445929977293886,
+   "ratio_median_to_chi2": 2.1551177448306738,
+   "well_calibrated": false,
+   "engine_J": 44.68429158645737,
+   "chi2_crit_95": 23.684791304840576,
+   "chi2_accept": false,
+   "fw_p": 1.0
+  },
+  "train": {
+   "n_days": 4277,
+   "bootstrap_J_median": 15.015292900921715,
+   "bootstrap_J95": 31.695652922601965,
+   "ratio_median_to_chi2": 0.9190308049014518,
+   "well_calibrated": true,
+   "engine_J": 70.74981638770177,
+   "chi2_crit_95": 23.684791304840576,
+   "chi2_accept": false,
+   "fw_p": null
+  },
+  "test": {
+   "n_days": 2012,
+   "bootstrap_J_median": 31.913581988584987,
+   "bootstrap_J95": 49.61090033722579,
+   "ratio_median_to_chi2": 1.9533128747996211,
+   "well_calibrated": true
+  }
+ }
+}

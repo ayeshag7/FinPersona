@@ -38,7 +38,10 @@ def test_code_constants_match_canonical_numbers(num):
     assert OMEGA_MULT["sustained-bull"] == num["sustained_bull_variance_multiplier"] == 1.0
     assert (HAZARD_H0, HAZARD_B, G_MAX_CAL) == (num["hazard_h0"], num["hazard_b"], num["g_max"]) and ev.G_MAX == num["g_max"]
     assert mp.HALF_LIFE_FALLBACK_DAYS == 150.0 and abs(num["pull_rate_half_life_days"] - 150.0) < 0.5
-    assert abs(mp.load_params(mp.ENGINE_DEFAULT).phi - num["phi_live"]) < 1e-9
+    # v2.1 Phase 2: `phi_live` is the FW fallback engine's calibrated phi, a Phase-0 canonical number.
+    # The engine that RUNS is now whatever params/mispricing.json names (E2.4 adopted an AR(1), for which
+    # phi has no meaning), so the constant is checked against the engine it describes, by its own name.
+    assert abs(mp.load_params("fw_fallback_hl150").phi - num["phi_live"]) < 1e-9
     assert obs.ANALYST_SD == num["analyst_sd_documented"] == 0.15 and obs.ANALYST_RHO == num["analyst_rho"]
     # v2.1 Phase 1: burn-in and jump placement moved to params/value.json; the Phase-1 numbers file is canonical for them
     # (phase0_numbers.json keeps the frozen v2 values 260 d / x_negmean for the record)

@@ -136,6 +136,7 @@ coverage ≥ 0.90.
 
 **Estimator C on the data (`e1_2/smm_fit.json`, 30 bootstrap refits as pre-registered):** σ_V = **0.01957
 [0.01892, 0.02036]**/day, s_x = **0.129 [0.125, 0.135]**, h = **4.82 d [4.17, 5.42]**, J = 66.6 on 9 moments.
+**[Phase 2 correction, 1 Sep 2026]** The s_x figure is wrong: `e1_2_recovery.smm_fit` returns `s_x = sbar/0.017 x 0.1752`, the calm engine's stationary sd(x) at the REFERENCE half-life of 150 d, applied whatever half-life the fit returned. Re-measured on the fitted process itself (h = 4.82 d, sbar = 0.01248, 50 paths x 20,000 d): **sd(x) = 0.0250**, ACF(1) half-life 4.63 d -- which agrees with estimator A's independent 0.0237 [0.0216, 0.0258]. `value.json`'s `s_x_fit` now carries 0.0250 with the derivation; sigma_V and h are unaffected. Evidence: `e2_2/s_x_correction.json`, DECISION_LOG P2-6.
 
 **Decision by the pre-registered rules (`e1_2/decision.md`): C is the only usable estimator, so C is adopted alone.**
 Two qualifications are carried with the adoption, both stated rather than resolved: (i) the recovery panels are drawn
@@ -385,7 +386,7 @@ before-state was stored rather than recomputed.
 | sigma_V | **0.006 (v2, stipulated)** | **D3 PENDING** — no usable estimator by the pre-registered rules; A and C both measure ≈ 0.020 | e1_2/decision.json | A [0.0197, 0.0213] (stocks) / [0.0167, 0.0243] (blocks); C [0.0190, 0.0205]; n = 417 | survivors only: the full-universe σ_V includes delisted names' variance (understated here) |
 | mu_V | 0.000228/day | FIT | Shiller ie_data.xls, 2000–2024, price-only | [−0.000051, 0.000479]; n = 300 months | index level, no survivor issue; DMS 9.7 %/yr is total return (not comparable) |
 | df_V | 5 (t₅), Gaussian carried | DESIGN | e1_2/misc_fits.json (EPS-surprise tails: KS upper 0.20 / 0.18) | n = 25,859 | survivors' EPS surprises (kurtosis 8.3) understate the universe's |
-| s_x_fit, h_fit | not adopted | NOT ADOPTED (D3) | e1_2/decision.json | A: h 5 d [4, 6], s_x 0.024; B: 256 d [223, 277], 0.39 (non-identified); C: 4.8 d [4.5, 5.3], 0.129 | — |
+| s_x_fit, h_fit | not adopted | NOT ADOPTED (D3) | e1_2/decision.json | A: h 5 d [4, 6], s_x 0.024; B: 256 d [223, 277], 0.39 (non-identified); C: 4.8 d [4.5, 5.3], 0.129 **[Phase 2 correction: C's s_x is 0.0250, not 0.129 — §4.2]** | — |
 | start_price_mode | **both (C)** | DESIGN (D13 revised 30 Aug 2026 by the team after E1.1; the provisional B failed both rules) | e1_1/start_price.md; ADDENDUM §6; P1-13 | attacker Δ −0.03 / −0.06 / −0.03, rule-100 inside the edges; n = 2,000 paths | — |
 | start_price_range | [7.47, 240.02] | FIT (P5–P95 unadjusted Close, 40 dates) | e1_2/misc_fits.json | P5 [6.27, 9.03], P95 [196.78, 290.39]; n = 16,680 | set A only (large caps): the universe's range is wider at the low end |
 | jump.placement | x_zero | FIT/DESIGN (KS rule; E[x] verdicts under the three criteria) | e1_4/generator_split.json, confirm_B_x_zero.json | E[x] +0.0126 [+0.0038, +0.0214] at 1,000 seeds | — |
@@ -407,7 +408,7 @@ Decision-log entries: `decisions/DECISION_LOG.md` P1-1 … P1-12 (Phase 1 sectio
 1. **D3 — σ_V, h, s_x (E1.2) — answered by the rules; the application is the open question.** The full-scale
    recovery study (all 32 cells, A/B at 200 and C at 50 replications, grid extended to h = 5 and 10 where the data sits)
    makes estimator **C the only usable estimator**, so by the pre-registration C is adopted: **σ_V = 0.01957
-   [0.01892, 0.02036], h = 4.82 d [4.17, 5.42], s_x = 0.129 [0.125, 0.135]** (§4.2). h_fit and s_x_fit are already in
+   [0.01892, 0.02036], h = 4.82 d [4.17, 5.42], s_x = 0.129 [0.125, 0.135]** **[Phase 2 correction: s_x = 0.0250; §4.2]** (§4.2). h_fit and s_x_fit are already in
    `value.json` as Phase-2 targets. **σ_V is not yet applied**, and the team must choose how to apply it:
    - **(a) Apply now and re-run the cascade.** σ_V changes every path, so the execution-order rule requires re-running
      E1.4 (jump placement), E1.5 (burn-in), E1.1 (start price) and the entire after-state at σ_V = 0.0196 before the

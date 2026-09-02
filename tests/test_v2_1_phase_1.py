@@ -106,23 +106,46 @@ def test_jump_placement_variants():
                    "n_ann": float(np.mean([r.event_meta["n_ann_jumps"] for r in rs]))}
     assert res["x_negmean"]["n_ann"] == 0 and res["x_zero"]["n_ann"] == 0
     assert res["V_announce"]["n_ann"] > 0 and res["both"]["n_ann"] > 0
-    assert res["x_negmean"]["mean_x"] < -0.04                     # the v2 bias, kept behind the switch
+    # The invariant is the SIGN and the ORDERING, not the magnitude: v2's negative-mean placement biases x down
+    # and the other three do not.  The magnitude scales with the engine's half-life -- a jump drift of
+    # rate x mean = -0.0004/day settles at -0.0004 / (1 - rho), which is -0.09 at the FW engine's 150-day
+    # half-life and -0.0045 at the AR(1) engine's 7.5-day one (v2.1 Phase 2, E2.4).  The threshold below is
+    # therefore expressed relative to the other placements rather than as an absolute number carried over from
+    # a different engine.
+    others = [res[jp]["mean_x"] for jp in ("x_zero", "V_announce", "both")]
+    assert res["x_negmean"]["mean_x"] < min(others) - 0.003, (res["x_negmean"], others)
     for jp in ("x_zero", "V_announce", "both"):
         assert abs(res[jp]["mean_x"]) < 0.04, (jp, res[jp])
 
 
-@pytest.mark.xfail(strict=True, reason="registered (Phase 2): the calm engine carries E[x] ~ +0.012 in flat markets with jumps "
-                                       "off or mean-zero (E1.4 confirmatory run, 1,000 seeds); the +/- 0.02 TOST fails by its upper limit")
 def test_flat_x_equivalence():
     """E1.4 E[x] equivalence under the corrected criterion (PREREG_PHASE_1_ADDENDUM.md, new-b): the stored 1,000-seed
-    interval of the mean of x under the placement in force (e1_4/confirm_<variant>.json, seeds 71000-71999) lies inside
-    +/- 0.02, AND a 100-seed live guard (seeds 16000-16099) reproduces the stored mean within 2 SE. The pre-registered
-    100/200-seed TOST form is undecidable (half-width 0.029 / 0.020 against a 0.020 margin) and is not asserted."""
+    interval of the mean of x in flat markets lies inside +/- 0.02, AND a 100-seed live guard reproduces the stored
+    mean within 2 SE. The pre-registered 100/200-seed TOST form is undecidable (half-width 0.029 / 0.020 against a
+    0.020 margin) and is not asserted.
+
+    v2.1 Phase 2: this was a strict xfail registered to Phase 2 -- the FW calm engine carried E[x] = +0.0126
+    [+0.0038, +0.0214] with mean-zero jumps and +0.0113 with jumps off, failing the margin by its upper limit.
+    E2.4 adopted the AR(1)+GJR-GARCH-t engine, which has no such bias: E[x] = -0.00013 [-0.00087, +0.00064] with
+    jumps on and -0.00029 [-0.00102, +0.00046] with jumps off, 1,000 flat paths each (e2_4/flat_x.json). The
+    marker is removed and the registry entry cleared. Two changes to the assertion itself, both stated: the
+    stored reference is now Phase 2's measurement on the engine in force (Phase 1's file describes an engine
+    that no longer runs), and the benchmark days are selected by `day >= 1` rather than the hard-coded index 260,
+    which was the burn-in of the time and is 750 for the engine adopted here."""
     from envs.v2.generator import GenConfig, generate
     from envs.v2 import value_params as VP
-    name = {"x_negmean": "current_x_negmean", "x_zero": "B_x_zero", "V_announce": "A_V_announce", "both": "C_both"}[VP.JUMP["placement"]]
-    stored = json.load(open(os.path.join(GEN, "e1_4", f"confirm_{name}.json"), encoding="utf-8"))["full"]
-    means = np.array([generate(GenConfig(scenario="flat", seed=s)).x[0, 260:].mean() for s in range(16000, 16100)])
+    p2 = os.path.join(GEN, "e2_4", "flat_x.json")
+    if os.path.exists(p2):
+        stored = json.load(open(p2, encoding="utf-8"))["jumps_on"]
+    else:
+        name = {"x_negmean": "current_x_negmean", "x_zero": "B_x_zero", "V_announce": "A_V_announce",
+                "both": "C_both"}[VP.JUMP["placement"]]
+        stored = json.load(open(os.path.join(GEN, "e1_4", f"confirm_{name}.json"), encoding="utf-8"))["full"]
+    means = []
+    for s in range(16000, 16100):
+        r = generate(GenConfig(scenario="flat", seed=s))
+        means.append(r.x[0, r.day >= 1].mean())
+    means = np.array(means)
     se = means.std(ddof=1) / np.sqrt(len(means))
     assert abs(means.mean() - stored["E_x"]) <= 2 * se, (means.mean(), stored["E_x"], se)      # live guard
     lo, hi = stored["ci95"]
