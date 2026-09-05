@@ -156,7 +156,8 @@ def profiles(engine, J, z_hat, n_grid=11, span=1.0):
     return out
 
 
-def run_cell(engine, period, n_paths, maxiter, popmult, n_mc, n_refits, quick=False):
+def run_cell(engine, period, n_paths, maxiter, popmult, n_mc, n_refits, quick=False, base_extra=None,
+             seed_sm=SEED_SM, seed_sb=SEED_SB, seed_mc=SEED_MC):
     t0 = time.time()
     m_data, W, boot, meta, dall = load_data(period)
     base = dict(DEFAULTS)
@@ -164,7 +165,9 @@ def run_cell(engine, period, n_paths, maxiter, popmult, n_mc, n_refits, quick=Fa
                         encoding="utf-8")) if os.path.exists(os.path.join(
         ROOT, "docs", "env_v2", "generated", "v2_1", "e2_1", "fw_repro.json")) else None
     base["price_scale"] = 1.0 if (ps and ps["armA"]["scale1"]["confirmed"]) else 100.0
-    J = make_J(engine, m_data, W, base, n_paths)
+    if base_extra:      # v2.1 Phase 3 (PREREG section 9): garch_shape / jump_rate / jump_sd / sbar_identity
+        base.update(base_extra)
+    J = make_J(engine, m_data, W, base, n_paths, seed=seed_sm)
     z0, names = named_starts(engine, base)
     J0 = [J(z) for z in z0]
     best_start = int(np.argmin(J0))
@@ -193,7 +196,7 @@ def run_cell(engine, period, n_paths, maxiter, popmult, n_mc, n_refits, quick=Fa
     # ADDENDUM section 1: the optimiser runs on ONE CRN draw (a deterministic surface); the REPORTED moment
     # vector and J at theta-hat average K independent CRN replicates, which is what brings the simulation noise
     # under the pre-registered 0.30 bootstrap-sd bound.
-    M_rep = np.stack([pooled_moments(engine, n_paths, T_SIM, pth, seed=SEED_SM + 1000 * k, burn=BURN)
+    M_rep = np.stack([pooled_moments(engine, n_paths, T_SIM, pth, seed=seed_sm + 1000 * k, burn=BURN)
                       for k in range(K_REPORT)])
     m_sim = M_rep.mean(axis=0)
     sim_sd = M_rep.std(axis=0, ddof=1) / math.sqrt(K_REPORT)
@@ -204,7 +207,8 @@ def run_cell(engine, period, n_paths, maxiter, popmult, n_mc, n_refits, quick=Fa
            "n_days_data": meta["n_days"], "free": list(FREE[engine]), "theta": theta.tolist(),
            "params": {k: float(v) for k, v in zip(FREE[engine], theta)},
            "price_scale": base["price_scale"], "n_paths": n_paths, "T_sim": T_SIM, "burn": BURN,
-           "seed_crn": SEED_SM, "shrink": SHRINK,
+           "seed_crn": seed_sm, "shrink": SHRINK,
+           "base_extra": base_extra,
            "J": J_hat, "J_single_crn": J_crn, "K_report": K_REPORT,
            "sim_se_over_boot_sd": (sim_sd / boot.std(axis=0, ddof=1)).tolist(),
            "df": df, "chi2_crit_95": float(chi2.ppf(0.95, df)),
@@ -218,7 +222,7 @@ def run_cell(engine, period, n_paths, maxiter, popmult, n_mc, n_refits, quick=Fa
     res["profiles"] = profiles(engine, J, z_hat)
     if n_mc > 0:
         res["fw_bootstrap"] = fw_bootstrap_p(engine, theta, base, m_data, W, boot, meta["n_stocks"],
-                                             meta["n_days"], n_mc if not quick else 5)
+                                             meta["n_days"], n_mc if not quick else 5, seed=seed_mc)
         res["accept_fw_p"] = bool(res["fw_bootstrap"]["p_value"] >= 0.05)
     else:   # ADDENDUM section 2: the held-out fits need theta-hat only; acceptance is decided on `full`
         res["fw_bootstrap"] = {"p_value": None, "n_mc": 0,
@@ -226,11 +230,11 @@ def run_cell(engine, period, n_paths, maxiter, popmult, n_mc, n_refits, quick=Fa
                                        "(PREREG_PHASE_2_ADDENDUM.md section 2)"}
         res["accept_fw_p"] = None
     if n_refits:
-        rng = np.random.default_rng(SEED_SB)
+        rng = np.random.default_rng(seed_sb)
         pick = rng.choice(len(boot), size=min(n_refits, len(boot)), replace=False)
         fits = []
         for i in pick:
-            Ji = make_J(engine, boot[i], W, base, n_paths)
+            Ji = make_J(engine, boot[i], W, base, n_paths, seed=seed_sm)
             r = minimize(Ji, z_hat, method="Nelder-Mead",
                          options={"xatol": 2e-3, "fatol": 1e-8, "maxiter": 200, "maxfev": 200})
             fits.append(from_search(engine, r.x).tolist())
@@ -257,7 +261,14 @@ def main():
     ap.add_argument("--refits-only", action="store_true")
     ap.add_argument("--refit-maxfev", type=int, default=120)
     ap.add_argument("--tag", default="")
+    # v2.1 Phase 3 (PREREG section 9): extra base parameters and fresh seed blocks for the constrained re-fit
+    ap.add_argument("--base-json", default=None, help="JSON file merged into the simulator base "
+                                                     "(garch_shape, jump_rate, jump_sd, sbar_identity)")
+    ap.add_argument("--seed-sm", type=int, default=SEED_SM)
+    ap.add_argument("--seed-sb", type=int, default=SEED_SB)
+    ap.add_argument("--seed-mc", type=int, default=SEED_MC)
     a = ap.parse_args()
+    base_extra = json.load(open(a.base_json, encoding="utf-8")) if a.base_json else None
     os.makedirs(OUT, exist_ok=True)
     if a.reference_row:
         from tools.phase2.engines import pooled_moments as pm
@@ -306,7 +317,8 @@ def main():
     if os.path.exists(path):
         print(f"{path}: exists, skipped")
         return
-    r = run_cell(a.engine, a.period, a.n_paths, a.maxiter, a.popmult, a.n_mc, a.n_refits, quick=a.quick)
+    r = run_cell(a.engine, a.period, a.n_paths, a.maxiter, a.popmult, a.n_mc, a.n_refits, quick=a.quick,
+                 base_extra=base_extra, seed_sm=a.seed_sm, seed_sb=a.seed_sb, seed_mc=a.seed_mc)
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(r, fh, indent=1)
     print(json.dumps({k: r[k] for k in ("engine", "period", "params", "J", "df", "chi2_crit_95", "chi2_accept",

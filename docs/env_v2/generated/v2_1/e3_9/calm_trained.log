@@ -1,0 +1,24 @@
+[phase3]
+    full       ridge R2 +0.265 [+0.238, +0.293]  sign 0.792 [0.778, 0.806]
+    full       gbt   R2 +0.550 [+0.518, +0.579]  sign 0.906 [0.896, 0.915]
+    full       mlp   R2 +0.459 [+0.372, +0.516]  sign 0.890 [0.879, 0.902]
+    price_only ridge R2 +0.217 [+0.189, +0.245]  sign 0.744 [0.728, 0.760]
+    price_only gbt   R2 +0.349 [+0.322, +0.374]  sign 0.814 [0.801, 0.828]
+    price_only mlp   R2 +0.298 [+0.266, +0.333]  sign 0.797 [0.784, 0.811]
+[phase2]
+    full       ridge R2 +0.370 [+0.296, +0.443]  sign 0.856 [0.843, 0.869]
+    full       gbt   R2 +0.626 [+0.564, +0.682]  sign 0.942 [0.931, 0.953]
+    full       mlp   R2 +0.614 [+0.551, +0.668]  sign 0.931 [0.922, 0.941]
+    price_only ridge R2 +0.401 [+0.315, +0.481]  sign 0.848 [0.836, 0.863]
+    price_only gbt   R2 +0.421 [+0.298, +0.523]  sign 0.892 [0.880, 0.905]
+    price_only mlp   R2 +0.409 [+0.317, +0.483]  sign 0.869 [0.857, 0.882]
+# E3.9a the level-free calm channel under a CALM-TRAINED surrogate (PREREG_PHASE_3_ADDENDUM.md section 4.1)
+
+the published audit fits on all rows (GroupKFold by path) and masks by phase group afterwards; here the panel is restricted to calm rows BEFORE the fit, everything else identical. Best model per cell; R2(x) / sign accuracy on resolvable steps (|x| >= 0.05), 500-resample cluster bootstrap over paths. The plan's own L2 sign threshold is 0.70.
+
+| state | feature set | published (cross-phase-trained) | calm-trained |
+|---|---|---|---|
+| phase2 | level-free | +0.339 [+0.208, +0.434] / sign 0.827 [0.812, 0.840] | +0.421 [+0.298, +0.523] / sign 0.892 [0.880, 0.905] |
+| phase2 | full field set | +0.346 [+0.206, +0.446] / sign 0.842 [0.825, 0.858] | +0.626 [+0.564, +0.682] / sign 0.942 [0.931, 0.953] |
+| phase3 | level-free | -0.582 [-0.716, -0.470] / sign 0.722 [0.702, 0.741] | +0.349 [+0.322, +0.374] / sign 0.814 [0.801, 0.828] |
+| phase3 | full field set | +0.213 [+0.141, +0.270] / sign 0.834 [0.819, 0.848] | +0.550 [+0.518, +0.579] / sign 0.906 [0.896, 0.915] |

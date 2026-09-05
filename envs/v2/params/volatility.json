@@ -1,0 +1,496 @@
+{
+ "_note": "v2.1 Phase 3 volatility-block parameters in force (PREREG_PHASE_3.md; PHASE_3_REPORT.md). Every entry: value + provenance + what it is conditional on. Loader envs/v2/volatility_params.py; envs/v2/garch.py reads its defaults from here.",
+ "garch_shape": {
+  "value": {
+   "alpha": 0.027,
+   "gamma": 0.058,
+   "beta": 0.932,
+   "df": 6.649760745437838
+  },
+  "label": "FIT: alpha/gamma/beta = E3.1 set-A full-sample per-stock medians (the plan's own adoption rule); df = E3.2's mixture-fit DIFFUSIVE tail, net of jumps (E3.1's per-stock QML median nu 4.86 [4.73, 5.02] is the TOTAL tail including jump days and is the sensitivity anchor). CONDITIONAL: df is conditional on the jump block fitted jointly with it.",
+  "source": "e3_1/summary.md; e3_2/adoption.json (ADDENDUM 3); e3_2/recovery.json (usable = False)",
+  "date": "2026-09-02",
+  "interval": {
+   "alpha": [
+    0.0253340504898001,
+    0.03005695976316656
+   ],
+   "gamma": [
+    0.05518677295450756,
+    0.06102578229164504
+   ],
+   "beta": [
+    0.9283388319264851,
+    0.9353334516478647
+   ],
+   "df": [
+    6.481252862930999,
+    6.826357963460785
+   ]
+  },
+  "n": 417,
+  "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15): tails, drawdown depths and episode multipliers understate the full universe (the delisted tail is 4.7 % recoverable, E1.0); set B's fatter tails (nu 4.33 vs 4.86) give the direction; the WRDS re-run (D1 = C) is the remedy",
+  "e3_1_qml_nu_total_tail": {
+   "median": 4.862284980275562,
+   "ci95": [
+    4.734662269688775,
+    5.0231452895478865
+   ]
+  },
+  "persistence_alpha_gamma_beta": 0.988
+ },
+ "shape_sensitivity_sets": {
+  "value": {
+   "P25": {
+    "alpha": 0.019,
+    "gamma": 0.0434,
+    "beta": 0.9457,
+    "nu": 4.291,
+    "persistence": 0.9864,
+    "construction": "quantiles of (alpha, gamma, nu, persistence); beta derived = pers - alpha - gamma/2"
+   },
+   "P75": {
+    "alpha": 0.0417,
+    "gamma": 0.0764,
+    "beta": 0.9157,
+    "nu": 5.742,
+    "persistence": 0.9957,
+    "construction": "quantiles of (alpha, gamma, nu, persistence); beta derived = pers - alpha - gamma/2"
+   }
+  },
+  "label": "DESIGN (PREREG 3.2): quantiles of (alpha, gamma, nu, persistence) with beta derived, so both sets are stationary (the raw per-parameter P75s give persistence 1.028); run through Phase 6's checklist and Phase 9's grid, not here",
+  "source": "e3_1/confirm.json",
+  "date": "2026-09-02",
+  "interval": null,
+  "n": 417,
+  "survivor_vs_literature_gap": null
+ },
+ "sbar": {
+  "value": 0.015087876849108794,
+  "label": "FIT by the variance-accounting identity (PREREG 3.4): the generator's free-running unconditional daily return sd equals E3.1's per-stock median 0.0218 -- sbar^2 = (s_A^2 - sigma_V^2)(1+rho)/2 - lambda sigma_J^2, every input FIT. CONDITIONAL on (sigma_V, h) of the section-9 refit and on the jump block. WHICH QUANTITY IS WHICH: 0.0218 = the panel's TOTAL-return unconditional sd (E3.1); 0.0087 = E2.3's engine-conditional x-innovation scale under a 17-moment objective the model fails (not a measurement of the panel's volatility); 0.017 = v2's CAL, superseded by this entry. LEVEL CAVEAT (E3.9c, post-review, CONFIRMED DEFECT): s_A is the panel's FULL-SAMPLE unconditional sd, which is 1.28x the panel's own crisis-free calm (0.0170 [0.0163, 0.0176] from E3.3's pre-event windows). Because the phase multipliers are re-based to that same all-day level (ADDENDUM 1), the event variance stacks on a calm level that already contains it: the DEPLOYED generator's realised unconditional daily return sd over the audit scenario mix is 0.0284 [0.0267, 0.0302], +30.5 % above the 0.0218 this identity targets (bootstrap half-width 0.0017). V4's free-running check cannot see this (no events) and E3.4's rise/decay rule cannot (a shape test). Reported, NOT repaired: the anchor choice is a team decision (PHASE_3_REPORT.md section 5.7), and the calm-window mapping's alternative sbar would be 0.00676.",
+  "source": "e3_1/summary.md; e3_2/adoption.json; e2_3/smm_ar1c_full_p3.json; PREREG_PHASE_3.md 3.4",
+  "date": "2026-09-02",
+  "interval": [
+   0.013424611148725429,
+   0.01677603864929626
+  ],
+  "n": 417,
+  "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15): tails, drawdown depths and episode multipliers understate the full universe (the delisted tail is 4.7 % recoverable, E1.0); set B's fatter tails (nu 4.33 vs 4.86) give the direction; the WRDS re-run (D1 = C) is the remedy",
+  "inputs": {
+   "s_A": 0.02179271694224872,
+   "sigma_V": 0.014573291000253476,
+   "h": 22.380929759136894,
+   "jump_rate": 0.0005825113429448942,
+   "jump_sd": 0.23029694055201125
+  },
+  "s_A_ci": [
+   0.020979307588314705,
+   0.02251712061266089
+  ],
+  "sbar_fitted_not_applied_phase2": 0.008698868151339125,
+  "v2_cal_superseded": 0.017,
+  "interval_provenance": {
+   "source": "e3_9/sbar_interval.json",
+   "rule": "PREREG_PHASE_3.md 3.4's registered Monte-Carlo propagation, delivered in the post-review extension ADDENDUM 4.2; the wider of the two (sigma_V, h) reconstructions, because the refit stored per-parameter percentiles and sds rather than the 30 paired draws -- the pairing cannot be recovered from disk and the wider reading is the honest one",
+   "n_draws": 20000,
+   "failure_region_share": 0.0,
+   "limitation": "PREREG 3.4 registered resampling of the 30 refit DRAWS; e2_3/smm_ar1c_full_p3.json stores only their percentiles and sds (bootstrap_refits.ci95 / .sd), so (sigma_V, h) are reconstructed as CI-clipped normals matched to the stored sd, under both an independent and a perfectly rank-correlated pairing. s_A and (lambda, sigma_J) ARE resampled from their stored draws as registered."
+  },
+  "level_check": {
+   "source": "e3_9/level_check.json",
+   "panel_calm_sd": 0.017034468505345273,
+   "panel_calm_ci95": [
+    0.01631812719926972,
+    0.017640918745484884
+   ],
+   "s_A_full_sample": 0.02179271694224872,
+   "ratio_full_over_calm": 1.2793306075508226,
+   "deployed_uncond_sd": 0.02843340450112719,
+   "deployed_excess_pct": 30.472049797537725,
+   "double_count_confirmed": true,
+   "calm_window_mapping_sbar": 0.006761040638219302
+  }
+ },
+ "jumps": {
+  "value": {
+   "placement": "x_zero",
+   "jump_rate_x": 0.0005825113429448942,
+   "jump_sd": 0.23029694055201125,
+   "p_ann": 0.015945374246102064,
+   "lam_res": 0.00032941016443533767,
+   "q_panel": 0.4345
+  },
+  "label": "FIT, WEAKLY IDENTIFIED (E3.2 / ADDENDUM 3: the mixture fit's triple with recovery-informed widened intervals; the model as a whole is REJECTED -- J 790 -- and the recovery grid rates the estimator class lam +/-59 pct, sJ +/-28 pct; what is robust is rare-and-very-large, lam 0 excluded). placement x_zero is E1.4's decision (kept); q is E1.4's FIT (kept); p_ann / lam_res are mechanical derivations from (lambda, q). The observed negative share of exceedance-day returns (0.573) is a known simplification of the mean-zero placement, guarded by test_flat_x_equivalence. SPAN ACROSS THE INTERVAL (E3.9d, post-review): re-deriving sbar from the identity at each sigma_J, the level-free calm R2(x) of the jump arm is 0.158 / 0.176 / 0.229 at sigma_J 0.086 / 0.230 / 0.241 (jump share of the x-innovation variance 1.7 / 11.9 / 13.1 %), with overlapping intervals -- the weak identification moves the leakage picture by only about +0.018 R2 from the floor to the adopted point, and THE ADOPTED 0.230 IS THE CONSERVATIVE END: it overstates the jump channel rather than hiding it.",
+  "source": "e3_2/adoption.json (ADDENDUM 3); e3_2/detection.md; e3_2/recovery.json",
+  "date": "2026-09-02",
+  "interval": {
+   "lam": [
+    0.0004606512932822671,
+    0.0008165075929636751
+   ],
+   "sJ": [
+    0.08641026593306138,
+    0.2409333207620556
+   ]
+  },
+  "n": 2622096,
+  "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15): tails, drawdown depths and episode multipliers understate the full universe (the delisted tail is 4.7 % recoverable, E1.0); set B's fatter tails (nu 4.33 vs 4.86) give the direction; the WRDS re-run (D1 = C) is the remedy",
+  "detection": {
+   "observed_share_at_4": 0.004397245562328763,
+   "expected_t_tail_at_4": 0.0036581952848572276,
+   "excess_at_4": 0.0007390502774715351,
+   "excess_ci95_at_4": [
+    0.0006635526887658752,
+    0.0008165075929636751
+   ]
+  },
+  "literature_beside": "ABD 2007 (index futures): 14.4 % jump share of RV, 27.9 % of days -- anchors, never tolerances",
+  "v2_cal_superseded": {
+   "jump_rate_x": 0.01,
+   "jump_sd": 0.03
+  },
+  "sensitivity": {
+   "source": "e3_9/jump_sensitivity.json",
+   "cells": [
+    {
+     "sigma_J": 0.08641026593306138,
+     "sbar_identity": 0.015943307019066252,
+     "jump_share": 0.016823248186995616,
+     "levelfree_calm_R2": 0.15753328140870904,
+     "ci95": [
+      0.11899776778305632,
+      0.19623904713306303
+     ]
+    },
+    {
+     "sigma_J": 0.23029694055201125,
+     "sbar_identity": 0.015087876849108794,
+     "jump_share": 0.11949658814312801,
+     "levelfree_calm_R2": 0.17574592900461672,
+     "ci95": [
+      0.13099641731353087,
+      0.2085898386015737
+     ]
+    },
+    {
+     "sigma_J": 0.2409333207620556,
+     "sbar_identity": 0.014990809639556044,
+     "jump_share": 0.13078950664374847,
+     "levelfree_calm_R2": 0.22949103558635975,
+     "ci95": [
+      0.1700352863302714,
+      0.27947450501690635
+     ]
+    }
+   ],
+   "adopted_errs": "conservative (it OVERSTATES the jump channel)"
+  }
+ },
+ "phase_multipliers": {
+  "value": {
+   "deterioration": 1.3691332192304686,
+   "panic": 7.450465072405594,
+   "stabilisation": 3.1119479426131402,
+   "mania": 1.176334694830345,
+   "blow-off": 1.6521725991105582,
+   "post-top": 1.1642584243257446
+  },
+  "label": "FIT (E3.3): RV(window)/median own RV21 per episode, medians over episodes with stock-bootstrap CIs; the UNCONDITIONAL reference of ADDENDUM 1 (the registered pre-event-window ratios are in e3_3/episodes.md beside). TOTAL-return ratios; the x-innovation multipliers in force are mechanism.mult (closed-loop calibrated, e3_4/calibration.json). sustained-bull = 1.0 (DESIGN, review R1-D5: a volatility reduction would be a scenario clock).",
+  "source": "e3_3/episodes.{json,md}",
+  "date": "2026-09-02",
+  "interval": {
+   "deterioration": [
+    1.3143023209075708,
+    1.4402982192494558
+   ],
+   "panic": [
+    6.864904916864082,
+    8.12968090192662
+   ],
+   "stabilisation": [
+    2.960746355261681,
+    3.3417670193680427
+   ],
+   "mania": [
+    1.1236328758874234,
+    1.2133191446474896
+   ],
+   "blow-off": [
+    1.5759717607641388,
+    1.7134003515024911
+   ],
+   "post-top": [
+    1.1280254941987564,
+    1.2008616832497883
+   ]
+  },
+  "n": {
+   "drawdown_multipliers": {
+    "episodes": 1592,
+    "stocks": 412
+   },
+   "runup_multipliers": {
+    "episodes": 3125,
+    "stocks": 394
+   },
+   "stabilisation_episodes": 1571,
+   "post_top_episodes": 3122,
+   "qualifying_episodes_before_the_calm_reference_filter": {
+    "drawdowns": 1789,
+    "runups": 3202
+   },
+   "note": "each multiplier's own n is the episode count that carries a usable calm reference; the qualifying counts (1789 drawdowns / 3202 run-ups) are larger and are the depth/run-up statistics' n"
+  },
+  "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15): tails, drawdown depths and episode multipliers understate the full universe (the delisted tail is 4.7 % recoverable, E1.0); set B's fatter tails (nu 4.33 vs 4.86) give the direction; the WRDS re-run (D1 = C) is the remedy",
+  "literature_beside": "Ang & Timmermann 2012 variance ratio ~4.0; Ang & Bekaert 2002 7.04 vs 3.77 % (monthly, index); Schwert 1989 +76..+227 %; the plan's index examples 2020 ~10 d / 2008 ~30 d are not a sample"
+ },
+ "mechanism": {
+  "value": {
+   "scale_mode": "variance",
+   "mult": {
+    "deterioration": 1.3540655641641808,
+    "panic": 16.16549565617381,
+    "stabilisation": 5.634260973877562,
+    "mania": 1.345062031947002,
+    "blow-off": 1.345062031947002,
+    "post-top": 0.3470966154421968,
+    "calm": 1.0,
+    "sustained-bull": 1.0
+   },
+   "ramp_days": 0
+  },
+  "label": "FIT decision (E3.4 / REG-6, all three mechanisms run at 200 crash seeds each): adopted \"A_variance (documented shortfall, REG-6's consequence)\" \u2014 NO mechanism lands the rise time inside either empirical CI (fast-crash [29, 35] d vs generator 75.5 / 103 / 80 d for A/B/C), because the onset-to-panic gap is the SCHEDULE template's, handed to Phase 4; REG-6's consequence keeps A. mult = the x-innovation multipliers whose generator-REALISED total ratios match E3.3's FIT medians (closed loop, e3_4/calibration.json verify block: deterioration 1.34, panic 7.54, stabilisation 3.12, mania 1.19 \u2014 all inside the CIs). TWO DOCUMENTED SHORTFALLS: (i) blow-off is an EX-POST label (events.relabel_blowoff), so its multiplier never reaches the GARCH driver \u2014 inert in v2 too (OMEGA_MULT 2.0 was dead code); recorded at mania's value; the empirical blow-off target 1.65 [1.58, 1.71] vs the achievable ~1.19 is Phase 4's (it owns the event/relabel machinery). (ii) post-top is DRIFT-dominated: the scripted reversal leg floors the realised ratio at 1.59 against the target 1.16 [1.13, 1.20] whatever the innovation multiplier (driven to 0.35); Phase 4 owns the post-top drift shape (E4.8).",
+  "source": "e3_4/decision.{json,md}; e3_4/arms.json; e3_4/calibration.json; e3_4/mechanism_c.json",
+  "date": "2026-09-02",
+  "interval": null,
+  "n": 200,
+  "survivor_vs_literature_gap": null,
+  "empirical_cis": {
+   "pooled (primary, PREREG 6)": {
+    "rise": [
+     107.0,
+     131.02499999999998
+    ],
+    "decay": [
+     10.0,
+     11.0
+    ]
+   },
+   "fast-crash (ADDENDUM 2, governs adoption)": {
+    "rise": [
+     29.0,
+     35.0
+    ],
+    "decay": [
+     9.0,
+     10.0
+    ]
+   }
+  },
+  "verdicts_summary": {
+   "pooled (primary, PREREG 6)": {
+    "A_variance": false,
+    "B_omega_ramp": false,
+    "C_switching": false
+   },
+   "fast-crash (ADDENDUM 2, governs adoption)": {
+    "A_variance": false,
+    "B_omega_ramp": false,
+    "C_switching": false
+   }
+  },
+  "calibration_verify": {
+   "deterioration": {
+    "target": 1.3691332192304686,
+    "target_ci": [
+     1.3143023209075708,
+     1.4402982192494558
+    ],
+    "realised": 1.3387266979391113,
+    "n": 200,
+    "inside_ci": true
+   },
+   "panic": {
+    "target": 7.450465072405594,
+    "target_ci": [
+     6.864904916864082,
+     8.12968090192662
+    ],
+    "realised": 7.540660287478275,
+    "n": 200,
+    "inside_ci": true
+   },
+   "stabilisation": {
+    "target": 3.1119479426131402,
+    "target_ci": [
+     2.960746355261681,
+     3.3417670193680427
+    ],
+    "realised": 3.1230377779432823,
+    "n": 200,
+    "inside_ci": true
+   },
+   "mania": {
+    "target": 1.176334694830345,
+    "target_ci": [
+     1.1236328758874234,
+     1.2133191446474896
+    ],
+    "realised": 1.1884355558771855,
+    "n": 199,
+    "inside_ci": true
+   },
+   "blow-off": {
+    "target": 1.6521725991105582,
+    "target_ci": [
+     1.5759717607641388,
+     1.7134003515024911
+    ],
+    "realised": 1.0838179101139271,
+    "n": 199,
+    "inside_ci": false
+   },
+   "post-top": {
+    "target": 1.1642584243257446,
+    "target_ci": [
+     1.1280254941987564,
+     1.2008616832497883
+    ],
+    "realised": 1.5870926046678906,
+    "n": 20,
+    "inside_ci": false
+   }
+  },
+  "b_arm_note": "B (omega + FIT ramp 20 d) comes closest to the POOLED rise CI (103 vs [107, 131]) but censors 35 % of decays beyond 250 d; C (switching, v_ratio 16.2, p_exit 1/64) rises no faster and decays slower; all three arms' full statistics are in arms.json"
+ },
+ "iv": {
+  "value": {
+   "mode": "v21_filter",
+   "horizon": 21,
+   "filter": {
+    "alpha": 0.027,
+    "gamma": 0.058,
+    "beta": 0.932,
+    "omega": 5.699070140699646e-06
+   },
+   "premium": {
+    "family": 0,
+    "coef": [
+     -0.02236883982294655
+    ]
+   },
+   "eps": {
+    "rho": 0.9263,
+    "sd_innov": 0.0827
+   },
+   "T_z": {
+    "deterioration->panic": 2.699373365396905,
+    "panic->stabilisation": 2.2833846862444744,
+    "calm->deterioration": 1.8822147723287892
+   }
+  },
+  "label": "FIT (E3.5): IV_t = sqrt(252 fc_t) (1+pi) exp(eps_t), fc from a PAST-ONLY GJR filter on observed returns (omega anchored at the identity's unconditional return variance s_A^2); the premium is the CONSTANT the leave-one-name-out CV adopts on the five CBOE single-stock VIX histories (log(1+pi) = -0.0224; the level-dependent families lose by the 1-SE rule); eps AR(1) FIT from the residuals. The v2 stress trigger, whole-path quantile (the look-ahead), sigma_V add-on, w^2 factor and CAL floor 12 are REMOVED; the pooled CBOE minimum 5.13 is the anchor the generator's minimum is reported against. CONDITIONAL: five mega-caps (stated wherever quoted).",
+  "source": "e3_5/premium.{json,md}; datasets/05_implied_vol/cboe",
+  "date": "2026-09-02",
+  "interval": {
+   "rho_range": [
+    0.9231,
+    0.9308
+   ],
+   "sd_range": [
+    0.0579,
+    0.0981
+   ]
+  },
+  "n": 17570,
+  "survivor_vs_literature_gap": "five mega-caps (VXAPL/VXAZN/VXGOG/VXGS/VXIBM); the median S&P name's premium may differ",
+  "cv": {
+   "0": {
+    "per_name_mse": {
+     "AAPL": 0.0349,
+     "AMZN": 0.0596,
+     "GOOG": 0.05545,
+     "GS": 0.02375,
+     "IBM": 0.07126
+    },
+    "mean_mse": 0.048991374985037195,
+    "se_mse": 0.008619394680362625
+   },
+   "1": {
+    "per_name_mse": {
+     "AAPL": 0.03577,
+     "AMZN": 0.06274,
+     "GOOG": 0.05185,
+     "GS": 0.02667,
+     "IBM": 0.06608
+    },
+    "mean_mse": 0.04862124017349683,
+    "se_mse": 0.007622447740847577
+   },
+   "2": {
+    "per_name_mse": {
+     "AAPL": 0.0352,
+     "AMZN": 0.06193,
+     "GOOG": 0.0514,
+     "GS": 0.02713,
+     "IBM": 0.06622
+    },
+    "mean_mse": 0.048376337263805545,
+    "se_mse": 0.007538148762006702
+   }
+  },
+  "per_name_median_premium": {
+   "AAPL": -0.0443,
+   "AMZN": -0.0972,
+   "GOOG": 0.0153,
+   "GS": -0.0143,
+   "IBM": 0.0496
+  },
+  "tz_provenance": {
+   "source": "e3_5/audit.json",
+   "n_seeds": [
+    220000,
+    220199
+   ],
+   "rule": "T_z = P95 over seeds of the SAME filter's forecast z at the transition (PREREG 7.2(3)); test_iv_continuity gates on it",
+   "z_iv_measured": {
+    "deterioration->panic": 0.11736592548519219,
+    "panic->stabilisation": -0.06660385410673282,
+    "calm->deterioration": -0.05529321914607983
+   },
+   "onset_delta_auc": {
+    "auc_iv": 0.5755779016757023,
+    "auc_ref": 0.6830659191720059,
+    "delta_auc": -0.10748801749630355,
+    "null_p95": 0.032244133501724934,
+    "null_mean": 0.009660078979793,
+    "pass": true
+   }
+  }
+ },
+ "engine_refit": {
+  "value": {
+   "sigma_V": 0.014573291000253476,
+   "h": 22.380929759136894,
+   "J": 119.28146216422574,
+   "df": 15,
+   "chi2_accept": false,
+   "fw_bootstrap_p": 0.0
+  },
+  "label": "FIT (section 9: Phase 2's SMM re-launched ONCE on this volatility block, sbar eliminated by the identity, free = (sigma_V, h)); the unconstrained sensitivity and the Phase-2 values are in the report. These values also govern value.json sigma_V and mispricing.json structural/half_life.",
+  "source": "e2_3/smm_ar1c_full_p3.json",
+  "date": "2026-09-02",
+  "interval": {
+   "sigma_V": [
+    0.012749899669113959,
+    0.015268692244791758
+   ],
+   "h": [
+    18.749884832420413,
+    32.63933501637798
+   ]
+  },
+  "n": 417,
+  "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15): tails, drawdown depths and episode multipliers understate the full universe (the delisted tail is 4.7 % recoverable, E1.0); set B's fatter tails (nu 4.33 vs 4.86) give the direction; the WRDS re-run (D1 = C) is the remedy"
+ }
+}

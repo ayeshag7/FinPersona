@@ -1,0 +1,28 @@
+{
+ "switching": {
+  "v_ratio": 16.16549565617381,
+  "p_exit": 0.015625,
+  "p_entry_base": 0.0013632914137033825,
+  "p_entry": {
+   "deterioration": 0.00037351386096402925,
+   "panic": 1.0,
+   "stabilisation": 0.006875768122285205,
+   "mania": 0.000363794635560347,
+   "blow-off": 0.018980632842898595,
+   "post-top": 0.0013632914137033825
+  },
+  "sbar_scale": 0.6716078650142486
+ },
+ "derivation": {
+  "v_ratio": "= m_x(panic) (calibration.json)",
+  "p_exit": "= 1 / median stress spell 64.0 d (e3_3)",
+  "pi_uncond_stress_share": 0.08024888321633696,
+  "n_stocks": 417,
+  "pi_rule": "share of stock-days with RV21 >= own median x (1 + m_panic)/2",
+  "pi_model": 0.08024888321633694,
+  "kappa_E_v_over_vcalm": 2.2170140898301574,
+  "sbar_scale": "1/sqrt(kappa): C's calm-regime level scaled so the unconditional innovation variance over the regime mix stays sbar^2 (identity, PREREG 3.4)",
+  "p_entry": "p_exit s/(1-s), s = (m_x(phase)-1)/(v_ratio-1), capped at 1 (panic hits the cap by construction); calm/other = p_entry_base from pi"
+ },
+ "seconds": 0
+}

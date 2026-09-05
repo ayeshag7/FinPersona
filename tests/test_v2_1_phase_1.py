@@ -97,21 +97,23 @@ def test_render_scale_invariance():
 
 
 def test_jump_placement_variants():
+    """v2.1 Phase 3: a MACHINERY probe at fixed probe values (jump_rate 0.01, jump_sd 0.03 -- v2's CAL,
+    overridden explicitly), decoupled from the block in force.  E3.2's fitted jumps are ~17x rarer
+    (lambda 0.000583), so the negative-mean placement's stationary offset (lambda mu_J / (1 - rho) ~ -0.0008 at
+    h* = 22.4 d) is far below the detectable margin at any affordable seed count -- asserting it at the fitted
+    values would be vacuous.  What this test protects is the placement CODE: negmean applies a negative mean,
+    the announcement placements put jumps on announcement days, and the mean-zero placements carry no bias."""
     from envs.v2.generator import GenConfig, generate
     seeds = range(200, 240)
+    probe = {"jump_rate": 0.01, "jump_sd": 0.03}
     res = {}
     for jp in ("x_negmean", "x_zero", "V_announce", "both"):
-        rs = [generate(GenConfig(scenario="flat", seed=s, jump_placement=jp, reject=False)) for s in seeds]
+        rs = [generate(GenConfig(scenario="flat", seed=s, jump_placement=jp, reject=False, **probe)) for s in seeds]
         res[jp] = {"mean_x": float(np.mean([r.x[0, r.day >= 1].mean() for r in rs])),
                    "n_ann": float(np.mean([r.event_meta["n_ann_jumps"] for r in rs]))}
     assert res["x_negmean"]["n_ann"] == 0 and res["x_zero"]["n_ann"] == 0
     assert res["V_announce"]["n_ann"] > 0 and res["both"]["n_ann"] > 0
-    # The invariant is the SIGN and the ORDERING, not the magnitude: v2's negative-mean placement biases x down
-    # and the other three do not.  The magnitude scales with the engine's half-life -- a jump drift of
-    # rate x mean = -0.0004/day settles at -0.0004 / (1 - rho), which is -0.09 at the FW engine's 150-day
-    # half-life and -0.0045 at the AR(1) engine's 7.5-day one (v2.1 Phase 2, E2.4).  The threshold below is
-    # therefore expressed relative to the other placements rather than as an absolute number carried over from
-    # a different engine.
+    # at the probe values the negmean offset is -0.0004/(1 - rho) ~ -0.013 at h* = 22.4 d: detectable
     others = [res[jp]["mean_x"] for jp in ("x_zero", "V_announce", "both")]
     assert res["x_negmean"]["mean_x"] < min(others) - 0.003, (res["x_negmean"], others)
     for jp in ("x_zero", "V_announce", "both"):
@@ -134,8 +136,14 @@ def test_flat_x_equivalence():
     which was the burn-in of the time and is 750 for the engine adopted here."""
     from envs.v2.generator import GenConfig, generate
     from envs.v2 import value_params as VP
+    # v2.1 Phase 3: the stored reference is the measurement on the block in force (e3_4/flat_x_p3.json, seeds
+    # FX3 240000+, same 1,000-path design); Phase 2's file describes the old volatility block and stays as the
+    # earlier reference. The assertion is unchanged.
+    p3 = os.path.join(GEN, "e3_4", "flat_x_p3.json")
     p2 = os.path.join(GEN, "e2_4", "flat_x.json")
-    if os.path.exists(p2):
+    if os.path.exists(p3):
+        stored = json.load(open(p3, encoding="utf-8"))["jumps_on"]
+    elif os.path.exists(p2):
         stored = json.load(open(p2, encoding="utf-8"))["jumps_on"]
     else:
         name = {"x_negmean": "current_x_negmean", "x_zero": "B_x_zero", "V_announce": "A_V_announce",
@@ -198,16 +206,24 @@ def test_burn_in_stationary():
     from tools.phase1.e1_5_burn_in import _day1_job, ks_upper, ENGINES, VARS, D0, SEED0, OUT
     from concurrent.futures import ProcessPoolExecutor
     from envs.v2 import value_params as VP
+    from envs.v2.mispricing import ENGINE_DEFAULT
     stored = json.load(open(os.path.join(OUT, "burn_in.json"), encoding="utf-8"))
     assert stored["design"]["n_paths"] >= 2000
+    # v2.1 Phase 3: the stored 2,000-path E1.5 run is asserted as the record of the decision it made (under the
+    # v2 volatility block).  The LIVE guard now runs for the ENGINE IN FORCE against a reference regenerated
+    # under the Phase-3 block (tools/phase3/e3_burn_in_guard.py); the legacy sensitivity engines' Phase-1
+    # references and stored burn-in states were sampled under v2's GARCH shape and are STALE under the block in
+    # force -- a Phase-6/9 sensitivity that runs one of those engines must regenerate them first
+    # (PHASE_3_REPORT.md section 7), and their live guards here would compare across blocks, which is not the
+    # stationarity question E1.5 asked.
     for eng in ENGINES:
         mode = VP.burn_in_mode_for(eng); days = VP.burn_in_for(eng) if mode == "long" else int(VP.BURN_IN["stored_days"])
         name = f"B_stored_{days}" if mode == "stored" else ("current_260" if days == 260 else f"A_long_{days}")
         opt = stored["engines"][eng]["options"][name]
         assert all(opt[v]["ks_upper95"] < D0 for v in VARS), (eng, name, {v: opt[v]["ks_upper95"] for v in VARS})
-        ref = np.load(os.path.join(OUT, f"reference_states_{eng}.npz"))
-        with ProcessPoolExecutor(max_workers=3) as ex:
-            d1 = np.array(list(ex.map(_day1_job, [(s, eng, None, None) for s in range(SEED0, SEED0 + 500)], chunksize=10)))
-        for j, v in enumerate(VARS):
-            pt, _ = ks_upper(d1[:, j], ref[v], n_boot=1)
-            assert pt < D0, (eng, v, pt)
+    ref = np.load(os.path.join(OUT, f"reference_states_{ENGINE_DEFAULT}.npz"))
+    with ProcessPoolExecutor(max_workers=3) as ex:
+        d1 = np.array(list(ex.map(_day1_job, [(s, ENGINE_DEFAULT, None, None) for s in range(SEED0, SEED0 + 500)], chunksize=10)))
+    for j, v in enumerate(VARS):
+        pt, _ = ks_upper(d1[:, j], ref[v], n_boot=1)
+        assert pt < D0, (ENGINE_DEFAULT, v, pt)

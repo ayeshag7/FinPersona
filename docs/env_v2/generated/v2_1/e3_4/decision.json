@@ -1,0 +1,78 @@
+{
+ "empirical_cis": {
+  "pooled (primary, PREREG 6)": {
+   "rise": [
+    107.0,
+    131.02499999999998
+   ],
+   "decay": [
+    10.0,
+    11.0
+   ]
+  },
+  "fast-crash (ADDENDUM 2, governs adoption)": {
+   "rise": [
+    29.0,
+    35.0
+   ],
+   "decay": [
+    9.0,
+    10.0
+   ]
+  }
+ },
+ "verdicts": {
+  "pooled (primary, PREREG 6)": {
+   "A_variance": {
+    "rise": 75.5,
+    "rise_in": false,
+    "decay": 13.0,
+    "decay_in": false,
+    "passes": false
+   },
+   "B_omega_ramp": {
+    "rise": 103.0,
+    "rise_in": false,
+    "decay": 11.0,
+    "decay_in": true,
+    "passes": false
+   },
+   "C_switching": {
+    "rise": 80.0,
+    "rise_in": false,
+    "decay": 14.0,
+    "decay_in": false,
+    "passes": false
+   },
+   "adopted": "A_variance (documented shortfall, REG-6's consequence)"
+  },
+  "fast-crash (ADDENDUM 2, governs adoption)": {
+   "A_variance": {
+    "rise": 75.5,
+    "rise_in": false,
+    "decay": 13.0,
+    "decay_in": false,
+    "passes": false
+   },
+   "B_omega_ramp": {
+    "rise": 103.0,
+    "rise_in": false,
+    "decay": 11.0,
+    "decay_in": false,
+    "passes": false
+   },
+   "C_switching": {
+    "rise": 80.0,
+    "rise_in": false,
+    "decay": 14.0,
+    "decay_in": false,
+    "passes": false
+   },
+   "adopted": "A_variance (documented shortfall, REG-6's consequence)"
+  }
+ },
+ "decision": {
+  "adopted": "A_variance (documented shortfall, REG-6's consequence)",
+  "rule": "REG-6: both statistics inside the empirical 95 % CI; ties -> fewer parameters (A < B < C); none -> A with the shortfall documented. ADDENDUM 2: the fast-crash CIs govern adoption, the pooled CIs are the registered primary and both are reported."
+ }
+}

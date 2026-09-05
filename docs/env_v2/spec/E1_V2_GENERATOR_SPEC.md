@@ -79,18 +79,34 @@ path tracks the scripted target x* despite the FW pull and GARCH noise (lam: pan
 - Schedule (`schedule.py`): setup-first L1 ~ U(0.25T, 0.55T); event-first setup U(5, 20); phase-free; +/-5 d jitter per
   observable (sentiment and volume lag x by |jitter| days; IV is a GARCH forecast and takes none).
 
-## 4. Volatility (plan block 4)
-GJR-GARCH(1,1) with standardised t(5) innovations on the x-innovation: alpha = 0.10, gamma = 0.10, beta = 0.83
-**[calib: plan 0.05/0.08/0.89; top of the plan's alpha anchor, persistence 0.98 unchanged; checklist 3/6/8/13]**,
-sbar = 0.017/day **[calib: plan 0.016; the sample median of calm daily sigma with t tails sits below the population
-value]**, rare jumps ON (Poisson 0.010/day, N(-4%, 3%)) **[calib: plan 'optional' at 0.004; checklist 2/8]**, panic
-multiplier 5 **[calib: plan 4, sensitivity 3-6]**. Variant table: `generated/e1_calibration_variants.md`;
-DECISION_LOG addendum lists the open issues (items 3, 10, 17).
-Phase multipliers (calm 1, deterioration 1.5, panic 4, stabilisation 1.5, mania 1.5, blow-off 2, post-top 3,
-sustained-bull **1.0** — the 0.25 used during E1 was reverted after review R1-D5; this line printed 0.25 until v2.1 Phase 0) scale the WHOLE conditional variance (`scale_mode="variance"`, regime-switching variance) rather
-than omega only **[deviation: under omega-only scaling the panic variance reaches its target at the GARCH persistence
-rate (half-life 34 d) and a 15-70-day panic never attains the plan's own 50-100% realised-vol and -6..-15% worst-day
-targets; omega-only scaling is kept as the `scale_mode="omega"` sensitivity]**.
+## 4. Volatility (plan block 4) — **rewritten by v2.1 Phase 3 (every parameter FIT; `envs/v2/params/volatility.json` with the loud loader `envs/v2/volatility_params.py`; PHASE_3_REPORT.md)**
+GJR-GARCH(1,1) on the x-innovation with standardised t innovations: **alpha 0.027 [0.025, 0.030], gamma 0.058
+[0.055, 0.061], beta 0.932 [0.928, 0.935]** — E3.1's set-A full-sample per-stock medians (417 names, 1,000-resample
+stock bootstrap; persistence 0.991) — and **df = 6.65 [6.48, 6.83]**, the DIFFUSIVE tail net of jumps from E3.2's
+mixture fit (E3.1's per-stock QML median 4.86 [4.73, 5.02] is the TOTAL tail including jump days; adopting both at
+once would double-count tail mass — weakness 13). P25/P75 shape sensitivity sets are stationary by construction
+(quantiles of (alpha, gamma, nu, persistence), beta derived). **sbar = 0.01509**, FIT by the variance-accounting
+identity: the generator's free-running unconditional daily return sd equals the panel's per-stock median **0.0218**
+[0.0210, 0.0225]; sbar² = (s_A² − sigma_V²)(1+rho)/2 − lambda sigma_J², all inputs FIT, verified by a 50 × 20,000-d
+simulation to 0.02 % (v2's CAL 0.017 superseded; E2.3's 0.0087 was an engine-conditional compromise under a
+17-moment objective, not a volatility measurement — the three quantities are named in PHASE_3_REPORT §3.1).
+Rare jumps: **rate 0.000583/day [0.00046, 0.00089], N(0, 0.230)** in x (placement `x_zero`, E1.4) — FIT, WEAKLY
+IDENTIFIED (the model class is rejected at J 790; the rate is robust across three estimators at ≈ 0.15/year, the
+size scale only to a factor ≈ 2.7 [0.086, 0.241]; v2's CAL 0.010/day at 3 % — fourteen times the rate at a seventh
+the size — superseded; the panel's excess days are rare single-name blowups, not frequent 3 % moves).
+Phase multipliers on the x-innovation variance, calibrated CLOSED-LOOP so the generator-REALISED total-return
+variance ratios match E3.3's FIT medians (1,592 drawdown / 3,125 run-up episodes, unconditional reference):
+**deterioration 1.35, panic 16.17, stabilisation 5.63, mania 1.35, post-top 0.35** (calm 1.0 and
+sustained-bull **1.0** — review R1-D5, unchanged: a volatility reduction would be a scenario clock), realising total ratios 1.34 / 7.54 / 3.12 / 1.19 against targets 1.37 / 7.45 / 3.11 / 1.18.
+Two documented shortfalls: the **blow-off label is assigned ex post** so its multiplier never reaches the GARCH
+driver (v2's 2.0 was dead code — surfaced by E3.4's calibration; recorded at mania's value; Phase 4 owns the
+relabel machinery), and **post-top is drift-dominated** (realised 1.59 vs target 1.16 whatever the multiplier;
+Phase 4's E4.8 owns the reversal-leg shape). Mechanism: **whole-variance scaling stays** (`scale_mode="variance"`)
+by REG-6's own rule run on all three candidates at 200 crash seeds — no mechanism lands the empirical rise time
+(fast-crash 30 d [29, 35]) because the onset-to-RV-peak time is set by the SCHEDULE template (A 75.5 / B 103 /
+C 80 d), a Phase-4 hand-off; the omega-ramp arm (`scale_mode="omega"`, ramp FIT 20 d) censors 35 % of decays and
+the fitted two-regime switching arm (`scale_mode="switching"`, v_ratio 16.2, p_exit 1/64 d, entries derived from
+the multipliers) decays slower — all three remain engine options (`e3_4/decision.md`).
 
 ## 5. Rejection sampling (plan block 7)
 Criteria exactly as pre-registered (crash: min panic x <= -0.10 and MDD >= 20%; bull: max x >= 0.30; sustained bull:
@@ -100,8 +116,15 @@ and in every path's meta; rates published in checklist 17.
 ## 6. Observables (E2; plan Section 3)
 See `envs/v2/observables.py` docstring and the generated `table2_v2_from_code.md` (37 generator columns, 19 exposed,
 19 rendered -- every exposed field is rendered by contract). Sentiment with the b_pred feedback is stepped inside the
-generator loop; IV uses the 21-day GARCH forecast of the current state with a state-based (top-decile-variance)
-premium of 0.35 instead of a label-based "panic" premium **[deviation: a label-tied premium would be a phase clock]**.
+generator loop. **IV (rewritten by v2.1 Phase 3, E3.5 — items 46 and 25 closed):** IV_t = sqrt(252 fc_t) (1+pi)
+e^(eps_t), fc the 21-day forecast of a PAST-ONLY GJR filter run on the observed returns (no phase input; omega
+anchored at the identity's unconditional return variance), pi the constant FIT −0.0224 (leave-one-name-out CV on the
+five CBOE single-stock VIX histories; the level-dependent families lose by the 1-SE rule), eps an AR(1) FIT noise
+(rho 0.926, innovation sd 0.083) from the day-indexed `iv` stream. The v2 construction's stress decile trigger,
+whole-path quantile (a look-ahead), sigma_V add-on, w² factor and floor 12 are removed; audits: transition z +0.12
+(was ~7; hard tolerance T_z derived at 2.70/2.28/1.88 from the same filter's forecast), onset dAUC −0.107 against a
+permutation-null P95 of +0.032, and a bit-identical-prefix no-look-ahead test (`e3_5/audit.md`; `iv_mode="v2"`
+retrieves the old construction).
 Quarterly EPS = V(quarter end)/(4k) x exp(N(0, 0.10)) so that trailing-4Q P/E = k x P/V on average (k ~ U(14, 22)).
 Analyst fair value F_t = V_t exp(u_t), u an AR(1) with rho 0.95 per weekly update and stationary sd 0.15 (DESIGN; Phase 5
 decides the value) — **implemented at sd 0.335 until v2.1 Phase 0 removed a sqrt(5) innovation scaling** (weakness item

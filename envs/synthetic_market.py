@@ -32,6 +32,7 @@ from envs.v2.generator import GenConfig, PathResult, generate, BURN_IN
 from envs.v2.mispricing import ENGINE_DEFAULT
 from envs.v2.rng import Streams
 from envs.v2 import observables as obs
+from envs.v2 import volatility_params as VOLP
 from envs.v2.schedule import SCENARIOS, ORDERINGS
 
 ENV_VERSION = "v2"
@@ -81,7 +82,9 @@ TABLE2_DEFINITIONS = {
     "news_sentiment": ("Sentiment", "s_t = tanh(m_t + 0.85 (raw_{t-1} - m_{t-1}) + 0.25 r_t/sigma_r + 0.25 eps), m_t = 0.6 tanh(2 x_{t-j}) + 0.3 tanh(ret20/0.15); predictive component b_pred (+8 bp next-day per +1 sd, 6 bp reversed days 2-5; 0 in the control arm) applied inside the generator.", "v2/observables.py SentimentState, v2/generator.py"),
     "sentiment_MA5": ("Sentiment", "5-day rolling mean of news_sentiment.", "synthetic_market.py"),
     "sentiment_change": ("Sentiment", "news_sentiment - sentiment_MA5.", "synthetic_market.py"),
-    "implied_volatility": ("Risk", "sqrt(252 (sigma_V^2 + w_t^2 fvar21_t)) x (1 + premium) x 100; fvar21 = mean 21-day GARCH variance forecast; premium 0.20, 0.35 when the GARCH variance is in its top decile (state-based); floor 12%.", "v2/observables.py iv_block"),
+    "implied_volatility": ("Risk", "v2.1 Phase 3 (E3.5): sqrt(252 fc_t) x (1 + pi_t) x exp(eps_t) x 100, fc = 21-day forecast of a past-only GJR filter run on the OBSERVED returns (no phase input), log(1+pi) a FIT polynomial in log(fc/uncond) (five CBOE single-stock VIX histories), eps an AR(1) FIT noise; no floor, no stress trigger, no whole-path quantile. (v2's iv_block construction retrievable via iv_mode='v2'.)", "v2/observables.py iv_block_v21"),
+    "iv_fc21": ("Hidden", "The IV filter's 21-day variance forecast (past-only function of observed returns; never rendered).", "v2/observables.py iv_filter_forecast"),
+    "iv_eps": ("Hidden", "The IV noise eps_t (AR(1), own RNG stream; never rendered).", "v2/observables.py iv_block_v21"),
     "hidden_multiple": ("Hidden", "Valuation multiple k ~ U(14, 22) per seed (never rendered).", "v2/observables.py earnings_block"),
     "trailing_eps": ("Valuation (internal)", "Sum of the last four ANNOUNCED quarterly EPS; EPS_q = V(quarter end)/k x exp(N(0, 0.10)), announced quarter end + U(25, 35) d.", "v2/observables.py earnings_block"),
     "last_quarter_eps": ("Valuation (internal)", "Most recently announced quarterly EPS.", "v2/observables.py earnings_block"),
@@ -151,7 +154,12 @@ class SyntheticMarketEnv:
             d.update(obs.earnings_block(day, V, P, st.get("multiple", a), st.get("eps", a), st.get("dividend", a),
                                         ann=r.ann[a] if r.ann else None, ann_jumps=r.ann_jumps[a] if r.ann_jumps else None))
             d.update(obs.analyst_block(day, V, st.get("analyst", a)))
-            d.update(obs.iv_block(r.fvar21[a], r.w[a], r.sigma[a] ** 2, self.cfg.sigma_V))
+            # v2.1 Phase 3 (E3.5): the IV in force is the past-only filter construction of volatility.json;
+            # iv_mode="v2" (or an absent file) selects the legacy iv_block (weakness 46/25, kept as sensitivity)
+            if VOLP.IV is not None and self.cfg.iv_mode != "v2":
+                d.update(obs.iv_block_v21(ret, st.get("iv", a), VOLP.IV))
+            else:
+                d.update(obs.iv_block(r.fvar21[a], r.w[a], r.sigma[a] ** 2, self.cfg.sigma_V))
             df = pd.DataFrame(d)
             df["macro_phase"] = df["phase"].map(MACRO_OF).fillna("calm")
             df["sentiment_MA5"] = df["news_sentiment"].rolling(5, min_periods=1).mean()

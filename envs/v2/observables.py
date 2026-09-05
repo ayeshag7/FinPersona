@@ -180,11 +180,60 @@ def volume_block(day: np.ndarray, r: np.ndarray, x: np.ndarray, rng: np.random.G
 
 
 def iv_block(fvar21: np.ndarray, w: np.ndarray, sigma2_state: np.ndarray, sigma_V: float) -> Dict[str, np.ndarray]:
+    """The v2 construction (superseded by iv_block_v21 in v2.1 Phase 3; kept for the record and the frozen
+    sensitivities). Weakness 46/25: the whole-path quantile is a look-ahead and the phase multiplier enters
+    fvar21 deterministically."""
     # stress premium when the GARCH conditional variance is in its top decile of the path
     thr = np.quantile(sigma2_state, 0.9)
     prem = np.where(sigma2_state >= thr, IV_PREMIUM_STRESS, IV_PREMIUM)
     iv = np.sqrt(252.0 * (sigma_V ** 2 + (w ** 2) * fvar21)) * (1.0 + prem) * 100.0
     return {"implied_volatility": np.maximum(iv, IV_FLOOR)}
+
+
+def iv_filter_forecast(ret: np.ndarray, alpha: float, gamma: float, beta: float, omega: float,
+                       horizon: int = 21) -> np.ndarray:
+    """E3.5 (v2.1 Phase 3): past-only GJR-GARCH filter on the OBSERVED returns; fc[t] = mean conditional
+    variance over days t+1..t+horizon from the state after observing day t. No phase input, no generator state,
+    so IV built on it cannot carry the hidden regime except through the returns it has already produced."""
+    pers = alpha + 0.5 * gamma + beta
+    uncond = omega / (1.0 - pers)
+    n = len(ret)
+    fc = np.empty(n)
+    geo = (1.0 - pers ** horizon) / ((1.0 - pers) * horizon)   # closed-form mean of the forecast path
+    h = uncond
+    for t in range(n):
+        e = ret[t]
+        lev = gamma * e * e if e < 0.0 else 0.0
+        h = omega + alpha * e * e + lev + beta * h             # variance of day t+1
+        fc[t] = uncond + (h - uncond) * geo
+    return fc
+
+
+def iv_block_v21(ret: np.ndarray, rng: np.random.Generator, ivp: Dict) -> Dict[str, np.ndarray]:
+    """E3.5's construction: IV_t = sqrt(252 fc_t) * (1 + pi_t) * exp(eps_t) * 100, with fc the past-only filter
+    forecast, log(1 + pi_t) a FIT polynomial in log(fc_t / uncond) (the five CBOE single-stock VIX histories),
+    and eps an AR(1) noise drawn day-indexed from the 'iv' stream (altering the path after day t cannot change
+    IV on days <= t: test_iv_no_lookahead). The v2 stress trigger, whole-path quantile, sigma_V add-on, w^2
+    factor and the CAL floor are removed (PREREG_PHASE_3.md section 7)."""
+    f = ivp["filter"]
+    fc = iv_filter_forecast(np.asarray(ret, float), float(f["alpha"]), float(f["gamma"]), float(f["beta"]),
+                            float(f["omega"]), int(ivp.get("horizon", 21)))
+    pers = float(f["alpha"]) + 0.5 * float(f["gamma"]) + float(f["beta"])
+    uncond = float(f["omega"]) / (1.0 - pers)
+    logl = np.log(fc / uncond)
+    coef = list(ivp["premium"]["coef"])
+    log1p_pi = np.zeros(len(fc))
+    for k, c in enumerate(coef):
+        log1p_pi += float(c) * logl ** k
+    e = ivp["eps"]
+    rho, sd_inn = float(e["rho"]), float(e["sd_innov"])
+    z = rng.standard_normal(len(fc))
+    eps = np.empty(len(fc))
+    eps[0] = z[0] * (sd_inn / math.sqrt(1.0 - rho * rho) if abs(rho) < 1 else sd_inn)
+    for t in range(1, len(fc)):
+        eps[t] = rho * eps[t - 1] + sd_inn * z[t]
+    iv = np.sqrt(252.0 * fc) * np.exp(log1p_pi + eps) * 100.0
+    return {"implied_volatility": iv, "iv_fc21": fc, "iv_eps": eps}
 
 
 def technicals_block(P: np.ndarray) -> Dict[str, np.ndarray]:

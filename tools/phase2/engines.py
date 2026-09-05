@@ -34,8 +34,13 @@ B_PRED, B_REV = 0.0008, 0.0006
 ENGINES = ("ar1", "fw_v2", "fw_plus")
 
 # free-parameter names per engine (order fixed here and used by every optimiser and every output file)
+# "ar1c" (v2.1 Phase 3, PREREG_PHASE_3.md section 9): the same ar1 simulator with sbar ELIMINATED by the
+# variance-accounting identity (p["sbar_identity"], p["jump_rate"], p["jump_sd"], p["garch_shape"] in the base),
+# so only (sigma_V, h) are free. All new keys are opt-in with absent = Phase-2 behaviour, bit-identical
+# (test_smm_reference_row guards it).
 FREE = {
     "ar1": ("sigma_V", "sbar", "h"),
+    "ar1c": ("sigma_V", "h"),
     "fw_v2": ("sigma_V", "sbar", "phi", "chi", "alpha_0", "alpha_n", "alpha_p"),
     "fw_plus": ("sigma_V", "sigma_f", "sigma_c", "phi", "chi", "alpha_0", "alpha_n", "alpha_p"),
 }
@@ -62,13 +67,24 @@ def simulate(engine: str, n_paths: int, T: int, p: Dict, seed: int = 0, burn: in
              sentiment: bool = True) -> Dict[str, np.ndarray]:
     """Vectorised over paths.  Returns logP, x, logV, n_f as (T, n_paths) after `burn` warm-up steps."""
     from envs.v2.observables import SENT_RHO, SENT_B_RET, SENT_EPS, SENT_SD_REF, SIGMA_R_REF
+    engine = "ar1" if engine == "ar1c" else engine
     rng = np.random.default_rng(seed)
     n, L = n_paths, burn + T
-    g = GARCH_E31
+    g = dict(p["garch_shape"]) if p.get("garch_shape") else GARCH_E31
     x = np.zeros(n)
     x_prev = np.zeros(n)
     n_f = np.full(n, 0.5)
     sbar = float(p.get("sbar", 0.017))
+    lam_j = float(p.get("jump_rate", 0.0) or 0.0)
+    sd_j = float(p.get("jump_sd", 0.0) or 0.0)
+    ident = p.get("sbar_identity")
+    if ident and engine == "ar1":
+        # PREREG_PHASE_3.md section 3.4: sbar^2 = (s_A^2 - sigma_V^2)(1 + rho)/2 - lambda sigma_J^2
+        rho_ = 2.0 ** (-1.0 / float(p["h"]))
+        s2 = (float(ident["s_A"]) ** 2 - float(p["sigma_V"]) ** 2) * (1.0 + rho_) / 2.0 - lam_j * sd_j ** 2
+        if s2 <= 0:
+            raise ValueError("sbar identity infeasible at this (sigma_V, h)")
+        sbar = math.sqrt(s2)
     hvar = np.full(n, sbar ** 2)
     e_prev = np.zeros(n)
     logV = np.zeros(n)
@@ -86,6 +102,13 @@ def simulate(engine: str, n_paths: int, T: int, p: Dict, seed: int = 0, burn: in
     rho_ar1 = 2.0 ** (-1.0 / float(p["h"])) if engine == "ar1" else None
     lag = np.abs(rng.integers(-5, 6, n))
     eps_s = rng.standard_normal((L, n))
+    jmp = None
+    if lam_j > 0:
+        if engine != "ar1":
+            raise ValueError("the Phase-3 jump block is implemented for the ar1 family only")
+        # drawn AFTER every Phase-2 draw so absence keeps the CRN sequences bit-identical (x_zero placement:
+        # mean-zero jumps added to the x innovation, exactly as envs/v2/generator.py runs them)
+        jmp = np.where(rng.random((L, n)) < lam_j, rng.normal(0.0, sd_j, (L, n)), 0.0)
     pending = np.zeros((L + 8, n))
     s_raw = np.zeros(n)
     m_prev = np.zeros(n)
@@ -126,7 +149,7 @@ def simulate(engine: str, n_paths: int, T: int, p: Dict, seed: int = 0, burn: in
             e = np.sqrt(hvar) * eta[i]
             e_prev = e
             if engine == "ar1":
-                x_new = rho_ar1 * x + e + drift
+                x_new = rho_ar1 * x + e + drift + (jmp[i] if jmp is not None else 0.0)
             else:
                 n_c = 1.0 - n_f
                 w = (n_f * float(p["sigma_f"]) + n_c * float(p["sigma_c"])) / float(p["w_bar"])

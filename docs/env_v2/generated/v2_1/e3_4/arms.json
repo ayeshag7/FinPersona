@@ -1,0 +1,133 @@
+{
+ "arms": {
+  "A_variance": {
+   "n_qualifying": 200,
+   "rise_median": 75.5,
+   "rise_ci": [
+    66.0,
+    85.0
+   ],
+   "decay_median": 13.0,
+   "decay_ci": [
+    12.0,
+    14.0
+   ],
+   "censored_share": 0.05,
+   "mean_attempts": 1.0
+  },
+  "B_omega_ramp": {
+   "n_qualifying": 195,
+   "rise_median": 103.0,
+   "rise_ci": [
+    97.0,
+    109.0
+   ],
+   "decay_median": 11.0,
+   "decay_ci": [
+    9.5,
+    12.0
+   ],
+   "censored_share": 0.35384615384615387,
+   "mean_attempts": 1.0,
+   "ramp_days_fit": 20,
+   "ramp_grid": {
+    "0": {
+     "rise": 116.0,
+     "decay": 11.0
+    },
+    "5": {
+     "rise": 116.0,
+     "decay": 11.0
+    },
+    "10": {
+     "rise": 116.0,
+     "decay": 12.5
+    },
+    "20": {
+     "rise": 117.0,
+     "decay": 14.0
+    },
+    "40": {
+     "rise": 123.0,
+     "decay": 9.0
+    }
+   }
+  },
+  "C_switching": {
+   "n_qualifying": 197,
+   "rise_median": 80.0,
+   "rise_ci": [
+    74.0,
+    88.0
+   ],
+   "decay_median": 14.0,
+   "decay_ci": [
+    13.0,
+    15.0
+   ],
+   "censored_share": 0.12690355329949238,
+   "mean_attempts": 1.0
+  },
+  "flat_A": {
+   "sd_r_median": 0.019945916651217026,
+   "sd_x_median": 0.04752212524205929,
+   "n": 200,
+   "s_A_target": 0.02179271694224872,
+   "note": "per-path sd over 200 benchmark days; the 200,000-step V4 check is in the report"
+  }
+ },
+ "block": {
+  "shape": {
+   "alpha": 0.027,
+   "gamma": 0.058,
+   "beta": 0.932
+  },
+  "nu": 6.649760745437838,
+  "sigma_V": 0.014573291000253476,
+  "h": 22.380929759136894,
+  "jump_rate": 0.0005825113429448942,
+  "jump_sd": 0.23029694055201125,
+  "s_A": 0.02179271694224872,
+  "sbar": 0.015087876849108794,
+  "sources": {
+   "shape_s_A": "e3_1/summary.json (set A full)",
+   "jumps": "e3_2/adoption.json (ADDENDUM section 3)",
+   "engine": "e2_3/smm_ar1c_full_p3.json"
+  }
+ },
+ "mult_x": {
+  "deterioration": 1.3540655641641808,
+  "panic": 16.16549565617381,
+  "stabilisation": 5.634260973877562,
+  "mania": 1.345062031947002,
+  "blow-off": 9.31803036913623,
+  "post-top": 0.3470966154421968,
+  "calm": 1.0,
+  "sustained-bull": 1.0
+ },
+ "switching": {
+  "v_ratio": 16.16549565617381,
+  "p_exit": 0.015625,
+  "p_entry_base": 0.0013632914137033825,
+  "p_entry": {
+   "deterioration": 0.00037351386096402925,
+   "panic": 1.0,
+   "stabilisation": 0.006875768122285205,
+   "mania": 0.000363794635560347,
+   "blow-off": 0.018980632842898595,
+   "post-top": 0.0013632914137033825
+  },
+  "sbar_scale": 0.6716078650142486
+ },
+ "seeds": {
+  "crash": [
+   210000,
+   210199
+  ],
+  "flat": [
+   211000,
+   211199
+  ]
+ },
+ "seconds": 22
+}

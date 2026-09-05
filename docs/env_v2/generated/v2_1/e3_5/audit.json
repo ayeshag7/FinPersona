@@ -1,0 +1,51 @@
+{
+ "design": {
+  "seeds": [
+   220000,
+   220199
+  ],
+  "n_perm": 500,
+  "seed_perm": 221001,
+  "label": "1 on days [tau, tau+5) after deterioration->panic; 0 on calm-calm day pairs",
+  "scores": "|dlog IV| vs |dlog sqrt(252 iv_fc21)| (the same filter's forecast)"
+ },
+ "calm_sd": {
+  "dlog_iv": 0.09543299674987793,
+  "dlog_ref": 0.04502571001648903
+ },
+ "transitions": {
+  "deterioration->panic": {
+   "n": 200,
+   "z_iv_mean": 0.11736592548519219,
+   "z_iv_p95_abs": 2.104077005686705,
+   "z_ref_mean": 0.1404487691926628,
+   "z_ref_p95": 2.699373365396905,
+   "T_z": 2.699373365396905
+  },
+  "panic->stabilisation": {
+   "n": 200,
+   "z_iv_mean": -0.06660385410673282,
+   "z_iv_p95_abs": 1.948862196400153,
+   "z_ref_mean": 0.025586849090147936,
+   "z_ref_p95": 2.2833846862444744,
+   "T_z": 2.2833846862444744
+  },
+  "calm->deterioration": {
+   "n": 200,
+   "z_iv_mean": -0.05529321914607983,
+   "z_iv_p95_abs": 1.9741180894979349,
+   "z_ref_mean": 0.043369949115411484,
+   "z_ref_p95": 1.8822147723287892,
+   "T_z": 1.8822147723287892
+  }
+ },
+ "onset_auc": {
+  "auc_iv": 0.5755779016757023,
+  "auc_ref": 0.6830659191720059,
+  "delta_auc": -0.10748801749630355,
+  "null_p95": 0.032244133501724934,
+  "null_mean": 0.009660078979793,
+  "pass": true
+ },
+ "seconds": 21
+}

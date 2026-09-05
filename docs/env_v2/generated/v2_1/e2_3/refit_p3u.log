@@ -1,0 +1,18 @@
+{
+ "engine": "ar1",
+ "period": "full",
+ "params": {
+  "sigma_V": 0.011759296191889599,
+  "sbar": 0.009905448523433728,
+  "h": 16.95586087084487
+ },
+ "J": 93.06117496054046,
+ "df": 14,
+ "chi2_crit_95": 23.684791304840576,
+ "chi2_accept": false,
+ "start_J_best": 172.1715228681446,
+ "n_evaluations": 502,
+ "seconds": 960
+}
+fw bootstrap p = None accept: None
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e2_3\smm_ar1_full_p3u.json

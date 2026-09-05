@@ -1,0 +1,9 @@
+{
+ "threshold": 4.0,
+ "rate_obs": 0.004397245562328763,
+ "rate_expected_t_tail": 0.0036581952848572276,
+ "excess": 0.0007390502774715351,
+ "E_r2_jump_day": 0.007466734058622388,
+ "sigma_J_moment_arithmetic": 0.08641026593306138,
+ "note": "independent corroboration of the mixture fit: size decomposition from the same detection quantities (E[r2] on exceedance days split between the per-stock t-tail expectation and the excess component); approximation E[sigma2*T2] ~ E[sigma2]E[T2]"
+}

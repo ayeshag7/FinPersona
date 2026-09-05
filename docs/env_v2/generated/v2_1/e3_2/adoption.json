@@ -1,0 +1,59 @@
+{
+ "rule": "PREREG_PHASE_3_ADDENDUM.md section 3: the primary fit triple with recovery-informed widened intervals; both registered arms reported beside",
+ "nu": {
+  "value": 6.649760745437838,
+  "ci95": [
+   6.481252862930999,
+   6.826357963460785
+  ],
+  "note": "diffusive tail net of jumps; recovery-certified to +/-2.4%; pooled-curve heterogeneity means the typical stock is if anything thinner-tailed; E3.1 QML median 4.86 is the TOTAL tail"
+ },
+ "lam": {
+  "value": 0.0005825113429448942,
+  "ci95": [
+   0.0004606512932822671,
+   0.0008165075929636751
+  ],
+  "note": "union of the refit CI and the excess-rate CI; recovery accuracy of the estimator class +/-59%"
+ },
+ "sJ": {
+  "value": 0.23029694055201125,
+  "ci95": [
+   0.08641026593306138,
+   0.2409333207620556
+  ],
+  "note": "WEAKLY IDENTIFIED (factor ~2.7 across estimators; recovery +/-28%); robust joint statement: rare and very large"
+ },
+ "model_rejected": {
+  "J_primary": 789.5708070562944,
+  "J_fallback": 1455.203805819095,
+  "why": "pooled-curve nu heterogeneity + announcement elevation beyond a total-rate-preserving split"
+ },
+ "corroborations": {
+  "lam_excess_rate": {
+   "value": 0.0007390502774715351,
+   "ci95": [
+    0.0006635526887658752,
+    0.0008165075929636751
+   ]
+  },
+  "lam_mixture": {
+   "value": 0.0005825113429448942,
+   "ci95": [
+    0.0004606512932822671,
+    0.0007173217606752315
+   ]
+  },
+  "sJ_moment_arithmetic": 0.08641026593306138,
+  "fallback_degenerate": {
+   "lam": 4.7033554513745406e-14,
+   "sJ": 3.446475819081741e-05
+  }
+ },
+ "recovery_usable": false,
+ "recovery_pooled_err": {
+  "nu": 0.024215492896748906,
+  "lam": 0.5876861915806907,
+  "sJ": 0.2773075434787767
+ }
+}

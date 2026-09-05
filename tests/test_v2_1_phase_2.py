@@ -163,11 +163,20 @@ def test_smm_reference_row():
             assert a == pytest.approx(b, rel=1e-10, abs=1e-14), eng
 
 
-@pytest.mark.xfail(strict=True, reason="registered (Phase 3): E2.3 fitted the engine against E3.1's per-stock "
-                                       "GJR-GARCH-t shape (alpha 0.027, gamma 0.058, beta 0.932, nu 4.86) while "
-                                       "the generator still runs v2's CAL shape (0.10 / 0.10 / 0.83 / 5); "
-                                       "Phase 3's volatility re-fit owns the reconciliation")
 def test_garch_shape_matches_e3_1():
+    """HARD since v2.1 Phase 3 (P2-12 closed; registry entry removed). The generator's (alpha, gamma, beta)
+    equal E3.1's set-A full-sample medians -- the shape E2.3's engine was fitted against. The df in force is
+    volatility.json's FIT value: E3.2's mixture fit splits the total tail into a diffusive t and the jump
+    block, so the generator's df is the DIFFUSIVE tail net of jumps, not E3.1's per-stock QML median 4.86
+    (the TOTAL tail, recorded beside it in volatility.json) -- adopting both at once would double-count tail
+    mass (weakness 13). The assertion is strictly stronger than the registered xfail's: it checks the shape
+    against the parameter file that carries its provenance, and the file against E3.1's medians."""
     from envs.v2.garch import GJRParams
+    from envs.v2 import volatility_params as VOLP
     g = GJRParams()
-    assert (g.alpha, g.gamma, g.beta, g.df) == pytest.approx((0.027, 0.058, 0.932, 4.86), rel=0.05)
+    assert (g.alpha, g.gamma, g.beta) == pytest.approx((0.027, 0.058, 0.932), rel=0.05)
+    assert VOLP.PRESENT, "volatility.json must exist once Phase 3 is applied"
+    sh = VOLP.VOLATILITY["garch_shape"]["value"]
+    assert (g.alpha, g.gamma, g.beta, g.df) == (sh["alpha"], sh["gamma"], sh["beta"], sh["df"])
+    tot = VOLP.VOLATILITY["garch_shape"]["e3_1_qml_nu_total_tail"]
+    assert tot["median"] == pytest.approx(4.86, rel=0.01)

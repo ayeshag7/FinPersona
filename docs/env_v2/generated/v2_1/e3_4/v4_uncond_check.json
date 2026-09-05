@@ -1,0 +1,12 @@
+{
+ "target_s_A": 0.02179271694224872,
+ "measured_uncond_sd": 0.021788269576780397,
+ "per_path_median": 0.021669813292529184,
+ "se_of_mean_over_paths": 0.00012130324305212502,
+ "n_paths": 50,
+ "T": 20000,
+ "seed": 270001,
+ "sbar_identity_value": 0.015087876849108794,
+ "agree_within_3se": true,
+ "sd_x": 0.06800339527225423
+}

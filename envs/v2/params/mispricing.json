@@ -31,25 +31,21 @@
  },
  "structural": {
   "value": {
-   "sigma_V": 0.012203561517323533,
-   "sbar": 0.008698868151339125,
-   "h": 7.498029274686622
+   "sigma_V": 0.014573291000253476,
+   "h": 22.380929759136894,
+   "sbar_by_identity": 0.015087876849108794
   },
-  "label": "FIT (E2.3 SMM: FW's nine moments plus the persistence-carrying VR(20-500) and the ACF of log(P/SMA250); block-bootstrap weight matrix stored to disk) CONDITIONAL: every value here is conditional on E3.1's GJR-GARCH-t shape, which was held fixed inside the fit and which Phase 3 re-fits (DECISION_LOG P2-12); sigma_V is additionally conditional on the engine (P2-8, P2-16).",
-  "source": "e2_3/smm_ar1_full.json",
-  "date": "2026-09-01",
+  "label": "FIT (section-9 refit, v2.1 Phase 3: Phase 2's SMM re-launched on the Phase-3 volatility block -- E3.1 shape + E3.2 jumps in the simulator, sbar eliminated by PREREG 3.4's identity, free = (sigma_V, h), df = 15). CONDITIONAL on that block; the Phase-2 fit (old shape, sbar free) is recorded under previous.",
+  "source": "e2_3/smm_ar1c_full_p3.json",
+  "date": "2026-09-02",
   "interval": {
    "sigma_V": [
-    0.01065588076354027,
-    0.014190693608542412
-   ],
-   "sbar": [
-    0.006588277221513501,
-    0.012982117459916507
+    0.012749899669113959,
+    0.015268692244791758
    ],
    "h": [
-    3.8098855550023334,
-    23.6074232208472
+    18.749884832420413,
+    32.63933501637798
    ]
   },
   "n": 417,
@@ -61,40 +57,59 @@
   ],
   "fixed_in_the_fit": "beta = 1 and mu = 0.01 are FW's normalisations; w_bar is the v2 reference unit-mean weight constant 0.76113 -- inside the fit only the product w_bar x sbar is identified, so the engine keeps this constant rather than re-deriving it from a fresh pilot",
   "n_bootstrap_refits": 30,
-  "J": 80.3604980379063,
-  "df": 14,
-  "chi2_crit_95": 23.684791304840576,
+  "J": 119.28146216422574,
+  "df": 15,
+  "chi2_crit_95": 24.995790139728616,
   "chi2_accept": false,
   "fw_bootstrap_p": 0.0,
   "accept_fw_p": false,
   "n_paths_per_evaluation": 200,
-  "K_report": 20
+  "K_report": 20,
+  "previous_phase2": {
+   "value": {
+    "sigma_V": 0.012203561517323533,
+    "sbar": 0.008698868151339125,
+    "h": 7.498029274686622
+   },
+   "J": 80.3604980379063,
+   "interval": {
+    "sigma_V": [
+     0.012749899669113959,
+     0.015268692244791758
+    ],
+    "h": [
+     18.749884832420413,
+     32.63933501637798
+    ]
+   }
+  }
  },
  "applied": {
   "value": {
    "engine": "ar1_fit",
    "price_scale": 1.0,
-   "half_life_days": 7.498029274686622,
-   "sigma_V_to_value_json": 0.012203561517323533
+   "half_life_days": 22.380929759136894,
+   "sigma_V_to_value_json": 0.014573291000253476,
+   "sbar_to_volatility_json": 0.015087876849108794
   },
-  "label": "WHICH fitted quantities actually govern the generator. The engine name, the units convention, the half-life and sigma_V are applied. **sbar (the unconditional x-innovation scale) is RECORDED AND NOT APPLIED**: it is a volatility parameter and Phase 3 owns it (PLAN section 7, E3.1 adopts the per-stock median unconditional sd; E3.4 decides how the regime enters the variance). Applying E2.3's sbar here would set a Phase-3 parameter from a Phase-2 fit, and the generator keeps v2's CAL 0.017 until Phase 3 re-fits it. The consequence is stated in PHASE_2_REPORT.md section 4: the engine's stationary sd(x) in the handed-over generator is the one E2.6 measures at sbar = 0.017, not the one the SMM fitted.",
+  "label": "WHICH fitted quantities govern the generator (v2.1 Phase 3): engine name, units, half-life and sigma_V (section-9 refit), and -- new -- sbar, now APPLIED through volatility.json's identity value (P2-9's hand-over executed). The GARCH shape is applied (P2-12 closed).",
   "source": "e2_3/smm_ar1_full.json; PLAN section 7",
-  "date": "2026-09-01",
+  "date": "2026-09-02",
   "interval": null,
   "n": 417,
   "survivor_vs_literature_gap": null,
   "sbar_fitted_not_applied": 0.008698868151339125,
-  "sbar_in_force": 0.017,
-  "sbar_in_force_source": "envs/v2/garch.py GJRParams.sbar (CAL, v2 E1 calibration); Phase 3 re-fits"
+  "sbar_in_force": 0.015087876849108794,
+  "sbar_in_force_source": "envs/v2/params/volatility.json (E3.1 identity, PREREG 3.4)"
  },
  "half_life": {
-  "value": 7.498029274686622,
-  "label": "FIT (E2.3, the engine's own persistence) Conditional on the same GARCH shape; the point estimate is stable across every window of the panel (13.1 / 8.9 / 9.2 / 7.5 / 5.2 d) but a single fit identifies it only to within a factor of about three.",
-  "source": "e2_3/smm_ar1_full.json; e2_2/persistence.md",
-  "date": "2026-09-01",
+  "value": 22.380929759136894,
+  "label": "FIT (section-9 refit; conditional on the Phase-3 volatility block). Phase 2's 7.498 [3.81, 23.61] under the old shape recorded in structural.previous_phase2.",
+  "source": "e2_3/smm_ar1c_full_p3.json; e2_2/persistence.md",
+  "date": "2026-09-02",
   "interval": [
-   3.8098855550023334,
-   23.6074232208472
+   18.749884832420413,
+   32.63933501637798
   ],
   "n": 417,
   "survivor_vs_literature_gap": "set A has no delistings by construction (REG-15), so the panel's tails and unconditional variance understate the full universe; every moment this fit targets inherits that gap and the WRDS re-run (D1 = C) is the remedy the plan foresees",
@@ -105,11 +120,11 @@
    "alpha": 0.027,
    "gamma": 0.058,
    "beta": 0.932,
-   "df": 4.86
+   "df": 6.649760745437838
   },
-  "label": "FIT (E3.1, set-A full-sample per-stock medians; held FIXED inside the SMM, only the unconditional scale sbar was free)",
+  "label": "FIT and NOW APPLIED (v2.1 Phase 3): alpha/gamma/beta = E3.1 medians; df = E3.2's diffusive tail. The generator runs this shape (volatility.json; test_garch_params_in_force), closing DECISION_LOG P2-12.",
   "source": "e3_1/summary.md, garch_fits.csv",
-  "date": "2026-09-01",
+  "date": "2026-09-02",
   "interval": null,
   "n": 417,
   "survivor_vs_literature_gap": "set B (shorter, partly delisted names) has fatter tails (nu 4.33 vs 4.86) and higher variance (0.0243 vs 0.0218): the survivor panel understates both"

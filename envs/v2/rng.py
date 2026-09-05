@@ -35,6 +35,8 @@ COMPONENTS = [
     "announce",           # 14 v2.1 Phase 1: earnings-announcement lags (shared by the V jump and the EPS field)
     "start_price",        # 15 v2.1 Phase 1: start-price level (mechanism A) / render scale (mechanism C)
     "init_state",         # 16 v2.1 Phase 1: stored-state burn-in draw (E1.5 option B)
+    "regime",             # 17 v2.1 Phase 3: two-regime switching-variance draws (E3.4 mechanism C)
+    "iv",                 # 18 v2.1 Phase 3: the IV noise eps (E3.5; AR(1), day-indexed, past-only)
 ]
 _INDEX = {name: i for i, name in enumerate(COMPONENTS)}
 

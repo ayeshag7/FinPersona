@@ -34,7 +34,15 @@ def test_code_constants_match_canonical_numbers(num):
     from envs.v2.garch import OMEGA_MULT
     from envs.v2 import mispricing as mp, events as ev, observables as obs
     cfg = GenConfig()
-    assert cfg.jump_rate == num["jump_rate"] == 0.010 and cfg.jump_mean == num["jump_mean"] and cfg.jump_sd == num["jump_sd"]
+    # v2.1 Phase 3: the jump block in force comes from value.json (E3.2 FIT: rate 0.000583, sd 0.230); the
+    # canonical Phase-0 numbers (0.010 / -0.04 / 0.03) are v2's CAL, now recorded under the entry's `previous`.
+    # The chain asserted: GenConfig == value.json (in force), and the canonical numbers == the superseded CAL.
+    from envs.v2 import value_params as VP
+    assert cfg.jump_rate == VP.JUMP["jump_rate_x"] and cfg.jump_sd == VP.JUMP["jump_sd"]
+    v = json.load(open(os.path.join(ROOT, "envs", "v2", "params", "value.json"), encoding="utf-8"))
+    prev = v["jump"]["previous"]
+    assert prev["jump_rate_x"] == num["jump_rate"] == 0.010 and prev["jump_sd"] == num["jump_sd"]
+    assert cfg.jump_mean == num["jump_mean"] == -0.04     # x_negmean-only parameter, unchanged (unused in force)
     assert OMEGA_MULT["sustained-bull"] == num["sustained_bull_variance_multiplier"] == 1.0
     assert (HAZARD_H0, HAZARD_B, G_MAX_CAL) == (num["hazard_h0"], num["hazard_b"], num["g_max"]) and ev.G_MAX == num["g_max"]
     assert mp.HALF_LIFE_FALLBACK_DAYS == 150.0 and abs(num["pull_rate_half_life_days"] - 150.0) < 0.5

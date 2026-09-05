@@ -1,0 +1,17 @@
+{
+ "engine": "ar1c",
+ "period": "full",
+ "params": {
+  "sigma_V": 0.014573291000253476,
+  "h": 22.380929759136894
+ },
+ "J": 119.28146216422574,
+ "df": 15,
+ "chi2_crit_95": 24.995790139728616,
+ "chi2_accept": false,
+ "start_J_best": 161.02303367560341,
+ "n_evaluations": 414,
+ "seconds": 4605
+}
+fw bootstrap p = 0.0 accept: False
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e2_3\smm_ar1c_full_p3.json

@@ -1,0 +1,142 @@
+{
+ "V1": {
+  "n_converged": 417,
+  "n_cited": 417,
+  "params": {
+   "alpha": {
+    "recomputed": [
+     0.027482,
+     0.025334,
+     0.030057
+    ],
+    "cited": [
+     0.027482,
+     0.025334,
+     0.030057
+    ],
+    "agree": true
+   },
+   "gamma": {
+    "recomputed": [
+     0.05837,
+     0.055187,
+     0.061026
+    ],
+    "cited": [
+     0.05837,
+     0.055187,
+     0.061026
+    ],
+    "agree": true
+   },
+   "beta": {
+    "recomputed": [
+     0.931982,
+     0.928339,
+     0.935333
+    ],
+    "cited": [
+     0.931982,
+     0.928339,
+     0.935333
+    ],
+    "agree": true
+   },
+   "nu": {
+    "recomputed": [
+     4.862285,
+     4.734662,
+     5.023145
+    ],
+    "cited": [
+     4.862285,
+     4.734662,
+     5.023145
+    ],
+    "agree": true
+   },
+   "persistence": {
+    "recomputed": [
+     0.991389,
+     0.990515,
+     0.992165
+    ],
+    "cited": [
+     0.991389,
+     0.990515,
+     0.992165
+    ],
+    "agree": true
+   },
+   "uncond_sd": {
+    "recomputed": [
+     0.021793,
+     0.020979,
+     0.022517
+    ],
+    "cited": [
+     0.021793,
+     0.020979,
+     0.022517
+    ],
+    "agree": true
+   }
+  },
+  "agree": true
+ },
+ "V2": {
+  "q_recomputed": 0.4345,
+  "q_cited": 0.4345,
+  "window_share_recomputed": 0.1452,
+  "window_share_cited": 0.1452,
+  "n_jumps": 7492,
+  "n_days": 1670790,
+  "rate_in": 0.01342,
+  "rate_out": 0.00297,
+  "agree": true
+ },
+ "V3": {
+  "sigma_V": [
+   0.012203561517323533,
+   0.012203561517323533,
+   0.012203561517323533
+  ],
+  "sbar": [
+   0.008698868151339125,
+   0.008698868151339125
+  ],
+  "h": [
+   7.498029274686622,
+   7.498029274686622
+  ],
+  "agree": true
+ },
+ "V5": {
+  "w_constant": true,
+  "w_value": 1.4225,
+  "w_expected": 1.4225,
+  "median_iv": 51.2566348362524,
+  "median_iv_if_w_were_1": 39.6450862975436,
+  "note": "constant factor, no leak; removed by E3.5's construction"
+ },
+ "shape_sensitivity_sets": {
+  "P25": {
+   "alpha": 0.019,
+   "gamma": 0.0434,
+   "beta": 0.9457,
+   "nu": 4.291,
+   "persistence": 0.9864,
+   "construction": "quantiles of (alpha, gamma, nu, persistence); beta derived = pers - alpha - gamma/2"
+  },
+  "P75": {
+   "alpha": 0.0417,
+   "gamma": 0.0764,
+   "beta": 0.9157,
+   "nu": 5.742,
+   "persistence": 0.9957,
+   "construction": "quantiles of (alpha, gamma, nu, persistence); beta derived = pers - alpha - gamma/2"
+  },
+  "raw_P75_persistence_note": 1.0281
+ },
+ "seconds": 2
+}

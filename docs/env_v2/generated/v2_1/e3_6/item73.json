@@ -1,0 +1,32 @@
+{
+ "design": {
+  "panel": "SCL checklist panel, 200 seeds per scenario (crash per delta), T = 200, seed0 40000",
+  "calm_windows": "maximal contiguous calm/sustained-bull runs >= 100 d, fitted per run",
+  "estimator": "item 5's garch_fit (GARCH(1,1), zero mean, percent returns)"
+ },
+ "whole_path": {
+  "median": 0.9754119571377857,
+  "p25_75": [
+   0.9061155016549266,
+   0.9970201043115772
+  ],
+  "n": 1820
+ },
+ "calm_windows_only": {
+  "median": 0.9419171658116997,
+  "p25_75": [
+   0.7033736050563503,
+   0.9877984482881285
+  ],
+  "n": 788
+ },
+ "item5_band": [
+  0.9,
+  0.995
+ ],
+ "in_band": {
+  "whole": true,
+  "calm": true
+ },
+ "seconds": 485
+}

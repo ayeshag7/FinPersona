@@ -1,0 +1,5 @@
+exact (the bound's model): R2 0.145 [0.108, 0.176] (gaussian bound 0.163; 324 s)
++ GJR-t innovation (block in force): R2 0.145 [0.096, 0.184] (gaussian bound 0.163; 363 s)
++ jumps (FIT lambda, sigma_J): R2 0.192 [0.105, 0.288] (gaussian bound 0.177; 407 s)
++ GJR-t + jumps (the Phase-3 x innovation): R2 0.203 [0.141, 0.262] (gaussian bound 0.177; 382 s)
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e3_8

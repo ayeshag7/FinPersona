@@ -1,0 +1,19 @@
+{
+ "shape": {
+  "alpha": 0.027,
+  "gamma": 0.058,
+  "beta": 0.932
+ },
+ "nu": 6.649760745437838,
+ "sigma_V": 0.014573291000253476,
+ "h": 22.380929759136894,
+ "jump_rate": 0.0005825113429448942,
+ "jump_sd": 0.23029694055201125,
+ "s_A": 0.02179271694224872,
+ "sbar": 0.015087876849108794,
+ "sources": {
+  "shape_s_A": "e3_1/summary.json (set A full)",
+  "jumps": "e3_2/adoption.json (ADDENDUM section 3)",
+  "engine": "e2_3/smm_ar1c_full_p3.json"
+ }
+}

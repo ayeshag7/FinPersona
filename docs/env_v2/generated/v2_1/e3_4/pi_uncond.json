@@ -1,0 +1,8 @@
+{
+ "pi_uncond_stress_share": 0.08024888321633696,
+ "n_stocks": 417,
+ "m_panic_total_used": 7.450465072405594,
+ "stress_spell_used": 64.0,
+ "rule": "share of stock-days with RV21 >= own median x (1 + m_panic)/2 (PREREG 6, mechanism C)",
+ "seconds": 10
+}

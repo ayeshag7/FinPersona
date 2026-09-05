@@ -1,0 +1,106 @@
+{
+ "PA3": {
+  "design": {
+   "seeds": [
+    780001,
+    780030
+   ],
+   "scenario": "crash",
+   "delta": 0.7,
+   "state": "incumbent (v2.1 Phase-2 hand-over), mechanism A with the CAL multipliers",
+   "estimator": "tools/phase3/episodes.py (shared with E3.3/E3.4)"
+  },
+  "n_run": 30,
+  "n_qualifying": 28,
+  "censored_share_decay": 0.03571428571428571,
+  "rise": {
+   "median": 55.0,
+   "sd": 37.12626817173776,
+   "p25_75": [
+    38.5,
+    92.5
+   ],
+   "half_width_median_at_200": 6.448777762409285
+  },
+  "decay": {
+   "median": 8.0,
+   "sd": 5.29661505625348,
+   "p25_75": [
+    6.5,
+    15.0
+   ],
+   "half_width_median_at_200": 0.9200141859884347
+  },
+  "m_panic_realised_median": 2.4084381681797247,
+  "seconds": 10
+ },
+ "PA4": {
+  "measured_on": "e3_3/episodes.json (a data fact, per the prereg)",
+  "pooled": {
+   "n_episodes": 1585,
+   "rise_ci95": [
+    107.0,
+    131.02499999999998
+   ],
+   "rise_ci_halfwidth_d": 12.012499999999989,
+   "decay_ci95": [
+    10.0,
+    11.0
+   ]
+  },
+  "fast_crash": {
+   "n_episodes": 531,
+   "rise_ci95": [
+    29.0,
+    35.0
+   ],
+   "rise_ci_halfwidth_d": 3.0,
+   "decay_ci95": [
+    9.0,
+    10.0
+   ]
+  },
+  "verdict": "both n >= 60 (REG-6 power note); fast-crash rise CI half-width 3 d and decay 0.5 d vs PA3 generator half-widths 6.4 / 0.9 d at n=200: the mechanism rule is decidable (a mechanism can land inside or outside these CIs detectably)"
+ },
+ "PA1": {
+  "measured_by": "e3_2/recovery.json (6 cells x 5 replicates, QML refits end to end)",
+  "pooled_median_rel_err": {
+   "nu": 0.024215492896748906,
+   "lam": 0.5876861915806907,
+   "sJ": 0.2773075434787767
+  },
+  "usable": false,
+  "consequence_taken": "the registered fallback was run and found degenerate (lam -> 3e-14 at nu pinned 4.86); adoption corrected in ADDENDUM section 3 to the primary triple with recovery-informed widened intervals"
+ },
+ "PA2": {
+  "lam0_null_mixture_lam_points": [
+   0.0021773007782975003,
+   0.00899659089421832,
+   9.142224196710338e-05,
+   4.436032070324143e-05,
+   3.27232568253568e-11
+  ],
+  "lam0_null_ci_includes_0": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "real_panel_excess_at_4": 0.0007390502774715351,
+  "real_panel_excess_ci": [
+   0.0006635526887658752,
+   0.0008165075929636751
+  ],
+  "verdict": "on jump-free panels the mixture-lam POINT estimate can spuriously reach 0.009 (2 of 5 replicates) though its CI includes 0 in 5/5; the lam > 0 claim therefore rests on the excess-rate CI excluding 0 and on the announcement clustering, and the report says so"
+ },
+ "kaggle_reference_row": {
+  "kernel": "ayeshaiq/fp-p3-refrow",
+  "bundle": "ayeshaiq/finpersona-phase3-bundle (2 Sep 2026)",
+  "kernel_versions": "Python 3.12.13, numpy 2.0.2, scipy 1.16.3, pandas 2.3.3, sklearn 1.6.1",
+  "local_versions": "Python 3.13, numpy 2.4.6, scipy 1.18.0, pandas 3.0.3, sklearn 1.9.0",
+  "worst_relative_difference": 6.43e-16,
+  "rows_failing_10_sig_figs": 0,
+  "verdict": "PROVEN: the first cross-machine exercise of the Phase-2 guard; this kernel may run simulation and optimisation. The leakage audits, L5 and every surrogate number stay on the local reference machine regardless (the Phase-1 non-reproduction rule)."
+ }
+}

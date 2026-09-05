@@ -13,22 +13,20 @@ xfails collected from the test files equal `V2_DEFECTS` + `V1_BASELINE_XFAILS`; 
 prints this registry with the observed outcomes at the end of every pytest session.
 """
 
+# v2.1 Phase 3 cleared its two entries: test_garch_shape_matches_e3_1 (item 12) is HARD -- the generator runs
+# the fitted shape (alpha/gamma/beta = E3.1 medians; df = E3.2's diffusive tail, volatility.json) and the
+# section-9 refit re-identified the engine's (sigma_V, h) under it (DECISION_LOG P3-*); test_iv_continuity
+# (items 46, 25) is HARD with the DERIVED tolerance T_z -- E3.5's IV is a past-only filter of observed returns
+# (no phase input, no whole-path quantile), audited against the same filter's forecast (e3_5/audit.json).
 V2_DEFECTS = [
-    {"test": "tests/test_v2_1_phase_2.py::test_garch_shape_matches_e3_1", "items": [12],
-     "phase": 3, "reason": "Phase 2's E2.3 fitted the mispricing engine against E3.1's per-stock GJR-GARCH-t shape "
-                           "(alpha 0.027, gamma 0.058, beta 0.932, nu 4.86 -- the plan's own prescription for E2.3) "
-                           "while the generator still runs v2's CAL shape (0.10 / 0.10 / 0.83 / 5); the engine's "
-                           "fitted parameters are therefore conditional on a volatility block Phase 3 owns and "
-                           "re-fits (E3.2-E3.6), which must then re-check the engine's persistence"},
-    {"test": "tests/test_v2_1_stats.py::test_iv_continuity", "items": [46, 25],
-     "phase": 3, "reason": "the phase multiplier enters IV deterministically: one-day log-IV step of z ~ 7"},
     {"test": "tests/test_v2_1_stats.py::test_sustained_bull_selection", "items": [18, 42],
      "phase": 4, "reason": "rejection sampling keeps the quiet sub-population of sustained-bull draws"},
     {"test": "tests/test_leakage_ci.py::test_v2_L2_surrogate_thresholds", "items": [5, 32, 1, 3],
      "phase": 6, "reason": "pre-registered L2 absolute gate fails (anchor + field channels); gate re-derived in Phase 6 after Phases 1 and 5"},
     {"test": "tests/test_leakage_ci.py::test_v2_L2b_phase_clock_selectivity", "items": [16],
-     "phase": 6, "reason": "with the level-free control (v2.1 Phase 1) the macro-phase selectivity of the non-price fields is +11.7 pp on "
-                           "the published 1,600-path audit against the pre-registered 10 pp margin (the v2 level control passed at "
+     "phase": 6, "reason": "with the level-free control (v2.1 Phase 1) the macro-phase selectivity of the non-price fields is +12.7 pp on "
+                           "the published 1,600-path audit against the pre-registered 10 pp margin (v2.1 Phase 3's hand-over; it "
+                           "was +11.7 pp at Phase 1 and +15.4 pp at Phase 2; the v2 level control passed at "
                            "+8.6 pp only because the price level itself carried the phase); gate re-derived in Phase 6 with the "
                            "level-free reference"},
 ]

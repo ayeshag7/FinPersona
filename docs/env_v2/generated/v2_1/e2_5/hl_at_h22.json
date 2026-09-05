@@ -1,0 +1,32 @@
+{
+ "note": "V7: E2.5 rows at the section-9 refit half-life h* = 22.381 d; 200 seeds per cell, same code and seeds convention as hl_at_fitted.json",
+ "cells": {
+  "h22.38|T200": {
+   "naive_median": 15.984059493470884,
+   "naive_p25_p75": [
+    10.76842076783697,
+    22.980214134351357
+   ],
+   "mu_median": 27.856462100880442,
+   "share_ge_60d": 0.005
+  },
+  "h22.38|T800": {
+   "naive_median": 20.577658488202715,
+   "naive_p25_p75": [
+    16.893393841232573,
+    24.492718918953432
+   ],
+   "mu_median": 23.340591198979048,
+   "share_ge_60d": 0.0
+  },
+  "h22.38|T5000": {
+   "naive_median": 21.920970864439088,
+   "naive_p25_p75": [
+    20.091165368887417,
+    23.62350550651981
+   ],
+   "mu_median": 22.406627330226126,
+   "share_ge_60d": 0.0
+  }
+ }
+}

@@ -1,15 +1,22 @@
 {
  "_note": "v2.1 Phase 1 value-and-price-structure parameters in force (PREREG_PHASE_1.md; PHASE_1_REPORT.md). Every entry: value + provenance. Stage 1 (29 Aug 2026): pending values are labelled PENDING and replaced in logged stages.",
  "sigma_V": {
-  "value": 0.012203561517323533,
-  "label": "FIT, CONDITIONAL ON THE ENGINE (E2.3, v2.1 Phase 2). sigma_V was a FREE parameter of the SMM and is jointly identified with the engine's pull rate (D3 = (b), the option the execution prompt defaults to when the blank is empty), so it is NOT a panel constant: on the same panel and the same moment family Phase 1's estimator C returned 0.01957 [0.01892, 0.02036] and estimator A 0.0205 [0.0197, 0.0213], intervals that do not overlap this one. The value here is conditional on (i) the adopted engine `ar1_fit` and (ii) E3.1's GJR-GARCH-t shape, which was held fixed inside the fit and which Phase 3 re-fits (DECISION_LOG P2-12) -- so sigma_V is EXPECTED TO MOVE AGAIN when Phase 3 changes the volatility block. Quote it as 'sigma_V of the adopted engine', never as 'the panel's sigma_V'. DECISION_LOG P2-8, P2-16.",
-  "source": "e2_3/smm_ar1_full.json; e2_4/decision.json",
-  "date": "2026-09-01",
+  "value": 0.014573291000253476,
+  "label": "FIT, CONDITIONAL ON THE ENGINE AND ON THE PHASE-3 VOLATILITY BLOCK (section-9 refit: sigma_V and h re-identified with the E3.1 shape, E3.2 jumps and the identity-constrained sbar in the simulator; PREREG_PHASE_3.md section 9). Phase 2's engine-conditional value (0.01220 [0.01066, 0.01419], old GARCH shape) and Phase 1's estimator values are recorded below. Quote as 'sigma_V of the adopted engine under the Phase-3 volatility block'.",
+  "source": "e2_3/smm_ar1c_full_p3.json; e2_4/decision.json",
+  "date": "2026-09-02",
   "interval": [
-   0.01065588076354027,
-   0.014190693608542412
+   0.012749899669113959,
+   0.015268692244791758
   ],
   "n": 417,
+  "previous_phase2": {
+   "value": 0.012203561517323533,
+   "interval": [
+    0.01065588076354027,
+    0.014190693608542412
+   ]
+  },
   "phase1_estimator_C": {
    "value": 0.019572114532101025,
    "interval": [
@@ -18,16 +25,6 @@
    ],
    "estimator": "C (SMM on persistence-carrying moments, set A, 417 stocks)",
    "n_boot_refits": 30
-  },
-  "previous": {
-   "value": 0.006,
-   "label": "ADOPTED-NOT-YET-APPLIED (E1.2, full-scale recovery study 30 Aug 2026): estimator C is the only usable estimator by the p ..."
-  },
-  "conditional_on": {
-   "engine": "ar1_fit",
-   "garch_shape": "E3.1 set-A full-sample medians (alpha 0.027, gamma 0.058, beta 0.932, nu 4.86), held fixed in the fit",
-   "moment_set": "FW's nine plus the eight persistence-carrying moments",
-   "expected_to_move": "Phase 3's volatility re-fit (E3.1/E3.4)"
   },
   "phase1_estimators_on_the_same_panel": {
    "C_smm": {
@@ -45,6 +42,11 @@
     ]
    },
    "note": "neither interval overlaps the Phase-2 value: sigma_V is not identified independently of the engine"
+  },
+  "conditional_on": {
+   "engine": "ar1_fit",
+   "volatility_block": "envs/v2/params/volatility.json (Phase 3)",
+   "moment_set": "FW's nine plus the eight persistence-carrying moments"
   }
  },
  "mu_V": {
@@ -93,14 +95,19 @@
  },
  "h_fit": {
   "value": 4.824109112705985,
-  "label": "FIT target for Phase 2 (E1.2 estimator C; days; not a generator parameter, so applied immediately). The engine's own pull-rate half-life in force is 150 d (CAL, v2 pilot) -- Phase 2 (E2.4/E2.6) reconciles them.",
+  "label": "FIT target for Phase 2 (E1.2 estimator C; days; not a generator parameter). SUPERSEDED AS A DESCRIPTION OF THE ENGINE (v2.1 Phase 3): the half-life in force is the section-9 refit's 22.38 d [18.75, 32.64] under the Phase-3 volatility block (mispricing.json half_life; Phase 2's 7.498 d and v2's 150 d CAL pull rate are both superseded). This entry is kept as the Phase-1 estimator's own value, which is what it always was.",
   "source": "e1_2/decision.json",
   "date": "2026-08-30",
   "interval": [
    4.166130668323864,
    5.422012905642471
   ],
-  "n": 417
+  "n": 417,
+  "superseded_by": {
+   "half_life_in_force": 22.380929759136894,
+   "source": "envs/v2/params/mispricing.json half_life; e2_3/smm_ar1c_full_p3.json",
+   "date": "2026-09-05"
+  }
  },
  "start_price_mode": {
   "value": "both",
@@ -137,17 +144,25 @@
  "jump": {
   "value": {
    "placement": "x_zero",
-   "jump_rate_x": 0.01,
+   "jump_rate_x": 0.0005825113429448942,
    "jump_mean_x": -0.04,
-   "jump_sd": 0.03,
-   "p_ann": 0.2737,
-   "lam_res": 0.005655,
+   "jump_sd": 0.23029694055201125,
+   "p_ann": 0.015945374246102064,
+   "lam_res": 0.00032941016443533767,
    "q_panel": 0.4345
   },
-  "label": "FIT/DESIGN E1.4 (29 Aug 2026): placement 'x_zero' by the pre-registered KS rule (KS rule: both bootstrap upper limits < 0.10, smallest window-day distance among passers); E[x] on 200 flat paths +0.0104 [-0.0085, +0.0299]: pre-registered TOST FAIL (undecidable at 200 seeds, PREREG_PHASE_1_ADDENDUM.md); two-condition reading pass; 1,000-seed TOST +0.0126 [+0.0038, +0.0214] FAIL -> provisional (new-a passed; new-b failed -> team decision). Total rate 0.010/day and size sd 0.03 CAL (v2 E1 calibration; Phase 3 re-fits); p_ann and lam_res FIT from the panel's window share of jump days q (e1_4/panel_split.json)",
-  "source": "e1_4/generator_split.json (variants, KS rule), e1_4/confirm_*.json (E[x] at 1,000 seeds), e1_4/panel_split.json (q)",
-  "date": "2026-08-29",
+  "label": "FIT: placement 'x_zero' E1.4 (kept; KS rule), rate and size E3.2 (mixture fit, recovery-gated), p_ann/lam_res derived from (lambda, q = 0.4345 E1.4 FIT). v2's CAL 0.010/0.03 superseded (E3.2). E[x] guard: test_flat_x_equivalence at 1,000 flat paths.",
+  "source": "e3_2/adoption.json; e3_2/detection.md; e1_4/generator_split.json",
+  "date": "2026-09-02",
   "interval": {
+   "lam": [
+    0.0004606512932822671,
+    0.0008165075929636751
+   ],
+   "sJ": [
+    0.08641026593306138,
+    0.2409333207620556
+   ],
    "q": [
     0.411762052496224,
     0.45637001045609116
@@ -179,6 +194,11 @@
     ],
     "new_b_tost_confirm": false
    }
+  },
+  "previous": {
+   "jump_rate_x": 0.01,
+   "jump_sd": 0.03,
+   "label": "CAL (v2 E1 calibration)"
   }
  },
  "burn_in": {

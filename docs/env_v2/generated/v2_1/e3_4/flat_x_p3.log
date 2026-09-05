@@ -1,0 +1,3 @@
+jumps_on {"n": 1000, "E_x": -0.0015280619579040922, "ci95": [-0.003739840529252533, 0.0006896318387641524], "tost_pass": true, "margin": 0.02, "sd_across_paths": 0.034904322426016154}
+jumps_off {"n": 1000, "E_x": -0.001168918940527575, "ci95": [-0.003227604156480838, 0.0009074291945937326], "tost_pass": true, "margin": 0.02, "sd_across_paths": 0.03275842784007361}
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e3_4\flat_x_p3.json

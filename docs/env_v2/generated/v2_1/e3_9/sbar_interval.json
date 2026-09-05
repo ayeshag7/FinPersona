@@ -1,0 +1,55 @@
+{
+ "identity": "sbar^2 = (s_A^2 - sigma_V^2)(1 + rho)/2 - lambda sigma_J^2, rho = 2^(-1/h)",
+ "point": {
+  "sbar": 0.015087876849108794,
+  "sigma_V": 0.014573291000253476,
+  "h": 22.380929759136894,
+  "s_A": 0.02179271694224872,
+  "lam": 0.0005825113429448942,
+  "sJ": 0.23029694055201125
+ },
+ "inputs": {
+  "sigma_V_ci95": [
+   0.012749899669113959,
+   0.015268692244791758
+  ],
+  "h_ci95": [
+   18.749884832420413,
+   32.63933501637798
+  ],
+  "n_refits_engine": 30,
+  "s_A_n_stocks": 410,
+  "s_A_n_boot": 1000,
+  "jump_n_refits": 200
+ },
+ "n_draws": 20000,
+ "seed": 280001,
+ "variants": {
+  "independent_marginals": {
+   "ci95": [
+    0.013424611148725429,
+    0.01677603864929626
+   ],
+   "median": 0.015094690688530026,
+   "failure_region_share": 0.0,
+   "share_sigmaV_ge_sA": 0.0,
+   "truncated": false
+  },
+  "rank_paired_sigmaV_h": {
+   "ci95": [
+    0.013431556298210395,
+    0.01676060525159227
+   ],
+   "median": 0.015085786124713488,
+   "failure_region_share": 0.0,
+   "share_sigmaV_ge_sA": 0.0,
+   "truncated": false
+  }
+ },
+ "adopted_interval": [
+  0.013424611148725429,
+  0.01677603864929626
+ ],
+ "adopted_rule": "the wider of the two (sigma_V, h) reconstructions, because the refit stored per-parameter percentiles and sds rather than the 30 paired draws -- the pairing cannot be recovered from disk and the wider reading is the honest one",
+ "limitation": "PREREG 3.4 registered resampling of the 30 refit DRAWS; e2_3/smm_ar1c_full_p3.json stores only their percentiles and sds (bootstrap_refits.ci95 / .sd), so (sigma_V, h) are reconstructed as CI-clipped normals matched to the stored sd, under both an independent and a perfectly rank-correlated pairing. s_A and (lambda, sigma_J) ARE resampled from their stored draws as registered."
+}

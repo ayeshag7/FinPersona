@@ -1,0 +1,158 @@
+{
+ "design": {
+  "names": {
+   "VXAPL": "AAPL",
+   "VXAZN": "AMZN",
+   "VXGOG": "GOOG",
+   "VXGS": "GS",
+   "VXIBM": "IBM"
+  },
+  "iv_window": [
+   "2011-01-07",
+   "2024-12-31"
+  ],
+  "filter_shape": {
+   "alpha": 0.027,
+   "gamma": 0.058,
+   "beta": 0.932
+  },
+  "omega_rule": "per-name sample unconditional variance x (1 - persistence); returns demeaned by the full-sample mean (offline fit only; the generator filter uses mean 0)",
+  "horizon_days": 21,
+  "family": {
+   "0": "const",
+   "1": "a + b log l",
+   "2": "a + b log l + c (log l)^2"
+  },
+  "selection": "leave-one-name-out CV MSE, 1-SE rule"
+ },
+ "cv": {
+  "0": {
+   "per_name_mse": {
+    "AAPL": 0.0349,
+    "AMZN": 0.0596,
+    "GOOG": 0.05545,
+    "GS": 0.02375,
+    "IBM": 0.07126
+   },
+   "mean_mse": 0.048991374985037195,
+   "se_mse": 0.008619394680362625
+  },
+  "1": {
+   "per_name_mse": {
+    "AAPL": 0.03577,
+    "AMZN": 0.06274,
+    "GOOG": 0.05185,
+    "GS": 0.02667,
+    "IBM": 0.06608
+   },
+   "mean_mse": 0.04862124017349683,
+   "se_mse": 0.007622447740847577
+  },
+  "2": {
+   "per_name_mse": {
+    "AAPL": 0.0352,
+    "AMZN": 0.06193,
+    "GOOG": 0.0514,
+    "GS": 0.02713,
+    "IBM": 0.06622
+   },
+   "mean_mse": 0.048376337263805545,
+   "se_mse": 0.007538148762006702
+  }
+ },
+ "cv_best": 2,
+ "adopted_family": 0,
+ "pooled_coef": [
+  -0.02236883982294655
+ ],
+ "per_name": {
+  "AAPL": {
+   "n": 3514,
+   "coef": [
+    -0.05159806526497592
+   ],
+   "rho_eps": 0.9274,
+   "sd_eps_innov": 0.0685,
+   "resid_sd": 0.1832,
+   "mean_iv": 29.67,
+   "min_iv": 12.52,
+   "mean_premium": -0.0443
+  },
+  "AMZN": {
+   "n": 3514,
+   "coef": [
+    -0.09564991556821102
+   ],
+   "rho_eps": 0.9308,
+   "sd_eps_innov": 0.0827,
+   "resid_sd": 0.2263,
+   "mean_iv": 33.95,
+   "min_iv": 5.13,
+   "mean_premium": -0.0972
+  },
+  "GOOG": {
+   "n": 3514,
+   "coef": [
+    0.006867222971133255
+   ],
+   "rho_eps": 0.9243,
+   "sd_eps_innov": 0.0888,
+   "resid_sd": 0.2327,
+   "mean_iv": 27.54,
+   "min_iv": 9.21,
+   "mean_premium": 0.0153
+  },
+  "GS": {
+   "n": 3514,
+   "coef": [
+    -0.012370990893729993
+   ],
+   "rho_eps": 0.9263,
+   "sd_eps_innov": 0.0579,
+   "resid_sd": 0.1536,
+   "mean_iv": 29.3,
+   "min_iv": 16.16,
+   "mean_premium": -0.0143
+  },
+  "IBM": {
+   "n": 3514,
+   "coef": [
+    0.04090754964105092
+   ],
+   "rho_eps": 0.9231,
+   "sd_eps_innov": 0.0981,
+   "resid_sd": 0.255,
+   "mean_iv": 23.6,
+   "min_iv": 13.23,
+   "mean_premium": 0.0496
+  }
+ },
+ "eps": {
+  "rho_median": 0.9263,
+  "rho_range": [
+   0.9231,
+   0.9308
+  ],
+  "sd_innov_median": 0.0827,
+  "sd_innov_range": [
+   0.0579,
+   0.0981
+  ],
+  "adopt_ar1": true,
+  "note": "with 5 names the 'interval' is the min-max range across names (stated as such)"
+ },
+ "pooled": {
+  "n_days": 17570,
+  "mean_y": -0.0224,
+  "median_premium": -0.0218,
+  "min_iv_pooled": 5.13,
+  "corr_logl_y": -0.201
+ },
+ "literature_beside": {
+  "Carr & Wu 2009 (RFS, read by the plan's pass)": "individual-stock log VRPs negative for 21 of 35 names",
+  "Christensen & Prabhala 1998 (JFE)": "log RV on log IV slope 0.76, R^2 39 % (S&P 100, monthly)",
+  "Goyal & Saretto 2009 (JFE)": "sorts on log(RV/IV)"
+ },
+ "caveat": "five mega-caps (REG-15 / plan section 3): the premium of the median S&P name may differ; stated wherever the fit is quoted",
+ "seconds": 2
+}

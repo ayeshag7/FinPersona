@@ -1,0 +1,77 @@
+{
+ "design": {
+  "n_paths": 200,
+  "T": 200,
+  "seed0": 290000,
+  "lambda_held": 0.0005825113429448942,
+  "sigma_J_interval": [
+   0.08641026593306138,
+   0.2409333207620556
+  ],
+  "adopted": 0.23029694055201125,
+  "note": "sbar re-derived from the section-3.4 identity at each sigma_J, so the total unconditional variance stays pinned and only the jump/diffusive SPLIT moves",
+  "arm": "E3.8's jump arm (Gaussian innovation + mean-zero jumps), identical features, estimators, GroupKFold-by-path and cluster bootstrap"
+ },
+ "cells": [
+  {
+   "label": "interval floor (moment arithmetic)",
+   "innov": "gauss",
+   "jumps": true,
+   "s_x_implied": 0.0656091445844151,
+   "bound_window_avg_gaussian": 0.17725167608727838,
+   "levelfree_R2": 0.15753328140870904,
+   "ci95": [
+    0.11899776778305632,
+    0.19623904713306303
+   ],
+   "best_model": "ridge",
+   "realised_sd_x": 0.06636553915042376,
+   "seconds": 333,
+   "sigma_J": 0.08641026593306138,
+   "sbar_identity": 0.015943307019066252,
+   "jump_share_of_x_innovation_variance": 0.016823248186995616
+  },
+  {
+   "label": "adopted (mixture optimum)",
+   "innov": "gauss",
+   "jumps": true,
+   "s_x_implied": 0.0656091445844151,
+   "bound_window_avg_gaussian": 0.17725167608727838,
+   "levelfree_R2": 0.17574592900461672,
+   "ci95": [
+    0.13099641731353087,
+    0.2085898386015737
+   ],
+   "best_model": "ridge",
+   "realised_sd_x": 0.06579561499347406,
+   "seconds": 310,
+   "sigma_J": 0.23029694055201125,
+   "sbar_identity": 0.015087876849108794,
+   "jump_share_of_x_innovation_variance": 0.11949658814312801
+  },
+  {
+   "label": "interval ceiling",
+   "innov": "gauss",
+   "jumps": true,
+   "s_x_implied": 0.0656091445844151,
+   "bound_window_avg_gaussian": 0.17725167608727838,
+   "levelfree_R2": 0.22949103558635975,
+   "ci95": [
+    0.1700352863302714,
+    0.27947450501690635
+   ],
+   "best_model": "ridge",
+   "realised_sd_x": 0.06547526100113903,
+   "seconds": 625,
+   "sigma_J": 0.2409333207620556,
+   "sbar_identity": 0.014990809639556044,
+   "jump_share_of_x_innovation_variance": 0.13078950664374847
+  }
+ ],
+ "verdict": {
+  "span_adopted_minus_floor": 0.018212647595907683,
+  "adopted_errs": "conservative (it OVERSTATES the jump channel)",
+  "rule": "ADDENDUM 4.4: descriptive; the adopted point does not move. What the run buys is the label -- the measured span across the interval and which way the adopted value errs for leakage."
+ },
+ "seconds": 1270
+}

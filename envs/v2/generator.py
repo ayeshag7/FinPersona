@@ -121,6 +121,9 @@ class GenConfig:
     # amount reversed over days 2-5 (Tetlock 2007)
     b_pred: float = 0.0008
     b_rev: float = 0.0006
+    # v2.1 Phase 3 (E3.5): None -> volatility.json's IV construction when present (v21 past-only filter),
+    # else the v2 iv_block; "v2" forces the legacy construction (sensitivity)
+    iv_mode: Optional[str] = None
 
     def __post_init__(self):
         if self.start_price_mode not in START_PRICE_MODES:
@@ -199,6 +202,7 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
         z = (math.sqrt(cfg.rho_common) * f_common + math.sqrt(1 - cfg.rho_common) * z_i) if N > 1 else z_i
         eta = standardised_t(st.get("garch", a), gp.df, L)
         u_haz = st.get("hazard", a).random(L)
+        u_reg = st.get("regime", a).random(L) if gp.scale_mode == "switching" else None   # E3.4 mechanism C
         ann = announcement_schedule(day, st.get("announce", a))      # {quarter end: announcement day}
         day_index = {int(d): i for i, d in enumerate(day)}
         jumps_x = None; jumps_V = np.zeros(L); ann_jumps: Dict[int, float] = {}
@@ -252,7 +256,7 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
                 pending[i] += cfg.b_pred * s_std                 # next-day return
                 pending[i + 1:i + 5] -= (cfg.b_rev / 4.0) * s_std  # reversal over days 2-5
             # innovations for the transition i -> i+1
-            sigma_i, e_i = garch.step(eta[i], ph)
+            sigma_i, e_i = garch.step(eta[i], ph, u_reg[i] if u_reg is not None else None)
             sig[a, i] = sigma_i; e_arr[a, i] = e_i
             fvar[a, i] = garch.forecast_var(21, ph)
             if i + 1 < L:

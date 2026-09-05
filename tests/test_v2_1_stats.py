@@ -49,13 +49,20 @@ def test_analyst_error_sd():
     assert abs(sd / obs.ANALYST_SD - 1.0) <= 0.10, f"pooled sd(u) = {sd:.4f} vs documented {obs.ANALYST_SD} (implemented sqrt(5) defect gives 0.335)"
 
 
-@pytest.mark.xfail(strict=True, reason="known defect 46 (registry): the phase multiplier enters the IV forecast "
-                                       "deterministically (one-day step z ~ 7); fixed in Phase 3 (E3.5)")
 def test_iv_continuity():
-    """SIV30 (crash delta 0.70, seeds 17000-17029): z = mean change in log IV at deterioration->panic and
-    panic->stabilisation divided by the calm day-to-day sd of log IV must be <= 3 (DESIGN-provisional; Phase 3
-    replaces it by the 95th percentile of the realised-variance change-point statistic)."""
+    """HARD since v2.1 Phase 3 (E3.5 closed weakness items 46 and 25; registry entry removed). SIV30 (crash
+    delta 0.70, seeds 17000-17029): z = mean change in log IV at deterioration->panic and panic->stabilisation
+    divided by the calm day-to-day sd of log IV must not exceed T_z -- the 95th percentile, over the 200-seed
+    derivation panel (e3_5/audit.json), of the SAME statistic computed on the same filter's 21-day
+    realised-variance forecast (the legitimate-information yardstick; PREREG_PHASE_3.md 7.2(3)). The tolerance
+    is DERIVED, not chosen, and lives in volatility.json with its provenance. The v2 construction's z was ~ 7
+    against a provisional bound of 3 (strict xfail from Phase 0 until here)."""
+    import json as _json
+    import os as _os
     from envs.synthetic_market import SyntheticMarketEnv
+    vol = _json.load(open(_os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+                                        "envs", "v2", "params", "volatility.json"), encoding="utf-8"))
+    tz = vol["iv"]["value"]["T_z"]
     steps = {("deterioration", "panic"): [], ("panic", "stabilisation"): []}
     calm = []
     for s in range(17000, 17030):
@@ -69,7 +76,9 @@ def test_iv_continuity():
                 steps[(a, b)].append(dl[idx[0]])
     sd = float(np.concatenate(calm).std())
     z = {k: float(np.mean(v)) / sd for k, v in steps.items()}
-    assert all(abs(v) <= 3.0 for v in z.values()), f"z at transitions {z} (calm sd {sd:.3f})"
+    for (a, b), v in z.items():
+        bound = float(tz[f"{a}->{b}"])
+        assert abs(v) <= max(bound, 0.0), f"z at {a}->{b} = {v:.2f} exceeds the derived T_z {bound:.2f} (calm sd {sd:.3f})"
 
 
 # `test_fundamentalist_share` was REMOVED here in v2.1 Phase 2, as PREREG_PHASE_2.md section 6 fixed in advance

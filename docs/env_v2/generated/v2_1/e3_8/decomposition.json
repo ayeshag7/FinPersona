@@ -1,0 +1,94 @@
+{
+ "what": "E3.8: the level-free calm channel decomposed one volatility block at a time at the Phase-3 parameters in force; the events and sentiment channels remain Phase 6's, and the full generator's number is the after-state SEP audit's.",
+ "block": {
+  "shape": {
+   "alpha": 0.027,
+   "gamma": 0.058,
+   "beta": 0.932
+  },
+  "nu": 6.649760745437838,
+  "sigma_V": 0.014573291000253476,
+  "h": 22.380929759136894,
+  "jump_rate": 0.0005825113429448942,
+  "jump_sd": 0.23029694055201125,
+  "s_A": 0.02179271694224872,
+  "sbar": 0.015087876849108794,
+  "sources": {
+   "shape_s_A": "e3_1/summary.json (set A full)",
+   "jumps": "e3_2/adoption.json (ADDENDUM section 3)",
+   "engine": "e2_3/smm_ar1c_full_p3.json"
+  }
+ },
+ "design": {
+  "n_paths": 200,
+  "T": 200,
+  "seed0": 260000,
+  "features_estimators": "identical to E2.8 / the SEP audit"
+ },
+ "arms": [
+  {
+   "label": "exact (the bound's model)",
+   "innov": "gauss",
+   "jumps": false,
+   "s_x_implied": 0.06156443484021848,
+   "bound_window_avg_gaussian": 0.16327493382027342,
+   "levelfree_R2": 0.1452737125178677,
+   "ci95": [
+    0.10755325290262742,
+    0.17593409213904543
+   ],
+   "best_model": "ridge",
+   "realised_sd_x": 0.06178164443219444,
+   "seconds": 324,
+   "delta_over_exact": 0.0
+  },
+  {
+   "label": "+ GJR-t innovation (block in force)",
+   "innov": "gjr",
+   "jumps": false,
+   "s_x_implied": 0.06156443484021848,
+   "bound_window_avg_gaussian": 0.16327493382027342,
+   "levelfree_R2": 0.14536762581765872,
+   "ci95": [
+    0.0962138089710994,
+    0.1837907613114798
+   ],
+   "best_model": "ridge",
+   "realised_sd_x": 0.06177594936078772,
+   "seconds": 363,
+   "delta_over_exact": 9.391329979102636e-05
+  },
+  {
+   "label": "+ jumps (FIT lambda, sigma_J)",
+   "innov": "gauss",
+   "jumps": true,
+   "s_x_implied": 0.0656091445844151,
+   "bound_window_avg_gaussian": 0.17725167608727838,
+   "levelfree_R2": 0.1918388745347287,
+   "ci95": [
+    0.10467931520441809,
+    0.28815614557995456
+   ],
+   "best_model": "mlp",
+   "realised_sd_x": 0.06618563573610436,
+   "seconds": 407,
+   "delta_over_exact": 0.046565162016861006
+  },
+  {
+   "label": "+ GJR-t + jumps (the Phase-3 x innovation)",
+   "innov": "gjr",
+   "jumps": true,
+   "s_x_implied": 0.0656091445844151,
+   "bound_window_avg_gaussian": 0.17725167608727838,
+   "levelfree_R2": 0.20250149275316176,
+   "ci95": [
+    0.1409090756387189,
+    0.26248103873643974
+   ],
+   "best_model": "ridge",
+   "realised_sd_x": 0.06908244768824989,
+   "seconds": 382,
+   "delta_over_exact": 0.05722778023529407
+  }
+ ]
+}

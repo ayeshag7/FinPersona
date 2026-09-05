@@ -1,0 +1,108 @@
+{
+ "design": {
+  "seeds_per_cell": 200,
+  "seed_flat_calmmap": 212000,
+  "seed_mix": 213000,
+  "scenarios": [
+   "flat",
+   "crash",
+   "bull_trap",
+   "sustained_bull"
+  ],
+  "block": {
+   "shape": {
+    "alpha": 0.027,
+    "gamma": 0.058,
+    "beta": 0.932
+   },
+   "nu": 6.649760745437838,
+   "sigma_V": 0.014573291000253476,
+   "h": 22.380929759136894,
+   "jump_rate": 0.0005825113429448942,
+   "jump_sd": 0.23029694055201125,
+   "s_A": 0.02179271694224872,
+   "sbar": 0.015087876849108794,
+   "sources": {
+    "shape_s_A": "e3_1/summary.json (set A full)",
+    "jumps": "e3_2/adoption.json (ADDENDUM section 3)",
+    "engine": "e2_3/smm_ar1c_full_p3.json"
+   }
+  }
+ },
+ "i_panel_calm": {
+  "sd_calm_window": 0.017034468505345273,
+  "ci95": [
+   0.01631812719926972,
+   0.017640918745484884
+  ],
+  "n_episodes": 1592,
+  "n_stocks": 412,
+  "s_A_full_sample": 0.02179271694224872,
+  "ratio_full_over_calm": 1.2793306075508226,
+  "definition": "sqrt(median over drawdown episodes of rv_calm), the pre-event 120-day windows of E3.3 -- the registered crisis-free reference"
+ },
+ "ii_calm_window_mapping": {
+  "sbar": 0.006761040638219302,
+  "sbar_adopted": 0.015087876849108794,
+  "ratio": 0.4481108048425423,
+  "flat_pooled_sd_r": 0.01707312386899022,
+  "flat_pooled_sd_r_ci95": [
+   0.016479996452152458,
+   0.01778003491167203
+  ],
+  "flat_median_sd_x": 0.02136292974067836,
+  "note": "the registered alternative of PREREG 3.4, reported not adopted"
+ },
+ "iii_deployed_unconditional": {
+  "pooled_sd_r": 0.02843340450112719,
+  "ci95": [
+   0.02674826516603182,
+   0.03023538785710206
+  ],
+  "target_s_A": 0.02179271694224872,
+  "excess": 0.0066406875588784706,
+  "excess_over_target_pct": 30.472049797537725,
+  "bootstrap_half_width": 0.001743561345535119,
+  "double_count_confirmed": true,
+  "per_scenario": {
+   "flat": {
+    "pooled_sd_r": 0.02150337255547089,
+    "ci95": [
+     0.020856413116217228,
+     0.02219396044791284
+    ],
+    "median_sd_x": 0.046798601536219016,
+    "n_paths": 200
+   },
+   "crash": {
+    "pooled_sd_r": 0.04312590875650522,
+    "ci95": [
+     0.03941031050212901,
+     0.04758117810594676
+    ],
+    "median_sd_x": 0.12039797022514302,
+    "n_paths": 200
+   },
+   "bull_trap": {
+    "pooled_sd_r": 0.022489855320449382,
+    "ci95": [
+     0.021930375095783786,
+     0.023101506774806473
+    ],
+    "median_sd_x": 0.14304797578942163,
+    "n_paths": 200
+   },
+   "sustained_bull": {
+    "pooled_sd_r": 0.02014451132269886,
+    "ci95": [
+     0.019827497950412384,
+     0.02049669384723102
+    ],
+    "median_sd_x": 0.02158653446918337,
+    "n_paths": 200
+   }
+  },
+  "rule": "ADDENDUM 4.3: confirmed if the excess exceeds the pooled statistic's own bootstrap half-width"
+ },
+ "seconds": 29
+}
