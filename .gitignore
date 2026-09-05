@@ -47,3 +47,8 @@ tools/md_to_docx.py
 
 # E1.0 downloaded datasets (raw third-party data; re-downloadable via tools/e1_0_data/)
 datasets/
+
+# Lab GPU box access note: third-party infrastructure endpoints (host, port, root user) and contact
+# details. Kept local -- never pushed. The compute RULES it carries are already in the phase execution
+# prompts (Phase 3 section 3, Phase 4 "Compute"), which are tracked.
+docs/COMPUTE_GPU_ACCESS.md
