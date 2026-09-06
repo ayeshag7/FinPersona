@@ -1,0 +1,114 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4.md section 10 (item 73)",
+  "proxy": "V-hat = trailing-4Q EPS x a common multiple (Phase 1's E1.2 panel); the multiple cancels out of a log-decline SHARE",
+  "coverage": "EDGAR company-facts, monthly, from 2009-06 -- episodes outside that window are unusable and the achieved n is reported",
+  "family": "dd30_fast (>= 30 % drawdowns of at most 126 trading days)",
+  "windows": {
+   "before_onset": "peak -> peak + det_len (the generator's deterioration)",
+   "onset_to_trough": "the generator's panic",
+   "after_trough": "trough -> trough + 60 (the generator's stabilisation)"
+  }
+ },
+ "n_episodes_with_edgar_coverage": 270,
+ "n_with_V_falling": 106,
+ "share_of_covered_episodes_where_V_fell": 0.3925925925925926,
+ "share_before_onset": {
+  "median": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "n_episodes": 106,
+  "n_stocks": 96
+ },
+ "share_onset_to_trough": {
+  "median": 0.02385523333721777,
+  "ci95": [
+   0.0,
+   0.15621058120933126
+  ],
+  "n_episodes": 106,
+  "n_stocks": 96
+ },
+ "share_after_trough": {
+  "median": 0.8906282039959167,
+  "ci95": [
+   0.6306310633158476,
+   1.0
+  ],
+  "n_episodes": 106,
+  "n_stocks": 96
+ },
+ "v2_shape": {
+  "share_before_onset": 1.0,
+  "share_after_onset": 0.0,
+  "description": "v2 delivers all of D_V inside the deterioration phase and sets mu_V = 0 afterwards"
+ },
+ "tail_share_fit": {
+  "value": 0.9144834373331344,
+  "definition": "the share of the fundamental decline that falls AFTER the deterioration window, i.e. onset->trough plus trough->trough+60",
+  "label": "FIT",
+  "adopted": false,
+  "why_not_adopted": "the value moves over 0.51-0.91 across de-lag arms on shifting samples; a point value would be over-precise for what the proxy identifies"
+ },
+ "verdict": "v2's SHAPE IS REJECTED on its central claim -- the fundamental proxy shows ZERO decline in the deterioration window (share 0.000 [0.000, 0.000], n = 106/96) where v2 delivers 100 % of D_V there. The MAGNITUDE of the tail is not identified by this proxy (see delag_sensitivity), so no point value is adopted: item 73 closes as TESTED and REJECTED in direction, with the fitted magnitude left open.",
+ "delag_sensitivity": {
+  "why": "V-hat is trailing-4Q EPS reported with a 25-35 day lag, so it is backward-looking by construction and a decline appearing after the price trough may be the reporting lag. The series is shifted EARLIER by k months; if the tail share collapses as k grows, the finding is an artefact of the proxy rather than a property of fundamentals.",
+  "by_lag_months": {
+   "0": {
+    "share_after_trough_median": 0.8906282039959167,
+    "ci95": [
+     0.6306310633158476,
+     0.9954355626181183
+    ],
+    "share_before_onset_median": 0.0,
+    "n_episodes": 106,
+    "n_stocks": 96
+   },
+   "3": {
+    "share_after_trough_median": 0.7359869356864333,
+    "ci95": [
+     0.5397782944762103,
+     0.8999000223436739
+    ],
+    "share_before_onset_median": 0.0,
+    "n_episodes": 134,
+    "n_stocks": 125
+   },
+   "6": {
+    "share_after_trough_median": 0.5211637720036861,
+    "ci95": [
+     0.38390882866011194,
+     0.6711817101981207
+    ],
+    "share_before_onset_median": 0.0,
+    "n_episodes": 120,
+    "n_stocks": 107
+   },
+   "9": {
+    "share_after_trough_median": 0.7339361112047842,
+    "ci95": [
+     0.48519460846643103,
+     0.9999999999999981
+    ],
+    "share_before_onset_median": 0.0,
+    "n_episodes": 111,
+    "n_stocks": 103
+   },
+   "12": {
+    "share_after_trough_median": 0.5078791968347619,
+    "ci95": [
+     0.200845771790391,
+     0.7698960865325073
+    ],
+    "share_before_onset_median": 0.0,
+    "n_episodes": 80,
+    "n_stocks": 74
+   }
+  },
+  "sample_caveat": "the de-lag arms do NOT use a fixed sample: shifting the index changes which episodes have coverage, so n ranges over 80-134 across the arms and the shifts are not strictly comparable to one another. The within-arm statistics are sound; the trend across arms is not a controlled comparison.",
+  "verdict": "DIRECTION ROBUST, MAGNITUDE NOT. The share of the fundamental decline falling in the DETERIORATION window is **0.000 at every de-lag tested** (0.000-0.000), so v2's assertion that the whole decline happens there is rejected on the strongest available reading and the rejection does not depend on the lag correction at all. The share falling AFTER the trough, however, moves over 0.508-0.891 across the de-lag arms, non-monotonically and on shifting samples, so a POINT value for `crash_v_drift.tail_share` is not identified by this proxy. Adopting one needs a fundamental series that is not a lagged trailing aggregate -- which is REG-15's standing WRDS/IBES remedy."
+ },
+ "seconds": 354.2
+}

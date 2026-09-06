@@ -1,0 +1,165 @@
+{
+ "design": {
+  "seeds": 600,
+  "seed0": 310000,
+  "T": 200,
+  "config": "E4.11-adopted (FIT drop and length grids, decay half-life 10), schedule_mode pinned to v21",
+  "hypothesis": "the topped share is unreachable because a generated path tops INSIDE its own 200-day horizon and has only T - top_day days left, whereas the panel gives every run-up a full 200 days after its top",
+  "falsifier": "restrict the generator to paths with a long post-top window; if the share rises toward the panel's band the horizon is the cause"
+ },
+ "panel_topped_share_all": {
+  "point": 0.10996563573883161,
+  "ci95": [
+   0.09659468058657736,
+   0.12445840267323012
+  ],
+  "n_episodes": 3201,
+  "n_stocks": 398,
+  "definition": "deepest drawdown within 200 trading days of the top is <= -40 % (GSY's crash threshold at the benchmark's own horizon; both numbers stated)",
+  "survivorship": "REG-15: the survivor panel understates crash frequency and depth"
+ },
+ "panel_fitted_drop_len": {
+  "drop_p10_p50_p90": [
+   0.0614303675354166,
+   0.1686283703295844,
+   0.4135592117543186
+  ],
+  "len_p10_p50_p90": [
+   8.0,
+   60.0,
+   187.0
+  ],
+  "panel_share_reaching_-40pct": 0.10996563573883161,
+  "n_episodes": 3201,
+  "n_stocks": 398,
+  "v2_stipulated": {
+   "post_top_drop": [
+    0.3,
+    0.5
+   ],
+   "post_top_len": [
+    10,
+    30
+   ]
+  },
+  "share_of_panel_lengths_beyond_the_horizon": 0.0,
+  "label": "FIT"
+ },
+ "generator_days_remaining": {
+  "p10": 4.0,
+  "p50": 29.0,
+  "p90": 67.3,
+  "share_with_at_least_120_days": 0.009259259259259259,
+  "n_topped_paths": 108,
+  "panel_post_top_length_p50": 60.0
+ },
+ "generator_by_window": {
+  "0-50": {
+   "topped_share": 0.025,
+   "ci95": [
+    0.0,
+    0.0625
+   ],
+   "n": 80,
+   "median_realised_drop": -0.2082885434105075,
+   "median_drawn_drop": 0.18047755307294394
+  },
+  "50-100": {
+   "topped_share": 0.07692307692307693,
+   "ci95": [
+    0.0,
+    0.19230769230769232
+   ],
+   "n": 26,
+   "median_realised_drop": -0.2843993681050016,
+   "median_drawn_drop": 0.16219242298465208
+  }
+ },
+ "panel_by_window": {
+  "0-50": {
+   "topped_share": 0.029411764705882353,
+   "ci95": [
+    0.0,
+    0.08823529411764706
+   ],
+   "n": 34,
+   "median_drop": -0.11208162397757815
+  },
+  "50-100": {
+   "topped_share": 0.03571428571428571,
+   "ci95": [
+    0.0,
+    0.10714285714285714
+   ],
+   "n": 28,
+   "median_drop": -0.10340019669485695
+  },
+  "100-150": {
+   "topped_share": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "n": 24,
+   "median_drop": -0.20515624376603703
+  },
+  "150-201": {
+   "topped_share": 0.11235955056179775,
+   "ci95": [
+    0.10112359550561797,
+    0.12391653290529694
+   ],
+   "n": 3115,
+   "median_drop": -0.1708858226738102
+  },
+  "all": {
+   "topped_share": 0.10996563573883161,
+   "ci95": [
+    0.09871915026554202,
+    0.12152452358637926
+   ],
+   "n": 3201,
+   "median_window": 200.0
+  }
+ },
+ "verdict": {
+  "window_matched_comparison": {
+   "0-50": {
+    "generator": 0.025,
+    "generator_ci95": [
+     0.0,
+     0.0625
+    ],
+    "n_gen": 80,
+    "panel": 0.029411764705882353,
+    "panel_ci95": [
+     0.0,
+     0.08823529411764706
+    ],
+    "n_panel": 34,
+    "cis_overlap": true
+   },
+   "50-100": {
+    "generator": 0.07692307692307693,
+    "generator_ci95": [
+     0.0,
+     0.19230769230769232
+    ],
+    "n_gen": 26,
+    "panel": 0.03571428571428571,
+    "panel_ci95": [
+     0.0,
+     0.10714285714285714
+    ],
+    "n_panel": 28,
+    "cis_overlap": true
+   }
+  },
+  "generator_matches_panel_within_every_shared_window_bin": true,
+  "generator_bins_at_120_plus_days": [],
+  "share_of_generator_topped_paths_with_120_plus_days": 0.009259259259259259,
+  "panel_share_at_150_201_days": 0.11235955056179775,
+  "conclusion": "HORIZON -- within every window bin the two populations share, the generator's topped share agrees with the panel's; the panel's headline 0.110 comes almost entirely from run-ups that have a 150-200 day post-top window, and only 0.9% of generated topped paths have even 120 days left (median 29). The topped share is therefore a property of fitting a mania AND its aftermath into one 200-day horizon, not a parameter defect, and the hazard's adoption criterion cannot be met on the deployed state as it is written. It must be re-expressed on a window-matched basis."
+ },
+ "seconds": 31.0
+}

@@ -123,8 +123,6 @@ def test_half_life_consistency():
     assert abs(mean_hl - pull_hl) <= 8.0, f"ACF(1) half-life {mean_hl:.1f} d vs pull rate {pull_hl:.1f} d"
 
 
-@pytest.mark.xfail(strict=True, reason="known defects 18, 42 (registry): rejection sampling keeps the quiet "
-                                       "sub-population of sustained-bull draws; the control is redefined in Phase 4 (E4.5, D14)")
 def test_sustained_bull_selection():
     """SSB50 (seeds 18000-18049, first attempts): accepted and rejected first-attempt paths must have the same daily
     sd of log returns within 10 % (DESIGN-provisional; Phase 4 replaces it by the KS-distance upper-limit bound)."""

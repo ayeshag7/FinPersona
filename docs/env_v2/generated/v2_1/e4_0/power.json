@@ -1,0 +1,190 @@
+{
+ "design": {
+  "nsim": 20000,
+  "seed": 400001,
+  "purpose": "PREREG_PHASE_4.md section 13 -- decidability of every registered threshold at its stated n, simulated BEFORE the experiments they protect"
+ },
+ "PP1_e4_6_coverage": {
+  "rule": "E4.6 coverage >= 0.70 (DESIGN margin), one-sided alpha 0.05",
+  "n_required_appendixA_power0.80_vs_0.65": 533.789612056471,
+  "by_n": {
+   "200": {
+    "se_at_p0": 0.032403703492039304,
+    "critical_share": 0.646700650784459,
+    "power_vs_true_0.65": 0.4673,
+    "ci95_halfwidth_at_p0": 0.06351125884439704
+   },
+   "500": {
+    "se_at_p0": 0.020493901531919198,
+    "critical_share": 0.6662905317348363,
+    "power_vs_true_0.65": 0.78255,
+    "ci95_halfwidth_at_p0": 0.04016804700256163
+   }
+  },
+  "registered_n": 500,
+  "verdict": "DECIDABLE",
+  "note": "the plan and REG-8 register 200; at 200 the power against a true 0.65 is 0.47, which is why this prereg raises n to 500 BEFORE any run and states the achieved power"
+ },
+ "PP2_e4_3_topped": {
+  "rule": "REG-18: generator topped share inside the panel's topped-share CI",
+  "by_case": {
+   "generator_n=200": {
+    "se_worst_case": 0.035355339059327376,
+    "ci95_halfwidth": 0.06929646455628166
+   },
+   "generator_n=500": {
+    "se_worst_case": 0.022360679774997897,
+    "ci95_halfwidth": 0.04382693235899588
+   },
+   "panel_n=10": {
+    "se_worst_case": 0.15811388300841897,
+    "ci95_width": 0.6198064213930023
+   },
+   "panel_n=20": {
+    "se_worst_case": 0.11180339887498948,
+    "ci95_width": 0.43826932358995874
+   },
+   "panel_n=30": {
+    "se_worst_case": 0.09128709291752768,
+    "ci95_width": 0.3578454042367085
+   },
+   "panel_n=50": {
+    "se_worst_case": 0.07071067811865475,
+    "ci95_width": 0.27718585822512665
+   },
+   "panel_n=100": {
+    "se_worst_case": 0.05,
+    "ci95_width": 0.196
+   },
+   "panel_n=200": {
+    "se_worst_case": 0.035355339059327376,
+    "ci95_width": 0.13859292911256332
+   }
+  },
+  "panel_n_for_ci_width_below_0.20": 97,
+  "verdict": "CONDITIONAL: decidable only if the panel yields enough resolvable run-ups; REG-18's own fallback (report all three, keep the {0.5x,1x,2x} bracket) is pre-registered for n_panel < 30 and is the expected branch"
+ },
+ "PP3_e4_4_cap_binding": {
+  "rule": "E4.4 cap binds on < 5 % of mania days (upper 95 % bootstrap limit)",
+  "n_seeds": 500,
+  "mania_days_per_seed": 70,
+  "by_true_share": {
+   "0.0": {
+    "mean_upper_limit": 0.0,
+    "share_passing_rule": 1.0
+   },
+   "0.01": {
+    "mean_upper_limit": 0.011029053571428568,
+    "share_passing_rule": 1.0
+   },
+   "0.02": {
+    "mean_upper_limit": 0.021423685714285715,
+    "share_passing_rule": 1.0
+   },
+   "0.05": {
+    "mean_upper_limit": 0.05225367857142857,
+    "share_passing_rule": 0.0375
+   },
+   "0.08": {
+    "mean_upper_limit": 0.08279439464285714,
+    "share_passing_rule": 0.0
+   }
+  },
+  "verdict": "DECIDABLE"
+ },
+ "PP4_permutation_null": {
+  "rule": "accuracy <= 95th percentile of a label-permutation null (+1 pp for E4.7)",
+  "by_n": {
+   "200": {
+    "null_p95_unclustered": 0.5043,
+    "null_p95_clustered_by_seed": 0.56,
+    "se_unclustered_pp": 0.2521644844640101,
+    "se_clustered_pp": 3.531894408016044,
+    "detectable_departure_pp_at_80pct_power": 8.781966655558548
+   },
+   "500": {
+    "null_p95_unclustered": 0.50258,
+    "null_p95_clustered_by_seed": 0.536,
+    "se_unclustered_pp": 0.15636828565900918,
+    "se_clustered_pp": 2.2149041282863697,
+    "detectable_departure_pp_at_80pct_power": 5.5073034334557365
+   }
+  },
+  "verdict": "DECIDABLE for a 5 pp departure at 500 seeds. These two rows BRACKET the null rather than estimate it: the day-level row assumes days are independent (too tight) and the seed-level row assumes a seed contributes one independent bit (too loose). The true null lies between and is computed empirically, by permuting seed labels on the real runs, inside E4.5(iii) and E4.7(b)",
+  "note": "registered consequence: the permutation is over SEED labels, not day labels, because days within a path share a schedule draw and are dependent; permuting day labels gives a p95 of about 0.503, which would call almost any classifier a leak. REG-9's '+1 pp' margin is the day-level sampling half-width at 200 seeds and is small next to the seed-clustered null's own spread, so the null percentile -- not the margin -- is what decides the rule"
+ },
+ "PP5_e4_2_rise_time": {
+  "rule": "generator median rise-time 95 % CI overlaps the panel fast-crash CI [29, 35]",
+  "panel_ci": [
+   29,
+   35
+  ],
+  "panel_ci_width": 6,
+  "by_n": {
+   "sd=15.0,n=200": {
+    "median_ci_halfwidth_days": 2.598617420860562,
+    "meets_appendixA_w/5_rule": false
+   },
+   "sd=15.0,n=500": {
+    "median_ci_halfwidth_days": 1.6435099634623453,
+    "meets_appendixA_w/5_rule": false
+   },
+   "sd=25.0,n=200": {
+    "median_ci_halfwidth_days": 4.331029034767604,
+    "meets_appendixA_w/5_rule": false
+   },
+   "sd=25.0,n=500": {
+    "median_ci_halfwidth_days": 2.7391832724372427,
+    "meets_appendixA_w/5_rule": false
+   },
+   "sd=40.0,n=200": {
+    "median_ci_halfwidth_days": 6.929646455628165,
+    "meets_appendixA_w/5_rule": false
+   },
+   "sd=40.0,n=500": {
+    "median_ci_halfwidth_days": 4.382693235899588,
+    "meets_appendixA_w/5_rule": false
+   }
+  },
+  "verdict": "UNDERPOWERED under Appendix A's 'half-width <= band/5' convention: at a cross-seed sd of 25 d the n = 500 half-width is about 2.8 d against the band/5 = 1.2 d. The rule as registered is an OVERLAP rule, not a band/5 rule, and is decidable at n = 500; the band/5 convention would need n > 2600. Registered consequence: the overlap rule stands and the half-width is reported beside it, so a marginal overlap is visible as marginal"
+ },
+ "PP6_e4_8_posttop": {
+  "rule": "post-top realised variance ratio 95 % CI contains 1.16",
+  "target_ci": [
+   1.13,
+   1.2
+  ],
+  "by_n": {
+   "sd=0.5,n=20": {
+    "ci_halfwidth": 0.21913466179497937
+   },
+   "sd=0.5,n=200": {
+    "ci_halfwidth": 0.06929646455628165
+   },
+   "sd=0.5,n=500": {
+    "ci_halfwidth": 0.043826932358995874
+   },
+   "sd=1.0,n=20": {
+    "ci_halfwidth": 0.43826932358995874
+   },
+   "sd=1.0,n=200": {
+    "ci_halfwidth": 0.1385929291125633
+   },
+   "sd=1.0,n=500": {
+    "ci_halfwidth": 0.08765386471799175
+   },
+   "sd=2.0,n=20": {
+    "ci_halfwidth": 0.8765386471799175
+   },
+   "sd=2.0,n=200": {
+    "ci_halfwidth": 0.2771858582251266
+   },
+   "sd=2.0,n=500": {
+    "ci_halfwidth": 0.1753077294359835
+   }
+  },
+  "note": "Phase 3 measured the incumbent floor at 1.59 with n = 20 -- an n the review caught being quoted without it.  At n = 500 the half-width is small enough that a floor at 1.59 is distinguishable from 1.16 at any plausible spread, so the rule is decidable; what is NOT decidable in advance is whether an admissible shape exists, which is why the pre-registration states the 'not met' branch explicitly",
+  "verdict": "DECIDABLE"
+ },
+ "seconds": 2.9
+}

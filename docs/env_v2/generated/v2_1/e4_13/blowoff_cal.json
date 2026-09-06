@@ -1,0 +1,80 @@
+{
+ "design": {
+  "schedule_mode": "v21 (pinned)",
+  "iterations": 6,
+  "cal_seeds": 500,
+  "verify_seeds": 1200,
+  "n_boot": 2000,
+  "method": "first-order closed loop m <- m x (target / realised), as e3_4_mechanism.py uses, then verified at a larger seed count",
+  "why": "P4-11 revived the blow-off label; volatility.json records the multiplier at mania's value because the v2 label was dead. The calibrated value is written to events.json, not to Phase 3's frozen volatility.json."
+ },
+ "panel_target": {
+  "ratio": 1.2894684054837218,
+  "ci95": [
+   1.214613520131633,
+   1.3712548815759535
+  ],
+  "n_episodes": 3125,
+  "n_stocks": 394,
+  "reference": "E4.1's corrected run-up calm window (120 d AFTER the start)"
+ },
+ "incumbent": {
+  "mult": 1.345062031947002,
+  "realised": 1.016043756231045,
+  "ci95": [
+   0.9375280431858118,
+   1.0965100798546918
+  ],
+  "inside_panel_ci": false
+ },
+ "calibration_history": [
+  {
+   "iteration": 0,
+   "mult": 1.345062031947002,
+   "realised": 1.0288054029128892,
+   "n": 498
+  },
+  {
+   "iteration": 1,
+   "mult": 1.6858533097714024,
+   "realised": 1.143649652282129,
+   "n": 497
+  },
+  {
+   "iteration": 2,
+   "mult": 1.9008046519250927,
+   "realised": 1.2216338250392191,
+   "n": 497
+  },
+  {
+   "iteration": 3,
+   "mult": 2.0063520618178714,
+   "realised": 1.2600996117608585,
+   "n": 497
+  },
+  {
+   "iteration": 4,
+   "mult": 2.0531135553450617,
+   "realised": 1.278867714934906,
+   "n": 497
+  },
+  {
+   "iteration": 5,
+   "mult": 2.0701320641459504,
+   "realised": 1.2855602407923528,
+   "n": 497
+  }
+ ],
+ "adopted": {
+  "mult": 2.076425364749724,
+  "realised": 1.3136414467393498,
+  "ci95": [
+   1.2138723052124376,
+   1.411942588328772
+  ],
+  "n_paths": 1192,
+  "inside_panel_ci": true,
+  "verdict": "CALIBRATED"
+ },
+ "seconds": 730.1
+}

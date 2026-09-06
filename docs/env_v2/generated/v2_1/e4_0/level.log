@@ -1,0 +1,15 @@
+[a.ii] fitted m_calm (variance ratio) 1.0102 [0.9791, 1.0561] n=1592/412 1.0 outside CI: False
+[a.iii] base arm: 4 scenarios x 200 seeds ...
+    flat            sd_r 0.02309 [0.0219, 0.02445] sd_x 0.0495 rej 0.000
+    crash           sd_r 0.03868 [0.03721, 0.04025] sd_x 0.1143 rej 0.000
+    bull_trap       sd_r 0.02361 [0.02242, 0.02496] sd_x 0.1432 rej 0.150
+    sustained_bull  sd_r 0.02024 [0.01991, 0.0206] sd_x 0.0222 rej 0.335
+[a.iii] equal-mix 0.02737 (+25.6 %) vs panel-weighted 0.02513 (+15.3 %) against target 0.02179
+[a.i] generator calm 0.02309 vs panel calm 0.01703 ratio 1.356 disjoint=True
+[b] counterfactual arm with mult['calm'] = 1.0102 (was the stipulated 1.0) ...
+    flat            sd_r 0.02130 sd_x 0.0479 rej 0.000
+    crash           sd_r 0.04128 sd_x 0.1149 rej 0.000
+    bull_trap       sd_r 0.02429 sd_x 0.1419 rej 0.130
+    sustained_bull  sd_r 0.02018 sd_x 0.0217 rej 0.390
+[b] counterfactual equal-mix 0.02809 (+28.9 %) vs target 0.02179
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e4_0\level.json in 67.0 s

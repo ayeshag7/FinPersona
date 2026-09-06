@@ -1,0 +1,279 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4.md section 8, REG-8",
+  "seeds_per_scenario": 1000,
+  "seed_crash": 240000,
+  "seed_bull": 241000,
+  "coverage_min": 0.7,
+  "panel_box": {
+   "depth": [
+    -0.5377399912689986,
+    -0.3116568464421427
+   ],
+   "duration": [
+    22.0,
+    113.0
+   ]
+  },
+  "ceiling": {
+   "panel_self_coverage": 0.6433021806853583,
+   "ceiling": 0.35669781931464173,
+   "n": 642,
+   "rule": "PREREG section 8: ceiling = 1 - (share of real panel episodes inside their own P10-P90 on depth and duration jointly)"
+  },
+  "phi_regime_fit": {
+   "panic": 0.02408986323569362,
+   "stabilisation": 0.04122522641629056,
+   "default": 0.02408986323569362,
+   "_provenance": {
+    "front_load_p50": 0.2716707068805604,
+    "panic_len_p50": 39.0,
+    "rec60_p50": 0.569144168907215,
+    "formula": "phi = 1 - (1 - front_load)^(3 / phase_length)",
+    "source": "e4_1/episodes4.json panel_families.dd30_fast"
+   }
+  },
+  "power": "n = 500 gives 0.78 power against a true coverage of 0.65 at p0 = 0.70 (e4_0/power.json PP1); the plan's 200 gives 0.47, which is why this pre-registration raised n BEFORE any run"
+ },
+ "arms": {
+  "A_lam0.02": {
+   "script_share_median": 0.04665696732477813,
+   "script_share_mean": 0.05840424043628959,
+   "coverage": 0.4740177439797212,
+   "coverage_ci95": [
+    0.4391759574155708,
+    0.5088595305438716
+   ],
+   "n_coverage": 789,
+   "coverage_straddles_threshold": false,
+   "coverage_verdict": "FAIL",
+   "rejection_crash": 0.061,
+   "rejection_crash_ci95": [
+    0.04616615335120387,
+    0.07583384664879612
+   ],
+   "rejection_bull": 0.113,
+   "rejection_bull_ci95": [
+    0.09337737505836693,
+    0.13262262494163307
+   ],
+   "rejection_below_ceiling": true,
+   "depth_median": -0.5228972277961246,
+   "duration_median": 72.0,
+   "rise_median": 60.0,
+   "topped_share_bull": 0.109,
+   "sd_x_crash_median": 0.105129681362198,
+   "n_paths": {
+    "crash": 1000,
+    "bull": 1000
+   }
+  },
+  "A_lam0.05": {
+   "script_share_median": 0.061949535026275815,
+   "script_share_mean": 0.07137439259405996,
+   "coverage": 0.48010269576379977,
+   "coverage_ci95": [
+    0.44501836493451,
+    0.5151870265930896
+   ],
+   "n_coverage": 779,
+   "coverage_straddles_threshold": false,
+   "coverage_verdict": "FAIL",
+   "rejection_crash": 0.044,
+   "rejection_crash_ci95": [
+    0.03128807400902601,
+    0.05671192599097399
+   ],
+   "rejection_bull": 0.113,
+   "rejection_bull_ci95": [
+    0.09337737505836693,
+    0.13262262494163307
+   ],
+   "rejection_below_ceiling": true,
+   "depth_median": -0.5221298411378412,
+   "duration_median": 74.0,
+   "rise_median": 59.0,
+   "topped_share_bull": 0.109,
+   "sd_x_crash_median": 0.1032875957116429,
+   "n_paths": {
+    "crash": 1000,
+    "bull": 1000
+   }
+  },
+  "A_lam0.1": {
+   "script_share_median": 0.08030441938685323,
+   "script_share_mean": 0.08844267858095078,
+   "coverage": 0.5198973042362003,
+   "coverage_ci95": [
+    0.48481297340691054,
+    0.55498163506549
+   ],
+   "n_coverage": 779,
+   "coverage_straddles_threshold": false,
+   "coverage_verdict": "FAIL",
+   "rejection_crash": 0.027,
+   "rejection_crash_ci95": [
+    0.016953972247699095,
+    0.037046027752300904
+   ],
+   "rejection_bull": 0.113,
+   "rejection_bull_ci95": [
+    0.09337737505836693,
+    0.13262262494163307
+   ],
+   "rejection_below_ceiling": true,
+   "depth_median": -0.5137797525299743,
+   "duration_median": 74.0,
+   "rise_median": 59.0,
+   "topped_share_bull": 0.109,
+   "sd_x_crash_median": 0.10200571544162172,
+   "n_paths": {
+    "crash": 1000,
+    "bull": 1000
+   }
+  },
+  "A_lam0.25": {
+   "script_share_median": 0.13036170399761482,
+   "script_share_mean": 0.13437795471507719,
+   "coverage": 0.5621761658031088,
+   "coverage_ci95": [
+    0.5271789628741976,
+    0.59717336873202
+   ],
+   "n_coverage": 772,
+   "coverage_straddles_threshold": false,
+   "coverage_verdict": "FAIL",
+   "rejection_crash": 0.012,
+   "rejection_crash_ci95": [
+    0.005251221621656257,
+    0.018748778378343742
+   ],
+   "rejection_bull": 0.113,
+   "rejection_bull_ci95": [
+    0.09337737505836693,
+    0.13262262494163307
+   ],
+   "rejection_below_ceiling": true,
+   "depth_median": -0.5087583364400986,
+   "duration_median": 76.0,
+   "rise_median": 58.0,
+   "topped_share_bull": 0.109,
+   "sd_x_crash_median": 0.0985394977759182,
+   "n_paths": {
+    "crash": 1000,
+    "bull": 1000
+   }
+  },
+  "B_shifted_pstar": {
+   "script_share_median": 0.03902996442945662,
+   "script_share_mean": 0.04471563756903484,
+   "coverage": 0.521181001283697,
+   "coverage_ci95": [
+    0.4861003766598901,
+    0.556261625907504
+   ],
+   "n_coverage": 779,
+   "coverage_straddles_threshold": false,
+   "coverage_verdict": "FAIL",
+   "rejection_crash": 0.126,
+   "rejection_crash_ci95": [
+    0.10543176336192137,
+    0.14656823663807864
+   ],
+   "rejection_bull": 0.113,
+   "rejection_bull_ci95": [
+    0.09337737505836693,
+    0.13262262494163307
+   ],
+   "rejection_below_ceiling": true,
+   "depth_median": -0.5008877877340676,
+   "duration_median": 71.0,
+   "rise_median": 60.0,
+   "topped_share_bull": 0.109,
+   "sd_x_crash_median": 0.09995240842453303,
+   "n_paths": {
+    "crash": 1000,
+    "bull": 1000
+   }
+  },
+  "C_scripted_no_feedback": {
+   "script_share_median": 0.013649684177145347,
+   "script_share_mean": 0.03568807882097761,
+   "coverage": 0.4618272841051314,
+   "coverage_ci95": [
+    0.42725856296385967,
+    0.49639600524640315
+   ],
+   "n_coverage": 799,
+   "coverage_straddles_threshold": false,
+   "coverage_verdict": "FAIL",
+   "rejection_crash": 0.086,
+   "rejection_crash_ci95": [
+    0.06862285620707476,
+    0.10337714379292523
+   ],
+   "rejection_bull": 0.113,
+   "rejection_bull_ci95": [
+    0.09337737505836693,
+    0.13262262494163307
+   ],
+   "rejection_below_ceiling": true,
+   "depth_median": -0.5277108081233723,
+   "duration_median": 70.0,
+   "rise_median": 56.0,
+   "topped_share_bull": 0.109,
+   "sd_x_crash_median": 0.11591278389885225,
+   "n_paths": {
+    "crash": 1000,
+    "bull": 1000
+   }
+  },
+  "D_unscripted_regime": {
+   "script_share_median": 0.02988285257826142,
+   "script_share_mean": 0.03319316391397542,
+   "coverage": 0.32348596750369274,
+   "coverage_ci95": [
+    0.2882466194815877,
+    0.3587253155257978
+   ],
+   "n_coverage": 677,
+   "coverage_straddles_threshold": false,
+   "coverage_verdict": "FAIL",
+   "rejection_crash": 0.048,
+   "rejection_crash_ci95": [
+    0.034750631954693086,
+    0.061249368045306916
+   ],
+   "rejection_bull": 0.113,
+   "rejection_bull_ci95": [
+    0.09337737505836693,
+    0.13262262494163307
+   ],
+   "rejection_below_ceiling": true,
+   "depth_median": -0.5582251124180502,
+   "duration_median": 84.0,
+   "rise_median": 57.0,
+   "topped_share_bull": 0.109,
+   "sd_x_crash_median": 0.14154468054964145,
+   "n_paths": {
+    "crash": 1000,
+    "bull": 1000
+   }
+  }
+ },
+ "decision": {
+  "rule": "adopt the LOWEST script share among formulations with coverage >= 0.7 (DESIGN margin) and rejection below the ceiling 0.357",
+  "ceiling": {
+   "panel_self_coverage": 0.6433021806853583,
+   "ceiling": 0.35669781931464173,
+   "n": 642,
+   "rule": "PREREG section 8: ceiling = 1 - (share of real panel episodes inside their own P10-P90 on depth and duration jointly)"
+  },
+  "eligible": [],
+  "undecided": [],
+  "adopted": null,
+  "if_none": "PREREG section 8: if none qualifies, report the table and STOP for D5 -- do not choose",
+  "status": "STOP FOR D5 - no formulation qualifies"
+ },
+ "seconds": 211.6
+}

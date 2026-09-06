@@ -81,14 +81,17 @@ class SentimentState:
 # --------------------------------------------------------------------------
 # post-hoc observables from the generated arrays (one asset)
 # --------------------------------------------------------------------------
-def announcement_schedule(day: np.ndarray, rng: np.random.Generator) -> Dict[int, int]:
+def announcement_schedule(day: np.ndarray, rng: np.random.Generator, q_phase: int = 0) -> Dict[int, int]:
     """v2.1 Phase 1: {quarter-end day: announcement day} for every quarter end on the timeline plus the four pre-history
     quarters, lags U(25, 35) drawn from the `announce` stream (shared by the V jump of jump_placement 'V_announce'/'both'
     and the EPS field, so that the field carries the jump)."""
     L = len(day)
-    q_ends = [int(day[i]) for i in range(L) if day[i] % QUARTER_DAYS == 0]
+    # v2.1 Phase 4 (E4.7d): `q_phase` shifts the quarter grid per seed.  With q_phase = 0 the grid is the v2
+    # one (quarter ends at day % 63 == 0, identical for every seed, so `days_since_eps_announcement` is a
+    # deterministic function of the day index and therefore a clock).  REG-9 asks for it to be randomised.
+    q_ends = [int(day[i]) for i in range(L) if (day[i] - q_phase) % QUARTER_DAYS == 0]
     first = int(day[0]); pre = []
-    d = (first // QUARTER_DAYS) * QUARTER_DAYS
+    d = ((first - q_phase) // QUARTER_DAYS) * QUARTER_DAYS + q_phase
     while len(pre) < 4:
         d -= QUARTER_DAYS
         pre.append(d)
@@ -100,18 +103,19 @@ def announcement_schedule(day: np.ndarray, rng: np.random.Generator) -> Dict[int
 
 def earnings_block(day: np.ndarray, V: np.ndarray, P: np.ndarray, rng_mult: np.random.Generator,
                    rng_eps: np.random.Generator, rng_div: np.random.Generator,
-                   ann: Optional[Dict[int, int]] = None, ann_jumps: Optional[Dict[int, float]] = None) -> Dict[str, np.ndarray]:
+                   ann: Optional[Dict[int, int]] = None, ann_jumps: Optional[Dict[int, float]] = None,
+                   q_phase: int = 0) -> Dict[str, np.ndarray]:
     """`ann` = announcement_schedule() (v2.1 Phase 1; if None the lags are drawn here from rng_eps as v2 did);
     `ann_jumps` = {announcement day: log V jump J} -- the announced quarterly EPS of that quarter is computed from
     V(quarter end) e^J, so the EPS field carries the announcement jump (variants 'V_announce' and 'both')."""
     L = len(day)
     k = float(rng_mult.uniform(*K_RANGE))
     # quarter ends at days congruent to 0 mod 63 (day 0 is a quarter end), on the full timeline
-    q_end_idx = [i for i in range(L) if day[i] % QUARTER_DAYS == 0]
+    q_end_idx = [i for i in range(L) if (day[i] - q_phase) % QUARTER_DAYS == 0]
     # pre-history quarters (before the simulated range) use the first simulated V (burn-in only)
     first = day[0]
     pre = []
-    d = (first // QUARTER_DAYS) * QUARTER_DAYS
+    d = ((first - q_phase) // QUARTER_DAYS) * QUARTER_DAYS + q_phase
     while len(pre) < 4:
         d -= QUARTER_DAYS
         pre.append(d)

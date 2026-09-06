@@ -111,7 +111,7 @@ class SyntheticMarketEnv:
                  crash_discount: float = 0.70, ordering: str = "setup_first", n_assets: int = 1,
                  engine: str = ENGINE_DEFAULT, b_pred: Optional[float] = None, disclose_horizon: bool = False,
                  field_order: str = "canonical", config: Optional[Dict] = None,
-                 volatility: float = None, drift: float = None):
+                 volatility: float = None, drift: float = None, day_index_mode: Optional[str] = None):
         # `volatility` / `drift` are accepted for v1 call-compatibility and ignored (v2 uses plan parameters)
         if scenario not in SCENARIOS:
             raise ValueError(f"scenario must be one of {SCENARIOS}")
@@ -121,6 +121,10 @@ class SyntheticMarketEnv:
         self.start_price, self.crash_discount = float(start_price), float(crash_discount)
         self.ordering, self.n_assets, self.engine = ordering, int(n_assets), engine
         self.disclose_horizon, self.field_order = bool(disclose_horizon), field_order
+        from envs.v2 import events_params as _EP4
+        self.day_index_mode = str(day_index_mode or _EP4.DAY_INDEX_MODE)
+        if self.day_index_mode not in self.DAY_INDEX_MODES:
+            raise ValueError(f"day_index_mode must be one of {self.DAY_INDEX_MODES}")
         kw = dict(scenario=scenario, T=self.n_days, seed=self.seed, ordering=ordering, delta=self.crash_discount,
                   n_assets=self.n_assets, start_price=self.start_price, engine=engine)
         if b_pred is not None:
@@ -152,7 +156,9 @@ class SyntheticMarketEnv:
             d.update(obs.technicals_block(P))
             d.update(obs.volume_block(day, ret, x, st.get("volume", a), lag=self.schedule.jitter.get("volume", 0)))
             d.update(obs.earnings_block(day, V, P, st.get("multiple", a), st.get("eps", a), st.get("dividend", a),
-                                        ann=r.ann[a] if r.ann else None, ann_jumps=r.ann_jumps[a] if r.ann_jumps else None))
+                                        ann=r.ann[a] if r.ann else None,
+                                        ann_jumps=r.ann_jumps[a] if r.ann_jumps else None,
+                                        q_phase=(r.q_phase[a] if getattr(r, "q_phase", None) else 0)))
             d.update(obs.analyst_block(day, V, st.get("analyst", a)))
             # v2.1 Phase 3 (E3.5): the IV in force is the past-only filter construction of volatility.json;
             # iv_mode="v2" (or an absent file) selects the legacy iv_block (weakness 46/25, kept as sensitivity)
@@ -190,11 +196,48 @@ class SyntheticMarketEnv:
     # shares, RSI and trend fields are invariant and are not scaled (tests/test_v2_1_phase_1.py::test_render_scale_invariance)
     PRICE_DENOMINATED = ("price", "SMA20", "SMA50", "MACD", "MACD_signal", "analyst_fair_value")
 
+    # v2.1 Phase 4 (E4.7c, REG-9, D6): the rendered day index is a switch with three settings.
+    #   "day_n" the v2 rendering, kept as the default by D6 (team, 5 Sep 2026) because it preserves v1
+    #           comparability; the Phase-9 LLM probe is what could unseat it
+    #   "none"  no date key is rendered at all (a stateless agent gets no clock; a stateful one can count turns)
+    #   "date"  a calendar date from a per-seed random start, excluding starts that would place the window
+    #           inside 1987, 2000-02, 2008-09 or 2020 (REG-9's requirement, so real-world date priors cannot
+    #           attach to a known crash)
+    DAY_INDEX_MODES = ("day_n", "none", "date")
+    EXCLUDED_YEARS = ((1987, 1988), (2000, 2003), (2008, 2010), (2020, 2021))
+
+    def _start_date(self):
+        """Per-seed random start date for day_index_mode='date', avoiding the excluded crash windows."""
+        import datetime as _dt
+        rng = np.random.default_rng(1_000_003 + int(self.seed))
+        for _ in range(200):
+            y = int(rng.integers(1950, 2016))
+            if any(lo <= y < hi for lo, hi in self.EXCLUDED_YEARS):
+                continue
+            end_y = y + (self.n_days // 252) + 1
+            if any(lo <= end_y < hi or (y < lo and end_y >= hi) for lo, hi in self.EXCLUDED_YEARS):
+                continue
+            return _dt.date(y, int(rng.integers(1, 13)), int(rng.integers(1, 29)))
+        return _dt.date(1975, 1, 6)
+
+    def _render_date(self, d: int):
+        mode = self.day_index_mode
+        if mode == "none":
+            return None
+        if mode == "date":
+            import datetime as _dt
+            base = self._start_date()
+            day = base + _dt.timedelta(days=int(d * 7 / 5))       # trading days -> calendar days
+            while day.weekday() >= 5:
+                day += _dt.timedelta(days=1)
+            return day.isoformat()
+        return f"Day-{d} of {self.n_days}" if self.disclose_horizon else f"Day-{d}"
+
     def _render_asset(self, row) -> Dict:
         d = int(row["day"])
         k = float(self.result.k_render)
         vals = {
-            "date": f"Day-{d} of {self.n_days}" if self.disclose_horizon else f"Day-{d}",
+            "date": self._render_date(d),
             "price": round(float(row["price"]) * k, 2), "SMA20": round(float(row["SMA20"]) * k, 2),
             "SMA50": round(float(row["SMA50"]) * k, 2), "trend_strength": round(float(row["trend_strength"]), 2),
             "trend_regime": int(row["trend_regime"]), "RSI14": round(float(row["RSI14"]), 1),
@@ -210,6 +253,8 @@ class SyntheticMarketEnv:
             "days_since_eps_announcement": int(row["days_since_eps_announcement"]),
         }
         out = {k: vals[k] for k in self._perm}
+        if out.get("date") is None:
+            out.pop("date", None)          # day_index_mode="none": the key is absent, not rendered as None
         if self.disclose_horizon:
             out["days_remaining"] = self.n_days - d
         return out

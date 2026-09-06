@@ -90,7 +90,23 @@ def test_hazard_loader_is_loud(tmp_path):
     hz = json.load(open(os.path.join(ROOT, "envs", "v2", "params", "hazard.json"), encoding="utf-8"))
     assert (g.HAZARD_H0, g.HAZARD_B, g.G_MAX_CAL) == (hz["h0"], hz["b"], hz["g_max"])
     assert ev.G_MAX == hz["g_max"]
-    assert g.GenConfig().hazard_h0 == hz["h0"] and g.GenConfig().g_max == hz["g_max"]
+    # v2.1 Phase 4 introduced a SECOND source for the hazard: events.json's `hazard` block overrides
+    # hazard.json for the GenConfig defaults, while the module constants keep carrying the v2 values (the
+    # digest probe in test_v2_1_phase_4.py depends on that -- it builds its v2 baseline from HAZARD_H0/B).
+    # Assert the override chain explicitly, so neither source can drift unnoticed. This assertion previously
+    # read `GenConfig().hazard_h0 == hz["h0"]` and has been failing since Phase 4's main pass; it went unseen
+    # because this suite was never run (PHASE_4_REPORT section 9.11).
+    try:
+        from envs.v2 import events_params as ep
+        present = bool(getattr(ep, "PRESENT", False))
+    except Exception:
+        present = False
+    if not present:
+        assert g.GenConfig().hazard_h0 == hz["h0"] and g.GenConfig().g_max == hz["g_max"]
+    else:
+        assert g.GenConfig().hazard_h0 == ep.HAZARD_H0 and g.GenConfig().hazard_b == ep.HAZARD_B, (
+            "events.json is present but GenConfig is not honouring its hazard block")
+        assert g.GenConfig().g_max == hz["g_max"], "g_max drifted from hazard.json"
     with pytest.raises(RuntimeError):
         g.load_hazard_params(str(tmp_path / "missing.json"))
     bad = tmp_path / "hazard.json"

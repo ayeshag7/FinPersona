@@ -119,3 +119,51 @@ def test_sensitivity_counts_in_calibration_report_match_csvs(num):
     for row, (p, f) in (("`fw_index`", (8, 7)), ("`pruna`", (7, 8)), ("`fw_hl60`", (7, 8)), ("`scale_mode = omega`", (7, 8)), ("panic multiplier 3", (9, 6)), ("panic multiplier 6", (8, 7))):
         line = [ln for ln in cal.splitlines() if ln.startswith(f"| {row}")]
         assert line and f"| {p} / {f} |" in line[0], (row, line)
+
+
+def test_phase4_report_parameter_table_matches_events_json():
+    """The report's section-4 parameter table must agree with `envs/v2/params/events.json` as deployed.
+
+    v2.1 Phase 4 wrote that table by hand, then regenerated it from the file after the verification pass --
+    and then let it go stale AGAIN across two later adoptions, so it read `control | INCUMBENT | C -- D14
+    open` while definition A was in force. That is the phase's recurring defect (P4-19, P4-37, P4-38, P4-45):
+    a number whose provenance is assumed rather than re-checked after a parameter moves. The table is
+    generated from the file, but generating it was an intention; this makes it a check.
+
+    Skips if either file is absent, so the suite still runs on a checkout without the Phase-4 state.
+    """
+    rep = os.path.join(DOCS, "v2_1", "PHASE_4_REPORT.md")
+    ev = os.path.join(ROOT, "envs", "v2", "params", "events.json")
+    if not (os.path.exists(rep) and os.path.exists(ev)):
+        pytest.skip("Phase-4 report or events.json absent")
+    d = json.load(open(ev, encoding="utf-8"))
+    text = open(rep, encoding="utf-8").read()
+    entries = {k: v["status"] for k, v in d.items() if isinstance(v, dict) and "status" in v}
+    assert entries, "events.json carries no status fields"
+    missing, wrong = [], []
+    for key, status in entries.items():
+        m = re.search(r"\|\s*`%s`\s*\|\s*\*{0,2}([^|*]+?)\*{0,2}\s*\|" % re.escape(key), text)
+        if m is None:
+            missing.append(key)
+        elif m.group(1).strip() != status:
+            wrong.append((key, status, m.group(1).strip()))
+    assert not missing, (
+        f"events.json entries absent from the report's parameter table: {missing}. Regenerate the table "
+        f"from the file rather than editing it by hand.")
+    assert not wrong, (
+        "the report's parameter table disagrees with the deployed events.json "
+        "(entry, file says, report says): " + repr(wrong))
+
+
+def test_phase4_status_words_are_declared_in_the_report_too():
+    """Every status term the parameter file uses must be declared in its own `_status_key`.
+
+    Duplicates the loader's guard (P4-39b) at the documentation layer, because the two failed together: the
+    vocabulary drifted precisely because nothing checked it anywhere."""
+    ev = os.path.join(ROOT, "envs", "v2", "params", "events.json")
+    if not os.path.exists(ev):
+        pytest.skip("events.json absent")
+    d = json.load(open(ev, encoding="utf-8"))
+    declared = set(d.get("_status_key", {}))
+    used = {v["status"] for v in d.values() if isinstance(v, dict) and "status" in v}
+    assert used <= declared, f"undeclared status terms: {sorted(used - declared)}"

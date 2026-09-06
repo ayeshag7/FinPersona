@@ -1,0 +1,349 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4.md section 9; REG-9; D6",
+  "seeds": 200,
+  "schedule_mode": "v21 (pinned)",
+  "n_permutations": 200,
+  "margin_pp": 0.01,
+  "rule": "accuracy <= seed-permutation null p95 + 1 pp, within each scenario",
+  "rise_calm_reference": "the burn-in's last 120 days, identical across arms"
+ },
+ "eps_quarter_clock": {
+  "v2_fixed_quarter_grid": {
+   "accuracy_quarter_third_from_eps_field": 0.8728,
+   "null_p95": 0.3627366666666667,
+   "null_mean": 0.3563796666666667,
+   "chance": 0.3333333333333333,
+   "n_paths": 150,
+   "n_permutations": 200,
+   "carries_a_clock": true,
+   "excess_over_null": 0.5100633333333333,
+   "null_construction": "each path's field series shuffled IN TIME (marginal preserved, alignment destroyed); a seed-label permutation is degenerate here because every path shares the same day axis"
+  },
+  "randomised_per_seed": {
+   "accuracy_quarter_third_from_eps_field": 0.3958,
+   "null_p95": 0.3625333333333333,
+   "null_mean": 0.356401,
+   "chance": 0.3333333333333333,
+   "n_paths": 150,
+   "n_permutations": 200,
+   "carries_a_clock": true,
+   "excess_over_null": 0.03326666666666667,
+   "null_construction": "each path's field series shuffled IN TIME (marginal preserved, alignment destroyed); a seed-label permutation is degenerate here because every path shares the same day axis"
+  },
+  "verdict": "RANDOMISATION IS NEEDED BUT DOES NOT SUFFICE -- both carry a clock"
+ },
+ "seconds": 1795.5,
+ "setup_sweep": {
+  "note": "P4-6 established corr(onset lag, rise) = 0.684 and that paths whose onset coincides with the event give rise 32 d, but conditioning on the onset lag SELECTS ON AN OUTCOME. This sweeps the cause directly.",
+  "arms": {
+   "setup_frac_0.025_0.1": {
+    "setup_len_median": 13.0,
+    "rise_median": 37.0,
+    "rise_ci95": [
+     34.0,
+     41.0
+    ],
+    "n_rise": 157,
+    "rise_ci_overlaps_panel": true,
+    "onset_lag_median": -2.0,
+    "onset_lag_ci95": [
+     -3.0,
+     -2.0
+    ],
+    "depth_median": -0.4813211819259453,
+    "duration_median": 49.0,
+    "rejection": 0.04,
+    "day_only_classifier": {
+     "accuracy": 0.84245,
+     "majority_class": 0.659,
+     "null_p95": 0.8501525,
+     "null_mean": 0.8403035,
+     "n_permutations": 200,
+     "n_paths": 200,
+     "margin_pp": -0.7702499999999946,
+     "acceptable": true,
+     "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+    }
+   },
+   "setup_frac_0.05_0.2": {
+    "setup_len_median": 25.5,
+    "rise_median": 41.0,
+    "rise_ci95": [
+     38.0,
+     45.0
+    ],
+    "n_rise": 160,
+    "rise_ci_overlaps_panel": false,
+    "onset_lag_median": -2.0,
+    "onset_lag_ci95": [
+     -2.0,
+     -1.0
+    ],
+    "depth_median": -0.5036529256672266,
+    "duration_median": 55.0,
+    "rejection": 0.03,
+    "day_only_classifier": {
+     "accuracy": 0.8167,
+     "majority_class": 0.5981,
+     "null_p95": 0.8241025000000001,
+     "null_mean": 0.81247875,
+     "n_permutations": 200,
+     "n_paths": 200,
+     "margin_pp": -0.740250000000009,
+     "acceptable": true,
+     "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+    }
+   },
+   "setup_frac_0.1_0.3": {
+    "setup_len_median": 40.5,
+    "rise_median": 44.0,
+    "rise_ci95": [
+     39.0,
+     51.0
+    ],
+    "n_rise": 163,
+    "rise_ci_overlaps_panel": false,
+    "onset_lag_median": -1.0,
+    "onset_lag_ci95": [
+     -1.0,
+     0.0
+    ],
+    "depth_median": -0.49780157808992875,
+    "duration_median": 62.0,
+    "rejection": 0.0,
+    "day_only_classifier": {
+     "accuracy": 0.7996,
+     "majority_class": 0.5196,
+     "null_p95": 0.8088599999999999,
+     "null_mean": 0.796571,
+     "n_permutations": 200,
+     "n_paths": 200,
+     "margin_pp": -0.9259999999999935,
+     "acceptable": true,
+     "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+    }
+   },
+   "setup_frac_0.175_0.4": {
+    "setup_len_median": 57.5,
+    "rise_median": 48.0,
+    "rise_ci95": [
+     42.0,
+     52.0
+    ],
+    "n_rise": 164,
+    "rise_ci_overlaps_panel": false,
+    "onset_lag_median": 0.0,
+    "onset_lag_ci95": [
+     -1.0,
+     4.0
+    ],
+    "depth_median": -0.5019034215518756,
+    "duration_median": 67.0,
+    "rejection": 0.03,
+    "day_only_classifier": {
+     "accuracy": 0.79105,
+     "majority_class": 0.4313,
+     "null_p95": 0.8004825,
+     "null_mean": 0.7885232500000001,
+     "n_permutations": 200,
+     "n_paths": 200,
+     "margin_pp": -0.9432499999999955,
+     "acceptable": true,
+     "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+    }
+   },
+   "setup_frac_0.25_0.55": {
+    "setup_len_median": 79.5,
+    "rise_median": 56.0,
+    "rise_ci95": [
+     50.0,
+     60.5
+    ],
+    "n_rise": 156,
+    "rise_ci_overlaps_panel": false,
+    "onset_lag_median": 8.0,
+    "onset_lag_ci95": [
+     0.5,
+     15.0
+    ],
+    "depth_median": -0.5065320715741113,
+    "duration_median": 79.0,
+    "rejection": 0.015,
+    "day_only_classifier": {
+     "accuracy": 0.7721,
+     "majority_class": 0.4077,
+     "null_p95": 0.77802,
+     "null_mean": 0.7658744999999999,
+     "n_permutations": 200,
+     "n_paths": 200,
+     "margin_pp": -0.5920000000000036,
+     "acceptable": true,
+     "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+    }
+   }
+  },
+  "verdict": {
+   "arms_meeting_the_rise_time": [
+    "setup_frac_0.025_0.1"
+   ],
+   "arms_acceptable_on_the_classifier": [
+    "setup_frac_0.025_0.1",
+    "setup_frac_0.05_0.2",
+    "setup_frac_0.1_0.3",
+    "setup_frac_0.175_0.4",
+    "setup_frac_0.25_0.55"
+   ],
+   "arms_meeting_both": [
+    "setup_frac_0.025_0.1"
+   ],
+   "conclusion": "a setup range exists that meets the rise time AND stays at chance on the day-only classifier: ['setup_frac_0.025_0.1']"
+  }
+ },
+ "ordering": {
+  "setup_first": {
+   "crash": {
+    "accuracy": 0.76785,
+    "majority_class": 0.3899,
+    "null_p95": 0.7806299999999999,
+    "null_mean": 0.7709242499999999,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -1.2779999999999903,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   },
+   "bull_trap": {
+    "accuracy": 0.8234,
+    "majority_class": 0.3867,
+    "null_p95": 0.8388975,
+    "null_mean": 0.8261915000000001,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -1.5497499999999942,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   }
+  },
+  "event_first": {
+   "crash": {
+    "accuracy": 0.84105,
+    "majority_class": 0.6533,
+    "null_p95": 0.846015,
+    "null_mean": 0.83749125,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -0.4964999999999997,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   },
+   "bull_trap": {
+    "accuracy": 0.8027,
+    "majority_class": 0.53345,
+    "null_p95": 0.8208574999999999,
+    "null_mean": 0.8015885,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -1.8157499999999938,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   }
+  },
+  "phase_free": {
+   "crash": {
+    "accuracy": 1.0,
+    "majority_class": 1.0,
+    "null_p95": 1.0,
+    "null_mean": 1.0,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": 0.0,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   },
+   "bull_trap": {
+    "accuracy": 1.0,
+    "majority_class": 1.0,
+    "null_p95": 1.0,
+    "null_mean": 1.0,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": 0.0,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   }
+  }
+ },
+ "renderings": {
+  "crash": {
+   "day_n": {
+    "accuracy": 0.76825,
+    "majority_class": 0.3861,
+    "null_p95": 0.7711075000000001,
+    "null_mean": 0.75837125,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -0.28575000000000683,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   },
+   "none": {
+    "accuracy": 0.3861,
+    "majority_class": 0.3861,
+    "null_p95": 0.401105,
+    "null_mean": 0.390659,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -1.500499999999999,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   },
+   "date": {
+    "accuracy": 0.3833,
+    "majority_class": 0.3861,
+    "null_p95": 0.39525999999999994,
+    "null_mean": 0.3762525,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -1.195999999999997,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   }
+  },
+  "bull_trap": {
+   "day_n": {
+    "accuracy": 0.825,
+    "majority_class": 0.3853,
+    "null_p95": 0.822755,
+    "null_mean": 0.80627925,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": 0.22449999999999415,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   },
+   "none": {
+    "accuracy": 0.3853,
+    "majority_class": 0.3853,
+    "null_p95": 0.39661,
+    "null_mean": 0.38642399999999993,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -1.1310000000000042,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   },
+   "date": {
+    "accuracy": 0.3862,
+    "majority_class": 0.3853,
+    "null_p95": 0.40201749999999997,
+    "null_mean": 0.38392725,
+    "n_permutations": 200,
+    "n_paths": 200,
+    "margin_pp": -1.5817499999999984,
+    "acceptable": true,
+    "rule": "REG-9: acceptable iff accuracy <= the seed-permutation null's 95th percentile + 1 pp"
+   }
+  }
+ }
+}

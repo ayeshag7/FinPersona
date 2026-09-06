@@ -1,0 +1,15 @@
+[panel] pooled-mean phase variances, stock bootstrap x 1000 ...
+  drawdown calm sd 0.021672 [0.02086, 0.022439] n=1592/412
+[generator] 4 scenarios x 500 seeds ...
+    flat done (500 paths)
+    crash done (500 paths)
+    bull_trap done (500 paths)
+    sustained_bull done (500 paths)
+  generator calm sd 0.022007 [0.021618, 0.022441] days=177687
+
+- calm level accepted: **True**
+- crash phases outside the panel CI: **['deterioration', 'panic', 'stabilisation']**
+- Phase 3's level double-count: **PARTIAL - calm level accepted; 3 crash phase(s) outside the panel CI, handed to the experiment that owns the shape (E4.2/E4.6), not to the level**
+- anchor: **KEPT**
+
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e4_0/phase_levels.json in 67.5 s

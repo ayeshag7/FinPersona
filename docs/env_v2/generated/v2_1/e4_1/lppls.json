@@ -1,0 +1,88 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4.md section 3",
+  "restarts": 20,
+  "bounds": {
+   "m": [
+    0.01,
+    0.99
+   ],
+   "omega": [
+    1.0,
+    20.0
+   ],
+   "tc_days_past_end": [
+    0.5,
+    63
+   ]
+  },
+  "seed_rule": "each episode's own top index",
+  "n_boot": 1000,
+  "method": "Filimonov & Sornette (2013) linearisation; Nelder-Mead over (tc, m, omega), the four linear parameters solved exactly at every evaluation"
+ },
+ "n_attempted": 3202,
+ "n_converged": 3125,
+ "n_failed": 77,
+ "n_stocks": 398,
+ "all_episodes": {
+  "m_median": 0.9256240878304072,
+  "m_ci95": [
+   0.9000423332361321,
+   0.9533428595267885
+  ],
+  "omega_median": 4.814436141969512,
+  "omega_ci95": [
+   4.672638884373334,
+   4.97075467672226
+  ],
+  "r2_median": 0.9308695167696632,
+  "r2_ci95": [
+   0.9287422508312578,
+   0.9332577208354301
+  ],
+  "n": 3125
+ },
+ "stable_share": {
+  "point": 0.32896,
+  "ci95": [
+   0.31326359329789794,
+   0.3439671170333346
+  ],
+  "n": 3125
+ },
+ "stable_episodes": {
+  "m_median": 0.9899964890195576,
+  "m_ci95": [
+   0.9884446497177918,
+   0.989999989181508
+  ],
+  "omega_median": 5.420702821760281,
+  "omega_ci95": [
+   5.25941754223234,
+   5.6455780896226955
+  ],
+  "hazard_at_end_median": 0.9594161135758246,
+  "hazard_at_end_ci95": [
+   0.9594151995881536,
+   0.9608227950288214
+  ],
+  "n": 1028
+ },
+ "e4_4_trigger": {
+  "rule": "supports a super-exponential mania drift iff the stable share >= 0.50 AND the median m is inside (0,1) with a CI excluding 1.0",
+  "stable_share": 0.32896,
+  "stable_share_ci95": [
+   0.31326359329789794,
+   0.3439671170333346
+  ],
+  "m_median": 0.9256240878304072,
+  "m_ci95": [
+   0.9000423332361321,
+   0.9533428595267885
+  ],
+  "m_ci_excludes_1": true,
+  "met": false,
+  "consequence": "E4.4 reports the LPPLS route as UNSUPPORTED and uses the scripted-drift alternative with its shape FIT from the run-up table -- the registered fallback, not a relaxed rule"
+ },
+ "seconds": 1739.3
+}

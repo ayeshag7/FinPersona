@@ -1,0 +1,84 @@
+{
+ "what": "E4.20: closed-loop calibration of the crash depth, the cause E4.19 identified for the coverage shortfall that blocks D5.",
+ "target": {
+  "panel_depth_p50": -0.36934257404343407,
+  "panel_box": [
+   -0.5377399912689986,
+   -0.3116568464421427
+  ],
+  "source": "e4_1/episodes4.json panel_families.dd30_fast"
+ },
+ "design": {
+  "seeds_per_iteration": 400,
+  "seed0": 460000,
+  "verify_seeds": 1200,
+  "verify_seed0": 480000,
+  "schedule_mode": "v21 (pinned)",
+  "delta": 0.7,
+  "n_boot": 2000
+ },
+ "loop": [
+  {
+   "iteration": 0,
+   "gain": 1.0,
+   "realised_depth_p50": -0.5125792655671071
+  },
+  {
+   "iteration": 1,
+   "gain": 0.7,
+   "realised_depth_p50": -0.4674002723538577
+  },
+  {
+   "iteration": 2,
+   "gain": 0.44999999999999996,
+   "realised_depth_p50": -0.45097074078805893
+  },
+  {
+   "iteration": 3,
+   "gain": 0.32499999999999996,
+   "realised_depth_p50": -0.4506892727705019
+  },
+  {
+   "iteration": 4,
+   "gain": 0.26249999999999996,
+   "realised_depth_p50": -0.45103600003723593
+  },
+  {
+   "iteration": 5,
+   "gain": 0.23124999999999998,
+   "realised_depth_p50": -0.45103600003723593
+  },
+  {
+   "iteration": 6,
+   "gain": 0.215625,
+   "realised_depth_p50": -0.45103600003723593
+  },
+  {
+   "iteration": 7,
+   "gain": 0.2078125,
+   "realised_depth_p50": -0.45103600003723593
+  }
+ ],
+ "uncalibrated": {
+  "gain": 1.0,
+  "realised_depth_p50": -0.5125792655671071
+ },
+ "adopted": {
+  "depth_gain": 0.2078125,
+  "verified_on_disjoint_seeds": 1200,
+  "realised_depth_p50": -0.46139403361760034,
+  "ci95": [
+   -0.46946948614807155,
+   -0.45501040861134795
+  ],
+  "share_inside_panel_depth_box": 0.7266666666666667,
+  "uncalibrated_realised_depth_p50": -0.5133579143352391,
+  "uncalibrated_ci95": [
+   -0.5211377006551731,
+   -0.5056553018418765
+  ],
+  "uncalibrated_share_inside_panel_depth_box": 0.5883333333333334,
+  "target_inside_ci": false
+ },
+ "seconds": 86
+}

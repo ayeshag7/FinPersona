@@ -1,0 +1,321 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4_ADDENDUM.md section 2.3",
+  "seeds_per_scenario": 500,
+  "seed0": 216000,
+  "scenarios": [
+   "flat",
+   "crash",
+   "bull_trap",
+   "sustained_bull"
+  ],
+  "n_boot": 1000,
+  "estimator": "pooled mean of squared daily log returns over the phase's days, divided by the same quantity over calm days; generator clustered by seed, panel by stock"
+ },
+ "panel": {
+  "drawdown": {
+   "calm": {
+    "var": 0.00046968724092117325,
+    "sd": 0.021672268938004006,
+    "sd_ci95": [
+     0.020860307706304725,
+     0.022438783761112063
+    ],
+    "n_episodes": 1592,
+    "n_stocks": 412
+   },
+   "deterioration": {
+    "var": 0.000760160980310312,
+    "sd": 0.02757101703438435,
+    "ratio_to_calm": 1.6184407709680333,
+    "ratio_ci95": [
+     1.5060523455854706,
+     1.7456498680179773
+    ],
+    "n_episodes": 1592
+   },
+   "panic": {
+    "var": 0.0035893234210642774,
+    "sd": 0.059910962444817036,
+    "ratio_to_calm": 7.641943634714717,
+    "ratio_ci95": [
+     6.967571455362,
+     8.42753760463106
+    ],
+    "n_episodes": 1592
+   },
+   "stabilisation": {
+    "var": 0.0014604389983300361,
+    "sd": 0.03821569047302477,
+    "ratio_to_calm": 3.109386142714358,
+    "ratio_ci95": [
+     2.8506276634342727,
+     3.4091752169935434
+    ],
+    "n_episodes": 1571
+   }
+  },
+  "runup": {
+   "calm": {
+    "var": 0.001702971188438163,
+    "sd": 0.0412670714788215,
+    "sd_ci95": [
+     0.039845719129991505,
+     0.04276791715315632
+    ],
+    "n_episodes": 3125,
+    "n_stocks": 394
+   },
+   "mania": {
+    "var": 0.0011077361950322922,
+    "sd": 0.03328267109221092,
+    "ratio_to_calm": 0.650472657760126,
+    "ratio_ci95": [
+     0.6201536429129427,
+     0.679403986448406
+    ],
+    "n_episodes": 3125
+   },
+   "blow-off": {
+    "var": 0.001428390825104879,
+    "sd": 0.03779405806611509,
+    "ratio_to_calm": 0.838763940812699,
+    "ratio_ci95": [
+     0.792817160972608,
+     0.8817112624613176
+    ],
+    "n_episodes": 3125
+   },
+   "post-top": {
+    "var": 0.0006893840809671554,
+    "sd": 0.026256124637256645,
+    "ratio_to_calm": 0.404812533322661,
+    "ratio_ci95": [
+     0.38389109850310876,
+     0.4257252820809284
+    ],
+    "n_episodes": 3122
+   }
+  }
+ },
+ "generator": {
+  "blow-off": {
+   "var": 0.0005720670432160981,
+   "sd": 0.023917923053979794,
+   "days": 29922,
+   "sd_ci95": [
+    0.02304604231742312,
+    0.024911838117665553
+   ],
+   "ratio_to_calm": 1.1761243460219388,
+   "ratio_ci95": [
+    1.080651735484341,
+    1.286686836728799
+   ]
+  },
+  "calm": {
+   "var": 0.00048640013715473847,
+   "sd": 0.02205448111279743,
+   "days": 177964,
+   "sd_ci95": [
+    0.02165226799986553,
+    0.022482201472827718
+   ]
+  },
+  "deterioration": {
+   "var": 0.0012803725098124584,
+   "sd": 0.035782293244179565,
+   "days": 4976,
+   "sd_ci95": [
+    0.03406050400085882,
+    0.03772299018985079
+   ],
+   "ratio_to_calm": 2.6323440558675943,
+   "ratio_ci95": [
+    2.3817493586649525,
+    2.938477851609814
+   ]
+  },
+  "mania": {
+   "var": 0.000551824211768424,
+   "sd": 0.023490938929051432,
+   "days": 27951,
+   "sd_ci95": [
+    0.022653580628032823,
+    0.024379417525038895
+   ],
+   "ratio_to_calm": 1.1345066944191098,
+   "ratio_ci95": [
+    1.0418368639856586,
+    1.2324300377029485
+   ]
+  },
+  "panic": {
+   "var": 0.004165549134547699,
+   "sd": 0.06454106548971514,
+   "days": 22362,
+   "sd_ci95": [
+    0.060611198839853817,
+    0.06869622560466244
+   ],
+   "ratio_to_calm": 8.564037746606376,
+   "ratio_ci95": [
+    7.505387816991323,
+    9.732397511159677
+   ]
+  },
+  "post-top": {
+   "var": 0.0003975541816851178,
+   "sd": 0.019938760786094953,
+   "days": 2364,
+   "sd_ci95": [
+    0.017954507903526307,
+    0.02226653539445808
+   ],
+   "ratio_to_calm": 0.8173397812152423,
+   "ratio_ci95": [
+    0.659112820831695,
+    1.0246817553465946
+   ]
+  },
+  "stabilisation": {
+   "var": 0.0016694848641719974,
+   "sd": 0.04085933019730007,
+   "days": 32961,
+   "sd_ci95": [
+    0.03920861463633706,
+    0.0426665515967721
+   ],
+   "ratio_to_calm": 3.4323281114554542,
+   "ratio_ci95": [
+    3.1425255060339046,
+    3.7411970168457795
+   ]
+  },
+  "sustained-bull": {
+   "var": 0.00040719593164482114,
+   "sd": 0.020179096403080618,
+   "days": 99500,
+   "sd_ci95": [
+    0.01997790969375041,
+    0.020382709924807826
+   ],
+   "ratio_to_calm": 0.8371624523520229,
+   "ratio_ci95": [
+    0.8005484655867952,
+    0.8729662904334028
+   ]
+  }
+ },
+ "calm_level": {
+  "generator_sd": 0.02205448111279743,
+  "generator_ci95": [
+   0.02165226799986553,
+   0.022482201472827718
+  ],
+  "panel_sd": 0.021672268938004006,
+  "panel_ci95": [
+   0.020860307706304725,
+   0.022438783761112063
+  ],
+  "ratio": 1.0176360018365767,
+  "generator_inside_panel_ci": true,
+  "panel_s_A_full_sample": 0.02179271694224872
+ },
+ "tested_crash_phases": {
+  "deterioration": {
+   "generator_ratio": 2.6323440558675943,
+   "generator_ci95": [
+    2.3817493586649525,
+    2.938477851609814
+   ],
+   "panel_ratio": 1.6184407709680333,
+   "panel_ci95": [
+    1.5060523455854706,
+    1.7456498680179773
+   ],
+   "generator_inside_panel_ci": false,
+   "verdict": "OUTSIDE"
+  },
+  "panic": {
+   "generator_ratio": 8.564037746606376,
+   "generator_ci95": [
+    7.505387816991323,
+    9.732397511159677
+   ],
+   "panel_ratio": 7.641943634714717,
+   "panel_ci95": [
+    6.967571455362,
+    8.42753760463106
+   ],
+   "generator_inside_panel_ci": false,
+   "verdict": "OUTSIDE"
+  },
+  "stabilisation": {
+   "generator_ratio": 3.4323281114554542,
+   "generator_ci95": [
+    3.1425255060339046,
+    3.7411970168457795
+   ],
+   "panel_ratio": 3.109386142714358,
+   "panel_ci95": [
+    2.8506276634342727,
+    3.4091752169935434
+   ],
+   "generator_inside_panel_ci": false,
+   "verdict": "OUTSIDE"
+  }
+ },
+ "reported_bubble_phases": {
+  "mania": {
+   "generator_ratio": 1.1345066944191098,
+   "generator_ci95": [
+    1.0418368639856586,
+    1.2324300377029485
+   ],
+   "panel_ratio_on_contaminated_reference": 0.650472657760126,
+   "panel_ci95": [
+    0.6201536429129427,
+    0.679403986448406
+   ],
+   "status": "REPORTED NOT TESTED - the panel's run-up calm window sits at a post-crash trough (sd 0.04127 vs the drawdown family's 0.02167); E4.1 derives a clean reference"
+  },
+  "blow-off": {
+   "generator_ratio": 1.1761243460219388,
+   "generator_ci95": [
+    1.080651735484341,
+    1.286686836728799
+   ],
+   "panel_ratio_on_contaminated_reference": 0.838763940812699,
+   "panel_ci95": [
+    0.792817160972608,
+    0.8817112624613176
+   ],
+   "status": "REPORTED NOT TESTED - the panel's run-up calm window sits at a post-crash trough (sd 0.04127 vs the drawdown family's 0.02167); E4.1 derives a clean reference"
+  },
+  "post-top": {
+   "generator_ratio": 0.8173397812152423,
+   "generator_ci95": [
+    0.659112820831695,
+    1.0246817553465946
+   ],
+   "panel_ratio_on_contaminated_reference": 0.404812533322661,
+   "panel_ci95": [
+    0.38389109850310876,
+    0.4257252820809284
+   ],
+   "status": "REPORTED NOT TESTED - the panel's run-up calm window sits at a post-crash trough (sd 0.04127 vs the drawdown family's 0.02167); E4.1 derives a clean reference"
+  }
+ },
+ "verdict": {
+  "calm_level_accepted": true,
+  "crash_phases_outside": [
+   "deterioration",
+   "panic",
+   "stabilisation"
+  ],
+  "level_double_count": "PARTIAL - calm level accepted; 3 crash phase(s) outside the panel CI, handed to the experiment that owns the shape (E4.2/E4.6), not to the level",
+  "anchor": "KEPT"
+ },
+ "seconds": 88.5
+}

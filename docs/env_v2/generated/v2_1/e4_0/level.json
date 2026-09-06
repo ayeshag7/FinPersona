@@ -1,0 +1,504 @@
+{
+ "design": {
+  "seeds_per_scenario": 200,
+  "seed_base": 214000,
+  "seed_cf": 215000,
+  "scenarios": [
+   "flat",
+   "crash",
+   "bull_trap",
+   "sustained_bull"
+  ],
+  "n_boot": 1000,
+  "prereg": "PREREG_PHASE_4.md sections 1 and 2"
+ },
+ "verification": {
+  "figures": {
+   "panel_calm_sd": {
+    "cited": 0.01703,
+    "file": 0.017034468505345273,
+    "ci": [
+     0.01631812719926972,
+     0.017640918745484884
+    ],
+    "n_episodes": 1592,
+    "n_stocks": 412,
+    "source": "e3_9/level_check.json i_panel_calm"
+   },
+   "deployed_unconditional": {
+    "cited": 0.02843,
+    "file": 0.02843340450112719,
+    "ci": [
+     0.02674826516603182,
+     0.03023538785710206
+    ],
+    "excess_pct": 30.472049797537725,
+    "source": "e3_9/level_check.json iii"
+   },
+   "flat_pooled_sd": {
+    "cited": null,
+    "file": 0.02150337255547089,
+    "ci": [
+     0.020856413116217228,
+     0.02219396044791284
+    ],
+    "source": "e3_9/level_check.json iii.per_scenario.flat"
+   },
+   "phase_multiplier_targets": {
+    "file": {
+     "deterioration": 1.3691332192304686,
+     "panic": 7.450465072405594,
+     "stabilisation": 3.1119479426131402,
+     "mania": 1.176334694830345,
+     "blow-off": 1.6521725991105582,
+     "post-top": 1.1642584243257446
+    },
+    "cis": {
+     "deterioration": [
+      1.3143023209075708,
+      1.4402982192494558
+     ],
+     "panic": [
+      6.864904916864082,
+      8.12968090192662
+     ],
+     "stabilisation": [
+      2.960746355261681,
+      3.3417670193680427
+     ],
+     "mania": [
+      1.1236328758874234,
+      1.2133191446474896
+     ],
+     "blow-off": [
+      1.5759717607641388,
+      1.7134003515024911
+     ],
+     "post-top": [
+      1.1280254941987564,
+      1.2008616832497883
+     ]
+    },
+    "realised": {
+     "deterioration": 1.3387266979391113,
+     "panic": 7.540660287478275,
+     "stabilisation": 3.1230377779432823,
+     "mania": 1.1884355558771855,
+     "blow-off": 1.0838179101139271,
+     "post-top": 1.5870926046678906
+    },
+    "inside_ci": {
+     "deterioration": true,
+     "panic": true,
+     "stabilisation": true,
+     "mania": true,
+     "blow-off": false,
+     "post-top": false
+    },
+    "source": "e3_4/calibration.json"
+   },
+   "block_in_force": {
+    "file": {
+     "shape": {
+      "alpha": 0.027,
+      "gamma": 0.058,
+      "beta": 0.932
+     },
+     "nu": 6.649760745437838,
+     "sigma_V": 0.014573291000253476,
+     "h": 22.380929759136894,
+     "jump_rate": 0.0005825113429448942,
+     "jump_sd": 0.23029694055201125,
+     "s_A": 0.02179271694224872,
+     "sbar": 0.015087876849108794,
+     "sources": {
+      "shape_s_A": "e3_1/summary.json (set A full)",
+      "jumps": "e3_2/adoption.json (ADDENDUM section 3)",
+      "engine": "e2_3/smm_ar1c_full_p3.json"
+     }
+    },
+    "source": "e3_4/calibration.json design.block"
+   },
+   "episodes_json_keys": [
+    "design",
+    "drawdowns",
+    "literature_beside",
+    "market_windows",
+    "multipliers",
+    "rise_decay",
+    "rise_decay_fast",
+    "runups",
+    "seconds"
+   ]
+  },
+  "columns": {
+   "n_sampled": 40,
+   "indices_reproduced": 40,
+   "depth_reproduced_to_1e-10": 40,
+   "discrepancies": [],
+   "rule": "any column that does not reproduce is recomputed for the whole table and the discrepancy reported; E4.1 does not build on an unreproduced column",
+   "verdict": "PASS"
+  }
+ },
+ "seconds": 67.0,
+ "ii_fitted_calm_multiplier": {
+  "m_calm_variance_ratio": 1.0101513267979558,
+  "ci95": [
+   0.9791203461746476,
+   1.056098566628366
+  ],
+  "sd_ratio": 1.0050628471881526,
+  "sd_ratio_ci95": [
+   0.9895051016415467,
+   1.02766656393422
+  ],
+  "n_episodes": 1592,
+  "n_stocks": 412,
+  "stipulated_value_in_code": 1.0,
+  "one_outside_ci": false,
+  "definition": "per-episode rv over the pre-event 120-day calm window divided by that stock's median rolling-21d RV (the ADDENDUM section 1 unconditional reference) -- the SAME reference the six event multipliers are ratios to, so m_calm is the seventh member of that family and is directly substitutable into GJRParams.mult",
+  "source": "docs/env_v2/generated/v2_1/e3_3/dd_episodes.csv column calm_over_uncond"
+ },
+ "base_arm": {
+  "flat": {
+   "pooled_sd_r": 0.023093067285548174,
+   "ci95": [
+    0.02189915189107242,
+    0.024451734126620665
+   ],
+   "median_sd_x": 0.04950960673016461,
+   "mean_attempts": 1.0,
+   "rejection_rate": 0.0,
+   "per_phase": {
+    "calm": {
+     "var": 0.0005332897566548551,
+     "days": 39800
+    }
+   },
+   "n_paths": 200
+  },
+  "crash": {
+   "pooled_sd_r": 0.03868121994045949,
+   "ci95": [
+    0.03720599563412678,
+    0.04024886460955902
+   ],
+   "median_sd_x": 0.11432050409233749,
+   "mean_attempts": 1.0,
+   "rejection_rate": 0.0,
+   "per_phase": {
+    "calm": {
+     "var": 0.00043964993603732574,
+     "days": 15848
+    },
+    "panic": {
+     "var": 0.0039851874734210995,
+     "days": 8498
+    },
+    "stabilisation": {
+     "var": 0.00155173076136543,
+     "days": 9855
+    },
+    "deterioration": {
+     "var": 0.0006115773708453735,
+     "days": 5599
+    }
+   },
+   "n_paths": 200
+  },
+  "bull_trap": {
+   "pooled_sd_r": 0.02360714316826424,
+   "ci95": [
+    0.022416741521380477,
+    0.02496350391238365
+   ],
+   "median_sd_x": 0.14315411681162,
+   "mean_attempts": 1.165,
+   "rejection_rate": 0.15,
+   "per_phase": {
+    "calm": {
+     "var": 0.00048027980505230283,
+     "days": 15728
+    },
+    "mania": {
+     "var": 0.0006100093477667592,
+     "days": 15849
+    },
+    "blow-off": {
+     "var": 0.0005792813899485698,
+     "days": 7822
+    },
+    "post-top": {
+     "var": 0.0010658626986731166,
+     "days": 401
+    }
+   },
+   "n_paths": 200
+  },
+  "sustained_bull": {
+   "pooled_sd_r": 0.02024484745364549,
+   "ci95": [
+    0.019909443246935974,
+    0.02059593859845517
+   ],
+   "median_sd_x": 0.02215038291453908,
+   "mean_attempts": 1.555,
+   "rejection_rate": 0.335,
+   "per_phase": {
+    "sustained-bull": {
+     "var": 0.00040985384842137635,
+     "days": 39800
+    }
+   },
+   "n_paths": 200
+  }
+ },
+ "iii_mix": {
+  "target_s_A": 0.02179271694224872,
+  "pooled_sd_equal_scenario_weights": 0.027370959015557698,
+  "excess_equal_pct": 25.596817909815783,
+  "per_phase_pooled": {
+   "calm": {
+    "var": 0.0005008174354831511,
+    "days": 71376
+   },
+   "panic": {
+    "var": 0.0039851874734210995,
+    "days": 8498
+   },
+   "stabilisation": {
+    "var": 0.00155173076136543,
+    "days": 9855
+   },
+   "deterioration": {
+    "var": 0.0006115773708453735,
+    "days": 5599
+   },
+   "mania": {
+    "var": 0.0006100093477667592,
+    "days": 15849
+   },
+   "blow-off": {
+    "var": 0.0005792813899485698,
+    "days": 7822
+   },
+   "post-top": {
+    "var": 0.0010658626986731166,
+    "days": 401
+   },
+   "sustained-bull": {
+    "var": 0.00040985384842137635,
+    "days": 39800
+   }
+  },
+  "generator_phase_weights_equal_mix": {
+   "calm": 0.44834170854271355,
+   "panic": 0.053379396984924624,
+   "stabilisation": 0.06190326633165829,
+   "deterioration": 0.03516959798994975,
+   "mania": 0.09955402010050252,
+   "blow-off": 0.04913316582914573,
+   "post-top": 0.0025188442211055277,
+   "sustained-bull": 0.25
+  },
+  "panel_phase_weights": {
+   "weights": {
+    "deterioration": 0.024282053129955884,
+    "panic": 0.012141026564977942,
+    "stabilisation": 0.03642307969493383,
+    "mania": 0.047664206049693555,
+    "blow-off": 0.023832103024846778,
+    "post-top": 0.07149630907454034,
+    "calm": 0.7841612224610517
+   },
+   "days": {
+    "deterioration": 63680,
+    "panic": 31840,
+    "stabilisation": 95520,
+    "mania": 125000,
+    "blow-off": 62500,
+    "post-top": 187500,
+    "calm": 2056473
+   },
+   "total_panel_days": 2622513,
+   "n_dd_episodes": 1592,
+   "n_ru_episodes": 3125,
+   "caveat": "window lengths are E3.3's fixed windows, so this is the share of panel days those windows cover, not a phase-dating of the whole panel; it is used only to show how much of the deployed excess is a scenario-mix artefact"
+  },
+  "pooled_sd_under_panel_phase_weights": 0.02513088539552319,
+  "excess_panel_weighted_pct": 15.317816783105576,
+  "reading": "the difference between the equal-weight and panel-weight figures is the part of Phase 3's +30.5 % that is a SCENARIO-MIX artefact rather than a generator defect"
+ },
+ "i_calm_like_for_like": {
+  "generator_flat_pooled_sd": 0.023093067285548174,
+  "generator_ci95": [
+   0.02189915189107242,
+   0.024451734126620665
+  ],
+  "panel_calm_sd": 0.017034468505345273,
+  "panel_ci95": [
+   0.01631812719926972,
+   0.017640918745484884
+  ],
+  "ratio": 1.3556670276094476,
+  "n_generator_paths": 200,
+  "n_panel_episodes": 1592,
+  "n_panel_stocks": 412,
+  "cis_disjoint": true,
+  "verdict": "CONFIRMED",
+  "rule": "PREREG section 2 E4.0a(i): confirmed iff the two 95 % CIs are disjoint"
+ },
+ "iv_counterfactual": {
+  "mult_calm_applied": 1.0101513267979558,
+  "arm": {
+   "flat": {
+    "pooled_sd_r": 0.021304647199260777,
+    "ci95": [
+     0.020755773095463562,
+     0.021955857782446617
+    ],
+    "median_sd_x": 0.047919328164686914,
+    "rejection_rate": 0.0,
+    "per_phase": {
+     "calm": {
+      "var": 0.0004538879922849704,
+      "days": 39800
+     }
+    },
+    "n_paths": 200
+   },
+   "crash": {
+    "pooled_sd_r": 0.04128027192330456,
+    "ci95": [
+     0.0368700774435144,
+     0.047011016160813095
+    ],
+    "median_sd_x": 0.11493096582241961,
+    "rejection_rate": 0.0,
+    "per_phase": {
+     "deterioration": {
+      "var": 0.0006155844121955008,
+      "days": 5346
+     },
+     "calm": {
+      "var": 0.00045533072383220207,
+      "days": 15935
+     },
+     "panic": {
+      "var": 0.004771477291015075,
+      "days": 8403
+     },
+     "stabilisation": {
+      "var": 0.0016983282724597972,
+      "days": 10116
+     }
+    },
+    "n_paths": 200
+   },
+   "bull_trap": {
+    "pooled_sd_r": 0.02429039316285448,
+    "ci95": [
+     0.022940209726803735,
+     0.02578655257036051
+    ],
+    "median_sd_x": 0.14188994975608304,
+    "rejection_rate": 0.13,
+    "per_phase": {
+     "mania": {
+      "var": 0.0006523452577976986,
+      "days": 15816
+     },
+     "blow-off": {
+      "var": 0.0005972023661167393,
+      "days": 7805
+     },
+     "calm": {
+      "var": 0.0005139119231837914,
+      "days": 15299
+     },
+     "post-top": {
+      "var": 0.0007294633892981006,
+      "days": 880
+     }
+    },
+    "n_paths": 200
+   },
+   "sustained_bull": {
+    "pooled_sd_r": 0.02017689331709371,
+    "ci95": [
+     0.019855577394557972,
+     0.02050497058137101
+    ],
+    "median_sd_x": 0.021718786731743538,
+    "rejection_rate": 0.39,
+    "per_phase": {
+     "sustained-bull": {
+      "var": 0.00040710702392938086,
+      "days": 39800
+     }
+    },
+    "n_paths": 200
+   }
+  },
+  "pooled_sd_equal_scenario_weights": 0.0280850452477932,
+  "target_s_A": 0.02179271694224872,
+  "excess_pct": 28.873537531916348,
+  "event_ratios_before_recalibration": {
+   "deterioration": {
+    "realised_ratio_to_equalmix_uncond": 0.7804361149286124,
+    "target": 1.3691332192304686,
+    "target_ci": [
+     1.3143023209075708,
+     1.4402982192494558
+    ],
+    "inside_target_ci": false
+   },
+   "panic": {
+    "realised_ratio_to_equalmix_uncond": 6.049264935394871,
+    "target": 7.450465072405594,
+    "target_ci": [
+     6.864904916864082,
+     8.12968090192662
+    ],
+    "inside_target_ci": false
+   },
+   "stabilisation": {
+    "realised_ratio_to_equalmix_uncond": 2.1531356099559686,
+    "target": 3.1119479426131402,
+    "target_ci": [
+     2.960746355261681,
+     3.3417670193680427
+    ],
+    "inside_target_ci": false
+   },
+   "mania": {
+    "realised_ratio_to_equalmix_uncond": 0.8270414073221412,
+    "target": 1.176334694830345,
+    "target_ci": [
+     1.1236328758874234,
+     1.2133191446474896
+    ],
+    "inside_target_ci": false
+   },
+   "blow-off": {
+    "realised_ratio_to_equalmix_uncond": 0.7571314107451814,
+    "target": 1.6521725991105582,
+    "target_ci": [
+     1.5759717607641388,
+     1.7134003515024911
+    ],
+    "inside_target_ci": false
+   },
+   "post-top": {
+    "realised_ratio_to_equalmix_uncond": 0.9248115485836346,
+    "target": 1.1642584243257446,
+    "target_ci": [
+     1.1280254941987564,
+     1.2008616832497883
+    ],
+    "inside_target_ci": false
+   }
+  },
+  "note": "these ratios are BEFORE the one closed-loop re-calibration the pre-registration allows; the adoption rule (PREREG section 2 E4.0b clause 2) is evaluated AFTER that re-calibration"
+ }
+}

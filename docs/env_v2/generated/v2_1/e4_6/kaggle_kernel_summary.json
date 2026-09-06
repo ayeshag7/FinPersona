@@ -1,0 +1,13 @@
+{
+ "guard": {
+  "stage": "reference_row",
+  "numpy": "2.0.2",
+  "scipy": "1.16.3",
+  "rc": 0,
+  "worst_relative_difference": 0.0,
+  "passed": true
+ },
+ "e4_6_rc": 0,
+ "seeds": 1000,
+ "total_seconds": 218.5
+}

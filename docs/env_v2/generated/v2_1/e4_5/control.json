@@ -1,0 +1,264 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4.md section 7, REG-7",
+  "seeds": 500,
+  "seed_sb": 250000,
+  "seed_flat": 251000,
+  "definitions": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "ks_D0": 0.1,
+  "min_rejected_for_ks": 30,
+  "n_boot": 1000,
+  "d14": "OPEN -- no definition is adopted here; the four audits are delivered so the team can state the control's purpose on numbers",
+  "v_threshold_fit": {
+   "threshold": 1.3232686663349693,
+   "p50": 1.3728282864598242,
+   "p90": 1.6651753069208417,
+   "n_non_crashing_runups": 2849,
+   "n_stocks": 398,
+   "v2_stipulated": 1.2,
+   "definition": "P10 of the 200-day-equivalent price growth of run-ups that did NOT top within 200 days (E4.1 runup4.csv, topped == False); log-scaled from the 504-day window",
+   "label": "FIT"
+  },
+  "note": "paths are generated with reject=False and the validity rule applied here, so the ACCEPTED and REJECTED populations are both observable -- which is what the selection audit needs and what v2's internal retry loop hid"
+ },
+ "definitions": {
+  "A": {
+   "n_paths": 500,
+   "n_accepted": 419,
+   "n_rejected": 81,
+   "rejection_rate": 0.162,
+   "reasons": {
+    "sustained_bull": 81
+   },
+   "i_realised_x": {
+    "path_mean_x_p10_p50_p90": [
+     -0.04008635669389682,
+     0.003949311114208825,
+     0.0397144516826429
+    ],
+    "sd_x_median": 0.04672837830699855,
+    "sd_x_median_accepted": 0.046741440259037606,
+    "V_growth_median": 1.4788167514279489
+   },
+   "ii_selection": {
+    "null_floor": {
+     "median_upper_limit_under_the_null": 0.20027328442205133,
+     "n_accepted": 419,
+     "n_rejected": 81,
+     "D0": 0.1,
+     "attainable": false,
+     "meaning": "the bootstrap 95 % upper limit of the KS distance between two samples drawn from the SAME distribution at these sample sizes; if it already exceeds D0 the registered equivalence bound cannot be met by any result and the verdict is UNDECIDABLE, not FAIL"
+    },
+    "sd_r": {
+     "ks": 0.08138130174725233,
+     "upper95": 0.1855593859571584,
+     "passes": false
+    },
+    "acf1": {
+     "ks": 0.06031409293143583,
+     "upper95": 0.18178054745278283,
+     "passes": false
+    },
+    "iv_mean": {
+     "ks": 0.18736556763605294,
+     "upper95": 0.2857391201862165,
+     "passes": false
+    },
+    "status": "TESTED",
+    "verdict": "UNDECIDABLE at n_acc = 419 / n_rej = 81: the equivalence bound 0.1 is below the null floor 0.200"
+   },
+   "iii_discrimination": {
+    "accuracy": 0.5359906626707437,
+    "majority_class": 0.544069640914037,
+    "null_p95_seed_permutation": 0.5389745351092091,
+    "null_mean": 0.5355858019100188,
+    "null_max": 0.5394192132570622,
+    "n_permutations": 20,
+    "n_days": 164501,
+    "n_paths": 919,
+    "at_chance": true,
+    "note": "the null permutes SEED labels, not day labels (e4_0/power.json PP4), and the classifier is REFITTED on each permutation, so the null carries the same optimism the real fit does"
+   }
+  },
+  "B": {
+   "n_paths": 500,
+   "n_accepted": 419,
+   "n_rejected": 81,
+   "rejection_rate": 0.162,
+   "reasons": {
+    "sustained_bull": 81
+   },
+   "i_realised_x": {
+    "path_mean_x_p10_p50_p90": [
+     -0.04008635669389682,
+     0.003949311114208825,
+     0.0397144516826429
+    ],
+    "sd_x_median": 0.04672837830699855,
+    "sd_x_median_accepted": 0.046741440259037606,
+    "V_growth_median": 1.4788167514279489
+   },
+   "ii_selection": {
+    "null_floor": {
+     "median_upper_limit_under_the_null": 0.20027328442205133,
+     "n_accepted": 419,
+     "n_rejected": 81,
+     "D0": 0.1,
+     "attainable": false,
+     "meaning": "the bootstrap 95 % upper limit of the KS distance between two samples drawn from the SAME distribution at these sample sizes; if it already exceeds D0 the registered equivalence bound cannot be met by any result and the verdict is UNDECIDABLE, not FAIL"
+    },
+    "sd_r": {
+     "ks": 0.08138130174725233,
+     "upper95": 0.1855593859571584,
+     "passes": false
+    },
+    "acf1": {
+     "ks": 0.06031409293143583,
+     "upper95": 0.18178054745278283,
+     "passes": false
+    },
+    "iv_mean": {
+     "ks": 0.18736556763605294,
+     "upper95": 0.2857391201862165,
+     "passes": false
+    },
+    "status": "TESTED",
+    "verdict": "UNDECIDABLE at n_acc = 419 / n_rej = 81: the equivalence bound 0.1 is below the null floor 0.200"
+   },
+   "iii_discrimination": {
+    "accuracy": 0.5359906626707437,
+    "majority_class": 0.544069640914037,
+    "null_p95_seed_permutation": 0.5389745351092091,
+    "null_mean": 0.5355858019100188,
+    "null_max": 0.5394192132570622,
+    "n_permutations": 20,
+    "n_days": 164501,
+    "n_paths": 919,
+    "at_chance": true,
+    "note": "the null permutes SEED labels, not day labels (e4_0/power.json PP4), and the classifier is REFITTED on each permutation, so the null carries the same optimism the real fit does"
+   }
+  },
+  "C": {
+   "n_paths": 500,
+   "n_accepted": 321,
+   "n_rejected": 179,
+   "rejection_rate": 0.358,
+   "reasons": {
+    "sustained_bull": 179
+   },
+   "i_realised_x": {
+    "path_mean_x_p10_p50_p90": [
+     -0.007346155772566473,
+     0.0008184526119545055,
+     0.007179157038175506
+    ],
+    "sd_x_median": 0.02343277830513471,
+    "sd_x_median_accepted": 0.02146697716242424,
+    "V_growth_median": 1.4788167514279489
+   },
+   "ii_selection": {
+    "null_floor": {
+     "median_upper_limit_under_the_null": 0.1565672914599976,
+     "n_accepted": 321,
+     "n_rejected": 179,
+     "D0": 0.1,
+     "attainable": false,
+     "meaning": "the bootstrap 95 % upper limit of the KS distance between two samples drawn from the SAME distribution at these sample sizes; if it already exceeds D0 the registered equivalence bound cannot be met by any result and the verdict is UNDECIDABLE, not FAIL"
+    },
+    "sd_r": {
+     "ks": 0.4744426460606693,
+     "upper95": 0.549027132390052,
+     "passes": false
+    },
+    "acf1": {
+     "ks": 0.10167249691084079,
+     "upper95": 0.19128422005255924,
+     "passes": false
+    },
+    "iv_mean": {
+     "ks": 0.4339442036930681,
+     "upper95": 0.5109782627612732,
+     "passes": false
+    },
+    "status": "TESTED",
+    "verdict": "UNDECIDABLE at n_acc = 321 / n_rej = 179: the equivalence bound 0.1 is below the null floor 0.157"
+   },
+   "iii_discrimination": {
+    "accuracy": 0.6058220319953185,
+    "majority_class": 0.6090133982947625,
+    "null_p95_seed_permutation": 0.6064793581883382,
+    "null_mean": 0.6044668921263754,
+    "null_max": 0.6065569308446573,
+    "n_permutations": 20,
+    "n_days": 146959,
+    "n_paths": 821,
+    "at_chance": true,
+    "note": "the null permutes SEED labels, not day labels (e4_0/power.json PP4), and the classifier is REFITTED on each permutation, so the null carries the same optimism the real fit does"
+   }
+  },
+  "D": {
+   "n_paths": 500,
+   "n_accepted": 419,
+   "n_rejected": 81,
+   "rejection_rate": 0.162,
+   "reasons": {
+    "sustained_bull": 81
+   },
+   "i_realised_x": {
+    "path_mean_x_p10_p50_p90": [
+     -0.04008635669389682,
+     0.003949311114208825,
+     0.0397144516826429
+    ],
+    "sd_x_median": 0.04672837830699855,
+    "sd_x_median_accepted": 0.046741440259037606,
+    "V_growth_median": 1.4788167514279489
+   },
+   "ii_selection": {
+    "null_floor": {
+     "median_upper_limit_under_the_null": 0.20027328442205133,
+     "n_accepted": 419,
+     "n_rejected": 81,
+     "D0": 0.1,
+     "attainable": false,
+     "meaning": "the bootstrap 95 % upper limit of the KS distance between two samples drawn from the SAME distribution at these sample sizes; if it already exceeds D0 the registered equivalence bound cannot be met by any result and the verdict is UNDECIDABLE, not FAIL"
+    },
+    "sd_r": {
+     "ks": 0.08138130174725233,
+     "upper95": 0.1855593859571584,
+     "passes": false
+    },
+    "acf1": {
+     "ks": 0.06031409293143583,
+     "upper95": 0.18178054745278283,
+     "passes": false
+    },
+    "iv_mean": {
+     "ks": 0.18736556763605294,
+     "upper95": 0.2857391201862165,
+     "passes": false
+    },
+    "status": "TESTED",
+    "verdict": "UNDECIDABLE at n_acc = 419 / n_rej = 81: the equivalence bound 0.1 is below the null floor 0.200"
+   },
+   "iii_discrimination": {
+    "accuracy": 0.5359906626707437,
+    "majority_class": 0.544069640914037,
+    "null_p95_seed_permutation": 0.5389745351092091,
+    "null_mean": 0.5355858019100188,
+    "null_max": 0.5394192132570622,
+    "n_permutations": 20,
+    "n_days": 164501,
+    "n_paths": 919,
+    "at_chance": true,
+    "note": "the null permutes SEED labels, not day labels (e4_0/power.json PP4), and the classifier is REFITTED on each permutation, so the null carries the same optimism the real fit does"
+   }
+  }
+ },
+ "seconds": 404.8
+}

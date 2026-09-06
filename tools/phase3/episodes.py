@@ -60,8 +60,11 @@ def _rv(r: np.ndarray, lo: int, hi: int, min_n: int = 10) -> float:
     return float(np.mean(seg ** 2))
 
 
-def drawdown_episodes(p: np.ndarray) -> List[Dict]:
-    """Qualifying drawdown episodes on a price path (NaNs allowed; indices refer to the input array)."""
+def drawdown_episodes(p: np.ndarray, depth_thr: float = DD_DEPTH) -> List[Dict]:
+    """Qualifying drawdown episodes on a price path (NaNs allowed; indices refer to the input array).
+
+    v2.1 Phase 4 (E4.1) added `depth_thr` so the >= 20 % family can be built from the same code path; the
+    default is DD_DEPTH, so every Phase-3 call is bit-identical."""
     p = np.asarray(p, float)
     n = len(p)
     out = []
@@ -80,7 +83,7 @@ def drawdown_episodes(p: np.ndarray) -> List[Dict]:
                 trough_i = j
             j += 1
         depth = p[trough_i] / p[peak_i] - 1.0 if np.isfinite(p[trough_i]) and np.isfinite(p[peak_i]) else np.nan
-        if np.isfinite(depth) and depth <= DD_DEPTH:
+        if np.isfinite(depth) and depth <= depth_thr:
             out.append({"peak": peak_i, "trough": trough_i, "recovery": j if j < n else None, "depth": float(depth)})
         peak_i = j if j < n else peak_i
         i = j + 1
@@ -199,3 +202,245 @@ def rise_decay(ep: Dict, p: np.ndarray, r: np.ndarray, rv_calm: float) -> Option
             "rv_peak_over_calm": float(rv_peak / rv_calm),
             "decay_half_life": (int(decay) if decay is not None else None), "censored": bool(censored),
             "stress_spell": spell}
+
+
+# ---------------------------------------------------------------------------------------------------
+# v2.1 Phase 4 (E4.1) additions.  Everything above is unchanged, so Phase 3's results reproduce exactly.
+# PREREG_PHASE_4.md section 3.  One code path still measures the panel and the generator.
+# ---------------------------------------------------------------------------------------------------
+
+import math as _math
+
+# Pagan-Sossounov censoring constants, scaled to DAILY data at 21 trading days per month.
+# NOTE: Pagan & Sossounov's own 25/15-month durations were NOT read from the paper and are not used or
+# quoted anywhere.  These are this phase's stated choices; E4.1 reports the whole table at both settings.
+PS_SETTINGS = {
+    "primary":   {"window": 168, "min_phase": 126, "min_cycle": 336},   # 8 / 6 / 16 months at 21 d/month
+    "sensitive": {"window": 84,  "min_phase": 63,  "min_cycle": 168},   # half of each
+}
+
+
+def pagan_sossounov(logp: np.ndarray, window: int = 168, min_phase: int = 126,
+                    min_cycle: int = 336) -> List[Dict]:
+    """Bry-Boschan / Pagan-Sossounov turning-point dating on a daily log-price series.
+
+    Returns an alternating list of {"type": "peak"|"trough", "i": index}.  Steps: (1) candidate extrema over
+    a +/- `window` neighbourhood; (2) alternation enforced by keeping the more extreme of consecutive
+    same-type points; (3) phases shorter than `min_phase` and cycles shorter than `min_cycle` removed;
+    (4) turning points within `window` of either end censored."""
+    lp = np.asarray(logp, float)
+    n = len(lp)
+    if n < 2 * window + 2:
+        return []
+    cand = []
+    for t in range(window, n - window):
+        if not np.isfinite(lp[t]):
+            continue
+        seg = lp[t - window:t + window + 1]
+        if not np.isfinite(seg).any():
+            continue
+        if lp[t] >= np.nanmax(seg):
+            cand.append({"type": "peak", "i": t})
+        elif lp[t] <= np.nanmin(seg):
+            cand.append({"type": "trough", "i": t})
+    if not cand:
+        return []
+
+    def _alternate(seq):
+        merged = []
+        for c in seq:
+            if merged and merged[-1]["type"] == c["type"]:
+                keep_new = (lp[c["i"]] > lp[merged[-1]["i"]]) if c["type"] == "peak" \
+                    else (lp[c["i"]] < lp[merged[-1]["i"]])
+                if keep_new:
+                    merged[-1] = c
+            else:
+                merged.append(c)
+        return merged
+
+    alt = _alternate(cand)
+    changed = True
+    while changed and len(alt) > 2:
+        changed = False
+        for k in range(1, len(alt)):
+            if alt[k]["i"] - alt[k - 1]["i"] < min_phase:
+                a, b = alt[k - 1], alt[k]
+                # drop the less extreme of the too-short pair
+                if b["type"] == "peak":
+                    drop = k if lp[b["i"]] <= lp[a["i"]] else k - 1
+                else:
+                    drop = k if lp[b["i"]] >= lp[a["i"]] else k - 1
+                alt.pop(drop)
+                alt = _alternate(alt)
+                changed = True
+                break
+        if changed:
+            continue
+        for k in range(2, len(alt)):
+            if alt[k]["i"] - alt[k - 2]["i"] < min_cycle:
+                alt.pop(k - 1)
+                alt = _alternate(alt)
+                changed = True
+                break
+    return [c for c in alt if window <= c["i"] < n - window]
+
+
+def ps_bear_episodes(p: np.ndarray, **kw) -> List[Dict]:
+    """Peak-to-trough bear phases from the Pagan-Sossounov dating, in the same dict shape as
+    `drawdown_episodes` so every downstream statistic takes either family."""
+    pa = np.asarray(p, float)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        lp = np.log(pa)
+    tp = pagan_sossounov(lp, **kw)
+    out = []
+    for a, b in zip(tp, tp[1:]):
+        if a["type"] == "peak" and b["type"] == "trough":
+            out.append({"peak": a["i"], "trough": b["i"], "recovery": None,
+                        "depth": float(pa[b["i"]] / pa[a["i"]] - 1.0)})
+    return out
+
+
+def deterioration_length(ep: Dict, p: np.ndarray, thr: float = 0.10):
+    """Days from the episode peak to the first day the price is `thr` below it -- the ONSET of E3.3's
+    rise-time estimator.  This is the quantity E4.2 draws `det_len` from."""
+    peak, trough = ep["peak"], ep["trough"]
+    if not np.isfinite(p[peak]):
+        return None
+    lim = (1.0 - thr) * p[peak]
+    for t in range(peak + 1, trough + 1):
+        if np.isfinite(p[t]) and p[t] <= lim:
+            return int(t - peak)
+    return None
+
+
+def front_loading(ep: Dict, p: np.ndarray):
+    """Share of the episode's total LOG decline completed in the first third of peak -> trough."""
+    peak, trough = ep["peak"], ep["trough"]
+    n = trough - peak
+    if n < 3 or not (np.isfinite(p[peak]) and np.isfinite(p[trough])) or p[peak] <= 0 or p[trough] <= 0:
+        return None
+    total = _math.log(p[trough]) - _math.log(p[peak])
+    if total >= 0:
+        return None
+    t3 = peak + n // 3
+    if not np.isfinite(p[t3]) or p[t3] <= 0:
+        return None
+    return float((_math.log(p[t3]) - _math.log(p[peak])) / total)
+
+
+def recovery_shares(ep: Dict, p: np.ndarray, horizons=(60, 120, 200)) -> Dict:
+    """Share of the peak-to-trough fall recovered k days after the trough (1.0 = back to the peak)."""
+    peak, trough = ep["peak"], ep["trough"]
+    out = {}
+    denom = p[peak] - p[trough]
+    for k in horizons:
+        t = trough + k
+        if t >= len(p) or not np.isfinite(denom) or denom <= 0 or not np.isfinite(p[t]):
+            out["rec%d" % k] = None
+        else:
+            out["rec%d" % k] = float((p[t] - p[trough]) / denom)
+    return out
+
+
+def runup_outcome(ep: Dict, p: np.ndarray, horizon: int = 200, drop_thr: float = -0.40) -> Dict:
+    """What happened after a run-up top: the deepest drawdown within `horizon` days, when it bottomed, and
+    whether it qualifies as a crash.  GSY use -40 % within two years; both the threshold and the horizon are
+    parameters and both are stated wherever the number is used (here the horizon is the benchmark's 200 d)."""
+    tau = ep["top"]
+    hi = min(tau + horizon, len(p) - 1)
+    if hi <= tau or not np.isfinite(p[tau]) or p[tau] <= 0:
+        return {"post_drop": None, "post_len": None, "topped": None}
+    seg = np.asarray(p, float)[tau:hi + 1]
+    if not np.isfinite(seg).any():
+        return {"post_drop": None, "post_len": None, "topped": None}
+    j = int(np.nanargmin(seg))
+    drop = float(seg[j] / p[tau] - 1.0)
+    return {"post_drop": drop, "post_len": int(j), "topped": bool(drop <= drop_thr),
+            "horizon": int(horizon), "drop_thr": float(drop_thr)}
+
+
+def clean_runup_calm(ep: Dict, r: np.ndarray, win: int = W_CALM, gap: int = 0):
+    """E4.0c's finding: E3.3's run-up 'calm' window (120 d BEFORE the 504-day argmin) sits at a post-crash
+    trough and has sd 0.0413 against the drawdown family's 0.0217, so it cannot serve as that population's
+    calm reference.  This is the corrected reference: the 120 d immediately AFTER the run-up's start (the
+    argmin), i.e. the quiet beginning of the run-up itself rather than the crash that preceded it."""
+    start = ep["start"]
+    return _rv(r, start + gap, start + gap + win, min_n=MIN_CALM)
+
+
+# ------------------------------------------------------------------ LPPLS (Filimonov & Sornette 2013)
+
+def _lppls_sse(tc, m, om, t, y):
+    """Linear sub-problem: given (tc, m, omega) the four linear parameters are an exact least-squares solve.
+    Returns (sse, beta)."""
+    dt = tc - t
+    if np.any(dt <= 1e-8):
+        return np.inf, None
+    f = dt ** m
+    ln = np.log(dt)
+    X = np.column_stack([np.ones_like(t), f, f * np.cos(om * ln), f * np.sin(om * ln)])
+    if not np.isfinite(X).all():
+        return np.inf, None
+    try:
+        beta, *_ = np.linalg.lstsq(X, y, rcond=None)
+    except np.linalg.LinAlgError:
+        return np.inf, None
+    res = y - X @ beta
+    return float(res @ res), beta
+
+
+def lppls_fit(logp: np.ndarray, i0: int, i1: int, n_restarts: int = 20, seed: int = 0,
+              tc_max_ahead: int = 63):
+    """Filimonov-Sornette linearised LPPLS calibration on the window [i0, i1] of a log-price series.
+
+        log P(t) = A + B (tc-t)^m + C1 (tc-t)^m cos(w ln(tc-t)) + C2 (tc-t)^m sin(w ln(tc-t))
+
+    (tc, m, w) are searched by Nelder-Mead from `n_restarts` random starts with a fixed seed; the four linear
+    parameters are solved exactly at each evaluation.  Search bounds m in (0.01, 0.99), w in [1, 20],
+    tc in (end, end + tc_max_ahead], as PREREG_PHASE_4.md section 3 registers.
+
+    Returns the best fit plus the ACROSS-RESTART spread of m and w -- the registered stability DIAGNOSTIC,
+    never a filter: population statistics are reported over all episodes and over stable ones separately."""
+    from scipy.optimize import minimize
+    y = np.asarray(logp, float)[i0:i1 + 1]
+    if len(y) < 40 or not np.isfinite(y).all():
+        return None
+    t = np.arange(len(y), dtype=float)
+    T = float(len(y) - 1)
+    rng = np.random.default_rng(seed)
+    best, ms, ws = None, [], []
+    for _ in range(n_restarts):
+        x0 = np.array([T + rng.uniform(1.0, tc_max_ahead), rng.uniform(0.05, 0.95), rng.uniform(2.0, 15.0)])
+
+        def obj(z):
+            tc, m, om = z
+            if not (T + 0.5 <= tc <= T + tc_max_ahead and 0.01 <= m <= 0.99 and 1.0 <= om <= 20.0):
+                return 1e12
+            s, _ = _lppls_sse(tc, m, om, t, y)
+            return s if np.isfinite(s) else 1e12
+
+        r = minimize(obj, x0, method="Nelder-Mead",
+                     options={"maxiter": 600, "xatol": 1e-4, "fatol": 1e-12})
+        if not np.isfinite(r.fun) or r.fun >= 1e11:
+            continue
+        ms.append(float(r.x[1]))
+        ws.append(float(r.x[2]))
+        if best is None or r.fun < best["sse"]:
+            best = {"sse": float(r.fun), "tc": float(r.x[0]), "m": float(r.x[1]), "omega": float(r.x[2])}
+    if best is None or len(ms) < 3:
+        return None
+    sse, beta = _lppls_sse(best["tc"], best["m"], best["omega"], t, y)
+    tss = float(((y - y.mean()) ** 2).sum())
+    best.update({
+        "n_days": int(len(y)), "n_converged": int(len(ms)),
+        "r2": float(1.0 - sse / tss) if tss > 0 else float("nan"),
+        "m_iqr": float(np.percentile(ms, 75) - np.percentile(ms, 25)),
+        "omega_iqr": float(np.percentile(ws, 75) - np.percentile(ws, 25)),
+        "m_median_restarts": float(np.median(ms)), "omega_median_restarts": float(np.median(ws)),
+        "tc_days_past_end": float(best["tc"] - T),
+        # the LPPLS crash hazard is h(t) ~ (tc - t)^(m-1); at the window end that is the comparable number
+        "hazard_at_end": float(max(best["tc"] - T, 1e-6) ** (best["m"] - 1.0)),
+        "B": float(beta[1]) if beta is not None else None,
+    })
+    best["stable"] = bool(best["m_iqr"] < 0.10 and best["omega_iqr"] < 2.0)
+    return best

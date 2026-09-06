@@ -1,0 +1,473 @@
+{
+ "what": "E4.19: the inherited criteria re-registered against what the generator can express, plus the two untested claims behind section 5.1's D5 recommendation.",
+ "design": {
+  "source": "e4_6/crash_*.csv (stored per-path output, no regeneration)",
+  "n_boot": 2000,
+  "cluster": "seed"
+ },
+ "panel_box": {
+  "depth": [
+   -0.5377399912689986,
+   -0.3116568464421427
+  ],
+  "duration": [
+   22.0,
+   113.0
+  ]
+ },
+ "panel_family": {
+  "n_episodes": 642,
+  "n_stocks": 313,
+  "selection": "peak-to-trough duration <= 126 trading days -- the sub-population that FITS a 200-day benchmark horizon; this is a selection and is stated as one (Phase 3 called it the fast-crash secondary population and set the rise-time target on it)"
+ },
+ "panel_self_coverage": {
+  "value": 0.6433021806853583,
+  "ci95": [
+   0.6074376947040498,
+   0.6791277258566978
+  ],
+  "n": 642,
+  "note": "dd30_fast is ALREADY duration-restricted to <= 126 d, i.e. the coverage box is window-matched on duration before any of this. The 0.643 is not a horizon artefact -- it is what a P10-P90 box on TWO correlated quantities captures."
+ },
+ "pairwise_coverage": {
+  "A_lam0.02 - A_lam0.05": {
+   "value": -0.006084951784078585,
+   "ci95": [
+    -0.055727745590443675,
+    0.046160623203190136
+   ],
+   "separable": false
+  },
+  "A_lam0.02 - A_lam0.1": {
+   "value": -0.0458795602564791,
+   "ci95": [
+    -0.09441843968169521,
+    0.00027370080584919937
+   ],
+   "separable": false
+  },
+  "A_lam0.02 - A_lam0.25": {
+   "value": -0.08815842182338762,
+   "ci95": [
+    -0.1369081509354663,
+    -0.037151539628440276
+   ],
+   "separable": true
+  },
+  "A_lam0.02 - B_shifted_pstar": {
+   "value": -0.04716325730397586,
+   "ci95": [
+    -0.09797870592274062,
+    0.0037624200536582205
+   ],
+   "separable": false
+  },
+  "A_lam0.02 - C_scripted_no_feedback": {
+   "value": 0.012190459874589776,
+   "ci95": [
+    -0.03568663935115347,
+    0.06109704621270884
+   ],
+   "separable": false
+  },
+  "A_lam0.02 - D_unscripted_regime": {
+   "value": 0.15053177647602844,
+   "ci95": [
+    0.09711800738739651,
+    0.19867640919362048
+   ],
+   "separable": true
+  },
+  "A_lam0.05 - A_lam0.1": {
+   "value": -0.03979460847240052,
+   "ci95": [
+    -0.0911745827984596,
+    0.010269576379974334
+   ],
+   "separable": false
+  },
+  "A_lam0.05 - A_lam0.25": {
+   "value": -0.08207347003930904,
+   "ci95": [
+    -0.12839772326684273,
+    -0.03305989643956979
+   ],
+   "separable": true
+  },
+  "A_lam0.05 - B_shifted_pstar": {
+   "value": -0.041078305519897274,
+   "ci95": [
+    -0.08985879332477542,
+    0.007702182284980763
+   ],
+   "separable": false
+  },
+  "A_lam0.05 - C_scripted_no_feedback": {
+   "value": 0.01827541165866836,
+   "ci95": [
+    -0.029838324863717645,
+    0.06789134685365694
+   ],
+   "separable": false
+  },
+  "A_lam0.05 - D_unscripted_regime": {
+   "value": 0.15661672826010703,
+   "ci95": [
+    0.10699202477137111,
+    0.20888471945436232
+   ],
+   "separable": true
+  },
+  "A_lam0.1 - A_lam0.25": {
+   "value": -0.04227886156690852,
+   "ci95": [
+    -0.09275226642367326,
+    0.010682205165383908
+   ],
+   "separable": false
+  },
+  "A_lam0.1 - B_shifted_pstar": {
+   "value": -0.0012836970474967568,
+   "ci95": [
+    -0.05006418485237485,
+    0.04878048780487809
+   ],
+   "separable": false
+  },
+  "A_lam0.1 - C_scripted_no_feedback": {
+   "value": 0.05807002013106888,
+   "ci95": [
+    0.008453281621282054,
+    0.10498922754855639
+   ],
+   "separable": true
+  },
+  "A_lam0.1 - D_unscripted_regime": {
+   "value": 0.19641133673250755,
+   "ci95": [
+    0.14978469158088142,
+    0.2482898576556316
+   ],
+   "separable": true
+  },
+  "A_lam0.25 - B_shifted_pstar": {
+   "value": 0.040995164519411764,
+   "ci95": [
+    -0.013037090863136674,
+    0.09027100640518244
+   ],
+   "separable": false
+  },
+  "A_lam0.25 - C_scripted_no_feedback": {
+   "value": 0.1003488816979774,
+   "ci95": [
+    0.051776102900646555,
+    0.15008020874538763
+   ],
+   "separable": true
+  },
+  "A_lam0.25 - D_unscripted_regime": {
+   "value": 0.23869019829941607,
+   "ci95": [
+    0.18910046800499006,
+    0.2873447317868377
+   ],
+   "separable": true
+  },
+  "B_shifted_pstar - C_scripted_no_feedback": {
+   "value": 0.059353717178565635,
+   "ci95": [
+    0.011502624429445649,
+    0.10681680888016311
+   ],
+   "separable": true
+  },
+  "B_shifted_pstar - D_unscripted_regime": {
+   "value": 0.1976950337800043,
+   "ci95": [
+    0.1464506819522055,
+    0.2494529592345601
+   ],
+   "separable": true
+  },
+  "C_scripted_no_feedback - D_unscripted_regime": {
+   "value": 0.13834131660143867,
+   "ci95": [
+    0.0877368867657689,
+    0.1882691251804785
+   ],
+   "separable": true
+  }
+ },
+ "arms": {
+  "A_lam0.02": {
+   "n": 1000,
+   "n_measurable": 789,
+   "share_no_measurable_episode": 0.21099999999999997,
+   "coverage": 0.4740177439797212,
+   "coverage_ci95": [
+    0.4384980988593156,
+    0.5082382762991128
+   ],
+   "fail_depth_only": 0.3688212927756654,
+   "fail_duration_only": 0.08365019011406843,
+   "fail_both": 0.07351077313054499,
+   "depth_median": -0.5228972277961246,
+   "duration_median": 72.0,
+   "rise_median": 60.0,
+   "script_share_median": 0.0466569673247781,
+   "script_share_ci95": [
+    0.04392740823618534,
+    0.04836114098994005
+   ],
+   "vs_unscripted_null": {
+    "value": 0.016774114746516702,
+    "ci95": [
+     0.013813747945426847,
+     0.018995518686194965
+    ],
+    "separable": true
+   },
+   "vs_panel_self_coverage": {
+    "panel": 0.6433021806853583,
+    "below_panel_and_separable": true,
+    "ci_overlaps_panel": false
+   }
+  },
+  "A_lam0.05": {
+   "n": 1000,
+   "n_measurable": 779,
+   "share_no_measurable_episode": 0.22099999999999997,
+   "coverage": 0.48010269576379977,
+   "coverage_ci95": [
+    0.4454428754813864,
+    0.5160462130937099
+   ],
+   "fail_depth_only": 0.355584082156611,
+   "fail_duration_only": 0.08087291399229782,
+   "fail_both": 0.0834403080872914,
+   "depth_median": -0.5221298411378412,
+   "duration_median": 74.0,
+   "rise_median": 59.0,
+   "script_share_median": 0.061949535026275745,
+   "script_share_ci95": [
+    0.0594633885426802,
+    0.06488214712492166
+   ],
+   "vs_unscripted_null": {
+    "value": 0.03206668244801435,
+    "ci95": [
+     0.029584321661662676,
+     0.035273035514312295
+    ],
+    "separable": true
+   },
+   "vs_panel_self_coverage": {
+    "panel": 0.6433021806853583,
+    "below_panel_and_separable": true,
+    "ci_overlaps_panel": false
+   }
+  },
+  "A_lam0.1": {
+   "n": 1000,
+   "n_measurable": 779,
+   "share_no_measurable_episode": 0.22099999999999997,
+   "coverage": 0.5198973042362003,
+   "coverage_ci95": [
+    0.48263799743260594,
+    0.5545571245186136
+   ],
+   "fail_depth_only": 0.31835686777920413,
+   "fail_duration_only": 0.08600770218228498,
+   "fail_both": 0.07573812580231065,
+   "depth_median": -0.5137797525299743,
+   "duration_median": 74.0,
+   "rise_median": 59.0,
+   "script_share_median": 0.0803044193868532,
+   "script_share_ci95": [
+    0.0764257741408909,
+    0.08373557772298446
+   ],
+   "vs_unscripted_null": {
+    "value": 0.050421566808591806,
+    "ci95": [
+     0.046606603965120154,
+     0.053989464696546266
+    ],
+    "separable": true
+   },
+   "vs_panel_self_coverage": {
+    "panel": 0.6433021806853583,
+    "below_panel_and_separable": true,
+    "ci_overlaps_panel": false
+   }
+  },
+  "A_lam0.25": {
+   "n": 1000,
+   "n_measurable": 772,
+   "share_no_measurable_episode": 0.22799999999999998,
+   "coverage": 0.5621761658031088,
+   "coverage_ci95": [
+    0.5272020725388601,
+    0.5971826424870464
+   ],
+   "fail_depth_only": 0.2823834196891192,
+   "fail_duration_only": 0.08290155440414508,
+   "fail_both": 0.07253886010362694,
+   "depth_median": -0.5087583364400986,
+   "duration_median": 76.0,
+   "rise_median": 58.0,
+   "script_share_median": 0.13036170399761476,
+   "script_share_ci95": [
+    0.1264046070324448,
+    0.1339968492579904
+   ],
+   "vs_unscripted_null": {
+    "value": 0.10047885141935337,
+    "ci95": [
+     0.09631700564359909,
+     0.10429671629477083
+    ],
+    "separable": true
+   },
+   "vs_panel_self_coverage": {
+    "panel": 0.6433021806853583,
+    "below_panel_and_separable": true,
+    "ci_overlaps_panel": false
+   }
+  },
+  "B_shifted_pstar": {
+   "n": 1000,
+   "n_measurable": 779,
+   "share_no_measurable_episode": 0.22099999999999997,
+   "coverage": 0.521181001283697,
+   "coverage_ci95": [
+    0.4852374839537869,
+    0.558408215661104
+   ],
+   "fail_depth_only": 0.3055198973042362,
+   "fail_duration_only": 0.10783055198973042,
+   "fail_both": 0.06546854942233633,
+   "depth_median": -0.5008877877340676,
+   "duration_median": 71.0,
+   "rise_median": 60.0,
+   "script_share_median": 0.039029964429456554,
+   "script_share_ci95": [
+    0.0378763105638357,
+    0.04076787427830305
+   ],
+   "vs_unscripted_null": {
+    "value": 0.009147111851195155,
+    "ci95": [
+     0.007351179644512966,
+     0.011211817320689427
+    ],
+    "separable": true
+   },
+   "vs_panel_self_coverage": {
+    "panel": 0.6433021806853583,
+    "below_panel_and_separable": true,
+    "ci_overlaps_panel": false
+   }
+  },
+  "C_scripted_no_feedback": {
+   "n": 1000,
+   "n_measurable": 799,
+   "share_no_measurable_episode": 0.20099999999999996,
+   "coverage": 0.4618272841051314,
+   "coverage_ci95": [
+    0.4267834793491865,
+    0.4956195244055069
+   ],
+   "fail_depth_only": 0.3954943679599499,
+   "fail_duration_only": 0.07634543178973717,
+   "fail_both": 0.06633291614518148,
+   "depth_median": -0.5277108081233723,
+   "duration_median": 70.0,
+   "rise_median": 56.0,
+   "script_share_median": 0.0136496841771453,
+   "script_share_ci95": [
+    0.01170691766307395,
+    0.01577391047658717
+   ],
+   "vs_unscripted_null": {
+    "value": -0.016233168401116098,
+    "ci95": [
+     -0.01845662156610378,
+     -0.014031689074135241
+    ],
+    "separable": true
+   },
+   "vs_panel_self_coverage": {
+    "panel": 0.6433021806853583,
+    "below_panel_and_separable": true,
+    "ci_overlaps_panel": false
+   }
+  },
+  "D_unscripted_regime": {
+   "n": 1000,
+   "n_measurable": 677,
+   "share_no_measurable_episode": 0.32299999999999995,
+   "coverage": 0.32348596750369274,
+   "coverage_ci95": [
+    0.2909527326440177,
+    0.35893648449039883
+   ],
+   "fail_depth_only": 0.4874446085672083,
+   "fail_duration_only": 0.06646971935007386,
+   "fail_both": 0.12259970457902511,
+   "depth_median": -0.5582251124180502,
+   "duration_median": 84.0,
+   "rise_median": 57.0,
+   "script_share_median": 0.0298828525782614,
+   "script_share_ci95": [
+    0.02862118349523524,
+    0.03110993492731992
+   ],
+   "vs_unscripted_null": {
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "separable": false,
+    "note": "this arm IS the null"
+   },
+   "vs_panel_self_coverage": {
+    "panel": 0.6433021806853583,
+    "below_panel_and_separable": true,
+    "ci_overlaps_panel": false
+   }
+  }
+ },
+ "window_reach": {
+  "setup_p10": 56.0,
+  "setup_p50": 81.0,
+  "setup_p90": 104.0,
+  "event_p10": 24.0,
+  "event_p50": 49.0,
+  "event_p90": 94.0,
+  "headroom_p50": 109.0,
+  "panel_duration_p90": 113.0,
+  "panel_episodes_that_fit_a_median_setup": 0.8707165109034268,
+  "panel_episodes_that_fit_the_p90_setup": 0.735202492211838
+ },
+ "ks_bound": {
+  "registered_bound": 0.1,
+  "achieved": {
+   "n_acc": 419,
+   "n_rej": 81
+  },
+  "floor_at_achieved_n": 0.15887769233035748,
+  "floor_vs_n_rej": {
+   "81": 0.15887769233035748,
+   "200": 0.10485869565217393,
+   "400": 0.07349420009666498,
+   "800": 0.05197429313678101,
+   "1600": 0.03673832608433009,
+   "3200": 0.026108951171992946,
+   "6400": 0.018653156716305182
+  },
+  "n_rej_needed_for_bound": 400
+ }
+}

@@ -69,7 +69,12 @@ FACTOR_DEFAULTS = {
     "wording": "rewritten", "track": "B", "start_design": "target", "action_interface": "target",
     "cost_bp": 5.0, "cost_visible": False, "execution": "same_day", "disclose_horizon": False,
     "field_order": "canonical", "probe_every": 0, "temperature": 0.2,
+    # v2.1 Phase 4 (E4.7a): simulation/runner_v2.py has always supported `ordering`, but the arm grid had no
+    # ordering factor, so every LLM cell ever run used setup_first.  It is a factor now, and
+    # tests/test_v2_1_phase_4.py::test_arm_grid_has_ordering_factor locks it.
+    "ordering": "setup_first",
 }
+ORDERINGS = ("setup_first", "event_first", "phase_free")
 # the 100%-cash / v1-interface bridge cell to v1 (plan 8.6)
 BRIDGE_CELL = {"start_design": "v1", "action_interface": "v1", "wording": "original", "cost_bp": 0.0}
 
@@ -120,15 +125,22 @@ def main():
     ap.add_argument("--probe_every", type=int, default=0)
     ap.add_argument("--three_asset", action="store_true", help="run the 3-asset extension configuration")
     ap.add_argument("--context_window", type=int, default=20)
+    ap.add_argument("--orderings", nargs="+", default=["setup_first"],
+                    help="E4.7a: the ordering factor now enters the grid (setup_first / event_first / phase_free)")
     a = ap.parse_args()
+    for o in a.orderings:
+        if o not in ORDERINGS:
+            raise SystemExit(f"unknown ordering {o!r}; known: {ORDERINGS}")
     factors = {"track": a.track, "start_design": a.start, "wording": a.wording, "cost_bp": a.cost_bp,
                "cost_visible": a.cost_visible, "disclose_horizon": a.disclose, "field_order": a.field_order,
                "execution": a.execution, "probe_every": a.probe_every}
     extra = dict(T=a.T, output_dir=a.out, context_window=a.context_window)
     if a.three_asset:
         extra.update(THREE_ASSET)
-    cfgs = expand_grid(a.models, a.personas, a.arms, a.scenarios, a.seeds, a.reps, a.discounts, factors,
-                       bridge=a.bridge, **extra)
+    cfgs = []
+    for o in a.orderings:
+        cfgs += expand_grid(a.models, a.personas, a.arms, a.scenarios, a.seeds, a.reps, a.discounts,
+                            {**factors, "ordering": o}, bridge=a.bridge, **extra)
     done = set()
     ck = os.path.join(a.out, "checkpoint.txt")
     if os.path.exists(ck):

@@ -1,0 +1,135 @@
+{
+ "design": {
+  "n_assets": 3,
+  "seeds": 60,
+  "seed0": 340000,
+  "schedule_mode": "v21",
+  "statistic": "share of the 3 assets inside a >= 30 % running-peak drawdown, averaged over days and over paths -- the same definition E4.1 uses on the panel",
+  "panel": {
+   "mean_share_all_days": 0.2364552625668586,
+   "p90": 0.47961630695443647,
+   "max": 0.8896882494004796,
+   "n_names": 417
+  }
+ },
+ "arms": {
+  "crash_shared_event_v2": {
+   "scenario": "crash",
+   "config": {},
+   "mean_share": 0.39977777777777773,
+   "ci95": [
+    0.36657777777777784,
+    0.43291736111111107
+   ],
+   "all_three_together": 0.23133333333333336,
+   "n_paths": 60
+  },
+  "crash_per_asset_load1.0": {
+   "scenario": "crash",
+   "config": {
+    "ma_per_asset_events": true,
+    "ma_common_loading": 1.0
+   },
+   "mean_share": 0.39977777777777773,
+   "ci95": [
+    0.36657777777777784,
+    0.43291736111111107
+   ],
+   "all_three_together": 0.23133333333333336,
+   "n_paths": 60
+  },
+  "crash_per_asset_load0.5": {
+   "scenario": "crash",
+   "config": {
+    "ma_per_asset_events": true,
+    "ma_common_loading": 0.5
+   },
+   "mean_share": 0.40047222222222223,
+   "ci95": [
+    0.3695812499999999,
+    0.43127986111111105
+   ],
+   "all_three_together": 0.2001666666666667,
+   "n_paths": 60
+  },
+  "crash_per_asset_load0.0": {
+   "scenario": "crash",
+   "config": {
+    "ma_per_asset_events": true,
+    "ma_common_loading": 0.0
+   },
+   "mean_share": 0.4001111111111111,
+   "ci95": [
+    0.3723874999999999,
+    0.42691805555555556
+   ],
+   "all_three_together": 0.17324999999999993,
+   "n_paths": 60
+  },
+  "crash_no_common_factor": {
+   "scenario": "crash",
+   "config": {
+    "rho_common": 0.0
+   },
+   "mean_share": 0.3829444444444445,
+   "ci95": [
+    0.35351805555555554,
+    0.41380902777777767
+   ],
+   "all_three_together": 0.19758333333333333,
+   "n_paths": 60
+  },
+  "flat_no_event": {
+   "scenario": "flat",
+   "config": {},
+   "mean_share": 0.053111111111111116,
+   "ci95": [
+    0.03516458333333333,
+    0.0721673611111111
+   ],
+   "all_three_together": 0.0,
+   "n_paths": 60
+  },
+  "flat_no_common_factor": {
+   "scenario": "flat",
+   "config": {
+    "rho_common": 0.0
+   },
+   "mean_share": 0.06247222222222222,
+   "ci95": [
+    0.04280208333333333,
+    0.08364166666666666
+   ],
+   "all_three_together": 0.0,
+   "n_paths": 60
+  }
+ },
+ "findings": {
+  "v2_loading_is_not_1.0": {
+   "measured": 0.39977777777777773,
+   "claimed_in_P4_16": 1.0,
+   "verdict": "REFUTED"
+  },
+  "per_asset_events_change_it": {
+   "shared": 0.39977777777777773,
+   "per_asset_loading_0": 0.4001111111111111,
+   "difference": -0.00033333333333335213,
+   "verdict": "NO -- the mechanism is implemented and switchable but does not move the statistic, because every asset is in the SAME SCENARIO and crashes whether or not it shares the schedule"
+  },
+  "what_does_drive_it": {
+   "crash": 0.39977777777777773,
+   "flat_no_event": 0.053111111111111116,
+   "crash_without_the_common_fundamental_factor": 0.3829444444444445,
+   "verdict": "the scripted EVENT drives it: 0.400 in crash against 0.053 in flat. The common fundamental factor is not the cause -- removing it leaves 0.383."
+  },
+  "population_mismatch": {
+   "generator_crash": 0.39977777777777773,
+   "generator_flat": 0.053111111111111116,
+   "panel_all_days": 0.2364552625668586,
+   "panel_p90": 0.47961630695443647,
+   "verdict": "P4-16 compared the generator's CRASH-conditional share with the panel's ALL-DAY mean. Those are different populations. The panel's all-day mean sits between the generator's flat and crash arms, and the panel's p90 (0.480) is ABOVE the generator's crash arm (0.400)."
+  }
+ },
+ "consequence": "The per-asset mechanism stays implemented and switchable, labelled NOT ADOPTED, because measurement shows it does not do what P4-16 said it would. Making the generator's cross-sectional co-movement match the panel's would require SCENARIO heterogeneity across assets -- some assets not in an event at all -- which is a design change to the multi-asset extension and belongs with the Phase-9 multi-asset sensitivities, not with Phase 4's event block.",
+ "seconds": 97.0
+}

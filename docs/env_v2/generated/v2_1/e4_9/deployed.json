@@ -1,0 +1,144 @@
+{
+ "design": {
+  "purpose": "every Phase-4 number re-measured on the DEPLOYED state, no config overrides",
+  "seeds": 500,
+  "seed_bull": 280000,
+  "seed_crash": 281000,
+  "seed_sb": 282000,
+  "n_boot": 2000,
+  "deployed": {
+   "schedule_mode": "v21 (events.json present)",
+   "hazard": {
+    "mapping": "A_no_scaling",
+    "h0": 0.0006712028414084587,
+    "b": 5.418640710337168
+   },
+   "blowoff": {
+    "mode": "dynamic",
+    "g": 0.009843538730025459
+   },
+   "post_top": {
+    "mode": "decay",
+    "half_life": 40.0
+   },
+   "control": "C",
+   "dynamics": "A"
+  },
+  "why": "e4_3, e4_5 and e4_8 were produced BEFORE events.json existed and none of those tools pins schedule_mode, so all three ran under the v2 schedule; their numbers were nevertheless quoted as deployed properties"
+ },
+ "as_calibrated_vs_deployed": {
+  "hazard_topped_share": {
+   "as_calibrated_e4_3": 0.108,
+   "deployed": 0.002,
+   "deployed_ci95": [
+    0.0,
+    0.006
+   ],
+   "n": 500,
+   "panel_target": 0.10996563573883161,
+   "panel_ci95": [
+    0.09659468058657736,
+    0.12445840267323012
+   ],
+   "inside_panel_ci_as_calibrated": true,
+   "inside_panel_ci_deployed": false,
+   "topped_share_hazard_fired_deployed": 0.194,
+   "verdict": "DOES NOT HOLD ON THE DEPLOYED STATE -- the adopted mapping must be re-calibrated under the v21 schedule, not re-labelled"
+  },
+  "post_top_ratio": {
+   "as_calibrated_e4_8": 0.6185605994449727,
+   "half_life_in_force": 40.0,
+   "deployed": 0.7588859175302594,
+   "deployed_ci95": [
+    0.5475627482842687,
+    1.0510770750909728
+   ],
+   "n": 80,
+   "panel_target": 0.622465854404251,
+   "panel_ci95_on_ratio": [
+    0.5989812026943955,
+    0.648317426166373
+   ],
+   "verdict": "UNDECIDED AT THIS n -- the deployed estimate is 0.7589 [0.5476, 1.0511] on 80 contributing paths, and that interval CONTAINS the panel target 0.6225. The point sits outside the panel's own narrower CI, but this arm cannot resolve the difference; e4_11's 1500-seed search is the measurement that decides it.",
+   "deployed_ci_contains_panel_target": true,
+   "point_inside_panel_ci": false,
+   "n_paths_contributing": 80
+  },
+  "blowoff_ratio": {
+   "deployed": 1.2586585349875448,
+   "deployed_ci95": [
+    1.140760929725462,
+    1.3726629463294304
+   ],
+   "n": 495,
+   "panel_target": 1.289468405483722,
+   "blowoff_days_median": 60.0,
+   "share_of_paths_with_blowoff": 0.998,
+   "note": "the label is alive; the multiplier still sits at mania's value in volatility.json, so a ratio near 1.0 is the expected consequence and is what needs the closed loop"
+  },
+  "peak_pv": {
+   "deployed_median": 1.519111861665586,
+   "ci95": [
+    1.5054957502240196,
+    1.5314813841304973
+   ],
+   "as_calibrated_e4_3": 1.4924899013748691,
+   "status": "reported outcome, not a target (PREREG section 5)"
+  },
+  "top_day_offset": {
+   "n": 97,
+   "median": -3.0,
+   "share_nonzero": 0.9175257731958762
+  },
+  "bull_rejection_rate": 0.166,
+  "crash": {
+   "rise_median_deployed": 60.0,
+   "rise_ci95": [
+    55.0,
+    65.0
+   ],
+   "n": 403,
+   "rise_median_e4_2_pinned_arm": 58.0,
+   "rise_ci95_e4_2": [
+    52.0,
+    64.0
+   ],
+   "depth_deployed": -0.5060869788113671,
+   "depth_e4_2": -0.5032659692077375,
+   "duration_deployed": 78.0,
+   "duration_e4_2": 76.0,
+   "rejection_deployed": 0.03,
+   "rejection_e4_2": 0.04,
+   "panel_rise_ci": [
+    29.0,
+    35.0
+   ],
+   "consistency": "CONSISTENT with the pinned arm",
+   "criterion": "NOT MET"
+  },
+  "control": {
+   "definition_in_force": "C",
+   "v_threshold_in_force": 1.2,
+   "rejection_deployed": 0.336,
+   "rejection_e4_5": 0.358,
+   "sd_x_median_deployed": 0.023196076094707998,
+   "sd_x_median_e4_5": 0.02343277830513471,
+   "n_accepted": 332,
+   "n_rejected": 168,
+   "ks_sd_r": 0.40791738382099824,
+   "ks_iv": 0.29181009753298914,
+   "ks_sd_r_e4_5": 0.4744426460606693,
+   "ks_iv_e4_5": 0.4339442036930681
+  }
+ },
+ "undecided_at_this_n": [
+  "post_top_ratio"
+ ],
+ "summary": {
+  "entries_that_do_not_hold_on_the_deployed_state": [
+   "hazard_topped_share"
+  ],
+  "consequence": "each of these was adopted on a measurement taken under the v2 schedule and must be RE-CALIBRATED under the deployed schedule, not re-labelled"
+ },
+ "seconds": 121.4
+}

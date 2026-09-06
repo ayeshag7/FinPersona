@@ -1,0 +1,173 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4.md section 10; addendum section 2.5",
+  "seeds": 400,
+  "seed0": 260000,
+  "scenario": "bull_trap"
+ },
+ "panel_targets": {
+  "reference": "120 trading days AFTER the run-up's start (the quiet beginning of the run-up), replacing E3.3's window 120 d BEFORE the start, which sits at a post-crash trough",
+  "n_episodes": 3202,
+  "n_stocks": 398,
+  "mania": {
+   "ratio_to_clean_calm": 0.8691262588730276,
+   "ci95": [
+    0.8268894614910673,
+    0.9090488371672611
+   ],
+   "n": 3125
+  },
+  "blow-off": {
+   "ratio_to_clean_calm": 1.1207108511930355,
+   "ci95": [
+    1.0708262497165246,
+    1.1740193130690635
+   ],
+   "n": 3125
+  },
+  "post-top": {
+   "ratio_to_clean_calm": 0.5410014193145694,
+   "ci95": [
+    0.5205902918330466,
+    0.5634696991661701
+   ],
+   "n": 3122
+  },
+  "post_top_over_mania": 0.622465854404251,
+  "blowoff_over_mania": 1.289468405483722
+ },
+ "blowoff_threshold": {
+  "g_threshold": 0.009843538730025459,
+  "p10": 0.005904672684104176,
+  "p90": 0.02079977323059732,
+  "n": 3202,
+  "definition": "per-day drift of the panel's blow-off window: the largest trailing 20-day log return inside the run-up, divided by 20; median over run-ups",
+  "label": "FIT"
+ },
+ "blowoff": {
+  "g_threshold_fit": 0.009843538730025459,
+  "arms": {
+   "ex_post_v2": {
+    "ratios": {
+     "blow-off_over_mania": 1.0042199396314888,
+     "post-top_over_mania": 1.1896318233997645,
+     "mania_over_calm": 1.2690117795413212,
+     "blow-off_over_calm": 1.2743669326426337,
+     "post-top_over_calm": 1.509656797211522
+    },
+    "pooled_variances": {
+     "mania": 0.0005587553685437296,
+     "blow-off": 0.0005611132824677544,
+     "post-top": 0.0006647131679150844,
+     "calm": 0.0004403074719650666
+    },
+    "blowoff_days_median": 0.0,
+    "share_of_paths_with_blowoff": 0.0,
+    "n_paths": 300
+   },
+   "dynamic_FIT": {
+    "ratios": {
+     "blow-off_over_mania": 0.9839814176352991,
+     "post-top_over_mania": 1.1779760552903293,
+     "mania_over_calm": 1.2815683225746426,
+     "blow-off_over_calm": 1.2610394148434891,
+     "post-top_over_calm": 1.509656797211522
+    },
+    "pooled_variances": {
+     "mania": 0.0005642841082633519,
+     "blow-off": 0.0005552450767980436,
+     "post-top": 0.0006647131679150844,
+     "calm": 0.0004403074719650666
+    },
+    "blowoff_days_median": 62.0,
+    "share_of_paths_with_blowoff": 1.0,
+    "n_paths": 300
+   }
+  }
+ },
+ "topday": {
+  "n": 28,
+  "median_offset": -2.0,
+  "share_nonzero": 0.8928571428571429,
+  "p10_p90": [
+   -19.3,
+   1.0
+  ],
+  "reading": "offset = realised price peak minus the day the hazard fired; a non-zero distribution IS the off-by-one, measured rather than asserted"
+ },
+ "multi_asset": {
+  "common_loading": 0.2364552625668586,
+  "p90": 0.47961630695443647,
+  "max": 0.8896882494004796,
+  "n_names": 417,
+  "label": "FIT",
+  "definition": "share of live names inside a >= 30 % running-peak drawdown on each day; the common-factor loading E4.8 replaces the shared multi-asset event with",
+  "replaces": "the v2 multi-asset SHARED event (every asset in the same event on the same days), which forced a cross-sectional drawdown share of 1.0 where the panel's mean is 0.236 and whose maximum over 25 years is 0.890"
+ },
+ "seconds": 44.1,
+ "posttop": {
+  "target_post_top_over_mania": 0.622465854404251,
+  "target_source": "E4.1 corrected run-up calm reference",
+  "incumbent_measured_by_phase3": {
+   "ratio": 1.59,
+   "n": 20,
+   "reference": "E3.3's contaminated run-up calm"
+  },
+  "search": [
+   {
+    "half_life": 5,
+    "post_top_over_mania": 1.643002582405285
+   },
+   {
+    "half_life": 10,
+    "post_top_over_mania": 1.0903070839342794
+   },
+   {
+    "half_life": 20,
+    "post_top_over_mania": 0.7937821339231765
+   },
+   {
+    "half_life": 40,
+    "post_top_over_mania": 0.6462327961564095
+   },
+   {
+    "half_life": 45,
+    "post_top_over_mania": 0.6307149850213556
+   },
+   {
+    "half_life": 50,
+    "post_top_over_mania": 0.6185605994449727
+   },
+   {
+    "half_life": 55,
+    "post_top_over_mania": 0.6088219467392413
+   },
+   {
+    "half_life": 60,
+    "post_top_over_mania": 0.6008704283612055
+   },
+   {
+    "half_life": 80,
+    "post_top_over_mania": 0.5799472314413643
+   },
+   {
+    "half_life": 160,
+    "post_top_over_mania": 0.5521927598338958
+   }
+  ],
+  "best": {
+   "half_life": 50,
+   "ratio": 0.6185605994449727
+  },
+  "target_ci_on_ratio": [
+   0.5989812026943955,
+   0.648317426166373
+  ],
+  "v2_linear_arm": {
+   "post_top_over_mania": 1.2433021909276751,
+   "note": "the incumbent linear ramp, for the before/after column"
+  },
+  "verdict_vs_panel_ci": "MET",
+  "_old_verdict": "REPORTED"
+ }
+}

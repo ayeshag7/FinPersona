@@ -1,0 +1,119 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4.md section 6",
+  "seeds": 300,
+  "seed0": 270000,
+  "cap_max_share": 0.05,
+  "n_boot": 1000
+ },
+ "lppls_trigger": {
+  "rule": "supports a super-exponential mania drift iff the stable share >= 0.50 AND the median m is inside (0,1) with a CI excluding 1.0",
+  "stable_share": 0.32896,
+  "stable_share_ci95": [
+   0.31326359329789794,
+   0.3439671170333346
+  ],
+  "m_median": 0.9256240878304072,
+  "m_ci95": [
+   0.9000423332361321,
+   0.9533428595267885
+  ],
+  "m_ci_excludes_1": true,
+  "met": false,
+  "consequence": "E4.4 reports the LPPLS route as UNSUPPORTED and uses the scripted-drift alternative with its shape FIT from the run-up table -- the registered fallback, not a relaxed rule"
+ },
+ "route": "FALLBACK (scripted drift, shape FIT from the run-up table) -- the registered contingency, because the LPPLS stability clause failed",
+ "kappa_fit": {
+  "kappa": 1.0000000000000002e-06,
+  "panel_convexity_ratio_median": 0.6650696353496566,
+  "panel_convexity_p10_p90": [
+   0.2031244906646682,
+   1.706470022622804
+  ],
+  "median_runup_length": 418.0,
+  "n_runups": 2937,
+  "v2_range": [
+   0.02,
+   0.04
+  ],
+  "definition": "kappa solves ((1+k)^L - (1+k)^(2L/3)) / ((1+k)^(L/3) - 1) = the panel's median ratio of last-third to first-third log gain over [start, top]",
+  "label": "FIT"
+ },
+ "mania_length": {
+  "panel_runup_len_p10_p50_p90": [
+   126.10000000000002,
+   415.0,
+   500.0
+  ],
+  "share_longer_than_the_horizon": 0.8400999375390381,
+  "note": "the panel's run-ups have a median length of 415 trading days against a benchmark horizon of 200, so a mania length drawn from the panel is truncated on 84.0% of draws; the mania length is therefore a HORIZON artefact and is reported as such rather than as a fitted quantity",
+  "grid_if_untruncated": {
+   "grid": [
+    126.10000000000002,
+    155.0,
+    179.30000000000018,
+    205.17500000000007,
+    226.20000000000005,
+    256.0,
+    278.25,
+    290.2750000000001,
+    311.0,
+    326.0,
+    344.0,
+    358.0,
+    368.0,
+    380.0,
+    392.0,
+    404.0,
+    415.0,
+    422.0,
+    429.0,
+    436.5750000000003,
+    446.0,
+    452.0,
+    457.0,
+    462.0,
+    468.0,
+    473.0,
+    478.0,
+    482.0,
+    487.0,
+    491.0,
+    495.0,
+    498.0,
+    500.0
+   ]
+  }
+ },
+ "arms": {
+  "v2_kappa_uniform": {
+   "n_paths": 300,
+   "kappa_median": 0.030781531668031676,
+   "cap_binding_share_mean": 0.4760953879849769,
+   "cap_binding_upper95": 0.4898227680121881,
+   "cap_unnecessary": false,
+   "verdict": "CAP STILL BINDS",
+   "convex_share": 0.5166666666666667,
+   "convexity_ratio_median": 0.5883746794668334,
+   "mania_days_median": 119.0,
+   "topped_share": 0.10333333333333333
+  },
+  "v21_kappa_FIT": {
+   "n_paths": 300,
+   "kappa_median": 1.0000000000000002e-06,
+   "cap_binding_share_mean": 0.0,
+   "cap_binding_upper95": 0.0,
+   "cap_unnecessary": true,
+   "verdict": "CAP UNNECESSARY",
+   "convex_share": 0.49,
+   "convexity_ratio_median": -0.09245538113995341,
+   "mania_days_median": 122.0,
+   "topped_share": 0.07333333333333333
+  }
+ },
+ "amendment_A5": {
+  "revisited_with": "the LPPLS stability failure plus the cap-binding measurement above",
+  "conclusion": "the drift cap cannot be retired on the LPPLS route because that route is not supported by the panel; whether it is needed under the FIT kappa is answered by the cap-binding upper limit in the table"
+ },
+ "seconds": 86.4
+}

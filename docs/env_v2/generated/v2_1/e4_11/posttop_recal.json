@@ -1,0 +1,283 @@
+{
+ "design": {
+  "addendum": "PREREG_PHASE_4_ADDENDUM.md section 5.4",
+  "seeds": 1500,
+  "seed0": 300000,
+  "n_boot": 2000,
+  "schedule_mode": "v21 (pinned explicitly on every arm)",
+  "targets": {
+   "post_top_over_mania": 0.622465854404251,
+   "ratio_ci": [
+    0.5989812026943955,
+    0.648317426166373
+   ],
+   "topped_share": 0.10996563573883161,
+   "topped_ci": [
+    0.09659468058657736,
+    0.12445840267323012
+   ]
+  }
+ },
+ "panel_fit": {
+  "drop_p10_p50_p90": [
+   0.0614303675354166,
+   0.1686283703295844,
+   0.4135592117543186
+  ],
+  "len_p10_p50_p90": [
+   8.0,
+   60.0,
+   187.0
+  ],
+  "panel_share_reaching_-40pct": 0.10996563573883161,
+  "n_episodes": 3201,
+  "n_stocks": 398,
+  "v2_stipulated": {
+   "post_top_drop": [
+    0.3,
+    0.5
+   ],
+   "post_top_len": [
+    10,
+    30
+   ]
+  },
+  "share_of_panel_lengths_beyond_the_horizon": 0.0,
+  "label": "FIT"
+ },
+ "arms": {
+  "v2_stipulated_ranges_hl50": {
+   "half_life": 50.0,
+   "post_top_over_mania": 0.6461756661177761,
+   "ratio_ci95": [
+    0.533963812917139,
+    0.7929167727203226
+   ],
+   "n_ratio": 231,
+   "ratio_inside_panel_ci": true,
+   "topped_share_panel_rule": 0.004,
+   "topped_ci95": [
+    0.0013333333333333333,
+    0.007333333333333333
+   ],
+   "n": 1500,
+   "topped_inside_panel_ci": false,
+   "topped_share_hazard_fired": 0.192,
+   "realised_drop_p10_p50_p90": [
+    -0.3406736314326095,
+    -0.2261724674625627,
+    -0.09244962194115125
+   ],
+   "drawn_drop_median": 0.39944028236369133,
+   "drawn_len_median": 20.0,
+   "truncation_rate": 0.0,
+   "rejection": 0.176
+  },
+  "FIT_ranges_hl10": {
+   "half_life": 10.0,
+   "post_top_over_mania": 0.7299500407259717,
+   "ratio_ci95": [
+    0.6125653771508319,
+    0.8894005429573019
+   ],
+   "n_ratio": 232,
+   "ratio_inside_panel_ci": false,
+   "topped_share_panel_rule": 0.007333333333333333,
+   "topped_ci95": [
+    0.0033333333333333335,
+    0.012
+   ],
+   "n": 1500,
+   "topped_inside_panel_ci": false,
+   "topped_share_hazard_fired": 0.19266666666666668,
+   "realised_drop_p10_p50_p90": [
+    -0.3585236858451911,
+    -0.22632409749274207,
+    -0.09422006324164328
+   ],
+   "drawn_drop_median": 0.16790544369654137,
+   "drawn_len_median": 67.0,
+   "truncation_rate": 0.0,
+   "rejection": 0.17533333333333334
+  },
+  "FIT_ranges_hl20": {
+   "half_life": 20.0,
+   "post_top_over_mania": 0.6589198286172294,
+   "ratio_ci95": [
+    0.544900033434891,
+    0.8158516262174378
+   ],
+   "n_ratio": 232,
+   "ratio_inside_panel_ci": false,
+   "topped_share_panel_rule": 0.0033333333333333335,
+   "topped_ci95": [
+    0.0006666666666666666,
+    0.006666666666666667
+   ],
+   "n": 1500,
+   "topped_inside_panel_ci": false,
+   "topped_share_hazard_fired": 0.19266666666666668,
+   "realised_drop_p10_p50_p90": [
+    -0.32751466805469764,
+    -0.20369867658346558,
+    -0.07582365251741158
+   ],
+   "drawn_drop_median": 0.16790544369654137,
+   "drawn_len_median": 67.0,
+   "truncation_rate": 0.0,
+   "rejection": 0.17533333333333334
+  },
+  "FIT_ranges_hl30": {
+   "half_life": 30.0,
+   "post_top_over_mania": 0.6340287587029441,
+   "ratio_ci95": [
+    0.5212766769004553,
+    0.788366609141869
+   ],
+   "n_ratio": 232,
+   "ratio_inside_panel_ci": true,
+   "topped_share_panel_rule": 0.0026666666666666666,
+   "topped_ci95": [
+    0.0006666666666666666,
+    0.006
+   ],
+   "n": 1500,
+   "topped_inside_panel_ci": false,
+   "topped_share_hazard_fired": 0.19266666666666668,
+   "realised_drop_p10_p50_p90": [
+    -0.3026441351909649,
+    -0.19107862339749637,
+    -0.07093213680365251
+   ],
+   "drawn_drop_median": 0.16790544369654137,
+   "drawn_len_median": 67.0,
+   "truncation_rate": 0.0,
+   "rejection": 0.17533333333333334
+  },
+  "FIT_ranges_hl40": {
+   "half_life": 40.0,
+   "post_top_over_mania": 0.6215781882927401,
+   "ratio_ci95": [
+    0.5094050704289336,
+    0.7751770267109231
+   ],
+   "n_ratio": 232,
+   "ratio_inside_panel_ci": true,
+   "topped_share_panel_rule": 0.0026666666666666666,
+   "topped_ci95": [
+    0.0006666666666666666,
+    0.006
+   ],
+   "n": 1500,
+   "topped_inside_panel_ci": false,
+   "topped_share_hazard_fired": 0.19266666666666668,
+   "realised_drop_p10_p50_p90": [
+    -0.2878255905135237,
+    -0.18374901227423646,
+    -0.06439074031586185
+   ],
+   "drawn_drop_median": 0.16790544369654137,
+   "drawn_len_median": 67.0,
+   "truncation_rate": 0.0,
+   "rejection": 0.17533333333333334
+  },
+  "FIT_ranges_hl50": {
+   "half_life": 50.0,
+   "post_top_over_mania": 0.6294919101972791,
+   "ratio_ci95": [
+    0.5149379330670205,
+    0.7738758333807166
+   ],
+   "n_ratio": 233,
+   "ratio_inside_panel_ci": true,
+   "topped_share_panel_rule": 0.002,
+   "topped_ci95": [
+    0.0,
+    0.004666666666666667
+   ],
+   "n": 1500,
+   "topped_inside_panel_ci": false,
+   "topped_share_hazard_fired": 0.19333333333333333,
+   "realised_drop_p10_p50_p90": [
+    -0.2787078646969981,
+    -0.17995731491207378,
+    -0.06292804708786981
+   ],
+   "drawn_drop_median": 0.16803470661217798,
+   "drawn_len_median": 66.5,
+   "truncation_rate": 0.0,
+   "rejection": 0.17466666666666666
+  },
+  "FIT_ranges_hl70": {
+   "half_life": 70.0,
+   "post_top_over_mania": 0.621470995932783,
+   "ratio_ci95": [
+    0.5084621264385076,
+    0.7657162387449453
+   ],
+   "n_ratio": 233,
+   "ratio_inside_panel_ci": true,
+   "topped_share_panel_rule": 0.002,
+   "topped_ci95": [
+    0.0,
+    0.004666666666666667
+   ],
+   "n": 1500,
+   "topped_inside_panel_ci": false,
+   "topped_share_hazard_fired": 0.19333333333333333,
+   "realised_drop_p10_p50_p90": [
+    -0.2729267407041762,
+    -0.17237524746844268,
+    -0.05901045316542086
+   ],
+   "drawn_drop_median": 0.16803470661217798,
+   "drawn_len_median": 66.5,
+   "truncation_rate": 0.0,
+   "rejection": 0.17466666666666666
+  },
+  "FIT_ranges_hl100": {
+   "half_life": 100.0,
+   "post_top_over_mania": 0.6157452645013555,
+   "ratio_ci95": [
+    0.5033989555828324,
+    0.7597089627461148
+   ],
+   "n_ratio": 233,
+   "ratio_inside_panel_ci": true,
+   "topped_share_panel_rule": 0.0013333333333333333,
+   "topped_ci95": [
+    0.0,
+    0.0033333333333333335
+   ],
+   "n": 1500,
+   "topped_inside_panel_ci": false,
+   "topped_share_hazard_fired": 0.19333333333333333,
+   "realised_drop_p10_p50_p90": [
+    -0.2625024062974892,
+    -0.16715826853223548,
+    -0.05855994528203799
+   ],
+   "drawn_drop_median": 0.16803470661217798,
+   "drawn_len_median": 66.5,
+   "truncation_rate": 0.0,
+   "rejection": 0.17466666666666666
+  }
+ },
+ "decision": {
+  "rule": "the half-life is adopted if it puts the post-top/mania variance ratio inside the panel CI; the topped share is an OUTCOME and is reported against the panel CI, not tuned to it",
+  "arms_meeting_the_variance_ratio": [
+   "FIT_ranges_hl30",
+   "FIT_ranges_hl40",
+   "FIT_ranges_hl50",
+   "FIT_ranges_hl70",
+   "FIT_ranges_hl100"
+  ],
+  "arms_whose_topped_share_is_also_inside_the_panel_CI": [],
+  "arms_meeting_both": [],
+  "adopted": "FIT_ranges_hl40",
+  "note": "the panel's post-top VARIANCE ratio and its post-top DEPTH are not simultaneously reachable by a single deterministic decay leg at any half-life tested; this is reported as a property of the environment, not resolved by dropping one of them",
+  "tie_break": "closest to the panel point estimate among the arms inside its CI",
+  "n_seeds_note": "a 400-seed run of this same search adopted hl=10 (ratio 0.617); at 1500 seeds hl=10 gives 0.730 and is OUTSIDE the CI. The 400-seed choice was sampling noise, which is why the search was re-run at 1500 before anything was adopted."
+ },
+ "seconds": 531.7
+}

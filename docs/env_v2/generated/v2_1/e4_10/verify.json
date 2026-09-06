@@ -1,0 +1,277 @@
+{
+ "design": {
+  "purpose": "every Phase-4 claim that was INFERRED rather than measured, tested with a stated falsifier",
+  "seeds": 250,
+  "n_boot": 1000
+ },
+ "T8_aggregator_ratio": {
+  "claim": "the per-stock ratio of the mean-based to the median-based unconditional sd is 1.354 [IQR 1.286, 1.452] (P4-1), which is the whole of Phase 3's apparent level gap",
+  "median_ratio": 1.3540635137094814,
+  "ci95_stock_bootstrap": [
+   1.340132213989272,
+   1.3667633018538223
+  ],
+  "iqr": [
+   1.2860421691113322,
+   1.4520704007254472
+  ],
+  "n_stocks": 417,
+  "median_mean_based_sd": 0.021846858231259036,
+  "median_median_based_sd": 0.01569659985763117,
+  "anchor_s_A": 0.02179271694224872,
+  "note": "s_A is the anchor the variance identity targets; the phase multipliers' reference is the per-stock MEDIAN of rolling-21d RV. The two differ by this ratio, which is why median-referenced multipliers applied to a mean-anchored base looked like a level defect"
+ },
+ "T1_convexity_endpoint": {
+  "claim": "the panel's run-ups decelerate (P4-8), so a super-exponential mania is contradicted",
+  "falsifier": "if the deceleration disappears once the endpoint constraint is removed, the measurement is an artefact of defining a run-up by a local maximum at its top",
+  "windows": {
+   "a_original": {
+    "description": "[start, top] -- the original, endpoint-selected",
+    "median_ratio": 0.6211280889835817,
+    "ci95": [
+     0.5982377583821171,
+     0.6423167469364567
+    ],
+    "n_episodes": 3153,
+    "n_stocks": 398,
+    "accelerating": false
+   },
+   "b_minus21": {
+    "description": "[start, top-21] -- past the +/-10 d local-max constraint",
+    "median_ratio": 0.4060102306796388,
+    "ci95": [
+     0.3861573565387804,
+     0.4228047892332369
+    ],
+    "n_episodes": 3076,
+    "n_stocks": 398,
+    "accelerating": false
+   },
+   "b_minus42": {
+    "description": "[start, top-42] -- further past it",
+    "median_ratio": 0.3582017972497489,
+    "ci95": [
+     0.34655101314255987,
+     0.3731437964822619
+    ],
+    "n_episodes": 3008,
+    "n_stocks": 398,
+    "accelerating": false
+   },
+   "c_fixed_horizon": {
+    "description": "[start, start+504] -- the END is not selected on price at all",
+    "median_ratio": 0.341948632801271,
+    "ci95": [
+     0.3176649878208962,
+     0.36780161660549343
+    ],
+    "n_episodes": 3186,
+    "n_stocks": 398,
+    "accelerating": false
+   }
+  },
+  "verdict": "REAL -- the deceleration survives removing the endpoint constraint, so P4-8 stands"
+ },
+ "T4_ks_floor": {
+  "claim": "about 2,000 seeds would bring the KS null floor to 0.10 (P4-9)",
+  "falsifier": "measure the floor at each n and read off the n that reaches 0.10",
+  "measured_at_phase4_n": {
+   "n_accepted": 419,
+   "n_rejected": 81,
+   "floor": 0.20027328442205133
+  },
+  "by_n_rejected": {
+   "81": {
+    "seeds_implied": 500,
+    "n_accepted": 419,
+    "median_upper_limit_under_null": 0.21076490173546655,
+    "attainable_at_D0_0.10": false
+   },
+   "162": {
+    "seeds_implied": 1000,
+    "n_accepted": 838,
+    "median_upper_limit_under_null": 0.14466321930522405,
+    "attainable_at_D0_0.10": false
+   },
+   "324": {
+    "seeds_implied": 2000,
+    "n_accepted": 1676,
+    "median_upper_limit_under_null": 0.10272860868027935,
+    "attainable_at_D0_0.10": false
+   },
+   "648": {
+    "seeds_implied": 4000,
+    "n_accepted": 3352,
+    "median_upper_limit_under_null": 0.07480930861251067,
+    "attainable_at_D0_0.10": true
+   },
+   "1296": {
+    "seeds_implied": 8000,
+    "n_accepted": 6704,
+    "median_upper_limit_under_null": 0.05388035335454785,
+    "attainable_at_D0_0.10": true
+   }
+  },
+  "verdict": "the bound becomes attainable at about 4000 seeds"
+ },
+ "T5_residual": {
+  "claim": "the deployed excess over s_A is the benchmark's own scenario mix (P4-1)",
+  "falsifier": "if one phase's contribution accounts for the residual, it is that phase's level and not the mix",
+  "target_s_A": 0.02179271694224872,
+  "panel_weighted_sd": 0.02513088539552319,
+  "excess_pct": 15.317816783105576,
+  "contributions": {
+   "calm": {
+    "panel_weight": 0.7841612224610517,
+    "generator_variance": 0.0005008174354831511,
+    "weighted": 0.0003927216124382767,
+    "pct_of_total_variance": 62.18264953555939
+   },
+   "post-top": {
+    "panel_weight": 0.07149630907454034,
+    "generator_variance": 0.0010658626986731166,
+    "weighted": 7.62052489353568e-05,
+    "pct_of_total_variance": 12.066166305176587
+   },
+   "stabilisation": {
+    "panel_weight": 0.03642307969493383,
+    "generator_variance": 0.00155173076136543,
+    "weighted": 5.6518813186293405e-05,
+    "pct_of_total_variance": 8.949060711756477
+   },
+   "panic": {
+    "panel_weight": 0.012141026564977942,
+    "generator_variance": 0.0039851874734210995,
+    "weighted": 4.838426698122289e-05,
+    "pct_of_total_variance": 7.6610551124206
+   },
+   "mania": {
+    "panel_weight": 0.047664206049693555,
+    "generator_variance": 0.0006100093477667592,
+    "weighted": 2.9075611244193985e-05,
+    "pct_of_total_variance": 4.6037663494113
+   },
+   "deterioration": {
+    "panel_weight": 0.024282053129955884,
+    "generator_variance": 0.0006115773708453735,
+    "weighted": 1.4850354211946092e-05,
+    "pct_of_total_variance": 2.3513714096534386
+   },
+   "blow-off": {
+    "panel_weight": 0.023832103024846778,
+    "generator_variance": 0.0005792813899485698,
+    "weighted": 1.3805493765630756e-05,
+    "pct_of_total_variance": 2.185930576022195
+   }
+  },
+  "note": "panel weights come from E3.3's FIXED windows, so they measure the share of panel days those windows cover rather than a phase-dating of the whole panel; the decomposition shows where the variance sits, and is not a re-weighting that could be adopted"
+ },
+ "seconds": 40.3,
+ "T3_item10_cause": {
+  "claim": "checklist item 10 is inert BECAUSE E4.2 draws delta from the panel's depth distribution, so the crash_discount arm factor no longer changes anything",
+  "falsifier": "if the partial R^2 of crash_discount is also near zero under the v2 schedule, the cause is something else",
+  "arms": {
+   "v2": {
+    "means_by_discount": {
+     "0.55": -0.6079463677349727,
+     "0.7": -0.5432843877610113,
+     "0.85": -0.4924990400310246
+    },
+    "spread_pp_0.55_minus_0.85": -11.544732770394805,
+    "partial_r2_of_crash_discount": 0.22920305891478832,
+    "corr_discount_vs_delta_drawn": 1.0,
+    "delta_drawn_sd": 0.12255621853773756,
+    "n": 750
+   },
+   "v21": {
+    "means_by_discount": {
+     "0.55": -0.5192628673133599,
+     "0.7": -0.5192628673133599,
+     "0.85": -0.5192628673133599
+    },
+    "spread_pp_0.55_minus_0.85": 0.0,
+    "partial_r2_of_crash_discount": -2.220446049250313e-16,
+    "corr_discount_vs_delta_drawn": -1.5622232383972677e-18,
+    "delta_drawn_sd": 0.09532901984275506,
+    "n": 750
+   }
+  },
+  "verdict": "CONFIRMED -- crash_discount drives MDD under v2 and does not under v21"
+ },
+ "T6_control_would_pass": {
+  "claim": "adopting A, B or D closes weakness items 18 and 42 (P4-9)",
+  "falsifier": "measure the accepted-vs-rejected x distribution under each definition; if A/B/D still select on x the claim fails",
+  "definitions": {
+   "A": {
+    "rejection": 0.176,
+    "n_accepted": 206,
+    "n_rejected": 44,
+    "ks_mean_x": 0.2144748455428067,
+    "ks_sd_x": 0.11496028243601059,
+    "ks_sd_r": 0.1500441306266549,
+    "null_p95_at_these_n": 0.2102934686672551,
+    "null_median_at_these_n": 0.12941306266548983,
+    "selects_on_x": true,
+    "excess_over_null_p95": 0.004181376875551618
+   },
+   "B": {
+    "rejection": 0.176,
+    "n_accepted": 206,
+    "n_rejected": 44,
+    "ks_mean_x": 0.2144748455428067,
+    "ks_sd_x": 0.11496028243601059,
+    "ks_sd_r": 0.1500441306266549,
+    "null_p95_at_these_n": 0.2102934686672551,
+    "null_median_at_these_n": 0.12941306266548983,
+    "selects_on_x": true,
+    "excess_over_null_p95": 0.004181376875551618
+   },
+   "C": {
+    "rejection": 0.356,
+    "n_accepted": 161,
+    "n_rejected": 89,
+    "ks_mean_x": 0.24677227999162532,
+    "ks_sd_x": 0.43108381603740664,
+    "ks_sd_r": 0.41272942982762234,
+    "null_p95_at_these_n": 0.17059110893991208,
+    "null_median_at_these_n": 0.10265894340149348,
+    "selects_on_x": true,
+    "excess_over_null_p95": 0.07618117105171324
+   },
+   "D": {
+    "rejection": 0.176,
+    "n_accepted": 206,
+    "n_rejected": 44,
+    "ks_mean_x": 0.2144748455428067,
+    "ks_sd_x": 0.11496028243601059,
+    "ks_sd_r": 0.1500441306266549,
+    "null_p95_at_these_n": 0.2102934686672551,
+    "null_median_at_these_n": 0.12941306266548983,
+    "selects_on_x": true,
+    "excess_over_null_p95": 0.004181376875551618
+   }
+  },
+  "threshold_note": "the comparison is against a null computed at each definition's OWN achieved n_accepted / n_rejected, not against a fixed distance; a fixed 0.20 would have called every definition a selector, which is why the first version of this test did",
+  "excess_over_null": {
+   "A": 0.004181376875551618,
+   "B": 0.004181376875551618,
+   "C": 0.07618117105171324,
+   "D": 0.004181376875551618
+  },
+  "verdict": "NOT ESTABLISHED AT THIS n, DIRECTION CLEAR. Every definition's KS exceeds its own null p95, but by amounts that differ by a factor of about 18: A/B/D by 0.0042 and C by 0.0762. At n_rejected = 44 (A/B/D) the test has very little power in either direction -- T4 measured that this family of KS comparisons needs roughly 4,000 seeds to be decidable at D0 = 0.10. So the claim 'adopting A, B or D closes items 18 and 42' is NEITHER confirmed NOR refuted here; what IS measured is that C's selection is an order of magnitude larger than A/B/D's, and that A/B/D carry no x-band at all so any residual is rejection on V growth, which the engine makes independent of x."
+ },
+ "T7_multi_asset": {
+  "claim": "v2's multi-asset extension puts every asset in the same event on the same days, i.e. a common-factor loading of 1.0 (P4-16)",
+  "falsifier": "generate 3-asset paths and measure the realised cross-sectional drawdown share",
+  "measured": {
+   "generator_mean_share_in_drawdown": 0.363736559139785,
+   "generator_all_three_together": 0.20217741935483868,
+   "panel_mean_share": 0.2364552625668586,
+   "panel_p90": 0.47961630695443647,
+   "panel_max": 0.8896882494004796,
+   "n_paths": 62,
+   "n_assets": 3
+  },
+  "verdict": "CONFIRMED AS A DIRECTION but not as the number 1.0: the realised loading is 0.364 against the panel's 0.236; P4-16's wording must be corrected to the measured value"
+ }
+}

@@ -25,7 +25,7 @@ from __future__ import annotations
 
 import math
 import os
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field, asdict, replace
 from typing import Dict, List, Optional
 
 import numpy as np
@@ -34,7 +34,8 @@ from envs.v2.rng import Streams, standardised_t
 from envs.v2.schedule import Schedule, draw_schedule
 from envs.v2.garch import GJRParams, GJRGarch
 from envs.v2.mispricing import FWParams, MispricingState, load_params, ENGINE_DEFAULT
-from envs.v2.events import make_driver, relabel_blowoff, MU_V_BASE, G_MAX
+from envs.v2.events import make_driver, relabel_blowoff, realised_top_day, MU_V_BASE, G_MAX
+from envs.v2 import events_params as EP4
 from envs.v2.observables import SentimentState, SENT_SD_REF, announcement_schedule
 from envs.v2 import value_params as VP
 
@@ -106,8 +107,10 @@ class GenConfig:
     jump_sd: float = VP.JUMP["jump_sd"]                # CAL 0.03 (Phase 3 re-fits)
     p_ann: float = VP.JUMP["p_ann"]                    # FIT from the panel's window share of jump days (q)
     lam_res: float = VP.JUMP["lam_res"]                # (1 - q) x total rate
-    hazard_h0: float = HAZARD_H0
-    hazard_b: float = HAZARD_B
+    # v2.1 Phase 4 (E4.3 / REG-18): events.json's ADOPTED mapping governs when present; the v2 CAL constants
+    # stay as the fallback so the repository runs unchanged before apply_e4.py has been executed.
+    hazard_h0: float = EP4.HAZARD_H0 if (EP4.PRESENT and EP4.HAZARD_H0 is not None) else HAZARD_H0
+    hazard_b: float = EP4.HAZARD_B if (EP4.PRESENT and EP4.HAZARD_B is not None) else HAZARD_B
     g_max: float = G_MAX_CAL                # cap on the compounding mania drift (CAL, with the hazard)
     lam_panic: float = 0.10                # error-correction gain of the panic target path
     burn_in: Optional[int] = None          # None -> value.json's burn-in for the engine (E1.5); an int overrides
@@ -124,6 +127,29 @@ class GenConfig:
     # v2.1 Phase 3 (E3.5): None -> volatility.json's IV construction when present (v21 past-only filter),
     # else the v2 iv_block; "v2" forces the legacy construction (sensitivity)
     iv_mode: Optional[str] = None
+    # v2.1 Phase 4 (E4.2): None -> events.json's FIT ranges when present, else the v2 uniforms; "v2" forces
+    # the v2 uniforms (sensitivity / bit-identity check).  `schedule_ranges` overrides individual ranges for
+    # one run, which is how E4.2 publishes the whole search surface instead of only the winning cell.
+    schedule_mode: Optional[str] = None
+    schedule_ranges: Dict = field(default_factory=dict)
+    # E4.19/P4-40: "unconditional" (ignore delta, the main-pass behaviour) or "centred" (shift the
+    # fitted depth distribution so its centre tracks delta).  None -> events.json.
+    depth_mode: Optional[str] = None
+    depth_gain: Optional[float] = None
+    # v2.1 Phase 4: REG-8's event-dynamics formulation and REG-7's control definition, overridable per run so
+    # E4.5's and E4.6's four arms each run on one code path.  None -> events.json (or the v2 default).
+    events_dynamics: Optional[str] = None
+    control_definition: Optional[str] = None
+    blowoff_mode: Optional[str] = None
+    blowoff_g: Optional[float] = None
+    post_top_mode: Optional[str] = None
+    post_top_half_life: Optional[float] = None
+    # E4.7d: None -> events.json's calendar.randomise_eps_quarter; True/False forces it for one run
+    randomise_eps_quarter: Optional[bool] = None
+    blowoff_mult: Optional[float] = None      # P4-11's closed loop overrides the blow-off variance multiplier
+    # E4.8 / P4-16: per-asset event draws with a common-factor loading (None -> events.json)
+    ma_per_asset_events: Optional[bool] = None
+    ma_common_loading: Optional[float] = None
 
     def __post_init__(self):
         if self.start_price_mode not in START_PRICE_MODES:
@@ -157,6 +183,10 @@ class PathResult:
     w: np.ndarray              # (N, L) FW innovation weight
     fvar21: np.ndarray         # (N, L) 21-day-ahead mean GARCH variance forecast (for IV)
     sent: np.ndarray           # (N, L) news sentiment (tanh-squashed)
+    drift: np.ndarray          # (N, L) the scripted drift d_t the driver returned. v2.1 Phase 4 (E4.6): the
+                               # script share is the R^2 of THIS on realised delta-x, so it is recorded rather
+                               # than reconstructed from the schedule -- a reconstruction cannot represent
+                               # formulations B and D, which have no target path at all.
     phase: np.ndarray          # (L,) phase label per day (asset-shared schedule)
     event_meta: Dict
     attempts: int
@@ -164,6 +194,7 @@ class PathResult:
     ann: List[Dict[int, int]] = field(default_factory=list)        # per asset: {quarter-end day: announcement day}
     ann_jumps: List[Dict[int, float]] = field(default_factory=list) # per asset: {announcement day: log V jump}
     k_render: float = 1.0                                           # mechanism C render scale (1.0 otherwise)
+    q_phase: List[int] = field(default_factory=list)                # per asset: the E4.7d quarter-grid shift
 
     @property
     def L(self) -> int:
@@ -180,9 +211,17 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
     L = B + T
     N = max(1, cfg.n_assets)
     st = Streams(cfg.seed, attempt)
-    sched = draw_schedule(cfg.scenario, T, st.get("schedule"), cfg.ordering, delta=cfg.delta)
+    sched = draw_schedule(cfg.scenario, T, st.get("schedule"), cfg.ordering, delta=cfg.delta,
+                          schedule_mode=cfg.schedule_mode, ranges=(cfg.schedule_ranges or None),
+                          depth_mode=cfg.depth_mode, depth_gain=cfg.depth_gain)
     params = load_params(cfg.engine)
     gp = GJRParams(**cfg.garch) if cfg.garch else GJRParams()
+    # P4-11: with the blow-off label alive its multiplier is no longer inert, so events.json's value (when
+    # present) replaces the mania-valued placeholder volatility.json records.  cfg.blowoff_mult overrides both
+    # for one run, which is how the closed loop calibrates it.
+    _bo_m = cfg.blowoff_mult if cfg.blowoff_mult is not None else EP4.BLOWOFF_MULT
+    if _bo_m is not None and gp.mult is not None:
+        gp = replace(gp, mult={**gp.mult, "blow-off": float(_bo_m)})
     day = np.arange(L) - B + 1
     vol_scale = list(cfg.asset_vol_scale) + [1.0] * (N - len(cfg.asset_vol_scale))
 
@@ -192,18 +231,42 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
     f_common = _shocks(st.get("fundamental_common", -1), L)
 
     V = np.zeros((N, L)); x = np.zeros((N, L)); sig = np.zeros((N, L)); e_arr = np.zeros((N, L))
-    nf = np.zeros((N, L)); phases = np.empty(L, dtype=object)
+    nf = np.zeros((N, L)); phases = np.empty(L, dtype=object); dscript = np.zeros((N, L))
     w_arr = np.ones((N, L)); fvar = np.zeros((N, L)); sent = np.zeros((N, L))
-    meta_assets, ann_all, ann_jumps_all = [], [], []
+    meta_assets, ann_all, ann_jumps_all, q_phase_all = [], [], [], []
     stored = _stored_state(cfg.engine) if cfg.burn_in_mode == "stored" else None
     for a in range(N):
-        driver = make_driver(sched, cfg.hazard_h0, cfg.hazard_b, cfg.g_max, cfg.lam_panic, cfg.mu_V)
+        # E4.8 / P4-16: v2 gave EVERY asset the same scripted event on the same days. The panel's
+        # cross-sectional drawdown share is 0.236 (mean over 417 names, p90 0.480), and the v2 shared-event
+        # design realises 0.364 (measured, e4_10 T7). With per-asset events each asset beyond the first shares
+        # the common event with probability `common_loading` and otherwise draws its own schedule, so the
+        # co-movement is a fitted parameter rather than a structural 'always'.
+        sched_a = sched
+        if a > 0 and (cfg.ma_per_asset_events if cfg.ma_per_asset_events is not None
+                      else EP4.MA_PER_ASSET_EVENTS):
+            _load = cfg.ma_common_loading if cfg.ma_common_loading is not None else (EP4.MA_COMMON_LOADING or 0.0)
+            if float(st.get("schedule", a).uniform()) >= float(_load):
+                sched_a = draw_schedule(cfg.scenario, T, st.get("schedule", a), cfg.ordering, delta=cfg.delta,
+                                        schedule_mode=cfg.schedule_mode,
+                                        ranges=(cfg.schedule_ranges or None),
+                                        depth_mode=cfg.depth_mode, depth_gain=cfg.depth_gain)
+        driver = make_driver(sched_a, cfg.hazard_h0, cfg.hazard_b, cfg.g_max, cfg.lam_panic, cfg.mu_V,
+                             rng=st.get("schedule", a), dynamics=cfg.events_dynamics,
+                             control_definition=cfg.control_definition, blowoff_mode=cfg.blowoff_mode,
+                             blowoff_g=cfg.blowoff_g, post_top_mode=cfg.post_top_mode,
+                             post_top_half_life=cfg.post_top_half_life)
         z_i = _shocks(st.get("fundamental", a), L)
         z = (math.sqrt(cfg.rho_common) * f_common + math.sqrt(1 - cfg.rho_common) * z_i) if N > 1 else z_i
         eta = standardised_t(st.get("garch", a), gp.df, L)
         u_haz = st.get("hazard", a).random(L)
         u_reg = st.get("regime", a).random(L) if gp.scale_mode == "switching" else None   # E3.4 mechanism C
-        ann = announcement_schedule(day, st.get("announce", a))      # {quarter end: announcement day}
+        # E4.7d: the quarter grid is shifted per seed when events.json enables it, so
+        # `days_since_eps_announcement` stops being a deterministic function of the day index.
+        _rq = (EP4.RANDOMISE_EPS_QUARTER if cfg.randomise_eps_quarter is None
+               else bool(cfg.randomise_eps_quarter))
+        q_phase = (int(st.get("announce", a).integers(0, 63)) if _rq else 0)
+        ann = announcement_schedule(day, st.get("announce", a), q_phase=q_phase)   # {quarter end: ann day}
+        q_phase_all.append(q_phase)
         day_index = {int(d): i for i, d in enumerate(day)}
         jumps_x = None; jumps_V = np.zeros(L); ann_jumps: Dict[int, float] = {}
         if cfg.jumps:
@@ -240,6 +303,7 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
         for i in range(L):
             d_i = int(day[i])
             drift, mu_v, ph = driver.begin(d_i, ms.x)
+            dscript[a, i] = drift
             if a == 0:
                 phases[i] = ph
             # record the state AT day i
@@ -280,11 +344,20 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
         k_render = math.exp(st.get("start_price", -1).uniform(math.log(lo / cfg.start_price), math.log(hi / cfg.start_price)))
     phases = relabel_blowoff(phases, day, sched, meta_assets[0].get("top_day"))
     P = V * np.exp(x)
+    # E4.8: the top day recorded at the REALISED price peak as well as at the day the hazard fired (the
+    # off-by-one item).  Both are kept so the report can measure the difference rather than assert it.
+    _td = meta_assets[0].get("top_day")
+    _tdr = realised_top_day(P[0], day, sched, _td)
     meta = {"assets": meta_assets, **meta_assets[0], "start_price_mode": cfg.start_price_mode, "k_render": k_render,
+            "top_day_realised": _tdr,
+            "top_day_offset": (None if (_tdr is None or _td is None) else int(_tdr - _td)),
+            "schedule_mode": sched.mode, "schedule_truncated": dict(sched.truncated),
+            "dynamics": EP4.DYNAMICS, "control_definition": EP4.CONTROL_DEF,
+            "blowoff_mode": EP4.BLOWOFF_MODE, "post_top_mode": EP4.POST_TOP_MODE,
             "jump_placement": cfg.jump_placement, "burn_in": cfg.burn_in, "burn_in_mode": cfg.burn_in_mode,
             "n_ann_jumps": int(sum(len(d) for d in ann_jumps_all))}
-    return PathResult(cfg, sched, params, gp, day, V, x, P, sig, e_arr, nf, w_arr, fvar, sent, phases, meta, attempt + 1, [],
-                      ann_all, ann_jumps_all, k_render)
+    return PathResult(cfg, sched, params, gp, day, V, x, P, sig, e_arr, nf, w_arr, fvar, sent, dscript, phases, meta, attempt + 1, [],
+                      ann_all, ann_jumps_all, k_render, q_phase_all)
 
 
 _STORED_CACHE: Dict[str, Dict[str, np.ndarray]] = {}
@@ -318,10 +391,17 @@ def check_validity(res: PathResult) -> Optional[str]:
         if x.max() < 0.30:
             return f"bull_trap: max x {x.max():.2f} < 0.30"
     elif cfg.scenario == "sustained_bull":
-        if x.min() < -0.10 or x.max() > 0.15:
-            return f"sustained_bull: x range [{x.min():.2f}, {x.max():.2f}] outside [-0.10, 0.15]"
-        if V[-1] / V[0] < 1.2:
-            return f"sustained_bull: V_T/V_1 {V[-1]/V[0]:.2f} < 1.2"
+        # REG-7 (E4.5).  The x-band is definition C's ONLY: under A, B and D the control runs the same
+        # mispricing process as flat, so a band on x would select on the hidden state -- which is exactly
+        # weakness items 18 and 42.  Which definition is in force is events_params.CONTROL_DEF (D14).
+        band = EP4.CONTROL_X_BAND if EP4.PRESENT else [-0.10, 0.15]
+        cdef = (cfg.control_definition or EP4.CONTROL_DEF).upper()
+        if cdef == "C" and band:
+            if x.min() < band[0] or x.max() > band[1]:
+                return f"sustained_bull: x range [{x.min():.2f}, {x.max():.2f}] outside [{band[0]}, {band[1]}]"
+        vthr = EP4.CONTROL_V_THRESHOLD if EP4.PRESENT else 1.2
+        if V[-1] / V[0] < vthr:
+            return f"sustained_bull: V_T/V_1 {V[-1]/V[0]:.2f} < {vthr}"
     return None
 
 

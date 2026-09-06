@@ -1,0 +1,263 @@
+{
+ "design": {
+  "prereg": "PREREG_PHASE_4.md section 5, REG-18",
+  "seeds": 500,
+  "seed0": 230000,
+  "pilot_seeds": 200,
+  "scenario": "bull_trap",
+  "T": 200,
+  "targets_retired": "the 40-60 % topped band and the P/V 1.6-2.5 band are retired as TARGETS by PREREG section 5; the topped share is an outcome and the yardstick is the panel's own",
+  "gsy": {
+   "runups": [
+    0.5,
+    1.0,
+    1.5
+   ],
+   "probabilities": [
+    0.2,
+    0.53,
+    0.8
+   ],
+   "intercept": -3.5992970742165262,
+   "b": 5.418640710337168,
+   "fitted_at_points": [
+    0.19746290524073412,
+    0.5390747735864787,
+    0.7966931506079723
+   ],
+   "window_days": 504,
+   "citation": "Greenwood, Shleifer & You (2019, JFE) -- READ; industry level, monthly, crash = >= 40 % drawdown within two years",
+   "transfer_assumption": "the industry-level relation is applied to a single stock; this is the DESIGN assumption REG-18 exists to bracket, and the panel fit below is what tests it"
+  }
+ },
+ "panel_fit": {
+  "intercept": -3.1400246087566606,
+  "b": 1.0735160425808223,
+  "topped_share": 0.10996563573883161,
+  "topped_ci95": [
+   0.09617239912310344,
+   0.12457603595108144
+  ],
+  "n_episodes": 3201,
+  "n_stocks": 398,
+  "median_runup": 2.233160741728516,
+  "median_runup_len": 415.0,
+  "horizon_days": 200,
+  "crash_threshold": -0.4,
+  "survivorship": "REG-15: the survivor panel understates crash frequency and depth, so this share is a LOWER bound on the true single-stock rate"
+ },
+ "pilots": {
+  "gsy": {
+   "b": 5.418640710337168,
+   "E_sum_exp_bx": 483.0871486236971,
+   "median_mania_days": 122.5,
+   "n_pilot": 200,
+   "median_peak_runup": 1.6276304282408467
+  },
+  "panel": {
+   "b": 1.0735160425808223,
+   "E_sum_exp_bx": 152.14157452958608,
+   "median_mania_days": 122.5,
+   "n_pilot": 200,
+   "median_peak_runup": 1.6276304282408467
+  }
+ },
+ "arms": {
+  "A_no_scaling": {
+   "b": 5.418640710337168,
+   "P_target": 0.2769301620433216,
+   "h0": 0.0006712028414084587,
+   "note": "cumulative hazard over the mania equals GSY's probability at the peak run-up",
+   "n_paths": 500,
+   "topped_share_hazard_fired": 0.194,
+   "ci95": [
+    0.15933913035136021,
+    0.2286608696486398
+   ],
+   "topped_share_panel_rule": 0.108,
+   "panel_rule_ci95": [
+    0.08079395737708256,
+    0.13520604262291744
+   ],
+   "inside_panel_ci": true,
+   "verdict": "INSIDE",
+   "peak_pv_median": 1.4924899013748691,
+   "peak_pv_p10_p90": [
+    1.397228905480713,
+    1.627496458701598
+   ],
+   "rejection_rate": 0.15,
+   "cap_binding_share_median": 0.47448713943559306,
+   "top_day_offset": {
+    "n": 97,
+    "median": -3.0,
+    "share_nonzero": 0.9381443298969072
+   }
+  },
+  "B_scaled_0.5x": {
+   "b": 5.418640710337168,
+   "P_target": 0.033654707192764775,
+   "h0": 7.086519019501916e-05,
+   "note": "GSY probability scaled by (mania length / 504 d) x 0.5 (the DESIGN horizon assumption, bracketed as REG-18 requires)",
+   "n_paths": 500,
+   "topped_share_hazard_fired": 0.028,
+   "ci95": [
+    0.013539503079077815,
+    0.042460496920922186
+   ],
+   "topped_share_panel_rule": 0.022,
+   "panel_rule_ci95": [
+    0.009142639026612031,
+    0.034857360973387964
+   ],
+   "inside_panel_ci": false,
+   "verdict": "OUTSIDE",
+   "peak_pv_median": 1.5045010780134298,
+   "peak_pv_p10_p90": [
+    1.4056301052350464,
+    1.643398553689616
+   ],
+   "rejection_rate": 0.072,
+   "cap_binding_share_median": 0.49605418504940035,
+   "top_day_offset": {
+    "n": 14,
+    "median": 0.0,
+    "share_nonzero": 1.0
+   }
+  },
+  "B_scaled_1x": {
+   "b": 5.418640710337168,
+   "P_target": 0.06730941438552955,
+   "h0": 0.00014424264273995175,
+   "note": "GSY probability scaled by (mania length / 504 d) x 1 (the DESIGN horizon assumption, bracketed as REG-18 requires)",
+   "n_paths": 500,
+   "topped_share_hazard_fired": 0.05,
+   "ci95": [
+    0.030896283084174435,
+    0.06910371691582556
+   ],
+   "topped_share_panel_rule": 0.034,
+   "panel_rule_ci95": [
+    0.01811456576608622,
+    0.049885434233913784
+   ],
+   "inside_panel_ci": false,
+   "verdict": "OUTSIDE",
+   "peak_pv_median": 1.5024775142556992,
+   "peak_pv_p10_p90": [
+    1.405281338777587,
+    1.6404469156479784
+   ],
+   "rejection_rate": 0.08,
+   "cap_binding_share_median": 0.49300391389432485,
+   "top_day_offset": {
+    "n": 25,
+    "median": -1.0,
+    "share_nonzero": 0.92
+   }
+  },
+  "B_scaled_2x": {
+   "b": 5.418640710337168,
+   "P_target": 0.1346188287710591,
+   "h0": 0.0002992942560036443,
+   "note": "GSY probability scaled by (mania length / 504 d) x 2 (the DESIGN horizon assumption, bracketed as REG-18 requires)",
+   "n_paths": 500,
+   "topped_share_hazard_fired": 0.086,
+   "ci95": [
+    0.06142500757273768,
+    0.1105749924272623
+   ],
+   "topped_share_panel_rule": 0.048,
+   "panel_rule_ci95": [
+    0.029262564017454258,
+    0.06673743598254575
+   ],
+   "inside_panel_ci": false,
+   "verdict": "OUTSIDE",
+   "peak_pv_median": 1.5033479257561266,
+   "peak_pv_p10_p90": [
+    1.405281338777587,
+    1.639099073623655
+   ],
+   "rejection_rate": 0.11,
+   "cap_binding_share_median": 0.48741645781119464,
+   "top_day_offset": {
+    "n": 43,
+    "median": -2.0,
+    "share_nonzero": 0.8837209302325582
+   }
+  },
+  "C_panel_fit": {
+   "b": 1.0735160425808223,
+   "P_target": 0.09300003472805476,
+   "h0": 0.0006415923291035989,
+   "note": "h0 AND b fitted on the panel's own run-ups; GSY is the industry cross-check",
+   "n_paths": 500,
+   "topped_share_hazard_fired": 0.058,
+   "ci95": [
+    0.03751148333334012,
+    0.07848851666665989
+   ],
+   "topped_share_panel_rule": 0.036,
+   "panel_rule_ci95": [
+    0.019670953095786634,
+    0.05232904690421336
+   ],
+   "inside_panel_ci": false,
+   "verdict": "OUTSIDE",
+   "peak_pv_median": 1.5038583643957386,
+   "peak_pv_p10_p90": [
+    1.4060561317175018,
+    1.6419145865335765
+   ],
+   "rejection_rate": 0.104,
+   "cap_binding_share_median": 0.4924769818100157,
+   "top_day_offset": {
+    "n": 29,
+    "median": -2.0,
+    "share_nonzero": 0.9310344827586207
+   }
+  },
+  "v2_incumbent": {
+   "b": 6.0,
+   "P_target": null,
+   "h0": 0.0003,
+   "note": "the CAL grid search against the OLD engine, kept as the incumbent arm",
+   "n_paths": 500,
+   "topped_share_hazard_fired": 0.112,
+   "ci95": [
+    0.08435691154736867,
+    0.13964308845263135
+   ],
+   "topped_share_panel_rule": 0.064,
+   "panel_rule_ci95": [
+    0.042546459201334624,
+    0.08545354079866538
+   ],
+   "inside_panel_ci": false,
+   "verdict": "OUTSIDE",
+   "peak_pv_median": 1.5027248211097701,
+   "peak_pv_p10_p90": [
+    1.4043987647864036,
+    1.639099073623655
+   ],
+   "rejection_rate": 0.108,
+   "cap_binding_share_median": 0.4854720697903475,
+   "top_day_offset": {
+    "n": 56,
+    "median": -2.0,
+    "share_nonzero": 0.8928571428571429
+   }
+  }
+ },
+ "decision": {
+  "rule": "REG-18: adopt the mapping whose topped share lies inside the panel's CI [0.0962, 0.1246]",
+  "panel_n": "3201 run-ups / 398 stocks -- far above REG-18's n < 30 fallback threshold, so the rule is decidable and the {0.5x, 1x, 2x} bracket is a sensitivity rather than the verdict",
+  "mappings_inside": [
+   "A_no_scaling"
+  ],
+  "adopted": "A_no_scaling",
+  "note": ""
+ },
+ "seconds": 122.2
+}

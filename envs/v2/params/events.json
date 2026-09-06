@@ -1,0 +1,692 @@
+{
+ "_note": "v2.1 Phase 4 (events, schedule, controls, calendar). Written by tools/phase4/apply_e4.py. Read by envs/v2/events_params.py, which raises if any entry lacks provenance or ships a null interval. Every value here is FIT, CAL, DESIGN or INCUMBENT and says which.",
+ "_status_key": {
+  "ADOPTED": "a pre-registered rule decided it on data",
+  "INCUMBENT": "the phase stopped for a team decision; the v2 behaviour stays and is labelled as the incumbent, not as a result",
+  "NOT DONE": "the experiment did not run or did not conclude; the v2 behaviour stays",
+  "IN FORCE, ADOPTION WITHDRAWN": "the value is deployed and stays deployed, but the evidence that ADOPTED it no longer stands and the criterion that would re-decide it is not currently evaluable. Distinct from INCUMBENT: the v2 behaviour does NOT stay -- a fitted value is in force, chosen because it beats v2 on a measured outcome, pending a re-expressed criterion (P4-39).",
+  "TESTED, REJECTED": "the entry's central claim was tested and refuted. The v2 behaviour stays in force only for want of an identified replacement, and the label says what was rejected and what is not identified.",
+  "TESTED, NOT ADOPTED": "the mechanism is implemented and switchable, and measurement does not support adopting it. Distinct from NOT DONE: the experiment ran and concluded."
+ },
+ "schedule_ranges": {
+  "value": {
+   "det_len": {
+    "grid": [
+     3.0,
+     3.0,
+     4.0,
+     4.0,
+     4.0,
+     4.224999999999994,
+     5.0,
+     5.0,
+     5.0,
+     6.0,
+     6.0,
+     6.0,
+     7.0,
+     7.0,
+     7.0,
+     8.0,
+     8.0,
+     8.0,
+     9.0,
+     9.0,
+     10.0,
+     11.0,
+     12.0,
+     13.0,
+     13.700000000000045,
+     15.0,
+     15.0,
+     16.775000000000034,
+     18.0,
+     19.825000000000045,
+     22.0,
+     23.875,
+     25.899999999999977
+    ]
+   },
+   "panic_len": {
+    "grid": [
+     15.0,
+     16.0,
+     16.0,
+     17.0,
+     17.0,
+     17.0,
+     18.25,
+     19.0,
+     20.0,
+     23.0,
+     26.349999999999994,
+     29.0,
+     31.0,
+     33.0,
+     34.0,
+     36.0,
+     39.0,
+     41.0,
+     43.55000000000001,
+     47.0,
+     49.599999999999966,
+     53.0,
+     55.650000000000034,
+     61.0,
+     64.0,
+     68.0,
+     74.0,
+     78.0,
+     84.0,
+     88.82500000000005,
+     94.0,
+     97.0,
+     100.89999999999998
+    ]
+   },
+   "front_load": {
+    "grid": [
+     0.08811079230270212,
+     0.10768481572696985,
+     0.12249969289544649,
+     0.13331502602630155,
+     0.1445074154347437,
+     0.15338583436963496,
+     0.16397360152587548,
+     0.1753883172738199,
+     0.1858386599942702,
+     0.1987307210081643,
+     0.20768038807092834,
+     0.22334678335805463,
+     0.2330918788256323,
+     0.23893188955121383,
+     0.24933334185651782,
+     0.26128091676388093,
+     0.2716707068805604,
+     0.28864114914499533,
+     0.29775897584702143,
+     0.31099426906451483,
+     0.3200946598188466,
+     0.3310326463847588,
+     0.34974348912100833,
+     0.36411369046384007,
+     0.38759030973492786,
+     0.4042078656009201,
+     0.4164790377338045,
+     0.431453268710962,
+     0.45138036495559614,
+     0.46871383573829883,
+     0.49563914589518027,
+     0.5378368314434361,
+     0.5737362852279687
+    ]
+   },
+   "depth": {
+    "grid": [
+     -0.5377399912689986,
+     -0.5189765328516918,
+     -0.4970100362589205,
+     -0.4864525661044481,
+     -0.47243728241059696,
+     -0.4554086065754815,
+     -0.44740833554996823,
+     -0.4402618053614585,
+     -0.4307549684371241,
+     -0.4209012209407174,
+     -0.4107626436220894,
+     -0.39879489049773875,
+     -0.3905313888887987,
+     -0.38450214375992725,
+     -0.37852672453583336,
+     -0.3737285332242167,
+     -0.36934257404343407,
+     -0.3647894385468234,
+     -0.35927948322582004,
+     -0.35549891106279313,
+     -0.348909458923834,
+     -0.3463124835005269,
+     -0.34305582289957787,
+     -0.33940501947063606,
+     -0.3363188343830362,
+     -0.3342276319841191,
+     -0.33160780292117786,
+     -0.327790322254353,
+     -0.32486825061281416,
+     -0.32149413364260554,
+     -0.31777001177903164,
+     -0.31525822933800435,
+     -0.3116568464421427
+    ]
+   },
+   "rec60": {
+    "grid": [
+     0.23599344594668253,
+     0.2659120366638314,
+     0.2981045937648175,
+     0.3192310879417781,
+     0.3394924421652737,
+     0.3639991529460174,
+     0.38543647890826527,
+     0.40262052075871424,
+     0.42328888300929846,
+     0.43917433269600004,
+     0.4606939484859265,
+     0.47856878945647663,
+     0.4950694718620145,
+     0.5070727918931138,
+     0.5341621953920586,
+     0.5533806252812112,
+     0.569144168907215,
+     0.5995725598394793,
+     0.6257593938416901,
+     0.6532330567945828,
+     0.6690874233703288,
+     0.6841989513682311,
+     0.7030066701548826,
+     0.7302049267795023,
+     0.7613301599442153,
+     0.7863693829299825,
+     0.8181787991045574,
+     0.8402052267011042,
+     0.8753242250544286,
+     0.9164754913655475,
+     0.9530247491469694,
+     0.9801093195794545,
+     1.037439004972946
+    ]
+   },
+   "D_V": [
+    0.1,
+    0.3
+   ],
+   "kappa": [
+    0.02,
+    0.04
+   ],
+   "post_top_drop": {
+    "grid": [
+     0.0614303675354166,
+     0.0674344605984861,
+     0.07352055012774482,
+     0.0794072419607081,
+     0.0854381382357041,
+     0.0929615036425377,
+     0.0995466375101746,
+     0.1065798787516585,
+     0.1120313369450533,
+     0.1176979072976589,
+     0.1244622712618348,
+     0.1307122410001414,
+     0.137027349498736,
+     0.14433931456258645,
+     0.151834960505704,
+     0.1605559224318965,
+     0.1686283703295844,
+     0.1789969004428786,
+     0.1876133979812645,
+     0.19869446814788833,
+     0.2098348379286523,
+     0.2192469879979812,
+     0.230626887451808,
+     0.2428412392266803,
+     0.2563467638878811,
+     0.2729029512953599,
+     0.2885407093208229,
+     0.3010774089970524,
+     0.315442836675991,
+     0.3326735619690033,
+     0.3557929216690155,
+     0.3825503597688046,
+     0.4135592117543186
+    ]
+   },
+   "post_top_len": {
+    "grid": [
+     8.0,
+     9.0,
+     10.0,
+     12.0,
+     14.0,
+     16.0,
+     18.0,
+     20.0,
+     23.0,
+     27.0,
+     31.0,
+     35.0,
+     39.0,
+     44.0,
+     48.0,
+     53.0,
+     60.0,
+     66.0,
+     74.0,
+     81.0,
+     88.0,
+     96.0,
+     105.0,
+     114.0,
+     123.0,
+     132.0,
+     139.0,
+     151.0,
+     156.0,
+     163.0,
+     173.0,
+     179.0,
+     187.0
+    ]
+   },
+   "mu_bull": [
+    0.0015,
+    0.0025
+   ],
+   "setup_frac": [
+    0.25,
+    0.55
+   ],
+   "setup_event_first": [
+    5,
+    20
+   ],
+   "depth_mode": "centred"
+  },
+  "status": "ADOPTED",
+  "label": "FIT (E4.2) for det_len / panic_len / front_load / depth / rec60: the empirical distribution of the panel's FAST-CRASH family (peak-to-trough <= 126 trading days) truncated to P10-P90 and sampled by inverse CDF, NOT a uniform over that interval (PREREG_PHASE_4_ADDENDUM section 3: a uniform reproduces the fitted interval but replaces the fitted shape with a stipulated one and mis-centres every right-skewed parameter by 45-80 %). ALSO FIT, by the same sampler, for post_top_drop and post_top_len, from the panel's run-up outcome table -- these two shipped STIPULATED in the first pass (U(0.30, 0.50) and U(10, 30)) and were corrected under PREREG_PHASE_4_ADDENDUM section 5.3 after the deployed re-measurement showed the post-top block did not hold. DESIGN, unchanged from v2, for D_V / kappa / mu_bull / setup_frac / setup_event_first -- each is either a rendering choice (setup_*) or an entry whose own experiment did not conclude (see mania_drift below). CONDITIONAL ON the fast-crash selection: the full >= 30 % family has a median duration of 196 days and cannot be represented at T = 200; that is a stated selection. DEPTH_MODE = 'centred' (E4.19/E4.20, P4-40): the depth draw now SHIFTS with the `crash_discount` arm factor instead of ignoring it. Drawing depth unconditionally made checklist item 10 exactly inert -- delta moved the realised drawdown by 0.0000. The shift is relative to the reference delta (0.70), so at the deployed delta it reproduces the unconditional draw BIT-IDENTICALLY, and it is a pure location shift, so the fitted shape is unchanged (IQR 0.1333 either way). Measured effect restored: the 0.55-vs-0.85 drawdown spread goes 0.0000 -> -0.0814. `depth_gain` exists as a switch and is NOT adopted: E4.20's closed loop does not converge on the panel's depth p50 (-0.3693) because the realised depth has a structural floor near -0.46 set by D_V (DESIGN) and the panic-phase volatility (Phase 3, frozen) -- see P4-41.",
+  "source": "e4_1/episodes4.json panel_families.dd30_fast; e4_2/schedule.json",
+  "date": "2026-09-05",
+  "n": {
+   "episodes": 642,
+   "stocks": 313
+  },
+  "interval": {
+   "det_len": [
+    3.0,
+    25.899999999999977
+   ],
+   "panic_len": [
+    15.0,
+    100.89999999999998
+   ],
+   "front_load": [
+    0.08811079230270212,
+    0.5737362852279687
+   ],
+   "depth": [
+    -0.5377399912689986,
+    -0.3116568464421427
+   ],
+   "rec60": [
+    0.23599344594668253,
+    1.037439004972946
+   ],
+   "post_top_drop": [
+    0.0614303675354166,
+    0.4135592117543186
+   ],
+   "post_top_len": [
+    8.0,
+    187.0
+   ]
+  },
+  "interval_note": "P10-P90 of the fitted family per parameter; the P50 bootstrap CIs are in e4_1/episodes4.json (e.g. det_len P50 8 [7, 9], panic_len P50 39 [35, 43])",
+  "v2_before": {
+   "det_len": [
+    15,
+    40
+   ],
+   "panic_len": [
+    15,
+    70
+   ],
+   "front_load": [
+    0.5,
+    0.5
+   ],
+   "delta": [
+    0.7,
+    0.7
+   ],
+   "delta_end": "U(delta, 1)"
+  },
+  "criterion_not_met": "E4.2's rise-time rule is NOT MET: the generator's median onset-to-RV21-peak rise is 58 d [52, 64] against the panel's 30 d [29, 35]. The FIT ranges improve it from 70 d, but the binding constraint is the pre-event calm SETUP (corr(onset lag, rise) 0.68 against corr(det_len, rise) 0.14), which is E4.7's parameter. On the 167 of 500 paths whose onset coincides with the scripted event the generator gives rise 32 d and duration 54 d against the panel's 30 and 53.",
+  "survivor_vs_literature_gap": "REG-15: set A is survivor-only, so depths and durations are understated; the index tables (12 Shiller episodes >= 20 %) are published beside in e4_1/index_shiller.csv but are far too thin to set a range, which is what D4 decided"
+ },
+ "hazard": {
+  "value": {
+   "mapping": "A_no_scaling",
+   "h0": 0.0006712028414084587,
+   "b": 5.418640710337168,
+   "g_max": 0.012
+  },
+  "status": "IN FORCE, ADOPTION WITHDRAWN",
+  "adoption_withdrawn": "E4.3 adopted this mapping because its topped share (0.108 [0.081, 0.135]) fell inside the panel's CI. That measurement was taken BEFORE events.json existed, so under the v2 schedule and the v2 post-top leg (a 30-50 % drop delivered over 10-30 days). On the deployed state the topped share is 0.008 [0.002, 0.018] (e4_9/deployed.json), and E4.12 established by a WINDOW-MATCHED comparison that this is structural: within every post-top window bin the two populations share, the generator agrees with the panel (0-50 d: 0.025 vs 0.029; 50-100 d: 0.077 vs 0.036, CIs overlapping), while the panel's headline 0.110 comes from the 3,115 run-ups that have a 150-200 day window and only 0.9 % of generated topped paths have even 120 days left (median 29). REG-18's adoption criterion is therefore NOT EVALUABLE on a 200-day horizon that must also contain the mania, and no mapping can be adopted by it. The values below stay in force as the INCUMBENT and the criterion needs re-expressing.",
+  "label": "FIT/CAL (E4.3, REG-18). b = 5.419 is a logit of GSY's (2019, JFE; READ) crash indicator on the log run-up through their three published points (20 / 53 / 80 % at 50 / 100 / 150 %); h0 is solved, not stipulated, from a hazard-off pilot: h0 = -ln(1 - P) / E[sum_t exp(b x_t)] over the mania window. Mapping A (no horizon scaling) is the UNIQUE arm whose topped share falls inside the panel's CI. CONDITIONAL ON the industry-to-single-stock transfer, which is the DESIGN assumption REG-18 exists to bracket: the panel's own slope is 1.074, five times flatter than GSY's 5.419, and a hazard fitted on it (arm C) fires far too rarely (0.036).",
+  "source": "e4_3/hazard.json",
+  "date": "2026-09-05",
+  "n": {
+   "generator_seeds_per_arm": 500,
+   "panel_runups": 3201,
+   "panel_stocks": 398,
+   "gsy_published_points": 3
+  },
+  "interval": {
+   "topped_share_generator": [
+    0.08079395737708256,
+    0.13520604262291744
+   ],
+   "topped_share_panel": [
+    0.09617239912310344,
+    0.12457603595108144
+   ],
+   "b_gsy_from_3_points": "no interval: fitted through three published points, not a sample; the panel's own b = 1.074 is the comparator"
+  },
+  "outcome_not_target": "the 40-60 % topped band and the P/V 1.6-2.5 band are RETIRED as targets (PREREG section 5). Topped share is an outcome: generator 0.108 [0.081, 0.135] against the panel's 0.110 [0.097, 0.125]; peak P/V median 1.49, reported not tested. v2's incumbent (h0 3e-4, b 6.0) gives 0.064, outside the panel CI.",
+  "survivor_vs_literature_gap": "REG-15: the survivor panel understates crash frequency, so the panel topped share is a lower bound and mapping A may under-fire"
+ },
+ "blowoff": {
+  "value": {
+   "mode": "dynamic",
+   "g_threshold": 0.009843538730025459,
+   "mult": 2.076425364749724
+  },
+  "status": "ADOPTED",
+  "label": "FIT (E4.8). The v2 label was assigned EX POST by events.relabel_blowoff, so its variance multiplier never reached the GARCH driver -- dead code since v2, and measured as such here: under the ex-post arm the driver sees ZERO blow-off days on every path. The dynamic criterion (the mania drift g above this threshold) is evaluable in real time, and under it the label reaches the driver on 100 % of paths with a median of 62 blow-off days. The threshold is the panel's own blow-off window expressed as a per-day drift: the largest trailing 20-day log return inside each run-up, divided by 20, median over run-ups.",
+  "source": "e4_8/labels.json blowoff_threshold, blowoff",
+  "date": "2026-09-05",
+  "n": {
+   "panel_runups": 3202,
+   "generator_seeds": 300
+  },
+  "interval": [
+   0.005904672684104176,
+   0.02079977323059732
+  ],
+  "multiplier": "CALIBRATED (E4.13). volatility.json records blow-off at MANIA's value (1.345) because the v2 label was dead; Phase 3's own label discloses that as a documented shortfall. With the label alive the multiplier is no longer inert, so it was calibrated by the same first-order closed loop e3_4_mechanism.py uses, against the panel's blow-off/mania ratio on E4.1's CORRECTED run-up calm reference: target 1.2895 [1.2146, 1.3713] (n = 3125 run-ups / 394 stocks). Adopted multiplier 2.0764 realises 1.3136 [1.2139, 1.4119] at 1200 seeds -- INSIDE the panel CI. The incumbent (mania's value) realises 1.0160. The value lives HERE, not in volatility.json: Phase 3's parameter file is frozen and this is a Phase-4 decision about Phase-4 machinery."
+ },
+ "post_top": {
+  "value": {
+   "mode": "decay",
+   "half_life": 40.0,
+   "lam": 0.1
+  },
+  "status": "ADOPTED",
+  "label": "CAL (E4.8), calibrated to a FIT target. Phase 3 measured the v2 linear reversal leg as DRIFT-DOMINATED: its realised variance ratio floors at 1.59 (n = 20) whatever the innovation multiplier is set to. An exponential approach to the reversal target over the remaining horizon removes the floor; the half-life is chosen so the realised post-top/mania variance ratio matches the panel's. CONDITIONAL ON the CORRECTED run-up calm reference (E4.1): E3.3's run-up calm window sits at a post-crash trough (sd 0.0413 against the drawdown family's 0.0217), so the old 1.16 target was stated against a denominator that does not describe the run-up population.",
+  "source": "e4_11/posttop_recal.json (measured ON THE DEPLOYED STATE with schedule_mode pinned)",
+  "date": "2026-09-05",
+  "n": {
+   "generator_seeds_per_setting": 400,
+   "panel_runups": 3202,
+   "panel_stocks": 398
+  },
+  "interval": [
+   0.5989812026943955,
+   0.648317426166373
+  ],
+  "interval_note": "the panel's post-top/mania ratio CI on the corrected reference; the realised generator ratio at this half-life is 0.6216 against a target of 0.6225, measured on the deployed state",
+  "superseded": "the first pass adopted half-life 50 on a search run BEFORE events.json existed; on the deployed state that setting realises 0.787 [0.574, 1.100], outside the panel CI (e4_9/deployed.json). The half-life was re-searched with post_top_drop and post_top_len now FIT, and the adopted arm is the one that puts the variance ratio inside the panel CI.",
+  "known_shortfall": "the panel's post-top VARIANCE ratio and its post-top DEPTH are not simultaneously reachable by a single deterministic decay leg at any half-life tested (e4_11); the variance ratio is met and the depth is reported as an outcome, and E4.12 shows the depth gap is a horizon property rather than a parameter defect"
+ },
+ "crash_v_drift": {
+  "value": {
+   "mode": "flat_after_det",
+   "tail_share": 0.0
+  },
+  "status": "TESTED, REJECTED",
+  "label": "v2's shape stays IN FORCE while its central claim is REJECTED by measurement (E4.14). v2 delivers all of D_V inside the deterioration phase and sets mu_V = 0 afterwards. Against the EDGAR value proxy (V-hat = trailing-4Q EPS; the multiple cancels out of a log-decline SHARE), on the fast-crash family with EDGAR coverage, the share of the fundamental decline falling in the DETERIORATION window is 0.000 [0.000, 0.000] -- where v2 puts 100 % of it. That rejection is robust: it holds at every de-lagging of the proxy tested (0, 3, 6, 9 and 12 months), so it is not an artefact of the reporting lag. The MAGNITUDE of the tail is NOT identified: the share falling after the trough moves over 0.508-0.891 across the de-lag arms, non-monotonically and on shifting samples (n 80-134, because shifting the index changes which episodes have coverage). A point `tail_share` would therefore be over-precise for what this proxy supports, so none is adopted and the v2 shape stays in force pending a fundamental series that is not a lagged trailing aggregate -- REG-15's standing WRDS/IBES remedy. The `tail_share` mechanism is implemented and switchable.",
+  "source": "e4_14/crash_v.{json,md}; envs/v2/events.py CrashDriver",
+  "date": "2026-09-05",
+  "n": {
+   "episodes_with_edgar_coverage": 270,
+   "episodes_with_falling_V": 106,
+   "stocks": 96
+  },
+  "interval": {
+   "share_before_onset": [
+    0.0,
+    0.0
+   ],
+   "share_onset_to_trough": [
+    0.0,
+    0.15621058120933126
+   ],
+   "share_after_trough": [
+    0.6306310633158476,
+    1.0
+   ],
+   "tail_share_across_delag_arms": [
+    0.508,
+    0.891
+   ]
+  }
+ },
+ "control": {
+  "value": {
+   "definition": "A",
+   "lam_sb": 0.15,
+   "v_threshold": 1.2,
+   "x_band": [
+    -0.1,
+    0.15
+   ],
+   "v_threshold_FIT_available": 1.3232686663349693
+  },
+  "status": "ADOPTED",
+  "label": "ADOPTED: definition A (D14, taken by the team 6 Sep 2026 on the evidence below). E4.5 audited all four REG-7 definitions; this re-measured them on the DEPLOYED state with rejection off (800 seeds each, schedule_mode pinned) and tested each against ITS OWN null, because the definitions reject at different rates and the KS null floor depends on n. Definition C: rejection 0.330, KS(daily sd, accepted vs rejected) 0.4404 against a null floor of 0.1024 -- it SELECTS ON THE HIDDEN STATE at 4.3x its own null, which is weakness items 18 and 42. Definition A: rejection 0.150, KS 0.1098 against a null floor of 0.1353 -- BELOW its own null, i.e. no detectable selection. A control that selects on x is a control that leaks x, which is the quantity the benchmark exists to hide, so C could not stay. A is the simplest of the three non-selecting definitions (A/B/D) and carries no x-band at all. The FIT replacement for the stipulated V_T/V_1 >= 1.2 threshold (1.3233) remains recorded and NOT applied: it is a separate decision and applying it would move the rejection rate at the same time as the definition changed, confounding both.",
+  "source": "e4_5/control.json",
+  "date": "2026-09-05",
+  "n": {
+   "seeds_per_definition": 500,
+   "flat_seeds": 500,
+   "non_crashing_runups": 2849
+  },
+  "interval": {
+   "v_threshold_fit_p50_p90": [
+    1.3728282864598242,
+    1.6651753069208417
+   ]
+  },
+  "evidence_for_the_team": "selection: C's accepted-vs-rejected KS distance is 0.474 on daily sd and 0.434 on IV; A/B/D are 0.081 and 0.187. The registered equivalence bound (upper limit < 0.10) is UNDECIDABLE at the achieved rejection counts (null floor 0.200 at n_rej = 81), so the comparison between definitions carries the finding, not the bound. Discrimination against a refitted seed-permutation null: all four at chance."
+ },
+ "dynamics": {
+  "value": {
+   "formulation": "A",
+   "lam_panic": 0.1,
+   "phi_regime": null
+  },
+  "status": "INCUMBENT",
+  "label": "D5 IS OPEN. All four REG-8 formulations are implemented and run at 1000 crash and 1000 bull seeds each (E4.6); NONE meets the registered coverage rule, so the pre-registration's own instruction applies -- report the table and STOP for D5. The v2 tracking gain A at lambda 0.10 stays in force as the INCUMBENT. Note PREREG_PHASE_4_ADDENDUM section 4: the rule's premise ('the share of real episodes inside their own P10-P90 is 0.80 by construction') is arithmetically wrong for a two-dimensional box -- the panel's own self-coverage is 0.643, so the registered 0.70 threshold asks the generator to beat the panel by 6 pp and no result could meet it. Phase 4 does NOT set a corrected threshold; that belongs with D5.",
+  "source": "e4_6/dynamics.json",
+  "date": "2026-09-05",
+  "n": {
+   "crash_seeds": 1000,
+   "bull_seeds": 1000,
+   "formulations": 7
+  },
+  "interval": {
+   "panel_self_coverage": 0.643,
+   "panel_self_coverage_n": 642,
+   "note": "coverage CIs per arm are in e4_6/dynamics.json"
+  }
+ },
+ "calendar": {
+  "value": {
+   "day_index": "day_n",
+   "randomise_eps_quarter": true,
+   "ordering_mix": {
+    "setup_first": 1.0
+   }
+  },
+  "status": "ADOPTED",
+  "label": "DESIGN by D6 (team, 5 Sep 2026): 'Day-N' is kept as the default because it preserves v1 comparability; all three renderings (day_n / none / date) are implemented behind the switch `SyntheticMarketEnv(day_index_mode=...)` and the random-date option excludes start dates that would place the window inside 1987, 2000-02, 2008-09 or 2020, as REG-9 requires. The ordering factor is now in the arm grid (experiments/arms_v2.py). The generator-side day-only classifier audit is DONE and all three renderings are acceptable under REG-9, but they are not equal: day_n is the only arm that exceeds its own null anywhere (+0.22 pp in bull-trap, passing only on the rule's 1 pp margin) while none/date sit 1.1-1.6 pp below. The quarter-phase randomisation is DONE and ADOPTED -- see randomise_eps_quarter_evidence and PHASE_4_REPORT sections 9.2 and 9.4.",
+  "source": "envs/synthetic_market.py; experiments/arms_v2.py; REG-9",
+  "date": "2026-09-05",
+  "n": {
+   "renderings_implemented": 3,
+   "audited": 3,
+   "seeds_per_audit": 200,
+   "permutations": 200
+  },
+  "interval": "none: a rendering choice, not a fitted quantity; the LLM-side probe is Phase 9",
+  "audit": {
+   "rule": "REG-9: the day-only macro-phase classifier's accuracy must be at or below the seed-permutation null's 95th percentile + 1 pp, within each scenario",
+   "renderings": {
+    "crash": {
+     "day_n": {
+      "accuracy": 0.76825,
+      "null_p95": 0.7711075000000001,
+      "margin_pp": -0.28575000000000683,
+      "acceptable": true
+     },
+     "none": {
+      "accuracy": 0.3861,
+      "null_p95": 0.401105,
+      "margin_pp": -1.500499999999999,
+      "acceptable": true
+     },
+     "date": {
+      "accuracy": 0.3833,
+      "null_p95": 0.39525999999999994,
+      "margin_pp": -1.195999999999997,
+      "acceptable": true
+     }
+    },
+    "bull_trap": {
+     "day_n": {
+      "accuracy": 0.825,
+      "null_p95": 0.822755,
+      "margin_pp": 0.22449999999999415,
+      "acceptable": true
+     },
+     "none": {
+      "accuracy": 0.3853,
+      "null_p95": 0.39661,
+      "margin_pp": -1.1310000000000042,
+      "acceptable": true
+     },
+     "date": {
+      "accuracy": 0.3862,
+      "null_p95": 0.40201749999999997,
+      "margin_pp": -1.5817499999999984,
+      "acceptable": true
+     }
+    }
+   },
+   "orderings": {
+    "setup_first": {
+     "crash": {
+      "accuracy": 0.76785,
+      "null_p95": 0.7806299999999999,
+      "acceptable": true
+     },
+     "bull_trap": {
+      "accuracy": 0.8234,
+      "null_p95": 0.8388975,
+      "acceptable": true
+     }
+    },
+    "event_first": {
+     "crash": {
+      "accuracy": 0.84105,
+      "null_p95": 0.846015,
+      "acceptable": true
+     },
+     "bull_trap": {
+      "accuracy": 0.8027,
+      "null_p95": 0.8208574999999999,
+      "acceptable": true
+     }
+    },
+    "phase_free": {
+     "crash": {
+      "accuracy": 1.0,
+      "null_p95": 1.0,
+      "acceptable": true
+     },
+     "bull_trap": {
+      "accuracy": 1.0,
+      "null_p95": 1.0,
+      "acceptable": true
+     }
+    }
+   },
+   "phase_free_caveat": "phase_free carries no event, so every day is calm and the classifier has one class: accuracy and null are both 1.0 by construction. That arm is VACUOUS, not passing.",
+   "eps_quarter_clock": {
+    "v2_fixed_quarter_grid": {
+     "accuracy_quarter_third_from_eps_field": 0.8728,
+     "null_p95": 0.3627366666666667,
+     "null_mean": 0.3563796666666667,
+     "chance": 0.3333333333333333,
+     "n_paths": 150,
+     "n_permutations": 200,
+     "carries_a_clock": true,
+     "excess_over_null": 0.5100633333333333,
+     "null_construction": "each path's field series shuffled IN TIME (marginal preserved, alignment destroyed); a seed-label permutation is degenerate here because every path shares the same day axis"
+    },
+    "randomised_per_seed": {
+     "accuracy_quarter_third_from_eps_field": 0.3958,
+     "null_p95": 0.3625333333333333,
+     "null_mean": 0.356401,
+     "chance": 0.3333333333333333,
+     "n_paths": 150,
+     "n_permutations": 200,
+     "carries_a_clock": true,
+     "excess_over_null": 0.03326666666666667,
+     "null_construction": "each path's field series shuffled IN TIME (marginal preserved, alignment destroyed); a seed-label permutation is degenerate here because every path shares the same day axis"
+    },
+    "verdict": "RANDOMISATION IS NEEDED BUT DOES NOT SUFFICE -- both carry a clock"
+   }
+  },
+  "randomise_eps_quarter_evidence": "MEASURED, not assumed. REG-9(c) asks for the quarter phase to be randomised; the premise had never been tested. With v2's fixed grid a lookup predicts which third of the quarter a day falls in from `days_since_eps_announcement` alone with accuracy 0.873 against a null of 0.363 and chance of 0.333 -- a large absolute clock. Randomising per seed drops it to 0.396 against 0.363, removing 93 % of the excess. Adopted because it strictly dominates; the 3.3 pp residual is reported, not explained away. envs/v2/observables.py is under the freeze manifest, so the switch was proved inert at q_phase = 0 against the committed functions on 50 of 50 random inputs."
+ },
+ "multi_asset": {
+  "value": {
+   "per_asset_events": false,
+   "common_loading": 0.2364552625668586
+  },
+  "status": "TESTED, NOT ADOPTED",
+  "label": "FIT value, implementation NOT DONE. The panel's cross-sectional drawdown share -- the share of live names inside a >= 30 % drawdown on the same day -- has mean 0.236 (p90 0.480, max 0.890 over 25 years and 417 names). v2's multi-asset extension puts EVERY asset in the same event on the same days, i.e. a loading of 1.0, which the panel never reaches. The replacement (per-asset event draws with this common-factor loading) is now IMPLEMENTED and switchable (ma_per_asset_events, ma_common_loading) but is NOT ADOPTED, because measurement refutes the premise: v2's realised share is 0.3998 [0.3666, 0.4329], not 1.0, and per-asset draws move it by 0.0003 (E4.15) -- every asset is in the same scenario and crashes whether or not it shares a schedule. The loading controls synchrony (all three in drawdown together 23.1 % of days shared vs 17.3 % per-asset), not the marginal share it is named after. Matching the panel needs scenario heterogeneity across assets; the multi-asset provenance sensitivities are Phase 9's.",
+  "source": "e4_1/episodes4.json cross_section",
+  "date": "2026-09-05",
+  "n": {
+   "names": 417
+  },
+  "interval": [
+   0.0,
+   0.8896882494004796
+  ],
+  "interval_note": "range of the daily share over the panel; p90 0.480"
+ },
+ "mania_drift": {
+  "value": {
+   "kappa_fit": 1.0000000000000002e-06,
+   "kappa_in_force": [
+    0.02,
+    0.04
+   ]
+  },
+  "status": "TESTED, NOT ADOPTED",
+  "label": "REPORTED, NOT APPLIED. The registered LPPLS route is NOT supported: the stable share is 0.329 [0.313, 0.344] against the required >= 0.50 over 3125 converged fits on 398 stocks (median m 0.926 [0.900, 0.953], close to the exponential boundary). The registered fallback -- the scripted drift with its shape FIT from the run-up table -- returns kappa = 0: the panel's run-ups DECELERATE, with a median last-third to first-third log-gain ratio of 0.665 over 2937 run-ups. Two independent lines of evidence therefore contradict a super-exponential mania. kappa = 0 is NOT applied because it would change what the bull-trap scenario is, and because the run-up definition selects on a local maximum at the top, which mechanically flattens the final segment -- a selection caveat that must be settled before the value is adopted. Amendment A5 is revisited on this evidence. TESTED AND BLOCKED (P4-43, 6 Sep 2026). Section 5.1 recommended adopting kappa = 0 because the panel's run-ups decelerate and the endpoint-selection caveat was refuted (0.342 [0.318, 0.368] with the endpoint constraint removed, against 0.621 with it). That evidence stands, but adopting kappa = 0 was tested before it was applied and it BREAKS the scenario: `check_validity` requires x.max() >= 0.30 for a bull trap, and at kappa = 0 the median max x is 0.1555, so the REJECTION RATE is 0.963 (600 seeds, rejection off, schedule pinned) against 0.108 at the incumbent kappa = 0.04. The surviving 4 % would be a heavily selected tail -- the same selection defect D14 has just removed from the sustained-bull control. The sweep: kappa 0.00/0.01/0.02/0.03/0.04 -> rejection 0.963/0.903/0.325/0.153/0.108, median max x 0.156/0.211/0.352/0.404/0.421. kappa = 0 therefore cannot be adopted ALONE; it requires the bull-trap criterion x.max() >= 0.30 -- itself a STIPULATED threshold hardcoded in check_validity -- to be re-expressed at the same time. That is a joint decision the team owns, and it is now costed.",
+  "source": "e4_1/lppls.json; e4_4/mania.json",
+  "date": "2026-09-05",
+  "n": {
+   "lppls_fits": 3125,
+   "lppls_stocks": 398,
+   "runups_for_convexity": 2937
+  },
+  "interval": {
+   "lppls_m": [
+    0.9,
+    0.953
+   ],
+   "lppls_stable_share": [
+    0.313,
+    0.344
+   ],
+   "panel_convexity_p10_p90": [
+    0.2031244906646682,
+    1.706470022622804
+   ]
+  }
+ }
+}

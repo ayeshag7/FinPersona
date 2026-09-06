@@ -5,6 +5,7 @@ hygiene (no hidden fields, no NaN), multi-asset shape, metadata/provenance.
 """
 import concurrent.futures as cf
 
+import math
 import numpy as np
 import pytest
 
@@ -61,17 +62,48 @@ def test_price_decomposition_and_start():
 
 
 def test_schedule_ranges():
+    """v2's stipulated ranges, pinned to `schedule_mode="v2"`.
+
+    v2.1 Phase 4 replaced these with ranges FIT from the panel, so the draw is only inside the bounds below
+    when the v2 switch is pinned -- unpinned, `det_len` reaches 3 against v2's floor of 15 and this test
+    failed for that reason (found when the suite was finally run; see PHASE_4_REPORT section 9.11). Pinning is
+    the point rather than a workaround: "v2 behaviour is bit-identical behind every switch" is the guarantee
+    the phase makes, and this test is now what enforces it for the schedule."""
     rng = np.random.default_rng(0)
     for _ in range(200):
-        s = draw_schedule("crash", 200, rng, "setup_first", delta=0.7)
+        s = draw_schedule("crash", 200, rng, "setup_first", delta=0.7, schedule_mode="v2")
         assert 50 <= s.setup_len <= 110 and 15 <= s.det_len <= 40 and 15 <= s.panic_len <= 70
         assert 0.10 <= s.D_V <= 0.30 and 0.7 <= s.delta_end <= 1.0
         assert s.setup_len + s.det_len + s.panic_len + 10 <= 200
-        b = draw_schedule("bull_trap", 200, rng, "event_first")
+        b = draw_schedule("bull_trap", 200, rng, "event_first", schedule_mode="v2")
         assert 5 <= b.setup_len <= 20 and 0.02 <= b.kappa <= 0.04 and 10 <= b.post_top_len <= 30
         assert all(-5 <= j <= 5 for j in b.jitter.values())
-    f = draw_schedule("flat", 200, rng)
+    f = draw_schedule("flat", 200, rng, schedule_mode="v2")
     assert f.event_start == 201
+
+
+def test_schedule_ranges_v21_stay_inside_the_fitted_grids():
+    """The v2.1 draw is an inverse-CDF sample from an empirical grid, so every draw must land inside that
+    grid's own min/max -- read from `events.json` rather than hardcoded, so a re-fit cannot silently
+    invalidate the test. Also asserts the two modes genuinely differ, or the pin above proves nothing."""
+    ep = pytest.importorskip("envs.v2.events_params")
+    if not ep.PRESENT:
+        pytest.skip("events.json absent: there is no v2.1 schedule to check")
+    lo_hi = {k: (min(v["grid"]), max(v["grid"]))
+             for k, v in ep.RANGES.items() if isinstance(v, dict) and "grid" in v}
+    rng = np.random.default_rng(0)
+    seen_det = set()
+    for _ in range(200):
+        s = draw_schedule("crash", 200, rng, "setup_first", delta=0.7, schedule_mode="v21")
+        seen_det.add(s.det_len)
+        for name, val in (("det_len", s.det_len), ("panic_len", s.panic_len)):
+            if name in lo_hi and not s.truncated.get(name):
+                lo, hi = lo_hi[name]
+                # these are drawn as ints, so a fractional grid bound is reached by rounding
+                assert math.floor(lo) <= val <= math.ceil(hi),                     f"{name}={val} outside the fitted grid [{lo}, {hi}] even allowing integer rounding"
+        assert s.setup_len + s.det_len + s.panic_len + 10 <= 200
+    # the modes must differ, or pinning "v2" above would be vacuous
+    assert min(seen_det) < 15, "v21 det_len no longer goes below v2's floor; the switch may have stopped taking effect"
 
 
 @pytest.mark.parametrize("scenario,expected", [
@@ -102,11 +134,37 @@ def test_crash_criterion_and_delta_matters():
     for d in (0.55, 0.85):
         vals = []
         for s in range(6):
-            r, P, V, x, ph = _path("crash", s, delta=d)
+            r, P, V, x, ph = _path("crash", s, delta=d, schedule_mode="v2")
             assert x[ph == "panic"].min() <= -0.10
             vals.append((P / np.maximum.accumulate(P) - 1).min())
         mdds[d] = np.mean(vals)
     assert mdds[0.55] < mdds[0.85] - 0.10
+
+
+def test_delta_moves_the_drawdown_under_the_centred_depth_draw():
+    """P4-40: `crash_discount` is a live factor again, and the switch is inert at the reference delta.
+
+    E4.2 drew the crash depth from the panel UNCONDITIONALLY, which discarded `delta` and made checklist
+    item 10 exactly inert -- the 0.55-vs-0.85 drawdown spread was 0.0000 to full float precision. E4.19 showed
+    that depth-only failure also dominates the coverage shortfall, so the two were one problem.
+    `depth_mode="centred"` shifts the fitted depth distribution so its centre tracks delta, keeping its shape.
+
+    Three properties, all asserted because each could regress independently:
+      1. under "unconditional" delta is still inert  (the old behaviour is still reachable)
+      2. under "centred" delta moves the drawdown
+      3. at the REFERENCE delta the two modes agree bit-for-bit (the switch is inert where it must be)"""
+    def mdd(delta, depth_mode):
+        vals = []
+        for s in range(6):
+            r, P, V, x, ph = _path("crash", s, delta=delta, schedule_mode="v21", depth_mode=depth_mode)
+            vals.append((P / np.maximum.accumulate(P) - 1).min())
+        return float(np.mean(vals))
+
+    assert mdd(0.55, "unconditional") == mdd(0.85, "unconditional"),         "the unconditional draw is no longer inert in delta; P4-40's premise has changed"
+    lo, hi = mdd(0.55, "centred"), mdd(0.85, "centred")
+    assert lo < hi - 0.02, f"centred depth did not restore the delta effect: {lo} vs {hi}"
+    ref = 0.70   # events.json's reference delta -- the shift is defined relative to it
+    assert mdd(ref, "centred") == mdd(ref, "unconditional"),         "the centred switch is not inert at the reference delta; it must reproduce the unconditional draw"
 
 
 def test_rejection_logging():
