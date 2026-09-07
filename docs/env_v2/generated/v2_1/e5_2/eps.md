@@ -1,0 +1,11 @@
+# E5.2 EPS: seasonal residual, losses, n/m frequency, announcement lags (PREREG_PHASE_5.md section 5.1)
+
+Set A, 411 stocks, 27515 quarters. Stock-bootstrap CIs (1000). set A is survivor-only (REG-15): loss frequencies and the residual's tails are understated relative to the full universe; the announcement lag is not obviously biased.
+
+- seasonal residual (E_q - E_q-4)/L_q with the level floor (L_q >= 0.1 x the stock's median |EPS| (ADDENDUM 4.2(1)); 17 pairs dropped; without it: sd 4489.6, robust sd 0.4077, kurtosis 12658), n = 24402 pairs / 410 stocks: sd 4491.1286 [2.0488, 7460.1903], robust sd 0.4073 [0.3770, 0.4411], P10/P50/P90 -0.780 / 0.085 / 1.079, excess kurtosis 12648.9
+- log seasonal change (positive pairs, n = 20566): sd 0.8581 [0.7316, 1.0162], robust sd 0.3344 [0.3136, 0.3575]; V's annual sd in force 0.2313; **s_EPS (net of V, from the robust sd) = 0.1707 [0.1497, 0.1928]** (from the plain sd 0.5843 [0.4908, 0.6997]); v2 used 0.10
+- loss quarters (n = 26389): P(loss) 0.0975 [0.0856, 0.1097]; P(loss | loss) 0.4251 [0.3822, 0.4634]; P(loss | profit) 0.0616 [0.0553, 0.0682]; loss size P10/P50/P90 0.08333333333333334 / 0.6825107171822501 / 3.5063913267940126 (n = 2344)
+- n/m frequency, EPS_ttm <= 0 over four consecutive quarters (n = 24419 stock-quarters / 410 stocks): **0.0848 [0.0719, 0.0987]**
+- announcement lag (8-K 2.02, 27242 filings / 411 stocks; 411 of 417 names have an 8-K file): P10/P50/P90 = 17 / 28 / 38 calendar days = 12.0 [12.0, 12.0] / 19.0 [19.0, 19.0] / 26.0 [26.0, 27.0] trading days; v2 drew U(25, 35)
+- filing lag (10-Q/10-K, n = 25311): P10/P50/P90 = 25 / 35 / 54 calendar days (SEC 10-Q deadline 40/45); the release precedes the filing by a median of 7.0 calendar days
+

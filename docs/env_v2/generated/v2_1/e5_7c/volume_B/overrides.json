@@ -1,0 +1,24 @@
+{
+ "multiple": {
+  "design": "v2"
+ },
+ "eps": {
+  "design": "v2"
+ },
+ "dividend": {
+  "design": "v2"
+ },
+ "analyst": {
+  "design": "v2"
+ },
+ "sentiment": {
+  "design": "v2"
+ },
+ "volume": {
+  "design": "B",
+  "rho_v": 0.525916765977577,
+  "beta_absr": 0.2026552181805277,
+  "sd_e": 0.34686231428914344,
+  "beta_ru": -0.012314957617872479
+ }
+}

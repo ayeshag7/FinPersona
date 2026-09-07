@@ -1,0 +1,238 @@
+{
+ "what": "E5.2 residual clock: e4_7_calendar.eps_clock unchanged, under the v2 lag U(25,35) and the FIT lag grid",
+ "state": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": false,
+  "observables": "absent (v2 constants)"
+ },
+ "seeds": [
+  326000,
+  326199
+ ],
+ "arms": {
+  "v2_lags_randomised_grid": {
+   "config": {
+    "randomise_eps_quarter": true,
+    "obs_mode": "v2"
+   },
+   "full_window": {
+    "accuracy_quarter_third_from_eps_field": 0.3844,
+    "null_p95": 0.3640175,
+    "null_mean": 0.35874849999999997,
+    "chance": 0.3333333333333333,
+    "n_paths": 200,
+    "n_permutations": 200,
+    "carries_a_clock": true,
+    "excess_over_null": 0.020382500000000026,
+    "null_construction": "each path's field series shuffled IN TIME (marginal preserved, alignment destroyed); a seed-label permutation is degenerate here because every path shares the same day axis"
+   },
+   "interior_days_64_137": {
+    "accuracy_quarter_third_from_eps_field": 0.4285135135135135,
+    "null_p95": 0.4295945945945946,
+    "null_mean": 0.4229054054054055,
+    "chance": 0.3333333333333333,
+    "n_paths": 200,
+    "n_permutations": 200,
+    "carries_a_clock": false,
+    "excess_over_null": -0.00108108108108107,
+    "null_construction": "each path's field series shuffled IN TIME (marginal preserved, alignment destroyed); a seed-label permutation is degenerate here because every path shares the same day axis"
+   },
+   "other_splits": [
+    {
+     "seed": 4703,
+     "full_excess_pp": 1.5699999999999992,
+     "interior_excess_pp": -2.5277027027027055
+    },
+    {
+     "seed": 4704,
+     "full_excess_pp": -0.41100000000000025,
+     "interior_excess_pp": -2.500675675675673
+    },
+    {
+     "seed": 4705,
+     "full_excess_pp": 1.672499999999999,
+     "interior_excess_pp": -1.3797297297297284
+    },
+    {
+     "seed": 4706,
+     "full_excess_pp": 0.7947499999999941,
+     "interior_excess_pp": -0.20270270270270063
+    },
+    {
+     "seed": 4707,
+     "full_excess_pp": -0.9907500000000014,
+     "interior_excess_pp": -2.650000000000002
+    }
+   ],
+   "excess_pp_over_6_splits": {
+    "full_mean": 0.7789583333333322,
+    "full_sd": 1.2294793147575391,
+    "interior_mean": -1.5614864864864861,
+    "interior_sd": 1.1825522719194153
+   }
+  },
+  "fit_lags_randomised_grid": {
+   "config": {
+    "randomise_eps_quarter": true,
+    "obs_overrides": {
+     "eps": {
+      "design": "v21",
+      "s_eps": 0.17073819394108877,
+      "p_loss": 0.09746485277956725,
+      "p_loss_given_loss": 0.4250576479631053,
+      "p_loss_given_profit": 0.061630302265943585,
+      "loss_size_grid": [
+       0.04459691252144083,
+       0.06924042899809937,
+       0.08834701007474836,
+       0.12090353539405778,
+       0.14814814814814817,
+       0.18299969805338792,
+       0.2189441670641594,
+       0.2536090783944356,
+       0.2894608737982232,
+       0.33597189847189846,
+       0.37943875620216977,
+       0.42247386759581895,
+       0.460662701784197,
+       0.5106382978723404,
+       0.5682499580677626,
+       0.6286467290100027,
+       0.6825107171822501,
+       0.7275096940973719,
+       0.7895435593592276,
+       0.873439276914329,
+       0.9680803951626641,
+       1.0455879655109153,
+       1.163365919433676,
+       1.2922483766233765,
+       1.4439136588818116,
+       1.5810314685314684,
+       1.802555623663867,
+       2.0452455543999384,
+       2.2974373469003204,
+       2.7238253207014242,
+       3.354086395969176,
+       4.180362302311435,
+       5.892215568862275
+      ],
+      "pe_cap": 191.54973157246968,
+      "lag_grid_td": [
+       10.0,
+       11.0,
+       12.0,
+       12.0,
+       13.0,
+       14.0,
+       14.0,
+       15.0,
+       16.0,
+       16.0,
+       17.0,
+       17.0,
+       17.0,
+       18.0,
+       18.0,
+       19.0,
+       19.0,
+       19.0,
+       20.0,
+       20.0,
+       21.0,
+       21.0,
+       21.0,
+       22.0,
+       23.0,
+       23.0,
+       23.0,
+       24.0,
+       25.0,
+       26.0,
+       26.0,
+       28.0,
+       30.0
+      ],
+      "lag_p10_p50_p90_td": [
+       12.0,
+       19.0,
+       26.0
+      ],
+      "nm_share_data": 0.08477005610385356
+     },
+     "dividend": {
+      "design": "v21",
+      "field": "shown",
+      "c_speed": 0.6971535189961907,
+      "tau": 0.40631648936170217,
+      "payer_share": 0.8872901678657075,
+      "payout_median_data": 0.40631648936170217
+     }
+    }
+   },
+   "full_window": {
+    "accuracy_quarter_third_from_eps_field": 0.3966,
+    "null_p95": 0.36365,
+    "null_mean": 0.35811499999999996,
+    "chance": 0.3333333333333333,
+    "n_paths": 200,
+    "n_permutations": 200,
+    "carries_a_clock": true,
+    "excess_over_null": 0.032950000000000035,
+    "null_construction": "each path's field series shuffled IN TIME (marginal preserved, alignment destroyed); a seed-label permutation is degenerate here because every path shares the same day axis"
+   },
+   "interior_days_64_137": {
+    "accuracy_quarter_third_from_eps_field": 0.44445945945945947,
+    "null_p95": 0.4298716216216216,
+    "null_mean": 0.4233263513513513,
+    "chance": 0.3333333333333333,
+    "n_paths": 200,
+    "n_permutations": 200,
+    "carries_a_clock": true,
+    "excess_over_null": 0.014587837837837847,
+    "null_construction": "each path's field series shuffled IN TIME (marginal preserved, alignment destroyed); a seed-label permutation is degenerate here because every path shares the same day axis"
+   },
+   "other_splits": [
+    {
+     "seed": 4703,
+     "full_excess_pp": 1.624749999999997,
+     "interior_excess_pp": -0.9594594594594608
+    },
+    {
+     "seed": 4704,
+     "full_excess_pp": 0.5792499999999978,
+     "interior_excess_pp": -1.2439189189189181
+    },
+    {
+     "seed": 4705,
+     "full_excess_pp": 2.2600000000000007,
+     "interior_excess_pp": 0.7020270270270246
+    },
+    {
+     "seed": 4706,
+     "full_excess_pp": 2.349000000000001,
+     "interior_excess_pp": -0.435135135135134
+    },
+    {
+     "seed": 4707,
+     "full_excess_pp": -1.3007500000000005,
+     "interior_excess_pp": 1.0263513513513511
+    }
+   ],
+   "excess_pp_over_6_splits": {
+    "full_mean": 1.467875,
+    "full_sd": 1.6261474468048722,
+    "interior_mean": 0.09144144144144124,
+    "interior_sd": 1.1208353371187112
+   }
+  }
+ },
+ "seconds": 1183
+}

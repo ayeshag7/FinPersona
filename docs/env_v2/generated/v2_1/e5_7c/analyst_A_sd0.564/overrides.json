@@ -1,0 +1,30 @@
+{
+ "multiple": {
+  "design": "v2"
+ },
+ "eps": {
+  "design": "v2"
+ },
+ "dividend": {
+  "design": "v2"
+ },
+ "analyst": {
+  "design": "A",
+  "sd": 0.5639913617919751,
+  "rho": 0.95,
+  "update_days": 5,
+  "field": "shown",
+  "lit_anchor_sd": 0.5639913617919751,
+  "bracket_phase9": [
+   0.3,
+   0.45,
+   0.6
+  ]
+ },
+ "sentiment": {
+  "design": "v2"
+ },
+ "volume": {
+  "design": "v2"
+ }
+}

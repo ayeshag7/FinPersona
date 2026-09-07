@@ -41,7 +41,13 @@ def v2_audit():
     except ImportError:
         pytest.skip("v2 generator not available yet")
     panel = audit_panel(N_SEEDS_CI, T_CI)
-    return la.run_audit(panel, rendered_market_fields("v2"))
+    # v2.1 Phase 5: an undefined P/E (trailing EPS <= 0) is NaN in the frame and the string 'n/m' in the observation; the
+    # audit-side convention (PREREG_PHASE_5.md section 10d) encodes it as the P/E cap plus a `reported_PE_nm` indicator
+    # passed as a shown field -- without it the NaN APEs of the P/E candidate count as inversions inside L1's floor.
+    from tools.phase5.common import encode_nm
+    panel = encode_nm(panel)
+    shown = list(rendered_market_fields("v2")) + (["reported_PE_nm"] if "reported_PE_nm" in panel.columns else [])
+    return la.run_audit(panel, shown)
 
 
 # ---------------- v1: documented failures ----------------

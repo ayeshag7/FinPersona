@@ -1,0 +1,166 @@
+{
+ "what": "E5.3: dividends -- payer share, payout, quarterly Lintner stickiness, crash cuts (PREREG section 6.1)",
+ "data": {
+  "set": "A",
+  "concepts": [
+   "CommonStockDividendsPerShareDeclared",
+   "CommonStockDividendsPerShareCashPaid (fallback)"
+  ],
+  "survivor_caveat": "set A is survivor-only (REG-15): names that cut to zero and delisted are absent, so the cut rates are understated"
+ },
+ "payer_share": {
+  "n_set_A": 417,
+  "n_with_dps_concept": 353,
+  "n_payers_reporting": 353,
+  "n_no_concept": 64,
+  "no_concept_paid_per_yahoo": [
+   "ACGL",
+   "BKNG",
+   "BKR",
+   "CCEP",
+   "CCU",
+   "DHR",
+   "EBAY",
+   "ERIE",
+   "FICO",
+   "HSY",
+   "MBI",
+   "OI",
+   "RIG",
+   "SBAC",
+   "SLB",
+   "STZ",
+   "TSN"
+  ],
+  "no_concept_never_paid_per_yahoo": [
+   "ADBE",
+   "ADSK",
+   "AKAM",
+   "AMD",
+   "AMZN",
+   "AN",
+   "AZO",
+   "BIIB",
+   "BIO",
+   "BRK-B",
+   "BSX",
+   "CDNS",
+   "CIEN",
+   "CPRT",
+   "CSGP",
+   "DECK",
+   "DLTR",
+   "DVA",
+   "FFIV",
+   "FISV",
+   "FOSL",
+   "HSIC",
+   "IDXX",
+   "INCY",
+   "IT",
+   "KMX",
+   "MHK",
+   "MNST",
+   "MTD",
+   "NVR",
+   "ORLY",
+   "PENN",
+   "PTC",
+   "REGN",
+   "SANM",
+   "SNPS",
+   "TDY",
+   "THC",
+   "TRMB",
+   "TTWO",
+   "TYL",
+   "UIS",
+   "URBN",
+   "VIAV",
+   "VRTX",
+   "WAT",
+   "ZBRA"
+  ],
+  "payer_share_among_reporting": 1.0,
+  "payer_share_of_set_A": 0.8872901678657075,
+  "n_payers_set_A": 370,
+  "note": "ADDENDUM 4.2(4): the generator's per-seed payer draw uses payer_share_of_set_A"
+ },
+ "payout": {
+  "n_stock_years": 10666,
+  "n_stocks": 281,
+  "median": {
+   "value": 0.40631648936170217,
+   "ci95": [
+    0.37313363915553377,
+    0.4444444444444444
+   ]
+  },
+  "iqr": [
+   0.2510395145749058,
+   0.6386050660903654
+  ],
+  "p90": 1.1080778588807787,
+  "share_stock_years_zero_dps": 0.0072190044489213465,
+  "v2_incumbent": 0.35
+ },
+ "stickiness": {
+  "n_quarters": 15738,
+  "n_stocks": 350,
+  "c_speed": {
+   "value": 0.6971535189961907,
+   "ci95": [
+    0.005233437315450265,
+    1.0750600082600645
+   ],
+   "se_clustered": 0.2332711646297136,
+   "n_quarters": 15161,
+   "form": "ADDENDUM 4.2(3): tau constrained to the FIT median payout; Ebar = trailing four-quarter mean EPS floored at 0"
+  },
+  "tau_target_payout": {
+   "value": 0.40631648936170217,
+   "ci95": [
+    0.2510395145749058,
+    0.6386050660903654
+   ],
+   "note": "the FIT median annual payout (the interval shown is the IQR of the payout distribution; the median's bootstrap CI is under payout.median)"
+  },
+  "unconstrained_two_parameter_fit": {
+   "c": 0.6757079281394472,
+   "c_ci95": [
+    0.00019272940969191222,
+    1.10335622885177
+   ],
+   "tau": 0.8465992777293103,
+   "tau_ci95": [
+    -0.06372953138337867,
+    721.3253356386251
+   ],
+   "verdict": "UNIDENTIFIED (the record of why the constrained form is used)"
+  },
+  "share_quarters_dps_unchanged": 0.5750413013089338,
+  "unconditional_cut_rate_20pct": 0.050725108928919814,
+  "v2_incumbent": {
+   "speed_per_quarter": 0.3,
+   "payout": 0.35,
+   "label": "DESIGN, weakness item 22 (Lintner's annual speed applied per quarter)"
+  },
+  "sanity_range": "aggregate annual speed of adjustment ~0.3 (secondary sources; Lintner 1956 not readable)"
+ },
+ "crash_behaviour": {
+  "family": "dd30_fast (duration <= 126 d) with DPS coverage and a positive DPS at the peak",
+  "n_episodes": 186,
+  "n_stocks": 137,
+  "p_cut_within_4q": {
+   "value": 0.1774193548387097,
+   "ci95": [
+    0.12168946768394281,
+    0.23915217391304347
+   ]
+  },
+  "unconditional_4q_cut_rate": 0.07259700735480598,
+  "n_unconditional_windows": 15772
+ },
+ "D10": "undecided: both rendering variants are carried (PREREG section 0); the process above is FIT either way",
+ "seconds": 170
+}

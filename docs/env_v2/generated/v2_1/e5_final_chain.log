@@ -1,0 +1,6 @@
+[15:06:23] -m tools.phase5.e5_after_state --stages -> exit 0 in 43676 s
+[15:24:37] -m tools.phase5.e5_7c_onset --out -> exit 0 in 1094 s
+[16:33:15] -m tools.phase5.e5_l5 --train -> exit 0 in 4119 s
+[16:33:24] -m tools.phase5.e5_discrimination --out -> exit 0 in 8 s
+[17:01:16] final ablation -> exit 0
+FINAL CHAIN DONE

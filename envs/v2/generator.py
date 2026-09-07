@@ -37,6 +37,7 @@ from envs.v2.mispricing import FWParams, MispricingState, load_params, ENGINE_DE
 from envs.v2.events import make_driver, relabel_blowoff, realised_top_day, MU_V_BASE, G_MAX
 from envs.v2 import events_params as EP4
 from envs.v2.observables import SentimentState, SENT_SD_REF, announcement_schedule
+from envs.v2 import observables_params as OP
 from envs.v2 import value_params as VP
 
 BURN_IN = 260          # v2 burn-in; v2.1 Phase 1: the burn-in in force is VP.burn_in_for(engine) (E1.5), see GenConfig.__post_init__
@@ -150,6 +151,12 @@ class GenConfig:
     # E4.8 / P4-16: per-asset event draws with a common-factor loading (None -> events.json)
     ma_per_asset_events: Optional[bool] = None
     ma_common_loading: Optional[float] = None
+    # v2.1 Phase 5 (PREREG_PHASE_5.md): the observable-field designs.  None -> params/observables.json (v2 constants when
+    # the file is absent); "v2" forces every field to its v2 construction (the freeze check).  `obs_overrides` merges
+    # per-section overrides for ONE run (e.g. {"analyst": {"design": "A", "sd": 0.30}}), which is how the Phase-5 arms
+    # pin the configuration they measure (P4-19) rather than reading whatever file happens to be present.
+    obs_mode: Optional[str] = None
+    obs_overrides: Dict = field(default_factory=dict)
 
     def __post_init__(self):
         if self.start_price_mode not in START_PRICE_MODES:
@@ -195,6 +202,7 @@ class PathResult:
     ann_jumps: List[Dict[int, float]] = field(default_factory=list) # per asset: {announcement day: log V jump}
     k_render: float = 1.0                                           # mechanism C render scale (1.0 otherwise)
     q_phase: List[int] = field(default_factory=list)                # per asset: the E4.7d quarter-grid shift
+    obs_params: Optional[Dict] = None                               # v2.1 Phase 5: the resolved observable designs (None = v2)
 
     @property
     def L(self) -> int:
@@ -224,6 +232,7 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
         gp = replace(gp, mult={**gp.mult, "blow-off": float(_bo_m)})
     day = np.arange(L) - B + 1
     vol_scale = list(cfg.asset_vol_scale) + [1.0] * (N - len(cfg.asset_vol_scale))
+    obs_p = OP.resolve(cfg.obs_mode, cfg.obs_overrides or None)          # v2.1 Phase 5; None = the v2 field constructions
 
     def _shocks(rng, size):
         return rng.standard_normal(size) if cfg.df_V is None else standardised_t(rng, cfg.df_V, size)
@@ -265,7 +274,7 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
         _rq = (EP4.RANDOMISE_EPS_QUARTER if cfg.randomise_eps_quarter is None
                else bool(cfg.randomise_eps_quarter))
         q_phase = (int(st.get("announce", a).integers(0, 63)) if _rq else 0)
-        ann = announcement_schedule(day, st.get("announce", a), q_phase=q_phase)   # {quarter end: ann day}
+        ann = announcement_schedule(day, st.get("announce", a), q_phase=q_phase, params=obs_p)   # {quarter end: ann day}
         q_phase_all.append(q_phase)
         day_index = {int(d): i for i, d in enumerate(day)}
         jumps_x = None; jumps_V = np.zeros(L); ann_jumps: Dict[int, float] = {}
@@ -295,7 +304,7 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
             si = int(st.get("init_state", a).integers(0, len(stored["x"])))
             ms.x = float(stored["x"][si]); ms.x_prev = float(stored["x_prev"][si]); ms.n_f = float(stored["n_f"][si])
             garch._h = float(stored["h"][si]); garch.sigma2 = garch._h; garch.e_prev = float(stored["e_prev"][si])
-        sentiment = SentimentState(st.get("sentiment", a), lag=sched.jitter.get("sentiment", 0))
+        sentiment = SentimentState(st.get("sentiment", a), lag=sched.jitter.get("sentiment", 0), params=obs_p)
         pending = np.zeros(L + 8)          # sentiment -> future-return drifts (b_pred, reversal)
         logP_hist = []
         logV = math.log(cfg.start_price)
@@ -355,9 +364,11 @@ def _simulate_once(cfg: GenConfig, attempt: int) -> PathResult:
             "dynamics": EP4.DYNAMICS, "control_definition": EP4.CONTROL_DEF,
             "blowoff_mode": EP4.BLOWOFF_MODE, "post_top_mode": EP4.POST_TOP_MODE,
             "jump_placement": cfg.jump_placement, "burn_in": cfg.burn_in, "burn_in_mode": cfg.burn_in_mode,
-            "n_ann_jumps": int(sum(len(d) for d in ann_jumps_all))}
+            "n_ann_jumps": int(sum(len(d) for d in ann_jumps_all)),
+            "observables": ("v2" if obs_p is None else
+                            {s_: obs_p[s_].get("design", "v2") for s_ in OP.SECTIONS})}
     return PathResult(cfg, sched, params, gp, day, V, x, P, sig, e_arr, nf, w_arr, fvar, sent, dscript, phases, meta, attempt + 1, [],
-                      ann_all, ann_jumps_all, k_render, q_phase_all)
+                      ann_all, ann_jumps_all, k_render, q_phase_all, obs_p)
 
 
 _STORED_CACHE: Dict[str, Dict[str, np.ndarray]] = {}

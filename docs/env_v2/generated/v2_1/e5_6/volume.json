@@ -1,0 +1,176 @@
+{
+ "what": "E5.6: volume fits (PREREG section 9.1)",
+ "data": {
+  "set": "A",
+  "n_stocks": 417,
+  "window": [
+   "2000-01-03",
+   "2024-12-31"
+  ],
+  "detrending": "log volume minus its trailing 252-day mean (DESIGN: no shares outstanding in the panel)",
+  "survivor_caveat": "set A is survivor-only (REG-15); volume dynamics of delisted names are absent"
+ },
+ "design_A": {
+  "rho_v": {
+   "median": 0.525916765977577,
+   "ci95": [
+    0.5224468216793224,
+    0.5286014427654556
+   ],
+   "iqr": [
+    0.5043985184223959,
+    0.5556782251194823
+   ],
+   "n": 417
+  },
+  "beta_absr_per_sd_z": {
+   "median": 0.2026552181805277,
+   "ci95": [
+    0.19827325262734558,
+    0.20599198743448185
+   ],
+   "iqr": [
+    0.17951561180398556,
+    0.22400180622325414
+   ],
+   "n": 417
+  },
+  "sd_e": {
+   "median": 0.34686231428914344,
+   "ci95": [
+    0.3389373565510483,
+    0.350879141380601
+   ],
+   "iqr": [
+    0.31278894764965187,
+    0.37678810166081944
+   ],
+   "n": 417
+  },
+  "sd_lv": {
+   "median": 0.4645482572613058,
+   "ci95": [
+    0.4571643755388588,
+    0.4717572852684232
+   ],
+   "iqr": [
+    0.42960591732011066,
+    0.502631908977655
+   ],
+   "n": 417
+  }
+ },
+ "design_B": {
+  "rho_v": {
+   "median": 0.5230783388612613,
+   "ci95": [
+    0.5196055926359977,
+    0.5257765278236116
+   ],
+   "iqr": [
+    0.5035188306625851,
+    0.5530473504622204
+   ],
+   "n": 417
+  },
+  "beta_absr_per_sd_z": {
+   "median": 0.20278747318105111,
+   "ci95": [
+    0.19765927431692107,
+    0.20645789654500238
+   ],
+   "iqr": [
+    0.17928614977928292,
+    0.2243652609420048
+   ],
+   "n": 417
+  },
+  "beta_ru_per_unit_pos_ret252": {
+   "median": -0.012314957617872479,
+   "ci95": [
+    -0.020242278019482474,
+    -0.00558123690563265
+   ],
+   "iqr": [
+    -0.05111444515573821,
+    0.03578782400557601
+   ],
+   "n": 417
+  },
+  "sd_e": {
+   "median": 0.34684161501118166,
+   "ci95": [
+    0.33897965742963226,
+    0.35052865661708593
+   ],
+   "iqr": [
+    0.3125053968037962,
+    0.37669946734689624
+   ],
+   "n": 417
+  }
+ },
+ "sub_periods": {
+  "2000-07": {
+   "rho_v": 0.5106718987760921,
+   "beta_absr": 0.232442563649148,
+   "sd_e": 0.37267517410936635,
+   "beta_ru": 0.09717252967315357,
+   "n_stocks": 417
+  },
+  "2008-12": {
+   "rho_v": 0.5474176785016709,
+   "beta_absr": 0.1930131046560325,
+   "sd_e": 0.33240867863087126,
+   "beta_ru": -0.0637290616190149,
+   "n_stocks": 417
+  },
+  "2013-19": {
+   "rho_v": 0.5139336811114741,
+   "beta_absr": 0.20317158215475434,
+   "sd_e": 0.32160174844746503,
+   "beta_ru": -0.08157198359253581,
+   "n_stocks": 417
+  },
+  "2020-24": {
+   "rho_v": 0.517610427043726,
+   "beta_absr": 0.16317172946147912,
+   "sd_e": 0.3160907456566138,
+   "beta_ru": -0.06024924794222443,
+   "n_stocks": 417
+  }
+ },
+ "runup_turnover_ratio": {
+  "n_episodes": 3019,
+  "n_stocks": 394,
+  "episodes_index_checked": 3202,
+  "episodes_index_mismatch": 0,
+  "log_ratio_median": -0.015016468788333626,
+  "log_ratio_ci95_stock_boot": [
+   -0.03198314965052025,
+   -0.001463636866971473
+  ],
+  "ratio_median": 0.9850957161366352,
+  "ratio_ci95": [
+   0.9685229018910759,
+   0.9985374337270837
+  ],
+  "log_ratio_per_log_runup_median": -0.018195178776924552,
+  "runup_size_median": 2.2271736597478378,
+  "ci_excludes_1": true,
+  "gsy_read": "GSY 2019 (read): turnover elevated in all run-ups, whether or not they crash -- a run-up feature, not a crash predictor"
+ },
+ "lo_wang_read": {
+  "weekly_turnover_ac1_vw": 0.91,
+  "ew": 0.87,
+  "level": "market, weekly; sanity range only"
+ },
+ "v2_incumbent": {
+  "rho": 0.65,
+  "b_absr": 0.25,
+  "b_absx": 1.2,
+  "sd_e": 0.3,
+  "label": "DESIGN (weakness item 24); the |x| loading has no read source and is DOMINATED"
+ },
+ "seconds": 58
+}

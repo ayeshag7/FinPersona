@@ -1,0 +1,1617 @@
+{
+ "what": "E5.7(c): onset-detection audit per field with a circular-shift label null (PREREG section 10c)",
+ "label": "sentiment_B_full",
+ "overrides": {
+  "multiple": {
+   "design": "v2"
+  },
+  "eps": {
+   "design": "v2"
+  },
+  "dividend": {
+   "design": "v2"
+  },
+  "analyst": {
+   "design": "v2"
+  },
+  "sentiment": {
+   "design": "B",
+   "rho": 0.21127624401947614,
+   "b0": 0.011336005215507806,
+   "b1": 0.11097693054019067,
+   "sd_e": 0.971818924981291,
+   "s_raw": 0.3970515881879271,
+   "c_val": 0.9499320900953079,
+   "c_val_full": 0.9499320900953079,
+   "link_size": "full",
+   "rho_w": 0.5339356961700638,
+   "b0_w": 0.2980105377069622,
+   "b1_w": 0.19940872764652662,
+   "sd_e_w": 0.7593161575955316,
+   "update_days": 5,
+   "full_sample_fit": {
+    "rho": 0.4026031062150719,
+    "b0_per_sd_raw": 0.011751427478029973,
+    "b1_per_sd_raw": 0.08442584293369898,
+    "sd_resid_per_sd_raw": 0.9103032882304359
+   }
+  },
+  "volume": {
+   "design": "v2"
+  }
+ },
+ "state": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": false,
+  "observables": "absent (v2 constants)"
+ },
+ "seeds": {
+  "crash": [
+   410000,
+   410199
+  ],
+  "bull_trap": [
+   411000,
+   411199
+  ]
+ },
+ "n_perm": 500,
+ "reference_set": [
+  "ref_abs_r",
+  "ref_abs_ret5",
+  "ref_dlog_rvfc",
+  "ref_dRSI",
+  "ref_dlogPSMA20"
+ ],
+ "transitions": {
+  "crash:calm->deterioration": {
+   "n_paths_with_transition": 200,
+   "n_pos_days": 1400,
+   "n_neg_days": 30467,
+   "auc_ref_best": 0.5783472657203674,
+   "ref_best_name": "ref_dRSI",
+   "auc_ref_all": {
+    "ref_abs_r": 0.5045022368431091,
+    "ref_abs_ret5": 0.4788016676902771,
+    "ref_dlog_rvfc": 0.517826497554779,
+    "ref_dRSI": 0.5783472657203674,
+    "ref_dlogPSMA20": 0.49313321709632874
+   },
+   "fields": {
+    "MACD": {
+     "auc": 0.4926791489124298,
+     "delta_auc": -0.08566811680793762,
+     "null_p95": 0.0046326071023941,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 7.0,
+     "timing_error_iqr": [
+      4.0,
+      9.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "MACD_signal": {
+     "auc": 0.4317744970321655,
+     "delta_auc": -0.1465727686882019,
+     "null_p95": 0.01338708698749542,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 8.0,
+     "timing_error_iqr": [
+      6.0,
+      10.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "RSI14": {
+     "auc": 0.5783472657203674,
+     "delta_auc": 0.0,
+     "null_p95": 0.0,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -4.0,
+      5.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA20": {
+     "auc": 0.4384831190109253,
+     "delta_auc": -0.13986414670944214,
+     "null_p95": 0.01786363273859024,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 9.0,
+     "timing_error_iqr": [
+      4.0,
+      10.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA50": {
+     "auc": 0.4231846034526825,
+     "delta_auc": -0.15516266226768494,
+     "null_p95": 0.026776988804340356,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 7.0,
+     "timing_error_iqr": [
+      -2.0,
+      10.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "analyst_fair_value": {
+     "auc": 0.6134141087532043,
+     "delta_auc": 0.035066843032836914,
+     "null_p95": 0.0009426489472389183,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": 2.5,
+     "timing_error_iqr": [
+      -3.0,
+      5.0
+     ],
+     "delta_auc_extended": 0.035066843032836914,
+     "pass_nonprice_rule": false
+    },
+    "days_since_eps_announcement": {
+     "auc": 0.4994352161884308,
+     "delta_auc": -0.07891204953193665,
+     "null_p95": 0.006793163716793054,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -5.0
+     ],
+     "delta_auc_extended": -0.07891204953193665,
+     "pass_nonprice_rule": true
+    },
+    "dividend_yield": {
+     "auc": 0.5006662607192993,
+     "delta_auc": -0.07768100500106812,
+     "null_p95": 0.0006305426359176584,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      1.0,
+      8.0
+     ],
+     "delta_auc_extended": -0.07768100500106812,
+     "pass_nonprice_rule": true
+    },
+    "implied_volatility": {
+     "auc": 0.5348228216171265,
+     "delta_auc": -0.04352444410324097,
+     "null_p95": 0.006876061856746664,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 2.0,
+     "timing_error_iqr": [
+      -0.25,
+      6.0
+     ],
+     "delta_auc_extended": -0.04352444410324097,
+     "pass_nonprice_rule": true
+    },
+    "news_sentiment": {
+     "auc": 0.4970838725566864,
+     "delta_auc": -0.08126339316368103,
+     "null_p95": 0.012102712690830228,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -5.0,
+      6.0
+     ],
+     "delta_auc_extended": -0.08126339316368103,
+     "pass_nonprice_rule": true
+    },
+    "reported_PE": {
+     "auc": 0.5023113489151001,
+     "delta_auc": -0.07603591680526733,
+     "null_p95": 0.0009965777397155718,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      2.0,
+      8.0
+     ],
+     "delta_auc_extended": -0.07603591680526733,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_MA5": {
+     "auc": 0.4897227883338928,
+     "delta_auc": -0.08862447738647461,
+     "null_p95": 0.013043028116226192,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.08862447738647461,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_change": {
+     "auc": 0.49658316373825073,
+     "delta_auc": -0.0817641019821167,
+     "null_p95": 0.011804690957069397,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -6.0,
+      5.25
+     ],
+     "delta_auc_extended": -0.0817641019821167,
+     "pass_nonprice_rule": true
+    },
+    "trend_regime": {
+     "auc": 0.5016435384750366,
+     "delta_auc": -0.07670372724533081,
+     "null_p95": 0.006740134954452513,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -7.0,
+     "timing_error_iqr": [
+      -10.0,
+      1.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "trend_strength": {
+     "auc": 0.4207720458507538,
+     "delta_auc": -0.15757521986961365,
+     "null_p95": 0.02221807390451431,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 7.0,
+     "timing_error_iqr": [
+      -0.25,
+      10.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "volume": {
+     "auc": 0.48476850986480713,
+     "delta_auc": -0.0935787558555603,
+     "null_p95": 0.009941938519477844,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 3.0,
+     "timing_error_iqr": [
+      -1.25,
+      7.0
+     ],
+     "delta_auc_extended": -0.0935787558555603,
+     "pass_nonprice_rule": true
+    },
+    "volume_ratio": {
+     "auc": 0.545059084892273,
+     "delta_auc": -0.03328818082809448,
+     "null_p95": 0.005333574116230009,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      0.0,
+      8.0
+     ],
+     "delta_auc_extended": -0.03328818082809448,
+     "pass_nonprice_rule": true
+    }
+   },
+   "auc_ref_extended": 0.5783472657203674
+  },
+  "crash:deterioration->panic": {
+   "n_paths_with_transition": 200,
+   "n_pos_days": 1400,
+   "n_neg_days": 30467,
+   "auc_ref_best": 0.7337807416915894,
+   "ref_best_name": "ref_abs_ret5",
+   "auc_ref_all": {
+    "ref_abs_r": 0.6352481842041016,
+    "ref_abs_ret5": 0.7337807416915894,
+    "ref_dlog_rvfc": 0.6350672245025635,
+    "ref_dRSI": 0.530158519744873,
+    "ref_dlogPSMA20": 0.6038918495178223
+   },
+   "fields": {
+    "MACD": {
+     "auc": 0.7410783171653748,
+     "delta_auc": 0.0072975754737854,
+     "null_p95": 0.0004697859287261818,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      2.0,
+      8.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "MACD_signal": {
+     "auc": 0.7343298196792603,
+     "delta_auc": 0.0005490779876708984,
+     "null_p95": 0.0065964072942733655,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      2.0,
+      8.25
+     ],
+     "pass_nonprice_rule": null
+    },
+    "RSI14": {
+     "auc": 0.530158519744873,
+     "delta_auc": -0.2036222219467163,
+     "null_p95": 0.0,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 3.0,
+     "timing_error_iqr": [
+      -2.0,
+      6.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA20": {
+     "auc": 0.7389588952064514,
+     "delta_auc": 0.0051781535148620605,
+     "null_p95": 0.006204129755496952,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 7.0,
+     "timing_error_iqr": [
+      3.0,
+      10.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA50": {
+     "auc": 0.5944358110427856,
+     "delta_auc": -0.1393449306488037,
+     "null_p95": 0.026598471403121937,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 7.0,
+     "timing_error_iqr": [
+      3.0,
+      10.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "analyst_fair_value": {
+     "auc": 0.6458890438079834,
+     "delta_auc": -0.08789169788360596,
+     "null_p95": 0.005399425327777854,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -4.0,
+      3.0
+     ],
+     "delta_auc_extended": -0.09518927335739136,
+     "pass_nonprice_rule": true
+    },
+    "days_since_eps_announcement": {
+     "auc": 0.5008549690246582,
+     "delta_auc": -0.23292577266693115,
+     "null_p95": 0.011113047599792456,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -4.0
+     ],
+     "delta_auc_extended": -0.24022334814071655,
+     "pass_nonprice_rule": true
+    },
+    "dividend_yield": {
+     "auc": 0.631115734577179,
+     "delta_auc": -0.1026650071144104,
+     "null_p95": -0.0003405809402465834,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      3.0,
+      8.0
+     ],
+     "delta_auc_extended": -0.1099625825881958,
+     "pass_nonprice_rule": true
+    },
+    "implied_volatility": {
+     "auc": 0.575234591960907,
+     "delta_auc": -0.15854614973068237,
+     "null_p95": 0.009516082704067228,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 2.0,
+     "timing_error_iqr": [
+      -2.0,
+      5.25
+     ],
+     "delta_auc_extended": -0.16584372520446777,
+     "pass_nonprice_rule": true
+    },
+    "news_sentiment": {
+     "auc": 0.5061408877372742,
+     "delta_auc": -0.22763985395431519,
+     "null_p95": 0.015475991368293711,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -0.5,
+     "timing_error_iqr": [
+      -5.0,
+      6.0
+     ],
+     "delta_auc_extended": -0.23493742942810059,
+     "pass_nonprice_rule": true
+    },
+    "reported_PE": {
+     "auc": 0.633001446723938,
+     "delta_auc": -0.10077929496765137,
+     "null_p95": -0.0005669131875038148,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      3.0,
+      8.0
+     ],
+     "delta_auc_extended": -0.10807687044143677,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_MA5": {
+     "auc": 0.49887606501579285,
+     "delta_auc": -0.2349046766757965,
+     "null_p95": 0.018726463615894313,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -5.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.2422022521495819,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_change": {
+     "auc": 0.5068946480751038,
+     "delta_auc": -0.2268860936164856,
+     "null_p95": 0.015569166839122765,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -5.0,
+      6.0
+     ],
+     "delta_auc_extended": -0.234183669090271,
+     "pass_nonprice_rule": true
+    },
+    "trend_regime": {
+     "auc": 0.5127150416374207,
+     "delta_auc": -0.2210657000541687,
+     "null_p95": 0.010767662525177002,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -7.0,
+     "timing_error_iqr": [
+      -10.0,
+      -2.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "trend_strength": {
+     "auc": 0.6306268572807312,
+     "delta_auc": -0.10315388441085815,
+     "null_p95": 0.01737267673015593,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      1.0,
+      9.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "volume": {
+     "auc": 0.5489572882652283,
+     "delta_auc": -0.18482345342636108,
+     "null_p95": 0.01003224253654479,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 4.0,
+     "timing_error_iqr": [
+      1.0,
+      8.0
+     ],
+     "delta_auc_extended": -0.19212102890014648,
+     "pass_nonprice_rule": true
+    },
+    "volume_ratio": {
+     "auc": 0.6582775115966797,
+     "delta_auc": -0.07550323009490967,
+     "null_p95": 0.004221034049987788,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 5.0,
+     "timing_error_iqr": [
+      2.0,
+      8.0
+     ],
+     "delta_auc_extended": -0.08280080556869507,
+     "pass_nonprice_rule": true
+    }
+   },
+   "auc_ref_extended": 0.7410783171653748
+  },
+  "crash:panic->stabilisation": {
+   "n_paths_with_transition": 200,
+   "n_pos_days": 1400,
+   "n_neg_days": 30467,
+   "auc_ref_best": 0.6588161587715149,
+   "ref_best_name": "ref_abs_ret5",
+   "auc_ref_all": {
+    "ref_abs_r": 0.632766842842102,
+    "ref_abs_ret5": 0.6588161587715149,
+    "ref_dlog_rvfc": 0.6191578507423401,
+    "ref_dRSI": 0.4397159516811371,
+    "ref_dlogPSMA20": 0.6467405557632446
+   },
+   "fields": {
+    "MACD": {
+     "auc": 0.7089328765869141,
+     "delta_auc": 0.05011671781539917,
+     "null_p95": -0.007662448287010193,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": -4.0,
+     "timing_error_iqr": [
+      -7.0,
+      -1.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "MACD_signal": {
+     "auc": 0.704055905342102,
+     "delta_auc": 0.04523974657058716,
+     "null_p95": -0.004304160177707672,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": -4.0,
+     "timing_error_iqr": [
+      -7.0,
+      0.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "RSI14": {
+     "auc": 0.4397159516811371,
+     "delta_auc": -0.2191002070903778,
+     "null_p95": 0.0,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -3.0,
+     "timing_error_iqr": [
+      -7.0,
+      0.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA20": {
+     "auc": 0.7109091877937317,
+     "delta_auc": 0.0520930290222168,
+     "null_p95": -0.00025154054164887497,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": -3.0,
+     "timing_error_iqr": [
+      -7.0,
+      2.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA50": {
+     "auc": 0.7579753398895264,
+     "delta_auc": 0.09915918111801147,
+     "null_p95": 0.0009493827819823993,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": -0.5,
+     "timing_error_iqr": [
+      -6.0,
+      5.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "analyst_fair_value": {
+     "auc": 0.5132831335067749,
+     "delta_auc": -0.14553302526474,
+     "null_p95": 0.009002746641635891,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.24469220638275146,
+     "pass_nonprice_rule": true
+    },
+    "days_since_eps_announcement": {
+     "auc": 0.5015740990638733,
+     "delta_auc": -0.1572420597076416,
+     "null_p95": 0.006565238535404197,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -3.0
+     ],
+     "delta_auc_extended": -0.2564012408256531,
+     "pass_nonprice_rule": true
+    },
+    "dividend_yield": {
+     "auc": 0.6307770609855652,
+     "delta_auc": -0.028039097785949707,
+     "null_p95": -0.007883976399898539,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -4.0,
+     "timing_error_iqr": [
+      -7.0,
+      -1.0
+     ],
+     "delta_auc_extended": -0.12719827890396118,
+     "pass_nonprice_rule": true
+    },
+    "implied_volatility": {
+     "auc": 0.49932166934013367,
+     "delta_auc": -0.15949448943138123,
+     "null_p95": 0.011907385289669035,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -3.0,
+     "timing_error_iqr": [
+      -7.0,
+      2.0
+     ],
+     "delta_auc_extended": -0.2586536705493927,
+     "pass_nonprice_rule": true
+    },
+    "news_sentiment": {
+     "auc": 0.5046511888504028,
+     "delta_auc": -0.15416496992111206,
+     "null_p95": 0.011958450078964207,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.25332415103912354,
+     "pass_nonprice_rule": true
+    },
+    "reported_PE": {
+     "auc": 0.6298096179962158,
+     "delta_auc": -0.029006540775299072,
+     "null_p95": -0.006734080612659464,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -4.0,
+     "timing_error_iqr": [
+      -7.0,
+      0.0
+     ],
+     "delta_auc_extended": -0.12816572189331055,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_MA5": {
+     "auc": 0.5011478066444397,
+     "delta_auc": -0.1576683521270752,
+     "null_p95": 0.01344060897827148,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -2.0,
+     "timing_error_iqr": [
+      -7.0,
+      4.0
+     ],
+     "delta_auc_extended": -0.25682753324508667,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_change": {
+     "auc": 0.5051324367523193,
+     "delta_auc": -0.15368372201919556,
+     "null_p95": 0.011994302272796624,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.25284290313720703,
+     "pass_nonprice_rule": true
+    },
+    "trend_regime": {
+     "auc": 0.4920007288455963,
+     "delta_auc": -0.16681542992591858,
+     "null_p95": 0.007496663928031916,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -7.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "trend_strength": {
+     "auc": 0.6137654185295105,
+     "delta_auc": -0.045050740242004395,
+     "null_p95": 0.008376237750053405,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      5.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "volume": {
+     "auc": 0.5978649854660034,
+     "delta_auc": -0.060951173305511475,
+     "null_p95": 0.0024318158626556374,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -3.0,
+     "timing_error_iqr": [
+      -7.0,
+      0.0
+     ],
+     "delta_auc_extended": -0.16011035442352295,
+     "pass_nonprice_rule": true
+    },
+    "volume_ratio": {
+     "auc": 0.5504498481750488,
+     "delta_auc": -0.10836631059646606,
+     "null_p95": 0.008925318717956529,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -4.0,
+     "timing_error_iqr": [
+      -8.0,
+      0.0
+     ],
+     "delta_auc_extended": -0.20752549171447754,
+     "pass_nonprice_rule": true
+    }
+   },
+   "auc_ref_extended": 0.7579753398895264
+  },
+  "bull_trap:calm->mania": {
+   "n_paths_with_transition": 200,
+   "n_pos_days": 1400,
+   "n_neg_days": 31954,
+   "auc_ref_best": 0.49976056814193726,
+   "ref_best_name": "ref_dRSI",
+   "auc_ref_all": {
+    "ref_abs_r": 0.48040759563446045,
+    "ref_abs_ret5": 0.46718522906303406,
+    "ref_dlog_rvfc": 0.49479490518569946,
+    "ref_dRSI": 0.49976056814193726,
+    "ref_dlogPSMA20": 0.4765569567680359
+   },
+   "fields": {
+    "MACD": {
+     "auc": 0.48575347661972046,
+     "delta_auc": -0.014007091522216797,
+     "null_p95": 0.007768237590789786,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      4.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "MACD_signal": {
+     "auc": 0.4714917838573456,
+     "delta_auc": -0.028268784284591675,
+     "null_p95": 0.016138073801994304,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -6.0,
+      6.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "RSI14": {
+     "auc": 0.49976056814193726,
+     "delta_auc": 0.0,
+     "null_p95": 0.0,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      5.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA20": {
+     "auc": 0.4372989237308502,
+     "delta_auc": -0.062461644411087036,
+     "null_p95": 0.023716616630554195,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -6.0,
+      6.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA50": {
+     "auc": 0.39651912450790405,
+     "delta_auc": -0.1032414436340332,
+     "null_p95": 0.027961316704750022,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -6.0,
+      6.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "analyst_fair_value": {
+     "auc": 0.5045719146728516,
+     "delta_auc": 0.004811346530914307,
+     "null_p95": 0.00577842593193054,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      5.0
+     ],
+     "delta_auc_extended": 0.0011038780212402344,
+     "pass_nonprice_rule": true
+    },
+    "days_since_eps_announcement": {
+     "auc": 0.49771589040756226,
+     "delta_auc": -0.002044677734375,
+     "null_p95": 0.0025585770606994605,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -7.0
+     ],
+     "delta_auc_extended": -0.005752146244049072,
+     "pass_nonprice_rule": true
+    },
+    "dividend_yield": {
+     "auc": 0.4797242283821106,
+     "delta_auc": -0.02003633975982666,
+     "null_p95": 0.0008314430713653391,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -4.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.023743808269500732,
+     "pass_nonprice_rule": true
+    },
+    "implied_volatility": {
+     "auc": 0.5022057294845581,
+     "delta_auc": 0.0024451613426208496,
+     "null_p95": 0.0068700045347213695,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -0.5,
+     "timing_error_iqr": [
+      -5.25,
+      5.0
+     ],
+     "delta_auc_extended": -0.0012623071670532227,
+     "pass_nonprice_rule": true
+    },
+    "news_sentiment": {
+     "auc": 0.49780139327049255,
+     "delta_auc": -0.001959174871444702,
+     "null_p95": 0.007145768404006953,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      4.0
+     ],
+     "delta_auc_extended": -0.005666643381118774,
+     "pass_nonprice_rule": true
+    },
+    "reported_PE": {
+     "auc": 0.48129284381866455,
+     "delta_auc": -0.018467724323272705,
+     "null_p95": 0.0010228410363197322,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.5,
+     "timing_error_iqr": [
+      -4.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.022175192832946777,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_MA5": {
+     "auc": 0.4972071349620819,
+     "delta_auc": -0.0025534331798553467,
+     "null_p95": 0.007421582937240593,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      4.25
+     ],
+     "delta_auc_extended": -0.006260901689529419,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_change": {
+     "auc": 0.4979734718799591,
+     "delta_auc": -0.0017870962619781494,
+     "null_p95": 0.007197286188602442,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      4.0
+     ],
+     "delta_auc_extended": -0.005494564771652222,
+     "pass_nonprice_rule": true
+    },
+    "trend_regime": {
+     "auc": 0.5034680366516113,
+     "delta_auc": 0.0037074685096740723,
+     "null_p95": 0.0013010904192924473,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": -7.0,
+     "timing_error_iqr": [
+      -10.0,
+      -1.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "trend_strength": {
+     "auc": 0.4730945825576782,
+     "delta_auc": -0.026665985584259033,
+     "null_p95": 0.020862182974815333,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -7.0,
+      6.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "volume": {
+     "auc": 0.4761301577091217,
+     "delta_auc": -0.023630410432815552,
+     "null_p95": 0.007456286251544949,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.027337878942489624,
+     "pass_nonprice_rule": true
+    },
+    "volume_ratio": {
+     "auc": 0.4678463935852051,
+     "delta_auc": -0.03191417455673218,
+     "null_p95": 0.010223042964935283,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -4.0,
+      6.0
+     ],
+     "delta_auc_extended": -0.03562164306640625,
+     "pass_nonprice_rule": true
+    }
+   },
+   "auc_ref_extended": 0.5034680366516113
+  },
+  "bull_trap:mania->blow-off": {
+   "n_paths_with_transition": 200,
+   "n_pos_days": 1400,
+   "n_neg_days": 31954,
+   "auc_ref_best": 0.5370609760284424,
+   "ref_best_name": "ref_abs_ret5",
+   "auc_ref_all": {
+    "ref_abs_r": 0.5265447497367859,
+    "ref_abs_ret5": 0.5370609760284424,
+    "ref_dlog_rvfc": 0.4950019419193268,
+    "ref_dRSI": 0.5110737681388855,
+    "ref_dlogPSMA20": 0.5165516138076782
+   },
+   "fields": {
+    "MACD": {
+     "auc": 0.4887341856956482,
+     "delta_auc": -0.04832679033279419,
+     "null_p95": 0.010260123014450073,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -5.0,
+      8.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "MACD_signal": {
+     "auc": 0.4957287609577179,
+     "delta_auc": -0.04133221507072449,
+     "null_p95": 0.014540937542915343,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.5,
+     "timing_error_iqr": [
+      -5.0,
+      6.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "RSI14": {
+     "auc": 0.5110737681388855,
+     "delta_auc": -0.025987207889556885,
+     "null_p95": 0.0,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -4.25,
+      5.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA20": {
+     "auc": 0.5775925517082214,
+     "delta_auc": 0.04053157567977905,
+     "null_p95": 0.01549773961305615,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -6.0,
+      7.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA50": {
+     "auc": 0.5776024460792542,
+     "delta_auc": 0.04054147005081177,
+     "null_p95": 0.015695515275001525,
+     "null_n": 500,
+     "pass": false,
+     "timing_error_median": 3.0,
+     "timing_error_iqr": [
+      -5.0,
+      8.25
+     ],
+     "pass_nonprice_rule": null
+    },
+    "analyst_fair_value": {
+     "auc": 0.512725293636322,
+     "delta_auc": -0.02433568239212036,
+     "null_p95": 0.006856869161128997,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.25,
+      6.0
+     ],
+     "delta_auc_extended": -0.06487715244293213,
+     "pass_nonprice_rule": true
+    },
+    "days_since_eps_announcement": {
+     "auc": 0.500549852848053,
+     "delta_auc": -0.036511123180389404,
+     "null_p95": 0.003287377953529342,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -5.0
+     ],
+     "delta_auc_extended": -0.07705259323120117,
+     "pass_nonprice_rule": true
+    },
+    "dividend_yield": {
+     "auc": 0.52350914478302,
+     "delta_auc": -0.013551831245422363,
+     "null_p95": 0.0004010945558547971,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.5,
+     "timing_error_iqr": [
+      -5.0,
+      7.0
+     ],
+     "delta_auc_extended": -0.05409330129623413,
+     "pass_nonprice_rule": true
+    },
+    "implied_volatility": {
+     "auc": 0.5016155242919922,
+     "delta_auc": -0.035445451736450195,
+     "null_p95": 0.00934538841247557,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.5,
+     "timing_error_iqr": [
+      -4.0,
+      6.0
+     ],
+     "delta_auc_extended": -0.07598692178726196,
+     "pass_nonprice_rule": true
+    },
+    "news_sentiment": {
+     "auc": 0.4985453486442566,
+     "delta_auc": -0.03851562738418579,
+     "null_p95": 0.009695655107498166,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -0.5,
+     "timing_error_iqr": [
+      -6.0,
+      5.25
+     ],
+     "delta_auc_extended": -0.07905709743499756,
+     "pass_nonprice_rule": true
+    },
+    "reported_PE": {
+     "auc": 0.5245323181152344,
+     "delta_auc": -0.012528657913208008,
+     "null_p95": 0.00011238753795623278,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -5.0,
+      6.0
+     ],
+     "delta_auc_extended": -0.053070127964019775,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_MA5": {
+     "auc": 0.4968942403793335,
+     "delta_auc": -0.04016673564910889,
+     "null_p95": 0.009315544366836546,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      4.0
+     ],
+     "delta_auc_extended": -0.08070820569992065,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_change": {
+     "auc": 0.4942189157009125,
+     "delta_auc": -0.04284206032752991,
+     "null_p95": 0.0097406044602394,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.08338353037834167,
+     "pass_nonprice_rule": true
+    },
+    "trend_regime": {
+     "auc": 0.49882516264915466,
+     "delta_auc": -0.03823581337928772,
+     "null_p95": 0.004918438196182248,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -3.75
+     ],
+     "pass_nonprice_rule": null
+    },
+    "trend_strength": {
+     "auc": 0.5132232904434204,
+     "delta_auc": -0.023837685585021973,
+     "null_p95": 0.015299689769744867,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -7.0,
+      6.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "volume": {
+     "auc": 0.509711742401123,
+     "delta_auc": -0.027349233627319336,
+     "null_p95": 0.008742545545101153,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.0678907036781311,
+     "pass_nonprice_rule": true
+    },
+    "volume_ratio": {
+     "auc": 0.5277959108352661,
+     "delta_auc": -0.00926506519317627,
+     "null_p95": 0.007344162464141841,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 2.0,
+     "timing_error_iqr": [
+      -4.0,
+      7.0
+     ],
+     "delta_auc_extended": -0.04980653524398804,
+     "pass_nonprice_rule": true
+    }
+   },
+   "auc_ref_extended": 0.5776024460792542
+  },
+  "bull_trap:blow-off->post-top": {
+   "n_paths_with_transition": 25,
+   "n_pos_days": 171,
+   "n_neg_days": 31954,
+   "auc_ref_best": 0.5808849334716797,
+   "ref_best_name": "ref_dlogPSMA20",
+   "auc_ref_all": {
+    "ref_abs_r": 0.5661680102348328,
+    "ref_abs_ret5": 0.5322731137275696,
+    "ref_dlog_rvfc": 0.5086496472358704,
+    "ref_dRSI": 0.533909797668457,
+    "ref_dlogPSMA20": 0.5808849334716797
+   },
+   "fields": {
+    "MACD": {
+     "auc": 0.5147259831428528,
+     "delta_auc": -0.0661589503288269,
+     "null_p95": 0.03156037926673887,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 3.0,
+     "timing_error_iqr": [
+      -3.0,
+      8.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "MACD_signal": {
+     "auc": 0.5634729862213135,
+     "delta_auc": -0.01741194725036621,
+     "null_p95": 0.05983693152666091,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -5.0,
+      8.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "RSI14": {
+     "auc": 0.533909797668457,
+     "delta_auc": -0.046975135803222656,
+     "null_p95": 0.0,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -2.0,
+     "timing_error_iqr": [
+      -5.0,
+      1.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA20": {
+     "auc": 0.6228313446044922,
+     "delta_auc": 0.0419464111328125,
+     "null_p95": 0.07243279516696928,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -6.0,
+      0.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "SMA50": {
+     "auc": 0.6591739654541016,
+     "delta_auc": 0.07828903198242188,
+     "null_p95": 0.07869097888469678,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -8.0,
+     "timing_error_iqr": [
+      -10.0,
+      -2.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "analyst_fair_value": {
+     "auc": 0.5099806189537048,
+     "delta_auc": -0.07090431451797485,
+     "null_p95": 0.02201784849166869,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 3.0,
+     "timing_error_iqr": [
+      -5.0,
+      7.0
+     ],
+     "delta_auc_extended": -0.14919334650039673,
+     "pass_nonprice_rule": true
+    },
+    "days_since_eps_announcement": {
+     "auc": 0.4919852614402771,
+     "delta_auc": -0.08889967203140259,
+     "null_p95": 0.016092745959758712,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -10.0
+     ],
+     "delta_auc_extended": -0.16718870401382446,
+     "pass_nonprice_rule": true
+    },
+    "dividend_yield": {
+     "auc": 0.5486947894096375,
+     "delta_auc": -0.032190144062042236,
+     "null_p95": -0.00044198930263520395,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -4.0,
+     "timing_error_iqr": [
+      -7.0,
+      -2.0
+     ],
+     "delta_auc_extended": -0.11047917604446411,
+     "pass_nonprice_rule": true
+    },
+    "implied_volatility": {
+     "auc": 0.5535346269607544,
+     "delta_auc": -0.027350306510925293,
+     "null_p95": 0.026327501237392404,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 1.0,
+     "timing_error_iqr": [
+      -8.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.10563933849334717,
+     "pass_nonprice_rule": true
+    },
+    "news_sentiment": {
+     "auc": 0.48677268624305725,
+     "delta_auc": -0.09411224722862244,
+     "null_p95": 0.030565160512924183,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.1724012792110443,
+     "pass_nonprice_rule": true
+    },
+    "reported_PE": {
+     "auc": 0.5627708435058594,
+     "delta_auc": -0.018114089965820312,
+     "null_p95": -0.0036636710166931172,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -5.0,
+     "timing_error_iqr": [
+      -7.0,
+      -2.0
+     ],
+     "delta_auc_extended": -0.09640312194824219,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_MA5": {
+     "auc": 0.4908885657787323,
+     "delta_auc": -0.08999636769294739,
+     "null_p95": 0.035170173645019474,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -3.0,
+     "timing_error_iqr": [
+      -7.0,
+      0.0
+     ],
+     "delta_auc_extended": -0.16828539967536926,
+     "pass_nonprice_rule": true
+    },
+    "sentiment_change": {
+     "auc": 0.4917066991329193,
+     "delta_auc": -0.08917823433876038,
+     "null_p95": 0.03339004069566726,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": 0.0,
+     "timing_error_iqr": [
+      -5.0,
+      5.0
+     ],
+     "delta_auc_extended": -0.16746726632118225,
+     "pass_nonprice_rule": true
+    },
+    "trend_regime": {
+     "auc": 0.4959450662136078,
+     "delta_auc": -0.0849398672580719,
+     "null_p95": 0.02070464491844174,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -10.0,
+     "timing_error_iqr": [
+      -10.0,
+      -4.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "trend_strength": {
+     "auc": 0.5344405770301819,
+     "delta_auc": -0.0464443564414978,
+     "null_p95": 0.07868003696203223,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -1.0,
+     "timing_error_iqr": [
+      -7.0,
+      8.0
+     ],
+     "pass_nonprice_rule": null
+    },
+    "volume": {
+     "auc": 0.5073496103286743,
+     "delta_auc": -0.07353532314300537,
+     "null_p95": 0.0203549638390541,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -3.0,
+     "timing_error_iqr": [
+      -6.0,
+      2.0
+     ],
+     "delta_auc_extended": -0.15182435512542725,
+     "pass_nonprice_rule": true
+    },
+    "volume_ratio": {
+     "auc": 0.4952959716320038,
+     "delta_auc": -0.0855889618396759,
+     "null_p95": 0.017698132991790766,
+     "null_n": 500,
+     "pass": true,
+     "timing_error_median": -5.0,
+     "timing_error_iqr": [
+      -8.0,
+      0.0
+     ],
+     "delta_auc_extended": -0.16387799382209778,
+     "pass_nonprice_rule": true
+    }
+   },
+   "auc_ref_extended": 0.6591739654541016
+  }
+ },
+ "verdict": {
+  "all_pass": false,
+  "failures": [
+   [
+    "crash:calm->deterioration",
+    "analyst_fair_value"
+   ],
+   [
+    "crash:deterioration->panic",
+    "MACD"
+   ],
+   [
+    "crash:panic->stabilisation",
+    "MACD"
+   ],
+   [
+    "crash:panic->stabilisation",
+    "MACD_signal"
+   ],
+   [
+    "crash:panic->stabilisation",
+    "SMA20"
+   ],
+   [
+    "crash:panic->stabilisation",
+    "SMA50"
+   ],
+   [
+    "bull_trap:calm->mania",
+    "trend_regime"
+   ],
+   [
+    "bull_trap:mania->blow-off",
+    "SMA20"
+   ],
+   [
+    "bull_trap:mania->blow-off",
+    "SMA50"
+   ]
+  ],
+  "rule": "dAUC_f <= null p95 for every field and transition (PREREG section 10c, as registered)"
+ },
+ "verdict_nonprice": {
+  "all_pass": false,
+  "failures": [
+   [
+    "crash:calm->deterioration",
+    "analyst_fair_value"
+   ]
+  ],
+  "rule": "ADDENDUM section 1.3: non-price fields vs the best of the registered scores and the price-derived fields' own scores; dAUC <= null p95"
+ },
+ "seconds": 489
+}

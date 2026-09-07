@@ -1,0 +1,302 @@
+{
+ "design": {
+  "purpose": "PREREG_PHASE_5.md sections 1 and 13 -- inherited numbers verified, the baseline panel verified against the current generator, and every threshold's decidability simulated at its stated n BEFORE the experiment it protects",
+  "seed": 500001,
+  "nsim": 4000,
+  "state": {
+   "events_json": true,
+   "control": "A",
+   "dynamics": "A",
+   "blowoff": "dynamic",
+   "post_top": "decay/40.0",
+   "randomise_eps_quarter": true,
+   "depth_mode": "centred",
+   "volatility_json": true,
+   "iv": "v21",
+   "observables_json": false,
+   "observables": "absent (v2 constants)"
+  }
+ },
+ "verify": {
+  "inherited": {
+   "rows": [
+    {
+     "figure": "L2b acc full",
+     "cited": 0.76016,
+     "file_value": 0.7601597222222222,
+     "ok": true
+    },
+    {
+     "figure": "L2b acc price-only",
+     "cited": 0.656635,
+     "file_value": 0.6566354166666667,
+     "ok": true
+    },
+    {
+     "figure": "L2b acc day-only",
+     "cited": 0.509229,
+     "file_value": 0.5092291666666666,
+     "ok": true
+    },
+    {
+     "figure": "L2b majority",
+     "cited": 0.41449,
+     "file_value": 0.41448958333333336,
+     "ok": true
+    },
+    {
+     "figure": "L2b selectivity",
+     "cited": 0.103524,
+     "file_value": 0.10352430555555547,
+     "ok": true
+    },
+    {
+     "figure": "shown fields n",
+     "cited": 18,
+     "file_value": 18,
+     "ok": true
+    },
+    {
+     "figure": "best full R2 all",
+     "cited": 0.8046,
+     "file_value": 0.8046368166127957,
+     "ok": true
+    },
+    {
+     "figure": "best full R2 calm",
+     "cited": 0.2326,
+     "file_value": 0.23261959891956074,
+     "ok": true
+    },
+    {
+     "figure": "best full R2 event",
+     "cited": 0.8541,
+     "file_value": 0.8540522295417348,
+     "ok": true
+    },
+    {
+     "figure": "best full R2 resolution",
+     "cited": 0.7442,
+     "file_value": 0.7441994174272093,
+     "ok": true
+    },
+    {
+     "figure": "best level-free R2 all",
+     "cited": 0.4458,
+     "file_value": 0.4457898431099431,
+     "ok": true
+    },
+    {
+     "figure": "best level-free R2 calm",
+     "cited": -0.394,
+     "file_value": -0.24948634967807903,
+     "ok": false
+    },
+    {
+     "figure": "L1 analyst median APE",
+     "cited": 0.6786,
+     "file_value": 0.6786295515992399,
+     "ok": true
+    },
+    {
+     "figure": "calm-trained level-free R2",
+     "cited": 0.3213,
+     "file_value": 0.321300437443772,
+     "ok": true
+    },
+    {
+     "figure": "calm-trained level-free lo",
+     "cited": 0.2935,
+     "file_value": 0.2934511575402282,
+     "ok": true
+    },
+    {
+     "figure": "calm-trained level-free hi",
+     "cited": 0.3478,
+     "file_value": 0.3478489173785924,
+     "ok": true
+    },
+    {
+     "figure": "calm-trained full R2",
+     "cited": 0.4905,
+     "file_value": 0.4905368879322394,
+     "ok": true
+    },
+    {
+     "figure": "E3.8 process+GJR+jump stack",
+     "cited": 0.203,
+     "file_value": 0.20250149275316176,
+     "ok": true
+    },
+    {
+     "figure": "eps clock fixed grid",
+     "cited": 0.8728,
+     "file_value": 0.8728,
+     "ok": true
+    },
+    {
+     "figure": "eps clock randomised",
+     "cited": 0.3958,
+     "file_value": 0.3958,
+     "ok": true
+    },
+    {
+     "figure": "eps clock null p95 randomised",
+     "cited": 0.3625,
+     "file_value": 0.3625333333333333,
+     "ok": true
+    },
+    {
+     "figure": "IV onset dAUC",
+     "cited": -0.107,
+     "file_value": -0.10748801749630355,
+     "ok": true
+    },
+    {
+     "figure": "IV onset null p95",
+     "cited": 0.032,
+     "file_value": 0.032244133501724934,
+     "ok": true
+    },
+    {
+     "figure": "sigma_V in force",
+     "cited": 0.01457,
+     "file_value": 0.014573291000253476,
+     "ok": true
+    },
+    {
+     "figure": "VP.SIGMA_V",
+     "cited": 0.01457,
+     "file_value": 0.014573291000253476,
+     "ok": true
+    },
+    {
+     "figure": "coverage flat",
+     "cited": 0.378,
+     "file_value": 0.37849999999999995,
+     "ok": true
+    },
+    {
+     "figure": "coverage crash",
+     "cited": 0.553,
+     "file_value": 0.5533,
+     "ok": true
+    },
+    {
+     "figure": "coverage bull_trap",
+     "cited": 0.646,
+     "file_value": 0.6459,
+     "ok": true
+    },
+    {
+     "figure": "coverage sustained_bull",
+     "cited": 0.374,
+     "file_value": 0.374,
+     "ok": true
+    }
+   ],
+   "all_ok": false,
+   "shown_fields_n": 18,
+   "mispricing_json_keys": [
+    "_note",
+    "applied",
+    "engine",
+    "estimator_table",
+    "garch_shape",
+    "half_life",
+    "moments",
+    "price_scale",
+    "structural"
+   ]
+  },
+  "panel": {
+   "ok": true,
+   "n_paths_checked": 8,
+   "mismatches": {},
+   "panel": "docs\\env_v2\\generated\\v2_1\\_panels\\sep_phase4_after.pkl",
+   "seconds": 23.1,
+   "n_paths": 1600,
+   "n_rows": 320000
+  }
+ },
+ "PP1_e5_1_ks": {
+  "rule": "E5.1 KS: bootstrap 95 % upper limit of D(per-path median P/E, EDGAR pooled) < 0.10",
+  "n_gen": 1600,
+  "n_data": 50000,
+  "null_floor_p95_of_D": 0.034127000000000005,
+  "analytic_floor": 0.034539716269824806,
+  "pass_rate_true_D0": 1.0,
+  "true_D_of_shift": 0.10091500000000003,
+  "pass_rate_true_D0.10": 0.0,
+  "verdict": "DECIDABLE"
+ },
+ "PP2_e5_7c_onset": {
+  "rule": "E5.7c: dAUC(field - price reference) <= circular-shift null p95, 200 seeds per scenario",
+  "n_pos_days": 1400,
+  "n_neg_days": 30000,
+  "null_p95": 0.01740899285714282,
+  "null_sd": 0.011155028208404716,
+  "e3_5_measured_null_p95_for_IV": 0.032,
+  "detectable_score_shift_sd_at_80pct_power": 0.09999999999999999,
+  "auc_excess_at_that_shift": 0.02793517523809519,
+  "verdict": "DECIDABLE for an AUC excess of about 0.05 or more; the measured E3.5 null (+0.032) is inside the simulated scale, so the circular-shift null is not degenerate at this n"
+ },
+ "PP3_eps_lags": {
+  "rule": "test_eps_lag_distribution: draws inside the FIT grid; median nearer the panel P50 than the grid midpoint (the Phase-4 sampler test)",
+  "n_draws": 3500,
+  "median_halfwidth_days_by_sd": {
+   "5.0": 0.20706279240848657,
+   "10.0": 0.41412558481697315,
+   "15.0": 0.6211883772254597
+  },
+  "verdict": "DECIDABLE iff |P50 - midpoint| of the FIT grid exceeds the half-width (about 0.5 d); a symmetric lag distribution would make the median rule vacuous, in which case the range assertion alone stands and the report says so"
+ },
+ "PP4_e5_5_item12": {
+  "rule": "E5.5 (i): generator median CI (1600 paths) overlaps the data window-median CI",
+  "by_stat": {
+   "acf1": {
+    "gen_median_halfwidth": 0.004287500000000001,
+    "data_median_halfwidth": 0.022519053235442423,
+    "n_windows_data": 58,
+    "smallest_detectable_gap": 0.026806553235442426
+   },
+   "corr_s_r": {
+    "gen_median_halfwidth": 0.0049,
+    "data_median_halfwidth": 0.02573606084050562,
+    "n_windows_data": 58,
+    "smallest_detectable_gap": 0.030636060840505623
+   }
+  },
+  "verdict": "DECIDABLE for gaps above about 0.03 in ACF(1) and 0.03 in corr(s, r); the data side dominates the width (58 windows), so the reference CI is what limits resolution"
+ },
+ "PP6_shares": {
+  "L2b_accuracy_difference_SE_bounds_pp": [
+   0.09316949906249124,
+   1.25
+  ],
+  "nm_share": {
+   "assumed_share": 0.18,
+   "se_day_level": 0.0006791538853603063,
+   "se_path_level": 0.009604686356149273,
+   "data_side_se_stock_months": 0.0017181385275931624
+  },
+  "verdict": "DECIDABLE; both statistics resolve differences of 2 pp at the panel's n even under the loose path-level clustering"
+ },
+ "seconds": 1016.2,
+ "PP5_perm_null_dR2": {
+  "rule": "E5.4 admissibility: dR2_add(ANALYST) <= the permutation null margin (max of 20 draws)",
+  "design": "synthetic SEP-sized panel; the audit's gbt; 5-fold GroupKFold",
+  "r2_base": 0.8519114415209394,
+  "null_draws": [
+   7.727564181880808e-06,
+   4.472623934081987e-05,
+   7.071886905019031e-05,
+   4.493062564003836e-06,
+   6.2254696731045556e-06
+  ],
+  "null_max": 7.071886905019031e-05,
+  "null_mean": 2.677824096199988e-05,
+  "expected_effect_at_sd_0.564_single_day": 0.014,
+  "verdict": "DECIDABLE if the null's scale is well below 0.014 (the analytic single-day effect at the LIT sd); the measured baseline null (20 draws on the real panel) supersedes this figure"
+ }
+}

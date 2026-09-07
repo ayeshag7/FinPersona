@@ -1,0 +1,9 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[power] pp5 ...
+    pp5 draw 1/5: dR2 +0.00001 (476 s)
+    pp5 draw 2/5: dR2 +0.00004 (600 s)
+    pp5 draw 3/5: dR2 +0.00007 (752 s)
+    pp5 draw 4/5: dR2 +0.00000 (880 s)
+    pp5 draw 5/5: dR2 +0.00001 (1012 s)
+[power] pp5: 1016 s -> DECIDABLE if the null's scale is well below 0.014 (the analytic single-day effect at the LIT sd); the measured baseline 
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_0\power.json in 1016.2 s

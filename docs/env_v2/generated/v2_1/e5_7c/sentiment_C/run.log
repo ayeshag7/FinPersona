@@ -1,0 +1,9 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[paths] 400 generated in 37 s
+    crash     calm->deterioration          n=200 ref 0.578 (ref_dRSI); worst field analyst_fair_value excess +0.0342 -> FAIL: analyst_fair_value
+    crash     deterioration->panic         n=200 ref 0.736 (ref_abs_ret5); worst field MACD excess +0.0068 -> FAIL: MACD
+    crash     panic->stabilisation         n=200 ref 0.658 (ref_abs_ret5); worst field SMA50 excess +0.0965 -> FAIL: MACD, MACD_signal, SMA20, SMA50
+    bull_trap calm->mania                  n=200 ref 0.500 (ref_dRSI); worst field RSI14 excess +0.0000 -> ALL PASS
+    bull_trap mania->blow-off              n=200 ref 0.537 (ref_abs_ret5); worst field SMA50 excess +0.0304 -> FAIL: SMA20, SMA50
+    bull_trap blow-off->post-top           n= 25 ref 0.571 (ref_dlogPSMA20); worst field SMA50 excess +0.0213 -> FAIL: SMA50
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7c\sentiment_C/onset.json in 739 s; all pass (registered): False; non-price rule: False

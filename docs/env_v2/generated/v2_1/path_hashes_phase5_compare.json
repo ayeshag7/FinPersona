@@ -1,0 +1,407 @@
+{
+ "n_configs": 95,
+ "changed_non_analyst": [
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "price"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "fundamental_value"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "x"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "news_sentiment"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "SMA20"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "SMA50"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "RSI14"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "MACD"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "MACD_signal"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "trend_strength"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "trend_regime"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "volume"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "volume_SMA20"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "volume_ratio"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "hidden_multiple"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "trailing_eps"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "last_quarter_eps"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "reported_PE"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "dps_quarterly"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "dividend_yield"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "days_since_eps_announcement"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "implied_volatility"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "iv_fc21"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "sentiment_MA5"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "sentiment_change"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "resolvable_0.03"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "resolvable_0.05"
+  ],
+  [
+   {
+    "scenario": "flat",
+    "n_days": 200,
+    "seed": 0
+   },
+   "resolvable_0.08"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "price"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "fundamental_value"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "x"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "news_sentiment"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "SMA20"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "SMA50"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "RSI14"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "MACD"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "MACD_signal"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "trend_strength"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "trend_regime"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "volume"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "volume_SMA20"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "volume_ratio"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "hidden_multiple"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "trailing_eps"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "last_quarter_eps"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "reported_PE"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "dps_quarterly"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "dividend_yield"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "days_since_eps_announcement"
+  ],
+  [
+   {
+    "scenario": "bull_trap",
+    "n_days": 200,
+    "seed": 0
+   },
+   "implied_volatility"
+  ]
+ ],
+ "changed_analyst": 190,
+ "unchanged_analyst": 0
+}

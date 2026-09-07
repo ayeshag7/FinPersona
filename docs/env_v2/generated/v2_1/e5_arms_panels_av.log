@@ -1,0 +1,18 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panels] 7 arms to build (0 cached)
+    200/1600 paths, 43 s
+    400/1600 paths, 77 s
+    600/1600 paths, 114 s
+    800/1600 paths, 150 s
+    1000/1600 paths, 188 s
+    1200/1600 paths, 219 s
+    1400/1600 paths, 254 s
+    1600/1600 paths, 287 s
+[panel] analyst_A_sd0.300: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.300.pkl
+[panel] analyst_A_sd0.450: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.450.pkl
+[panel] analyst_A_sd0.564: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.564.pkl
+[panel] analyst_A_sd0.600: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.600.pkl
+[panel] analyst_C: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_C.pkl
+[panel] volume_A: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_volume_A.pkl
+[panel] volume_B: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_volume_B.pkl
+[panels] done in 294 s

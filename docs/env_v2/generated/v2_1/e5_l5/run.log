@@ -1,0 +1,14 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+ISFJ flat done
+ISFJ bull_trap done
+ISFJ crash done
+ISFJ sustained_bull done
+INTJ flat done
+INTJ bull_trap done
+INTJ crash done
+INTJ sustained_bull done
+ENTJ flat done
+ENTJ bull_trap done
+ENTJ crash done
+ENTJ sustained_bull done
+written C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_l5\l5_phase5_after.csv

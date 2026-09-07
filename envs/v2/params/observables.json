@@ -1,0 +1,624 @@
+{
+ "_note": "v2.1 Phase 5 (observables). Written by tools/phase5/apply_e5.py from the E5.1-E5.6 result files through tools/phase5/e5_params.sections(), the same function that built the arms. Read by envs/v2/observables_params.py, which raises if any entry lacks provenance, ships a null interval or carries an undeclared status. Every value is FIT, LIT, DESIGN, PROVISIONAL or INCUMBENT and says which.",
+ "_status_key": {
+  "ADOPTED": "a pre-registered rule decided it on data",
+  "INCUMBENT": "the phase stopped for a team decision; the v2 behaviour stays and is labelled as the incumbent, not as a result",
+  "NOT DONE": "the experiment did not run or did not conclude; the v2 behaviour stays",
+  "PROVISIONAL": "a design carried as the default pending a decision the entry names (a team decision, or a Phase-9 LLM-side test); its generator-side audit is done and recorded, the decision that would confirm or replace it is not the phase's to take",
+  "TESTED, NOT ADOPTED": "the mechanism is implemented and switchable, and measurement does not support adopting it. Distinct from NOT DONE: the experiment ran and concluded",
+  "TESTED, REJECTED": "the entry's central claim was tested and refuted; the v2 behaviour stays in force only for want of an identified replacement",
+  "IN FORCE, ADOPTION WITHDRAWN": "the value is deployed and stays deployed, but the evidence that ADOPTED it no longer stands and the criterion that would re-decide it is not currently evaluable"
+ },
+ "multiple": {
+  "value": {
+   "design": "B",
+   "width": "P10-P90",
+   "grid_A": {
+    "P10-P90": [
+     5.768130284658871,
+     6.468091386087826,
+     7.12855324816348,
+     7.6927708644492965,
+     8.190629317958312,
+     8.704409958729194,
+     9.232196342654346,
+     9.761004103827721,
+     10.31549669081165,
+     10.882568359375,
+     11.428128223453804,
+     12.00338897214442,
+     12.569278039973538,
+     13.164835591470041,
+     13.79643900838787,
+     14.44882655489272,
+     15.121411262674535,
+     15.785311207626807,
+     16.517409779667076,
+     17.296761013814155,
+     18.092370677638698,
+     18.90789458626195,
+     19.809954198776868,
+     20.819821175941623,
+     21.94576655886301,
+     23.12813310433697,
+     24.417968094348907,
+     25.84666376528532,
+     27.581359178591995,
+     29.593332926432293,
+     32.07152493028755,
+     35.35979736682981,
+     39.980689154730904
+    ],
+    "P25-P75": [
+     9.232196342654346,
+     9.548045530963982,
+     9.895344529941948,
+     10.244184015045244,
+     10.60210794423139,
+     10.949969192766241,
+     11.292686017858653,
+     11.647812243941427,
+     12.00338897214442,
+     12.35746280030429,
+     12.719293486574065,
+     13.096487786457,
+     13.47950605912642,
+     13.88115637549867,
+     14.274255414668081,
+     14.707544127322539,
+     15.121411262674535,
+     15.541905866117121,
+     15.966025671337633,
+     16.42046843867599,
+     16.908414648213515,
+     17.398348017914095,
+     17.896909311356062,
+     18.38832108433635,
+     18.90789458626195,
+     19.455034036132048,
+     20.05465035304407,
+     20.674388565817832,
+     21.36115559771017,
+     22.088618287467717,
+     22.832913218254863,
+     23.586140070964063,
+     24.417968094348907
+    ],
+    "P5-P95": [
+     3.8582519680480214,
+     5.045829511019356,
+     5.950784845759446,
+     6.7261872560489495,
+     7.42566373926648,
+     8.00586474932844,
+     8.576353322561513,
+     9.167192182515862,
+     9.761004103827721,
+     10.380931078381206,
+     11.020767065232299,
+     11.647812243941427,
+     12.284848255476929,
+     12.938189797285126,
+     13.633985174142204,
+     14.36001140914489,
+     15.121411262674535,
+     15.879679962440772,
+     16.718396036769747,
+     17.59516441205433,
+     18.498322457978222,
+     19.455034036132048,
+     20.5512408211432,
+     21.811053333721325,
+     23.12813310433697,
+     24.599038851975568,
+     26.249812185717587,
+     28.268616772805085,
+     30.758654804656302,
+     33.96524182113113,
+     38.66170465727865,
+     46.013269077284306,
+     58.50769042968751
+    ]
+   },
+   "grid_B_log_between": {
+    "P10-P90": [
+     2.0583506691178077,
+     2.1602444651149275,
+     2.22354137570267,
+     2.278168367530648,
+     2.3156478763558073,
+     2.364428029872099,
+     2.3983635864874886,
+     2.427663110210465,
+     2.4555556581599007,
+     2.5048886866543403,
+     2.541336986339683,
+     2.5712223723050194,
+     2.5977396276108213,
+     2.642043579661959,
+     2.677755544202856,
+     2.7172425316477087,
+     2.7535698393820645,
+     2.7673723047829,
+     2.814386000829458,
+     2.8458253406513494,
+     2.8710263082763654,
+     2.897430870641206,
+     2.9150888058389364,
+     2.9590555105040597,
+     2.9805055503496205,
+     3.0284524044221603,
+     3.0900211849194408,
+     3.131848747129261,
+     3.1737052284673166,
+     3.2648622430880616,
+     3.3543732215688276,
+     3.4383917540664686,
+     3.5242149262430327
+    ],
+    "P25-P75": [
+     2.4041682564045663,
+     2.414589235002527,
+     2.432532818328553,
+     2.450127525269181,
+     2.4660348808301817,
+     2.5059444038499854,
+     2.535393882964497,
+     2.554101567080572,
+     2.5713357806982096,
+     2.5921992143028634,
+     2.602019796612968,
+     2.6365732452778765,
+     2.6623257035692656,
+     2.685809689767991,
+     2.710380811340628,
+     2.734444717195457,
+     2.7535698393820645,
+     2.762980159537515,
+     2.7735955443997535,
+     2.8092780969494258,
+     2.827738487710885,
+     2.8475814250545683,
+     2.861241825850846,
+     2.877837308365937,
+     2.897060501545806,
+     2.9096425520658387,
+     2.9199109133176986,
+     2.9577054620421275,
+     2.9707572182296182,
+     2.981169688603405,
+     3.012982296206838,
+     3.0458944433536903,
+     3.0886345593148787
+    ],
+    "P5-P95": [
+     1.6965175534877623,
+     1.9778303173682574,
+     2.0778515149100185,
+     2.1866978575122977,
+     2.2507226773606064,
+     2.3014629406597154,
+     2.349631349887103,
+     2.391483535073638,
+     2.429433238096173,
+     2.458253284751868,
+     2.507259010108895,
+     2.5538571666947503,
+     2.5828709240158467,
+     2.6137179752569484,
+     2.672843781385753,
+     2.715946296546268,
+     2.7535698393820645,
+     2.7699935285173924,
+     2.8195386417108144,
+     2.8556069129651007,
+     2.88317555923025,
+     2.909830235226988,
+     2.947922931309272,
+     2.980173024728233,
+     3.028314660895895,
+     3.092198826862674,
+     3.1392455076466175,
+     3.232345599846915,
+     3.2761168611498,
+     3.383320023078155,
+     3.49088768568728,
+     3.591596575315263,
+     3.820769398320974
+    ]
+   },
+   "rho_q": 0.8075961409527684,
+   "rho_d": 0.9966137910861714,
+   "s_w": 0.7832839385747679,
+   "s_w_net_variance": 0.6135337284292006,
+   "sd_within_gross": 0.7906492085620939,
+   "sd_x_engine": 0.0656091445844151,
+   "s_eps_used": 0.17073819394108877
+  },
+  "status": "ADOPTED",
+  "label": "ADOPTED by PREREG section 4.3 on data: design B at width P10-P90 -- FIT (EDGAR trailing P/E cross-section, set A). KS under ADDENDUM section 5's convention: A passes (0.095 vs 0.10 truncated), B passes (0.082 untruncated); paired dR2_add(VAL) A - B = +0.0139 [+0.0014, +0.0256] (x, P-all, 1,600 paths); the inversion share is 0.4163 on both arms (price itself is the best candidate on every panel), so the second clause cannot move it.",
+  "source": "e5_1/multiple.json; e5_arms/stats.json (KS check); e5_arms/multiple_*/ablation.json",
+  "date": "2026-09-07",
+  "n": {
+   "stocks": 411,
+   "stock_months_positive": 61843,
+   "stocks_ar1": 367
+  },
+  "interval": {
+   "p10_p90_pooled": [
+    5.767588770209339,
+    39.981281543995166
+   ],
+   "p10_ci": [
+    5.190294610025394,
+    6.341341444018558
+   ],
+   "p90_ci": [
+    36.873058192794225,
+    43.729055449114
+   ],
+   "rho_q_ci": [
+    0.7813658208415585,
+    0.826933357673872
+   ]
+  },
+  "v2_before": {
+   "k_range": [
+    14.0,
+    22.0
+   ],
+   "label": "DESIGN (weakness item 20)"
+  },
+  "survivor_vs_literature_gap": "REG-15: set A is survivor-only; the P/E tails and the n/m share are understated relative to the full universe",
+  "conditional_on": "design B's within-stock sd is net of the engine's stationary sd(x) and of E5.2's EPS noise (PREREG section 4.2)"
+ },
+ "eps": {
+  "value": {
+   "design": "v21",
+   "s_eps": 0.17073819394108877,
+   "p_loss": 0.09746485277956725,
+   "p_loss_given_loss": 0.4250576479631053,
+   "p_loss_given_profit": 0.061630302265943585,
+   "loss_size_grid": [
+    0.04459691252144083,
+    0.06924042899809937,
+    0.08834701007474836,
+    0.12090353539405778,
+    0.14814814814814817,
+    0.18299969805338792,
+    0.2189441670641594,
+    0.2536090783944356,
+    0.2894608737982232,
+    0.33597189847189846,
+    0.37943875620216977,
+    0.42247386759581895,
+    0.460662701784197,
+    0.5106382978723404,
+    0.5682499580677626,
+    0.6286467290100027,
+    0.6825107171822501,
+    0.7275096940973719,
+    0.7895435593592276,
+    0.873439276914329,
+    0.9680803951626641,
+    1.0455879655109153,
+    1.163365919433676,
+    1.2922483766233765,
+    1.4439136588818116,
+    1.5810314685314684,
+    1.802555623663867,
+    2.0452455543999384,
+    2.2974373469003204,
+    2.7238253207014242,
+    3.354086395969176,
+    4.180362302311435,
+    5.892215568862275
+   ],
+   "pe_cap": 191.54973157246968,
+   "lag_grid_td": [
+    10.0,
+    11.0,
+    12.0,
+    12.0,
+    13.0,
+    14.0,
+    14.0,
+    15.0,
+    16.0,
+    16.0,
+    17.0,
+    17.0,
+    17.0,
+    18.0,
+    18.0,
+    19.0,
+    19.0,
+    19.0,
+    20.0,
+    20.0,
+    21.0,
+    21.0,
+    21.0,
+    22.0,
+    23.0,
+    23.0,
+    23.0,
+    24.0,
+    25.0,
+    26.0,
+    26.0,
+    28.0,
+    30.0
+   ],
+   "lag_p10_p50_p90_td": [
+    12.0,
+    19.0,
+    26.0
+   ],
+   "nm_share_data": 0.08477005610385356
+  },
+  "status": "ADOPTED",
+  "label": "ADOPTED: FIT on EDGAR basic EPS (set A) and 8-K Item 2.02 announcement dates, with the level floor and the P5-P95 grid truncation of ADDENDUM section 4; no contest was registered (the v2 construction had no fitted alternative and is retrievable under design 'v2'); the residual clock is resolved as an edge effect (e5_2/clock)",
+  "source": "e5_2/eps.json (EDGAR basic EPS; 8-K Item 2.02 dates from tools/phase5/fetch_8k.py); e5_2/clock.json",
+  "date": "2026-09-07",
+  "n": {
+   "quarters": 27515,
+   "stocks": 411,
+   "seasonal_pairs": 20566,
+   "loss_quarters": 26389,
+   "announcement_filings": 27242,
+   "announcement_stocks": 411
+  },
+  "interval": {
+   "s_eps": [
+    0.14967879292956385,
+    0.19277050535461496
+   ],
+   "p_loss": [
+    0.08555376477837204,
+    0.109710788853799
+   ],
+   "nm_share_data": [
+    0.07191032260440856,
+    0.09870152512053024
+   ],
+   "lag_p50_td": [
+    19.0,
+    19.0
+   ],
+   "pe_cap_p99": [
+    154.7453604473273,
+    244.6774663423237
+   ]
+  },
+  "v2_before": {
+   "noise_sd": 0.1,
+   "lag": [
+    25,
+    35
+   ],
+   "pe_cap": 200.0,
+   "negative_eps": "impossible; P/E of a non-positive trailing EPS rendered as 200",
+   "label": "DESIGN (weakness item 22)"
+  },
+  "design_choices_stated": "the loss chain is independent of x and of the phase label (a label-tied loss rate would be a phase clock; a V-tied one a hidden-state channel); the level L_q for the residual is the mean |EPS| of the four preceding quarters; trading days = calendar days x 252/365",
+  "survivor_vs_literature_gap": "REG-15: delisted loss-makers are absent, so the loss frequencies are understated"
+ },
+ "dividend": {
+  "value": {
+   "design": "v21",
+   "field": "shown",
+   "c_speed": 0.6971535189961907,
+   "tau": 0.40631648936170217,
+   "payer_share": 0.8872901678657075,
+   "payout_median_data": 0.40631648936170217
+  },
+  "status": "ADOPTED",
+  "label": "ADOPTED for the process: FIT Lintner at quarterly frequency with tau constrained to the FIT median payout (ADDENDUM section 4.2.3) and the payer share from EDGAR + Yahoo (4.2.4); the FIELD's rendering is D10's, undecided -- both variants carried, default 'shown' = the v2 rendering",
+  "source": "e5_3/dividends.json (EDGAR DPS declared / cash paid)",
+  "date": "2026-09-07",
+  "n": {
+   "stocks_set_A": 417,
+   "stocks_reporting_dps": 353,
+   "payers_set_A": 370,
+   "lintner_quarters": 15738,
+   "payout_stock_years": 10666,
+   "crash_episodes": 186
+  },
+  "interval": {
+   "c_speed": [
+    0.005233437315450265,
+    1.0750600082600645
+   ],
+   "tau": [
+    0.2510395145749058,
+    0.6386050660903654
+   ],
+   "payout_median": [
+    0.37313363915553377,
+    0.4444444444444444
+   ]
+  },
+  "v2_before": {
+   "payout": 0.35,
+   "sticky": 0.7,
+   "payer_share": 1.0,
+   "label": "DESIGN (weakness item 22; Lintner's annual speed applied per quarter)"
+  },
+  "D10": "UNDECIDED (put to the team 6 Sep 2026): both renderings carried; default dividend.field = 'shown' (the v2 rendering); dR2_add(VAL) x, P-all shown +0.0897 [+0.0747, +0.1045] vs hidden +0.0515 [+0.0399, +0.0628], paired shown - hidden +0.0382 [+0.0292, +0.0480]; paying dividends into the agent's cash is the harness half (simulation/, Phase 7/8)",
+  "crash_behaviour_reported": {
+   "family": "dd30_fast (duration <= 126 d) with DPS coverage and a positive DPS at the peak",
+   "n_episodes": 186,
+   "n_stocks": 137,
+   "p_cut_within_4q": {
+    "value": 0.1774193548387097,
+    "ci95": [
+     0.12168946768394281,
+     0.23915217391304347
+    ]
+   },
+   "unconditional_4q_cut_rate": 0.07259700735480598,
+   "n_unconditional_windows": 15772
+  }
+ },
+ "analyst": {
+  "value": {
+   "design": "C",
+   "sd": 0.5639913617919751,
+   "rho": 0.95,
+   "update_days": 5,
+   "field": "shown",
+   "lit_anchor_sd": 0.5639913617919751,
+   "bracket_phase9": [
+    0.3,
+    0.45,
+    0.6
+   ]
+  },
+  "status": "PROVISIONAL",
+  "label": "PROVISIONAL by PREREG section 7.3: no design-A sd is admissible -- every A arm fails the onset rule at the crash's calm->deterioration (V's decline is the leak, not the noise: excess sd 0.3: +0.021 vs null p95 +0.001; sd 0.45: +0.018 vs null p95 +0.001; sd 0.5639913617919751: +0.017 vs null p95 +0.001; sd 0.6: +0.018 vs null p95 +0.002) -- so design C (SMA250(P) e^u, LIT sd 0.564, DESIGN rho 0.95 per 5-day update) is carried as the default; its own dR2_add(ANALYST) is -0.0017 [-0.0046, +0.0014] against a null margin of -0.0057 and it passes the onset rule at every transition. C vs B (drop the field) is Phase 9's.",
+  "source": "PREREG_PHASE_5.md section 7 (LIT: Bradshaw, Brown & Huang 2013; Bilinski, Lyssimachou & Walker 2013, both read per LOG 4.3); e5_arms/analyst_*/ablation.json; e5_7a/baseline/ablation.json (permutation null margin)",
+  "date": "2026-09-07",
+  "n": {
+   "note": "no free target-price data: the sd is LIT and the phase states plainly that no free data can fit it",
+   "arms_measured": 5,
+   "paths_per_arm": 1600
+  },
+  "interval": {
+   "lit_bracket_phase9": [
+    0.3,
+    0.6
+   ],
+   "anchor_mapping": "E|u| = sd sqrt(2/pi), 45 % -> 0.564 if a mean absolute log error",
+   "persistence": "DESIGN, rho 0.95 per 5-day update (no free data)"
+  },
+  "v2_before": {
+   "sd": 0.15,
+   "label": "DESIGN, below every read value (weakness item 21)"
+  },
+  "horizon_mismatch": "the read anchor is a 12-month target-price error; the field is a fair-value estimate",
+  "decision_pending": "C vs B (drop the field) is Phase 9's: its condition -- C's inclusion changes no arm contrast beyond the equivalence margin -- is an LLM-grid statement no generator audit can evaluate; B is the fallback if Phase 9 rejects C"
+ },
+ "sentiment": {
+  "value": {
+   "design": "A",
+   "rho": 0.21127624401947614,
+   "b0": 0.011336005215507806,
+   "b1": 0.11097693054019067,
+   "sd_e": 0.971818924981291,
+   "s_raw": 0.3970515881879271,
+   "c_val": 0.9499320900953079,
+   "c_val_full": 0.9499320900953079,
+   "link_size": "full",
+   "rho_w": 0.5339356961700638,
+   "b0_w": 0.2980105377069622,
+   "b1_w": 0.19940872764652662,
+   "sd_e_w": 0.7593161575955316,
+   "update_days": 5,
+   "full_sample_fit": {
+    "rho": 0.4026031062150719,
+    "b0_per_sd_raw": 0.011751427478029973,
+    "b1_per_sd_raw": 0.08442584293369898,
+    "sd_resid_per_sd_raw": 0.9103032882304359
+   }
+  },
+  "status": "PROVISIONAL",
+  "label": "PROVISIONAL pending D15 (the team's default): PREREG section 8.3's rule selects design A -- rule (i) met by A, B-full, B-half (C fails the AAII weekly correlation by 0.011, ADDENDUM section 3); rule (ii) ordering by dR2_add(SENT) x, P-all: A -0.0007, B-half +0.0205, B-full +0.0813. FIT on the SF Fed daily index deconvolved at lambda = 0.95, 200-day window medians; the pairing of the sentiment arms is by seed only (re-simulated price paths).",
+  "source": "e5_5/sentiment.json (SF Fed daily index deconvolved at lam = 0.95; FF daily market; Shiller CAPE; AAII weekly); e5_arms/stats.json (rule i); e5_arms/sentiment_*/ablation.json (rule ii); e5_7c/*/onset.json",
+  "date": "2026-09-07",
+  "n": {
+   "sf_fed_calendar_days": 17017,
+   "trading_days_aligned": 11589,
+   "windows_200d": 57,
+   "aaii_weeks": 2010,
+   "cape_months": 560
+  },
+  "interval": {
+   "rho_window": [
+    0.1552108466290126,
+    0.2561215461691362
+   ],
+   "b1_window": [
+    0.06163547920094077,
+    0.1315614145124275
+   ],
+   "c_val_full_per_sd_per_unit_logdev": [
+    0.4817299549821392,
+    1.4181342252084765
+   ],
+   "rho_w_aaii": [
+    0.49333983895101713,
+    0.5782644053319608
+   ]
+  },
+  "v2_before": {
+   "construction": "m_t = 0.6 tanh(2 x_{t-j}) + 0.3 tanh(ret20/0.15); AR 0.85; return 0.25 r/sigma; noise 0.25",
+   "label": "DESIGN (weakness item 23); sentiment read x directly"
+  },
+  "design_choices_stated": "the deconvolution kernel (geometric weights, 5 % depreciation) is LIT read at source; the market-level loadings transfer to a single stock per sd of the standardised return (DESIGN); the valuation coefficient transfers from the log-CAPE deviation to x = log(P/V) (DESIGN); S_raw is a rendering constant with sd(tanh(S z)) = 0.35 (DESIGN); b_pred stays the LIT Tetlock value in every design and the reverse regression on the SF Fed index does NOT reproduce it (reported)",
+  "D15": "the team's default, after this table: the rule selects A; A: dR2_add(SENT) -0.0007 [-0.0012, -0.0002], rule (i) True, B-full: dR2_add(SENT) +0.0813 [+0.0731, +0.0883], rule (i) True, B-half: dR2_add(SENT) +0.0205 [+0.0168, +0.0236], rule (i) True, C: dR2_add(SENT) -0.0009 [-0.0021, +0.0003], rule (i) False"
+ },
+ "volume": {
+  "value": {
+   "design": "A",
+   "rho_v": 0.525916765977577,
+   "beta_absr": 0.2026552181805277,
+   "sd_e": 0.34686231428914344,
+   "beta_ru": -0.012314957617872479
+  },
+  "status": "ADOPTED",
+  "label": "ADOPTED by PREREG section 9.3 under ADDENDUM section 2's reading: design A -- FIT (set A daily volume: rho_v, the |r|/sigma loading and the residual sd); the run-up log-ratio CI [-0.0320, -0.0015] excludes zero BELOW (ratio 0.985, n = 3019 run-ups), against the premise, so clause 1 fails in substance; under the clause's letter the verdict would be B (B's onset audit passes; its beta_ru is sign-unstable across sub-periods). Both verdicts are recorded; the v2 |x| loading is dropped in either design.",
+  "source": "e5_6/volume.json (set A daily volume); e5_arms/stats.json; e5_arms/volume_*/ablation.json; e5_7c/*/onset.json",
+  "date": "2026-09-07",
+  "n": {
+   "stocks": 417,
+   "runup_episodes": 3019,
+   "runup_stocks": 394
+  },
+  "interval": {
+   "rho_v": [
+    0.5224468216793224,
+    0.5286014427654556
+   ],
+   "beta_absr": [
+    0.19827325262734558,
+    0.20599198743448185
+   ],
+   "sd_e": [
+    0.3389373565510483,
+    0.350879141380601
+   ],
+   "runup_log_ratio": [
+    -0.03198314965052025,
+    -0.001463636866971473
+   ],
+   "beta_ru": [
+    -0.020242278019482474,
+    -0.00558123690563265
+   ]
+  },
+  "v2_before": {
+   "rho": 0.65,
+   "b_absr": 0.25,
+   "b_absx": 1.2,
+   "sd_e": 0.3,
+   "label": "DESIGN (weakness item 24); the |x| loading has no read source and is DOMINATED"
+  },
+  "design_choices_stated": "log volume detrended by its trailing 252-day mean (no shares outstanding in the panel); past-only standardisation"
+ },
+ "audit_bounds": {
+  "value": {
+   "no_field_deterministic_R2": 0.2,
+   "onset_rule": "dAUC <= circular-shift null p95 (measured)",
+   "l2b_margin_phase6_owned": 0.1
+  },
+  "status": "PROVISIONAL",
+  "label": "PROVISIONAL bound for test_no_field_is_deterministic_in_x: 0.20 is evaluation/leakage_audit.L2_SELECTIVITY_R2, amendment A8's reference value (the plan's own number, not a new stipulation), applied per field group to the add-one R2(x) on all rows; Phase 6 derives the margin that replaces it. The onset rule's threshold is the measured null, not a number.",
+  "source": "evaluation/leakage_audit.py L2_SELECTIVITY_R2; PREREG_PHASE_5.md section 11",
+  "date": "2026-09-07",
+  "n": {
+   "paths": 1600
+  },
+  "interval": "none: a provisional reference bound, owned by Phase 6"
+ }
+}

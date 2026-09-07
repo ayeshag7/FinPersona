@@ -52,3 +52,6 @@ datasets/
 # details. Kept local -- never pushed. The compute RULES it carries are already in the phase execution
 # prompts (Phase 3 section 3, Phase 4 "Compute"), which are tracked.
 docs/COMPUTE_GPU_ACCESS.md
+
+# v2.1 Phase 5: the ablation tool's prepared frames (regenerable from the panels, ~330 MB each)
+docs/env_v2/generated/v2_1/**/_prepared.pkl

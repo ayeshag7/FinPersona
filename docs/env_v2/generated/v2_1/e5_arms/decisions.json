@@ -1,0 +1,1089 @@
+{
+ "what": "Phase 5 decisions applied by tools/phase5/e5_decide.py from the files it names (PREREG_PHASE_5.md sections 4-9; ADDENDUM sections 2, 3, 5)",
+ "pending": [],
+ "design": {
+  "width": "P10-P90",
+  "eps": "v21",
+  "dividend": "v21",
+  "dividend_field": "shown",
+  "analyst_field": "shown",
+  "multiple": "B",
+  "analyst": "C",
+  "analyst_sd": 0.5639913617919751,
+  "sentiment": "A",
+  "sentiment_link": "full",
+  "volume": "A"
+ },
+ "status": {
+  "multiple": "ADOPTED",
+  "eps": "ADOPTED",
+  "dividend": "ADOPTED",
+  "analyst": "PROVISIONAL",
+  "sentiment": "PROVISIONAL",
+  "volume": "ADOPTED"
+ },
+ "label": {
+  "multiple": "ADOPTED by PREREG section 4.3 on data: design B at width P10-P90 -- FIT (EDGAR trailing P/E cross-section, set A). KS under ADDENDUM section 5's convention: A passes (0.095 vs 0.10 truncated), B passes (0.082 untruncated); paired dR2_add(VAL) A - B = +0.0139 [+0.0014, +0.0256] (x, P-all, 1,600 paths); the inversion share is 0.4163 on both arms (price itself is the best candidate on every panel), so the second clause cannot move it.",
+  "eps": "ADOPTED: FIT on EDGAR basic EPS (set A) and 8-K Item 2.02 announcement dates, with the level floor and the P5-P95 grid truncation of ADDENDUM section 4; no contest was registered (the v2 construction had no fitted alternative and is retrievable under design 'v2'); the residual clock is resolved as an edge effect (e5_2/clock)",
+  "dividend": "ADOPTED for the process: FIT Lintner at quarterly frequency with tau constrained to the FIT median payout (ADDENDUM section 4.2.3) and the payer share from EDGAR + Yahoo (4.2.4); the FIELD's rendering is D10's, undecided -- both variants carried, default 'shown' = the v2 rendering",
+  "analyst": "PROVISIONAL by PREREG section 7.3: no design-A sd is admissible -- every A arm fails the onset rule at the crash's calm->deterioration (V's decline is the leak, not the noise: excess sd 0.3: +0.021 vs null p95 +0.001; sd 0.45: +0.018 vs null p95 +0.001; sd 0.5639913617919751: +0.017 vs null p95 +0.001; sd 0.6: +0.018 vs null p95 +0.002) -- so design C (SMA250(P) e^u, LIT sd 0.564, DESIGN rho 0.95 per 5-day update) is carried as the default; its own dR2_add(ANALYST) is -0.0017 [-0.0046, +0.0014] against a null margin of -0.0057 and it passes the onset rule at every transition. C vs B (drop the field) is Phase 9's.",
+  "sentiment": "PROVISIONAL pending D15 (the team's default): PREREG section 8.3's rule selects design A -- rule (i) met by A, B-full, B-half (C fails the AAII weekly correlation by 0.011, ADDENDUM section 3); rule (ii) ordering by dR2_add(SENT) x, P-all: A -0.0007, B-half +0.0205, B-full +0.0813. FIT on the SF Fed daily index deconvolved at lambda = 0.95, 200-day window medians; the pairing of the sentiment arms is by seed only (re-simulated price paths).",
+  "volume": "ADOPTED by PREREG section 9.3 under ADDENDUM section 2's reading: design A -- FIT (set A daily volume: rho_v, the |r|/sigma loading and the residual sd); the run-up log-ratio CI [-0.0320, -0.0015] excludes zero BELOW (ratio 0.985, n = 3019 run-ups), against the premise, so clause 1 fails in substance; under the clause's letter the verdict would be B (B's onset audit passes; its beta_ru is sign-unstable across sub-periods). Both verdicts are recorded; the v2 |x| loading is dropped in either design."
+ },
+ "D10": "UNDECIDED (put to the team 6 Sep 2026): both renderings carried; default dividend.field = 'shown' (the v2 rendering); dR2_add(VAL) x, P-all shown +0.0897 [+0.0747, +0.1045] vs hidden +0.0515 [+0.0399, +0.0628], paired shown - hidden +0.0382 [+0.0292, +0.0480]; paying dividends into the agent's cash is the harness half (simulation/, Phase 7/8)",
+ "D15": "the team's default, after this table: the rule selects A; A: dR2_add(SENT) -0.0007 [-0.0012, -0.0002], rule (i) True, B-full: dR2_add(SENT) +0.0813 [+0.0731, +0.0883], rule (i) True, B-half: dR2_add(SENT) +0.0205 [+0.0168, +0.0236], rule (i) True, C: dR2_add(SENT) -0.0009 [-0.0021, +0.0003], rule (i) False",
+ "analyst_pending": "C vs B (drop the field) is Phase 9's: its condition -- C's inclusion changes no arm contrast beyond the equivalence margin -- is an LLM-grid statement no generator audit can evaluate; B is the fallback if Phase 9 rejects C",
+ "evidence": {
+  "multiple": {
+   "ks_A_truncated": {
+    "width": "P10-P90",
+    "truncation": [
+     5.767588770209339,
+     39.981281543995166
+    ],
+    "n_paths": 1600,
+    "n_data": 49473,
+    "ks_D": 0.07024726871222697,
+    "ks_upper95": 0.09521801632961416,
+    "pass": true,
+    "per_path_median_pe_p10_p50_p90": [
+     7.9,
+     16.275,
+     31.6
+    ]
+   },
+   "ks_B_truncated": {
+    "width": "P10-P90",
+    "truncation": [
+     5.767588770209339,
+     39.981281543995166
+    ],
+    "n_paths": 1600,
+    "n_data": 49473,
+    "ks_D": 0.12753077436177307,
+    "ks_upper95": 0.15218565555959818,
+    "pass": false,
+    "per_path_median_pe_p10_p50_p90": [
+     5.3,
+     14.3,
+     37.460000000000015
+    ]
+   },
+   "ks_A_untruncated": {
+    "ks_D_untruncated": 0.09348384214866678,
+    "ks_upper95_untruncated": 0.11225015336214286,
+    "pass_untruncated": false,
+    "per_path_log_median_sd": 0.5250590661701133,
+    "data_pooled_log_sd": 1.0962568001419724,
+    "note": "post hoc, labelled: the registered check truncates the data to the width; B's k_t adds within-path dispersion the truncation does not cover"
+   },
+   "ks_B_untruncated": {
+    "ks_D_untruncated": 0.05744942839124878,
+    "ks_upper95_untruncated": 0.08190593215885386,
+    "pass_untruncated": true,
+    "per_path_log_median_sd": 0.7637072860872809,
+    "data_pooled_log_sd": 1.0962568001419724,
+    "note": "post hoc, labelled: the registered check truncates the data to the width; B's k_t adds within-path dispersion the truncation does not cover"
+   },
+   "qualifies": {
+    "A": true,
+    "B": true,
+    "convention": "ADDENDUM section 5: A vs the data truncated to its width, B vs the untruncated cross-section"
+   },
+   "dR2_add_VAL": {
+    "A": {
+     "delta": 0.02536512373022992,
+     "ci": [
+      0.013428732883709984,
+      0.03674407548080407
+     ],
+     "value": 0.439067978992423
+    },
+    "B": {
+     "delta": 0.011439125471211176,
+     "ci": [
+      0.00270207148767773,
+      0.020366053864078127
+     ],
+     "value": 0.42514198073340426
+    }
+   },
+   "dR2_add_VAL_calm": {
+    "A": {
+     "delta": 0.020243844337140326,
+     "ci": [
+      0.00995821851693271,
+      0.030900905613937022
+     ],
+     "value": 0.34154428178091234
+    },
+    "B": {
+     "delta": 0.03879319009222615,
+     "ci": [
+      0.027232412757720044,
+      0.050773305880049496
+     ],
+     "value": 0.36009362753599816
+    }
+   },
+   "paired_A_minus_B": {
+    "delta": 0.013925998259018746,
+    "ci": [
+     0.0013537567346955438,
+     0.025617227327550986
+    ],
+    "n_paths": 1600,
+    "n_boot": 500
+   },
+   "inversion_share": {
+    "multiple_A_P10-P90": {
+     "share": 0.41629375,
+     "ci": [
+      0.405662578125,
+      0.4263121875
+     ],
+     "candidate": "k*price"
+    },
+    "multiple_B_P10-P90": {
+     "share": 0.41629375,
+     "ci": [
+      0.405662578125,
+      0.4263121875
+     ],
+     "candidate": "k*price"
+    }
+   },
+   "inversion_clause": {
+    "moved_against_adopted_by_more_than_ci": false,
+    "half_width": 0.010324804687499994
+   },
+   "widths_adopted": {
+    "P25-P75": {
+     "dR2_add_VAL": {
+      "delta": 0.014174468183650313,
+      "ci": [
+       0.004919495231818455,
+       0.02364486215125639
+      ],
+      "value": 0.4278773234458434
+     },
+     "ks": {
+      "width": "P25-P75",
+      "truncation": [
+       9.232135107341815,
+       24.4189546412028
+      ],
+      "n_paths": 1600,
+      "n_data": 30921,
+      "ks_D": 0.311875,
+      "ks_upper95": 0.33986287535170273,
+      "pass": false,
+      "per_path_median_pe_p10_p50_p90": [
+       5.4,
+       13.674999999999999,
+       33.460000000000015
+      ]
+     },
+     "ks_untruncated": null
+    },
+    "P5-P95": {
+     "dR2_add_VAL": {
+      "delta": 0.011236114406873665,
+      "ci": [
+       0.002613040201350045,
+       0.019785488070719677
+      ],
+      "value": 0.42493896966906675
+     },
+     "ks": {
+      "width": "P5-P95",
+      "truncation": [
+       3.856960012702063,
+       58.51223700387135
+      ],
+      "n_paths": 1600,
+      "n_data": 55657,
+      "ks_D": 0.08893452306089082,
+      "ks_upper95": 0.11026239230914352,
+      "pass": false,
+      "per_path_median_pe_p10_p50_p90": [
+       5.2,
+       14.5,
+       38.965000000000025
+      ]
+     },
+     "ks_untruncated": {
+      "ks_D_untruncated": 0.05041776150898242,
+      "ks_upper95_untruncated": 0.07625834194047831,
+      "pass_untruncated": true,
+      "per_path_log_median_sd": 0.8006344178970877,
+      "data_pooled_log_sd": 1.0962568001419724,
+      "note": "post hoc, labelled: the registered check truncates the data to the width; B's k_t adds within-path dispersion the truncation does not cover"
+     }
+    }
+   },
+   "verdict": "B"
+  },
+  "eps_dividend": {
+   "dR2_add_VAL": {
+    "shown": {
+     "delta": 0.08970093473564889,
+     "ci": [
+      0.07469311762653916,
+      0.10453135523633604
+     ],
+     "value": 0.503403789997842
+    },
+    "hidden": {
+     "delta": 0.05151668884554417,
+     "ci": [
+      0.03994027773011273,
+      0.0628394332257908
+     ],
+     "value": 0.46521954410773725
+    }
+   },
+   "dR2_add_VAL_calm": {
+    "shown": {
+     "delta": 0.03569612040972203,
+     "ci": [
+      0.021696112721884066,
+      0.05158658220239075
+     ],
+     "value": 0.35699655785349405
+    },
+    "hidden": {
+     "delta": 0.02305090573591062,
+     "ci": [
+      0.011999800286855614,
+      0.03587027703796625
+     ],
+     "value": 0.34435134317968263
+    }
+   },
+   "paired_shown_minus_hidden": {
+    "delta": 0.03818424589010472,
+    "ci": [
+     0.029196643310971514,
+     0.047952490867431606
+    ],
+    "n_paths": 1600,
+    "n_boot": 500
+   },
+   "nm_share": {
+    "rendered": 0.06193125,
+    "data": 0.08477005610385356
+   },
+   "dividend_yield_zero_share": 0.128384375,
+   "onset_shown": {
+    "group_pass_nonprice": true,
+    "group_failures_nonprice": [],
+    "group_pass_registered": true,
+    "group_failures_registered": [],
+    "other_failures_nonprice": [
+     "crash:calm->deterioration:analyst_fair_value",
+     "bull_trap:calm->mania:news_sentiment",
+     "bull_trap:calm->mania:sentiment_MA5",
+     "bull_trap:calm->mania:sentiment_change"
+    ],
+    "worst_group_excess": {
+     "transition": "bull_trap:calm->mania",
+     "field": "days_since_eps_announcement",
+     "auc": 0.5018554925918579,
+     "excess": 0.0005705952644348145,
+     "null_p95": 0.0018238931894302304,
+     "n_paths": 200
+    }
+   }
+  },
+  "analyst": {
+   "null_margin_ANALYST": {
+    "n_perm": 20,
+    "draws": [
+     -0.010960244152602994,
+     -0.009715838593414627,
+     -0.009303453239921544,
+     -0.009053246558800798,
+     -0.009043499945528,
+     -0.008528226953222862,
+     -0.008167373643696463,
+     -0.007974465082232318,
+     -0.007918004849186477,
+     -0.007788360045811071,
+     -0.007506098232861191,
+     -0.0074054242299882445,
+     -0.007115434351909089,
+     -0.0070576854448255455,
+     -0.0070061612069580725,
+     -0.006554766719627958,
+     -0.006289890036010437,
+     -0.005900194076817966,
+     -0.005748424325173085,
+     -0.005670827212197804
+    ],
+    "max": -0.005670827212197804,
+    "p95_estimate": -0.005744544469524321,
+    "resolution": "the 95th percentile of n draws is the max for n < 20; with 20 draws it is between the 19th and 20th order statistic"
+   },
+   "arms": {
+    "analyst_A_sd0.300": {
+     "sd": 0.3,
+     "dR2_add": {
+      "delta": 0.001275922993846934,
+      "ci": [
+       -0.0023884990633960546,
+       0.004775519390500604
+      ],
+      "value": 0.41497877825604
+     },
+     "dR2_add_calm": {
+      "delta": 0.018691656045319083,
+      "ci": [
+       0.005588189043907901,
+       0.030298079713084573
+      ],
+      "value": 0.3399920934890911
+     },
+     "onset": {
+      "group_pass_nonprice": false,
+      "group_failures_nonprice": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "group_pass_registered": false,
+      "group_failures_registered": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "other_failures_nonprice": [
+       "bull_trap:calm->mania:news_sentiment",
+       "bull_trap:calm->mania:sentiment_MA5",
+       "bull_trap:calm->mania:sentiment_change"
+      ],
+      "worst_group_excess": {
+       "transition": "crash:calm->deterioration",
+       "field": "analyst_fair_value",
+       "auc": 0.6003681421279907,
+       "excess": 0.02090752124786377,
+       "null_p95": 0.0008338853716850278,
+       "n_paths": 200
+      }
+     },
+     "inside_null_margin": false,
+     "admissible": false
+    },
+    "analyst_A_sd0.450": {
+     "sd": 0.45,
+     "dR2_add": {
+      "delta": 0.0018177198019617702,
+      "ci": [
+       -0.001724216633968978,
+       0.005089670110225496
+      ],
+      "value": 0.41552057506415485
+     },
+     "dR2_add_calm": {
+      "delta": 0.01750525930962299,
+      "ci": [
+       0.005634318267349567,
+       0.029330297118193245
+      ],
+      "value": 0.338805696753395
+     },
+     "onset": {
+      "group_pass_nonprice": false,
+      "group_failures_nonprice": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "group_pass_registered": false,
+      "group_failures_registered": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "other_failures_nonprice": [
+       "bull_trap:calm->mania:news_sentiment",
+       "bull_trap:calm->mania:sentiment_MA5",
+       "bull_trap:calm->mania:sentiment_change"
+      ],
+      "worst_group_excess": {
+       "transition": "crash:calm->deterioration",
+       "field": "analyst_fair_value",
+       "auc": 0.5971315503120422,
+       "excess": 0.017670929431915283,
+       "null_p95": 0.0010682269930839487,
+       "n_paths": 200
+      }
+     },
+     "inside_null_margin": false,
+     "admissible": false
+    },
+    "analyst_A_sd0.564": {
+     "sd": 0.5639913617919751,
+     "dR2_add": {
+      "delta": 0.001977602363932074,
+      "ci": [
+       -0.0014620392190163422,
+       0.005301494726042851
+      ],
+      "value": 0.41568045762612515
+     },
+     "dR2_add_calm": {
+      "delta": 0.01416146267817564,
+      "ci": [
+       0.001229388937404924,
+       0.026803131618686866
+      ],
+      "value": 0.33546190012194765
+     },
+     "onset": {
+      "group_pass_nonprice": false,
+      "group_failures_nonprice": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "group_pass_registered": false,
+      "group_failures_registered": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "other_failures_nonprice": [
+       "bull_trap:calm->mania:news_sentiment",
+       "bull_trap:calm->mania:sentiment_MA5",
+       "bull_trap:calm->mania:sentiment_change"
+      ],
+      "worst_group_excess": {
+       "transition": "crash:calm->deterioration",
+       "field": "analyst_fair_value",
+       "auc": 0.5967240929603577,
+       "excess": 0.017263472080230713,
+       "null_p95": 0.0013180583715438768,
+       "n_paths": 200
+      }
+     },
+     "inside_null_margin": false,
+     "admissible": false
+    },
+    "analyst_A_sd0.600": {
+     "sd": 0.6,
+     "dR2_add": {
+      "delta": 0.001730041346854394,
+      "ci": [
+       -0.0015827352309689651,
+       0.005047937198385147
+      ],
+      "value": 0.4154328966090475
+     },
+     "dR2_add_calm": {
+      "delta": 0.012619400884463006,
+      "ci": [
+       0.0006211148305469789,
+       0.024932514247464184
+      ],
+      "value": 0.333919838328235
+     },
+     "onset": {
+      "group_pass_nonprice": false,
+      "group_failures_nonprice": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "group_pass_registered": false,
+      "group_failures_registered": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "other_failures_nonprice": [
+       "bull_trap:calm->mania:news_sentiment",
+       "bull_trap:calm->mania:sentiment_MA5",
+       "bull_trap:calm->mania:sentiment_change"
+      ],
+      "worst_group_excess": {
+       "transition": "crash:calm->deterioration",
+       "field": "analyst_fair_value",
+       "auc": 0.5970974564552307,
+       "excess": 0.01763683557510376,
+       "null_p95": 0.0015444099903106675,
+       "n_paths": 200
+      }
+     },
+     "inside_null_margin": false,
+     "admissible": false
+    }
+   },
+   "C": {
+    "dR2_add": {
+     "delta": -0.0017060202763705679,
+     "ci": [
+      -0.0045674215407002115,
+      0.001387010244990209
+     ],
+     "value": 0.4119968349858225
+    },
+    "dR2_add_calm": {
+     "delta": 0.014454704462743329,
+     "ci": [
+      0.0030994529621161766,
+      0.02435053381175717
+     ],
+     "value": 0.33575514190651534
+    },
+    "onset": {
+     "group_pass_nonprice": true,
+     "group_failures_nonprice": [],
+     "group_pass_registered": false,
+     "group_failures_registered": [
+      "bull_trap:blow-off->post-top:analyst_fair_value"
+     ],
+     "other_failures_nonprice": [
+      "bull_trap:calm->mania:news_sentiment",
+      "bull_trap:calm->mania:sentiment_MA5",
+      "bull_trap:calm->mania:sentiment_change"
+     ],
+     "worst_group_excess": {
+      "transition": "bull_trap:blow-off->post-top",
+      "field": "analyst_fair_value",
+      "auc": 0.627021849155426,
+      "excess": -0.03676402568817139,
+      "null_p95": 0.03228000700473777,
+      "n_paths": 26
+     }
+    }
+   },
+   "verdict": "no A arm admissible -> C provisional"
+  },
+  "sentiment": {
+   "null_margin_SENT": {
+    "n_perm": 20,
+    "draws": [
+     -0.003873472087543628,
+     -0.0036549278087691928,
+     -0.0035930965319849184,
+     -0.0035614257421879847,
+     -0.0035614055043400317,
+     -0.0034979354533120066,
+     -0.0034787726140370623,
+     -0.0034689202483925152,
+     -0.0033675769662341315,
+     -0.003073813954657889,
+     -0.003012476833426758,
+     -0.002960886718269551,
+     -0.0028821521338502354,
+     -0.002778863052050329,
+     -0.0027641015817011505,
+     -0.0027052553244607536,
+     -0.0026332919975102786,
+     -0.0026109781591355796,
+     -0.0024754301643716836,
+     -0.0018462258294658085
+    ],
+    "max": -0.0018462258294658085,
+    "p95_estimate": -0.0024439699476263895,
+    "resolution": "the 95th percentile of n draws is the max for n < 20; with 20 draws it is between the 19th and 20th order statistic"
+   },
+   "arms": {
+    "A": {
+     "arm": "sentiment_A",
+     "meets_rule_i": true,
+     "item12": {
+      "daily": {
+       "acf1": {
+        "median": 0.2048552803434523,
+        "ci95": [
+         0.201301602857723,
+         0.20919203323519572
+        ],
+        "n": 1600
+       },
+       "corr_s_r": {
+        "median": 0.01736115696530391,
+        "ci95": [
+         0.01314307752187548,
+         0.021232336303598057
+        ],
+        "n": 1600
+       }
+      },
+      "weekly": {
+       "acf1": {
+        "median": -0.029960063508738963,
+        "ci95": [
+         -0.03799786047033748,
+         -0.022039523482422635
+        ],
+        "n": 1600
+       },
+       "corr_s_r": {
+        "median": 0.10197692456730115,
+        "ci95": [
+         0.09017264936228989,
+         0.11019708821360502
+        ],
+        "n": 1600
+       }
+      }
+     },
+     "dR2_add": {
+      "delta": -0.000653260715811288,
+      "ci": [
+       -0.0011745144249521971,
+       -0.00019284055909392958
+      ],
+      "value": 0.4052162530438599
+     },
+     "dR2_add_calm": {
+      "delta": 0.0029008903040055323,
+      "ci": [
+       -0.0004755919966827115,
+       0.006412904159199994
+      ],
+      "value": 0.2940838169706548
+     },
+     "onset": {
+      "group_pass_nonprice": true,
+      "group_failures_nonprice": [],
+      "group_pass_registered": true,
+      "group_failures_registered": [],
+      "other_failures_nonprice": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "worst_group_excess": {
+       "transition": "bull_trap:calm->mania",
+       "field": "news_sentiment",
+       "auc": 0.4960648715496063,
+       "excess": -0.006601125001907349,
+       "null_p95": 0.007384139299392683,
+       "n_paths": 200
+      }
+     }
+    },
+    "B-full": {
+     "arm": "sentiment_B_full",
+     "meets_rule_i": true,
+     "item12": {
+      "daily": {
+       "acf1": {
+        "median": 0.21609242901927006,
+        "ci95": [
+         0.21138076606514544,
+         0.22125022690598276
+        ],
+        "n": 1600
+       },
+       "corr_s_r": {
+        "median": 0.004259190747587399,
+        "ci95": [
+         -0.0013963794042798389,
+         0.008914866407668616
+        ],
+        "n": 1600
+       }
+      },
+      "weekly": {
+       "acf1": {
+        "median": -0.019084355041951585,
+        "ci95": [
+         -0.027288753742229853,
+         -0.009351668115497673
+        ],
+        "n": 1600
+       },
+       "corr_s_r": {
+        "median": 0.08741435930269392,
+        "ci95": [
+         0.08120115356967401,
+         0.09666297843932882
+        ],
+        "n": 1600
+       }
+      }
+     },
+     "dR2_add": {
+      "delta": 0.08128898964956432,
+      "ci": [
+       0.07314552866988043,
+       0.08825384192779186
+      ],
+      "value": 0.48758816509404934
+     },
+     "dR2_add_calm": {
+      "delta": 0.021156955421281376,
+      "ci": [
+       0.015130019613231826,
+       0.027382617053015663
+      ],
+      "value": 0.309104918560169
+     },
+     "onset": {
+      "group_pass_nonprice": true,
+      "group_failures_nonprice": [],
+      "group_pass_registered": true,
+      "group_failures_registered": [],
+      "other_failures_nonprice": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "worst_group_excess": {
+       "transition": "bull_trap:calm->mania",
+       "field": "sentiment_change",
+       "auc": 0.4979734718799591,
+       "excess": -0.005494564771652222,
+       "null_p95": 0.007197286188602442,
+       "n_paths": 200
+      }
+     },
+     "paired_minus_A": {
+      "delta": 0.08194225036537561,
+      "ci": [
+       0.0740282438216709,
+       0.0890291863007957
+      ],
+      "n_paths": 1600,
+      "n_boot": 500
+     }
+    },
+    "B-half": {
+     "arm": "sentiment_B_half",
+     "meets_rule_i": true,
+     "item12": {
+      "daily": {
+       "acf1": {
+        "median": 0.20725068099213168,
+        "ci95": [
+         0.2020152122809471,
+         0.21194127031763188
+        ],
+        "n": 1600
+       },
+       "corr_s_r": {
+        "median": 0.010465068220070671,
+        "ci95": [
+         0.006454605644225389,
+         0.014632729062495761
+        ],
+        "n": 1600
+       }
+      },
+      "weekly": {
+       "acf1": {
+        "median": -0.028902831471280338,
+        "ci95": [
+         -0.03793767714740228,
+         -0.019352974047776833
+        ],
+        "n": 1600
+       },
+       "corr_s_r": {
+        "median": 0.0941636933060517,
+        "ci95": [
+         0.08544121493849222,
+         0.10489274983039713
+        ],
+        "n": 1600
+       }
+      }
+     },
+     "dR2_add": {
+      "delta": 0.020467278474309958,
+      "ci": [
+       0.016801866402850855,
+       0.023604515817175806
+      ],
+      "value": 0.42669602445052046
+     },
+     "dR2_add_calm": {
+      "delta": 0.005575857704880005,
+      "ci": [
+       0.0009849485132036291,
+       0.010899030159429854
+      ],
+      "value": 0.29590104635312897
+     },
+     "onset": {
+      "group_pass_nonprice": true,
+      "group_failures_nonprice": [],
+      "group_pass_registered": true,
+      "group_failures_registered": [],
+      "other_failures_nonprice": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "worst_group_excess": {
+       "transition": "bull_trap:calm->mania",
+       "field": "sentiment_change",
+       "auc": 0.4966525435447693,
+       "excess": -0.006390810012817383,
+       "null_p95": 0.0074348121881484906,
+       "n_paths": 200
+      }
+     },
+     "paired_minus_A": {
+      "delta": 0.021120539190121246,
+      "ci": [
+       0.017586414066566858,
+       0.02415066758383939
+      ],
+      "n_paths": 1600,
+      "n_boot": 500
+     }
+    },
+    "C": {
+     "arm": "sentiment_C",
+     "meets_rule_i": false,
+     "item12": {
+      "daily": {
+       "acf1": {
+        "median": 0.9141087416301616,
+        "ci95": [
+         0.9128313589552269,
+         0.9153365165378039
+        ],
+        "n": 1600
+       },
+       "corr_s_r": {
+        "median": 0.024818050204902117,
+        "ci95": [
+         0.02123497201688468,
+         0.02774580188145274
+        ],
+        "n": 1600
+       }
+      },
+      "weekly": {
+       "acf1": {
+        "median": 0.5703168464831498,
+        "ci95": [
+         0.562560811777432,
+         0.5772816456584277
+        ],
+        "n": 1600
+       },
+       "corr_s_r": {
+        "median": 0.32170882028291403,
+        "ci95": [
+         0.3138209173988217,
+         0.3273099924994022
+        ],
+        "n": 1600
+       }
+      }
+     },
+     "dR2_add": {
+      "delta": -0.0009482788432352285,
+      "ci": [
+       -0.0021425738205971545,
+       0.0002924593910005125
+      ],
+      "value": 0.4085555482845342
+     },
+     "dR2_add_calm": {
+      "delta": 0.00734475066879714,
+      "ci": [
+       0.0006164907892742156,
+       0.014642333928059682
+      ],
+      "value": 0.31255372697995065
+     },
+     "onset": {
+      "group_pass_nonprice": true,
+      "group_failures_nonprice": [],
+      "group_pass_registered": true,
+      "group_failures_registered": [],
+      "other_failures_nonprice": [
+       "crash:calm->deterioration:analyst_fair_value"
+      ],
+      "worst_group_excess": {
+       "transition": "bull_trap:calm->mania",
+       "field": "news_sentiment",
+       "auc": 0.4979308247566223,
+       "excess": -0.0034837722778320312,
+       "null_p95": 0.002074109017848964,
+       "n_paths": 200
+      }
+     }
+    }
+   },
+   "verdict": "A",
+   "note": "",
+   "ordering_by_dR2_add": [
+    [
+     "A",
+     -0.000653260715811288
+    ],
+    [
+     "B-half",
+     0.020467278474309958
+    ],
+    [
+     "B-full",
+     0.08128898964956432
+    ]
+   ]
+  },
+  "bpred0": {
+   "calm_BASE": {
+    "value": 0.28954262324613156,
+    "ci": [
+     0.2588772591918764,
+     0.31922122622736854
+    ]
+   },
+   "calm_BASE_baseline": {
+    "value": 0.321300437443772,
+    "ci": [
+     0.29104991517560297,
+     0.34979292992730077
+    ]
+   },
+   "all_BASE": {
+    "value": 0.40543689186559095,
+    "ci": [
+     0.39035470717750564,
+     0.4203616885316702
+    ]
+   },
+   "all_BASE_baseline": {
+    "value": 0.4137028552621931,
+    "ci": [
+     0.39881208569961585,
+     0.42866615818446774
+    ]
+   },
+   "dR2_add_SENT": {
+    "delta": 0.05951736104426453,
+    "ci": [
+     0.05292754327361775,
+     0.0656450767711776
+    ],
+    "value": 0.4649542529098555
+   },
+   "dR2_add_SENT_calm": {
+    "delta": 0.02149008918644635,
+    "ci": [
+     0.015910166700330512,
+     0.027344055642329692
+    ],
+    "value": 0.3110327124325779
+   }
+  },
+  "volume": {
+   "runup_log_ratio": {
+    "n_episodes": 3019,
+    "n_stocks": 394,
+    "episodes_index_checked": 3202,
+    "episodes_index_mismatch": 0,
+    "log_ratio_median": -0.015016468788333626,
+    "log_ratio_ci95_stock_boot": [
+     -0.03198314965052025,
+     -0.001463636866971473
+    ],
+    "ratio_median": 0.9850957161366352,
+    "ratio_ci95": [
+     0.9685229018910759,
+     0.9985374337270837
+    ],
+    "log_ratio_per_log_runup_median": -0.018195178776924552,
+    "runup_size_median": 2.2271736597478378,
+    "ci_excludes_1": true,
+    "gsy_read": "GSY 2019 (read): turnover elevated in all run-ups, whether or not they crash -- a run-up feature, not a crash predictor"
+   },
+   "clause1_letter_ci_excludes_zero": true,
+   "clause1_premise_ci_above_zero": false,
+   "clause2_B_onset_pass": true,
+   "onset_A": {
+    "group_pass_nonprice": true,
+    "group_failures_nonprice": [],
+    "group_pass_registered": true,
+    "group_failures_registered": [],
+    "other_failures_nonprice": [
+     "crash:calm->deterioration:analyst_fair_value",
+     "bull_trap:calm->mania:news_sentiment",
+     "bull_trap:calm->mania:sentiment_MA5",
+     "bull_trap:calm->mania:sentiment_change"
+    ],
+    "worst_group_excess": {
+     "transition": "bull_trap:calm->mania",
+     "field": "volume_ratio",
+     "auc": 0.4844575822353363,
+     "excess": -0.016827315092086792,
+     "null_p95": 0.010343034565448739,
+     "n_paths": 200
+    }
+   },
+   "onset_B": {
+    "group_pass_nonprice": true,
+    "group_failures_nonprice": [],
+    "group_pass_registered": true,
+    "group_failures_registered": [],
+    "other_failures_nonprice": [
+     "crash:calm->deterioration:analyst_fair_value",
+     "bull_trap:calm->mania:news_sentiment",
+     "bull_trap:calm->mania:sentiment_MA5",
+     "bull_trap:calm->mania:sentiment_change"
+    ],
+    "worst_group_excess": {
+     "transition": "bull_trap:calm->mania",
+     "field": "volume_ratio",
+     "auc": 0.484528124332428,
+     "excess": -0.016756772994995117,
+     "null_p95": 0.010604663193225857,
+     "n_paths": 200
+    }
+   },
+   "dR2_add_VOL": {
+    "A": {
+     "delta": 0.004199460592546722,
+     "ci": [
+      0.0026310498813507557,
+      0.005920840643857439
+     ],
+     "value": 0.4179023158547398
+    },
+    "B": {
+     "delta": 0.003554687392775313,
+     "ci": [
+      0.0020925643831900516,
+      0.005060613375159923
+     ],
+     "value": 0.4172575426549684
+    }
+   },
+   "dR2_add_VOL_calm": {
+    "A": {
+     "delta": 0.0065447804412511745,
+     "ci": [
+      0.0034697598938285916,
+      0.00918560987195525
+     ],
+     "value": 0.3278452178850232
+    },
+    "B": {
+     "delta": 0.0069629126986398004,
+     "ci": [
+      0.0038697268691519713,
+      0.009751755747147494
+     ],
+     "value": 0.3282633501424118
+    }
+   },
+   "paired_A_minus_B": {
+    "delta": 0.000644773199771409,
+    "ci": [
+     0.00020478596896204016,
+     0.0010802583454259079
+    ],
+    "n_paths": 1600,
+    "n_boot": 500
+   },
+   "item7": {
+    "A": {
+     "median_spearman_vol_absr": 0.3255306837216385,
+     "median_acf1_logvol": 0.5574178570189443,
+     "share_shapiro_p_gt_0.01": 0.758125,
+     "n_paths": 1600,
+     "v2_checklist_item7_bands": "corr 0.2-0.5; AC(1) 0.5-0.8; log-normality not rejected in >= 50 % (stipulated; Phase 6 re-derives)"
+    },
+    "B": {
+     "median_spearman_vol_absr": 0.324989340642607,
+     "median_acf1_logvol": 0.557534324948118,
+     "share_shapiro_p_gt_0.01": 0.75625,
+     "n_paths": 1600,
+     "v2_checklist_item7_bands": "corr 0.2-0.5; AC(1) 0.5-0.8; log-normality not rejected in >= 50 % (stipulated; Phase 6 re-derives)"
+    }
+   },
+   "verdict": "A",
+   "verdict_letter": "B",
+   "verdict_addendum2": "A"
+  }
+ }
+}

@@ -1,0 +1,731 @@
+{
+ "analyst_A_sd0.300": {
+  "block": "analyst",
+  "group": "ANALYST",
+  "n_rows": 320000,
+  "nm_share_days": 0.0
+ },
+ "analyst_A_sd0.450": {
+  "block": "analyst",
+  "group": "ANALYST",
+  "n_rows": 320000,
+  "nm_share_days": 0.0
+ },
+ "analyst_A_sd0.564": {
+  "block": "analyst",
+  "group": "ANALYST",
+  "n_rows": 320000,
+  "nm_share_days": 0.0
+ },
+ "analyst_A_sd0.600": {
+  "block": "analyst",
+  "group": "ANALYST",
+  "n_rows": 320000,
+  "nm_share_days": 0.0
+ },
+ "analyst_C": {
+  "block": "analyst",
+  "group": "ANALYST",
+  "n_rows": 320000,
+  "nm_share_days": 0.0
+ },
+ "volume_A": {
+  "block": "volume",
+  "group": "VOL",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "item7": {
+   "median_spearman_vol_absr": 0.3255306837216385,
+   "median_acf1_logvol": 0.5574178570189443,
+   "share_shapiro_p_gt_0.01": 0.758125,
+   "n_paths": 1600,
+   "v2_checklist_item7_bands": "corr 0.2-0.5; AC(1) 0.5-0.8; log-normality not rejected in >= 50 % (stipulated; Phase 6 re-derives)"
+  }
+ },
+ "volume_B": {
+  "block": "volume",
+  "group": "VOL",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "item7": {
+   "median_spearman_vol_absr": 0.324989340642607,
+   "median_acf1_logvol": 0.557534324948118,
+   "share_shapiro_p_gt_0.01": 0.75625,
+   "n_paths": 1600,
+   "v2_checklist_item7_bands": "corr 0.2-0.5; AC(1) 0.5-0.8; log-normality not rejected in >= 50 % (stipulated; Phase 6 re-derives)"
+  }
+ },
+ "sentiment_A": {
+  "block": "sentiment",
+  "group": "SENT",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "item12": {
+   "daily": {
+    "acf1": {
+     "median": 0.2048552803434523,
+     "ci95": [
+      0.201301602857723,
+      0.20919203323519572
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.01736115696530391,
+     "ci95": [
+      0.01314307752187548,
+      0.021232336303598057
+     ],
+     "n": 1600
+    }
+   },
+   "weekly": {
+    "acf1": {
+     "median": -0.029960063508738963,
+     "ci95": [
+      -0.03799786047033748,
+      -0.022039523482422635
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.10197692456730115,
+     "ci95": [
+      0.09017264936228989,
+      0.11019708821360502
+     ],
+     "n": 1600
+    }
+   },
+   "reference_daily": {
+    "acf1_200d": {
+     "median": 0.2003857381261629,
+     "ci95": [
+      0.15394875895264717,
+      0.2651782737128503
+     ],
+     "p10": 0.04651886763188458,
+     "p90": 0.4298284539191797,
+     "n_windows": 57
+    },
+    "corr_s_r_200d": {
+     "median": 0.005829333685950829,
+     "ci95": [
+      -0.02791579824513875,
+      0.01927226922835262
+     ],
+     "p10": -0.07287073260523817,
+     "p90": 0.09764878669887746,
+     "n_windows": 57
+    },
+    "note": "non-overlapping 200-trading-day windows of the deconvolved, trading-day-aligned SF Fed series vs the FF market return"
+   },
+   "reference_weekly": {
+    "acf1_40w": {
+     "median": 0.536457390588386,
+     "ci95": [
+      0.4776465018344975,
+      0.5809316810316825
+     ],
+     "p10": 0.2879224498512338,
+     "p90": 0.7072504754145731,
+     "n_windows": 50
+    },
+    "corr_40w": {
+     "median": 0.2414528269915342,
+     "ci95": [
+      0.14187436792326386,
+      0.31097475522462026
+     ],
+     "p10": -0.10202971859883038,
+     "p90": 0.42837435952992187,
+     "n_windows": 50
+    }
+   },
+   "meets_i_daily": true,
+   "meets_i_weekly": false
+  }
+ },
+ "sentiment_B_full": {
+  "block": "sentiment",
+  "group": "SENT",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "item12": {
+   "daily": {
+    "acf1": {
+     "median": 0.21609242901927006,
+     "ci95": [
+      0.21138076606514544,
+      0.22125022690598276
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.004259190747587399,
+     "ci95": [
+      -0.0013963794042798389,
+      0.008914866407668616
+     ],
+     "n": 1600
+    }
+   },
+   "weekly": {
+    "acf1": {
+     "median": -0.019084355041951585,
+     "ci95": [
+      -0.027288753742229853,
+      -0.009351668115497673
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.08741435930269392,
+     "ci95": [
+      0.08120115356967401,
+      0.09666297843932882
+     ],
+     "n": 1600
+    }
+   },
+   "reference_daily": {
+    "acf1_200d": {
+     "median": 0.2003857381261629,
+     "ci95": [
+      0.15394875895264717,
+      0.2651782737128503
+     ],
+     "p10": 0.04651886763188458,
+     "p90": 0.4298284539191797,
+     "n_windows": 57
+    },
+    "corr_s_r_200d": {
+     "median": 0.005829333685950829,
+     "ci95": [
+      -0.02791579824513875,
+      0.01927226922835262
+     ],
+     "p10": -0.07287073260523817,
+     "p90": 0.09764878669887746,
+     "n_windows": 57
+    },
+    "note": "non-overlapping 200-trading-day windows of the deconvolved, trading-day-aligned SF Fed series vs the FF market return"
+   },
+   "reference_weekly": {
+    "acf1_40w": {
+     "median": 0.536457390588386,
+     "ci95": [
+      0.4776465018344975,
+      0.5809316810316825
+     ],
+     "p10": 0.2879224498512338,
+     "p90": 0.7072504754145731,
+     "n_windows": 50
+    },
+    "corr_40w": {
+     "median": 0.2414528269915342,
+     "ci95": [
+      0.14187436792326386,
+      0.31097475522462026
+     ],
+     "p10": -0.10202971859883038,
+     "p90": 0.42837435952992187,
+     "n_windows": 50
+    }
+   },
+   "meets_i_daily": true,
+   "meets_i_weekly": false
+  }
+ },
+ "sentiment_B_half": {
+  "block": "sentiment",
+  "group": "SENT",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "item12": {
+   "daily": {
+    "acf1": {
+     "median": 0.20725068099213168,
+     "ci95": [
+      0.2020152122809471,
+      0.21194127031763188
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.010465068220070671,
+     "ci95": [
+      0.006454605644225389,
+      0.014632729062495761
+     ],
+     "n": 1600
+    }
+   },
+   "weekly": {
+    "acf1": {
+     "median": -0.028902831471280338,
+     "ci95": [
+      -0.03793767714740228,
+      -0.019352974047776833
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.0941636933060517,
+     "ci95": [
+      0.08544121493849222,
+      0.10489274983039713
+     ],
+     "n": 1600
+    }
+   },
+   "reference_daily": {
+    "acf1_200d": {
+     "median": 0.2003857381261629,
+     "ci95": [
+      0.15394875895264717,
+      0.2651782737128503
+     ],
+     "p10": 0.04651886763188458,
+     "p90": 0.4298284539191797,
+     "n_windows": 57
+    },
+    "corr_s_r_200d": {
+     "median": 0.005829333685950829,
+     "ci95": [
+      -0.02791579824513875,
+      0.01927226922835262
+     ],
+     "p10": -0.07287073260523817,
+     "p90": 0.09764878669887746,
+     "n_windows": 57
+    },
+    "note": "non-overlapping 200-trading-day windows of the deconvolved, trading-day-aligned SF Fed series vs the FF market return"
+   },
+   "reference_weekly": {
+    "acf1_40w": {
+     "median": 0.536457390588386,
+     "ci95": [
+      0.4776465018344975,
+      0.5809316810316825
+     ],
+     "p10": 0.2879224498512338,
+     "p90": 0.7072504754145731,
+     "n_windows": 50
+    },
+    "corr_40w": {
+     "median": 0.2414528269915342,
+     "ci95": [
+      0.14187436792326386,
+      0.31097475522462026
+     ],
+     "p10": -0.10202971859883038,
+     "p90": 0.42837435952992187,
+     "n_windows": 50
+    }
+   },
+   "meets_i_daily": true,
+   "meets_i_weekly": false
+  }
+ },
+ "sentiment_C": {
+  "block": "sentiment",
+  "group": "SENT",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "item12": {
+   "daily": {
+    "acf1": {
+     "median": 0.9141087416301616,
+     "ci95": [
+      0.9128313589552269,
+      0.9153365165378039
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.024818050204902117,
+     "ci95": [
+      0.02123497201688468,
+      0.02774580188145274
+     ],
+     "n": 1600
+    }
+   },
+   "weekly": {
+    "acf1": {
+     "median": 0.5703168464831498,
+     "ci95": [
+      0.562560811777432,
+      0.5772816456584277
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.32170882028291403,
+     "ci95": [
+      0.3138209173988217,
+      0.3273099924994022
+     ],
+     "n": 1600
+    }
+   },
+   "reference_daily": {
+    "acf1_200d": {
+     "median": 0.2003857381261629,
+     "ci95": [
+      0.15394875895264717,
+      0.2651782737128503
+     ],
+     "p10": 0.04651886763188458,
+     "p90": 0.4298284539191797,
+     "n_windows": 57
+    },
+    "corr_s_r_200d": {
+     "median": 0.005829333685950829,
+     "ci95": [
+      -0.02791579824513875,
+      0.01927226922835262
+     ],
+     "p10": -0.07287073260523817,
+     "p90": 0.09764878669887746,
+     "n_windows": 57
+    },
+    "note": "non-overlapping 200-trading-day windows of the deconvolved, trading-day-aligned SF Fed series vs the FF market return"
+   },
+   "reference_weekly": {
+    "acf1_40w": {
+     "median": 0.536457390588386,
+     "ci95": [
+      0.4776465018344975,
+      0.5809316810316825
+     ],
+     "p10": 0.2879224498512338,
+     "p90": 0.7072504754145731,
+     "n_windows": 50
+    },
+    "corr_40w": {
+     "median": 0.2414528269915342,
+     "ci95": [
+      0.14187436792326386,
+      0.31097475522462026
+     ],
+     "p10": -0.10202971859883038,
+     "p90": 0.42837435952992187,
+     "n_windows": 50
+    }
+   },
+   "meets_i_daily": false,
+   "meets_i_weekly": false
+  }
+ },
+ "sentiment_v2_bpred0": {
+  "block": "sentiment",
+  "group": "SENT",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "item12": {
+   "daily": {
+    "acf1": {
+     "median": 0.8379876349493562,
+     "ci95": [
+      0.8350837795466305,
+      0.8414248373479402
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.3798292226309676,
+     "ci95": [
+      0.37699206272562064,
+      0.38394958663670936
+     ],
+     "n": 1600
+    }
+   },
+   "weekly": {
+    "acf1": {
+     "median": 0.44008963851664396,
+     "ci95": [
+      0.4309268655975239,
+      0.4516334001447764
+     ],
+     "n": 1600
+    },
+    "corr_s_r": {
+     "median": 0.6731086940121442,
+     "ci95": [
+      0.6673456369150962,
+      0.6765730869624474
+     ],
+     "n": 1600
+    }
+   },
+   "reference_daily": {
+    "acf1_200d": {
+     "median": 0.2003857381261629,
+     "ci95": [
+      0.15394875895264717,
+      0.2651782737128503
+     ],
+     "p10": 0.04651886763188458,
+     "p90": 0.4298284539191797,
+     "n_windows": 57
+    },
+    "corr_s_r_200d": {
+     "median": 0.005829333685950829,
+     "ci95": [
+      -0.02791579824513875,
+      0.01927226922835262
+     ],
+     "p10": -0.07287073260523817,
+     "p90": 0.09764878669887746,
+     "n_windows": 57
+    },
+    "note": "non-overlapping 200-trading-day windows of the deconvolved, trading-day-aligned SF Fed series vs the FF market return"
+   },
+   "reference_weekly": {
+    "acf1_40w": {
+     "median": 0.536457390588386,
+     "ci95": [
+      0.4776465018344975,
+      0.5809316810316825
+     ],
+     "p10": 0.2879224498512338,
+     "p90": 0.7072504754145731,
+     "n_windows": 50
+    },
+    "corr_40w": {
+     "median": 0.2414528269915342,
+     "ci95": [
+      0.14187436792326386,
+      0.31097475522462026
+     ],
+     "p10": -0.10202971859883038,
+     "p90": 0.42837435952992187,
+     "n_windows": 50
+    }
+   },
+   "meets_i_daily": false,
+   "meets_i_weekly": false
+  }
+ },
+ "multiple_A_P10-P90": {
+  "block": "multiple",
+  "group": "VAL",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "ks": {
+   "width": "P10-P90",
+   "truncation": [
+    5.767588770209339,
+    39.981281543995166
+   ],
+   "n_paths": 1600,
+   "n_data": 49473,
+   "ks_D": 0.07024726871222697,
+   "ks_upper95": 0.09521801632961416,
+   "pass": true,
+   "per_path_median_pe_p10_p50_p90": [
+    7.9,
+    16.275,
+    31.6
+   ]
+  },
+  "ks_untruncated_posthoc": {
+   "ks_D_untruncated": 0.09348384214866678,
+   "ks_upper95_untruncated": 0.11225015336214286,
+   "pass_untruncated": false,
+   "per_path_log_median_sd": 0.5250590661701133,
+   "data_pooled_log_sd": 1.0962568001419724,
+   "note": "post hoc, labelled: the registered check truncates the data to the width; B's k_t adds within-path dispersion the truncation does not cover"
+  }
+ },
+ "multiple_B_P10-P90": {
+  "block": "multiple",
+  "group": "VAL",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "ks": {
+   "width": "P10-P90",
+   "truncation": [
+    5.767588770209339,
+    39.981281543995166
+   ],
+   "n_paths": 1600,
+   "n_data": 49473,
+   "ks_D": 0.12753077436177307,
+   "ks_upper95": 0.15218565555959818,
+   "pass": false,
+   "per_path_median_pe_p10_p50_p90": [
+    5.3,
+    14.3,
+    37.460000000000015
+   ]
+  },
+  "ks_untruncated_posthoc": {
+   "ks_D_untruncated": 0.05744942839124878,
+   "ks_upper95_untruncated": 0.08190593215885386,
+   "pass_untruncated": true,
+   "per_path_log_median_sd": 0.7637072860872809,
+   "data_pooled_log_sd": 1.0962568001419724,
+   "note": "post hoc, labelled: the registered check truncates the data to the width; B's k_t adds within-path dispersion the truncation does not cover"
+  }
+ },
+ "multiple_A_P25-P75": {
+  "block": "multiple",
+  "group": "VAL",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "ks": {
+   "width": "P25-P75",
+   "truncation": [
+    9.232135107341815,
+    24.4189546412028
+   ],
+   "n_paths": 1600,
+   "n_data": 30921,
+   "ks_D": 0.10415914750493194,
+   "ks_upper95": 0.12054067169156883,
+   "pass": false,
+   "per_path_median_pe_p10_p50_p90": [
+    9.7,
+    15.675,
+    24.5
+   ]
+  }
+ },
+ "multiple_B_P25-P75": {
+  "block": "multiple",
+  "group": "VAL",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "ks": {
+   "width": "P25-P75",
+   "truncation": [
+    9.232135107341815,
+    24.4189546412028
+   ],
+   "n_paths": 1600,
+   "n_data": 30921,
+   "ks_D": 0.311875,
+   "ks_upper95": 0.33986287535170273,
+   "pass": false,
+   "per_path_median_pe_p10_p50_p90": [
+    5.4,
+    13.674999999999999,
+    33.460000000000015
+   ]
+  }
+ },
+ "multiple_A_P5-P95": {
+  "block": "multiple",
+  "group": "VAL",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "ks": {
+   "width": "P5-P95",
+   "truncation": [
+    3.856960012702063,
+    58.51223700387135
+   ],
+   "n_paths": 1600,
+   "n_data": 55657,
+   "ks_D": 0.07251838268322042,
+   "ks_upper95": 0.09660309125536765,
+   "pass": true,
+   "per_path_median_pe_p10_p50_p90": [
+    7.2,
+    16.6,
+    36.75000000000007
+   ]
+  },
+  "ks_untruncated_posthoc": {
+   "ks_D_untruncated": 0.0631755716087512,
+   "ks_upper95_untruncated": 0.0911137694443995,
+   "pass_untruncated": true,
+   "per_path_log_median_sd": 0.6251392638501658,
+   "data_pooled_log_sd": 1.0962568001419724,
+   "note": "post hoc, labelled: the registered check truncates the data to the width; B's k_t adds within-path dispersion the truncation does not cover"
+  }
+ },
+ "multiple_B_P5-P95": {
+  "block": "multiple",
+  "group": "VAL",
+  "n_rows": 320000,
+  "nm_share_days": 0.0,
+  "ks": {
+   "width": "P5-P95",
+   "truncation": [
+    3.856960012702063,
+    58.51223700387135
+   ],
+   "n_paths": 1600,
+   "n_data": 55657,
+   "ks_D": 0.08893452306089082,
+   "ks_upper95": 0.11026239230914352,
+   "pass": false,
+   "per_path_median_pe_p10_p50_p90": [
+    5.2,
+    14.5,
+    38.965000000000025
+   ]
+  },
+  "ks_untruncated_posthoc": {
+   "ks_D_untruncated": 0.05041776150898242,
+   "ks_upper95_untruncated": 0.07625834194047831,
+   "pass_untruncated": true,
+   "per_path_log_median_sd": 0.8006344178970877,
+   "data_pooled_log_sd": 1.0962568001419724,
+   "note": "post hoc, labelled: the registered check truncates the data to the width; B's k_t adds within-path dispersion the truncation does not cover"
+  }
+ },
+ "epsdiv_v21_shown": {
+  "block": "epsdiv",
+  "group": "VAL",
+  "n_rows": 320000,
+  "nm_share_days": 0.06193125,
+  "ks_P10-P90_v2k": {
+   "width": "P10-P90",
+   "truncation": [
+    5.767588770209339,
+    39.981281543995166
+   ],
+   "n_paths": 1580,
+   "n_data": 49473,
+   "ks_D": 0.3189995719439858,
+   "ks_upper95": 0.3383328059391556,
+   "pass": false,
+   "per_path_median_pe_p10_p50_p90": [
+    13.2,
+    19.8,
+    47.86500000000002
+   ]
+  },
+  "dividend_yield_zero_share": 0.128384375
+ },
+ "epsdiv_v21_hidden": {
+  "block": "epsdiv",
+  "group": "VAL",
+  "n_rows": 320000,
+  "nm_share_days": 0.06193125,
+  "ks_P10-P90_v2k": {
+   "width": "P10-P90",
+   "truncation": [
+    5.767588770209339,
+    39.981281543995166
+   ],
+   "n_paths": 1580,
+   "n_data": 49473,
+   "ks_D": 0.3189995719439858,
+   "ks_upper95": 0.3383328059391556,
+   "pass": false,
+   "per_path_median_pe_p10_p50_p90": [
+    13.2,
+    19.8,
+    47.86500000000002
+   ]
+  },
+  "dividend_yield_zero_share": null
+ }
+}

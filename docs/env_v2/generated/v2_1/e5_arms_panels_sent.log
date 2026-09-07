@@ -1,0 +1,16 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panels] 5 arms to build (0 cached)
+    200/1600 paths, 45 s
+    400/1600 paths, 90 s
+    600/1600 paths, 131 s
+    800/1600 paths, 194 s
+    1000/1600 paths, 297 s
+    1200/1600 paths, 401 s
+    1400/1600 paths, 500 s
+    1600/1600 paths, 595 s
+[panel] sentiment_A: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_A.pkl
+[panel] sentiment_B_full: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_B_full.pkl
+[panel] sentiment_B_half: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_B_half.pkl
+[panel] sentiment_C: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_C.pkl
+[panel] sentiment_v2_bpred0: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_v2_bpred0.pkl
+[panels] done in 603 s

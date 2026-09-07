@@ -15,7 +15,7 @@ from envs.v2.schedule import draw_schedule
 from envs.v2.rng import Streams, COMPONENTS
 
 HIDDEN = {"fundamental_value", "x", "phase", "macro_phase", "garch_sigma", "n_f", "hidden_multiple",
-          "analyst_error_u", "fvar21", "fw_weight", "trailing_eps", "last_quarter_eps", "dps_quarterly"}
+          "analyst_error_u", "fvar21", "fw_weight", "trailing_eps", "last_quarter_eps", "dps_quarterly", "pe_nm"}
 
 
 def _path(scenario, seed, **kw):
@@ -176,13 +176,19 @@ def test_rejection_logging():
 
 def test_observation_hygiene():
     env = SyntheticMarketEnv("crash", 200, 11)
+    # v2.1 Phase 5: the rendered set is CANONICAL_FIELDS minus the fields a design hides (D10 'hidden', analyst
+    # design B), and an undefined P/E (trailing EPS <= 0) is rendered as the documented string 'n/m' (E5.2)
+    assert set(env.rendered_fields) <= set(CANONICAL_FIELDS)
     for _ in range(200):
         o = env.get_observation()
-        assert set(o.keys()) == set(CANONICAL_FIELDS), set(o.keys()) ^ set(CANONICAL_FIELDS)
+        assert set(o.keys()) == set(env.rendered_fields), set(o.keys()) ^ set(env.rendered_fields)
         assert not (set(o.keys()) & HIDDEN)
         for k, v in o.items():
-            if k != "date":
-                assert v == v and np.isfinite(v), (k, v)  # no NaN/inf
+            if k == "date":
+                continue
+            if k == "reported_PE" and v == "n/m":
+                continue
+            assert v == v and np.isfinite(v), (k, v)  # no NaN/inf
         env.step()
     assert env.get_observation() is None
     for c in env.data.columns:

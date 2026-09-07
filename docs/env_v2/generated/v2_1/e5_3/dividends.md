@@ -1,0 +1,9 @@
+# E5.3 dividends (PREREG_PHASE_5.md section 6.1)
+
+Set A. set A is survivor-only (REG-15): names that cut to zero and delisted are absent, so the cut rates are understated.
+
+- payers: 353 of 353 names reporting a DPS concept; of the 64 names with neither concept, 17 paid a cash dividend per Yahoo and 47 never did -> **payer share of set A 0.887** (370/417); share of payer stock-years with zero DPS 0.007
+- payout (annual DPS / annual EPS, EPS > 0; n = 10666 stock-years / 281 stocks): median 0.406 [0.373, 0.444], IQR 0.251-0.639, P90 1.108; v2 used 0.35
+- Lintner quarterly, tau constrained to the FIT median payout 0.406 (n = 15161 quarters): **speed c = 0.697 [0.005, 1.075] per quarter** (clustered se 0.2333); the unconstrained two-parameter fit is UNIDENTIFIED (c 0.676, tau 0.85 with CI [-0.06, 721.3]); DPS unchanged quarter-to-quarter in 0.575 of payer quarters; unconditional quarterly cut (>= 20 %) rate 0.0507; v2 used 0.3 / 0.35
+- crash behaviour (dd30_fast (duration <= 126 d) with DPS coverage and a positive DPS at the peak, n = 186 episodes / 137 stocks): P(cut >= 20 % within four quarters of the peak) = 0.177 [0.122, 0.239] against an unconditional four-quarter cut rate of 0.0726 (n = 15772 windows)
+

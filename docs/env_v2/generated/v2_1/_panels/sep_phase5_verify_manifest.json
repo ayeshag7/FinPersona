@@ -1,0 +1,24 @@
+{
+ "vcheck": {
+  "path": "docs\\env_v2\\generated\\v2_1\\_panels\\sep_phase5_verify_vcheck.pkl",
+  "arm": {
+   "obs_overrides": {}
+  },
+  "state": {
+   "events_json": true,
+   "control": "A",
+   "dynamics": "A",
+   "blowoff": "dynamic",
+   "post_top": "decay/40.0",
+   "randomise_eps_quarter": true,
+   "depth_mode": "centred",
+   "volatility_json": true,
+   "iv": "v21",
+   "observables_json": false,
+   "observables": "absent (v2 constants)"
+  },
+  "n_seeds": 1,
+  "seed0": 30000,
+  "built": "2026-09-06 22:38"
+ }
+}

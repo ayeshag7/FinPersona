@@ -113,10 +113,15 @@ Criteria exactly as pre-registered (crash: min panic x <= -0.10 and MDD >= 20%; 
 x in [-0.10, 0.15] and V_T/V_1 >= 1.2; flat none); up to 50 attempts; attempts and reasons logged in `get_metadata()`
 and in every path's meta; rates published in checklist 17.
 
-## 6. Observables (E2; plan Section 3)
-See `envs/v2/observables.py` docstring and the generated `table2_v2_from_code.md` (37 generator columns, 19 exposed,
-19 rendered -- every exposed field is rendered by contract). Sentiment with the b_pred feedback is stepped inside the
-generator loop. **IV (rewritten by v2.1 Phase 3, E3.5 — items 46 and 25 closed):** IV_t = sqrt(252 fc_t) (1+pi)
+## 6. Observables (E2; plan Section 3) — **rewritten by v2.1 Phase 5 (every observable parameter FIT, LIT or a stated DESIGN; `envs/v2/params/observables.json` with the loud loader `envs/v2/observables_params.py`; PHASE_5_REPORT.md)**
+
+See `envs/v2/observables.py` docstring and the generated `table2_v2_from_code.md`. Every block takes its section of
+`observables.json`; `obs_mode="v2"` (or `FP_OBS_MODE=v2`) retrieves the v2 constructions verbatim (bit-identical on 50
+random inputs per block against the committed functions, and 0 non-analyst changes on the 95-configuration path-hash
+fixture against a HEAD worktree). Sentiment with the b_pred feedback is stepped inside the generator loop. Status per
+block: multiple ADOPTED, eps ADOPTED, dividend ADOPTED, analyst PROVISIONAL, sentiment PROVISIONAL,
+volume ADOPTED (the file's `_status_key` defines the terms).
+**IV (rewritten by v2.1 Phase 3, E3.5 — items 46 and 25 closed):** IV_t = sqrt(252 fc_t) (1+pi)
 e^(eps_t), fc the 21-day forecast of a PAST-ONLY GJR filter run on the observed returns (no phase input; omega
 anchored at the identity's unconditional return variance), pi the constant FIT −0.0224 (leave-one-name-out CV on the
 five CBOE single-stock VIX histories; the level-dependent families lose by the 1-SE rule), eps an AR(1) FIT noise
@@ -125,10 +130,50 @@ whole-path quantile (a look-ahead), sigma_V add-on, w² factor and floor 12 are 
 (was ~7; hard tolerance T_z derived at 2.70/2.28/1.88 from the same filter's forecast), onset dAUC −0.107 against a
 permutation-null P95 of +0.032, and a bit-identical-prefix no-look-ahead test (`e3_5/audit.md`; `iv_mode="v2"`
 retrieves the old construction).
-Quarterly EPS = V(quarter end)/(4k) x exp(N(0, 0.10)) so that trailing-4Q P/E = k x P/V on average (k ~ U(14, 22)).
-Analyst fair value F_t = V_t exp(u_t), u an AR(1) with rho 0.95 per weekly update and stationary sd 0.15 (DESIGN; Phase 5
-decides the value) — **implemented at sd 0.335 until v2.1 Phase 0 removed a sqrt(5) innovation scaling** (weakness item
-68); the published 50-seed audit's analyst numbers (median error 22 %) describe the defective field.
+**Hidden multiple and P/E (E5.1, design B, width P10-P90).** log k_t = mu + z_t: mu is drawn per seed by
+inverse CDF from the EDGAR between-stock grid of log median trailing P/E (33 quantile points over the P10-P90 of the
+pooled stock-month cross-section, set A, FIT); z_t is a daily log-AR(1) with rho_d = 0.9966 (the quarterly
+rho_q 0.808 converted) and stationary sd s_w = 0.783 = sqrt(sd_within^2 - sd(x)^2 - s_EPS^2/4), the FIT within-stock
+dispersion (0.79) net of the engine's stationary sd(x) (0.0656) and the EPS noise. Design A (a fixed k per
+seed from the same grid) and the widths P25-P75 / P5-P95 are switchable. reported_PE = P / trailing-4Q EPS, capped at the
+EDGAR P99 (191.5) and rendered as the string "n/m" when trailing EPS <= 0 (hidden `pe_nm` indicator; the audit encodes
+the day as the cap plus a `reported_PE_nm` indicator). v2's k ~ U(14, 22) is retrievable under design "v2".
+
+**Quarterly EPS, losses and announcement lags (E5.2).** EPS_q = V(quarter end)/(4 k_q) exp(N(0, s_EPS)) with
+s_EPS = 0.171 (the robust sd of the log seasonal residual net of V, EDGAR basic EPS, set A); a loss chain independent of
+x and of the phase label: P(loss) 0.097, P(loss | loss) 0.425, P(loss | profit) 0.062, the loss size drawn by
+inverse CDF from the FIT P5-P95 grid (relative to the trailing level; the truncation costs about 2 pp of n/m days, 0.085
+in the panel); the announcement day drawn from the FIT 8-K Item 2.02 lag grid (P10/P50/P90 = 12/19/26 trading
+days after the quarter end; the grid spans its P5-P95); the quarter phase randomised (Phase 4's E4.7). v2's N(0, 0.10) noise,
+U(25, 35) lag and P/E = 200 for a non-positive EPS are retrievable under design "v2".
+
+**Dividends (E5.3; the rendering is D10's, undecided — both carried, `dividend.field` = "shown").** DPS_q =
+(1 - c) DPS_(q-1) + c tau Ebar_q^+ with c = 0.697 and tau = 0.406 (FIT: Lintner at quarterly frequency on the trailing
+four-quarter mean EPS, tau constrained to the FIT median annual payout), a per-seed payer draw at 0.887 (non-payers
+render 0.00); dividend_yield = 4 DPS / P x 100. `field = "hidden"` omits the key from the observation. v2's 0.35 payout and
+0.7 stickiness are retrievable under design "v2".
+
+**Analyst fair value (E5.4, design C; PROVISIONAL pending Phase 9).** F_t = SMA250(P)_t exp(u_t), u an AR(1) with rho 0.95 per
+5-day update (DESIGN, no free data) and stationary sd 0.564 (LIT: a 45 % absolute target-price error mapped as
+E|u| = sd sqrt(2/pi); the horizon mismatch is stated in the file); level-free and x-free by construction: the field is a function of the price path and its own stream only. Design A (V_t exp(u_t) at the LIT sd) fails the
+onset rule at every sd measured (0.30, 0.45, 0.564, 0.60: V's decline before a crash is the leak, not the noise); v2's sd 0.15
+is retrievable under design "v2" (v2's field was **implemented at sd 0.335 until v2.1 Phase 0 removed a sqrt(5) innovation
+scaling**, weakness item 68; the published 50-seed audit's analyst numbers, median error 22 %, describe the defective field);
+`analyst.field = "hidden"` is design B (drop the field), Phase 9's fallback.
+
+**Sentiment (E5.5, design A (returns only); D15 is the team's).** raw_t = rho raw_(t-1) + b0 z_t + b1 z_(t-1) + sd_e eps_t with
+z the standardised return (a past-only trailing sd), rho 0.211, b0 +0.011, b1 +0.111, sd_e 0.972 per sd (FIT: medians over
+200-trading-day windows of the SF Fed daily news-sentiment index deconvolved at lambda = 0.95 against the market return);
+s_t = tanh(S raw_t) with S = 0.397 the rendering constant giving sd 0.35 (DESIGN); no term in x.
+Designs B (the valuation link, c_val_full 0.950, "full"/"half") and C (a 5-day update with the AAII 40-week fits rho_w 0.534,
+b0_w +0.298, b1_w +0.199) are switchable; b_pred (the LIT Tetlock 8.1 bp) is unchanged in every design and the free
+source does not reproduce it (reported). v2's 0.6 tanh(2x) + 0.3 tanh(ret20/0.15) construction is retrievable under design "v2".
+
+**Volume (E5.6, design A).** lv_t = rho_v lv_(t-1) + beta |r_t|/sigma_t + sd_e eps_t on the log-volume deviation from its
+trailing 252-day mean, rho_v 0.526, beta 0.203 per sd, sd_e 0.347 (FIT, set A daily volume; past-only standardisation);
+volume_ratio against the 20-day mean. The v2 loading 1.2 |x_(t-j)| (no read source) is gone: it carried +0.22 of R2(x) on its own.
+Design B adds beta_ru max(ret_252, 0) with beta_ru = -0.012 (FIT, sign-unstable across sub-periods; the run-up turnover ratio is
+0.985 [0.969, 0.999], below 1) and is switchable. v2's rho 0.65 / 0.25 |r| / 1.2 |x| / 0.30 is retrievable under design "v2".
 
 ## 7. Validation status (final E1/E2 calibration; 50 seeds per scenario, crash per delta, T = 200)
 `generated/checklist_v2.md` — **8 pass / 7 fail / 5 n-a** of 20 rows (v1 baseline: 3 / 10 / 7 — v1 has 20 rows too, of which 7 are n-a because item 11's topped share and item 17 are not defined for v1); "7 n-a" for v2 was a miscount corrected in v2.1 Phase 0. **n per item**: 470 pooled paths for items 2, 3, 5, 6, 7, 12, 13, 15, 17; 100 for item 1; 150 crash paths for 8 and 10; 200 for 20; 50 bull paths for 11; items 4 and 9 use the **20 T = 800 paths** (not 50 seeds).

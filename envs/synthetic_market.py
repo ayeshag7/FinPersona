@@ -33,6 +33,7 @@ from envs.v2.mispricing import ENGINE_DEFAULT
 from envs.v2.rng import Streams
 from envs.v2 import observables as obs
 from envs.v2 import volatility_params as VOLP
+from envs.v2 import observables_params as OBSP
 from envs.v2.schedule import SCENARIOS, ORDERINGS
 
 ENV_VERSION = "v2"
@@ -51,11 +52,19 @@ TABLE2_OBS_ROUNDING = {
     "price": "2 dp", "SMA20": "2 dp", "SMA50": "2 dp", "trend_strength": "2 dp", "trend_regime": "int",
     "RSI14": "1 dp", "MACD": "4 dp", "MACD_signal": "4 dp", "volume": "int", "volume_ratio": "2 dp",
     "news_sentiment": "2 dp", "sentiment_MA5": "2 dp", "sentiment_change": "2 dp", "implied_volatility": "1 dp",
-    "reported_PE": "1 dp", "dividend_yield": "2 dp", "analyst_fair_value": "2 dp",
+    "reported_PE": "1 dp, or the string 'n/m' when the trailing EPS is <= 0 (v2.1 Phase 5, E5.2)", "dividend_yield": "2 dp", "analyst_fair_value": "2 dp",
     "days_since_eps_announcement": "int",
 }
 
 # (category, definition, code ref) for EVERY column of env.data
+
+def _obs_design(section):
+    """The observable design in force for a section (Table 2 names it beside the alternatives); 'v2' when no file."""
+    try:
+        return OBSP.in_force()[section].get("design", "v2") if OBSP.PRESENT else "v2"
+    except Exception:
+        return "v2"
+
 TABLE2_DEFINITIONS = {
     "asset": ("Index", "Asset index (0 = the scenario asset; N > 1 only in the multi-asset extension).", "synthetic_market.py"),
     "day": ("Index", "Trading-day index 1..T; rendered as 'Day-N' under key 'date' (T appended only in the disclosed-horizon arm).", "synthetic_market.py get_observation"),
@@ -76,23 +85,24 @@ TABLE2_DEFINITIONS = {
     "RSI14": ("Momentum", "Wilder RSI(14) (EMA smoothing, alpha = 1/14).", "v2/observables.py technicals_block"),
     "MACD": ("Momentum", "EMA12 - EMA26 of price.", "v2/observables.py technicals_block"),
     "MACD_signal": ("Momentum", "EMA9 of MACD.", "v2/observables.py technicals_block"),
-    "volume": ("Liquidity", "log Vol_t = mu_v + 0.65 (log Vol_{t-1} - mu_v) + 0.25 (|r_t|/sigma - 1) + 1.2 |x_{t-j}| + 0.30 eps (j = |jitter| d); no label-driven shifts.", "v2/observables.py volume_block"),
+    "volume": ("Liquidity", "v2.1 Phase 5 (E5.6, params/observables.json; in force: design " + _obs_design("volume") + "): log Vol_t = mu_v + lv_t, lv_t = rho_v lv_{t-1} + beta (|r_t|/sigma_t - mean) + sd_e eps, sigma_t and the mean the PAST-ONLY trailing-252-day statistics of the observed returns; design B adds beta_ru max(ret_252, 0). No |x| term (the v2 loading 1.2 |x_{t-j}| is dominated -- no read source -- and retrievable as design 'v2'); no label-driven shifts.", "v2/observables.py volume_block"),
     "volume_SMA20": ("Liquidity (internal)", "20-day mean of volume.", "v2/observables.py volume_block"),
     "volume_ratio": ("Liquidity", "volume / volume_SMA20.", "v2/observables.py volume_block"),
-    "news_sentiment": ("Sentiment", "s_t = tanh(m_t + 0.85 (raw_{t-1} - m_{t-1}) + 0.25 r_t/sigma_r + 0.25 eps), m_t = 0.6 tanh(2 x_{t-j}) + 0.3 tanh(ret20/0.15); predictive component b_pred (+8 bp next-day per +1 sd, 6 bp reversed days 2-5; 0 in the control arm) applied inside the generator.", "v2/observables.py SentimentState, v2/generator.py"),
+    "news_sentiment": ("Sentiment", "v2.1 Phase 5 (E5.5, params/observables.json; in force: design " + _obs_design("sentiment") + "): design A, s_t = tanh(S raw_t), raw_t = rho raw_{t-1} + b0 z_t + b1 z_{t-1} + sd_e eps with z the return standardised by its past-only trailing sd (returns-only, level-free and x-free by construction); design B adds c_val x_{t-j}; design C updates every 5 days with AAII's weekly persistence and loading. v2's m_t = 0.6 tanh(2 x_{t-j}) + 0.3 tanh(ret20/0.15) construction is retrievable as design 'v2'. The predictive component b_pred (+8 bp next-day per +1 sd, 6 bp reversed days 2-5; 0 in the control arm) is applied inside the generator in every design.", "v2/observables.py SentimentState, v2/generator.py"),
     "sentiment_MA5": ("Sentiment", "5-day rolling mean of news_sentiment.", "synthetic_market.py"),
     "sentiment_change": ("Sentiment", "news_sentiment - sentiment_MA5.", "synthetic_market.py"),
     "implied_volatility": ("Risk", "v2.1 Phase 3 (E3.5): sqrt(252 fc_t) x (1 + pi_t) x exp(eps_t) x 100, fc = 21-day forecast of a past-only GJR filter run on the OBSERVED returns (no phase input), log(1+pi) a FIT polynomial in log(fc/uncond) (five CBOE single-stock VIX histories), eps an AR(1) FIT noise; no floor, no stress trigger, no whole-path quantile. (v2's iv_block construction retrievable via iv_mode='v2'.)", "v2/observables.py iv_block_v21"),
     "iv_fc21": ("Hidden", "The IV filter's 21-day variance forecast (past-only function of observed returns; never rendered).", "v2/observables.py iv_filter_forecast"),
     "iv_eps": ("Hidden", "The IV noise eps_t (AR(1), own RNG stream; never rendered).", "v2/observables.py iv_block_v21"),
-    "hidden_multiple": ("Hidden", "Valuation multiple k ~ U(14, 22) per seed (never rendered).", "v2/observables.py earnings_block"),
-    "trailing_eps": ("Valuation (internal)", "Sum of the last four ANNOUNCED quarterly EPS; EPS_q = V(quarter end)/k x exp(N(0, 0.10)), announced quarter end + U(25, 35) d.", "v2/observables.py earnings_block"),
+    "hidden_multiple": ("Hidden", "Valuation multiple k_t (never rendered). v2.1 Phase 5 (E5.1; in force: design " + _obs_design("multiple") + "): design A draws k per seed by inverse CDF from the FIT EDGAR trailing-P/E quantile grid; design B makes it a daily log-AR(1) around a per-seed between-stock draw; v2's U(14, 22) is retrievable as design 'v2'.", "v2/observables.py earnings_block"),
+    "trailing_eps": ("Valuation (internal)", "Sum of the last four ANNOUNCED quarterly EPS. v2.1 Phase 5 (E5.2): EPS_q = V(quarter end)/(4 k_q) x exp(N(0, s_EPS)) in a normal quarter, -|V/(4k)| x a FIT loss size in a loss quarter (a two-state loss chain, FIT, independent of x and of the phase label); announced quarter end + a lag drawn from the FIT 8-K announcement-lag grid. v2: noise sd 0.10, lag U(25, 35).", "v2/observables.py earnings_block"),
     "last_quarter_eps": ("Valuation (internal)", "Most recently announced quarterly EPS.", "v2/observables.py earnings_block"),
-    "reported_PE": ("Valuation", "P_t / trailing_eps, capped at 200.", "v2/observables.py earnings_block"),
-    "dps_quarterly": ("Valuation (internal)", "Sticky quarterly dividend: DPS_q = 0.7 DPS_{q-1} + 0.3 x 0.35 x EPS_q.", "v2/observables.py earnings_block"),
-    "dividend_yield": ("Valuation", "4 x DPS_quarterly / P_t x 100.", "v2/observables.py earnings_block"),
+    "reported_PE": ("Valuation", "P_t / trailing_eps when trailing_eps > 0, capped at the FIT P99 of the EDGAR cross-section (v2: 200); undefined (NaN in the frame, rendered as the string 'n/m') when trailing_eps <= 0 (v2.1 Phase 5, E5.2; v2 rendered 200).", "v2/observables.py earnings_block"),
+    "pe_nm": ("Hidden", "1 on days whose P/E is undefined (trailing EPS <= 0) and rendered 'n/m'; 0 otherwise. Internal; the audits encode the rendered 'n/m' from it.", "v2/observables.py earnings_block"),
+    "dps_quarterly": ("Valuation (internal)", "Quarterly dividend, Lintner at quarterly frequency (v2.1 Phase 5, E5.3): DPS_q = (1 - c) DPS_{q-1} + c tau max(EPS_q, 0) with FIT c and tau, and a per-seed payer draw at the FIT payer share (a non-payer has DPS 0). v2: DPS_q = 0.7 DPS_{q-1} + 0.3 x 0.35 x EPS_q.", "v2/observables.py earnings_block"),
+    "dividend_yield": ("Valuation", "4 x DPS_quarterly / P_t x 100. D10 (pay into cash vs remove the field) is open: the field is rendered under dividend.field = 'shown' and omitted from the observation under 'hidden' (both variants carried, v2.1 Phase 5).", "v2/observables.py earnings_block"),
     "days_since_eps_announcement": ("Valuation", "Days since the last earnings announcement.", "v2/observables.py earnings_block"),
-    "analyst_fair_value": ("Valuation", "F_t = V_t exp(u_t), u AR(1) rho 0.95 per weekly update, stationary sd 0.15 (fixed ex ante; the sqrt(5) scaling that made it 0.335 was removed in v2.1 Phase 0).", "v2/observables.py analyst_block"),
+    "analyst_fair_value": ("Valuation", "v2.1 Phase 5 (E5.4, params/observables.json; in force: design " + _obs_design("analyst") + "): design A, F_t = V_t exp(u_t) with u AR(1) rho 0.95 per weekly update at a LIT stationary sd (the read anchor is a 45 % absolute target-price error; no free data fits it); design C, F_t = SMA250(P)_t exp(u_t) -- a trend-follower's estimate, level-free and x-free by construction; design B omits the field from the observation. v2: sd 0.15 (the sqrt(5) scaling that made it 0.335 was removed in v2.1 Phase 0).", "v2/observables.py analyst_block"),
     "analyst_error_u": ("Hidden", "Analyst log error u_t (never rendered).", "v2/observables.py analyst_block"),
     "fvar21": ("Hidden", "21-day mean GARCH variance forecast (never rendered; enters IV).", "v2/garch.py forecast_var"),
     "fw_weight": ("Hidden", "FW innovation weight w_t (never rendered).", "v2/mispricing.py"),
@@ -134,6 +144,17 @@ class SyntheticMarketEnv:
         self.cfg = GenConfig(**kw)
         self.current_step = 0
         self.result: PathResult = generate(self.cfg)
+        # v2.1 Phase 5: the observable designs in force for this run (None = every field at its v2 construction) and
+        # the rendered field list -- CANONICAL_FIELDS minus the fields a design hides (D10 'hidden'; analyst design B)
+        self.obs_params = self.result.obs_params
+        hidden = set()
+        if self.obs_params is not None:
+            if str(self.obs_params["dividend"].get("field", "shown")) == "hidden":
+                hidden.add("dividend_yield")
+            a = self.obs_params["analyst"]
+            if str(a.get("field", "shown")) == "hidden" or str(a.get("design", "v2")) == "B":
+                hidden.add("analyst_fair_value")
+        self.rendered_fields = [f for f in CANONICAL_FIELDS if f not in hidden]
         self.schedule = self.result.schedule
         self.event_meta = self.result.event_meta
         self.attempts = self.result.attempts
@@ -154,12 +175,14 @@ class SyntheticMarketEnv:
                  "phase": r.phase, "garch_sigma": r.sigma[a], "n_f": r.n_f[a], "fvar21": r.fvar21[a],
                  "fw_weight": r.w[a], "news_sentiment": r.sent[a]}
             d.update(obs.technicals_block(P))
-            d.update(obs.volume_block(day, ret, x, st.get("volume", a), lag=self.schedule.jitter.get("volume", 0)))
+            d.update(obs.volume_block(day, ret, x, st.get("volume", a), lag=self.schedule.jitter.get("volume", 0),
+                                      params=r.obs_params))
             d.update(obs.earnings_block(day, V, P, st.get("multiple", a), st.get("eps", a), st.get("dividend", a),
                                         ann=r.ann[a] if r.ann else None,
                                         ann_jumps=r.ann_jumps[a] if r.ann_jumps else None,
-                                        q_phase=(r.q_phase[a] if getattr(r, "q_phase", None) else 0)))
-            d.update(obs.analyst_block(day, V, st.get("analyst", a)))
+                                        q_phase=(r.q_phase[a] if getattr(r, "q_phase", None) else 0),
+                                        params=r.obs_params))
+            d.update(obs.analyst_block(day, V, st.get("analyst", a), params=r.obs_params, P=P))
             # v2.1 Phase 3 (E3.5): the IV in force is the past-only filter construction of volatility.json;
             # iv_mode="v2" (or an absent file) selects the legacy iv_block (weakness 46/25, kept as sensitivity)
             if VOLP.IV is not None and self.cfg.iv_mode != "v2":
@@ -178,7 +201,7 @@ class SyntheticMarketEnv:
         return full, bench
 
     def _field_permutation(self) -> List[str]:
-        fields = list(CANONICAL_FIELDS)
+        fields = list(getattr(self, "rendered_fields", CANONICAL_FIELDS))
         if self.field_order == "randomised":
             rng = Streams(self.cfg.seed, 0).get("field_order")
             fields = [fields[i] for i in rng.permutation(len(fields))]
@@ -247,7 +270,8 @@ class SyntheticMarketEnv:
             "sentiment_MA5": round(float(row["sentiment_MA5"]), 2),
             "sentiment_change": round(float(row["sentiment_change"]), 2),
             "implied_volatility": round(float(row["implied_volatility"]), 1),
-            "reported_PE": round(float(row["reported_PE"]), 1),
+            # v2.1 Phase 5 (E5.2): an undefined P/E (trailing EPS <= 0) is rendered as the string 'n/m', as data vendors do
+            "reported_PE": ("n/m" if not np.isfinite(float(row["reported_PE"])) else round(float(row["reported_PE"]), 1)),
             "dividend_yield": round(float(row["dividend_yield"]), 2),
             "analyst_fair_value": round(float(row["analyst_fair_value"]) * k, 2),
             "days_since_eps_announcement": int(row["days_since_eps_announcement"]),
@@ -288,6 +312,7 @@ class SyntheticMarketEnv:
             "env_version": ENV_VERSION, "scenario": self.scenario, "n_days": self.n_days, "seed": self.seed,
             "start_price": self.start_price, "crash_discount": self.crash_discount, "ordering": self.ordering,
             "n_assets": self.n_assets, "engine": self.engine, "engine_used": self.result.params.name,
+            "observables": self.event_meta.get("observables", "v2"), "rendered_fields": list(self.rendered_fields),
             "disclose_horizon": self.disclose_horizon,
             "field_order": self.field_order, "burn_in": self.cfg.burn_in, "burn_in_mode": self.cfg.burn_in_mode,
             "start_price_mode": self.cfg.start_price_mode, "k_render": float(self.result.k_render),

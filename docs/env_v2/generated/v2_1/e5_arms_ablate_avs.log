@@ -1,0 +1,149 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.300.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_A_sd0.300 --label analyst_A_sd0.300 --stages add --groups ANALYST --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.300.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['ANALYST']; BASE 45 cols, FULL 135
+[reuse] BASE hash differs (cb098ea616c5b760 vs None); BASE refitted
+[fits] 12 jobs on 3 workers
+    FULL           x     all   R2 +0.7679  (477.2 s)
+    FULL           x     calm  R2 +0.4535  (244.3 s)
+    FULL           logV  all   R2 +0.5855  (484.4 s)
+    FULL           logV  calm  R2 +0.5898  (230.5 s)
+    BASE+ANALYST   x     all   R2 +0.4150  (1153.7 s)
+    BASE+ANALYST   x     calm  R2 +0.3400  (1105.8 s)
+    BASE+ANALYST   logV  all   R2 +0.4249  (1153.0 s)
+    BASE+ANALYST   logV  calm  R2 +0.4546  (49.3 s)
+    BASE           x     all   R2 +0.4137  (87.0 s)
+    BASE           x     calm  R2 +0.3213  (38.6 s)
+    BASE           logV  all   R2 +0.3811  (88.0 s)
+    BASE           logV  calm  R2 +0.4150  (45.6 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_A_sd0.300\ablation.json in 1757.4 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.450.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_A_sd0.450 --label analyst_A_sd0.450 --stages add --groups ANALYST --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.450.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['ANALYST']; BASE 45 cols, FULL 135
+[reuse] BASE feature matrix identical to docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json (hash cb098ea616c5b760); 5 BASE fits reused
+[fits] 4 jobs on 3 workers
+    BASE+ANALYST   x     all   R2 +0.4155  (107.1 s)
+    BASE+ANALYST   x     calm  R2 +0.3388  (50.2 s)
+    BASE+ANALYST   logV  all   R2 +0.4129  (110.5 s)
+    BASE+ANALYST   logV  calm  R2 +0.4431  (52.0 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_A_sd0.450\ablation.json in 128.5 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.564.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_A_sd0.564 --label analyst_A_sd0.564 --stages add --groups ANALYST --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.564.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['ANALYST']; BASE 45 cols, FULL 135
+[reuse] BASE feature matrix identical to docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json (hash cb098ea616c5b760); 5 BASE fits reused
+[fits] 4 jobs on 3 workers
+    BASE+ANALYST   x     all   R2 +0.4157  (99.0 s)
+    BASE+ANALYST   x     calm  R2 +0.3355  (47.3 s)
+    BASE+ANALYST   logV  all   R2 +0.4072  (102.5 s)
+    BASE+ANALYST   logV  calm  R2 +0.4378  (47.5 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_A_sd0.564\ablation.json in 115.7 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.600.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_A_sd0.600 --label analyst_A_sd0.600 --stages add --groups ANALYST --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_A_sd0.600.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['ANALYST']; BASE 45 cols, FULL 135
+[reuse] BASE feature matrix identical to docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json (hash cb098ea616c5b760); 5 BASE fits reused
+[fits] 4 jobs on 3 workers
+    BASE+ANALYST   x     all   R2 +0.4154  (93.9 s)
+    BASE+ANALYST   x     calm  R2 +0.3339  (50.8 s)
+    BASE+ANALYST   logV  all   R2 +0.4068  (97.3 s)
+    BASE+ANALYST   logV  calm  R2 +0.4367  (38.9 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_A_sd0.600\ablation.json in 111.3 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_C.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_C --label analyst_C --stages add --groups ANALYST --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_analyst_C.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['ANALYST']; BASE 45 cols, FULL 135
+[reuse] BASE feature matrix identical to docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json (hash cb098ea616c5b760); 5 BASE fits reused
+[fits] 4 jobs on 3 workers
+    BASE+ANALYST   x     all   R2 +0.4120  (84.4 s)
+    BASE+ANALYST   x     calm  R2 +0.3358  (35.8 s)
+    BASE+ANALYST   logV  all   R2 +0.3897  (87.2 s)
+    BASE+ANALYST   logV  calm  R2 +0.4272  (41.7 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\analyst_C\ablation.json in 97.7 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_volume_A.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\volume_A --label volume_A --stages add --groups VOL --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_volume_A.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['VOL']; BASE 45 cols, FULL 135
+[reuse] BASE feature matrix identical to docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json (hash cb098ea616c5b760); 5 BASE fits reused
+[fits] 4 jobs on 3 workers
+    BASE+VOL       x     all   R2 +0.4179  (194.0 s)
+    BASE+VOL       x     calm  R2 +0.3278  (108.8 s)
+    BASE+VOL       logV  all   R2 +0.3872  (195.5 s)
+    BASE+VOL       logV  calm  R2 +0.4174  (114.7 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\volume_A\ablation.json in 236.0 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_volume_B.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\volume_B --label volume_B --stages add --groups VOL --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_volume_B.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['VOL']; BASE 45 cols, FULL 135
+[reuse] BASE feature matrix identical to docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json (hash cb098ea616c5b760); 5 BASE fits reused
+[fits] 4 jobs on 3 workers
+    BASE+VOL       x     all   R2 +0.4173  (219.7 s)
+    BASE+VOL       x     calm  R2 +0.3283  (120.9 s)
+    BASE+VOL       logV  all   R2 +0.3862  (229.3 s)
+    BASE+VOL       logV  calm  R2 +0.4176  (133.4 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\volume_B\ablation.json in 277.0 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_A.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_A --label sentiment_A --stages add --groups SENT --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_A.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['SENT']; BASE 45 cols, FULL 135
+[reuse] BASE hash differs (6e070e84de402a41 vs cb098ea616c5b760); BASE refitted
+[fits] 8 jobs on 3 workers
+    BASE+SENT      x     all   R2 +0.4052  (182.8 s)
+    BASE+SENT      x     calm  R2 +0.2941  (83.7 s)
+    BASE+SENT      logV  all   R2 +0.3896  (186.2 s)
+    BASE+SENT      logV  calm  R2 +0.4297  (119.0 s)
+    BASE           x     all   R2 +0.4059  (131.0 s)
+    BASE           x     calm  R2 +0.2912  (74.8 s)
+    BASE           logV  all   R2 +0.3894  (133.3 s)
+    BASE           logV  calm  R2 +0.4300  (79.7 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_A\ablation.json in 359.7 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_B_full.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_B_full --label sentiment_B_full --stages add --groups SENT --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_B_full.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['SENT']; BASE 45 cols, FULL 135
+[reuse] BASE hash differs (07fbd6bed8640079 vs cb098ea616c5b760); BASE refitted
+[fits] 8 jobs on 3 workers
+    BASE+SENT      x     all   R2 +0.4876  (278.1 s)
+    BASE+SENT      x     calm  R2 +0.3091  (123.1 s)
+    BASE+SENT      logV  all   R2 +0.3908  (331.8 s)
+    BASE+SENT      logV  calm  R2 +0.4277  (230.9 s)
+    BASE           x     all   R2 +0.4063  (325.4 s)
+    BASE           x     calm  R2 +0.2879  (210.0 s)
+    BASE           logV  all   R2 +0.3881  (310.0 s)
+    BASE           logV  calm  R2 +0.4284  (123.1 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_B_full\ablation.json in 701.8 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_B_half.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_B_half --label sentiment_B_half --stages add --groups SENT --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_B_half.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['SENT']; BASE 45 cols, FULL 135
+[reuse] BASE hash differs (0be483fbb368a8b4 vs cb098ea616c5b760); BASE refitted
+[fits] 8 jobs on 3 workers
+    BASE+SENT      x     all   R2 +0.4267  (430.2 s)
+    BASE+SENT      x     calm  R2 +0.2959  (346.1 s)
+    BASE+SENT      logV  all   R2 +0.3895  (434.0 s)
+    BASE+SENT      logV  calm  R2 +0.4289  (117.8 s)
+    BASE           x     all   R2 +0.4062  (145.7 s)
+    BASE           x     calm  R2 +0.2903  (68.3 s)
+    BASE           logV  all   R2 +0.3891  (148.4 s)
+    BASE           logV  calm  R2 +0.4304  (107.6 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_B_half\ablation.json in 672.6 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_C.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_C --label sentiment_C --stages add --groups SENT --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_C.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['SENT']; BASE 45 cols, FULL 135
+[reuse] BASE hash differs (ea38684b8b70f01e vs cb098ea616c5b760); BASE refitted
+[fits] 8 jobs on 3 workers
+    BASE+SENT      x     all   R2 +0.4086  (152.7 s)
+    BASE+SENT      x     calm  R2 +0.3126  (71.4 s)
+    BASE+SENT      logV  all   R2 +0.3874  (166.6 s)
+    BASE+SENT      logV  calm  R2 +0.4244  (103.6 s)
+    BASE           x     all   R2 +0.4095  (135.7 s)
+    BASE           x     calm  R2 +0.3052  (92.5 s)
+    BASE           logV  all   R2 +0.3874  (133.1 s)
+    BASE           logV  calm  R2 +0.4257  (53.1 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_C\ablation.json in 338.4 s
+[ablate] C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\python.exe -u -m tools.phase5.e5_7a_ablation --panel C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_v2_bpred0.pkl --out C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_v2_bpred0 --label sentiment_v2_bpred0 --stages add --groups SENT --workers 3 --reuse-base C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7a\baseline\ablation.json
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_sentiment_v2_bpred0.pkl: 320000 rows -> 288000 modelled, 1600 paths; shown 18 fields; groups ['SENT']; BASE 45 cols, FULL 135
+[reuse] BASE hash differs (3d4d5f1d088fcf92 vs cb098ea616c5b760); BASE refitted
+[fits] 8 jobs on 3 workers
+    BASE+SENT      x     all   R2 +0.4650  (122.4 s)
+    BASE+SENT      x     calm  R2 +0.3110  (55.8 s)
+    BASE+SENT      logV  all   R2 +0.3927  (129.3 s)
+    BASE+SENT      logV  calm  R2 +0.4323  (60.0 s)
+    BASE           x     all   R2 +0.4054  (80.2 s)
+    BASE           x     calm  R2 +0.2895  (33.6 s)
+    BASE           logV  all   R2 +0.3896  (79.2 s)
+    BASE           logV  calm  R2 +0.4301  (37.6 s)
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_arms\sentiment_v2_bpred0\ablation.json in 223.0 s

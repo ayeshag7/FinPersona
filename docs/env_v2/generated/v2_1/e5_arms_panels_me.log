@@ -1,0 +1,19 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+[panels] 8 arms to build (0 cached)
+    200/1600 paths, 74 s
+    400/1600 paths, 139 s
+    600/1600 paths, 214 s
+    800/1600 paths, 315 s
+    1000/1600 paths, 409 s
+    1200/1600 paths, 502 s
+    1400/1600 paths, 536 s
+    1600/1600 paths, 569 s
+[panel] multiple_A_P10-P90: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_multiple_A_P10-P90.pkl
+[panel] multiple_B_P10-P90: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_multiple_B_P10-P90.pkl
+[panel] multiple_A_P25-P75: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_multiple_A_P25-P75.pkl
+[panel] multiple_B_P25-P75: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_multiple_B_P25-P75.pkl
+[panel] multiple_A_P5-P95: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_multiple_A_P5-P95.pkl
+[panel] multiple_B_P5-P95: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_multiple_B_P5-P95.pkl
+[panel] epsdiv_v21_shown: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_epsdiv_v21_shown.pkl
+[panel] epsdiv_v21_hidden: 1600 paths, 320000 rows -> docs\env_v2\generated\v2_1\_panels\sep_phase5_epsdiv_v21_hidden.pkl
+[panels] done in 575 s

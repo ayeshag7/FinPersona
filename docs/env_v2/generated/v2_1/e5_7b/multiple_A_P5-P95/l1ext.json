@@ -1,0 +1,445 @@
+{
+ "what": "E5.7(b): L1 extended candidate set (PREREG section 10b), in-sample",
+ "label": "multiple_A_P5-P95",
+ "panel": "docs\\env_v2\\generated\\v2_1\\_panels\\sep_phase5_multiple_A_P5-P95.pkl",
+ "state": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": false,
+  "observables": "absent (v2 constants)"
+ },
+ "n_rows": 320000,
+ "n_paths": 1600,
+ "audit_l1": [
+  {
+   "candidate": "k * P (price itself)",
+   "fitted_k": 0.9975,
+   "median_APE": 0.06442319576943131,
+   "max_APE": 1.7358799088484471,
+   "p5_APE": 0.005506838971544218,
+   "p10_APE": 0.010819106522760328,
+   "p25_APE": 0.027620962346338082,
+   "within_1pct": 0.09255,
+   "within_2pct": 0.184415625,
+   "within_5pct": 0.41629375,
+   "share_APE_above_floor": 0.90745,
+   "sign_acc_PE15_rule": 0.573271875,
+   "pass": true
+  },
+  {
+   "candidate": "k * P * dividend_yield",
+   "fitted_k": 0.4709,
+   "median_APE": 0.42910306126410525,
+   "max_APE": 4.822211496258866,
+   "p5_APE": 0.04381975444212716,
+   "p10_APE": 0.0885849272981853,
+   "p25_APE": 0.21648673404328772,
+   "within_1pct": 0.011471875,
+   "within_2pct": 0.022725,
+   "within_5pct": 0.05673125,
+   "share_APE_above_floor": 0.988528125,
+   "sign_acc_PE15_rule": 0.573271875,
+   "pass": true
+  },
+  {
+   "candidate": "k * P / reported_PE",
+   "fitted_k": 16.29,
+   "median_APE": 0.42943803892853893,
+   "max_APE": 5.295884693592856,
+   "p5_APE": 0.042311950762001393,
+   "p10_APE": 0.08550857949636638,
+   "p25_APE": 0.21658482881616586,
+   "within_1pct": 0.011784375,
+   "within_2pct": 0.023546875,
+   "within_5pct": 0.0591625,
+   "share_APE_above_floor": 0.988215625,
+   "sign_acc_PE15_rule": 0.573271875,
+   "pass": true
+  },
+  {
+   "candidate": "k * analyst_fair_value",
+   "fitted_k": 2.3022,
+   "median_APE": 0.6786295515992399,
+   "max_APE": 6.852142134451865,
+   "p5_APE": 0.08611292468505974,
+   "p10_APE": 0.17958760904910587,
+   "p25_APE": 0.40541747319758537,
+   "within_1pct": 0.005490625,
+   "within_2pct": 0.012403125,
+   "within_5pct": 0.029871875,
+   "share_APE_above_floor": 0.994509375,
+   "sign_acc_PE15_rule": 0.573271875,
+   "pass": true
+  }
+ ],
+ "extended": {
+  "k*price": {
+   "median_APE": 0.06442319576943203,
+   "within_1pct": 0.09255,
+   "within_2pct": 0.184415625,
+   "within_5pct": 0.41629375,
+   "share_above_floor": 0.90745,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.405662578125,
+    0.4263121875
+   ]
+  },
+  "k*P/PE": {
+   "median_APE": 0.4294380389285388,
+   "within_1pct": 0.011784375,
+   "within_2pct": 0.023546875,
+   "within_5pct": 0.0591625,
+   "share_above_floor": 0.988215625,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.053147421874999996,
+    0.065251484375
+   ]
+  },
+  "k*P*DY": {
+   "median_APE": 0.42910306126410536,
+   "within_1pct": 0.011471875,
+   "within_2pct": 0.022725,
+   "within_5pct": 0.05673125,
+   "share_above_floor": 0.988528125,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.05116234375,
+    0.06243445312499999
+   ]
+  },
+  "k*F": {
+   "median_APE": 0.6786295515992399,
+   "within_1pct": 0.005490625,
+   "within_2pct": 0.012403125,
+   "within_5pct": 0.029871875,
+   "share_above_floor": 0.994509375,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.0251953125,
+    0.034460625
+   ]
+  },
+  "k*sqrt(price*P/PE)": {
+   "median_APE": 0.22910599218482763,
+   "within_1pct": 0.0233875,
+   "within_2pct": 0.047334375,
+   "within_5pct": 0.11506875,
+   "share_above_floor": 0.9766125,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.1063365625,
+    0.12455226562499999
+   ]
+  },
+  "k*sqrt(price*P*DY)": {
+   "median_APE": 0.2293969059014628,
+   "within_1pct": 0.023296875,
+   "within_2pct": 0.0458125,
+   "within_5pct": 0.1146875,
+   "share_above_floor": 0.976703125,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.105063515625,
+    0.12379445312500001
+   ]
+  },
+  "k*sqrt(price*F)": {
+   "median_APE": 0.3922039079867312,
+   "within_1pct": 0.01090625,
+   "within_2pct": 0.021721875,
+   "within_5pct": 0.0550625,
+   "share_above_floor": 0.98909375,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.047647734375,
+    0.062094843749999996
+   ]
+  },
+  "lsq(price)": {
+   "median_APE": 0.06677276949947297,
+   "within_1pct": 0.086534375,
+   "within_2pct": 0.170446875,
+   "within_5pct": 0.394678125,
+   "share_above_floor": 0.913465625,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.38423015625,
+    0.40564968749999997
+   ],
+   "coef": [
+    1.6793146247777266,
+    0.630848002595643
+   ]
+  },
+  "lsq(P/PE)": {
+   "median_APE": 0.12952834593504448,
+   "within_1pct": 0.04293125,
+   "within_2pct": 0.08799375,
+   "within_5pct": 0.217575,
+   "share_above_floor": 0.95706875,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.208531328125,
+    0.2262978125
+   ],
+   "coef": [
+    4.497346486012285,
+    0.03998413773519386
+   ]
+  },
+  "lsq(P*DY)": {
+   "median_APE": 0.12972735973084543,
+   "within_1pct": 0.042925,
+   "within_2pct": 0.087621875,
+   "within_5pct": 0.21718125,
+   "share_above_floor": 0.957075,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.208153828125,
+    0.225869296875
+   ],
+   "coef": [
+    4.347918713633416,
+    0.041398521941198904
+   ]
+  },
+  "lsq(F)": {
+   "median_APE": 0.12791110703865444,
+   "within_1pct": 0.042084375,
+   "within_2pct": 0.083875,
+   "within_5pct": 0.20824375,
+   "share_above_floor": 0.957915625,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.198234453125,
+    0.217458046875
+   ],
+   "coef": [
+    4.354252710409536,
+    0.05737919216364556
+   ]
+  },
+  "lsq(price+P/PE)": {
+   "median_APE": 0.06689667868633925,
+   "within_1pct": 0.086234375,
+   "within_2pct": 0.17199375,
+   "within_5pct": 0.3959,
+   "share_above_floor": 0.913765625,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.385895078125,
+    0.4069453125
+   ],
+   "coef": [
+    1.6676352379302866,
+    0.6286813353392645,
+    0.012083513359997803
+   ]
+  },
+  "lsq(price+P*DY)": {
+   "median_APE": 0.06687994568282515,
+   "within_1pct": 0.086303125,
+   "within_2pct": 0.17209375,
+   "within_5pct": 0.395678125,
+   "share_above_floor": 0.913696875,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.38567203125,
+    0.406610078125
+   ],
+   "coef": [
+    1.6243739222996054,
+    0.6285379422811147,
+    0.012278558050673506
+   ]
+  },
+  "lsq(price+F)": {
+   "median_APE": 0.06632574461048257,
+   "within_1pct": 0.08705,
+   "within_2pct": 0.171796875,
+   "within_5pct": 0.40055,
+   "share_above_floor": 0.91295,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.38950203125000005,
+    0.41138359375
+   ],
+   "coef": [
+    1.6701015335873668,
+    0.6166274050037386,
+    0.01988106381700646
+   ]
+  },
+  "lsq(P/PE+P*DY)": {
+   "median_APE": 0.13039955602287656,
+   "within_1pct": 0.04348125,
+   "within_2pct": 0.08643125,
+   "within_5pct": 0.214175,
+   "share_above_floor": 0.95651875,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.205689765625,
+    0.222578203125
+   ],
+   "coef": [
+    3.431239016760372,
+    -0.26038288783413804,
+    0.3004197097294491
+   ]
+  },
+  "lsq(P/PE+F)": {
+   "median_APE": 0.1287076892960806,
+   "within_1pct": 0.04181875,
+   "within_2pct": 0.08428125,
+   "within_5pct": 0.209125,
+   "share_above_floor": 0.95818125,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.19879390625,
+    0.218273203125
+   ],
+   "coef": [
+    4.29571062454728,
+    0.03497845002559703,
+    0.05631113571736793
+   ]
+  },
+  "lsq(P*DY+F)": {
+   "median_APE": 0.12882602838065804,
+   "within_1pct": 0.041865625,
+   "within_2pct": 0.08428125,
+   "within_5pct": 0.20896875,
+   "share_above_floor": 0.958134375,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.198616640625,
+    0.218148828125
+   ],
+   "coef": [
+    4.166052722507441,
+    0.03609253180857318,
+    0.05620280312515778
+   ]
+  },
+  "lsq(price+P/PE+P*DY)": {
+   "median_APE": 0.06693847998987563,
+   "within_1pct": 0.08610625,
+   "within_2pct": 0.172075,
+   "within_5pct": 0.395328125,
+   "share_above_floor": 0.91389375,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.38526171875,
+    0.40626796875
+   ],
+   "coef": [
+    1.5036998945329105,
+    0.6282639623940154,
+    -0.0346146827025577,
+    0.04672491298458751
+   ]
+  },
+  "lsq(price+P/PE+F)": {
+   "median_APE": 0.06636237962568386,
+   "within_1pct": 0.086009375,
+   "within_2pct": 0.170859375,
+   "within_5pct": 0.402228125,
+   "share_above_floor": 0.913990625,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.39163375,
+    0.412975234375
+   ],
+   "coef": [
+    1.659620786541395,
+    0.6148245417791103,
+    0.010951156379669483,
+    0.019656308635005015
+   ]
+  },
+  "lsq(price+P*DY+F)": {
+   "median_APE": 0.06631117432853866,
+   "within_1pct": 0.0857125,
+   "within_2pct": 0.17084375,
+   "within_5pct": 0.401975,
+   "share_above_floor": 0.9142875,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.39134835937499995,
+    0.4126734375
+   ],
+   "coef": [
+    1.6207048697306417,
+    0.614720710922947,
+    0.011064877230970483,
+    0.019636367771609334
+   ]
+  },
+  "lsq(P/PE+P*DY+F)": {
+   "median_APE": 0.12899822199033703,
+   "within_1pct": 0.04178125,
+   "within_2pct": 0.083325,
+   "within_5pct": 0.208171875,
+   "share_above_floor": 0.95821875,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.197612734375,
+    0.217986796875
+   ],
+   "coef": [
+    3.4505408823501154,
+    -0.20359565906425364,
+    0.23865987754768936,
+    0.05581711666289719
+   ]
+  },
+  "median(valuation candidates)": {
+   "median_APE": 0.42474332749911947,
+   "within_1pct": 0.012071875,
+   "within_2pct": 0.023775,
+   "within_5pct": 0.059021875,
+   "share_above_floor": 0.987928125,
+   "n": 320000,
+   "within_5pct_ci95": [
+    0.053314531250000005,
+    0.064462890625
+   ]
+  }
+ },
+ "best": {
+  "candidate": "k*price",
+  "median_APE": 0.06442319576943203,
+  "within_1pct": 0.09255,
+  "within_2pct": 0.184415625,
+  "within_5pct": 0.41629375,
+  "share_above_floor": 0.90745,
+  "n": 320000,
+  "within_5pct_ci95": [
+   0.405662578125,
+   0.4263121875
+  ]
+ },
+ "inversion_share_best_within_5pct": 0.41629375,
+ "price_itself": {
+  "median_APE": 0.06442319576943203,
+  "within_1pct": 0.09255,
+  "within_2pct": 0.184415625,
+  "within_5pct": 0.41629375,
+  "share_above_floor": 0.90745,
+  "n": 320000,
+  "within_5pct_ci95": [
+   0.405662578125,
+   0.4263121875
+  ]
+ },
+ "seconds": 10
+}

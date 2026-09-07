@@ -1,0 +1,16 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=False | observables=absent (v2 constants)
+# E5.7(b) L1 extended candidate set -- multiple_B_P10-P90
+
+Panel `docs\env_v2\generated\v2_1\_panels\sep_phase5_multiple_B_P10-P90.pkl`, 1600 paths / 320000 rows; in-sample; k log-median-optimal; 500-resample path bootstrap on the within-5 % share.
+
+| candidate | median APE | within 1 % | within 2 % | within 5 % [CI] | above floor |
+|---|---|---|---|---|---|
+| k*price | 0.0644 | 0.0925 | 0.1844 | 0.4163 [0.4057, 0.4263] | 0.9074 |
+| lsq(price+P*DY+F) | 0.0656 | 0.0862 | 0.1713 | 0.4030 [0.3915, 0.4137] | 0.9138 |
+| lsq(price+P/PE+F) | 0.0657 | 0.0864 | 0.1714 | 0.4028 [0.3915, 0.4135] | 0.9136 |
+| lsq(price+F) | 0.0663 | 0.0871 | 0.1718 | 0.4006 [0.3895, 0.4114] | 0.9130 |
+| lsq(price+P/PE+P*DY) | 0.0667 | 0.0851 | 0.1707 | 0.3970 [0.3866, 0.4080] | 0.9149 |
+| lsq(price+P*DY) | 0.0668 | 0.0851 | 0.1705 | 0.3970 [0.3863, 0.4080] | 0.9149 |
+| lsq(price) | 0.0668 | 0.0865 | 0.1704 | 0.3947 [0.3842, 0.4056] | 0.9135 |
+| lsq(price+P/PE) | 0.0668 | 0.0850 | 0.1706 | 0.3972 [0.3870, 0.4081] | 0.9150 |
+wrote C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e5_7b\multiple_B_P10-P90/l1ext.json in 9 s
