@@ -179,9 +179,14 @@ and by the reference shifted to a true KS distance of 0.05 and 0.10, 100 simulat
 - **The audits**: the SEP design at 200 seeds = **1,600 paths, no subsampling** (the nulls are simulated at this
   n). **16A**: 100 scored seeds per scenario on training-disjoint seeds (section 12).
 
-> **Cell to fill from `e6_2/criteria.json` before the final checklist runs:** B's pass rate at D = 0 for n_gen =
-> 500, per statistic — *pending; run2 in progress.* If it is ≥ 0.90 for a statistic, B decides that statistic
-> per scenario at 500; otherwise the per-scenario B verdict is "undecidable at n = 500" and only the pooled B decides.
+> **Cell filled 9 Sep 2026 from `e6_2/criteria.json` (`evaluation/params/phase6_criteria.json`
+> `criterion_B.n_min_size`):** the median pass rate of B under a true D = 0 is **0.03 at n_gen = 200 and 1.00 at
+> n_gen = 800**; the n = 500 row was not measured (its run was cancelled when the laptop runs were stopped), so
+> **n_min = 800 as the file holds it**. Consequence: B decides the POOLED population (2,000 paths at 500 seeds ×
+> 4 scenarios) and the crash population (1,500 paths); the flat, bull-trap and sustained-bull populations (500 each)
+> are reported under C with B's verdict marked *undecidable at n = 500* — unless the n = 500 row, if it is measured
+> before the final run, gives ≥ 0.90, in which case the file's `n_min_size` is updated from that file and this cell
+> records it. The seed count itself (500 per scenario) does not move.
 
 ### 5.4 The items without a real counterpart
 

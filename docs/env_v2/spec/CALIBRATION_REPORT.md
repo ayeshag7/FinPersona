@@ -1,109 +1,332 @@
-# Calibration report (E6 draft, assembled 22 Aug 2026)
+# Calibration report — the E6 appendix (v2.1 Phase 6): the yardsticks, derived not stated
 
-Everything below is regenerated from code (`docs/env_v2/generated/`); reference ranges are the plan's Section 9 notes.
-Open issues and amendments: `DECISION_LOG.md` (addendum), `PREREGISTRATION_AMENDMENTS.md`.
+*Rewritten by v2.1 Phase 6 (plan Section 10.5). The 22 August 2026 E6 draft — the v2 parameters in force, the 50-seed
+checklist under the v2 criteria, the hazard grid, the subsampled audit, the 25-seed sensitivities — is archived verbatim
+at `spec/archive/CALIBRATION_REPORT_v2_E6_draft_22Aug2026.md`; its numbers are the "pre-amendment / v2" column of the
+tuned-parameter ledger (`v2_1/PHASE_6_REPORT.md` section 3.10) and are not restated here. Every table below is generated
+from the file it names by `tools/phase6/e6_report_tables.py` and read back by `tests/test_v2_1_phase_6.py`.*
 
-## 1. Generator parameters in force
-- Fundamental: mu_V 0.00025/day, sigma_V 0.006/day, t(5); sustained-bull mu ~ U(0.0015, 0.0025); crash D_V ~ U(0.10, 0.30).
-- Mispricing engine `fw_fallback_hl150` (named in v2.1 Phase 0; printed as `fw_single_stock_fallback` before): phi 0.4632, chi 1.5, sigma_f 0.758, sigma_c 2.087, alpha_0 -0.327, alpha_n 1.79, alpha_p 18.43, beta 1.0, mu 0.01, price_scale 100.0. Pull-rate half-life ln2/(mu n_bar phi) = 150.0 d (CAL). 20,000-step pilot (raw weights): n_bar 0.998, w_bar 0.761, sd(x) 0.142, ACF(1) 0.9963 (the implied 188 d was that short pilot's sampling error and is withdrawn). Five 200,000-step pilots (v2.1 Phase 0): ACF(1) half-life 147 d (141–155 d); stationary sd(x) 0.165 (sd_e 0.016) / 0.175 (sd_e 0.017) with the engine's unit-mean innovation weight, 0.126 / 0.134 with raw weights (ratio 0.76 = w_bar). Sample half-life ≈ 20 d on 200-day windows, 62–72 d on T = 800 paths (estimator-biased). Source: CAL (no accepted SMM estimate): FW 2012 functional form with phi set for a 150-day pull-rate half-life at the realised fundamentalist share n_bar = 0.998; see DECISION_LOG.md row 2
-- GJR-GARCH-t: alpha 0.1, gamma 0.1, beta 0.83 (persistence 0.980), sbar 0.017, df 5.0, panic multiplier 5.0, scale_mode variance; phase multipliers {'calm': 1.0, 'deterioration': 1.5, 'panic': 4.0, 'stabilisation': 1.5, 'mania': 1.5, 'blow-off': 2.0, 'post-top': 3.0, 'sustained-bull': 1.0} (the 0.25 used during E1 was reverted after review R1-D5; this line printed 0.25 until v2.1 Phase 0).
-- Jumps: on, rate 0.01/day, N(-0.04, 0.03). Sentiment b_pred 0.0008, reversal 0.0006.
-- Bubble: g0 0.002, kappa ~ U(0.02, 0.04), g_max 0.012, hazard h0 0.0003, b 6.0 (60-seed calibration: topped 0.47, topped peak P/V median 2.12).
-- Burn-in 260 d; rejection up to 50 attempts.
+**What this appendix is.** Phases 1–5 made every generator parameter FIT or tested on data. This appendix does the same
+for the *criteria*: an empirical reference distribution from real 200-day windows for every checklist statistic, a
+criterion form whose size and power were measured on known-answer panels before it was applied, a seed count from a
+power analysis, and leakage gates derived from an analytic bound and from nulls simulated with the real estimator on the
+real panel. The rules are registered in `v2_1/PREREG_PHASE_6.md`; nothing here was moved after a result was seen.
 
-## 2. Section 9 checklist (50 seeds per scenario, crash per delta, T = 200; final calibration incl. sustained-bull variance x1.0; item 10 on the event window, A7)
+---
 
-n per item is the last column: 470 pooled paths for the pooled items; items 4 and 9 use the 20 T = 800 paths (not 50 seeds); items 14 and 16 come from the Section 5 audit (150 of 400 paths after `MAX_ROWS` subsampling); 8 pass / 7 fail / 5 n-a of 20 rows. Items 9 and 11 are calibration targets and pass by construction; item 9's 72 d is the estimator-biased sample half-life (v2.1 Phase 0).
-| item | property | statistic | criterion | result | n_seeds |
-|---|---|---|---|---|---|
-| 1 | No linear autocorrelation of returns in calm phases (Cont 1) | LB Q(10) p>0.05 in 88%; median |ACF(1)| = 0.080 | >= 80% of seeds p>0.05; |ACF(1)| < 0.15 | PASS | 100 |
-| 2 | Heavy tails (Cont 2, 7) | excess kurtosis > 1.5 in 79% (median 2.96); JB rejects in 94%; Hill median 3.36 | kurtosis > 1.5 in >= 80%; JB rejects; Hill 2.5-5 | FAIL | 470 |
-| 3 | Volatility clustering (Cont 6) | LB|r| p<0.01 in 61%; LB r^2 in 49%; ARCH-LM(5) rejects in 42%; median ACF|r|(1) = 0.151 | p < 0.01 in >= 80%; ACF|r|(1) 0.1-0.4 | FAIL | 470 |
-| 4 | Decay of ACF|r| (Cont 8) | median ACF|r| at lags 1: 0.229, 5: 0.177, 10: 0.154, 20: 0.083, 50: 0.017 | descriptive (T = 800 paths); not a pass criterion | n/a | 20 |
-| 5 | GARCH persistence recoverable | median alpha+beta = 0.964 | median alpha + beta in [0.90, 0.995] | PASS | 470 |
-| 6 | Leverage effect (Cont 9) | corr(r_t,|r_t+1|) < 0 in 68% (median -0.045); GJR gamma median 0.047 | negative in >= 70%; gamma > 0 | FAIL | 470 |
-| 7 | Volume-volatility (Cont 10) | median Spearman corr(volume,|r|) = 0.372; median AC(1) log volume = 0.806; Shapiro p > 0.01 in 48% of seeds (median p = 0.007) | corr 0.2-0.5; AC(1) 0.5-0.8; log-normality not rejected (p > 0.01 in >= 50% of seeds) | FAIL | 470 |
-| 8 | Gain/loss asymmetry in crash (Cont 3) | median skew = -0.392; worst day larger than best in 70% | skew < 0; worst > best in >= 70% of crash seeds | PASS | 150 |
-| 9 | Mispricing persistence (FW regime) | 200-day calm windows: median ACF(1) of x = 0.9507, half-life = 14 d, sd(x) = 0.053; T=800 phase-free: ACF(1) = 0.9905, half-life = 72 d, sd(x) = 0.128 (criterion applied here) | ACF(1) >= 0.98; half-life >= 60 d; sd 0.08-0.20 | PASS | 20 |
-| 10 | Delta matters | event-window MDD: partial R2 of delta (controlling D_V) = 0.38, spread between delta 0.55 and 0.85 = 18.0 pp, means 0.55: -53.0%, 0.7: -42.6%, 0.85: -35.0%; whole-path MDD (reported): partial R2 0.35, spread 16.5 pp, means 0.55: -56.8%, 0.7: -47.3%, 0.85: -40.3% | partial R2 > 0.7; spread >= 20 pp between delta 0.55 and 0.85 (event-window MDD, amendment A7) | FAIL | 150 |
-| 11 | Bubble shape and populations | mean 2nd difference of log P over mania > 0 in 66% (median 9.59e-05); topped share = 44%; median peak P/V in topped seeds = 2.21 | convex; 40-60% topped; peak P/V 1.6-2.5 in topped seeds | PASS | 50 |
-| 12 | Sentiment dynamics | median ACF(1) = 0.873; median corr(s_t, r_t) = 0.365; median calm corr(s_t-1, r_t) = -0.010 (configured b_pred = 0.0008) | ACF(1) 0.7-0.9; corr 0.25-0.55; lagged corr equals configured b_pred within CI | PASS | 470 |
-| 13 | IV realism | mean IV calm 28.6%, panic 59.4%; median corr(IV, next-20d RV) = 0.39; IV-RV calm +6.7 pts, panic +21.6 pts; sd of calm IV across seeds 14.82 | calm 25-35%, panic 60-100%; corr 0.4-0.8; IV-RV +3..+8 calm, +10..+25 panic; non-degenerate across seeds | FAIL | 470 |
-| 14 | Value leak | see evaluation.leakage_audit (L1-L3) | calm R2 <= 0.30; event R2 < 0.90 & MAPE >= 10%; no inversion | n/a | 0 |
-| 15 | Phase/time separability | macro-phase accuracy from day alone = 64.8% (mixed set, 470 paths; within-scenario mean 73.6%); |corr(day, phase id)| = 0.03 | < 80% on the mixed set; < 0.9 | PASS | 470 |
-| 16 | Composite phase clock | see evaluation.leakage_audit (L2b) | selectivity <= 10 pp | n/a | 0 |
-| 17 | Conditioning | flat: rejection rate 0.0%; bull_trap: rejection rate 5.7%; crash: rejection rate 1.3%; sustained_bull: rejection rate 39.8%; mixed: rejection rate 1.3%; flat_T800: rejection rate 0.0%; bull-trap topped share 44% | rejection < 5% per scenario; joint conditioning published | FAIL | 470 |
-| 18 | Start design applied | unit test (tests/) | C_0 as configured | n/a | 0 |
-| 19 | Action-space reachability | unit test (tests/) | any allocation reachable; SELL feasible at t=1 | n/a | 0 |
-| 20 | Magnitudes | median crash MDD = -48.0%; median calm daily sigma (flat) = 1.53%; median worst panic day = -7.9% | crash MDD -20..-65%; calm sigma 1.4-2.2%/day; worst day -6..-15% in panic | PASS | 200 |
+## 1. The reference distributions (E6.1; `generated/v2_1/e6_1/`)
 
-## 3. Hazard calibration grid (best five; `hazard_calibration.csv`)
-| h0 | b | g_max | topped_share | peak_pv_topped_median | peak_pv_topped_q10 | peak_pv_topped_q90 | peak_pv_untopped_median | top_day_in_mania_median | mean_attempts | score |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 0.000 | 6.000 | 0.012 | 0.467 | 2.125 | 1.671 | 2.523 | 1.823 | 105.500 | 1.050 | 0.164 |
-| 0.000 | 8.000 | 0.012 | 0.583 | 2.189 | 1.800 | 2.513 | 1.789 | 106.000 | 1.050 | 0.381 |
-| 0.001 | 4.000 | 0.015 | 0.550 | 2.406 | 1.776 | 2.866 | 2.064 | 105.000 | 1.067 | 0.385 |
-| 0.000 | 6.000 | 0.015 | 0.600 | 2.407 | 1.734 | 2.799 | 2.024 | 103.000 | 1.033 | 0.502 |
-| 0.000 | 8.000 | 0.010 | 0.383 | 2.084 | 1.751 | 2.493 | 1.846 | 102.000 | 1.067 | 0.571 |
+Every non-overlapping 200-day window of every name in analysis set A, every statistic computed by the audit's own
+functions (`evaluation/reference_stats.py`, the estimator the checklist applies to the generator). **Survivorship
+(REG-15):** set A is survivor-biased by construction (a complete 2000–2024 history in a `yfinance` panel); tails,
+drawdowns and loss frequencies are understated, most for items 2, 8 and 20 and least for items 1, 3, 5, 6, 7. The IV
+block pairs the VIX with the Fama–French value-weighted market (no survivorship), the S&P 500 (FRED, ten years) and a
+set-A proxy, and the five CBOE single-stock VIX indices with their stocks (five surviving mega-caps, a selected sample).
 
-## 4. Section 5 audit (50 seeds -> 400 paths, 150 kept after `MAX_ROWS` subsampling = 30,000 steps; `leakage_audit_v2.md`; re-run in v2.1 Phase 0 on the frozen state after the analyst fix)
-### L1 algebraic inversion (A6 rule) -- PASS
-| candidate | fitted_k | median_APE | max_APE | share_APE_above_floor | sign_acc_PE15_rule | pass |
-|---|---|---|---|---|---|---|
-| k * analyst_fair_value | 0.9930 | 0.1008 | 0.5219 | 0.9518 | 0.6872 | True |
-| k * P (price itself) | 1.0506 | 0.1236 | 2.3639 | 0.9592 | 0.6872 | True |
-| k * P / reported_PE | 17.5239 | 0.1546 | 0.7136 | 0.9717 | 0.6872 | True |
-| k * P * dividend_yield | 0.5019 | 0.1558 | 0.7224 | 0.9706 | 0.6872 | True |
-Before the analyst fix the k·analyst candidate had median APE 0.2235 (the field's own sd was 0.335 by the sqrt(5) defect); after it, 0.1008 — the analyst field now beats price itself (0.1236), so the earlier statement "no formula beats price itself" no longer holds (the A6 rule passes by 0.26 pp: the candidate is inside the 1 % floor on 4.8 % of steps vs price's 4.1 % + 1 pp; on the 8-seed CI panel it is 6.4 % vs 3.6 % and the rule FAILS — `tests/test_leakage_ci.py::test_v2_L1_no_algebraic_inversion` is a registered known defect, decision P0-14; the rule is re-derived in Phase 6). The three-term mean of k·SMA50, k·P/PE and k·analyst reaches a median APE of 0.071 on the Phase-0 panel (`generated/v2_1/findings_reproduction.md`, block R5).
-### L2 surrogate, best models (held-out seeds) -- pre-registered absolute thresholds are the gate: FAIL (calm R2(x) 0.92, sign 0.97, event 0.97, MAPE(V) 4.5%); exploratory selectivity of non-price fields +0.13 R2 / +3.2%; shuffled-V -0.06
-| target | phase_group | n | R2 | sign_acc_resolvable | MAPE_V | R2_price_only | selectivity_R2 | R2_shuffledV |
+<!-- table:e6_1 -->
+12,927 windows of 417 names (T = 200); sub-periods 2000-07 4,170, 2008-12 2,502, 2013-19 3,753, 2020-24 2,502; 0 errors.
+
+| statistic | n | P10 | P50 | P90 | P50 2000-07 | P50 2008-12 | P50 2013-19 | P50 2020-24 |
 |---|---|---|---|---|---|---|---|---|
-| x | calm | 11700 | 0.918 | 0.974 | nan | 0.787 | 0.131 | -0.295 |
-| x | event | 9239 | 0.966 | 0.980 | nan | 0.926 | 0.040 | -0.263 |
-| x | resolution | 6061 | 0.948 | 0.989 | nan | 0.872 | 0.076 | -0.196 |
-| x | all | 27000 | 0.954 | 0.980 | nan | 0.892 | 0.062 | -0.247 |
-| logV | calm | 11700 | 0.842 | nan | 0.032 | 0.634 | 0.208 | -0.168 |
-| logV | event | 9239 | 0.746 | nan | 0.045 | 0.425 | 0.321 | -0.236 |
-| logV | resolution | 6061 | 0.746 | nan | 0.048 | 0.353 | 0.393 | -0.232 |
-| logV | all | 27000 | 0.860 | nan | 0.040 | 0.670 | 0.191 | -0.194 |
-Interpretation (corrected in v2.1 Phase 0; before: "fails by construction, hidden from the fields, not from price dynamics"): the price-only strength is the fixed start price V_1 = P_1 = 100 acting as an answer key — a level-free reader reaches R2(x) 0.49 (sign 0.74) instead of 0.85 (0.95), and with the start price randomised the non-price fields add ≈ +0.6 R2 in calm (block R3 of the findings file; reviews C.2–C.3). Phase 1 removes the anchor and re-runs this audit with a level-free control; Phase 5 redesigns the fields; Phase 6 derives the gate.
-### L2b composite phase clock -- PASS: full 85.2% vs price-only 78.3% (day-only 54.6%, majority 43.3%), selectivity +6.9 pp (margin 10 pp). A 4-class accuracy cannot see a change-point leak: log IV jumps ×1.85 on the first panic day (z = 7.7; weakness item 46).
-### Scenario discrimination (review R1-D5; reported, no threshold): sustained-bull vs mania vs calm days, n = 13,320 (majority 46%): accuracy price-only 75.3%, price+IV 78.0%, full 78.8%; recall of sustained-bull days 82.5% / 82.1% / 85.1% -- the control is identifiable from PRICE DYNAMICS (a selected quiet sub-population with anchored x; weakness items 18, 42), not from IV specifically.
-### L4 resolvability
-| scenario | phase | n_steps | median_abs_x | coverage_theta_0.03 | coverage_theta_0.05 | coverage_theta_0.08 |
+| `lb_p_r` | 12,927 | 0.02367 | 0.3923 | 0.8666 | 0.3789 | 0.309 | 0.4445 | 0.4229 |
+| `abs_acf1_r` | 12,927 | 0.01105 | 0.05852 | 0.1511 | 0.06225 | 0.06609 | 0.05204 | 0.05702 |
+| `kurtosis` | 12,927 | 0.4665 | 2.173 | 10.74 | 1.951 | 1.811 | 2.581 | 2.72 |
+| `hill` | 12,927 | 2.308 | 3.556 | 5.572 | 3.654 | 3.777 | 3.393 | 3.406 |
+| `jb_p` | 12,927 | 1.015e-223 | 8.24e-11 | 0.1905 | 7.522e-09 | 1.533e-07 | 8.596e-15 | 1.072e-15 |
+| `lb_p_absr` | 12,927 | 3.697e-07 | 0.1823 | 0.8354 | 0.2018 | 0.04372 | 0.2303 | 0.2396 |
+| `arch_lm_p` | 12,927 | 0.0001547 | 0.395 | 0.9824 | 0.3987 | 0.1897 | 0.5495 | 0.402 |
+| `acf1_absr` | 12,927 | -0.02559 | 0.08726 | 0.2321 | 0.08884 | 0.07672 | 0.091 | 0.08791 |
+| `garch_persistence` | 12,927 | 0.2893 | 0.9298 | 1 | 0.9162 | 0.9693 | 0.9031 | 0.9124 |
+| `garch_alpha` | 12,927 | 0 | 0.05795 | 0.2699 | 0.06078 | 0.03896 | 0.05864 | 0.07277 |
+| `gjr_gamma` | 12,927 | -0.1008 | 0.05979 | 0.3353 | 0.05609 | 0.06438 | 0.06201 | 0.05612 |
+| `leverage_corr` | 12,927 | -0.1472 | -0.03808 | 0.06983 | -0.02524 | -0.05442 | -0.04112 | -0.03681 |
+| `volume_absr_spearman` | 12,927 | 0.1869 | 0.3256 | 0.4596 | 0.3028 | 0.3411 | 0.3372 | 0.3302 |
+| `logvolume_acf1` | 12,927 | 0.3728 | 0.5084 | 0.642 | 0.4756 | 0.5441 | 0.5102 | 0.5207 |
+| `logvolume_shapiro_p` | 12,927 | 2.227e-07 | 0.003695 | 0.4219 | 0.008697 | 0.005251 | 0.002594 | 0.0009817 |
+| `skew` | 12,927 | -1.044 | -0.06929 | 0.7473 | 0.05444 | -0.02749 | -0.2076 | -0.1563 |
+| `worst_over_best` | 12,927 | 0.5711 | 1.031 | 1.851 | 0.975 | 1.011 | 1.081 | 1.07 |
+| `mdd` | 12,927 | -0.4363 | -0.1955 | -0.09651 | -0.2001 | -0.236 | -0.1545 | -0.2263 |
+| `daily_sigma` | 12,927 | 0.01076 | 0.01747 | 0.03411 | 0.01898 | 0.02131 | 0.014 | 0.01957 |
+| `worst_day` | 12,927 | -0.1555 | -0.06516 | -0.03464 | -0.06766 | -0.07689 | -0.05358 | -0.07392 |
+
+IV block (`e6_1/iv_reference.md`):
+
+| pair | n | IV mean P10 / P50 / P90 | corr(IV, next-20d RV) P50 | IV − RV20 P50 |
+|---|---|---|---|---|
+| index:VIX vs FF value-weighted US market (1990-) | 33 | 13.1 / 18.6 / 25.4 | 0.44 | +3.13 |
+| index:VIX vs S&P 500 (FRED, 2016-) | 12 | 12.9 / 17.5 / 25.3 | 0.41 | +3.53 |
+| index:VIX vs set-A equal-weight proxy (2000-2024) | 31 | 13.0 / 18.6 / 25.4 | 0.47 | +3.17 |
+| single:VXAPL vs AAPL | 18 | 24.0 / 29.3 / 37.0 | 0.50 | +4.50 |
+| single:VXAZN vs AMZN | 18 | 28.5 / 33.0 / 39.9 | 0.68 | +4.92 |
+| single:VXGOG vs GOOG | 18 | 22.4 / 26.8 / 33.5 | 0.59 | +3.19 |
+| single:VXGS vs GS | 18 | 23.7 / 27.9 / 38.3 | 0.33 | +4.95 |
+| single:VXIBM vs IBM | 18 | 19.7 / 23.3 / 28.8 | 0.54 | +3.51 |
+| single:pooled | 90 | 21.6 / 28.4 / 37.6 | 0.55 | +4.14 |
+<!-- /table:e6_1 -->
+
+## 2. The known answers (E6.9; `generated/v2_1/e6_9/`)
+
+Each statistic applied to a synthetic process whose value is known in closed form: convergence at a long horizon proves
+the code; the T = 200 row measures the bias the benchmark horizon imposes. The Hill index at the audit's 5 % depth misses a
+Student-t index by ≈ 20 % while the Pareto control is exact; the sample kurtosis of a Student-t(5) has no usable
+finite-sample distribution; the sample ACF(1) of an AR(1) at the engine's FIT half-life reads 0.947 for 0.9695. Against the
+generator's own fitted GJR shape, ARCH-LM(5) rejects at 1 % in 23 % of 200-day windows and LB\|r\| in 28 %. These are
+properties of the rulers, and they fall on both sides of a like-for-like criterion — which is why the criteria below
+compare the generator's windows with the real windows measured the same way rather than with absolute bands.
+
+<!-- table:e6_9 -->
+| case | statistic | target | T = 200 median [P10, P90] | long-T mean | verdict |
+|---|---|---|---|---|---|
+| `acf_ar1_phi0.6_lag1` | acf(r, 1) | 0.6000 | 0.5890 [0.5119, 0.6561] | 0.6003 | pass |
+| `acf_ar1_phi0.9_lag5` | acf(r, 5) | 0.5905 | 0.5223 [0.3459, 0.6698] | 0.5905 | pass |
+| `acf_ar1_engine_persistence_lag1` | acf(x, 1) on the engine's persistence | 0.9695 | 0.9468 [0.9061, 0.9684] | 0.9694 | pass |
+| `half_life_ar1_engine` | half-life from ACF(1) | 22.3809 | 12.6905 [7.0268, 21.6032] | 22.3528 | pass |
+| `sd_ar1_engine` | sd(x) | 4.0804 | 3.3476 [2.4205, 4.4998] | 4.0799 | pass |
+| `acf_logvolume_ar1` | acf(log volume, 1) | 0.6500 | 0.6390 [0.5613, 0.7008] | 0.6503 | pass |
+| `kurtosis_t5` | scipy kurtosis (excess) | 6.0000 | 1.7717 [0.5778, 6.0027] | 5.0708 | fail |
+| `kurtosis_normal` | scipy kurtosis (excess) | 0.0000 | -0.0495 [-0.4213, 0.4766] | -0.0019 | pass |
+| `skew_normal` | scipy skew | 0.0000 | -0.0003 [-0.2373, 0.2350] | -0.0004 | pass |
+| `hill_pareto_alpha3` | hill_index(r, 0.05) | 3.0000 | 3.1720 [2.1694, 4.8271] | 3.0009 | pass |
+| `hill_t4` | hill_index(r, 0.05) | 4.0000 | 3.2125 [2.2671, 5.0368] | 3.1973 | fail |
+| `garch_persistence` | garch_fit -> alpha + beta | 0.9800 | 0.9627 [0.7021, 0.9956] | 0.9795 | pass |
+| `garch_alpha` | garch_fit -> alpha | 0.0800 | 0.0650 [0.0000, 0.1488] | 0.0797 | pass |
+| `gjr_gamma` | garch_fit(o=1) -> gamma | 0.1000 | 0.0981 [-0.0000, 0.2162] | 0.1001 | pass |
+| `leverage_corr_symmetric` | corr(r_t, |r_t+1|) | 0.0000 | -0.0047 [-0.1055, 0.1115] | -0.0004 | pass |
+| `leverage_corr_gjr` | corr(r_t, |r_t+1|) | — | -0.0403 [-0.1356, 0.0770] | -0.0439 | reported |
+| `mdd_deterministic` | mdd(price) | -0.4000 | -0.4000 [-0.4000, -0.4000] | -0.4000 | pass |
+| `ljung_box_size_iid` | ljung_box_p(r, 10) > 0.05 | nominal 0.050 | rejection 0.0625 [0.043, 0.091] | 0.0575 | pass |
+| `ljung_box_power_ar1_015` | ljung_box_p(r, 10) < 0.05 | nominal — | rejection 0.2725 [0.231, 0.318] | 1.0000 | reported |
+| `arch_lm_size_iid` | arch_lm_p(r, 5) < 0.01 | nominal 0.010 | rejection 0.0125 [0.005, 0.029] | 0.0075 | pass |
+| `arch_lm_power_garch` | arch_lm_p(r, 5) < 0.01 | nominal — | rejection 0.3400 [0.295, 0.388] | 1.0000 | reported |
+| `lb_abs_r_power_garch` | ljung_box_p(|r|, 10) < 0.01 | nominal — | rejection 0.4000 [0.353, 0.449] | 1.0000 | reported |
+| `shapiro_size_normal` | shapiro(log v) < 0.01 | nominal 0.010 | rejection 0.0150 [0.007, 0.032] | 0.0075 | pass |
+| `jarque_bera_size_normal` | jarque_bera(r) < 0.05 | nominal 0.050 | rejection 0.0425 [0.027, 0.067] | 0.0725 | fail |
+| `jarque_bera_power_t5` | jarque_bera(r) < 0.05 | nominal — | rejection 0.8525 [0.814, 0.884] | 1.0000 | reported |
+| `arch_lm_power_block_in_force` | arch_lm_p(r, 5) < 0.01 | nominal — | rejection 0.2325 [0.194, 0.276] | 1.0000 | reported |
+| `lb_abs_r_power_block_in_force` | ljung_box_p(|r|, 10) < 0.01 | nominal — | rejection 0.2750 [0.234, 0.321] | 1.0000 | reported |
+| `acf1_absr_block_in_force` | acf(|r|, 1) | — | 0.0570 [-0.0308, 0.1861] | 0.1585 | reported |
+| `jarque_bera_size_normal_recheck` | jarque_bera(r) < 0.05 | nominal 0.050 | rejection 0.0495 [0.041, 0.060] | 0.0570 | pass |
+| `garch_persistence_block_in_force` | garch_fit -> alpha + beta | 0.9880 | 0.9662 [0.7239, 0.9986] | 0.9872 | reported |
+
+30 cases: 18 pass / 3 fail / 9 reported (no closed form); 400 reps (GARCH 200), root seed 20260908.
+<!-- /table:e6_9 -->
+
+## 3. The criteria (E6.2; `generated/v2_1/e6_2/`; `evaluation/params/phase6_criteria.json`)
+
+- **A (v2):** the numeric bands of `evaluation/stylized_facts.py`, unchanged, reported for continuity.
+- **B (KS-equivalence):** the bootstrap 95 % upper limit of the two-sample KS distance between the generator's cross-seed
+  distribution and the reference is **< 0.10**. "The KS test did not reject" is not a criterion.
+- **C (band share):** the generator's share inside the reference P10–P90 is **≥ 0.80 − 1.96 √(0.8·0.2/n_gen)**.
+
+Their measured size and power on known-answer panels (the generator sample replaced by a draw from the reference, and by
+the reference shifted to a true KS distance of 0.05 and 0.10): **B has no size at n_gen = 200** and full size and power at
+800; **C has size at every n but no power against a D = 0.10 shift on most statistics**. B decides, at n ≥ its size
+threshold (`criterion_B.n_min_size` in the criteria file); C is the band report. The items without a real-window
+counterpart (9, 11, 12, 13, 15, 17) are handled in `PREREG_PHASE_6.md` 5.4 (item 9 as fidelity to the FIT process
+measured with the same 200-day ruler; item 12's lagged relation and item 13's non-degeneracy implemented for the first
+time, weakness 64).
+
+<!-- table:e6_2 -->
+| item | statistic | pop | n_gen / n_ref | gen P50 | ref P50 | B: D (upper) | B | C: share (thr) | C | A (v2) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | `lb_p_r` | all | 1600 / 12927 | 0.322 | 0.392 | 0.076 (0.098) | PASS | 0.756 (0.780) | FAIL | PASS |
+| 1 | `abs_acf1_r` | all | 1600 / 12927 | 0.0561 | 0.0585 | 0.031 (0.055) | PASS | 0.807 (0.780) | PASS | PASS |
+| 2 | `kurtosis` | all | 1600 / 12927 | 1.73 | 2.17 | 0.101 (0.127) | FAIL | 0.811 (0.780) | PASS | FAIL |
+| 2 | `hill` | all | 1600 / 12927 | 3.84 | 3.56 | 0.101 (0.126) | FAIL | 0.821 (0.780) | PASS | FAIL |
+| 2 | `jb_p` | all | 1600 / 12927 | 8.3e-07 | 8.24e-11 | 0.111 (0.134) | FAIL | 0.800 (0.780) | PASS | FAIL |
+| 3 | `lb_p_absr` | all | 1600 / 12927 | 0.0302 | 0.182 | 0.224 (0.248) | FAIL | 0.621 (0.780) | FAIL | FAIL |
+| 3 | `lb_p_r2` | all | 1600 / 12927 | 0.116 | 0.447 | 0.167 (0.193) | FAIL | 0.734 (0.780) | FAIL | FAIL |
+| 3 | `arch_lm_p` | all | 1600 / 12927 | 0.223 | 0.395 | 0.095 (0.118) | FAIL | 0.793 (0.780) | PASS | FAIL |
+| 3 | `acf1_absr` | all | 1600 / 12927 | 0.0914 | 0.0873 | 0.094 (0.116) | FAIL | 0.698 (0.780) | FAIL | FAIL |
+| 4 | `acf1_absr` | all | 1600 / 12927 | 0.0914 | 0.0873 | 0.094 (0.116) | FAIL | 0.698 (0.780) | FAIL | n/a |
+| 4 | `acf5_absr` | all | 1600 / 12927 | 0.0768 | 0.0427 | 0.165 (0.188) | FAIL | 0.672 (0.780) | FAIL | n/a |
+| 4 | `acf10_absr` | all | 1600 / 12927 | 0.0612 | 0.0291 | 0.163 (0.187) | FAIL | 0.691 (0.780) | FAIL | n/a |
+| 4 | `acf20_absr` | all | 1600 / 12927 | 0.0386 | 0.00948 | 0.178 (0.201) | FAIL | 0.703 (0.780) | FAIL | n/a |
+| 4 | `acf50_absr` | all | 1600 / 12927 | -0.0146 | -0.00898 | 0.051 (0.076) | PASS | 0.771 (0.780) | FAIL | n/a |
+| 5 | `garch_persistence` | all | 1600 / 12927 | 0.975 | 0.93 | 0.222 (0.246) | FAIL | 0.768 (0.780) | FAIL | PASS |
+| 5 | `garch_alpha` | all | 1600 / 12927 | 0.0647 | 0.0579 | 0.084 (0.097) | PASS | 0.958 (0.780) | PASS | PASS |
+| 5 | `garch_beta` | all | 1600 / 12927 | 0.883 | 0.825 | 0.196 (0.218) | FAIL | 0.852 (0.780) | PASS | PASS |
+| 6 | `leverage_corr` | all | 1600 / 12927 | -0.0224 | -0.0381 | 0.080 (0.104) | FAIL | 0.805 (0.780) | PASS | FAIL |
+| 6 | `gjr_gamma` | all | 1600 / 12927 | 0.0591 | 0.0598 | 0.092 (0.113) | FAIL | 0.888 (0.780) | PASS | FAIL |
+| 7 | `volume_absr_spearman` | all | 1600 / 12927 | 0.325 | 0.326 | 0.052 (0.073) | PASS | 0.885 (0.780) | PASS | PASS |
+| 7 | `logvolume_acf1` | all | 1600 / 12927 | 0.554 | 0.508 | 0.254 (0.274) | FAIL | 0.871 (0.780) | PASS | PASS |
+| 7 | `logvolume_shapiro_p` | all | 1600 / 12927 | 0.203 | 0.0037 | 0.375 (0.399) | FAIL | 0.663 (0.780) | FAIL | PASS |
+| 8 | `skew` | crash | 800 / 6275 | 0.0401 | -0.135 | 0.142 (0.176) | FAIL | 0.866 (0.772) | PASS | FAIL |
+| 8 | `worst_over_best` | crash | 800 / 6275 | 1 | 1.11 | 0.129 (0.163) | FAIL | 0.858 (0.772) | PASS | FAIL |
+| 20 | `mdd` | crash | 800 / 6275 | -0.512 | -0.307 | 0.623 (0.643) | FAIL | 0.613 (0.772) | FAIL | PASS |
+| 20 | `worst_day` | crash | 800 / 6275 | -0.137 | -0.0944 | 0.407 (0.430) | FAIL | 0.825 (0.772) | PASS | PASS |
+| 20 | `daily_sigma` | flat | 200 / 12927 | 0.0199 | 0.0175 | 0.436 (0.449) | FAIL | 0.990 (0.745) | PASS | PASS |
+
+Size and power (pass rates of B / C at true D = 0, 0.05, 0.10):
+
+| item | statistic | n = 200: D0 / D.05 / D.10 | n = 800: D0 / D.05 / D.10 |
+|---|---|---|---|
+| 1 | `lb_p_r` | 0.02 0.99 / 0.05 1.00 / 0.00 1.00 | 1.00 0.97 / 1.00 0.99 / 0.00 1.00 |
+| 1 | `abs_acf1_r` | 0.03 0.96 / 0.02 1.00 / 0.00 1.00 | 1.00 0.97 / 0.80 1.00 / 0.00 1.00 |
+| 2 | `kurtosis` | 0.08 1.00 / 0.03 1.00 / 0.00 1.00 | 0.99 0.96 / 0.88 1.00 / 0.01 1.00 |
+| 2 | `hill` | 0.04 0.98 / 0.02 1.00 / 0.00 1.00 | 1.00 0.96 / 0.70 1.00 / 0.00 1.00 |
+| 2 | `jb_p` | 0.07 0.96 / 0.00 1.00 / 0.00 1.00 | 1.00 0.93 / 0.00 1.00 / 0.00 1.00 |
+| 3 | `lb_p_absr` | 0.07 0.96 / 0.05 0.97 / 0.00 1.00 | 0.99 0.98 / 1.00 1.00 / 0.00 1.00 |
+| 3 | `lb_p_r2` | 0.06 0.97 / 0.06 0.97 / 0.00 1.00 | 1.00 0.99 / 1.00 0.96 / 0.00 1.00 |
+| 3 | `arch_lm_p` | 0.02 0.98 / 0.08 1.00 / 0.00 1.00 | 1.00 0.99 / 1.00 0.96 / 0.00 1.00 |
+| 3 | `acf1_absr` | 0.00 0.96 / 0.02 1.00 / 0.00 1.00 | 0.99 0.98 / 0.63 1.00 / 0.00 1.00 |
+| 4 | `acf1_absr` | 0.03 0.94 / 0.03 0.99 / 0.00 1.00 | 1.00 0.98 / 0.73 1.00 / 0.00 1.00 |
+| 4 | `acf5_absr` | 0.03 0.97 / 0.02 1.00 / 0.00 0.99 | 1.00 1.00 / 0.72 0.99 / 0.00 1.00 |
+| 4 | `acf10_absr` | 0.07 0.96 / 0.03 0.96 / 0.00 0.98 | 1.00 0.97 / 0.68 0.99 / 0.00 0.98 |
+| 4 | `acf20_absr` | 0.01 0.99 / 0.01 0.99 / 0.00 0.98 | 1.00 0.97 / 0.66 1.00 / 0.00 0.98 |
+| 4 | `acf50_absr` | 0.05 0.97 / 0.03 0.97 / 0.00 0.96 | 1.00 0.98 / 0.58 0.99 / 0.01 0.96 |
+| 5 | `garch_persistence` | 0.02 0.99 / 0.00 0.98 / 0.00 0.92 | 1.00 0.98 / 0.93 0.96 / 0.05 0.90 |
+| 5 | `garch_alpha` | 0.08 1.00 / 0.00 1.00 / 0.00 1.00 | 0.98 1.00 / 0.00 1.00 / 0.00 1.00 |
+| 5 | `garch_beta` | 0.04 0.98 / 0.02 0.97 / 0.00 0.96 | 1.00 0.98 / 0.98 0.98 / 0.00 0.99 |
+| 6 | `leverage_corr` | 0.03 0.96 / 0.00 0.97 / 0.00 0.81 | 1.00 0.97 / 0.65 0.97 / 0.00 0.78 |
+| 6 | `gjr_gamma` | 0.06 0.98 / 0.02 0.98 / 0.00 0.99 | 1.00 0.98 / 0.93 0.96 / 0.03 1.00 |
+| 7 | `volume_absr_spearman` | 0.02 1.00 / 0.02 1.00 / 0.00 0.90 | 1.00 0.98 / 0.71 0.95 / 0.00 0.86 |
+| 7 | `logvolume_acf1` | 0.03 0.97 / 0.00 0.96 / 0.00 0.94 | 1.00 1.00 / 0.68 0.97 / 0.01 0.82 |
+| 7 | `logvolume_shapiro_p` | 0.03 0.98 / 0.05 1.00 / 0.00 1.00 | 1.00 0.98 / 1.00 0.98 / 0.00 1.00 |
+| 8 | `skew` | 0.02 0.99 / 0.00 0.93 / 0.00 0.87 | 1.00 0.99 / 0.66 0.90 / 0.00 0.55 |
+| 8 | `worst_over_best` | 0.08 1.00 / 0.02 0.99 / 0.00 1.00 | 1.00 0.99 / 0.65 1.00 / 0.01 1.00 |
+| 20 | `mdd` | 0.03 0.98 / 0.01 0.71 / 0.00 0.22 | 1.00 1.00 / 0.81 0.13 / 0.01 0.00 |
+| 20 | `worst_day` | 0.05 0.99 / 0.00 0.76 / 0.00 0.41 | 1.00 0.99 / 0.61 0.38 / 0.00 0.00 |
+| 20 | `daily_sigma` | 0.07 1.00 / 0.01 1.00 / 0.00 1.00 | 1.00 0.98 / 0.74 1.00 / 0.00 1.00 |
+<!-- /table:e6_2 -->
+
+## 4. The seed policy (E6.3; `generated/v2_1/e6_3/`)
+
+Appendix A's rules applied to the cross-seed variance of every per-seed statistic on the stored 1,600-path panel, and the
+decidability of each verdict at the planned n. **The final checklist runs at 500 seeds per scenario** (2,000 pooled;
+T = 200; T ∈ {800, 2000} at 100 flat seeds for items 4 and 9, descriptive only); the audits at 1,600 paths without
+subsampling; 16A at 100 scored seeds per scenario on training-disjoint seeds.
+
+<!-- table:e6_3 -->
+Pilot `docs/env_v2/generated/v2_1/_panels/sep_phase5_after.pkl` (1600 paths: bull_trap 400, crash 800, flat 200, sustained_bull 200); planned n = 200.
+
+| criterion | item | kind | pilot n | observed | n required | decidable at planned n |
 |---|---|---|---|---|---|---|
-| flat | calm | 4000 | 0.115 | 0.828 | 0.717 | 0.596 |
-| bull_trap | calm | 1720 | 0.149 | 0.913 | 0.848 | 0.763 |
-| bull_trap | mania | 2826 | 0.135 | 0.905 | 0.815 | 0.686 |
-| bull_trap | blow-off | 1395 | 0.582 | 0.993 | 0.986 | 0.981 |
-| bull_trap | post-top | 1459 | 0.288 | 0.951 | 0.926 | 0.867 |
-| crash | calm | 5316 | 0.137 | 0.902 | 0.824 | 0.726 |
-| crash | deterioration | 2038 | 0.128 | 0.877 | 0.797 | 0.678 |
-| crash | panic | 3244 | 0.259 | 0.962 | 0.936 | 0.887 |
-| crash | stabilisation | 4602 | 0.170 | 0.880 | 0.810 | 0.731 |
-| sustained_bull | sustained-bull | 3400 | 0.014 | 0.185 | 0.057 | 0.005 |
-| flat | ALL | 4000 | 0.115 | 0.828 | 0.717 | 0.596 |
-| bull_trap | ALL | 7400 | 0.206 | 0.932 | 0.877 | 0.795 |
-| crash | ALL | 15200 | 0.166 | 0.905 | 0.840 | 0.755 |
-| sustained_bull | ALL | 3400 | 0.014 | 0.185 | 0.057 | 0.005 |
+| `item1_lb_p_share` | 1 | share | 1000 | share 0.951 | 419 | yes |
+| `item1_abs_acf1` | 1 | band | 1000 | median 0.06204 | 9 | yes |
+| `item2_kurt_share` | 2 | share | 1600 | share 0.560 | 21 | yes |
+| `item2_hill` | 2 | band | 1600 | median 3.844 | 54 | yes |
+| `item3_lb_absr_share` | 3 | share | 1600 | share 0.463 | 11 | yes |
+| `item3_acf1_absr` | 3 | band | 1600 | median 0.09141 | 25 | no |
+| `item5_persistence` | 5 | band | 1600 | median 0.9747 | 754 | no |
+| `item6_lev_share` | 6 | share | 1600 | share 0.610 | 168 | yes |
+| `item6_gamma` | 6 | band | 1600 | median 0.05911 | 85 | yes |
+| `item7_spearman` | 7 | band | 1600 | median 0.3251 | 13 | yes |
+| `item7_logvol_ac1` | 7 | band | 1600 | median 0.5539 | 9 | yes |
+| `item7_shapiro_share` | 7 | share | 1600 | share 0.752 | 617 | yes |
+| `item8_skew` | 8 | band | 800 | median 0.04011 | 2028 | no |
+| `item8_worst_share` | 8 | share | 800 | share 0.501 | 35 | yes |
+| `item9_acf1_x` | 9 | band | 1000 | median 0.9203 | 8 | yes |
+| `item9_sd_x` | 9 | band | 1000 | median 0.03854 | 5 | yes |
+| `item12_sent_acf1` | 12 | band | 1600 | median 0.2034 | 18 | yes |
+| `item12_sent_corr` | 12 | band | 1600 | median 0.01736 | 9 | yes |
+| `item13_iv_calm` | 13 | band | 1249 | median 32.36 | 88 | yes |
+| `item13_iv_rv_corr` | 13 | band | 1600 | median 0.2295 | 99 | yes |
+| `item20_mdd` | 20 | band | 800 | median -0.5122 | 7 | yes |
+| `item20_calm_sigma` | 20 | band | 200 | median 0.01988 | 39 | yes |
+| `item20_worst_panic` | 20 | band | 800 | median -0.1245 | 84 | yes |
+<!-- /table:e6_3 -->
 
-## 5. Generator sensitivities (25 seeds per scenario; checklist pass/fail counts; `generated/checklist_v2_sens_*.md`)
-| Sensitivity | Pass / fail | Note |
+## 5. The gates
+
+### 5.1 L1 — the noise floor derived from the x process (E6.5; `generated/v2_1/e6_5/`)
+
+A candidate carrying nothing about x beyond the price path is V̂ = P e^{−x̂}; its within-τ share is bounded by
+2Φ(τ/(s_x√(1−B))) − 1 with s_x from the volatility identity and B the Appendix-B bound. The rule replaces the hard-coded
+1 % floor (weakness 32), which stays behind the `gates="v2"` switch.
+
+<!-- table:e6_5 -->
+s_x = 0.0656; B (day 200) = 0.2005; ceiling at 5 % = 0.6060; half-width 0.0107; **margin 0.6167**; trivial line (generator) 0.426 [0.416, 0.437].
+
+| candidate | within-5 % | passes the derived ceiling |
 |---|---|---|
-| default (50 seeds) | 8 / 7 | `checklist_v2.md` |
-| `fw_index` (FW 2012 index parameters, half-life ≈ 610 d) | 8 / 7 | the plan's index-parameter sensitivity |
-| `pruna` (Pruna et al. 2016) | 7 / 8 | |
-| `fw_hl60` (60-day stationary half-life) | 7 / 8 | short-persistence bracket |
-| `scale_mode = omega` (plan-literal omega multipliers) | 7 / 8 | cannot reach the panic targets (A3) |
-| panic multiplier 3 | 9 / 6 | sensitivity range 3-6 |
-| panic multiplier 6 | 8 / 7 | |
-Counts are pass / fail of the 15 applicable rows, read from the CSVs (v2.1 Phase 0 corrected five footers that disagreed with their own tables: the counts above are the corrected ones; weakness item 39). At 25 seeds the margin items (2, 6, 7, 8, 13) flip between variants at random, so "stable across variants" is not a supported statement. Items 9 and 11 are calibration targets (phi; hazard/cap) and pass by construction; the sustained-bull control runs at
-variance multiplier 1.0 (review R1-D5) and its rejection rate (39.8 % at 50 seeds) is published.
+| k * P (price itself) (e5_after L1) | 0.426 | PASS |
+| k * P * dividend_yield (e5_after L1) | 0.036 | PASS |
+| k * P / reported_PE (e5_after L1) | 0.036 | PASS |
+| k * analyst_fair_value (e5_after L1) | 0.030 | PASS |
+| k*price (e5_7b/final l1ext) | 0.426 | PASS |
+| k*P/PE (e5_7b/final l1ext) | 0.033 | PASS |
+| k*P*DY (e5_7b/final l1ext) | 0.036 | PASS |
+| k*F (e5_7b/final l1ext) | 0.030 | PASS |
+| k*sqrt(price*P/PE) (e5_7b/final l1ext) | 0.072 | PASS |
+| k*sqrt(price*P*DY) (e5_7b/final l1ext) | 0.074 | PASS |
+| k*sqrt(price*F) (e5_7b/final l1ext) | 0.065 | PASS |
+| lsq(price) (e5_7b/final l1ext) | 0.397 | PASS |
+| lsq(P/PE) (e5_7b/final l1ext) | 0.206 | PASS |
+| lsq(P*DY) (e5_7b/final l1ext) | 0.189 | PASS |
+| lsq(F) (e5_7b/final l1ext) | 0.216 | PASS |
+| lsq(price+P/PE) (e5_7b/final l1ext) | 0.376 | PASS |
+| lsq(price+P*DY) (e5_7b/final l1ext) | 0.343 | PASS |
+| lsq(price+F) (e5_7b/final l1ext) | 0.399 | PASS |
+| lsq(P/PE+P*DY) (e5_7b/final l1ext) | 0.175 | PASS |
+| lsq(P/PE+F) (e5_7b/final l1ext) | 0.201 | PASS |
+| lsq(P*DY+F) (e5_7b/final l1ext) | 0.187 | PASS |
+| lsq(price+P/PE+P*DY) (e5_7b/final l1ext) | 0.323 | PASS |
+| lsq(price+P/PE+F) (e5_7b/final l1ext) | 0.377 | PASS |
+| lsq(price+P*DY+F) (e5_7b/final l1ext) | 0.345 | PASS |
+| lsq(P/PE+P*DY+F) (e5_7b/final l1ext) | 0.175 | PASS |
+| median(valuation candidates) (e5_7b/final l1ext) | 0.043 | PASS |
+| best = k*price (e5_7b/final l1ext (best)) | 0.426 | PASS |
+<!-- /table:e6_5 -->
 
-## 6. Sensitivities still to run (E6)
-cost tier and visibility, ISFJ target, delta set, k range, start design, action interface, field order, horizon
-disclosure (harness factors exist; LLM runs pending); FW index parameters and `scale_mode='omega'` as generator
-sensitivities (flags exist). Single-stock SMM attempted on real data and rejected (J = 408; DECISION_LOG row 2 note). J-profile over phi (`fw_J_profile.csv`, other parameters at the index set, scale-free diagonal weights): J ranges 2.9-3.2 over phi in [0.03, 2.0] -- the nine FW return-moments are flat in the mispricing persistence, i.e. not identified.
+### 5.2 L2 — the analytic bound, the sweep check, the calm-channel ladder (E6.6; `generated/v2_1/e6_6/`)
 
-## 7. L5 observables oracle (`generated/l5_observables_oracle.md`)
-GBT on the rendered fields (+5 lags), training seeds 500-511, evaluated on seeds 0-9 (**10 evaluation seeds, no intervals** — weakness item 43; re-run in v2.1 Phase 0 after the analyst fix): per-phase OOS R2 of x_hat = 0.95 / 0.97 / 0.93 (calm / event / resolution) for the full field set and 0.90 / 0.91 / 0.80 for price-and-technicals only. The gap (MCR of the L5 policy minus MCR of the true-V mandate-conditional oracle, theta 0.05) is 0.018-0.019 in bull-trap and crash, 0.031-0.032 in flat and 0.085-0.086 in sustained bull for the full set (before the analyst fix: 0.019 / 0.019 / 0.041-0.042 / 0.071-0.072), and 0.026-0.027 / 0.037-0.038 / 0.078-0.080 for price-only (unchanged by the fix). **Reading (corrected in v2.1 Phase 0):** this policy is trained across seeds on fields that include the price LEVEL, and every run starts at V_1 = P_1 = 100, so it learns the start-price anchor (weakness items 1, 43): a level-free reader reaches sign accuracy 0.74 on resolvable steps instead of 0.95 (`generated/v2_1/findings_reproduction.md`, block R3), and a two-line rule that compares the price with 100 already reaches MCR 0.009-0.018 in flat, crash and bull-trap. The earlier sentence "the environment withholds the level of value, not the direction of mispricing" is withdrawn: the level of V is recoverable to ~4-5 % MAPE by a fitted model, and the direction is recoverable through the anchor. What a level-free reader can infer is Phase 1's question (E1.6, the Kalman bound of the plan's Appendix B), and the L5 oracle is re-specified level-free there.
+The steady-state Kalman bound (Appendix B, `tools/phase1/kalman_bound.py`, verified against LOG §3) at the parameters in
+force — σ_V and h from the parameter files, **s_x derived from sbar, λ and σ_J** (no file stores a stationary sd(x)) —
+checked against the surrogate at every point of Phase 1's sweep, and the nonlinear allowance measured on the ladder from
+the exact Gaussian process to the generator's own calm rows. The rule that reads it (G4's second clause) is
+`PREREG_PHASE_6.md` 7.3.
+
+<!-- table:e6_6 -->
+Adopted: σ_V = 0.014573, h = 22.38 d, s_x = 0.0656 (identity with the jumps); bound window average **0.1773**, day 200 **0.2005**, steady 0.2006. Sweep: 40 points, CI lower end above the window-average bound at 0, above the day-200 bound at 0.
+
+| rung | arm | n | level-free R²(x) [CI] | bound (window) | increment |
+|---|---|---|---|---|---|
+| 1 | E3.8: exact (the bound's model) | 200 | 0.1453 [0.1076, 0.1759] | 0.1633 | — |
+| 2 | E3.8: + GJR-t innovation (block in force) | 200 | 0.1454 [0.0962, 0.1838] | 0.1633 | +0.0001 |
+| 3 | E3.8: + jumps (FIT lambda, sigma_J) | 200 | 0.1918 [0.1047, 0.2882] | 0.1773 | +0.0465 |
+| 4 | E3.8: + GJR-t + jumps (the Phase-3 x innovation) | 200 | 0.2025 [0.1409, 0.2625] | 0.1773 | +0.0107 |
+| 5 | generator flat, feedback OFF (b_pred = b_rev = 0) | 200 | 0.2204 [0.1599, 0.2801] | 0.1714 | +0.0179 |
+| 6 | generator flat, as deployed (feedback ON) | 200 | 0.2217 [0.1611, 0.2813] | 0.1716 | +0.0014 |
+| 7 | generator, every calm row of the SEP panel (flat + pre-event calm) | 1600 | 0.2912 [0.2637, 0.3179] | 0.1695 | +0.0694 |
+<!-- /table:e6_6 -->
+
+### 5.3 L2 and L2b — the target-permutation nulls and the derived margins (E6.6, E6.7; `generated/v2_1/e6_6/null/`)
+
+Each path's target (x for L2, the macro-label vector for L2b) swapped whole with another path's, both feature sets
+refitted with the audit's estimator at the panel's n; the margin is the null's 95th percentile plus the paired sampling
+half-width (the centred margin is the registered sensitivity). The margins are written to the criteria file's `gates`
+block by `tools/phase6/e6_criteria_extra.py --stages gates` and read back by `test_l2_gate_derived`.
+
+<!-- table:e6_null -->
+*(pending: the nulls are running)*
+<!-- /table:e6_null -->
+
+### 5.4 L2c — the onset audit
+
+The addendum §1.3 rule on 200 crash + 200 bull-trap seeds with 500 circular shifts; the Phase-5 final state's run
+(`generated/v2_1/e5_7c/final/onset.json`: PASS at all six transitions under the non-price rule; nine (transition, field)
+failures under the rule as registered, all but one a price-derived technical) is the frozen generator's L2c, the path-hash
+fixture proving the state unchanged.
+
+## 6. The checklist on the frozen generator at the registered n (`generated/v2_1/e6_after_checklist*`)
+
+<!-- table:e6_after -->
+*(pending: the 500-seed checklist is running)*
+<!-- /table:e6_after -->
+
+## 7. The audits on the frozen generator under the derived gates (`generated/v2_1/e6_after/`)
+
+*(pending: `audit_after_derived.md` — L1 under the derived ceiling, L2 all-rows and calm-trained selectivity against the
+derived margins, L2b against its margin, the held-out-scenario split, MAPE(V) with intervals; every number carries its n
+and its interval, and no path is subsampled — `test_no_subsampling_in_published_audit`.)*
+
+## 8. 16A (`generated/v2_1/e6_16a/16A.md`)
+
+*(pending: G1–G4 under the criterion as written, θ = 0.05 the checkpoint, {0.03, 0.08, 0.12, 0.20} sensitivities; the
+D17 options laid out in the report if any gate fails.)*
+
+## 9. The tuned-parameter ledger
+
+`v2_1/PHASE_6_REPORT.md` section 3.10: every item whose threshold moved in v2 (7, 9, 10, 11, 13, 17, 20; amendments A1,
+A2, A6, A7, A8), the parameters tuned against it, and the pre-amendment results beside the amended ones.

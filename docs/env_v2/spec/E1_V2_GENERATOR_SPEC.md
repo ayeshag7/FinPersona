@@ -175,7 +175,23 @@ volume_ratio against the 20-day mean. The v2 loading 1.2 |x_(t-j)| (no read sour
 Design B adds beta_ru max(ret_252, 0) with beta_ru = -0.012 (FIT, sign-unstable across sub-periods; the run-up turnover ratio is
 0.985 [0.969, 0.999], below 1) and is switchable. v2's rho 0.65 / 0.25 |r| / 1.2 |x| / 0.30 is retrievable under design "v2".
 
-## 7. Validation status (final E1/E2 calibration; 50 seeds per scenario, crash per delta, T = 200)
+## 7. Validation status — **rewritten by v2.1 Phase 6: the criteria are FIT from real 200-day windows and the gates derived, not stated (`spec/CALIBRATION_REPORT.md`, the E6 appendix; `v2_1/PREREG_PHASE_6.md`; `v2_1/PHASE_6_REPORT.md`)**
+
+**How the checklist is judged from Phase 6 on.** Three criterion forms per item (REG-14): **A**, the v2 numeric bands
+below, reported for continuity; **B**, KS-equivalence to the reference distribution of the same statistic over 12,927
+real 200-day windows of 417 large-cap names (the bootstrap 95 % upper limit of the two-sample KS distance below 0.10);
+**C**, the share inside the reference P10–P90 at or above 0.80 minus the share's sampling half-width. Both B and C
+compare the generator's windows with real windows measured by the **same estimator** (`evaluation/reference_stats.py`),
+so the T = 200 biases E6.9 measured (the Hill index at a 5 % depth, the sample kurtosis of a heavy tail, the ACF of a
+persistent process) fall on both sides; B's measured size is zero at n_gen = 200 and full at 800, so it decides only at
+n ≥ its threshold (`evaluation/params/phase6_criteria.json`), and the final checklist runs at **500 seeds per scenario**.
+The leakage gates: L1's floor is derived from the x process (E6.5), L2's and L2b's margins from target-permutation nulls
+simulated with the real estimator on the 1,600-path panel (E6.6, E6.7), and G4's second clause from the Appendix-B
+bound plus the nonlinear allowance measured on a Gaussian control ladder. The switches (`run_audit(gates="derived")`,
+`stylized_facts.run_checklist_reference`) leave the v2 behaviour bit-identical when off. **The frozen generator's
+results under all three forms, at the registered n, are in the E6 appendix (sections 6–8) as they land.**
+
+### 7.1 The v2 validation status as it stood (final E1/E2 calibration; 50 seeds per scenario, crash per delta, T = 200; retained for the ledger)
 `generated/checklist_v2.md` — **8 pass / 7 fail / 5 n-a** of 20 rows (v1 baseline: 3 / 10 / 7 — v1 has 20 rows too, of which 7 are n-a because item 11's topped share and item 17 are not defined for v1); "7 n-a" for v2 was a miscount corrected in v2.1 Phase 0. **n per item**: 470 pooled paths for items 2, 3, 5, 6, 7, 12, 13, 15, 17; 100 for item 1; 150 crash paths for 8 and 10; 200 for 20; 50 bull paths for 11; items 4 and 9 use the **20 T = 800 paths** (not 50 seeds).
 
 | # | Result | Statistic (50 seeds) | Note |

@@ -211,25 +211,34 @@ def render(text: str) -> tuple:
     return text, status
 
 
+APPENDIX = os.path.join(ROOT, "docs", "env_v2", "spec", "CALIBRATION_REPORT.md")
+FILES = [REPORT, APPENDIX]
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--files", default=None, help="comma list; default: the report and the calibration appendix")
     a = ap.parse_args(argv)
-    with open(REPORT, "r", encoding="utf-8") as fh:
-        text = fh.read()
-    new, status = render(text)
-    for k, v in status.items():
-        print(f"{k:9s} {v}")
-    if a.check:
-        stale = [k for k, v in status.items() if v == "updated"]
-        if stale:
-            print("STALE blocks:", stale); return 1
-        return 0
-    if new != text:
-        with open(REPORT, "w", encoding="utf-8", newline="\n") as fh:
-            fh.write(new)
-        print("report updated")
-    return 0
+    files = [f.strip() for f in a.files.split(",")] if a.files else [f for f in FILES if os.path.exists(f)]
+    rc = 0
+    for path in files:
+        with open(path, "r", encoding="utf-8") as fh:
+            text = fh.read()
+        new, status = render(text)
+        print(os.path.relpath(path, ROOT))
+        for k, v in status.items():
+            if v != "no block":
+                print(f"  {k:9s} {v}")
+        if a.check:
+            stale = [k for k, v in status.items() if v == "updated"]
+            if stale:
+                print("  STALE blocks:", stale); rc = 1
+        elif new != text:
+            with open(path, "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(new)
+            print("  updated")
+    return rc
 
 
 if __name__ == "__main__":
