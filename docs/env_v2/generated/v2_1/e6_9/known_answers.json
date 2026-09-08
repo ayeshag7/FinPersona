@@ -1,0 +1,1396 @@
+{
+ "meta": {
+  "root_seed": 20260908,
+  "reps": 400,
+  "garch_reps": 200,
+  "engine_half_life_days": 22.380929759136894,
+  "T_bench": 200,
+  "T_long": 20000,
+  "numpy": "2.4.6",
+  "scipy": "1.18.0",
+  "statsmodels": "0.14.6",
+  "arch": "8.0.0",
+  "generated_utc": "2026-09-08T16:33:27Z"
+ },
+ "cases": [
+  {
+   "name": "acf_ar1_phi0.6_lag1",
+   "statistic": "acf(r, 1)",
+   "kind": "point",
+   "note": "AR(1) with phi = 0.6: ACF(1) = phi^1 exactly.",
+   "target": 0.6,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 11.8,
+     "median": 0.5889919384570493,
+     "mean": 0.5849458836314032,
+     "sd": 0.058754819003461065,
+     "p10": 0.5118917213549485,
+     "p90": 0.6560605955544201,
+     "mcse": 0.0029377409501730534,
+     "bias_median": -0.011008061542950642,
+     "bias_mean": -0.01505411636859677,
+     "rel_bias_median": -0.01834676923825107,
+     "bias_in_mcse": -5.1243852415612
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 3.2,
+     "median": 0.6000429399136142,
+     "mean": 0.6003453202190472,
+     "sd": 0.005745807480590597,
+     "p10": 0.5932872413470596,
+     "p90": 0.6085814219334194,
+     "mcse": 0.00028729037402952984,
+     "bias_median": 4.293991361425942e-05,
+     "bias_mean": 0.0003453202190472071,
+     "rel_bias_median": 7.156652269043237e-05,
+     "bias_in_mcse": 1.2019902170885564
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": 1.2019902170885564,
+    "bias": 0.0003453202190472071,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "acf_ar1_phi0.9_lag5",
+   "statistic": "acf(r, 5)",
+   "kind": "point",
+   "note": "AR(1) with phi = 0.9: ACF(5) = phi^5 exactly.",
+   "target": 0.5904900000000001,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.4,
+     "median": 0.5222629765720281,
+     "mean": 0.5081025338548746,
+     "sd": 0.1255672419471334,
+     "p10": 0.34594091005997896,
+     "p90": 0.6698296069703379,
+     "mcse": 0.00627836209735667,
+     "bias_median": -0.06822702342797193,
+     "bias_mean": -0.08238746614512549,
+     "rel_bias_median": -0.11554306326605349,
+     "bias_in_mcse": -13.122445769703607
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 6.0,
+     "median": 0.5908363933586758,
+     "mean": 0.5905261725185366,
+     "sd": 0.01125779152691259,
+     "p10": 0.5770439047020051,
+     "p90": 0.6054863147357353,
+     "mcse": 0.0005628895763456294,
+     "bias_median": 0.00034639335867570065,
+     "bias_mean": 3.6172518536492504e-05,
+     "rel_bias_median": 0.0005866201945430077,
+     "bias_in_mcse": 0.06426219289994739
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": 0.06426219289994739,
+    "bias": 3.6172518536492504e-05,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "acf_ar1_engine_persistence_lag1",
+   "statistic": "acf(x, 1) on the engine's persistence",
+   "kind": "point",
+   "note": "AR(1) at the engine's fitted half-life (22.3809 d, phi = 0.969504). Item 9's criterion (ACF(1) >= 0.98) is read off this estimator, so its downward bias at T = 200 is exactly what decides whether that criterion is meetable on a 200-day window.",
+   "target": 0.9695042338698215,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.8,
+     "median": 0.9468456585102459,
+     "mean": 0.9416389652227275,
+     "sd": 0.02644346733238461,
+     "p10": 0.9060659079627575,
+     "p90": 0.9684235368359597,
+     "mcse": 0.0013221733666192305,
+     "bias_median": -0.022658575359575606,
+     "bias_mean": -0.027865268647094044,
+     "rel_bias_median": -0.02337130109183004,
+     "bias_in_mcse": -21.07535165251812
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 5.4,
+     "median": 0.9694538294397514,
+     "mean": 0.9693758864771539,
+     "sd": 0.00166497708300601,
+     "p10": 0.9672339474651623,
+     "p90": 0.9715375227323938,
+     "mcse": 8.32488541503005e-05,
+     "bias_median": -5.040443007009454e-05,
+     "bias_mean": -0.00012834739266764927,
+     "rel_bias_median": -5.198990196144157e-05,
+     "bias_in_mcse": -1.5417316427674337
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -1.5417316427674337,
+    "bias": -0.00012834739266764927,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "half_life_ar1_engine",
+   "statistic": "half-life from ACF(1)",
+   "kind": "point",
+   "note": "The half-life item 9 reports, -log2/log(ACF(1)); inherits the ACF's bias nonlinearly.",
+   "target": 22.380929759136894,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.8,
+     "median": 12.690546526294712,
+     "mean": 13.949617611040107,
+     "sd": 6.24541451795907,
+     "p10": 7.026819278665857,
+     "p90": 21.603192752775172,
+     "mcse": 0.31227072589795346,
+     "bias_median": -9.690383232842182,
+     "bias_mean": -8.431312148096787,
+     "rel_bias_median": -0.43297500761272595,
+     "bias_in_mcse": -27.00000816231504
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 5.3,
+     "median": 22.343422820586085,
+     "mean": 22.352795642529987,
+     "sd": 1.2414884102603552,
+     "p10": 20.805942321190663,
+     "p90": 24.004776348091536,
+     "mcse": 0.06207442051301776,
+     "bias_median": -0.03750693855080911,
+     "bias_mean": -0.0281341166069069,
+     "rel_bias_median": -0.0016758436291279234,
+     "bias_in_mcse": -0.45323204589572985
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -0.45323204589572985,
+    "bias": -0.0281341166069069,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "sd_ar1_engine",
+   "statistic": "sd(x)",
+   "kind": "point",
+   "note": "Stationary sd of the AR(1) = sd_e / sqrt(1 - phi^2); item 9's sd(x) band is read off this.",
+   "target": 4.080390863201866,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.6,
+     "median": 3.3475754737470016,
+     "mean": 3.4003638583372156,
+     "sd": 0.7824606303325573,
+     "p10": 2.4205020576501854,
+     "p90": 4.49977962057374,
+     "mcse": 0.03912303151662787,
+     "bias_median": -0.7328153894548644,
+     "bias_mean": -0.6800270048646504,
+     "rel_bias_median": -0.1795944099531257,
+     "bias_in_mcse": -17.381756436119446
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 2.7,
+     "median": 4.073581297895878,
+     "mean": 4.079882433348152,
+     "sd": 0.11246480283690787,
+     "p10": 3.9404176553821415,
+     "p90": 4.2265237628639865,
+     "mcse": 0.005623240141845393,
+     "bias_median": -0.006809565305988308,
+     "bias_mean": -0.0005084298537143539,
+     "rel_bias_median": -0.0016688512287876436,
+     "bias_in_mcse": -0.09041581737384262
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -0.09041581737384262,
+    "bias": -0.0005084298537143539,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "acf_logvolume_ar1",
+   "statistic": "acf(log volume, 1)",
+   "kind": "point",
+   "note": "Item 7's log-volume AC(1) on a log-AR(1) volume series with phi = 0.65.",
+   "target": 0.65,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.5,
+     "median": 0.6389631134384364,
+     "mean": 0.6337713210152871,
+     "sd": 0.056454775394317515,
+     "p10": 0.5613445531996163,
+     "p90": 0.7008452143429811,
+     "mcse": 0.0028227387697158757,
+     "bias_median": -0.011036886561563652,
+     "bias_mean": -0.01622867898471292,
+     "rel_bias_median": -0.016979825479328695,
+     "bias_in_mcse": -5.749267044766748
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 4.3,
+     "median": 0.6500819202936629,
+     "mean": 0.6503263489052392,
+     "sd": 0.005472692420988364,
+     "p10": 0.6434238799098134,
+     "p90": 0.6581427737189138,
+     "mcse": 0.0002736346210494182,
+     "bias_median": 8.192029366282938e-05,
+     "bias_mean": 0.00032634890523919324,
+     "rel_bias_median": 0.0001260312210197375,
+     "bias_in_mcse": 1.1926447902959432
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": 1.1926447902959432,
+    "bias": 0.00032634890523919324,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "kurtosis_t5",
+   "statistic": "scipy kurtosis (excess)",
+   "kind": "point",
+   "note": "Student-t(5): excess kurtosis = 6/(nu-4) = 6.",
+   "target": 6.0,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.5,
+     "median": 1.7717224053934073,
+     "mean": 2.666455262995097,
+     "sd": 2.9936480910417784,
+     "p10": 0.5778066822761964,
+     "p90": 6.002719980657946,
+     "mcse": 0.14968240455208892,
+     "bias_median": -4.228277594606593,
+     "bias_mean": -3.333544737004903,
+     "rel_bias_median": -0.7047129324344321,
+     "bias_in_mcse": -22.27078558084522
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.8,
+     "median": 4.371981352128514,
+     "mean": 5.0708493130281,
+     "sd": 3.006323052906699,
+     "p10": 3.2095806469815593,
+     "p90": 7.082320133543301,
+     "mcse": 0.15031615264533496,
+     "bias_median": -1.6280186478714862,
+     "bias_mean": -0.9291506869718997,
+     "rel_bias_median": -0.27133644131191437,
+     "bias_in_mcse": -6.181309663800365
+    }
+   },
+   "verdict": {
+    "status": "fail",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -6.181309663800365,
+    "bias": -0.9291506869718997,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "kurtosis_normal",
+   "statistic": "scipy kurtosis (excess)",
+   "kind": "point",
+   "note": "Gaussian: excess kurtosis 0. Item 2's threshold is > 1.5, so the null's spread at T = 200 sets its size.",
+   "target": 0.0,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.4,
+     "median": -0.04953751857826605,
+     "mean": -0.01073569308179506,
+     "sd": 0.34787441358459714,
+     "p10": -0.4213162736332284,
+     "p90": 0.4766080642190384,
+     "mcse": 0.017393720679229858,
+     "bias_median": -0.04953751857826605,
+     "bias_mean": -0.01073569308179506,
+     "rel_bias_median": null,
+     "bias_in_mcse": -0.6172165967120959
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.6,
+     "median": 0.0006607185842097962,
+     "mean": -0.0018502967273529413,
+     "sd": 0.03770401188274003,
+     "p10": -0.05357111208301841,
+     "p90": 0.04283755943087177,
+     "mcse": 0.0018852005941370014,
+     "bias_median": 0.0006607185842097962,
+     "bias_mean": -0.0018502967273529413,
+     "rel_bias_median": null,
+     "bias_in_mcse": -0.9814853300531458
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -0.9814853300531458,
+    "bias": -0.0018502967273529413,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "skew_normal",
+   "statistic": "scipy skew",
+   "kind": "point",
+   "note": "Gaussian: skew 0. Item 8's criterion is skew < 0.",
+   "target": 0.0,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.3,
+     "median": -0.00031702038646499607,
+     "mean": -0.0029595681627018057,
+     "sd": 0.1760712056529267,
+     "p10": -0.2372984992207257,
+     "p90": 0.23504256451269845,
+     "mcse": 0.008803560282646335,
+     "bias_median": -0.00031702038646499607,
+     "bias_mean": -0.0029595681627018057,
+     "rel_bias_median": null,
+     "bias_in_mcse": -0.3361785536399104
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.9,
+     "median": -0.0007652708126220245,
+     "mean": -0.00043522124400311254,
+     "sd": 0.017217441797374788,
+     "p10": -0.02268661742809907,
+     "p90": 0.021721699304263663,
+     "mcse": 0.0008608720898687393,
+     "bias_median": -0.0007652708126220245,
+     "bias_mean": -0.00043522124400311254,
+     "rel_bias_median": null,
+     "bias_in_mcse": -0.5055585482733823
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -0.5055585482733823,
+    "bias": -0.00043522124400311254,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "hill_pareto_alpha3",
+   "statistic": "hill_index(r, 0.05)",
+   "kind": "point",
+   "note": "|r| ~ Pareto(3): the Hill estimator targets the tail index 3 exactly. Item 2's Hill band is 2.5-5.",
+   "target": 3.0,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.3,
+     "median": 3.1720378269615392,
+     "mean": 3.3379218060630285,
+     "sd": 1.081785785689458,
+     "p10": 2.169383292423199,
+     "p90": 4.8271269365754845,
+     "mcse": 0.054089289284472895,
+     "bias_median": 0.17203782696153924,
+     "bias_mean": 0.33792180606302846,
+     "rel_bias_median": 0.05734594232051308,
+     "bias_in_mcse": 6.247480980676035
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.6,
+     "median": 2.999214667449475,
+     "mean": 3.0009289467764493,
+     "sd": 0.10148356497044134,
+     "p10": 2.871733055812001,
+     "p90": 3.1269392403230225,
+     "mcse": 0.005074178248522067,
+     "bias_median": -0.0007853325505249309,
+     "bias_mean": 0.0009289467764492798,
+     "rel_bias_median": -0.00026177751684164363,
+     "bias_in_mcse": 0.18307334329846414
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": 0.18307334329846414,
+    "bias": 0.0009289467764492798,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "hill_t4",
+   "statistic": "hill_index(r, 0.05)",
+   "kind": "point",
+   "note": "Student-t(4) has tail index 4; the Hill estimator is consistent but at T = 200 it uses only max(10, 0.05*200) = 10 order statistics, so the bias here is the honest size of item 2's Hill band.",
+   "target": 4.0,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.3,
+     "median": 3.212477433511235,
+     "mean": 3.462193011048249,
+     "sd": 1.1914341707306053,
+     "p10": 2.2671386420665964,
+     "p90": 5.0367793813259,
+     "mcse": 0.059571708536530266,
+     "bias_median": -0.7875225664887648,
+     "bias_mean": -0.5378069889517509,
+     "rel_bias_median": -0.1968806416221912,
+     "bias_in_mcse": -9.02789263836473
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.7,
+     "median": 3.197767357564009,
+     "mean": 3.197259254009731,
+     "sd": 0.08865557889314955,
+     "p10": 3.082256722248754,
+     "p90": 3.309810215147835,
+     "mcse": 0.004432778944657477,
+     "bias_median": -0.8022326424359911,
+     "bias_mean": -0.8027407459902691,
+     "rel_bias_median": -0.20055816060899778,
+     "bias_in_mcse": -181.0919867677492
+    }
+   },
+   "verdict": {
+    "status": "fail",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -181.0919867677492,
+    "bias": -0.8027407459902691,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "garch_persistence",
+   "statistic": "garch_fit -> alpha + beta",
+   "kind": "point",
+   "note": "GARCH(1,1) simulated at alpha = 0.08, beta = 0.9; item 5's criterion is median alpha+beta in [0.90, 0.995].",
+   "target": 0.98,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 200,
+     "n_finite": 200,
+     "seconds": 5.3,
+     "median": 0.9626944491298963,
+     "mean": 0.9039817162034314,
+     "sd": 0.14263878400956834,
+     "p10": 0.7021187469021027,
+     "p90": 0.9956066577883101,
+     "mcse": 0.010086085143336905,
+     "bias_median": -0.01730555087010366,
+     "bias_mean": -0.07601828379656861,
+     "rel_bias_median": -0.017658725377656795,
+     "bias_in_mcse": -7.536946467955211
+    },
+    "20000": {
+     "n_reps": 200,
+     "n_finite": 200,
+     "seconds": 23.4,
+     "median": 0.9796694815052751,
+     "mean": 0.9795179699381543,
+     "sd": 0.0025381687536251397,
+     "p10": 0.9764664751447478,
+     "p90": 0.9827657552116683,
+     "mcse": 0.00017947563374841435,
+     "bias_median": -0.00033051849472487405,
+     "bias_mean": -0.0004820300618456619,
+     "rel_bias_median": -0.0003372637701274225,
+     "bias_in_mcse": -2.6857688243149638
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -2.6857688243149638,
+    "bias": -0.0004820300618456619,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "garch_alpha",
+   "statistic": "garch_fit -> alpha",
+   "kind": "point",
+   "note": "The ARCH coefficient of the same simulation.",
+   "target": 0.08,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 200,
+     "n_finite": 200,
+     "seconds": 5.8,
+     "median": 0.06495169171021753,
+     "mean": 0.06986910684749176,
+     "sd": 0.05800219032623791,
+     "p10": 9.304958523914252e-17,
+     "p90": 0.14879975412616783,
+     "mcse": 0.004101374210335559,
+     "bias_median": -0.015048308289782472,
+     "bias_mean": -0.010130893152508244,
+     "rel_bias_median": -0.1881038536222809,
+     "bias_in_mcse": -2.4701216306910387
+    },
+    "20000": {
+     "n_reps": 200,
+     "n_finite": 200,
+     "seconds": 33.7,
+     "median": 0.0796080343799004,
+     "mean": 0.07966813030260328,
+     "sd": 0.0040031002380026895,
+     "p10": 0.07469178394190233,
+     "p90": 0.08505906266551401,
+     "mcse": 0.0002830619324061184,
+     "bias_median": -0.00039196562009960467,
+     "bias_mean": -0.00033186969739672223,
+     "rel_bias_median": -0.004899570251245058,
+     "bias_in_mcse": -1.1724278661412433
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -1.1724278661412433,
+    "bias": -0.00033186969739672223,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "gjr_gamma",
+   "statistic": "garch_fit(o=1) -> gamma",
+   "kind": "point",
+   "note": "GJR-GARCH simulated at gamma = 0.1; item 6's criterion is gamma > 0.",
+   "target": 0.1,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 200,
+     "n_finite": 200,
+     "seconds": 8.1,
+     "median": 0.09806888705475197,
+     "mean": 0.1049452375014862,
+     "sd": 0.09341519430734377,
+     "p10": -2.217469467576521e-13,
+     "p90": 0.21623173076960142,
+     "mcse": 0.0066054517360581745,
+     "bias_median": -0.0019311129452480313,
+     "bias_mean": 0.004945237501486191,
+     "rel_bias_median": -0.019311129452480313,
+     "bias_in_mcse": 0.7486600007219609
+    },
+    "20000": {
+     "n_reps": 200,
+     "n_finite": 200,
+     "seconds": 26.4,
+     "median": 0.10047807624534905,
+     "mean": 0.10012392228141483,
+     "sd": 0.0067846958363589034,
+     "p10": 0.09042778824262032,
+     "p90": 0.10845243801633818,
+     "mcse": 0.0004797504434177515,
+     "bias_median": 0.0004780762453490406,
+     "bias_mean": 0.00012392228141482053,
+     "rel_bias_median": 0.004780762453490406,
+     "bias_in_mcse": 0.2583057152214301
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": 0.2583057152214301,
+    "bias": 0.00012392228141482053,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "leverage_corr_symmetric",
+   "statistic": "corr(r_t, |r_t+1|)",
+   "kind": "point",
+   "note": "A symmetric GARCH has no leverage effect: the correlation is 0. Item 6 asks for it to be negative in >= 70 % of seeds, so this case measures that share's null.",
+   "target": 0.0,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.8,
+     "median": -0.004676117952821383,
+     "mean": 0.0009259046445775964,
+     "sd": 0.08255053810130161,
+     "p10": -0.10549608709353615,
+     "p90": 0.11151256664937119,
+     "mcse": 0.0041275269050650805,
+     "bias_median": -0.004676117952821383,
+     "bias_mean": 0.0009259046445775964,
+     "rel_bias_median": null,
+     "bias_in_mcse": 0.22432431474677383
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 13.0,
+     "median": -5.059789076229131e-06,
+     "mean": -0.0003872236473583114,
+     "sd": 0.009863483181575903,
+     "p10": -0.011843343935813945,
+     "p90": 0.010978581844344982,
+     "mcse": 0.0004931741590787951,
+     "bias_median": -5.059789076229131e-06,
+     "bias_mean": -0.0003872236473583114,
+     "rel_bias_median": null,
+     "bias_in_mcse": -0.7851661329571895
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": -0.7851661329571895,
+    "bias": -0.0003872236473583114,
+    "exact_to_float": false,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "leverage_corr_gjr",
+   "statistic": "corr(r_t, |r_t+1|)",
+   "kind": "point",
+   "note": "The same statistic under a true leverage effect (gamma = 0.10). No closed form; the long-horizon value IS the reference, and the T = 200 spread is what item 6's share criterion has to beat.",
+   "target": null,
+   "target_is_theory": false,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 1.5,
+     "median": -0.0403211755789732,
+     "mean": -0.03481065855897676,
+     "sd": 0.08258924249607362,
+     "p10": -0.13563607565638522,
+     "p90": 0.07696670772607161,
+     "mcse": 0.004129462124803681
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 10.4,
+     "median": -0.043191821665748975,
+     "mean": -0.0438574440818412,
+     "sd": 0.011279706633856825,
+     "p10": -0.057470396285745906,
+     "p90": -0.03147962537954146,
+     "mcse": 0.0005639853316928413
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "mdd_deterministic",
+   "statistic": "mdd(price)",
+   "kind": "point",
+   "note": "A deterministic peak-to-trough path: MDD = 0.9/1.5 - 1 = -0.40 exactly, at every T.",
+   "target": -0.4,
+   "target_is_theory": true,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.5,
+     "median": -0.4,
+     "mean": -0.4,
+     "sd": 0.0,
+     "p10": -0.4,
+     "p90": -0.4,
+     "mcse": 0.0,
+     "bias_median": 0.0,
+     "bias_mean": 0.0,
+     "rel_bias_median": -0.0
+    },
+    "2000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.4,
+     "median": -0.4,
+     "mean": -0.4,
+     "sd": 0.0,
+     "p10": -0.4,
+     "p90": -0.4,
+     "mcse": 0.0,
+     "bias_median": 0.0,
+     "bias_mean": 0.0,
+     "rel_bias_median": -0.0
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "|mean - target| <= 4 * MCSE at the long horizon, or exact to floating point (MCSE degenerate)",
+    "z": null,
+    "bias": 0.0,
+    "exact_to_float": true,
+    "long_horizon": "2000"
+   }
+  },
+  {
+   "name": "ljung_box_size_iid",
+   "statistic": "ljung_box_p(r, 10) > 0.05",
+   "kind": "rate",
+   "note": "Item 1 asks for LB p > 0.05 in >= 80 % of seeds. Under iid the rejection rate must be the nominal 0.05, i.e. the criterion's own null share is 0.95 -- so a 0.80 threshold has slack.",
+   "target": 0.05,
+   "target_is_theory": true,
+   "alpha": 0.05,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 1.6,
+     "rejection_rate": 0.0625,
+     "rate_ci95": [
+      0.04268914140839705,
+      0.0906341161379817
+     ],
+     "size_error": 0.012499999999999997,
+     "nominal": 0.05
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 215.5,
+     "rejection_rate": 0.0575,
+     "rate_ci95": [
+      0.0386175427541441,
+      0.08480083773562183
+     ],
+     "size_error": 0.0075,
+     "nominal": 0.05
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "nominal level inside the Wilson 95 % interval of the realised rejection rate",
+    "rate_ci95": [
+     0.0386175427541441,
+     0.08480083773562183
+    ],
+    "nominal": 0.05,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "ljung_box_power_ar1_015",
+   "statistic": "ljung_box_p(r, 10) < 0.05",
+   "kind": "rate",
+   "note": "Power at phi = 0.15, the edge of item 1's own |ACF(1)| < 0.15 band: how often the LB half of item 1 fires at the point where its ACF half is indifferent.",
+   "target": null,
+   "target_is_theory": false,
+   "alpha": 0.05,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 1.3,
+     "rejection_rate": 0.2725,
+     "rate_ci95": [
+      0.23118490253550236,
+      0.3181431913886147
+     ]
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 187.3,
+     "rejection_rate": 1.0,
+     "rate_ci95": [
+      0.9904877056612815,
+      1.0
+     ]
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "arch_lm_size_iid",
+   "statistic": "arch_lm_p(r, 5) < 0.01",
+   "kind": "rate",
+   "note": "Item 3 asks for ARCH-LM p < 0.01 in >= 80 % of seeds. Size under iid must be 0.01.",
+   "target": 0.01,
+   "target_is_theory": true,
+   "alpha": 0.01,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.8,
+     "rejection_rate": 0.0125,
+     "rate_ci95": [
+      0.00535075077896365,
+      0.028923736201286937
+     ],
+     "size_error": 0.0025000000000000005,
+     "nominal": 0.01
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 7.9,
+     "rejection_rate": 0.0075,
+     "rate_ci95": [
+      0.002553889194659511,
+      0.021815720728978263
+     ],
+     "size_error": -0.0025000000000000005,
+     "nominal": 0.01
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "nominal level inside the Wilson 95 % interval of the realised rejection rate",
+    "rate_ci95": [
+     0.002553889194659511,
+     0.021815720728978263
+    ],
+    "nominal": 0.01,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "arch_lm_power_garch",
+   "statistic": "arch_lm_p(r, 5) < 0.01",
+   "kind": "rate",
+   "note": "Power of item 3's ARCH-LM half at the simulated GARCH.",
+   "target": null,
+   "target_is_theory": false,
+   "alpha": 0.01,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 3.5,
+     "rejection_rate": 0.34,
+     "rate_ci95": [
+      0.2952956192669628,
+      0.38774831492142725
+     ]
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 36.1,
+     "rejection_rate": 1.0,
+     "rate_ci95": [
+      0.9904877056612815,
+      1.0
+     ]
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "lb_abs_r_power_garch",
+   "statistic": "ljung_box_p(|r|, 10) < 0.01",
+   "kind": "rate",
+   "note": "Power of item 3's LB|r| half at the simulated GARCH.",
+   "target": null,
+   "target_is_theory": false,
+   "alpha": 0.01,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 3.8,
+     "rejection_rate": 0.4,
+     "rate_ci95": [
+      0.3531615288831432,
+      0.4487409299846006
+     ]
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 279.1,
+     "rejection_rate": 1.0,
+     "rate_ci95": [
+      0.9904877056612815,
+      1.0
+     ]
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "shapiro_size_normal",
+   "statistic": "shapiro(log v) < 0.01",
+   "kind": "rate",
+   "note": "Item 7 (amendment A1) asks for Shapiro p > 0.01 on log volume in >= 50 % of seeds. Under exact log-normality the rejection rate must be 0.01, so the null share is 0.99.",
+   "target": 0.01,
+   "target_is_theory": true,
+   "alpha": 0.01,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.7,
+     "rejection_rate": 0.015,
+     "rate_ci95": [
+      0.0068922919182397985,
+      0.0323346335903172
+     ],
+     "size_error": 0.004999999999999999,
+     "nominal": 0.01
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 3.1,
+     "rejection_rate": 0.0075,
+     "rate_ci95": [
+      0.002553889194659511,
+      0.021815720728978263
+     ],
+     "size_error": -0.0025000000000000005,
+     "nominal": 0.01
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "nominal level inside the Wilson 95 % interval of the realised rejection rate",
+    "rate_ci95": [
+     0.002553889194659511,
+     0.021815720728978263
+    ],
+    "nominal": 0.01,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "jarque_bera_size_normal",
+   "statistic": "jarque_bera(r) < 0.05",
+   "kind": "rate",
+   "note": "Item 2 reports the JB rejection share; its size under a Gaussian must be 0.05.",
+   "target": 0.05,
+   "target_is_theory": true,
+   "alpha": 0.05,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.8,
+     "rejection_rate": 0.0425,
+     "rate_ci95": [
+      0.026701694988252065,
+      0.06700205433167543
+     ],
+     "size_error": -0.0075,
+     "nominal": 0.05
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 2.0,
+     "rejection_rate": 0.0725,
+     "rate_ci95": [
+      0.05095051839806298,
+      0.10218249326154139
+     ],
+     "size_error": 0.022499999999999992,
+     "nominal": 0.05
+    }
+   },
+   "verdict": {
+    "status": "fail",
+    "criterion": "nominal level inside the Wilson 95 % interval of the realised rejection rate",
+    "rate_ci95": [
+     0.05095051839806298,
+     0.10218249326154139
+    ],
+    "nominal": 0.05,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "jarque_bera_power_t5",
+   "statistic": "jarque_bera(r) < 0.05",
+   "kind": "rate",
+   "note": "Power of the JB half of item 2 at Student-t(5).",
+   "target": null,
+   "target_is_theory": false,
+   "alpha": 0.05,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 0.8,
+     "rejection_rate": 0.8525,
+     "rate_ci95": [
+      0.8143999058430038,
+      0.8838939266481998
+     ]
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 2.5,
+     "rejection_rate": 1.0,
+     "rate_ci95": [
+      0.9904877056612815,
+      1.0
+     ]
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "arch_lm_power_block_in_force",
+   "statistic": "arch_lm_p(r, 5) < 0.01",
+   "kind": "rate",
+   "note": "Power of item 3's ARCH-LM half against the generator's own GJR-GARCH shape (alpha 0.027, gamma 0.058, beta 0.932, sbar 0.0151; e3_4/block.json, Gaussian innovations). Item 3 asks for p < 0.01 in >= 80 % of seeds.",
+   "target": null,
+   "target_is_theory": false,
+   "alpha": 0.01,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 24.9,
+     "rejection_rate": 0.2325,
+     "rate_ci95": [
+      0.1937664071126557,
+      0.27632267035855884
+     ]
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 53.2,
+     "rejection_rate": 1.0,
+     "rate_ci95": [
+      0.9904877056612815,
+      1.0
+     ]
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "lb_abs_r_power_block_in_force",
+   "statistic": "ljung_box_p(|r|, 10) < 0.01",
+   "kind": "rate",
+   "note": "Power of item 3's LB|r| half against the generator's own shape (alpha 0.027, gamma 0.058, beta 0.932, sbar 0.0151).",
+   "target": null,
+   "target_is_theory": false,
+   "alpha": 0.01,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 4.9,
+     "rejection_rate": 0.275,
+     "rate_ci95": [
+      0.23353872470184503,
+      0.3207418077505784
+     ]
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 519.2,
+     "rejection_rate": 1.0,
+     "rate_ci95": [
+      0.9904877056612815,
+      1.0
+     ]
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "acf1_absr_block_in_force",
+   "statistic": "acf(|r|, 1)",
+   "kind": "point",
+   "note": "Item 3's ACF|r|(1) band (0.1-0.4) against the generator's own shape (alpha 0.027, gamma 0.058, beta 0.932, sbar 0.0151); no closed form, the long-horizon value is the reference and the T = 200 spread is what the band has to hold.",
+   "target": null,
+   "target_is_theory": false,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 2.9,
+     "median": 0.056951280505878464,
+     "mean": 0.06860968714318574,
+     "sd": 0.08721075782931223,
+     "p10": -0.03080172092924646,
+     "p90": 0.1861026759345141,
+     "mcse": 0.004360537891465612
+    },
+    "20000": {
+     "n_reps": 400,
+     "n_finite": 400,
+     "seconds": 28.1,
+     "median": 0.15313351288163524,
+     "mean": 0.15851550599800085,
+     "sd": 0.02893791588056488,
+     "p10": 0.12890624232265466,
+     "p90": 0.19539838047990535,
+     "mcse": 0.0014468957940282439
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "jarque_bera_size_normal_recheck",
+   "statistic": "jarque_bera(r) < 0.05",
+   "kind": "rate",
+   "note": "Re-measurement of the JB size (the first run's long-horizon rate was 0.0725 [0.051, 0.102] at 400 reps, the nominal 0.05 just outside the interval); 2,000 reps decide whether that was a draw or a size distortion.",
+   "target": 0.05,
+   "target_is_theory": true,
+   "alpha": 0.05,
+   "horizons": {
+    "200": {
+     "n_reps": 2000,
+     "n_finite": 2000,
+     "seconds": 2.6,
+     "rejection_rate": 0.0495,
+     "rate_ci95": [
+      0.04082725460896088,
+      0.05990000499225715
+     ],
+     "size_error": -0.0005000000000000004,
+     "nominal": 0.05
+    },
+    "20000": {
+     "n_reps": 2000,
+     "n_finite": 2000,
+     "seconds": 9.6,
+     "rejection_rate": 0.057,
+     "rate_ci95": [
+      0.04766276887622495,
+      0.06803573501576082
+     ],
+     "size_error": 0.006999999999999999,
+     "nominal": 0.05
+    }
+   },
+   "verdict": {
+    "status": "pass",
+    "criterion": "nominal level inside the Wilson 95 % interval of the realised rejection rate",
+    "rate_ci95": [
+     0.04766276887622495,
+     0.06803573501576082
+    ],
+    "nominal": 0.05,
+    "long_horizon": "20000"
+   }
+  },
+  {
+   "name": "garch_persistence_block_in_force",
+   "statistic": "garch_fit -> alpha + beta",
+   "kind": "point",
+   "note": "Item 5's alpha + beta recovered by a symmetric GARCH(1,1) fit from the GJR shape in force (alpha 0.027, gamma 0.058, beta 0.932, sbar 0.0151). A symmetric fit absorbs gamma/2 into alpha (the indicator is 1 on half the days), so the persistence a symmetric fit CAN recover is alpha + gamma/2 + beta = 0.9880; the first run of this case set the target at alpha + beta = 0.9590 and failed (long-horizon mean 0.9872), which was the target's error, not the estimator's. The second run, at alpha + gamma/2 + beta, gave 0.9872 against 0.9880 -- 6 MCSE away: the pseudo-true value of a symmetric QMLE on a GJR process is only APPROXIMATELY alpha + gamma/2 + beta, so this case has no exact closed form and is REPORTED with that reference value, not judged (both earlier verdicts are disclosed here). The T = 200 spread is what item 5 reads on the generator's own process.",
+   "target": 0.9880000000000001,
+   "target_is_theory": false,
+   "alpha": null,
+   "horizons": {
+    "200": {
+     "n_reps": 200,
+     "n_finite": 200,
+     "seconds": 22.3,
+     "median": 0.9662363350206744,
+     "mean": 0.8997349132122551,
+     "sd": 0.19425450616448017,
+     "p10": 0.7239198530924604,
+     "p90": 0.9986438597357019,
+     "mcse": 0.013735867858494793,
+     "bias_median": -0.021763664979325692,
+     "bias_mean": -0.08826508678774503,
+     "rel_bias_median": -0.022028000991220334,
+     "bias_in_mcse": -6.425883511478197
+    },
+    "20000": {
+     "n_reps": 200,
+     "n_finite": 200,
+     "seconds": 36.4,
+     "median": 0.9870561801483559,
+     "mean": 0.9871661874704898,
+     "sd": 0.0018706870390632043,
+     "p10": 0.9849211643476014,
+     "p90": 0.9895256749626431,
+     "mcse": 0.00013227754907993756,
+     "bias_median": -0.0009438198516441565,
+     "bias_mean": -0.0008338125295103138,
+     "rel_bias_median": -0.0009552832506519802,
+     "bias_in_mcse": -6.303507551432078
+    }
+   },
+   "verdict": {
+    "status": "reported",
+    "reason": "no closed-form target; the long-horizon value is the reference",
+    "long_horizon": "20000"
+   }
+  }
+ ],
+ "hill_frac_sensitivity": {
+  "T": 2000000,
+  "fracs": [
+   0.05,
+   0.02,
+   0.01,
+   0.005,
+   0.002,
+   0.001
+  ],
+  "note": "Why `hill_index(r, frac=0.05)` misses a Student-t tail index, and by how much.\n\nThe Hill estimator is consistent for the tail index only as k/n -> 0.  On an exact Pareto tail it is\nunbiased at any depth (that is the control, and it is what proves the audit's code is right); on a\nStudent-t the second-order term at a 5 % depth is large.  Item 2 reads its Hill band off this\nestimator at frac = 0.05, so the size of that bias is a property of the CRITERION, not of the\ngenerator -- and it is the argument for a reference-distribution criterion (E6.1/E6.2, REG-14 B/C)\nover the v2 absolute band on this item: the real windows carry the identical bias, so a like-for-like\ncomparison is immune to it while an absolute band is not.",
+  "student_t4": {
+   "true_index": 4.0,
+   "hill": {
+    "0.05": 3.188825630988936,
+    "0.02": 3.47158412196872,
+    "0.01": 3.6180728862677483,
+    "0.005": 3.680126062370249,
+    "0.002": 3.833530924281769,
+    "0.001": 3.9084029052707234
+   }
+  },
+  "pareto3_control": {
+   "true_index": 3.0,
+   "hill": {
+    "0.05": 3.001781264427174,
+    "0.02": 3.0157820048702257,
+    "0.01": 3.0154662391914187,
+    "0.005": 3.0363540054172313,
+    "0.002": 3.0043670060467735,
+    "0.001": 2.972233530256754
+   }
+  }
+ }
+}

@@ -1,0 +1,13 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_after.pkl: 320000 rows -> 288000 modelled, 1600 paths; BASE 45 cols, FULL 141; base_hash 6e070e84de402a41
+[reuse] 6 unpermuted fits reused from docs\env_v2\generated\v2_1\e5_7a\final\ablation.json
+[fits] 80 jobs on 3 workers
+    FULL  x     all  perm  0  R2 -0.0521  (350.1 s)
+    FULL  x     all  perm  1  R2 -0.0429  (341.9 s)
+    FULL  x     all  perm  2  R2 -0.0494  (345.4 s)
+    FULL  x     all  perm  3  R2 -0.0492  (310.8 s)
+    FULL  x     all  perm  4  R2 -0.0611  (308.2 s)
+    FULL  x     all  perm  5  R2 -0.0480  (309.3 s)
+    FULL  x     all  perm  6  R2 -0.0466  (384.7 s)
+    FULL  x     all  perm  7  R2 -0.0400  (421.9 s)
+    FULL  x     all  perm  8  R2 -0.0530  (421.3 s)

@@ -1,0 +1,8836 @@
+{
+ "meta": {
+  "panel": "docs/env_v2/generated/v2_1/_panels/sep_phase5_after.pkl",
+  "n_gen_paths": 1600,
+  "reference": "docs/env_v2/generated/v2_1/e6_1",
+  "n_ref_windows": 12927,
+  "n_ref_names": 417,
+  "n_ref_crash": 6275,
+  "D0": 0.1,
+  "share_p0": 0.8,
+  "n_boot": 500,
+  "seed": 620001,
+  "crash_mdd_rule": -0.2,
+  "v2_checklist": "docs/env_v2/generated/v2_1/e5_after_checklist.csv",
+  "seconds": 3028.8,
+  "generated_utc": "2026-09-08T17:08:23Z"
+ },
+ "rows": [
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "lb_p_r",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.008170874099222012,
+   "gen_p50": 0.3218652135093951,
+   "gen_p90": 0.8547822182347573,
+   "ref_p10": 0.023670528407296353,
+   "ref_p50": 0.3922563215919202,
+   "ref_p90": 0.8665553751042606,
+   "B": {
+    "D": 0.07618405275779377,
+    "D_upper95": 0.09776937079368764,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.023670528407296353,
+    "p90": 0.8665553751042606,
+    "share_inside": 0.75625,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.725625,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.7675,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.705625,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.90875,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "lb_p_r",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.10456181418608357,
+   "gen_p50": 0.542809750202782,
+   "gen_p90": 0.9035303693918586,
+   "ref_p10": 0.023670528407296353,
+   "ref_p50": 0.3922563215919202,
+   "ref_p90": 0.8665553751042606,
+   "B": {
+    "D": 0.16081341378510094,
+    "D_upper95": 0.23165113715479219,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.023670528407296353,
+    "p90": 0.8665553751042606,
+    "share_inside": 0.81,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.795,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.815,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.82,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.87,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "lb_p_r",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.0014620974330589681,
+   "gen_p50": 0.16507332726661228,
+   "gen_p90": 0.7219759814400518,
+   "ref_p10": 0.023670528407296353,
+   "ref_p50": 0.3922563215919202,
+   "ref_p90": 0.8665553751042606,
+   "B": {
+    "D": 0.2367783515123385,
+    "D_upper95": 0.2681248259456951,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.023670528407296353,
+    "p90": 0.8665553751042606,
+    "share_inside": 0.69875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.66,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.73,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.6075,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.93625,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "lb_p_r",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.0654924974646954,
+   "gen_p50": 0.4314036683548692,
+   "gen_p90": 0.8837150318288329,
+   "ref_p10": 0.023670528407296353,
+   "ref_p50": 0.3922563215919202,
+   "ref_p90": 0.8665553751042606,
+   "B": {
+    "D": 0.07484625203063355,
+    "D_upper95": 0.11558876769552104,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.023670528407296353,
+    "p90": 0.8665553751042606,
+    "share_inside": 0.825,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.7975,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8025,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.8975,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "lb_p_r",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.09607009228511539,
+   "gen_p50": 0.5389706399891533,
+   "gen_p90": 0.9095324680330572,
+   "ref_p10": 0.023670528407296353,
+   "ref_p50": 0.3922563215919202,
+   "ref_p90": 0.8665553751042606,
+   "B": {
+    "D": 0.146084551713468,
+    "D_upper95": 0.22193035893865554,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.023670528407296353,
+    "p90": 0.8665553751042606,
+    "share_inside": 0.795,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.775,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.805,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.79,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "statistic": "lb_p_r",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 0.05,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.99
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "abs_acf1_r",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.009882405026114871,
+   "gen_p50": 0.056109866053700566,
+   "gen_p90": 0.1407289741389403,
+   "ref_p10": 0.01104809579714522,
+   "ref_p50": 0.0585193719348771,
+   "ref_p90": 0.15114845825200804,
+   "B": {
+    "D": 0.03119294886671309,
+    "D_upper95": 0.05499944399319254,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01104809579714522,
+    "p90": 0.15114845825200804,
+    "share_inside": 0.8075,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.815,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.818125,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.761875,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.82125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "abs_acf1_r",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.008951006435830897,
+   "gen_p50": 0.04884052079099458,
+   "gen_p90": 0.12934704324102178,
+   "ref_p10": 0.01104809579714522,
+   "ref_p50": 0.0585193719348771,
+   "ref_p90": 0.15114845825200804,
+   "B": {
+    "D": 0.12517134679353292,
+    "D_upper95": 0.189760307882726,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01104809579714522,
+    "p90": 0.15114845825200804,
+    "share_inside": 0.815,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.825,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.835,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.77,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.835,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "abs_acf1_r",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.011861748656366213,
+   "gen_p50": 0.06358954721020801,
+   "gen_p90": 0.15934507086556723,
+   "ref_p10": 0.01104809579714522,
+   "ref_p50": 0.0585193719348771,
+   "ref_p90": 0.15114845825200804,
+   "B": {
+    "D": 0.043660942213970766,
+    "D_upper95": 0.07825200162450678,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01104809579714522,
+    "p90": 0.15114845825200804,
+    "share_inside": 0.78875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.795,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8025,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.73625,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.80125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "abs_acf1_r",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.010484843140704553,
+   "gen_p50": 0.05086517884439509,
+   "gen_p90": 0.12297808171734413,
+   "ref_p10": 0.01104809579714522,
+   "ref_p50": 0.0585193719348771,
+   "ref_p90": 0.15114845825200804,
+   "B": {
+    "D": 0.09084571052835155,
+    "D_upper95": 0.1320540922101029,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01104809579714522,
+    "p90": 0.15114845825200804,
+    "share_inside": 0.845,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.8525,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.84,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8075,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.855,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "property": "No linear autocorrelation of returns",
+   "statistic": "abs_acf1_r",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.008749095947033471,
+   "gen_p50": 0.046851895406011396,
+   "gen_p90": 0.12934959784613045,
+   "ref_p10": 0.01104809579714522,
+   "ref_p50": 0.0585193719348771,
+   "ref_p90": 0.15114845825200804,
+   "B": {
+    "D": 0.12734470488125627,
+    "D_upper95": 0.18623791289549,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01104809579714522,
+    "p90": 0.15114845825200804,
+    "share_inside": 0.8,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.81,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.82,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.765,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.82,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 1,
+   "statistic": "abs_acf1_r",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.96
+     },
+     "D0.05": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 0.8,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "kurtosis",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.3547960325008783,
+   "gen_p50": 1.7304039958664936,
+   "gen_p90": 6.671899543158656,
+   "ref_p10": 0.4664963378680587,
+   "ref_p50": 2.17286594307138,
+   "ref_p90": 10.740907134572575,
+   "B": {
+    "D": 0.10104940241355298,
+    "D_upper95": 0.12672538582037599,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.4664963378680587,
+    "p90": 10.740907134572575,
+    "share_inside": 0.81125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.835,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.790625,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.733125,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.804375,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "kurtosis",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.12890639293703324,
+   "gen_p50": 1.0850138036002175,
+   "gen_p90": 8.253215492929773,
+   "ref_p10": 0.4664963378680587,
+   "ref_p50": 2.17286594307138,
+   "ref_p90": 10.740907134572575,
+   "B": {
+    "D": 0.28176993888759955,
+    "D_upper95": 0.3395211379283669,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.4664963378680587,
+    "p90": 10.740907134572575,
+    "share_inside": 0.705,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.73,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.69,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.575,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.7,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "kurtosis",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.8292630887113326,
+   "gen_p50": 2.449202779897466,
+   "gen_p90": 6.539228179106879,
+   "ref_p10": 0.4664963378680587,
+   "ref_p50": 2.17286594307138,
+   "ref_p90": 10.740907134572575,
+   "B": {
+    "D": 0.100543532915603,
+    "D_upper95": 0.13029303009205537,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.4664963378680587,
+    "p90": 10.740907134572575,
+    "share_inside": 0.905,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.9175,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.86875,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8775,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.905,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "kurtosis",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.23169025171801605,
+   "gen_p50": 1.2193706993175195,
+   "gen_p90": 5.854077650810133,
+   "ref_p10": 0.4664963378680587,
+   "ref_p50": 2.17286594307138,
+   "ref_p90": 10.740907134572575,
+   "B": {
+    "D": 0.25520074263170106,
+    "D_upper95": 0.29588799605476906,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.4664963378680587,
+    "p90": 10.740907134572575,
+    "share_inside": 0.74,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.78,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.7375,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.6175,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "kurtosis",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.08735840824459941,
+   "gen_p50": 1.0519056408047716,
+   "gen_p90": 6.71552375003949,
+   "ref_p10": 0.4664963378680587,
+   "ref_p50": 2.17286594307138,
+   "ref_p90": 10.740907134572575,
+   "B": {
+    "D": 0.29176993888759956,
+    "D_upper95": 0.34877488976560683,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.4664963378680587,
+    "p90": 10.740907134572575,
+    "share_inside": 0.685,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.685,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.545,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.675,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "statistic": "kurtosis",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.08,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.99,
+      "pass_rate_C": 0.96
+     },
+     "D0.05": {
+      "pass_rate_B": 0.88,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "hill",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 2.6201689926961507,
+   "gen_p50": 3.844377407280362,
+   "gen_p90": 6.0096594512671535,
+   "ref_p10": 2.3080913984455123,
+   "ref_p50": 3.5563598845796194,
+   "ref_p90": 5.571745619809766,
+   "B": {
+    "D": 0.10067595923261391,
+    "D_upper95": 0.12633080712849074,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.3080913984455123,
+    "p90": 5.571745619809766,
+    "share_inside": 0.820625,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.83375,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.794375,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.798125,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.806875,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "hill",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 2.762380191556732,
+   "gen_p50": 4.093096439074632,
+   "gen_p90": 6.473438824117935,
+   "ref_p10": 2.3080913984455123,
+   "ref_p50": 3.5563598845796194,
+   "ref_p90": 5.571745619809766,
+   "B": {
+    "D": 0.21201670921327453,
+    "D_upper95": 0.26635953817591085,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.3080913984455123,
+    "p90": 5.571745619809766,
+    "share_inside": 0.805,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.82,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.775,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.795,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "hill",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 2.4736480492044453,
+   "gen_p50": 3.6171796158614935,
+   "gen_p90": 5.614583143758234,
+   "ref_p10": 2.3080913984455123,
+   "ref_p50": 3.5563598845796194,
+   "ref_p90": 5.571745619809766,
+   "B": {
+    "D": 0.06055842422835925,
+    "D_upper95": 0.08820323741007191,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.3080913984455123,
+    "p90": 5.571745619809766,
+    "share_inside": 0.8425,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.84875,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.79875,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8325,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.8375,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "hill",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 2.743127916326335,
+   "gen_p50": 4.041017303090385,
+   "gen_p90": 6.101275751432828,
+   "ref_p10": 2.3080913984455123,
+   "ref_p50": 3.5563598845796194,
+   "ref_p90": 5.571745619809766,
+   "B": {
+    "D": 0.18471938578169728,
+    "D_upper95": 0.2279994101492999,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.3080913984455123,
+    "p90": 5.571745619809766,
+    "share_inside": 0.8025,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.835,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.7975,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.7725,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.7775,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "hill",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 2.917179809091425,
+   "gen_p50": 4.024181231752332,
+   "gen_p90": 6.316573708313525,
+   "ref_p10": 2.3080913984455123,
+   "ref_p50": 3.5563598845796194,
+   "ref_p90": 5.571745619809766,
+   "B": {
+    "D": 0.20740504370696988,
+    "D_upper95": 0.25086563007658386,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.3080913984455123,
+    "p90": 5.571745619809766,
+    "share_inside": 0.785,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.785,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.765,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.735,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.755,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "statistic": "hill",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.04,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.96
+     },
+     "D0.05": {
+      "pass_rate_B": 0.7,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "jb_p",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 5.409049073837342e-85,
+   "gen_p50": 8.301817868400896e-07,
+   "gen_p90": 0.34032382507330067,
+   "ref_p10": 1.015094062197111e-223,
+   "ref_p50": 8.240071078861177e-11,
+   "ref_p90": 0.19050477427247017,
+   "B": {
+    "D": 0.1114974472035275,
+    "D_upper95": 0.13373498781619864,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.015094062197111e-223,
+    "p90": 0.19050477427247017,
+    "share_inside": 0.8,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.824375,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.79125,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.7225,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.798125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "jb_p",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 1.6248386194921278e-129,
+   "gen_p50": 0.0016441608865909998,
+   "gen_p90": 0.6329308330754414,
+   "ref_p10": 1.015094062197111e-223,
+   "ref_p50": 8.240071078861177e-11,
+   "ref_p90": 0.19050477427247017,
+   "B": {
+    "D": 0.29068074572599983,
+    "D_upper95": 0.34728902684304175,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.015094062197111e-223,
+    "p90": 0.19050477427247017,
+    "share_inside": 0.695,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.715,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.69,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.565,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.69,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "jb_p",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 4.863200996683388e-83,
+   "gen_p50": 2.4331641658712704e-12,
+   "gen_p90": 0.02579864775541798,
+   "ref_p10": 1.015094062197111e-223,
+   "ref_p50": 8.240071078861177e-11,
+   "ref_p90": 0.19050477427247017,
+   "B": {
+    "D": 0.08610978958768467,
+    "D_upper95": 0.11581791502282045,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.015094062197111e-223,
+    "p90": 0.19050477427247017,
+    "share_inside": 0.9,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.9125,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8675,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8675,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.9,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "jb_p",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 1.5230901055056816e-70,
+   "gen_p50": 0.0004624142664103966,
+   "gen_p90": 0.5351883362109623,
+   "ref_p10": 1.015094062197111e-223,
+   "ref_p50": 8.240071078861177e-11,
+   "ref_p90": 0.19050477427247017,
+   "B": {
+    "D": 0.25560822309894027,
+    "D_upper95": 0.2995131894484412,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.015094062197111e-223,
+    "p90": 0.19050477427247017,
+    "share_inside": 0.715,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.7575,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.7375,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.61,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.7125,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "property": "Heavy tails",
+   "statistic": "jb_p",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 5.372498979307702e-85,
+   "gen_p50": 0.002435793058818263,
+   "gen_p90": 0.6330104398519881,
+   "ref_p10": 1.015094062197111e-223,
+   "ref_p50": 8.240071078861177e-11,
+   "ref_p90": 0.19050477427247017,
+   "B": {
+    "D": 0.29568074572599984,
+    "D_upper95": 0.36054403573915056,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.015094062197111e-223,
+    "p90": 0.19050477427247017,
+    "share_inside": 0.675,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.715,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.695,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.525,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.67,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 2,
+   "statistic": "jb_p",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.07,
+      "pass_rate_C": 0.96
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.93
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_absr",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 3.0564192894341963e-19,
+   "gen_p50": 0.03020088589188348,
+   "gen_p90": 0.8201771083298458,
+   "ref_p10": 3.6972961591474836e-07,
+   "ref_p50": 0.1822630516318432,
+   "ref_p90": 0.8353877458729795,
+   "B": {
+    "D": 0.22441450065753848,
+    "D_upper95": 0.2479952328459813,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.6972961591474836e-07,
+    "p90": 0.8353877458729795,
+    "share_inside": 0.62125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.538125,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.69125,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.54,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.898125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_absr",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.0280281190600556,
+   "gen_p50": 0.5289002317536373,
+   "gen_p90": 0.9313360322482623,
+   "ref_p10": 3.6972961591474836e-07,
+   "ref_p50": 0.1822630516318432,
+   "ref_p90": 0.8353877458729795,
+   "B": {
+    "D": 0.2705175214666976,
+    "D_upper95": 0.32808402955055305,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.6972961591474836e-07,
+    "p90": 0.8353877458729795,
+    "share_inside": 0.765,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.735,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.785,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.785,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_absr",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 1.729211692315268e-25,
+   "gen_p50": 3.759601075919269e-08,
+   "gen_p90": 0.06622416087629551,
+   "ref_p10": 3.6972961591474836e-07,
+   "ref_p50": 0.1822630516318432,
+   "ref_p90": 0.8353877458729795,
+   "B": {
+    "D": 0.5656645006575385,
+    "D_upper95": 0.5923332076274463,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.6972961591474836e-07,
+    "p90": 0.8353877458729795,
+    "share_inside": 0.46,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.31,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.61875,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.285,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.98,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_absr",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.0023035726312049176,
+   "gen_p50": 0.320577942582405,
+   "gen_p90": 0.8986739876495873,
+   "ref_p10": 3.6972961591474836e-07,
+   "ref_p50": 0.1822630516318432,
+   "ref_p90": 0.8353877458729795,
+   "B": {
+    "D": 0.15820317939197032,
+    "D_upper95": 0.19034359286764135,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.6972961591474836e-07,
+    "p90": 0.8353877458729795,
+    "share_inside": 0.7925,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.78,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.79,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.8425,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_absr",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.02959193835124638,
+   "gen_p50": 0.4856974696151999,
+   "gen_p90": 0.9316087875940935,
+   "ref_p10": 3.6972961591474836e-07,
+   "ref_p50": 0.1822630516318432,
+   "ref_p90": 0.8353877458729795,
+   "B": {
+    "D": 0.2929844511487584,
+    "D_upper95": 0.3360589077125396,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.6972961591474836e-07,
+    "p90": 0.8353877458729795,
+    "share_inside": 0.78,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.765,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.795,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.795,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "statistic": "lb_p_absr",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.07,
+      "pass_rate_C": 0.96
+     },
+     "D0.05": {
+      "pass_rate_B": 0.05,
+      "pass_rate_C": 0.97
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.99,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_r2",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 2.1689160427535558e-11,
+   "gen_p50": 0.1159404619712601,
+   "gen_p90": 0.9690979482967708,
+   "ref_p10": 3.163688336841395e-06,
+   "ref_p50": 0.4473912837464289,
+   "ref_p90": 0.997532067814312,
+   "B": {
+    "D": 0.167468380134602,
+    "D_upper95": 0.19343841378510093,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.163688336841395e-06,
+    "p90": 0.997532067814312,
+    "share_inside": 0.734375,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.67,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.7775,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.636875,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.91875,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_r2",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.019765400057291653,
+   "gen_p50": 0.6207311987590776,
+   "gen_p90": 0.9986641700920801,
+   "ref_p10": 3.163688336841395e-06,
+   "ref_p50": 0.4473912837464289,
+   "ref_p90": 0.997532067814312,
+   "B": {
+    "D": 0.18279183105128802,
+    "D_upper95": 0.23417763208787803,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.163688336841395e-06,
+    "p90": 0.997532067814312,
+    "share_inside": 0.855,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.83,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.84,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.87,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_r2",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 4.204411699820844e-16,
+   "gen_p50": 0.00016796945239663176,
+   "gen_p90": 0.5211270451689839,
+   "ref_p10": 3.163688336841395e-06,
+   "ref_p50": 0.4473912837464289,
+   "ref_p90": 0.997532067814312,
+   "B": {
+    "D": 0.4627177612748511,
+    "D_upper95": 0.4897504303009206,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.163688336841395e-06,
+    "p90": 0.997532067814312,
+    "share_inside": 0.59625,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.4925,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.69625,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.41625,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.93625,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_r2",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.0018488002699775749,
+   "gen_p50": 0.518441872870405,
+   "gen_p90": 0.9857367743542969,
+   "ref_p10": 3.163688336841395e-06,
+   "ref_p50": 0.4473912837464289,
+   "ref_p90": 0.997532067814312,
+   "B": {
+    "D": 0.11585421984992653,
+    "D_upper95": 0.15021952115726767,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.163688336841395e-06,
+    "p90": 0.997532067814312,
+    "share_inside": 0.88,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8775,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.845,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.9225,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "lb_p_r2",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.03790413842906013,
+   "gen_p50": 0.6408650460725002,
+   "gen_p90": 0.9984949679602313,
+   "ref_p10": 3.163688336841395e-06,
+   "ref_p50": 0.4473912837464289,
+   "ref_p90": 0.997532067814312,
+   "B": {
+    "D": 0.19945192233310124,
+    "D_upper95": 0.24541813645857502,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 3.163688336841395e-06,
+    "p90": 0.997532067814312,
+    "share_inside": 0.875,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.84,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.88,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.89,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "statistic": "lb_p_r2",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.06,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 0.06,
+      "pass_rate_C": 0.97
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.96
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "arch_lm_p",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 1.791527333060708e-05,
+   "gen_p50": 0.2225578798829777,
+   "gen_p90": 0.9488337547438355,
+   "ref_p10": 0.00015470563231248022,
+   "ref_p50": 0.3950250180202189,
+   "ref_p90": 0.9823941647196681,
+   "B": {
+    "D": 0.09520664113870192,
+    "D_upper95": 0.1175143764021041,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.00015470563231248022,
+    "p90": 0.9823941647196681,
+    "share_inside": 0.793125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.7425,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.813125,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.7425,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.904375,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "arch_lm_p",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.07110466683251217,
+   "gen_p50": 0.6572302458102828,
+   "gen_p90": 0.9824331661755635,
+   "ref_p10": 0.00015470563231248022,
+   "ref_p50": 0.3950250180202189,
+   "ref_p90": 0.9823941647196681,
+   "B": {
+    "D": 0.21571052835151233,
+    "D_upper95": 0.2620274425620793,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.00015470563231248022,
+    "p90": 0.9823941647196681,
+    "share_inside": 0.88,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.865,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.84,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.885,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.88,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "arch_lm_p",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 4.3098988912041504e-07,
+   "gen_p50": 0.012307923488642345,
+   "gen_p90": 0.7516870853186456,
+   "ref_p10": 0.00015470563231248022,
+   "ref_p50": 0.3950250180202189,
+   "ref_p90": 0.9823941647196681,
+   "B": {
+    "D": 0.35322493618008816,
+    "D_upper95": 0.3862017241045873,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.00015470563231248022,
+    "p90": 0.9823941647196681,
+    "share_inside": 0.69875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.63,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.77875,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.6125,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.91875,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "arch_lm_p",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.014932468498186864,
+   "gen_p50": 0.5813030401159964,
+   "gen_p90": 0.9742237877553593,
+   "ref_p10": 0.00015470563231248022,
+   "ref_p50": 0.3950250180202189,
+   "ref_p90": 0.9823941647196681,
+   "B": {
+    "D": 0.1523116345633171,
+    "D_upper95": 0.19298703295428163,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.00015470563231248022,
+    "p90": 0.9823941647196681,
+    "share_inside": 0.8975,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.8525,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8575,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8575,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.905,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "arch_lm_p",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.07540261381978668,
+   "gen_p50": 0.6572088187730177,
+   "gen_p90": 0.9834012248627451,
+   "ref_p10": 0.00015470563231248022,
+   "ref_p50": 0.3950250180202189,
+   "ref_p90": 0.9823941647196681,
+   "B": {
+    "D": 0.22071052835151234,
+    "D_upper95": 0.2666611936257446,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.00015470563231248022,
+    "p90": 0.9823941647196681,
+    "share_inside": 0.875,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.835,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.89,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.87,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "statistic": "arch_lm_p",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.08,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.96
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "acf1_absr",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": -0.040019938781865445,
+   "gen_p50": 0.0914132730486365,
+   "gen_p90": 0.2702130063814761,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.09367776746344858,
+    "D_upper95": 0.11646987651814032,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.6975,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.679375,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.696875,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.645625,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.848125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "acf1_absr",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07531642136551525,
+   "gen_p50": 0.019214885947063002,
+   "gen_p90": 0.11460860823484899,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.3598851241587376,
+    "D_upper95": 0.41449472035275003,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.77,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.77,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.775,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.775,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "acf1_absr",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.05198333434480492,
+   "gen_p50": 0.185415128291615,
+   "gen_p90": 0.31671355907494037,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.37138054072870735,
+    "D_upper95": 0.4048475235940279,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.65875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.61625,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.64125,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.5925,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.94125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "acf1_absr",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": -0.0662879363180936,
+   "gen_p50": 0.03165044576337436,
+   "gen_p90": 0.1389567908546846,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.26741103891080686,
+    "D_upper95": 0.31205519455403413,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.725,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.73,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.69,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.7525,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "property": "Volatility clustering",
+   "statistic": "acf1_absr",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07517277732412055,
+   "gen_p50": 0.019408418089637777,
+   "gen_p90": 0.11220096370532463,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.36916686006033883,
+    "D_upper95": 0.4272361916918078,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.725,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.755,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.695,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 3,
+   "statistic": "acf1_absr",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.96
+     },
+     "D0.05": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.99,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.63,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf1_absr",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": -0.040019938781865445,
+   "gen_p50": 0.0914132730486365,
+   "gen_p90": 0.2702130063814761,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.09367776746344858,
+    "D_upper95": 0.11552807592635568,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.6975,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.679375,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.696875,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.645625,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.848125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf1_absr",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07531642136551525,
+   "gen_p50": 0.019214885947063002,
+   "gen_p90": 0.11460860823484899,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.3598851241587376,
+    "D_upper95": 0.4195539568345324,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.77,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.77,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.775,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.775,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf1_absr",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.05198333434480492,
+   "gen_p50": 0.185415128291615,
+   "gen_p90": 0.31671355907494037,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.37138054072870735,
+    "D_upper95": 0.4044236433433898,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.65875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.61625,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.64125,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.5925,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.94125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf1_absr",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": -0.0662879363180936,
+   "gen_p50": 0.03165044576337436,
+   "gen_p90": 0.1389567908546846,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.26741103891080686,
+    "D_upper95": 0.31320439777210485,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.725,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.73,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.69,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.7525,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf1_absr",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07517277732412055,
+   "gen_p50": 0.019408418089637777,
+   "gen_p90": 0.11220096370532463,
+   "ref_p10": -0.02559008429306716,
+   "ref_p50": 0.0872632579861749,
+   "ref_p90": 0.23211300338860125,
+   "B": {
+    "D": 0.36916686006033883,
+    "D_upper95": 0.42626299605476914,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.02559008429306716,
+    "p90": 0.23211300338860125,
+    "share_inside": 0.725,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.755,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.695,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "statistic": "acf1_absr",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.94
+     },
+     "D0.05": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.99
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.73,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf5_absr",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": -0.04488366532583441,
+   "gen_p50": 0.07683564768335076,
+   "gen_p90": 0.24812679973299315,
+   "ref_p10": -0.050884442392195826,
+   "ref_p50": 0.0427196346943529,
+   "ref_p90": 0.17165159356079723,
+   "B": {
+    "D": 0.16529004215982057,
+    "D_upper95": 0.18839054643382067,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.050884442392195826,
+    "p90": 0.17165159356079723,
+    "share_inside": 0.6725,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.619375,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.689375,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.58125,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.885,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf5_absr",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07329114605054027,
+   "gen_p50": 0.024974575133941898,
+   "gen_p90": 0.1278586070464756,
+   "ref_p10": -0.050884442392195826,
+   "ref_p50": 0.0427196346943529,
+   "ref_p90": 0.17165159356079723,
+   "B": {
+    "D": 0.18213970758876774,
+    "D_upper95": 0.23661648100874147,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.050884442392195826,
+    "p90": 0.17165159356079723,
+    "share_inside": 0.82,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.805,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.705,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.765,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf5_absr",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.024769393166282593,
+   "gen_p50": 0.15539064340976322,
+   "gen_p90": 0.28967817547758345,
+   "ref_p10": -0.050884442392195826,
+   "ref_p50": 0.0427196346943529,
+   "ref_p90": 0.17165159356079723,
+   "B": {
+    "D": 0.431460315618473,
+    "D_upper95": 0.46125252862226346,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.050884442392195826,
+    "p90": 0.17165159356079723,
+    "share_inside": 0.53625,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.455,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.6575,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.40125,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.91375,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf5_absr",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": -0.06808900197708757,
+   "gen_p50": 0.029238805535301615,
+   "gen_p90": 0.14790914873033315,
+   "ref_p10": -0.050884442392195826,
+   "ref_p50": 0.0427196346943529,
+   "ref_p90": 0.17165159356079723,
+   "B": {
+    "D": 0.09943354993424613,
+    "D_upper95": 0.14187160594105355,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.050884442392195826,
+    "p90": 0.17165159356079723,
+    "share_inside": 0.7975,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.765,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.745,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.7475,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.865,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf5_absr",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07085609841161716,
+   "gen_p50": 0.028357497167907253,
+   "gen_p90": 0.10086903308410666,
+   "ref_p10": -0.050884442392195826,
+   "ref_p50": 0.0427196346943529,
+   "ref_p90": 0.17165159356079723,
+   "B": {
+    "D": 0.1898534075965035,
+    "D_upper95": 0.2374523091204455,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.050884442392195826,
+    "p90": 0.17165159356079723,
+    "share_inside": 0.82,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.8,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.69,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.785,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.845,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "statistic": "acf5_absr",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.99
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.72,
+      "pass_rate_C": 0.99
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf10_absr",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": -0.04931805457287745,
+   "gen_p50": 0.06121120166229916,
+   "gen_p90": 0.20607949020374647,
+   "ref_p10": -0.06204110030908178,
+   "ref_p50": 0.0291462908217472,
+   "ref_p90": 0.14731496504672514,
+   "B": {
+    "D": 0.16313641022665737,
+    "D_upper95": 0.18673941653129106,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.06204110030908178,
+    "p90": 0.14731496504672514,
+    "share_inside": 0.69125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.63625,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.69375,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.62875,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.86875,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf10_absr",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.08347709605013394,
+   "gen_p50": 0.0026816191218864195,
+   "gen_p90": 0.12387286128749982,
+   "ref_p10": -0.06204110030908178,
+   "ref_p50": 0.0291462908217472,
+   "ref_p90": 0.14731496504672514,
+   "B": {
+    "D": 0.1419223331012609,
+    "D_upper95": 0.20944907944612048,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.06204110030908178,
+    "p90": 0.14731496504672514,
+    "share_inside": 0.795,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.76,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.75,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.89,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf10_absr",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.003873867782158012,
+   "gen_p50": 0.11552844387771784,
+   "gen_p90": 0.26034037241484304,
+   "ref_p10": -0.06204110030908178,
+   "ref_p50": 0.0291462908217472,
+   "ref_p90": 0.14731496504672514,
+   "B": {
+    "D": 0.3825114102266574,
+    "D_upper95": 0.4110901166163843,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.06204110030908178,
+    "p90": 0.14731496504672514,
+    "share_inside": 0.59,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.50875,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.6525,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.505,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.8525,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf10_absr",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": -0.06974146344795626,
+   "gen_p50": 0.022681622382664635,
+   "gen_p90": 0.13196415436066605,
+   "ref_p10": -0.06204110030908178,
+   "ref_p50": 0.0291462908217472,
+   "ref_p90": 0.14731496504672514,
+   "B": {
+    "D": 0.06157267734199734,
+    "D_upper95": 0.10335756556045478,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.06204110030908178,
+    "p90": 0.14731496504672514,
+    "share_inside": 0.8,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.77,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.75,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.76,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.885,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf10_absr",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07718190823295684,
+   "gen_p50": 0.007588705327873112,
+   "gen_p90": 0.12385934745312896,
+   "ref_p10": -0.06204110030908178,
+   "ref_p50": 0.0291462908217472,
+   "ref_p90": 0.14731496504672514,
+   "B": {
+    "D": 0.13721822541966433,
+    "D_upper95": 0.20468157731879014,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.06204110030908178,
+    "p90": 0.14731496504672514,
+    "share_inside": 0.775,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.755,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.88,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "statistic": "acf10_absr",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.07,
+      "pass_rate_C": 0.96
+     },
+     "D0.05": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.96
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.98
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 0.68,
+      "pass_rate_C": 0.99
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.98
+     }
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf20_absr",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": -0.060407961965923726,
+   "gen_p50": 0.03864045432032634,
+   "gen_p90": 0.16314879746906888,
+   "ref_p10": -0.07153709860131621,
+   "ref_p50": 0.0094764972287695,
+   "ref_p90": 0.10759507617021297,
+   "B": {
+    "D": 0.17779748781619864,
+    "D_upper95": 0.20090941440396076,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.07153709860131621,
+    "p90": 0.10759507617021297,
+    "share_inside": 0.703125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.6525,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.709375,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.683125,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.75,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf20_absr",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07574494683595777,
+   "gen_p50": 0.0042029069117155825,
+   "gen_p90": 0.10740429198470333,
+   "ref_p10": -0.07153709860131621,
+   "ref_p50": 0.0094764972287695,
+   "ref_p90": 0.10759507617021297,
+   "B": {
+    "D": 0.04971223021582727,
+    "D_upper95": 0.11460292411232298,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.07153709860131621,
+    "p90": 0.10759507617021297,
+    "share_inside": 0.79,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.755,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.79,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.77,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.805,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf20_absr",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": -0.04045350920193291,
+   "gen_p50": 0.07366862742170333,
+   "gen_p90": 0.1846939865256017,
+   "ref_p10": -0.07153709860131621,
+   "ref_p50": 0.0094764972287695,
+   "ref_p90": 0.10759507617021297,
+   "B": {
+    "D": 0.35380560068074574,
+    "D_upper95": 0.37983461456641143,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.07153709860131621,
+    "p90": 0.10759507617021297,
+    "share_inside": 0.60875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.5425,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.6325,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.58875,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.68125,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf20_absr",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": -0.07411486096245853,
+   "gen_p50": 0.013265813689569743,
+   "gen_p90": 0.10684359396309921,
+   "ref_p10": -0.07153709860131621,
+   "ref_p50": 0.0094764972287695,
+   "ref_p90": 0.10759507617021297,
+   "B": {
+    "D": 0.03555948789355612,
+    "D_upper95": 0.0860064690183337,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.07153709860131621,
+    "p90": 0.10759507617021297,
+    "share_inside": 0.8,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.7725,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.785,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.7875,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.82,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf20_absr",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.07831784885108088,
+   "gen_p50": 0.005328252971345925,
+   "gen_p90": 0.1068180309618275,
+   "ref_p10": -0.07153709860131621,
+   "ref_p50": 0.0094764972287695,
+   "ref_p90": 0.10759507617021297,
+   "B": {
+    "D": 0.061160748820298594,
+    "D_upper95": 0.13304034192001232,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.07153709860131621,
+    "p90": 0.10759507617021297,
+    "share_inside": 0.8,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.75,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.785,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.765,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.83,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "statistic": "acf20_absr",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 0.99
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.98
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 0.66,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.98
+     }
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf50_absr",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": -0.09065673883675236,
+   "gen_p50": -0.014634926966690453,
+   "gen_p90": 0.06866110368711309,
+   "ref_p10": -0.08236299919565633,
+   "ref_p50": -0.0089750124177813,
+   "ref_p90": 0.06965329708217866,
+   "B": {
+    "D": 0.05137440047961628,
+    "D_upper95": 0.07603257232923333,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.08236299919565633,
+    "p90": 0.06965329708217866,
+    "share_inside": 0.77125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.74125,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.73,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.719375,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.81875,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf50_absr",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.09339995103700789,
+   "gen_p50": -0.00977152145205043,
+   "gen_p90": 0.059366370245234515,
+   "ref_p10": -0.08236299919565633,
+   "ref_p50": -0.0089750124177813,
+   "ref_p90": 0.06965329708217866,
+   "B": {
+    "D": 0.0406583120600294,
+    "D_upper95": 0.1062378355380212,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.08236299919565633,
+    "p90": 0.06965329708217866,
+    "share_inside": 0.8,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.77,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.76,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf50_absr",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": -0.09621300413189598,
+   "gen_p50": -0.02187246909465504,
+   "gen_p90": 0.07216341010605036,
+   "ref_p10": -0.08236299919565633,
+   "ref_p50": -0.0089750124177813,
+   "ref_p90": 0.06965329708217866,
+   "B": {
+    "D": 0.10254573760346561,
+    "D_upper95": 0.1364641351434981,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.08236299919565633,
+    "p90": 0.06965329708217866,
+    "share_inside": 0.735,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.7,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.695,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.6675,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.79625,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf50_absr",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": -0.07846103833657951,
+   "gen_p50": -0.007899936816534244,
+   "gen_p90": 0.06676460772238203,
+   "ref_p10": -0.08236299919565633,
+   "ref_p50": -0.0089750124177813,
+   "ref_p90": 0.06965329708217866,
+   "B": {
+    "D": 0.03788504680126864,
+    "D_upper95": 0.08688072445269583,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.08236299919565633,
+    "p90": 0.06965329708217866,
+    "share_inside": 0.815,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.79,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.7775,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.78,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.8425,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "property": "Decay of ACF|r| (descriptive)",
+   "statistic": "acf50_absr",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.08158613672310454,
+   "gen_p50": -0.009197689475089293,
+   "gen_p90": 0.07093630858888561,
+   "ref_p10": -0.08236299919565633,
+   "ref_p50": -0.0089750124177813,
+   "ref_p90": 0.06965329708217866,
+   "B": {
+    "D": 0.0387189603156185,
+    "D_upper95": 0.10918571594337428,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.08236299919565633,
+    "p90": 0.06965329708217866,
+    "share_inside": 0.8,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.78,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.765,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.765,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.83,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 4,
+   "statistic": "acf50_absr",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.05,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.97
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.96
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.58,
+      "pass_rate_C": 0.99
+     },
+     "D0.10": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 0.96
+     }
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_persistence",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.7080558840435833,
+   "gen_p50": 0.9746980883477765,
+   "gen_p90": 1.0,
+   "ref_p10": 0.2892795651371836,
+   "ref_p50": 0.9298196170581976,
+   "ref_p90": 0.999999999977204,
+   "B": {
+    "D": 0.22179459658079992,
+    "D_upper95": 0.2456613265838942,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.2892795651371836,
+    "p90": 0.999999999977204,
+    "share_inside": 0.768125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.694375,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.64,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8825,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.880625,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_persistence",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.22837900625247143,
+   "gen_p50": 0.9415173001037209,
+   "gen_p90": 0.9999999999916414,
+   "ref_p10": 0.2892795651371836,
+   "ref_p50": 0.9298196170581976,
+   "ref_p90": 0.999999999977204,
+   "B": {
+    "D": 0.058423841571903834,
+    "D_upper95": 0.13341699543590937,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.2892795651371836,
+    "p90": 0.999999999977204,
+    "share_inside": 0.78,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.7,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.62,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_persistence",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.8954340812980183,
+   "gen_p50": 0.9854776994002173,
+   "gen_p90": 1.000000000000005,
+   "ref_p10": 0.2892795651371836,
+   "ref_p50": 0.9298196170581976,
+   "ref_p90": 0.999999999977204,
+   "B": {
+    "D": 0.35834658079987625,
+    "D_upper95": 0.38423772433665965,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.2892795651371836,
+    "p90": 0.999999999977204,
+    "share_inside": 0.74125,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.67375,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.65125,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.88625,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.88625,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_persistence",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.509334343568017,
+   "gen_p50": 0.9612957344955191,
+   "gen_p90": 1.0,
+   "ref_p10": 0.2892795651371836,
+   "ref_p50": 0.9298196170581976,
+   "ref_p90": 0.999999999977204,
+   "B": {
+    "D": 0.14383905778602923,
+    "D_upper95": 0.18583532528815655,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.2892795651371836,
+    "p90": 0.999999999977204,
+    "share_inside": 0.8,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.63,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.8825,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.88,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_persistence",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.25462436855543885,
+   "gen_p50": 0.941612464190587,
+   "gen_p90": 0.999999999873656,
+   "ref_p10": 0.2892795651371836,
+   "ref_p50": 0.9298196170581976,
+   "ref_p90": 0.999999999977204,
+   "B": {
+    "D": 0.05741123230447903,
+    "D_upper95": 0.1217030053376654,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.2892795651371836,
+    "p90": 0.999999999977204,
+    "share_inside": 0.8,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.635,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.89,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.88,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "statistic": "garch_persistence",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.92
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.93,
+      "pass_rate_C": 0.96
+     },
+     "D0.10": {
+      "pass_rate_B": 0.05,
+      "pass_rate_C": 0.9
+     }
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_alpha",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.0,
+   "gen_p50": 0.06467654699766129,
+   "gen_p90": 0.19654958265766437,
+   "ref_p10": 0.0,
+   "ref_p50": 0.0579497865971718,
+   "ref_p90": 0.2699141290069553,
+   "B": {
+    "D": 0.08394871199814347,
+    "D_upper95": 0.09669377320724072,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.0,
+    "p90": 0.2699141290069553,
+    "share_inside": 0.958125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.96125,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.888125,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.96375,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.96125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_alpha",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.0,
+   "gen_p50": 1.7144031288215065e-08,
+   "gen_p90": 0.1310973560870551,
+   "ref_p10": 0.0,
+   "ref_p50": 0.0579497865971718,
+   "ref_p90": 0.2699141290069553,
+   "B": {
+    "D": 0.2659104974085248,
+    "D_upper95": 0.31508499651891386,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.0,
+    "p90": 0.2699141290069553,
+    "share_inside": 0.965,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.965,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.935,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.975,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.965,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_alpha",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.024140689841791435,
+   "gen_p50": 0.11130007732123284,
+   "gen_p90": 0.21645720303344668,
+   "ref_p10": 0.0,
+   "ref_p50": 0.0579497865971718,
+   "ref_p90": 0.2699141290069553,
+   "B": {
+    "D": 0.31397414326603235,
+    "D_upper95": 0.33761059217142414,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.0,
+    "p90": 0.2699141290069553,
+    "share_inside": 0.94875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.9525,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8375,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.95375,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.9525,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_alpha",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.0,
+   "gen_p50": 0.0012727519624850152,
+   "gen_p90": 0.13744031365105175,
+   "ref_p10": 0.0,
+   "ref_p50": 0.0579497865971718,
+   "ref_p90": 0.2699141290069553,
+   "B": {
+    "D": 0.2394407055001161,
+    "D_upper95": 0.2776302893169335,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.0,
+    "p90": 0.2699141290069553,
+    "share_inside": 0.9725,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.975,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.945,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.9775,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.975,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_alpha",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.0,
+   "gen_p50": 1.318674611761807e-09,
+   "gen_p90": 0.12224988425189832,
+   "ref_p10": 0.0,
+   "ref_p50": 0.0579497865971718,
+   "ref_p90": 0.2699141290069553,
+   "B": {
+    "D": 0.279433356540574,
+    "D_upper95": 0.32800067687785256,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.0,
+    "p90": 0.2699141290069553,
+    "share_inside": 0.96,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.965,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.93,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.965,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.965,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "statistic": "garch_alpha",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.08,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.98,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_beta",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.486599929133351,
+   "gen_p50": 0.8830682658474736,
+   "gen_p90": 0.9952916393028877,
+   "ref_p10": 1.2034706093537965e-10,
+   "ref_p50": 0.825254475267863,
+   "ref_p90": 0.9949581354478082,
+   "B": {
+    "D": 0.19567363850854802,
+    "D_upper95": 0.2176363038601377,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.2034706093537965e-10,
+    "p90": 0.9949581354478082,
+    "share_inside": 0.851875,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.853125,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.78,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.89625,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.86375,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_beta",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 5.182623168538204e-11,
+   "gen_p50": 0.9016461410565406,
+   "gen_p90": 0.9992315638141277,
+   "ref_p10": 1.2034706093537965e-10,
+   "ref_p50": 0.825254475267863,
+   "ref_p90": 0.9949581354478082,
+   "B": {
+    "D": 0.16978571981124774,
+    "D_upper95": 0.23362379128954897,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.2034706093537965e-10,
+    "p90": 0.9949581354478082,
+    "share_inside": 0.725,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.63,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.83,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.75,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_beta",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.6756700583412467,
+   "gen_p50": 0.8652613717558455,
+   "gen_p90": 0.9586669507104731,
+   "ref_p10": 1.2034706093537965e-10,
+   "ref_p50": 0.825254475267863,
+   "ref_p90": 0.9949581354478082,
+   "B": {
+    "D": 0.24557418581264018,
+    "D_upper95": 0.26896128258683377,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.2034706093537965e-10,
+    "p90": 0.9949581354478082,
+    "share_inside": 0.95625,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.9525,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.915,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.96,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.95625,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_beta",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.3164912292958698,
+   "gen_p50": 0.9246701991079567,
+   "gen_p90": 0.9999999997041186,
+   "ref_p10": 1.2034706093537965e-10,
+   "ref_p50": 0.825254475267863,
+   "ref_p90": 0.9949581354478082,
+   "B": {
+    "D": 0.24783573141486803,
+    "D_upper95": 0.29128238377040305,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.2034706093537965e-10,
+    "p90": 0.9949581354478082,
+    "share_inside": 0.755,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.7475,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.655,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.825,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.78,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "property": "GARCH persistence",
+   "statistic": "garch_beta",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 6.631702937082761e-10,
+   "gen_p50": 0.8934293622642495,
+   "gen_p90": 0.9979697860567008,
+   "ref_p10": 1.2034706093537965e-10,
+   "ref_p50": 0.825254475267863,
+   "ref_p90": 0.9949581354478082,
+   "B": {
+    "D": 0.17382184574920706,
+    "D_upper95": 0.2317243366597045,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 1.2034706093537965e-10,
+    "p90": 0.9949581354478082,
+    "share_inside": 0.755,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.78,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.64,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.775,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 5,
+   "statistic": "garch_beta",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.04,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 0.97
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.96
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.98,
+      "pass_rate_C": 0.98
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.99
+     }
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "leverage_corr",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": -0.12993369848424585,
+   "gen_p50": -0.02240243243783983,
+   "gen_p90": 0.08564470414927741,
+   "ref_p10": -0.14724961673140252,
+   "ref_p50": -0.0380814584468858,
+   "ref_p90": 0.06983105676473689,
+   "B": {
+    "D": 0.07982758954127023,
+    "D_upper95": 0.1038894392550475,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.14724961673140252,
+    "p90": 0.06983105676473689,
+    "share_inside": 0.805,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.80125,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.755625,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.805625,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.818125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "leverage_corr",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.11158483492592593,
+   "gen_p50": -0.016197416415451034,
+   "gen_p90": 0.08032214586030366,
+   "ref_p10": -0.14724961673140252,
+   "ref_p50": -0.0380814584468858,
+   "ref_p90": 0.06983105676473689,
+   "B": {
+    "D": 0.17372862999922642,
+    "D_upper95": 0.2310340759650344,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.14724961673140252,
+    "p90": 0.06983105676473689,
+    "share_inside": 0.85,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.855,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.795,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "leverage_corr",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": -0.1511979908834327,
+   "gen_p50": -0.03819963404511931,
+   "gen_p90": 0.08092918435794326,
+   "ref_p10": -0.14724961673140252,
+   "ref_p50": -0.0380814584468858,
+   "ref_p90": 0.06983105676473689,
+   "B": {
+    "D": 0.03771892163688406,
+    "D_upper95": 0.07249789684381523,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.14724961673140252,
+    "p90": 0.06983105676473689,
+    "share_inside": 0.77625,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.76,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.73375,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.77875,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.7925,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "leverage_corr",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": -0.09774056737445014,
+   "gen_p50": -0.006784821550149967,
+   "gen_p90": 0.09711701142975708,
+   "ref_p10": -0.14724961673140252,
+   "ref_p50": -0.0380814584468858,
+   "ref_p90": 0.06983105676473689,
+   "B": {
+    "D": 0.18947764369149842,
+    "D_upper95": 0.22932765722905546,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.14724961673140252,
+    "p90": 0.06983105676473689,
+    "share_inside": 0.8125,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.83,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.7525,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.81,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.82,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "leverage_corr",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.11289869564406288,
+   "gen_p50": -0.023049676702623756,
+   "gen_p90": 0.07250255688561144,
+   "ref_p10": -0.14724961673140252,
+   "ref_p50": -0.0380814584468858,
+   "ref_p90": 0.06983105676473689,
+   "B": {
+    "D": 0.14323508934787654,
+    "D_upper95": 0.20577363270673782,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.14724961673140252,
+    "p90": 0.06983105676473689,
+    "share_inside": 0.86,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.855,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.81,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.875,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "statistic": "leverage_corr",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.96
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.97
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.81
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 0.65,
+      "pass_rate_C": 0.97
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.78
+     }
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "gjr_gamma",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": -0.051547752742280024,
+   "gen_p50": 0.05910995473907765,
+   "gen_p90": 0.23123473629998945,
+   "ref_p10": -0.10078122409632989,
+   "ref_p50": 0.0597894911081069,
+   "ref_p90": 0.33534964818940977,
+   "B": {
+    "D": 0.09222093293107447,
+    "D_upper95": 0.11261907006652741,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.10078122409632989,
+    "p90": 0.33534964818940977,
+    "share_inside": 0.888125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.894375,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.77875,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.919375,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.900625,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "gjr_gamma",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.12093471194887936,
+   "gen_p50": 0.0017400936261102364,
+   "gen_p90": 0.21715742935525614,
+   "ref_p10": -0.10078122409632989,
+   "ref_p50": 0.0597894911081069,
+   "ref_p90": 0.33534964818940977,
+   "B": {
+    "D": 0.2421064438771563,
+    "D_upper95": 0.30059261622959693,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.10078122409632989,
+    "p90": 0.33534964818940977,
+    "share_inside": 0.85,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.77,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.885,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "gjr_gamma",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": -0.014450211447236835,
+   "gen_p50": 0.09817915119575499,
+   "gen_p90": 0.23628187755651497,
+   "ref_p10": -0.10078122409632989,
+   "ref_p50": 0.0597894911081069,
+   "ref_p90": 0.33534964818940977,
+   "B": {
+    "D": 0.2285407480467239,
+    "D_upper95": 0.2524084957840179,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.10078122409632989,
+    "p90": 0.33534964818940977,
+    "share_inside": 0.92125,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.9275,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8375,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.94625,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.9275,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "gjr_gamma",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": -0.09146303528517069,
+   "gen_p50": 7.546441486001479e-11,
+   "gen_p90": 0.20928546101805107,
+   "ref_p10": -0.10078122409632989,
+   "ref_p50": 0.0597894911081069,
+   "ref_p90": 0.33534964818940977,
+   "B": {
+    "D": 0.23416318558056787,
+    "D_upper95": 0.28148260423918925,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.10078122409632989,
+    "p90": 0.33534964818940977,
+    "share_inside": 0.8625,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.87,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.6625,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.895,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.8825,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "property": "Leverage effect",
+   "statistic": "gjr_gamma",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": -0.041623783378833816,
+   "gen_p50": 0.02532765984728972,
+   "gen_p90": 0.24382815515541076,
+   "ref_p10": -0.10078122409632989,
+   "ref_p50": 0.0597894911081069,
+   "ref_p90": 0.33534964818940977,
+   "B": {
+    "D": 0.15131701090740313,
+    "D_upper95": 0.2125768739846832,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": -0.10078122409632989,
+    "p90": 0.33534964818940977,
+    "share_inside": 0.845,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.855,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.785,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.895,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.87,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 6,
+   "statistic": "gjr_gamma",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.06,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 0.98
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.99
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.93,
+      "pass_rate_C": 0.96
+     },
+     "D0.10": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "volume_absr_spearman",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.21203578498553372,
+   "gen_p50": 0.3250898431551698,
+   "gen_p90": 0.43322506471752703,
+   "ref_p10": 0.1869179149196647,
+   "ref_p50": 0.3255728835017502,
+   "ref_p90": 0.4595933155848674,
+   "B": {
+    "D": 0.05204175369381914,
+    "D_upper95": 0.07327177612748516,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.1869179149196647,
+    "p90": 0.4595933155848674,
+    "share_inside": 0.885,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.84375,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.861875,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.874375,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.91125,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "volume_absr_spearman",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.17178483325719507,
+   "gen_p50": 0.2632198873153647,
+   "gen_p90": 0.35680127912288717,
+   "ref_p10": 0.1869179149196647,
+   "ref_p50": 0.3255728835017502,
+   "ref_p90": 0.4595933155848674,
+   "B": {
+    "D": 0.32605786338670995,
+    "D_upper95": 0.3688222325365514,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.1869179149196647,
+    "p90": 0.4595933155848674,
+    "share_inside": 0.84,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.9,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.81,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.81,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "volume_absr_spearman",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.27556418455915943,
+   "gen_p50": 0.3666552459266027,
+   "gen_p90": 0.4593735343383585,
+   "ref_p10": 0.1869179149196647,
+   "ref_p50": 0.3255728835017502,
+   "ref_p90": 0.4595933155848674,
+   "B": {
+    "D": 0.2432275469946623,
+    "D_upper95": 0.2713878703488821,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.1869179149196647,
+    "p90": 0.4595933155848674,
+    "share_inside": 0.89375,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.77625,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.8925,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.9,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.9675,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "volume_absr_spearman",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.19427409776153495,
+   "gen_p50": 0.2899794426678849,
+   "gen_p90": 0.38783051621745096,
+   "ref_p10": 0.1869179149196647,
+   "ref_p50": 0.3255728835017502,
+   "ref_p90": 0.4595933155848674,
+   "B": {
+    "D": 0.2001481395528738,
+    "D_upper95": 0.23809797323431572,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.1869179149196647,
+    "p90": 0.4595933155848674,
+    "share_inside": 0.905,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.92,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.88,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.8925,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "volume_absr_spearman",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.16814451043094258,
+   "gen_p50": 0.2563012029846201,
+   "gen_p90": 0.34529602558245776,
+   "ref_p10": 0.1869179149196647,
+   "ref_p50": 0.3255728835017502,
+   "ref_p90": 0.4595933155848674,
+   "B": {
+    "D": 0.34018604471261693,
+    "D_upper95": 0.38291767231376184,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.1869179149196647,
+    "p90": 0.4595933155848674,
+    "share_inside": 0.855,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.905,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.805,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.825,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.825,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "statistic": "volume_absr_spearman",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.9
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.71,
+      "pass_rate_C": 0.95
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.86
+     }
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_acf1",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.46075920486927446,
+   "gen_p50": 0.5542732030702624,
+   "gen_p90": 0.6482540689540935,
+   "ref_p10": 0.3727990975936531,
+   "ref_p50": 0.5084455732117013,
+   "ref_p90": 0.6420168500156488,
+   "B": {
+    "D": 0.2538329658853562,
+    "D_upper95": 0.274106869343235,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.3727990975936531,
+    "p90": 0.6420168500156488,
+    "share_inside": 0.87125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.756875,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.871875,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.86125,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.93375,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_acf1",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.44126646250211393,
+   "gen_p50": 0.5234498338117651,
+   "gen_p90": 0.602128504082863,
+   "ref_p10": 0.3727990975936531,
+   "ref_p50": 0.5084455732117013,
+   "ref_p90": 0.6420168500156488,
+   "B": {
+    "D": 0.1656478688017328,
+    "D_upper95": 0.21852898971145662,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.3727990975936531,
+    "p90": 0.6420168500156488,
+    "share_inside": 0.96,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.905,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.92,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.955,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.965,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_acf1",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.49792361619561326,
+   "gen_p50": 0.5861953824009283,
+   "gen_p90": 0.6766943556839942,
+   "ref_p10": 0.3727990975936531,
+   "ref_p50": 0.5084455732117013,
+   "ref_p90": 0.6420168500156488,
+   "B": {
+    "D": 0.3968497137773652,
+    "D_upper95": 0.4251256817126944,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.3727990975936531,
+    "p90": 0.6420168500156488,
+    "share_inside": 0.7825,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.60625,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.815,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.77125,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.89375,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_acf1",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.44389983839936104,
+   "gen_p50": 0.5234259902027222,
+   "gen_p90": 0.6031259475171463,
+   "ref_p10": 0.3727990975936531,
+   "ref_p50": 0.5084455732117013,
+   "ref_p90": 0.6420168500156488,
+   "B": {
+    "D": 0.1745981279492535,
+    "D_upper95": 0.213052264639901,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.3727990975936531,
+    "p90": 0.6420168500156488,
+    "share_inside": 0.955,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.9025,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.9275,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.945,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.975,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_acf1",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.44545088165793323,
+   "gen_p50": 0.5263801738968729,
+   "gen_p90": 0.599641778416483,
+   "ref_p10": 0.3727990975936531,
+   "ref_p50": 0.5084455732117013,
+   "ref_p90": 0.6420168500156488,
+   "B": {
+    "D": 0.18763827647559372,
+    "D_upper95": 0.24040496634950106,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.3727990975936531,
+    "p90": 0.6420168500156488,
+    "share_inside": 0.97,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.92,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.94,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.96,
+     "pass": true,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.98,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "statistic": "logvolume_acf1",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.97
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.96
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.94
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.68,
+      "pass_rate_C": 0.97
+     },
+     "D0.10": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 0.82
+     }
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_shapiro_p",
+   "population": "all",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.00010448478058420101,
+   "gen_p50": 0.2027439358464095,
+   "gen_p90": 0.7897847881297106,
+   "ref_p10": 2.227365075130878e-07,
+   "ref_p50": 0.0036951767127263,
+   "ref_p90": 0.42192136377170975,
+   "B": {
+    "D": 0.374848040922101,
+    "D_upper95": 0.3988316483909646,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.227365075130878e-07,
+    "p90": 0.42192136377170975,
+    "share_inside": 0.663125,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.70875,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.661875,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.633125,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.541875,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_shapiro_p",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.005796990344663239,
+   "gen_p50": 0.2775354469147334,
+   "gen_p90": 0.7469242326142267,
+   "ref_p10": 2.227365075130878e-07,
+   "ref_p50": 0.0036951767127263,
+   "ref_p90": 0.42192136377170975,
+   "B": {
+    "D": 0.5398824166473273,
+    "D_upper95": 0.590431654676259,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.227365075130878e-07,
+    "p90": 0.42192136377170975,
+    "share_inside": 0.64,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.675,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.64,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.595,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.45,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_shapiro_p",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 1.759455227401035e-05,
+   "gen_p50": 0.057513540585788614,
+   "gen_p90": 0.6968146898744276,
+   "ref_p10": 2.227365075130878e-07,
+   "ref_p50": 0.0036951767127263,
+   "ref_p90": 0.42192136377170975,
+   "B": {
+    "D": 0.22139398158892243,
+    "D_upper95": 0.25375590334184267,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.227365075130878e-07,
+    "p90": 0.42192136377170975,
+    "share_inside": 0.73875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.775,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.73125,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.7225,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.65,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_shapiro_p",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.004876884318340173,
+   "gen_p50": 0.3421005979632631,
+   "gen_p90": 0.8655185770087507,
+   "ref_p10": 2.227365075130878e-07,
+   "ref_p50": 0.0036951767127263,
+   "ref_p90": 0.42192136377170975,
+   "B": {
+    "D": 0.5322449137464222,
+    "D_upper95": 0.5712251779221783,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.227365075130878e-07,
+    "p90": 0.42192136377170975,
+    "share_inside": 0.5475,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.6175,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.555,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.5025,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.4225,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "property": "Volume-volatility",
+   "statistic": "logvolume_shapiro_p",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.010212758410869438,
+   "gen_p50": 0.288922372853549,
+   "gen_p90": 0.8033123502058136,
+   "ref_p10": 2.227365075130878e-07,
+   "ref_p50": 0.0036951767127263,
+   "ref_p90": 0.42192136377170975,
+   "B": {
+    "D": 0.5429067068925505,
+    "D_upper95": 0.5979197222866868,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 2.227365075130878e-07,
+    "p90": 0.42192136377170975,
+    "share_inside": 0.615,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.66,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.62,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.575,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.44,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 7,
+   "statistic": "logvolume_shapiro_p",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.05,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "skew",
+   "population": "all",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 1600,
+   "n_ref": 6275,
+   "gen_p10": -0.6628748647431925,
+   "gen_p50": 0.06025451596381608,
+   "gen_p90": 0.6254464260131848,
+   "ref_p10": -1.4098056581825915,
+   "ref_p50": -0.1346127278464237,
+   "ref_p90": 0.608257937611293,
+   "B": {
+    "D": 0.1915961155378486,
+    "D_upper95": 0.2124794571713147,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -1.4098056581825915,
+    "p90": 0.608257937611293,
+    "share_inside": 0.85,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.875625,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.798125,
+     "pass": true,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.88375,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.8125,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "skew",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 200,
+   "n_ref": 6275,
+   "gen_p10": -0.6630214867293364,
+   "gen_p50": 0.0578897571712536,
+   "gen_p90": 0.6348234850815021,
+   "ref_p10": -1.4098056581825915,
+   "ref_p50": -0.1346127278464237,
+   "ref_p90": 0.608257937611293,
+   "B": {
+    "D": 0.2355179282868526,
+    "D_upper95": 0.2928754980079681,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -1.4098056581825915,
+    "p90": 0.608257937611293,
+    "share_inside": 0.82,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.86,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.79,
+     "pass": true,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.855,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.805,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "skew",
+   "population": "crash",
+   "is_main_population": true,
+   "reference": "crash",
+   "n_gen": 800,
+   "n_ref": 6275,
+   "gen_p10": -0.723355784616203,
+   "gen_p50": 0.040112704177003806,
+   "gen_p90": 0.5761471318612725,
+   "ref_p10": -1.4098056581825915,
+   "ref_p50": -0.1346127278464237,
+   "ref_p90": 0.608257937611293,
+   "B": {
+    "D": 0.14245019920318724,
+    "D_upper95": 0.17565786852589646,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -1.4098056581825915,
+    "p90": 0.608257937611293,
+    "share_inside": 0.86625,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.88875,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.8,
+     "pass": true,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.90875,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.8175,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "skew",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 400,
+   "n_ref": 6275,
+   "gen_p10": -0.49242603232784427,
+   "gen_p50": 0.07075547039503102,
+   "gen_p90": 0.6455006133563576,
+   "ref_p10": -1.4098056581825915,
+   "ref_p50": -0.1346127278464237,
+   "ref_p90": 0.608257937611293,
+   "B": {
+    "D": 0.24838645418326696,
+    "D_upper95": 0.2919447211155378,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -1.4098056581825915,
+    "p90": 0.608257937611293,
+    "share_inside": 0.85,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.87,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.805,
+     "pass": true,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.8675,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.815,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "skew",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 200,
+   "n_ref": 6275,
+   "gen_p10": -0.5190333961973218,
+   "gen_p50": 0.08104658187286419,
+   "gen_p90": 0.6793580356793604,
+   "ref_p10": -1.4098056581825915,
+   "ref_p50": -0.1346127278464237,
+   "ref_p90": 0.608257937611293,
+   "B": {
+    "D": 0.2655179282868526,
+    "D_upper95": 0.31144123505976096,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -1.4098056581825915,
+    "p90": 0.608257937611293,
+    "share_inside": 0.815,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.785,
+     "pass": true,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.845,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.795,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "statistic": "skew",
+   "population": "size_power",
+   "reference": "crash",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.93
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.87
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 0.66,
+      "pass_rate_C": 0.9
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.55
+     }
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "worst_over_best",
+   "population": "all",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 1600,
+   "n_ref": 6275,
+   "gen_p10": 0.5959425816155215,
+   "gen_p50": 0.959744366069716,
+   "gen_p90": 1.6165844381261891,
+   "ref_p10": 0.6438882072896294,
+   "ref_p50": 1.1069596677857958,
+   "ref_p90": 2.1045154442808793,
+   "B": {
+    "D": 0.1670468127490039,
+    "D_upper95": 0.19213894422310754,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": 0.6438882072896294,
+    "p90": 2.1045154442808793,
+    "share_inside": 0.81625,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.835625,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.754375,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.8575,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.79625,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "worst_over_best",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 200,
+   "n_ref": 6275,
+   "gen_p10": 0.5878426452177751,
+   "gen_p50": 0.9468005936104302,
+   "gen_p90": 1.6698830094762538,
+   "ref_p10": 0.6438882072896294,
+   "ref_p50": 1.1069596677857958,
+   "ref_p90": 2.1045154442808793,
+   "B": {
+    "D": 0.17579681274900394,
+    "D_upper95": 0.2454412350597609,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": 0.6438882072896294,
+    "p90": 2.1045154442808793,
+    "share_inside": 0.775,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.805,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.73,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.82,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.755,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "worst_over_best",
+   "population": "crash",
+   "is_main_population": true,
+   "reference": "crash",
+   "n_gen": 800,
+   "n_ref": 6275,
+   "gen_p10": 0.6625652908522224,
+   "gen_p50": 1.000574144283899,
+   "gen_p90": 1.6775172784244536,
+   "ref_p10": 0.6438882072896294,
+   "ref_p50": 1.1069596677857958,
+   "ref_p90": 2.1045154442808793,
+   "B": {
+    "D": 0.12926792828685257,
+    "D_upper95": 0.1634815737051793,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": 0.6438882072896294,
+    "p90": 2.1045154442808793,
+    "share_inside": 0.8575,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.87375,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.79625,
+     "pass": true,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.90625,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.8425,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "worst_over_best",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 400,
+   "n_ref": 6275,
+   "gen_p10": 0.5448533068247773,
+   "gen_p50": 0.9277583714281907,
+   "gen_p90": 1.457895456834365,
+   "ref_p10": 0.6438882072896294,
+   "ref_p50": 1.1069596677857958,
+   "ref_p90": 2.1045154442808793,
+   "B": {
+    "D": 0.22361553784860555,
+    "D_upper95": 0.2643192231075697,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": 0.6438882072896294,
+    "p90": 2.1045154442808793,
+    "share_inside": 0.785,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.8075,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.8175,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.7575,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "property": "Gain/loss asymmetry in crash",
+   "statistic": "worst_over_best",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 200,
+   "n_ref": 6275,
+   "gen_p10": 0.5342021984325712,
+   "gen_p50": 0.8836441286397145,
+   "gen_p90": 1.5319885204091732,
+   "ref_p10": 0.6438882072896294,
+   "ref_p50": 1.1069596677857958,
+   "ref_p90": 2.1045154442808793,
+   "B": {
+    "D": 0.2564940239043824,
+    "D_upper95": 0.32246713147410355,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": 0.6438882072896294,
+    "p90": 2.1045154442808793,
+    "share_inside": 0.755,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.77,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.68,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.78,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.73,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 8,
+   "statistic": "worst_over_best",
+   "population": "size_power",
+   "reference": "crash",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.08,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.02,
+      "pass_rate_C": 0.99
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 0.65,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "mdd",
+   "population": "all",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 1600,
+   "n_ref": 6275,
+   "gen_p10": -0.5983158205586813,
+   "gen_p50": -0.3619370431310196,
+   "gen_p90": -0.15295739474674924,
+   "ref_p10": -0.5396630073255964,
+   "ref_p50": -0.3065824908413777,
+   "ref_p90": -0.21634317548187626,
+   "B": {
+    "D": 0.22375,
+    "D_upper95": 0.24124999999999996,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.5396630073255964,
+    "p90": -0.21634317548187626,
+    "share_inside": 0.54875,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.574375,
+     "pass": false,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.625,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.38125,
+     "pass": false,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.545,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "mdd",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 200,
+   "n_ref": 6275,
+   "gen_p10": -0.3560441421076452,
+   "gen_p50": -0.2475293003998657,
+   "gen_p90": -0.14956677790659867,
+   "ref_p10": -0.5396630073255964,
+   "ref_p50": -0.3065824908413777,
+   "ref_p90": -0.21634317548187626,
+   "B": {
+    "D": 0.28500000000000003,
+    "D_upper95": 0.35,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.5396630073255964,
+    "p90": -0.21634317548187626,
+    "share_inside": 0.65,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.66,
+     "pass": false,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.625,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.66,
+     "pass": false,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.625,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "mdd",
+   "population": "crash",
+   "is_main_population": true,
+   "reference": "crash",
+   "n_gen": 800,
+   "n_ref": 6275,
+   "gen_p10": -0.642037431654998,
+   "gen_p50": -0.5121607728735523,
+   "gen_p90": -0.39038099376068597,
+   "ref_p10": -0.5396630073255964,
+   "ref_p50": -0.3065824908413777,
+   "ref_p90": -0.21634317548187626,
+   "B": {
+    "D": 0.6225498007968128,
+    "D_upper95": 0.6432430278884463,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.5396630073255964,
+    "p90": -0.21634317548187626,
+    "share_inside": 0.6125,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.6575,
+     "pass": false,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.7875,
+     "pass": true,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.27,
+     "pass": false,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.6275,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "mdd",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 400,
+   "n_ref": 6275,
+   "gen_p10": -0.32918216144768875,
+   "gen_p50": -0.21820127080073742,
+   "gen_p90": -0.14121916088913702,
+   "ref_p10": -0.5396630073255964,
+   "ref_p50": -0.3065824908413777,
+   "ref_p90": -0.21634317548187626,
+   "B": {
+    "D": 0.42000000000000004,
+    "D_upper95": 0.46499999999999997,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.5396630073255964,
+    "p90": -0.21634317548187626,
+    "share_inside": 0.515,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.52,
+     "pass": false,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.4925,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.5175,
+     "pass": false,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.4925,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "mdd",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 200,
+   "n_ref": 6275,
+   "gen_p10": -0.2590757192331082,
+   "gen_p50": -0.17197305348335007,
+   "gen_p90": -0.11004195701229917,
+   "ref_p10": -0.5396630073255964,
+   "ref_p50": -0.3065824908413777,
+   "ref_p90": -0.21634317548187626,
+   "B": {
+    "D": 0.675378486055777,
+    "D_upper95": 0.7312101593625496,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.5396630073255964,
+    "p90": -0.21634317548187626,
+    "share_inside": 0.26,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.265,
+     "pass": false,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.24,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.275,
+     "pass": false,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.24,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "statistic": "mdd",
+   "population": "size_power",
+   "reference": "crash",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.03,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 0.71
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.22
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.81,
+      "pass_rate_C": 0.13
+     },
+     "D0.10": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 0.0
+     }
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "worst_day",
+   "population": "all",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 1600,
+   "n_ref": 6275,
+   "gen_p10": -0.21263174011054362,
+   "gen_p50": -0.09856871507483822,
+   "gen_p90": -0.05399014294935567,
+   "ref_p10": -0.20459479261848368,
+   "ref_p50": -0.0943942723898514,
+   "ref_p90": -0.05420208095685336,
+   "B": {
+    "D": 0.03933764940239043,
+    "D_upper95": 0.06767243525896417,
+    "D0": 0.1,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.20459479261848368,
+    "p90": -0.05420208095685336,
+    "share_inside": 0.78625,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": true,
+    "n_gen": 1600,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.78125,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.706875,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.78,
+     "pass": false,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.79375,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "worst_day",
+   "population": "flat",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 200,
+   "n_ref": 6275,
+   "gen_p10": -0.1043352829100889,
+   "gen_p50": -0.06409284331776055,
+   "gen_p90": -0.04853300390529132,
+   "ref_p10": -0.20459479261848368,
+   "ref_p50": -0.0943942723898514,
+   "ref_p90": -0.05420208095685336,
+   "B": {
+    "D": 0.4256772908366534,
+    "D_upper95": 0.4815358565737052,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.20459479261848368,
+    "p90": -0.05420208095685336,
+    "share_inside": 0.705,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.67,
+     "pass": false,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.53,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.85,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.71,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "worst_day",
+   "population": "crash",
+   "is_main_population": true,
+   "reference": "crash",
+   "n_gen": 800,
+   "n_ref": 6275,
+   "gen_p10": -0.25616733817054277,
+   "gen_p50": -0.13712532835080404,
+   "gen_p90": -0.09524252946373747,
+   "ref_p10": -0.20459479261848368,
+   "ref_p50": -0.0943942723898514,
+   "ref_p90": -0.05420208095685336,
+   "B": {
+    "D": 0.4068376494023905,
+    "D_upper95": 0.4295709661354582,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.20459479261848368,
+    "p90": -0.05420208095685336,
+    "share_inside": 0.825,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": true,
+    "n_gen": 800,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.84875,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.8375,
+     "pass": true,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.6975,
+     "pass": false,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.8375,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "worst_day",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 400,
+   "n_ref": 6275,
+   "gen_p10": -0.11472317601350257,
+   "gen_p50": -0.07114863892275647,
+   "gen_p90": -0.05244566268675292,
+   "ref_p10": -0.20459479261848368,
+   "ref_p50": -0.0943942723898514,
+   "ref_p90": -0.05420208095685336,
+   "B": {
+    "D": 0.3172609561752988,
+    "D_upper95": 0.35326842629482075,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.20459479261848368,
+    "p90": -0.05420208095685336,
+    "share_inside": 0.82,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.7825,
+     "pass": true,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.655,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.895,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.8225,
+     "pass": true,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "worst_day",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "crash",
+   "n_gen": 200,
+   "n_ref": 6275,
+   "gen_p10": -0.0981121275086938,
+   "gen_p50": -0.06122616071218223,
+   "gen_p90": -0.046316124809989034,
+   "ref_p10": -0.20459479261848368,
+   "ref_p50": -0.0943942723898514,
+   "ref_p90": -0.05420208095685336,
+   "B": {
+    "D": 0.46982071713147405,
+    "D_upper95": 0.524144422310757,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C": {
+    "p10": -0.20459479261848368,
+    "p90": -0.05420208095685336,
+    "share_inside": 0.645,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 6275
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.62,
+     "pass": false,
+     "n_ref": 2085
+    },
+    "2008-12": {
+     "share_inside": 0.465,
+     "pass": false,
+     "n_ref": 1504
+    },
+    "2013-19": {
+     "share_inside": 0.81,
+     "pass": true,
+     "n_ref": 1228
+    },
+    "2020-24": {
+     "share_inside": 0.645,
+     "pass": false,
+     "n_ref": 1458
+    }
+   }
+  },
+  {
+   "item": 20,
+   "statistic": "worst_day",
+   "population": "size_power",
+   "reference": "crash",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.05,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.76
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.41
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.99
+     },
+     "D0.05": {
+      "pass_rate_B": 0.61,
+      "pass_rate_C": 0.38
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 0.0
+     }
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "daily_sigma",
+   "population": "all",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 1600,
+   "n_ref": 12927,
+   "gen_p10": 0.01860748892654144,
+   "gen_p50": 0.02928761037739546,
+   "gen_p90": 0.04720271030645557,
+   "ref_p10": 0.01075576645549614,
+   "ref_p50": 0.017467668043776,
+   "ref_p90": 0.03410848373488636,
+   "B": {
+    "D": 0.46951434014079063,
+    "D_upper95": 0.48013774222557437,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01075576645549614,
+    "p90": 0.03410848373488636,
+    "share_inside": 0.66625,
+    "threshold": 0.7804000000000001,
+    "halfwidth": 0.0196,
+    "pass": false,
+    "n_gen": 1600,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.695625,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.856875,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.31,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.6975,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "daily_sigma",
+   "population": "flat",
+   "is_main_population": true,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.0172897047320018,
+   "gen_p50": 0.019881505908152384,
+   "gen_p90": 0.026891238915482136,
+   "ref_p10": 0.01075576645549614,
+   "ref_p50": 0.017467668043776,
+   "ref_p90": 0.03410848373488636,
+   "B": {
+    "D": 0.4359658079987623,
+    "D_upper95": 0.4492532490136923,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01075576645549614,
+    "p90": 0.03410848373488636,
+    "share_inside": 0.99,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.99,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 1.0,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.99,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "daily_sigma",
+   "population": "crash",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 800,
+   "n_ref": 12927,
+   "gen_p10": 0.029602293265730655,
+   "gen_p50": 0.0373693865848678,
+   "gen_p90": 0.05485280693374024,
+   "ref_p10": 0.01075576645549614,
+   "ref_p50": 0.017467668043776,
+   "ref_p90": 0.03410848373488636,
+   "B": {
+    "D": 0.7707222286686779,
+    "D_upper95": 0.7846745813026997,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01075576645549614,
+    "p90": 0.03410848373488636,
+    "share_inside": 0.35875,
+    "threshold": 0.7722814141774874,
+    "halfwidth": 0.027718585822512663,
+    "pass": false,
+    "n_gen": 800,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.41375,
+     "pass": false,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.72,
+     "pass": false,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.0,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.4175,
+     "pass": false,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "daily_sigma",
+   "population": "bull_trap",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 400,
+   "n_ref": 12927,
+   "gen_p10": 0.018742865138416723,
+   "gen_p50": 0.022570252137789303,
+   "gen_p90": 0.030347376971359658,
+   "ref_p10": 0.01075576645549614,
+   "ref_p50": 0.017467668043776,
+   "ref_p90": 0.03410848373488636,
+   "B": {
+    "D": 0.4949121992728398,
+    "D_upper95": 0.5091677786802816,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01075576645549614,
+    "p90": 0.03410848373488636,
+    "share_inside": 0.96,
+    "threshold": 0.7608,
+    "halfwidth": 0.0392,
+    "pass": true,
+    "n_gen": 400,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.9675,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 0.9875,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.5,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.9675,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 20,
+   "property": "Magnitudes",
+   "statistic": "daily_sigma",
+   "population": "sustained_bull",
+   "is_main_population": false,
+   "reference": "all",
+   "n_gen": 200,
+   "n_ref": 12927,
+   "gen_p10": 0.017077576999072322,
+   "gen_p50": 0.019791787167856352,
+   "gen_p90": 0.027198107729745385,
+   "ref_p10": 0.01075576645549614,
+   "ref_p50": 0.017467668043776,
+   "ref_p90": 0.03410848373488636,
+   "B": {
+    "D": 0.42596580799876227,
+    "D_upper95": 0.44458563471803203,
+    "D0": 0.1,
+    "pass": false,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C": {
+    "p10": 0.01075576645549614,
+    "p90": 0.03410848373488636,
+    "share_inside": 0.985,
+    "threshold": 0.7445628283549747,
+    "halfwidth": 0.055437171645025325,
+    "pass": true,
+    "n_gen": 200,
+    "n_ref": 12927
+   },
+   "C_by_sub_period": {
+    "2000-07": {
+     "share_inside": 0.985,
+     "pass": true,
+     "n_ref": 4170
+    },
+    "2008-12": {
+     "share_inside": 1.0,
+     "pass": true,
+     "n_ref": 2502
+    },
+    "2013-19": {
+     "share_inside": 0.74,
+     "pass": false,
+     "n_ref": 3753
+    },
+    "2020-24": {
+     "share_inside": 0.985,
+     "pass": true,
+     "n_ref": 2502
+    }
+   }
+  },
+  {
+   "item": 20,
+   "statistic": "daily_sigma",
+   "population": "size_power",
+   "reference": "all",
+   "size_power": {
+    "200": {
+     "n_gen": 200,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 0.07,
+      "pass_rate_C": 1.0
+     },
+     "D0.05": {
+      "pass_rate_B": 0.01,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    },
+    "800": {
+     "n_gen": 800,
+     "n_sim": 100,
+     "n_boot_inner": 50,
+     "D0.00": {
+      "pass_rate_B": 1.0,
+      "pass_rate_C": 0.98
+     },
+     "D0.05": {
+      "pass_rate_B": 0.74,
+      "pass_rate_C": 1.0
+     },
+     "D0.10": {
+      "pass_rate_B": 0.0,
+      "pass_rate_C": 1.0
+     }
+    }
+   }
+  }
+ ],
+ "v2_verdicts": {
+  "1": {
+   "pass": true,
+   "statistic": "LB Q(10) p>0.05 in 93%; median |ACF(1)| = 0.064",
+   "criterion": ">= 80% of seeds p>0.05; |ACF(1)| < 0.15",
+   "n_seeds": 400
+  },
+  "2": {
+   "pass": false,
+   "statistic": "excess kurtosis > 1.5 in 51% (median 1.55); JB rejects in 76%; Hill median 3.97",
+   "criterion": "kurtosis > 1.5 in >= 80%; JB rejects; Hill 2.5-5",
+   "n_seeds": 1820
+  },
+  "3": {
+   "pass": false,
+   "statistic": "LB|r| p<0.01 in 42%; LB r^2 in 35%; ARCH-LM(5) rejects in 27%; median ACF|r|(1) = 0.078",
+   "criterion": "p < 0.01 in >= 80%; ACF|r|(1) 0.1-0.4",
+   "n_seeds": 1820
+  },
+  "4": {
+   "pass": null,
+   "statistic": "median ACF|r| at lags 1: 0.019, 5: 0.039, 10: 0.012, 20: 0.028, 50: -0.001",
+   "criterion": "descriptive (T = 800 paths); not a pass criterion",
+   "n_seeds": 20
+  },
+  "5": {
+   "pass": true,
+   "statistic": "median alpha+beta = 0.978",
+   "criterion": "median alpha + beta in [0.90, 0.995]",
+   "n_seeds": 1820
+  },
+  "6": {
+   "pass": false,
+   "statistic": "corr(r_t,|r_t+1|) < 0 in 53% (median -0.008); GJR gamma median 0.034",
+   "criterion": "negative in >= 70%; gamma > 0",
+   "n_seeds": 1820
+  },
+  "7": {
+   "pass": true,
+   "statistic": "median Spearman corr(volume,|r|) = 0.316; median AC(1) log volume = 0.547; Shapiro p > 0.01 in 83% of seeds (median p = 0.242)",
+   "criterion": "corr 0.2-0.5; AC(1) 0.5-0.8; log-normality not rejected (p > 0.01 in >= 50% of seeds)",
+   "n_seeds": 1820
+  },
+  "8": {
+   "pass": false,
+   "statistic": "median skew = -0.018; worst day larger than best in 49%",
+   "criterion": "skew < 0; worst > best in >= 70% of crash seeds",
+   "n_seeds": 600
+  },
+  "9": {
+   "pass": false,
+   "statistic": "200-day calm windows: median ACF(1) of x = 0.9282, half-life = 9 d, sd(x) = 0.040; T=800 phase-free: ACF(1) = 0.9570, half-life = 16 d, sd(x) = 0.055 (criterion applied here)",
+   "criterion": "ACF(1) >= 0.98; half-life >= 60 d; sd 0.08-0.20",
+   "n_seeds": 20
+  },
+  "10": {
+   "pass": false,
+   "statistic": "event-window MDD: partial R2 of delta (controlling D_V) = 0.21, spread between delta 0.55 and 0.85 = 10.5 pp, means 0.55: -52.6%, 0.7: -46.5%, 0.85: -42.1%; whole-path MDD (reported): partial R2 0.20, spread 9.8 pp, means 0.55: -57.1%, 0.7: -51.4%, 0.85: -47.2%",
+   "criterion": "partial R2 > 0.7; spread >= 20 pp between delta 0.55 and 0.85 (event-window MDD, amendment A7)",
+   "n_seeds": 600
+  },
+  "11": {
+   "pass": false,
+   "statistic": "mean 2nd difference of log P over mania > 0 in 46% (median -2.16e-05); topped share = 15%; median peak P/V in topped seeds = 1.49",
+   "criterion": "convex; 40-60% topped; peak P/V 1.6-2.5 in topped seeds",
+   "n_seeds": 200
+  },
+  "12": {
+   "pass": false,
+   "statistic": "median ACF(1) = 0.211; median corr(s_t, r_t) = 0.020; median calm corr(s_t-1, r_t) = 0.028 (configured b_pred = 0.0008)",
+   "criterion": "ACF(1) 0.7-0.9; corr 0.25-0.55; lagged corr equals configured b_pred within CI",
+   "n_seeds": 1820
+  },
+  "13": {
+   "pass": false,
+   "statistic": "mean IV calm 32.3%, panic 70.2%; median corr(IV, next-20d RV) = 0.22; IV-RV calm +0.1 pts, panic -10.1 pts; sd of calm IV across seeds 7.81",
+   "criterion": "calm 25-35%, panic 60-100%; corr 0.4-0.8; IV-RV +3..+8 calm, +10..+25 panic; non-degenerate across seeds",
+   "n_seeds": 1820
+  },
+  "14": {
+   "pass": null,
+   "statistic": "see evaluation.leakage_audit (L1-L3)",
+   "criterion": "calm R2 <= 0.30; event R2 < 0.90 & MAPE >= 10%; no inversion",
+   "n_seeds": 0
+  },
+  "15": {
+   "pass": true,
+   "statistic": "macro-phase accuracy from day alone = 60.1% (mixed set, 1820 paths; within-scenario mean 73.2%); |corr(day, phase id)| = 0.20",
+   "criterion": "< 80% on the mixed set; < 0.9",
+   "n_seeds": 1820
+  },
+  "16": {
+   "pass": null,
+   "statistic": "see evaluation.leakage_audit (L2b)",
+   "criterion": "selectivity <= 10 pp",
+   "n_seeds": 0
+  },
+  "17": {
+   "pass": false,
+   "statistic": "flat: rejection rate 0.0%; bull_trap: rejection rate 13.4%; crash: rejection rate 6.7%; sustained_bull: rejection rate 20.0%; mixed: rejection rate 6.1%; flat_T800: rejection rate 0.0%; bull-trap topped share 15%",
+   "criterion": "rejection < 5% per scenario; joint conditioning published",
+   "n_seeds": 1820
+  },
+  "18": {
+   "pass": null,
+   "statistic": "unit test (tests/)",
+   "criterion": "C_0 as configured",
+   "n_seeds": 0
+  },
+  "19": {
+   "pass": null,
+   "statistic": "unit test (tests/)",
+   "criterion": "any allocation reachable; SELL feasible at t=1",
+   "n_seeds": 0
+  },
+  "20": {
+   "pass": true,
+   "statistic": "median crash MDD = -51.9%; median calm daily sigma (flat) = 2.02%; median worst panic day = -13.4%",
+   "criterion": "crash MDD -20..-65%; calm sigma 1.4-2.2%/day; worst day -6..-15% in panic",
+   "n_seeds": 800
+  }
+ }
+}

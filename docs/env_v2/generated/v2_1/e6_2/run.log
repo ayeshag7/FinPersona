@@ -1,0 +1,15 @@
+[Parallel(n_jobs=4)]: Using backend LokyBackend with 4 concurrent workers.
+[Parallel(n_jobs=4)]: Done  10 tasks      | elapsed:   36.1s
+[Parallel(n_jobs=4)]: Done  64 tasks      | elapsed:   40.9s
+[Parallel(n_jobs=4)]: Done 154 tasks      | elapsed:   49.3s
+[Parallel(n_jobs=4)]: Done 280 tasks      | elapsed:  1.0min
+[Parallel(n_jobs=4)]: Done 442 tasks      | elapsed:  1.2min
+[Parallel(n_jobs=4)]: Done 640 tasks      | elapsed:  1.4min
+[Parallel(n_jobs=4)]: Done 874 tasks      | elapsed:  1.6min
+[Parallel(n_jobs=4)]: Done 1144 tasks      | elapsed:  1.8min
+[Parallel(n_jobs=4)]: Done 1450 tasks      | elapsed:  2.0min
+[Parallel(n_jobs=4)]: Done 1600 out of 1600 | elapsed:  2.1min finished
+generator windows: 1600 paths in 130s
+criteria file written: evaluation\params\phase6_criteria.json
+{"n_gen_paths": 1600, "n_ref_windows": 12927, "n_ref_crash": 6275, "seconds": 3028.8}
+-> C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e6_2

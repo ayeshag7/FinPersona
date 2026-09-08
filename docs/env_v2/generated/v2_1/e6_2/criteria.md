@@ -1,0 +1,142 @@
+# E6.2 — re-derived checklist criteria (REG-14 B and C) on the generator, beside the v2 criteria (A)
+
+Generator: `docs/env_v2/generated/v2_1/_panels/sep_phase5_after.pkl` (1600 paths; per-path statistics by `e6_1_reference.window_stats`, the reference's own function). Reference: `docs/env_v2/generated/v2_1/e6_1` (12927 windows of 417 names; crash windows = MDD ≤ -0.2: n = 6275). B: bootstrap 95 % upper limit of KS D < 0.1 (500 resamples). C: share inside the reference P10–P90 ≥ 0.8 − 1.96·sqrt(0.8·0.2/n_gen).
+
+## Verdicts on the checklist's population, with the v2 criterion beside
+
+| item | statistic | pop | ref | n_gen / n_ref | gen P10 / P50 / P90 | ref P10 / P50 / P90 | B: D (upper) | B | C: share (thr) | C | A (v2) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | `lb_p_r` | all | all | 1600 / 12927 | 0.00817 / 0.322 / 0.855 | 0.0237 / 0.392 / 0.867 | 0.076 (0.098) | **PASS** | 0.756 (0.780) | **FAIL** | PASS |
+| 1 | `abs_acf1_r` | all | all | 1600 / 12927 | 0.00988 / 0.0561 / 0.141 | 0.011 / 0.0585 / 0.151 | 0.031 (0.055) | **PASS** | 0.807 (0.780) | **PASS** | PASS |
+| 2 | `kurtosis` | all | all | 1600 / 12927 | 0.355 / 1.73 / 6.67 | 0.466 / 2.17 / 10.7 | 0.101 (0.127) | **FAIL** | 0.811 (0.780) | **PASS** | FAIL |
+| 2 | `hill` | all | all | 1600 / 12927 | 2.62 / 3.84 / 6.01 | 2.31 / 3.56 / 5.57 | 0.101 (0.126) | **FAIL** | 0.821 (0.780) | **PASS** | FAIL |
+| 2 | `jb_p` | all | all | 1600 / 12927 | 5.41e-85 / 8.3e-07 / 0.34 | 1.02e-223 / 8.24e-11 / 0.191 | 0.111 (0.134) | **FAIL** | 0.800 (0.780) | **PASS** | FAIL |
+| 3 | `lb_p_absr` | all | all | 1600 / 12927 | 3.06e-19 / 0.0302 / 0.82 | 3.7e-07 / 0.182 / 0.835 | 0.224 (0.248) | **FAIL** | 0.621 (0.780) | **FAIL** | FAIL |
+| 3 | `lb_p_r2` | all | all | 1600 / 12927 | 2.17e-11 / 0.116 / 0.969 | 3.16e-06 / 0.447 / 0.998 | 0.167 (0.193) | **FAIL** | 0.734 (0.780) | **FAIL** | FAIL |
+| 3 | `arch_lm_p` | all | all | 1600 / 12927 | 1.79e-05 / 0.223 / 0.949 | 0.000155 / 0.395 / 0.982 | 0.095 (0.118) | **FAIL** | 0.793 (0.780) | **PASS** | FAIL |
+| 3 | `acf1_absr` | all | all | 1600 / 12927 | -0.04 / 0.0914 / 0.27 | -0.0256 / 0.0873 / 0.232 | 0.094 (0.116) | **FAIL** | 0.698 (0.780) | **FAIL** | FAIL |
+| 4 | `acf1_absr` | all | all | 1600 / 12927 | -0.04 / 0.0914 / 0.27 | -0.0256 / 0.0873 / 0.232 | 0.094 (0.116) | **FAIL** | 0.698 (0.780) | **FAIL** | n/a |
+| 4 | `acf5_absr` | all | all | 1600 / 12927 | -0.0449 / 0.0768 / 0.248 | -0.0509 / 0.0427 / 0.172 | 0.165 (0.188) | **FAIL** | 0.672 (0.780) | **FAIL** | n/a |
+| 4 | `acf10_absr` | all | all | 1600 / 12927 | -0.0493 / 0.0612 / 0.206 | -0.062 / 0.0291 / 0.147 | 0.163 (0.187) | **FAIL** | 0.691 (0.780) | **FAIL** | n/a |
+| 4 | `acf20_absr` | all | all | 1600 / 12927 | -0.0604 / 0.0386 / 0.163 | -0.0715 / 0.00948 / 0.108 | 0.178 (0.201) | **FAIL** | 0.703 (0.780) | **FAIL** | n/a |
+| 4 | `acf50_absr` | all | all | 1600 / 12927 | -0.0907 / -0.0146 / 0.0687 | -0.0824 / -0.00898 / 0.0697 | 0.051 (0.076) | **PASS** | 0.771 (0.780) | **FAIL** | n/a |
+| 5 | `garch_persistence` | all | all | 1600 / 12927 | 0.708 / 0.975 / 1 | 0.289 / 0.93 / 1 | 0.222 (0.246) | **FAIL** | 0.768 (0.780) | **FAIL** | PASS |
+| 5 | `garch_alpha` | all | all | 1600 / 12927 | 0 / 0.0647 / 0.197 | 0 / 0.0579 / 0.27 | 0.084 (0.097) | **PASS** | 0.958 (0.780) | **PASS** | PASS |
+| 5 | `garch_beta` | all | all | 1600 / 12927 | 0.487 / 0.883 / 0.995 | 1.2e-10 / 0.825 / 0.995 | 0.196 (0.218) | **FAIL** | 0.852 (0.780) | **PASS** | PASS |
+| 6 | `leverage_corr` | all | all | 1600 / 12927 | -0.13 / -0.0224 / 0.0856 | -0.147 / -0.0381 / 0.0698 | 0.080 (0.104) | **FAIL** | 0.805 (0.780) | **PASS** | FAIL |
+| 6 | `gjr_gamma` | all | all | 1600 / 12927 | -0.0515 / 0.0591 / 0.231 | -0.101 / 0.0598 / 0.335 | 0.092 (0.113) | **FAIL** | 0.888 (0.780) | **PASS** | FAIL |
+| 7 | `volume_absr_spearman` | all | all | 1600 / 12927 | 0.212 / 0.325 / 0.433 | 0.187 / 0.326 / 0.46 | 0.052 (0.073) | **PASS** | 0.885 (0.780) | **PASS** | PASS |
+| 7 | `logvolume_acf1` | all | all | 1600 / 12927 | 0.461 / 0.554 / 0.648 | 0.373 / 0.508 / 0.642 | 0.254 (0.274) | **FAIL** | 0.871 (0.780) | **PASS** | PASS |
+| 7 | `logvolume_shapiro_p` | all | all | 1600 / 12927 | 0.000104 / 0.203 / 0.79 | 2.23e-07 / 0.0037 / 0.422 | 0.375 (0.399) | **FAIL** | 0.663 (0.780) | **FAIL** | PASS |
+| 8 | `skew` | crash | crash | 800 / 6275 | -0.723 / 0.0401 / 0.576 | -1.41 / -0.135 / 0.608 | 0.142 (0.176) | **FAIL** | 0.866 (0.772) | **PASS** | FAIL |
+| 8 | `worst_over_best` | crash | crash | 800 / 6275 | 0.663 / 1 / 1.68 | 0.644 / 1.11 / 2.1 | 0.129 (0.163) | **FAIL** | 0.858 (0.772) | **PASS** | FAIL |
+| 20 | `mdd` | crash | crash | 800 / 6275 | -0.642 / -0.512 / -0.39 | -0.54 / -0.307 / -0.216 | 0.623 (0.643) | **FAIL** | 0.613 (0.772) | **FAIL** | PASS |
+| 20 | `worst_day` | crash | crash | 800 / 6275 | -0.256 / -0.137 / -0.0952 | -0.205 / -0.0944 / -0.0542 | 0.407 (0.430) | **FAIL** | 0.825 (0.772) | **PASS** | PASS |
+| 20 | `daily_sigma` | flat | all | 200 / 12927 | 0.0173 / 0.0199 / 0.0269 | 0.0108 / 0.0175 / 0.0341 | 0.436 (0.449) | **FAIL** | 0.990 (0.745) | **PASS** | PASS |
+
+## Per-scenario and flat-only (E6.4): criterion C's share inside the reference band
+
+| item | statistic | all | flat | crash | bull_trap | sustained_bull |
+|---|---|---|---|---|---|---|
+| 1 | `abs_acf1_r` | 0.81 ✓ (D 0.03) | 0.81 ✓ (D 0.13) | 0.79 ✓ (D 0.04) | 0.84 ✓ (D 0.09) | 0.80 ✓ (D 0.13) |
+| 1 | `lb_p_r` | 0.76 ✗ (D 0.08) | 0.81 ✓ (D 0.16) | 0.70 ✗ (D 0.24) | 0.82 ✓ (D 0.07) | 0.80 ✓ (D 0.15) |
+| 2 | `hill` | 0.82 ✓ (D 0.10) | 0.81 ✓ (D 0.21) | 0.84 ✓ (D 0.06) | 0.80 ✓ (D 0.18) | 0.79 ✓ (D 0.21) |
+| 2 | `jb_p` | 0.80 ✓ (D 0.11) | 0.69 ✗ (D 0.29) | 0.90 ✓ (D 0.09) | 0.71 ✗ (D 0.26) | 0.68 ✗ (D 0.30) |
+| 2 | `kurtosis` | 0.81 ✓ (D 0.10) | 0.70 ✗ (D 0.28) | 0.91 ✓ (D 0.10) | 0.74 ✗ (D 0.26) | 0.69 ✗ (D 0.29) |
+| 3 | `acf1_absr` | 0.70 ✗ (D 0.09) | 0.77 ✓ (D 0.36) | 0.66 ✗ (D 0.37) | 0.72 ✗ (D 0.27) | 0.72 ✗ (D 0.37) |
+| 3 | `arch_lm_p` | 0.79 ✓ (D 0.10) | 0.88 ✓ (D 0.22) | 0.70 ✗ (D 0.35) | 0.90 ✓ (D 0.15) | 0.88 ✓ (D 0.22) |
+| 3 | `lb_p_absr` | 0.62 ✗ (D 0.22) | 0.77 ✓ (D 0.27) | 0.46 ✗ (D 0.57) | 0.79 ✓ (D 0.16) | 0.78 ✓ (D 0.29) |
+| 3 | `lb_p_r2` | 0.73 ✗ (D 0.17) | 0.85 ✓ (D 0.18) | 0.60 ✗ (D 0.46) | 0.88 ✓ (D 0.12) | 0.88 ✓ (D 0.20) |
+| 4 | `acf10_absr` | 0.69 ✗ (D 0.16) | 0.80 ✓ (D 0.14) | 0.59 ✗ (D 0.38) | 0.80 ✓ (D 0.06) | 0.78 ✓ (D 0.14) |
+| 4 | `acf1_absr` | 0.70 ✗ (D 0.09) | 0.77 ✓ (D 0.36) | 0.66 ✗ (D 0.37) | 0.72 ✗ (D 0.27) | 0.72 ✗ (D 0.37) |
+| 4 | `acf20_absr` | 0.70 ✗ (D 0.18) | 0.79 ✓ (D 0.05) | 0.61 ✗ (D 0.35) | 0.80 ✓ (D 0.04) | 0.80 ✓ (D 0.06) |
+| 4 | `acf50_absr` | 0.77 ✗ (D 0.05) | 0.80 ✓ (D 0.04) | 0.73 ✗ (D 0.10) | 0.81 ✓ (D 0.04) | 0.80 ✓ (D 0.04) |
+| 4 | `acf5_absr` | 0.67 ✗ (D 0.17) | 0.82 ✓ (D 0.18) | 0.54 ✗ (D 0.43) | 0.80 ✓ (D 0.10) | 0.82 ✓ (D 0.19) |
+| 5 | `garch_alpha` | 0.96 ✓ (D 0.08) | 0.96 ✓ (D 0.27) | 0.95 ✓ (D 0.31) | 0.97 ✓ (D 0.24) | 0.96 ✓ (D 0.28) |
+| 5 | `garch_beta` | 0.85 ✓ (D 0.20) | 0.72 ✗ (D 0.17) | 0.96 ✓ (D 0.25) | 0.76 ✗ (D 0.25) | 0.76 ✓ (D 0.17) |
+| 5 | `garch_persistence` | 0.77 ✗ (D 0.22) | 0.78 ✓ (D 0.06) | 0.74 ✗ (D 0.36) | 0.80 ✓ (D 0.14) | 0.80 ✓ (D 0.06) |
+| 6 | `gjr_gamma` | 0.89 ✓ (D 0.09) | 0.85 ✓ (D 0.24) | 0.92 ✓ (D 0.23) | 0.86 ✓ (D 0.23) | 0.84 ✓ (D 0.15) |
+| 6 | `leverage_corr` | 0.81 ✓ (D 0.08) | 0.85 ✓ (D 0.17) | 0.78 ✓ (D 0.04) | 0.81 ✓ (D 0.19) | 0.86 ✓ (D 0.14) |
+| 7 | `logvolume_acf1` | 0.87 ✓ (D 0.25) | 0.96 ✓ (D 0.17) | 0.78 ✓ (D 0.40) | 0.95 ✓ (D 0.17) | 0.97 ✓ (D 0.19) |
+| 7 | `logvolume_shapiro_p` | 0.66 ✗ (D 0.37) | 0.64 ✗ (D 0.54) | 0.74 ✗ (D 0.22) | 0.55 ✗ (D 0.53) | 0.61 ✗ (D 0.54) |
+| 7 | `volume_absr_spearman` | 0.89 ✓ (D 0.05) | 0.84 ✓ (D 0.33) | 0.89 ✓ (D 0.24) | 0.91 ✓ (D 0.20) | 0.85 ✓ (D 0.34) |
+| 8 | `skew` | 0.85 ✓ (D 0.19) | 0.82 ✓ (D 0.24) | 0.87 ✓ (D 0.14) | 0.85 ✓ (D 0.25) | 0.81 ✓ (D 0.27) |
+| 8 | `worst_over_best` | 0.82 ✓ (D 0.17) | 0.78 ✓ (D 0.18) | 0.86 ✓ (D 0.13) | 0.79 ✓ (D 0.22) | 0.76 ✓ (D 0.26) |
+| 20 | `daily_sigma` | 0.67 ✗ (D 0.47) | 0.99 ✓ (D 0.44) | 0.36 ✗ (D 0.77) | 0.96 ✓ (D 0.49) | 0.98 ✓ (D 0.43) |
+| 20 | `mdd` | 0.55 ✗ (D 0.22) | 0.65 ✗ (D 0.29) | 0.61 ✗ (D 0.62) | 0.52 ✗ (D 0.42) | 0.26 ✗ (D 0.68) |
+| 20 | `worst_day` | 0.79 ✓ (D 0.04) | 0.70 ✗ (D 0.43) | 0.82 ✓ (D 0.41) | 0.82 ✓ (D 0.32) | 0.65 ✗ (D 0.47) |
+
+## Size and power of B and C on known-answer panels (REG-14 (i))
+
+Pass rates when the generator sample is a resample of the reference (true D = 0; the criterion's size is 1 − this) and when it is the reference shifted to a true KS distance of 0.05 and 0.10 (power against the equivalence margin is 1 − the pass rate at 0.10).
+
+| item | statistic | n_gen | pass rate at D = 0 (B / C) | at D = 0.05 (B / C) | at D = 0.10 (B / C) |
+|---|---|---|---|---|---|
+| 1 | `lb_p_r` | 200 | 0.02 / 0.99 | 0.05 / 1.00 | 0.00 / 1.00 |
+| 1 | `lb_p_r` | 800 | 1.00 / 0.97 | 1.00 / 0.99 | 0.00 / 1.00 |
+| 1 | `abs_acf1_r` | 200 | 0.03 / 0.96 | 0.02 / 1.00 | 0.00 / 1.00 |
+| 1 | `abs_acf1_r` | 800 | 1.00 / 0.97 | 0.80 / 1.00 | 0.00 / 1.00 |
+| 2 | `kurtosis` | 200 | 0.08 / 1.00 | 0.03 / 1.00 | 0.00 / 1.00 |
+| 2 | `kurtosis` | 800 | 0.99 / 0.96 | 0.88 / 1.00 | 0.01 / 1.00 |
+| 2 | `hill` | 200 | 0.04 / 0.98 | 0.02 / 1.00 | 0.00 / 1.00 |
+| 2 | `hill` | 800 | 1.00 / 0.96 | 0.70 / 1.00 | 0.00 / 1.00 |
+| 2 | `jb_p` | 200 | 0.07 / 0.96 | 0.00 / 1.00 | 0.00 / 1.00 |
+| 2 | `jb_p` | 800 | 1.00 / 0.93 | 0.00 / 1.00 | 0.00 / 1.00 |
+| 3 | `lb_p_absr` | 200 | 0.07 / 0.96 | 0.05 / 0.97 | 0.00 / 1.00 |
+| 3 | `lb_p_absr` | 800 | 0.99 / 0.98 | 1.00 / 1.00 | 0.00 / 1.00 |
+| 3 | `lb_p_r2` | 200 | 0.06 / 0.97 | 0.06 / 0.97 | 0.00 / 1.00 |
+| 3 | `lb_p_r2` | 800 | 1.00 / 0.99 | 1.00 / 0.96 | 0.00 / 1.00 |
+| 3 | `arch_lm_p` | 200 | 0.02 / 0.98 | 0.08 / 1.00 | 0.00 / 1.00 |
+| 3 | `arch_lm_p` | 800 | 1.00 / 0.99 | 1.00 / 0.96 | 0.00 / 1.00 |
+| 3 | `acf1_absr` | 200 | 0.00 / 0.96 | 0.02 / 1.00 | 0.00 / 1.00 |
+| 3 | `acf1_absr` | 800 | 0.99 / 0.98 | 0.63 / 1.00 | 0.00 / 1.00 |
+| 4 | `acf1_absr` | 200 | 0.03 / 0.94 | 0.03 / 0.99 | 0.00 / 1.00 |
+| 4 | `acf1_absr` | 800 | 1.00 / 0.98 | 0.73 / 1.00 | 0.00 / 1.00 |
+| 4 | `acf5_absr` | 200 | 0.03 / 0.97 | 0.02 / 1.00 | 0.00 / 0.99 |
+| 4 | `acf5_absr` | 800 | 1.00 / 1.00 | 0.72 / 0.99 | 0.00 / 1.00 |
+| 4 | `acf10_absr` | 200 | 0.07 / 0.96 | 0.03 / 0.96 | 0.00 / 0.98 |
+| 4 | `acf10_absr` | 800 | 1.00 / 0.97 | 0.68 / 0.99 | 0.00 / 0.98 |
+| 4 | `acf20_absr` | 200 | 0.01 / 0.99 | 0.01 / 0.99 | 0.00 / 0.98 |
+| 4 | `acf20_absr` | 800 | 1.00 / 0.97 | 0.66 / 1.00 | 0.00 / 0.98 |
+| 4 | `acf50_absr` | 200 | 0.05 / 0.97 | 0.03 / 0.97 | 0.00 / 0.96 |
+| 4 | `acf50_absr` | 800 | 1.00 / 0.98 | 0.58 / 0.99 | 0.01 / 0.96 |
+| 5 | `garch_persistence` | 200 | 0.02 / 0.99 | 0.00 / 0.98 | 0.00 / 0.92 |
+| 5 | `garch_persistence` | 800 | 1.00 / 0.98 | 0.93 / 0.96 | 0.05 / 0.90 |
+| 5 | `garch_alpha` | 200 | 0.08 / 1.00 | 0.00 / 1.00 | 0.00 / 1.00 |
+| 5 | `garch_alpha` | 800 | 0.98 / 1.00 | 0.00 / 1.00 | 0.00 / 1.00 |
+| 5 | `garch_beta` | 200 | 0.04 / 0.98 | 0.02 / 0.97 | 0.00 / 0.96 |
+| 5 | `garch_beta` | 800 | 1.00 / 0.98 | 0.98 / 0.98 | 0.00 / 0.99 |
+| 6 | `leverage_corr` | 200 | 0.03 / 0.96 | 0.00 / 0.97 | 0.00 / 0.81 |
+| 6 | `leverage_corr` | 800 | 1.00 / 0.97 | 0.65 / 0.97 | 0.00 / 0.78 |
+| 6 | `gjr_gamma` | 200 | 0.06 / 0.98 | 0.02 / 0.98 | 0.00 / 0.99 |
+| 6 | `gjr_gamma` | 800 | 1.00 / 0.98 | 0.93 / 0.96 | 0.03 / 1.00 |
+| 7 | `volume_absr_spearman` | 200 | 0.02 / 1.00 | 0.02 / 1.00 | 0.00 / 0.90 |
+| 7 | `volume_absr_spearman` | 800 | 1.00 / 0.98 | 0.71 / 0.95 | 0.00 / 0.86 |
+| 7 | `logvolume_acf1` | 200 | 0.03 / 0.97 | 0.00 / 0.96 | 0.00 / 0.94 |
+| 7 | `logvolume_acf1` | 800 | 1.00 / 1.00 | 0.68 / 0.97 | 0.01 / 0.82 |
+| 7 | `logvolume_shapiro_p` | 200 | 0.03 / 0.98 | 0.05 / 1.00 | 0.00 / 1.00 |
+| 7 | `logvolume_shapiro_p` | 800 | 1.00 / 0.98 | 1.00 / 0.98 | 0.00 / 1.00 |
+| 8 | `skew` | 200 | 0.02 / 0.99 | 0.00 / 0.93 | 0.00 / 0.87 |
+| 8 | `skew` | 800 | 1.00 / 0.99 | 0.66 / 0.90 | 0.00 / 0.55 |
+| 8 | `worst_over_best` | 200 | 0.08 / 1.00 | 0.02 / 0.99 | 0.00 / 1.00 |
+| 8 | `worst_over_best` | 800 | 1.00 / 0.99 | 0.65 / 1.00 | 0.01 / 1.00 |
+| 20 | `mdd` | 200 | 0.03 / 0.98 | 0.01 / 0.71 | 0.00 / 0.22 |
+| 20 | `mdd` | 800 | 1.00 / 1.00 | 0.81 / 0.13 | 0.01 / 0.00 |
+| 20 | `worst_day` | 200 | 0.05 / 0.99 | 0.00 / 0.76 | 0.00 / 0.41 |
+| 20 | `worst_day` | 800 | 1.00 / 0.99 | 0.61 / 0.38 | 0.00 / 0.00 |
+| 20 | `daily_sigma` | 200 | 0.07 / 1.00 | 0.01 / 1.00 | 0.00 / 1.00 |
+| 20 | `daily_sigma` | 800 | 1.00 / 0.98 | 0.74 / 1.00 | 0.00 / 1.00 |
+
+## Concordance (REG-14): where A and B/C agree the item is reported once; where they disagree, under both with the reason
+
+| item | A (v2) | B | C | reading |
+|---|---|---|---|---|
+| 1 | PASS | PASS | FAIL | B and C disagree: the KS distance and the band share measure different departures (a shape difference inside the band, or a tail outside it) |
+| 2 | FAIL | FAIL | PASS | A fails, the like-for-like criterion passes: the v2 band is mis-specified for a 200-day window (E6.9's bias) or was stated for a different design |
+| 3 | FAIL | FAIL | FAIL | concordant |
+| 4 | n/a | FAIL | FAIL | no v2 verdict on this population |
+| 5 | PASS | FAIL | FAIL | A passes, the like-for-like criterion fails: the v2 band admits a distribution the real windows do not show |
+| 6 | FAIL | FAIL | PASS | A fails, the like-for-like criterion passes: the v2 band is mis-specified for a 200-day window (E6.9's bias) or was stated for a different design |
+| 7 | PASS | FAIL | FAIL | A passes, the like-for-like criterion fails: the v2 band admits a distribution the real windows do not show |
+| 8 | FAIL | FAIL | PASS | A fails, the like-for-like criterion passes: the v2 band is mis-specified for a 200-day window (E6.9's bias) or was stated for a different design |
+| 20 | PASS | FAIL | FAIL | A passes, the like-for-like criterion fails: the v2 band admits a distribution the real windows do not show |

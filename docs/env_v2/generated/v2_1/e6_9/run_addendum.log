@@ -1,0 +1,18 @@
+[1/5] arch_lm_power_block_in_force (arch_lm_p(r, 5) < 0.01)
+  T=   200: rejection rate 0.2325  (24.9s)
+  T= 20000: rejection rate 1.0000  (53.2s)
+[2/5] lb_abs_r_power_block_in_force (ljung_box_p(|r|, 10) < 0.01)
+  T=   200: rejection rate 0.2750  (4.9s)
+  T= 20000: rejection rate 1.0000  (519.2s)
+[3/5] acf1_absr_block_in_force (acf(|r|, 1))
+  T=   200: median +0.05695  bias +nan  (2.9s)
+  T= 20000: median +0.15313  bias +nan  (28.1s)
+[4/5] garch_persistence_block_in_force (garch_fit -> alpha + beta)
+  T=   200: median +0.96624  bias +0.00724  (16.5s)
+  T= 20000: median +0.98706  bias +0.02806  (45.1s)
+[5/5] jarque_bera_size_normal_recheck (jarque_bera(r) < 0.05)
+  T=   200: rejection rate 0.0495  (2.6s)
+  T= 20000: rejection rate 0.0570  (9.6s)
+hill index vs tail depth (diagnostic)
+
+18 pass / 4 fail / 8 reported (no closed form), 30 cases -> docs/env_v2/generated/v2_1/e6_9

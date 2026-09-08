@@ -1,0 +1,6 @@
+[1/1] garch_persistence_block_in_force (garch_fit -> alpha + beta)
+  T=   200: median +0.96624  bias -0.02176  (19.2s)
+  T= 20000: median +0.98706  bias -0.00094  (36.6s)
+hill index vs tail depth (diagnostic)
+
+18 pass / 4 fail / 8 reported (no closed form), 30 cases -> docs/env_v2/generated/v2_1/e6_9

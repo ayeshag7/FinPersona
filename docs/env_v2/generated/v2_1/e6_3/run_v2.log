@@ -1,0 +1,21 @@
+[Parallel(n_jobs=2)]: Using backend LokyBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done  14 tasks      | elapsed:   31.8s
+[Parallel(n_jobs=2)]: Done  68 tasks      | elapsed:   39.6s
+[Parallel(n_jobs=2)]: Done 158 tasks      | elapsed:   50.2s
+[Parallel(n_jobs=2)]: Done 284 tasks      | elapsed:  1.1min
+[Parallel(n_jobs=2)]: Done 446 tasks      | elapsed:  1.4min
+[Parallel(n_jobs=2)]: Done 644 tasks      | elapsed:  1.8min
+[Parallel(n_jobs=2)]: Done 878 tasks      | elapsed:  2.5min
+[Parallel(n_jobs=2)]: Done 1148 tasks      | elapsed:  3.1min
+[Parallel(n_jobs=2)]: Done 1454 tasks      | elapsed:  3.9min
+[Parallel(n_jobs=2)]: Done 1600 out of 1600 | elapsed:  4.2min finished
+per-path statistics: 1600 paths in 257s
+{
+ "panel": "docs/env_v2/generated/v2_1/_panels/sep_phase5_after.pkl",
+ "n_paths": 1600,
+ "per_scenario": "bull_trap 400, crash 800, flat 200, sustained_bull 200",
+ "bands": "v2 numeric criteria (REG-14 A)",
+ "n_planned": 200,
+ "max_n_required": 754,
+ "generated_utc": "2026-09-08T16:08:07Z"
+}

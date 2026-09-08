@@ -55,3 +55,5 @@ docs/COMPUTE_GPU_ACCESS.md
 
 # v2.1 Phase 5: the ablation tool's prepared frames (regenerable from the panels, ~330 MB each)
 docs/env_v2/generated/v2_1/**/_prepared.pkl
+# Phase 6: the per-ticker cache of E6.1 (regenerable; the derived tables are what is tracked)
+docs/env_v2/generated/v2_1/e6_1/cache/

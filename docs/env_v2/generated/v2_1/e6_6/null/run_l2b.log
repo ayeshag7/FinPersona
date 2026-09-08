@@ -1,0 +1,77 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_after.pkl: 320000 rows -> 288000 modelled, 1600 paths; BASE 45 cols, FULL 141; base_hash 6e070e84de402a41
+[reuse] 6 unpermuted fits reused from docs\env_v2\generated\v2_1\e5_7a\final\ablation.json
+[fits] 40 jobs on 3 workers
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 254, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 203, in _process_chunk
+    return [fn(*args) for args in chunk]
+            ~~^^^^^^^
+  File "C:\Users\ayesha.gull01\FinPersona\tools\phase6\e6_6_null.py", line 106, in _job
+    pred = cross_val_predict(HistGradientBoostingClassifier(max_iter=200, learning_rate=0.1, max_depth=4,
+                                                            random_state=0), X, y, cv=cv, groups=groups)
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\utils\_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\model_selection\_validation.py", line 1240, in cross_val_predict
+    predictions = parallel(
+        delayed(_fit_and_predict)(
+    ...<8 lines>...
+        for train, test in splits
+    )
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\utils\parallel.py", line 91, in __call__
+    return super().__call__(iterable_with_config_and_warning_filters)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\joblib\parallel.py", line 1986, in __call__
+    return output if self.return_generator else list(output)
+                                                ~~~~^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\joblib\parallel.py", line 1914, in _get_sequential_output
+    res = func(*args, **kwargs)
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\utils\parallel.py", line 184, in __call__
+    return self.function(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\model_selection\_validation.py", line 1322, in _fit_and_predict
+    X_train, y_train = _safe_split(estimator, X, y, train)
+                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\utils\metaestimators.py", line 173, in _safe_split
+    y_subset = _safe_indexing(y, indices)
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\utils\_indexing.py", line 314, in _safe_indexing
+    return _array_indexing(X, indices, indices_dtype, axis=axis)
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\utils\_indexing.py", line 62, in _array_indexing
+    return array[key, ...] if axis == 0 else array[:, key]
+           ~~~~~^^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexes\base.py", line 5425, in __getitem__
+    result = getitem(key)
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\arrays\arrow\array.py", line 799, in __getitem__
+    value = self._pa_array[item]
+            ~~~~~~~~~~~~~~^^^^^^
+  File "pyarrow/table.pxi", line 316, in pyarrow.lib.ChunkedArray.__getitem__
+TypeError: only integer scalar arrays can be converted to a scalar index
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ayesha.gull01\FinPersona\tools\phase6\e6_6_null.py", line 293, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ayesha.gull01\FinPersona\tools\phase6\e6_6_null.py", line 217, in main
+    for r in ex.map(_job, jobs, chunksize=1):
+             ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 617, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+TypeError: only integer scalar arrays can be converted to a scalar index

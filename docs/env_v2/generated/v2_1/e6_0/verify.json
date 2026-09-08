@@ -1,0 +1,421 @@
+{
+ "rows": [
+  {
+   "label": "L2b full accuracy, Phase 5",
+   "cited": 0.676,
+   "file": "e5_after/audit_after_levelfree.pkl L2b.acc_full",
+   "file_value": 0.6762048611111111,
+   "match": true
+  },
+  {
+   "label": "L2b price-only accuracy",
+   "cited": 0.658,
+   "file": "... L2b.acc_price_only",
+   "file_value": 0.6581527777777778,
+   "match": true
+  },
+  {
+   "label": "L2b day-only accuracy",
+   "cited": 0.508,
+   "file": "... L2b.acc_day_only",
+   "file_value": 0.5079930555555555,
+   "match": true
+  },
+  {
+   "label": "L2b majority class",
+   "cited": 0.414,
+   "file": "... L2b.majority_class",
+   "file_value": 0.4143611111111111,
+   "match": true
+  },
+  {
+   "label": "L2b selectivity (+1.8 pp)",
+   "cited": 0.018,
+   "file": "... L2b.selectivity",
+   "file_value": 0.018052083333333302,
+   "match": true
+  },
+  {
+   "label": "L2 calm best R2(x)",
+   "cited": -0.61,
+   "file": "... L2_verdict.calm_best_R2_x",
+   "file_value": -0.6137989689991505,
+   "match": true
+  },
+  {
+   "label": "L2 event best R2(x)",
+   "cited": 0.45,
+   "file": "... L2_verdict.event_best_R2_x",
+   "file_value": 0.4539270666119596,
+   "match": true
+  },
+  {
+   "label": "L2 event MAPE(V)",
+   "cited": 0.128,
+   "file": "... L2_verdict.event_best_MAPE_V",
+   "file_value": 0.1280589461615727,
+   "match": true
+  },
+  {
+   "label": "L2 max selectivity R2(x)",
+   "cited": 0.028,
+   "file": "... L2_verdict.max_selectivity_R2_x",
+   "file_value": 0.02820144480845732,
+   "match": true
+  },
+  {
+   "label": "L2 max MAPE(V) gain",
+   "cited": 0.017,
+   "file": "... L2_verdict.max_MAPE_gain_V",
+   "file_value": 0.01736318458421568,
+   "match": true
+  },
+  {
+   "label": "L2 shuffled-V R2",
+   "cited": 0.001,
+   "file": "... L2_verdict.max_R2_shuffledV",
+   "file_value": 0.0008687844407028189,
+   "match": true
+  },
+  {
+   "label": "audit not subsampled",
+   "cited": false,
+   "file": "... subsampled",
+   "file_value": false,
+   "match": true
+  },
+  {
+   "label": "audit paths",
+   "cited": 1600,
+   "file": "... n_paths",
+   "file_value": 1600,
+   "match": true
+  },
+  {
+   "label": "L1 price itself median APE",
+   "cited": 0.063,
+   "file": "e5_after/audit_after_levelfree_L1.csv",
+   "file_value": 0.0625733374420577,
+   "match": true
+  },
+  {
+   "label": "L1 price itself within-5 %",
+   "cited": 0.426,
+   "file": "... within_5pct",
+   "file_value": 0.426109375,
+   "match": true
+  },
+  {
+   "label": "calm-trained level-free R2(x), Phase 5",
+   "cited": 0.2912,
+   "file": "e5_after/calm_trained_phase5.json headline.phase5.calm_trained_levelfree.R2",
+   "file_value": 0.29118292666664924,
+   "match": true
+  },
+  {
+   "label": "... CI lo",
+   "cited": 0.2637,
+   "file": "... R2_lo",
+   "file_value": 0.2637164210763419,
+   "match": true
+  },
+  {
+   "label": "... CI hi",
+   "cited": 0.3179,
+   "file": "... R2_hi",
+   "file_value": 0.31789731019506096,
+   "match": true
+  },
+  {
+   "label": "calm-trained full R2(x), Phase 5",
+   "cited": 0.395,
+   "file": "... calm_trained_full.R2",
+   "file_value": 0.3950226849935049,
+   "match": true
+  },
+  {
+   "label": "BASE|x|all R2 (the box's reference row)",
+   "cited": 0.4059,
+   "file": "e5_7a/final/ablation.json fits.BASE|x|all.R2",
+   "file_value": 0.4058695137596712,
+   "match": true
+  },
+  {
+   "label": "BASE|x|calm R2",
+   "cited": 0.2912,
+   "file": "... fits.BASE|x|calm.R2",
+   "file_value": 0.29118292666664924,
+   "match": true
+  },
+  {
+   "label": "FULL|x|all R2",
+   "cited": 0.432,
+   "file": "... fits.FULL|x|all.R2",
+   "file_value": 0.4321674478468698,
+   "match": true
+  },
+  {
+   "label": "VAL add-one, all rows",
+   "cited": 0.009,
+   "file": "... tables.x|all.groups.VAL.add_one.delta",
+   "file_value": 0.008984607575367454,
+   "match": true
+  },
+  {
+   "label": "VAL add-one, calm-trained",
+   "cited": 0.0509,
+   "file": "... tables.x|calm.groups.VAL.add_one.delta",
+   "file_value": 0.05092595058063698,
+   "match": true
+  },
+  {
+   "label": "FULL - BASE, all rows (what 'the eighteen fields add' means)",
+   "cited": 0.026,
+   "file": "... fits.FULL|x|all.R2 - fits.BASE|x|all.R2",
+   "file_value": 0.026297934087198604,
+   "match": true
+  },
+  {
+   "label": "sum of per-group add-ones, all rows (informational; differs from FULL - BASE by the groups' interaction)",
+   "cited": 0.02,
+   "file": "... tables.x|all (sum over groups)",
+   "file_value": 0.019814046522180218,
+   "match": true
+  },
+  {
+   "label": "ANALYST column-permutation null p95",
+   "cited": -0.0057,
+   "file": "e5_7a/baseline/ablation.json null_margins.ANALYST.p95_estimate",
+   "file_value": -0.005744544469524321,
+   "match": true
+  },
+  {
+   "label": "SENT column-permutation null p95",
+   "cited": -0.0024,
+   "file": "... null_margins.SENT.p95_estimate",
+   "file_value": -0.0024439699476263895,
+   "match": true
+  },
+  {
+   "label": "E3.8 exact-Gaussian level-free R2",
+   "cited": 0.145,
+   "file": "e3_8/decomposition.json arms[0].levelfree_R2",
+   "file_value": 0.1452737125178677,
+   "match": true
+  },
+  {
+   "label": "E3.8 exact arm's Gaussian bound",
+   "cited": 0.163,
+   "file": "... arms[0].bound_window_avg_gaussian",
+   "file_value": 0.16327493382027342,
+   "match": true
+  },
+  {
+   "label": "E3.8 full stack level-free R2",
+   "cited": 0.203,
+   "file": "... arms[3].levelfree_R2",
+   "file_value": 0.20250149275316176,
+   "match": true
+  },
+  {
+   "label": "E3.8 full stack CI lo",
+   "cited": 0.141,
+   "file": "... arms[3].ci95[0]",
+   "file_value": 0.1409090756387189,
+   "match": true
+  },
+  {
+   "label": "E3.8 full stack CI hi",
+   "cited": 0.262,
+   "file": "... arms[3].ci95[1]",
+   "file_value": 0.26248103873643974,
+   "match": true
+  },
+  {
+   "label": "E3.8 full stack bound (window avg)",
+   "cited": 0.177,
+   "file": "... arms[3].bound_window_avg_gaussian",
+   "file_value": 0.17725167608727838,
+   "match": true
+  },
+  {
+   "label": "E3.8 s_x implied (with jumps)",
+   "cited": 0.0656,
+   "file": "... arms[3].s_x_implied",
+   "file_value": 0.0656091445844151,
+   "match": true
+  },
+  {
+   "label": "sigma_V in force",
+   "cited": 0.014573,
+   "file": "envs/v2/params/value.json sigma_V.value",
+   "file_value": 0.014573291000253476,
+   "match": true
+  },
+  {
+   "label": "h in force (d)",
+   "cited": 22.381,
+   "file": "envs/v2/params/mispricing.json half_life.value",
+   "file_value": 22.380929759136894,
+   "match": true
+  },
+  {
+   "label": "h interval lo",
+   "cited": 18.75,
+   "file": "... structural.interval.h[0]",
+   "file_value": 18.749884832420413,
+   "match": true
+  },
+  {
+   "label": "h interval hi",
+   "cited": 32.64,
+   "file": "... structural.interval.h[1]",
+   "file_value": 32.63933501637798,
+   "match": true
+  },
+  {
+   "label": "sbar in force",
+   "cited": 0.015088,
+   "file": "e3_4/block.json sbar",
+   "file_value": 0.015087876849108794,
+   "match": true
+  },
+  {
+   "label": "GJR alpha",
+   "cited": 0.027,
+   "file": "e3_4/block.json shape.alpha",
+   "file_value": 0.027,
+   "match": true
+  },
+  {
+   "label": "GJR gamma",
+   "cited": 0.058,
+   "file": "... shape.gamma",
+   "file_value": 0.058,
+   "match": true
+  },
+  {
+   "label": "GJR beta",
+   "cited": 0.932,
+   "file": "... shape.beta",
+   "file_value": 0.932,
+   "match": true
+  },
+  {
+   "label": "jump rate",
+   "cited": 0.000583,
+   "file": "... jump_rate",
+   "file_value": 0.0005825113429448942,
+   "match": true
+  },
+  {
+   "label": "jump sd",
+   "cited": 0.2303,
+   "file": "... jump_sd",
+   "file_value": 0.23029694055201125,
+   "match": true
+  },
+  {
+   "label": "Kalman bound verified against LOG section 3",
+   "cited": true,
+   "file": "kalman_bound_verification.json passed",
+   "file_value": true,
+   "match": true
+  },
+  {
+   "label": "onset PASS under the non-price rule (all six transitions)",
+   "cited": true,
+   "file": "e5_7c/final/onset.json verdict_nonprice.all_pass",
+   "file_value": true,
+   "match": true
+  },
+  {
+   "label": "onset under the rule as registered: number of failing (transition, field) pairs",
+   "cited": 9,
+   "file": "... verdict.failures (len)",
+   "file_value": 9,
+   "match": true
+  },
+  {
+   "label": "L5 coverage flat, Phase 5",
+   "cited": 0.362,
+   "file": "e5_l5/discrimination.json states.phase5_after.scenarios.flat.coverage_0.05",
+   "file_value": 0.36210000000000003,
+   "match": true
+  },
+  {
+   "label": "L5 coverage crash, Phase 5",
+   "cited": 0.543,
+   "file": "e5_l5/discrimination.json states.phase5_after.scenarios.crash.coverage_0.05",
+   "file_value": 0.5435,
+   "match": true
+  },
+  {
+   "label": "L5 coverage bull_trap, Phase 5",
+   "cited": 0.636,
+   "file": "e5_l5/discrimination.json states.phase5_after.scenarios.bull_trap.coverage_0.05",
+   "file_value": 0.6364000000000001,
+   "match": true
+  },
+  {
+   "label": "L5 coverage sustained_bull, Phase 5",
+   "cited": 0.354,
+   "file": "e5_l5/discrimination.json states.phase5_after.scenarios.sustained_bull.coverage_0.05",
+   "file_value": 0.3543,
+   "match": true
+  },
+  {
+   "label": "L5 ordering oracle < L5 < trivial, flat",
+   "cited": true,
+   "file": "... scenarios.flat (oracle.mean < L5_best.mean < trivial_best.mean)",
+   "file_value": true,
+   "match": true
+  },
+  {
+   "label": "L5 ordering oracle < L5 < trivial, crash",
+   "cited": true,
+   "file": "... scenarios.crash (oracle.mean < L5_best.mean < trivial_best.mean)",
+   "file_value": true,
+   "match": true
+  },
+  {
+   "label": "L5 ordering oracle < L5 < trivial, bull_trap",
+   "cited": true,
+   "file": "... scenarios.bull_trap (oracle.mean < L5_best.mean < trivial_best.mean)",
+   "file_value": true,
+   "match": true
+  },
+  {
+   "label": "L5 ordering oracle < L5 < trivial, sustained_bull",
+   "cited": true,
+   "file": "... scenarios.sustained_bull (oracle.mean < L5_best.mean < trivial_best.mean)",
+   "file_value": true,
+   "match": true
+  },
+  {
+   "label": "audit_bounds.no_field_deterministic_R2 (PROVISIONAL)",
+   "cited": 0.2,
+   "file": "envs/v2/params/observables.json audit_bounds.value",
+   "file_value": 0.2,
+   "match": true
+  },
+  {
+   "label": "audit_bounds.l2b_margin_phase6_owned (PROVISIONAL)",
+   "cited": 0.1,
+   "file": "... l2b_margin_phase6_owned",
+   "file_value": 0.1,
+   "match": true
+  },
+  {
+   "label": "audit_bounds status",
+   "cited": "PROVISIONAL",
+   "file": "... status",
+   "file_value": "PROVISIONAL",
+   "match": true
+  }
+ ],
+ "n_rows": 59,
+ "n_mismatch": 0,
+ "n_unreadable": 0,
+ "generated_utc": "2026-09-08T17:20:19Z"
+}
