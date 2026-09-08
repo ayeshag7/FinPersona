@@ -70,7 +70,9 @@ def wilson(k: int, n: int, z: float = 1.959963985):
 # ------------------------------------------------------------------------------------------ probes
 def draw_probes(panel: pd.DataFrame, n: int, rng: np.random.Generator) -> pd.DataFrame:
     """Stratified: scenario x macro group x seed; resolvable rows only; one row per (scenario, group, seed) cell at most."""
-    d = panel[np.abs(panel["x"]) >= THETA].copy()
+    # resolvable rows from day 22 on: the level-free surrogate's features need 20 days of history (ret_20 and the lags),
+    # so an earlier day would have no entitled-reader prediction to compare with
+    d = panel[(np.abs(panel["x"]) >= THETA) & (panel["day"] > 21)].copy()
     d["group"] = d["macro"].replace({"down-event": "event", "up-event": "event"})
     cells = d.groupby(["scenario", "group"]).size()
     per_cell = max(1, n // len(cells))
