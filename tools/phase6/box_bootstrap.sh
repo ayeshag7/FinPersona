@@ -68,7 +68,10 @@ if has refrow; then
   $PY - <<'EOF'
 import json, os
 box = json.load(open(os.path.join("/nfs1/ayesha/logs/refrow", "ablation.json")))["fits"]["BASE|x|all"]["R2"]
-lap = json.load(open("docs/env_v2/generated/v2_1/e5_7a/final/ablation.json"))["fits"]["BASE|x|all"]["R2"]
+# the laptop's value: read from e5_7a/final/ablation.json when the 9.8 MB file is on the box, else the verified record
+# (e6_0/verify.md row "BASE|x|all (the box's reference row)": 0.4058695137596712)
+p = "docs/env_v2/generated/v2_1/e5_7a/final/ablation.json"
+lap = json.load(open(p))["fits"]["BASE|x|all"]["R2"] if os.path.exists(p) else 0.4058695137596712
 print(f"BASE|x|all  box {box!r}  laptop {lap!r}  diff {box - lap:.3e}  ->", "AGREE" if abs(box - lap) < 1e-9 else "DISAGREE")
 EOF
 fi

@@ -3,16 +3,22 @@
  "_status_key": {
   "FIT": "derived from data by a stated rule",
   "DESIGN": "a stated choice with its reason",
-  "LIT": "a literature value"
+  "LIT": "a literature value",
+  "DERIVED": "computed from a null, a bound or a known-answer reference by a registered rule"
  },
  "criterion_B": {
   "value": {
    "D0": 0.1,
    "bootstrap_resamples": 500,
-   "rule": "bootstrap 95 % upper limit of the two-sample KS distance < D0"
+   "rule": "bootstrap 95 % upper limit of the two-sample KS distance < D0",
+   "n_min_size": 800,
+   "size_pass_rate_at_D0_by_n": {
+    "200": 0.03,
+    "800": 1.0
+   }
   },
   "status": "DESIGN",
-  "label": "REG-14 B (the corrected equivalence form; LOG section 3)",
+  "label": "REG-14 B (the corrected equivalence form; LOG section 3); decisive only at n_gen >= 800 (the smallest n at which its median pass rate under a true D = 0 is >= 0.90: {200: 0.03, 800: 1.0})",
   "source": "V2_1_ALTERNATIVES_REGISTER.md section 14; V2_1_IMPROVEMENT_PLAN.md Appendix A",
   "date": "2026-09-08",
   "interval": "none (a rule)",
@@ -1218,5 +1224,47 @@
   "13": "IV realism -- handled from the index VIX/RV relation and the five single-stock IV histories, not from the price panel (separate E6.1 block)",
   "15": "phase/time separability -- defined on generator phase labels",
   "17": "conditioning / rejection rate -- a property of the sampler"
+ },
+ "item9_reference": {
+  "value": {
+   "acf1_p10": 0.9060659079627575,
+   "acf1_p50": 0.9468456585102459,
+   "acf1_p90": 0.9684235368359597,
+   "half_life_days": 22.380929759136894,
+   "sd_lo": 0.03891957285254531,
+   "sd_hi": 0.07235255190542306,
+   "sd_p50_scaled": 0.053826108975247755,
+   "s_x": 0.0656091445844151,
+   "n_reps": 400
+  },
+  "status": "DERIVED",
+  "label": "item 9 judged as fidelity to the FIT process measured with the same 200-day ruler: the cross-seed median ACF(1) of x on flat paths inside the [P10, P90] of the sample ACF(1) of an AR(1) at the FIT half-life (E6.9, T = 200), and the median 200-day sd(x) inside the AR(1) reference's [P10, P90] scaled to s_x",
+  "source": "docs/env_v2/generated/v2_1/e6_9/known_answers.json (acf_ar1_engine_persistence_lag1, sd_ar1_engine); e6_6/bound.json adopted.s_x",
+  "date": "2026-09-08",
+  "interval": "the [P10, P90] bands are the intervals",
+  "n": {
+   "reps": 400,
+   "T": 200
+  }
+ },
+ "gates": {
+  "l1_floor": {
+   "value": {
+    "ceiling_5pct": 0.6059616396210301,
+    "halfwidth_5pct": 0.010703085937500023,
+    "margin_5pct": 0.6166647255585301,
+    "trivial_empirical_5pct": 0.425596875,
+    "s_x": 0.0656091445844151,
+    "bound_day_T": 0.20051687726156164
+   },
+   "status": "DERIVED",
+   "label": "E6.5: no candidate's within-5 % share may exceed 2*Phi(0.05/(s_x*sqrt(1-B)))-1 plus the share's cluster-bootstrap half-width at 1,600 paths; replaces the hard-coded 1 % floor (weakness 32)",
+   "source": "docs/env_v2/generated/v2_1/e6_5/floor.json",
+   "date": "2026-09-08",
+   "interval": "the half-width is the interval",
+   "n": {
+    "paths": 1600
+   }
+  }
  }
 }

@@ -490,11 +490,102 @@ def subsample_paths(panel: pd.DataFrame, max_rows: int = MAX_ROWS, seed: int = 0
     return panel[mask].reset_index(drop=True)
 
 
+# --------------------------------------------------------------------------
+# v2.1 Phase 6: the held-out-scenario split (weakness 67) and the derived gates (PREREG_PHASE_6.md sections 6-8).
+# Both are switches on run_audit whose default is today's behaviour; with the defaults the output is unchanged.
+# --------------------------------------------------------------------------
+def l2_holdout_scenario(df: pd.DataFrame, feature_keys: List[str], control: str = "level_free",
+                        models: Optional[Dict] = None, n_boot: int = N_BOOT, model_names=("ridge", "gbt")) -> pd.DataFrame:
+    """Train on three scenarios, score the fourth, every scenario held out once; level-free and full feature sets;
+    R2(x) on the held-out scenario's rows (all, and calm), with a percentile cluster bootstrap over its paths.
+    The MLP is excluded by default (cost); `model_names` widens it."""
+    from sklearn.base import clone
+    models = {k: v for k, v in (models or _models()).items() if k in model_names}
+    dfl, cols, price_cols = _prepare(df, feature_keys, control)
+    scen = dfl["scenario"].astype(str).to_numpy(dtype=object)
+    groups = (dfl["scenario"].astype(str) + "-" + dfl["seed"].astype(str)).to_numpy(dtype=object)
+    y = dfl["x"].to_numpy(dtype=float)
+    calm = (dfl["macro"].to_numpy(dtype=object) == "calm")
+    rows = []
+    for held in sorted(set(scen)):
+        te = scen == held; tr = ~te
+        path_te = pd.factorize(pd.Series(groups[te]))[0]
+        n_paths = int(path_te.max()) + 1 if te.sum() else 0
+        for fs_name, fcols in (("full", cols), ("price_only", price_cols)):
+            X = dfl[fcols].to_numpy(dtype=float)
+            for mname, model in models.items():
+                m = clone(model).fit(X[tr], y[tr]); p = m.predict(X[te]); yt = y[te]
+                for pop_name, mask in (("all", np.ones(te.sum(), bool)), ("calm", calm[te])):
+                    if mask.sum() < 30:
+                        continue
+                    row = {"held_out": held, "feature_set": fs_name, "model": mname, "population": pop_name,
+                           "n_rows": int(mask.sum()), "n_paths": n_paths, "R2": _r2(yt[mask], p[mask])}
+                    ok = mask & np.isfinite(p)
+                    cnt = np.bincount(path_te[ok], minlength=n_paths).astype(float)
+                    sy = np.bincount(path_te[ok], weights=yt[ok], minlength=n_paths)
+                    syy = np.bincount(path_te[ok], weights=yt[ok] ** 2, minlength=n_paths)
+                    sres = np.bincount(path_te[ok], weights=(yt[ok] - p[ok]) ** 2, minlength=n_paths)
+
+                    def r2_boot(idx, cnt=cnt, sy=sy, syy=syy, sres=sres):
+                        n = cnt[idx].sum()
+                        if n < 30:
+                            return float("nan")
+                        ss = syy[idx].sum() - sy[idx].sum() ** 2 / n
+                        return float(1 - sres[idx].sum() / ss) if ss > 0 else float("nan")
+                    row["R2_lo"], row["R2_hi"] = _cluster_ci(r2_boot, n_paths, n_boot)
+                    rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def derived_verdicts(res: Dict[str, object]) -> Dict[str, object]:
+    """The derived gates read from the criteria file (evaluation/criteria.py), attached to an audit result.
+
+    L1: the E6.5 ceiling on the within-5 % share (the 1 % floor is reported beside, unchanged).
+    L2: the selectivity gates' stored statistics and margins (the null tool's FULL - BASE construction, the same
+        estimator, PREREG 7.4), with the audit's own GBT all-rows selectivity beside as the v2-construction statistic.
+    L2b: the derived margin applied to the audit's own selectivity, and the null tool's stored verdict beside.
+    """
+    from evaluation import criteria as CR
+    out: Dict[str, object] = {"criteria_present": CR.PRESENT}
+    if not CR.PRESENT:
+        return out
+    try:
+        g = CR.gate("l1_floor")["value"]
+        l1 = res["L1"].copy()
+        l1["pass_derived"] = l1["within_5pct"] <= g["margin_5pct"]
+        out["L1"] = {"table": l1, "ceiling_5pct": g["ceiling_5pct"], "halfwidth_5pct": g["halfwidth_5pct"],
+                     "margin_5pct": g["margin_5pct"], "pass": bool(l1["pass_derived"].all())}
+    except CR.CriteriaError as e:
+        out["L1"] = {"error": str(e)}
+    l2 = res["L2"]
+    gbt = l2[(l2.model == "gbt") & (l2.target == "x") & (l2.phase_group == "all")]
+    full = gbt[gbt.feature_set == "full"]["R2"]; po = gbt[gbt.feature_set == "price_only"]["R2"]
+    out["audit_gbt_selectivity_all"] = float(full.iloc[0] - po.iloc[0]) if len(full) and len(po) else float("nan")
+    for name in ("l2_all", "l2_calm"):
+        try:
+            out[name] = dict(CR.gate(name)["value"])
+        except CR.CriteriaError as e:
+            out[name] = {"error": str(e)}
+    try:
+        gb = CR.gate("l2b")["value"]
+        sel = float(res["L2b"]["selectivity"])
+        out["l2b"] = {**gb, "audit_selectivity": sel, "pass_audit_statistic": bool(sel <= gb["margin"])}
+    except CR.CriteriaError as e:
+        out["l2b"] = {"error": str(e)}
+    return out
+
+
 def run_audit(panel: pd.DataFrame, shown_fields: List[str], theta: float = 0.05,
               margin: float = L2B_MARGIN, max_rows: Optional[int] = MAX_ROWS, control: str = "level_free",
-              n_boot: int = N_BOOT, models: Optional[Dict] = None) -> Dict[str, object]:
+              n_boot: int = N_BOOT, models: Optional[Dict] = None, gates: str = "v2",
+              holdout_scenario: bool = False) -> Dict[str, object]:
     """`max_rows=None` disables the path subsampling (v2.1 Phase 1: the published audit runs on every path);
-    `control` selects the price-derived control set ('level_free' from Phase 1, 'level' = the v2 set)."""
+    `control` selects the price-derived control set ('level_free' from Phase 1, 'level' = the v2 set).
+    v2.1 Phase 6 switches (defaults = the behaviour before Phase 6, output unchanged): `gates="derived"` attaches
+    the derived L1/L2/L2b verdicts read from the criteria file under `res["derived"]`; `holdout_scenario=True`
+    adds the held-out-scenario table under `res["L2_holdout"]` (weakness 67)."""
+    if gates not in ("v2", "derived"):
+        raise ValueError(f"gates must be 'v2' or 'derived', got {gates!r}")
     n_paths_in = int(panel[["scenario", "seed"]].drop_duplicates().shape[0])
     panel = subsample_paths(panel, max_rows) if max_rows else panel
     feature_keys = [k for k in shown_fields if k in panel.columns and k not in ("date",)]
@@ -505,9 +596,15 @@ def run_audit(panel: pd.DataFrame, shown_fields: List[str], theta: float = 0.05,
     l4 = l4_resolvability(panel)
     sd = scenario_discrimination(panel, feature_keys, control=control) if "sustained_bull" in set(panel["scenario"]) else {}
     n_paths = int(panel[["scenario", "seed"]].drop_duplicates().shape[0])
-    return {"L1": l1, "L2": l2, "L2_verdict": l2v, "L2b": l2b, "L4": l4, "scenario_discrimination": sd,
-            "shown_fields": feature_keys, "n_rows": int(len(panel)), "n_paths": n_paths, "n_paths_input": n_paths_in,
-            "control": control, "subsampled": n_paths < n_paths_in}
+    res = {"L1": l1, "L2": l2, "L2_verdict": l2v, "L2b": l2b, "L4": l4, "scenario_discrimination": sd,
+           "shown_fields": feature_keys, "n_rows": int(len(panel)), "n_paths": n_paths, "n_paths_input": n_paths_in,
+           "control": control, "subsampled": n_paths < n_paths_in}
+    if holdout_scenario:
+        res["L2_holdout"] = l2_holdout_scenario(panel, feature_keys, control=control, models=models, n_boot=n_boot)
+    if gates == "derived":
+        res["gates"] = "derived"
+        res["derived"] = derived_verdicts(res)
+    return res
 
 
 def checklist_rows(res: Dict[str, object]) -> List[Dict]:
@@ -528,6 +625,19 @@ def checklist_rows(res: Dict[str, object]) -> List[Dict]:
            "statistic": f"macro-class accuracy full {b['acc_full']:.1%} vs price-only {b['acc_price_only']:.1%} "
                         f"(day-only {b['acc_day_only']:.1%}; majority {b.get('majority_class', float('nan')):.1%}); selectivity {b['selectivity']:+.1%}",
            "criterion": f"selectivity <= {b['margin']:.0%}", "pass": b["pass"], "n_seeds": b["n"]}
+    # v2.1 Phase 6: under gates="derived" the rows carry the derived verdicts (the v2 text stays in the statistic column)
+    d = res.get("derived") if res.get("gates") == "derived" else None
+    if d:
+        l1d, l2a, l2c, l2bd = d.get("L1", {}), d.get("l2_all", {}), d.get("l2_calm", {}), d.get("l2b", {})
+        ok14 = all(v is not None for v in (l1d.get("pass"), l2a.get("pass"), l2c.get("pass")))
+        r14["criterion"] = (f"derived (PREREG_PHASE_6): L1 within-5 % share <= {l1d.get('margin_5pct', float('nan')):.3f}; "
+                            f"L2 selectivity <= null p95 + half-width: all rows {l2a.get('measured_selectivity', float('nan')):+.4f} vs "
+                            f"{l2a.get('margin', float('nan')):+.4f}, calm-trained {l2c.get('measured_selectivity', float('nan')):+.4f} vs "
+                            f"{l2c.get('margin', float('nan')):+.4f}")
+        r14["pass"] = bool(l1d.get("pass") and l2a.get("pass") and l2c.get("pass")) if ok14 else None
+        r16["criterion"] = (f"derived: selectivity <= null p95 + half-width = {l2bd.get('margin', float('nan')):+.4f} "
+                            f"(null p95 {l2bd.get('null_p95', float('nan')):+.4f})")
+        r16["pass"] = l2bd.get("pass_audit_statistic")
     return [r14, r16]
 
 

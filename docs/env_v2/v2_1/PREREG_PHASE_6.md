@@ -310,8 +310,13 @@ registry ends the phase either empty or with such entries, never with a "chosen"
 ### 8.1 L2b
 
 **Statistic.** The macro-class accuracy of the FULL set minus the level-free control's (the audit's
-`HistGradientBoostingClassifier` 200/0.1/4, 5-fold GroupKFold by path), 288,000 rows, 1,600 paths. Measured on
-the Phase-5 state: **+0.0181** (67.62 % − 65.82 %).
+`HistGradientBoostingClassifier` 200/0.1/4, 5-fold GroupKFold by path), 288,000 rows, 1,600 paths. The gate
+statistic and its null are computed by **one tool with one feature-set construction** (`tools/phase6/e6_6_null.py`:
+BASE = the audit's level-free control columns, FULL = BASE ∪ every rendered field's columns — the e5_7a
+construction), so that the null is the null *of the statistic that is gated*; the audit's own `L2b` figure, whose
+"full" set omits the six derived ratio columns, is **+0.0181** (67.62 % − 65.82 %) on the Phase-5 state and is
+reported beside as the v2-construction statistic, with the derived margin applied to both. *(Clarification
+recorded 9 Sep 2026 before any null draw was read; the same construction rule applies to 7.4.)*
 
 **Null.** Each path's macro-label vector is swapped whole with another path's, both feature sets refitted, 20
 draws (the same tool and seed). **Rule:** selectivity ≤ null p95 + the paired sampling half-width. The 10 pp

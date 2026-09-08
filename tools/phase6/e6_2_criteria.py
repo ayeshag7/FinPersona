@@ -53,7 +53,7 @@ if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 os.environ.setdefault("OMP_NUM_THREADS", "2")
 
-from tools.phase6.e6_1_reference import window_stats, T_WINDOW  # noqa: E402
+from evaluation.reference_stats import window_stats, T_WINDOW  # noqa: E402  (the reference's own estimator)
 
 GEN = os.path.join(ROOT, "docs", "env_v2", "generated", "v2_1")
 OUT_DEFAULT = os.path.join(GEN, "e6_2")
@@ -124,28 +124,9 @@ def generator_windows(panel_path: str, cache: str, n_jobs: int) -> pd.DataFrame:
 
 
 # --------------------------------------------------------------------------------------- criteria
-def ks_distance(a: np.ndarray, b: np.ndarray) -> float:
-    a = np.sort(a); b = np.sort(b)
-    allv = np.concatenate([a, b])
-    return float(np.max(np.abs(np.searchsorted(a, allv, "right") / len(a) - np.searchsorted(b, allv, "right") / len(b))))
-
-
-def criterion_B(gen: np.ndarray, ref: np.ndarray, rng: np.random.Generator, n_boot: int = N_BOOT) -> Dict:
-    d = ks_distance(gen, ref)
-    draws = np.empty(n_boot)
-    for i in range(n_boot):
-        draws[i] = ks_distance(rng.choice(gen, len(gen)), rng.choice(ref, len(ref)))
-    up = float(np.percentile(draws, 95))
-    return {"D": d, "D_upper95": up, "D0": D0, "pass": bool(up < D0), "n_gen": int(len(gen)), "n_ref": int(len(ref))}
-
-
-def criterion_C(gen: np.ndarray, ref: np.ndarray) -> Dict:
-    p10, p90 = float(np.percentile(ref, 10)), float(np.percentile(ref, 90))
-    share = float(np.mean((gen >= p10) & (gen <= p90)))
-    hw = 1.96 * math.sqrt(SHARE_P0 * (1 - SHARE_P0) / len(gen))
-    thr = SHARE_P0 - hw
-    return {"p10": p10, "p90": p90, "share_inside": share, "threshold": thr, "halfwidth": hw,
-            "pass": bool(share >= thr), "n_gen": int(len(gen)), "n_ref": int(len(ref))}
+# the criterion functions live in evaluation/reference_stats.py (one implementation for this tool and for
+# stylized_facts.run_checklist_reference); they are the functions this module carried when criteria.json was written
+from evaluation.reference_stats import criterion_B, criterion_C, ks_distance  # noqa: E402,F401
 
 
 def shifted_for_D(ref: np.ndarray, target_D: float, rng: np.random.Generator) -> np.ndarray:

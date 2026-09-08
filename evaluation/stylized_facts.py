@@ -515,6 +515,202 @@ def to_markdown(df: pd.DataFrame, title: str, preamble: str = "") -> str:
     return "\n".join(lines)
 
 
+# --------------------------------------------------------------------------
+# v2.1 Phase 6 -- the reference criteria (REG-14 B and C), beside `run_checklist` (untouched).
+#
+# A separate entry point, not a change to `run_checklist`: with these functions unused the module's behaviour is
+# what it was (the switch's "off" position is not calling them).  Every per-path statistic is computed by
+# `evaluation.reference_stats.window_stats`, the function that produced E6.1's real-window reference, so the two
+# sides of every criterion go through one estimator.  The criteria in force come from
+# `evaluation/params/phase6_criteria.json` (PREREG_PHASE_6.md section 5); the reference SAMPLE for criterion B is
+# the windows file the criteria file cites (KS needs the empirical distribution, not its percentiles).
+# --------------------------------------------------------------------------
+SCENARIOS_T200 = ("flat", "bull_trap", "crash", "sustained_bull")
+
+
+def path_reference_stats(paths_all: Dict[str, List[PathData]], with_garch: bool = True) -> pd.DataFrame:
+    """`window_stats` on every T = 200 path of the four scenarios ('mixed' and 'flat_T800' are not 200-day
+    windows of the benchmark's own design and are excluded; the pooled population is stated)."""
+    from evaluation.reference_stats import window_stats
+    rows = []
+    for sc in SCENARIOS_T200:
+        for p in paths_all.get(sc, []):
+            d = p.df.sort_values("day")
+            try:
+                s = window_stats(d["price"].to_numpy(float), d["volume"].to_numpy(float), with_garch)
+            except Exception as e:                       # recorded, never silently dropped
+                s = {"error": type(e).__name__}
+            s.update({"scenario": sc, "seed": p.seed, "n_returns": int(len(d) - 1)})
+            rows.append(s)
+    return pd.DataFrame(rows)
+
+
+def _e6_8_rows(paths_all: Dict[str, List[PathData]], n_boot: int, rng: np.random.Generator) -> List[Dict]:
+    """The never-implemented criteria (weakness 64; PREREG_PHASE_6.md 5.4): item 12's lagged relation equals the
+    configured b_pred, and item 13's non-degeneracy across seeds -- both with cluster-bootstrap intervals over paths."""
+    out = []
+    allp = [p for sc in SCENARIOS_T200 for p in paths_all.get(sc, [])]
+    if not allp:
+        return out
+    # item 12: slope of r_t on the standardised s_{t-1}, calm rows, controlling for r_{t-1} (a within-phase partial slope)
+    xs, ys, ctrl, pid = [], [], [], []
+    for i, p in enumerate(allp):
+        d = p.df.sort_values("day")
+        s = d["sentiment"].to_numpy(float); r = d["r"].to_numpy(float)
+        calm = d["phase"].isin(CALM).to_numpy()
+        sd = np.nanstd(s)
+        if sd <= 0 or calm.sum() < 30:
+            continue
+        z = (s - np.nanmean(s)) / sd
+        m = calm[2:] & np.isfinite(r[2:]) & np.isfinite(r[1:-1])
+        xs.append(z[1:-1][m]); ys.append(r[2:][m]); ctrl.append(r[1:-1][m]); pid.append(np.full(m.sum(), i))
+    if xs:
+        X = np.column_stack([np.ones(sum(len(v) for v in xs)), np.concatenate(xs), np.concatenate(ctrl)])
+        y = np.concatenate(ys); pid = np.concatenate(pid); n_paths = len(allp)
+
+        def slope(rows):
+            b, *_ = np.linalg.lstsq(X[rows], y[rows], rcond=None)
+            return float(b[1])
+        est = slope(np.arange(len(y)))
+        idx_by = [np.where(pid == i)[0] for i in range(n_paths)]
+        draws = []
+        for _ in range(n_boot):
+            pick = rng.integers(0, n_paths, n_paths)
+            rows = np.concatenate([idx_by[i] for i in pick if len(idx_by[i])])
+            draws.append(slope(rows))
+        lo, hi = float(np.percentile(draws, 2.5)), float(np.percentile(draws, 97.5))
+        bp = float(allp[0].meta.get("b_pred", 0.0))
+        out.append({"item": 12, "statistic": "slope of r_t on z(s_{t-1}) | r_{t-1}, calm rows", "population": "all",
+                    "value": est, "ci95": [lo, hi], "reference": bp, "criterion": "CI contains the configured b_pred (E6.8)",
+                    "pass": bool(lo <= bp <= hi), "n_gen": n_paths, "n_rows": int(len(y))})
+    # item 13: the cross-seed sd of the calm IV mean, bootstrap CI over paths, must exclude zero
+    ivm = []
+    for p in allp:
+        d = p.df
+        c = d["phase"].isin(CALM).to_numpy()
+        if c.sum() > 10:
+            ivm.append(float(d.loc[c, "iv"].mean()))
+    if len(ivm) > 10:
+        ivm = np.asarray(ivm)
+        draws = [float(np.std(ivm[rng.integers(0, len(ivm), len(ivm))], ddof=1)) for _ in range(n_boot)]
+        lo, hi = float(np.percentile(draws, 2.5)), float(np.percentile(draws, 97.5))
+        out.append({"item": 13, "statistic": "sd across seeds of the calm IV mean", "population": "all", "value": float(np.std(ivm, ddof=1)),
+                    "ci95": [lo, hi], "reference": 0.0, "criterion": "non-degenerate: CI excludes 0 (E6.8)", "pass": bool(lo > 0),
+                    "n_gen": int(len(ivm)), "n_rows": None})
+    # item 9 (PREREG 5.4): the FIT persistence measured with the same biased ruler, flat paths only
+    return out
+
+
+def _item9_rows(paths_all: Dict[str, List[PathData]], doc: Dict) -> List[Dict]:
+    ref = (doc or {}).get("item9_reference")
+    flat = paths_all.get("flat", [])
+    if not ref or not flat:
+        return []
+    a1, sd = [], []
+    for p in flat:
+        x = p.df.sort_values("day")["x"].to_numpy(float)
+        a = acf(x, 1); a1.append(a); sd.append(float(np.std(x)))
+    v = ref["value"]
+    ma, ms = float(np.median(a1)), float(np.median(sd))
+    return [{"item": 9, "statistic": "median 200-day ACF(1) of x, flat paths", "population": "flat", "value": ma,
+             "reference": [v["acf1_p10"], v["acf1_p90"]], "criterion": "inside E6.9's AR(1) reference [P10, P90] at the FIT half-life",
+             "pass": bool(v["acf1_p10"] <= ma <= v["acf1_p90"]), "n_gen": len(a1), "n_rows": None},
+            {"item": 9, "statistic": "median 200-day sd(x), flat paths", "population": "flat", "value": ms,
+             "reference": [v["sd_lo"], v["sd_hi"]], "criterion": "inside the AR(1) reference [P10, P90] scaled to s_x",
+             "pass": bool(v["sd_lo"] <= ms <= v["sd_hi"]), "n_gen": len(sd), "n_rows": None}]
+
+
+def run_checklist_reference(paths_all: Dict[str, List[PathData]], doc: Dict, reference_windows: pd.DataFrame,
+                            n_boot: int = 500, seed: int = 620001, gen_stats: Optional[pd.DataFrame] = None) -> Dict[str, object]:
+    """The checklist under REG-14 B and C (and E6.8's rows), per item, per statistic, per population.
+
+    `doc` is the criteria file (`evaluation.criteria.load()`); `reference_windows` the E6.1 windows frame it cites.
+    Returns {"per_statistic": DataFrame, "per_item": DataFrame, "extra": DataFrame, "n_gen": {...}}.
+    """
+    from evaluation.reference_stats import criterion_B, criterion_C
+    rng = np.random.default_rng(seed)
+    g = gen_stats if gen_stats is not None else path_reference_stats(paths_all)
+    items = doc["items"]
+    crash_mdd = float(doc["crash_window_rule"]["value"]["mdd_at_or_below"])
+    ref_all = reference_windows
+    ref_crash = reference_windows[pd.to_numeric(reference_windows["mdd"], errors="coerce") <= crash_mdd]
+    refblk = doc["reference"]["value"]
+    rows = []
+    for item, spec in items.items():
+        for st in spec["statistics"]:
+            if st not in g.columns or st not in ref_all.columns:
+                continue
+            ref_kind = spec.get("reference", "all")
+            ref_v = pd.to_numeric((ref_crash if ref_kind == "crash" else ref_all)[st], errors="coerce").to_numpy(float)
+            ref_v = ref_v[np.isfinite(ref_v)]
+            band_blk = refblk.get(st, {}).get("crash_windows" if ref_kind == "crash" else "all", {})
+            band = (band_blk["p10"], band_blk["p90"]) if band_blk.get("n", 0) > 0 else None
+            main_pop = spec["population"]
+            for pop in ("all",) + SCENARIOS_T200:
+                gg = g if pop == "all" else g[g["scenario"] == pop]
+                gv = pd.to_numeric(gg[st], errors="coerce").to_numpy(float)
+                gv = gv[np.isfinite(gv)]
+                if len(gv) < 20 or len(ref_v) < 20:
+                    continue
+                B = criterion_B(gv, ref_v, rng, n_boot); C = criterion_C(gv, ref_v, band=band)
+                rows.append({"item": int(item), "statistic": st, "population": pop, "is_main": pop == main_pop, "reference": ref_kind,
+                             "n_gen": int(len(gv)), "n_ref": int(len(ref_v)),
+                             "gen_p10": float(np.percentile(gv, 10)), "gen_p50": float(np.percentile(gv, 50)), "gen_p90": float(np.percentile(gv, 90)),
+                             "ref_p10": B and float(np.percentile(ref_v, 10)), "ref_p50": float(np.percentile(ref_v, 50)), "ref_p90": float(np.percentile(ref_v, 90)),
+                             "B_D": B["D"], "B_upper95": B["D_upper95"], "B_pass": B["pass"],
+                             "C_share": C["share_inside"], "C_threshold": C["threshold"], "C_pass": C["pass"]})
+    per_stat = pd.DataFrame(rows)
+    per_item = []
+    if len(per_stat):
+        for item, gi in per_stat[per_stat["is_main"]].groupby("item"):
+            per_item.append({"item": int(item), "property": items[str(item)]["property"], "n_statistics": int(len(gi)),
+                             "population": gi["population"].iloc[0], "n_gen": int(gi["n_gen"].min()),
+                             "B_pass": bool(gi["B_pass"].all()), "C_pass": bool(gi["C_pass"].all()),
+                             "B_undecidable_at_n": bool(gi["n_gen"].min() < int(doc.get("criterion_B", {}).get("value", {}).get("n_min_size", 500)))})
+    extra = pd.DataFrame(_e6_8_rows(paths_all, n_boot, rng) + _item9_rows(paths_all, doc))
+    n_gen = {sc: len(paths_all.get(sc, [])) for sc in SCENARIOS_T200}
+    return {"per_statistic": per_stat, "per_item": pd.DataFrame(per_item), "extra": extra, "n_gen": n_gen,
+            "gen_stats": g, "criteria": {"D0": doc["criterion_B"]["value"]["D0"], "p0": doc["criterion_C"]["value"]["p0"], "crash_mdd": crash_mdd}}
+
+
+def to_markdown_reference(res: Dict[str, object], title: str, v2_df: Optional[pd.DataFrame] = None, preamble: str = "") -> str:
+    """The B/C table per item with the v2 verdict beside, the E6.8/item-9 rows, and a footer per criterion in the
+    form `test_footer_counts` parses: **B: pass a / fail b / not applicable c.**"""
+    def fmt(p):
+        return "n/a" if p is None or (isinstance(p, float) and math.isnan(p)) else ("PASS" if p else "FAIL")
+    pi = res["per_item"]; ps = res["per_statistic"]; ex = res["extra"]
+    v2 = {} if v2_df is None else {int(r["item"]): r for _, r in v2_df.iterrows()}
+    L = [f"# {title}", "", preamble, "",
+         f"Populations: {', '.join(f'{k} {v}' for k, v in res['n_gen'].items())} paths (T = 200). B: bootstrap 95 % upper limit of the KS "
+         f"distance < {res['criteria']['D0']}; C: share inside the reference P10–P90 ≥ {res['criteria']['p0']} − the share's half-width; "
+         f"crash windows = MDD ≤ {res['criteria']['crash_mdd']}.", "",
+         "| # | Property | statistics | population | n | B | C | A (v2) |", "|---|---|---|---|---|---|---|---|"]
+    for _, r in pi.iterrows():
+        a = v2.get(int(r["item"]))
+        L.append(f"| {r['item']} | {r['property']} | {r['n_statistics']} | {r['population']} | {r['n_gen']} | "
+                 f"{fmt(r['B_pass'])}{' (undecidable at this n)' if r['B_undecidable_at_n'] else ''} | {fmt(r['C_pass'])} | "
+                 f"{fmt(None if a is None else a['pass'])} |")
+    L += ["", "## Per statistic (main population)", "", "| # | statistic | pop | n_gen / n_ref | gen P10 / P50 / P90 | ref P10 / P50 / P90 | D (upper) | B | share (thr) | C |",
+          "|---|---|---|---|---|---|---|---|---|---|"]
+    for _, r in ps[ps["is_main"]].iterrows():
+        L.append(f"| {r['item']} | `{r['statistic']}` | {r['population']} | {r['n_gen']} / {r['n_ref']} | {r['gen_p10']:.3g} / {r['gen_p50']:.3g} / {r['gen_p90']:.3g} | "
+                 f"{r['ref_p10']:.3g} / {r['ref_p50']:.3g} / {r['ref_p90']:.3g} | {r['B_D']:.3f} ({r['B_upper95']:.3f}) | {fmt(r['B_pass'])} | "
+                 f"{r['C_share']:.3f} ({r['C_threshold']:.3f}) | {fmt(r['C_pass'])} |")
+    if len(ex):
+        L += ["", "## E6.8 and item 9 (the criteria without a real-window counterpart)", "", "| # | statistic | pop | value [CI] | reference | criterion | result | n |",
+              "|---|---|---|---|---|---|---|---|"]
+        for _, r in ex.iterrows():
+            ci = r.get("ci95")
+            val = f"{r['value']:.5g}" + (f" [{ci[0]:.4g}, {ci[1]:.4g}]" if isinstance(ci, (list, tuple)) else "")
+            L.append(f"| {r['item']} | {r['statistic']} | {r['population']} | {val} | {r['reference']} | {r['criterion']} | {fmt(r['pass'])} | {r['n_gen']} |")
+    for crit in ("B", "C"):
+        vals = [bool(v) for v in pi[f"{crit}_pass"]] if len(pi) else []
+        n_pass = sum(vals); n_fail = len(vals) - n_pass
+        L.append(f"\n**{crit}: pass {n_pass} / fail {n_fail} / not applicable {len(ex) if crit == 'C' else 0}.**")
+    L.append("")
+    return "\n".join(L)
+
+
 def v1_paths(n_seeds: int, T: int) -> Dict[str, List[PathData]]:
     out = {"flat": [from_v1_env("flat", s, T) for s in range(n_seeds)],
            "bull_trap": [from_v1_env("bull_trap", s, T) for s in range(n_seeds)],

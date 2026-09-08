@@ -47,93 +47,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from evaluation.stylized_facts import (  # noqa: E402
-    acf, arch_lm_p, garch_fit, hill_index, ljung_box_p, mdd,
-)
+# the estimator lives in evaluation/ (one function for real windows and generator paths; evaluation never
+# imports from tools/); it is byte-for-byte the function this module carried when the reference was generated
+from evaluation.reference_stats import ACF_LAGS, NOT_IN_REFERENCE, T_WINDOW, window_stats  # noqa: E402,F401
 from tools.phase1.panel import DEFAULT as SPEC  # noqa: E402
 
 OUT_DEFAULT = os.path.join(ROOT, "docs", "env_v2", "generated", "v2_1", "e6_1")
 SETS_JSON = os.path.join(ROOT, "docs", "env_v2", "generated", "v2_1", "e1_0_analysis_sets.json")
-T_WINDOW = 200
-ACF_LAGS = (1, 5, 10, 20, 50)
-
-
-def window_stats(px: np.ndarray, vol: np.ndarray, with_garch: bool = True) -> Dict[str, float]:
-    """Every checklist statistic that a real price/volume window can carry.
-
-    `px` is the adjusted close over T_WINDOW + 1 days, so that len(r) == T_WINDOW.
-    Statistics the generator defines on hidden state (x, phase, IV, sentiment) have no real-data
-    counterpart and are absent by design -- they are named in the output's `not_in_reference` list.
-    """
-    r = np.diff(np.log(px))
-    a = np.abs(r)
-    out: Dict[str, float] = {}
-
-    # item 1 -- no linear autocorrelation
-    out["lb_p_r"] = ljung_box_p(r, 10)
-    out["acf1_r"] = acf(r, 1)
-    out["abs_acf1_r"] = abs(out["acf1_r"]) if out["acf1_r"] == out["acf1_r"] else np.nan
-
-    # item 2 -- heavy tails
-    out["kurtosis"] = float(stats.kurtosis(r))
-    out["jb_p"] = float(stats.jarque_bera(r)[1])
-    out["hill"] = hill_index(r)
-
-    # item 3 -- volatility clustering
-    out["lb_p_absr"] = ljung_box_p(a, 10)
-    out["lb_p_r2"] = ljung_box_p(r ** 2, 10)
-    out["arch_lm_p"] = arch_lm_p(r, 5)
-    out["acf1_absr"] = acf(a, 1)
-
-    # item 4 -- ACF|r| decay
-    for L in ACF_LAGS:
-        out[f"acf{L}_absr"] = acf(a, L)
-
-    # items 5 and 6 -- GARCH persistence, leverage
-    if with_garch:
-        al, _, be = garch_fit(r)
-        out["garch_alpha"], out["garch_beta"] = al, be
-        out["garch_persistence"] = al + be if (al == al and be == be) else np.nan
-        _, gam, _ = garch_fit(r, o=1)
-        out["gjr_gamma"] = gam
-    out["leverage_corr"] = float(np.corrcoef(r[:-1], a[1:])[0, 1])
-
-    # item 7 -- volume / volatility
-    v = np.asarray(vol[1:], float)          # align with r
-    ok = np.isfinite(v) & (v > 0)
-    if ok.sum() > 30:
-        out["volume_absr_spearman"] = float(stats.spearmanr(v[ok], a[ok])[0])
-        lv = np.log(v[ok])
-        out["logvolume_acf1"] = acf(lv, 1)
-        out["logvolume_shapiro_p"] = float(stats.shapiro(lv)[1]) if len(lv) <= 5000 else np.nan
-    else:
-        out["volume_absr_spearman"] = out["logvolume_acf1"] = out["logvolume_shapiro_p"] = np.nan
-
-    # item 8 -- gain/loss asymmetry
-    out["skew"] = float(stats.skew(r))
-    out["worst_day"] = float(r.min())
-    out["best_day"] = float(r.max())
-    out["worst_over_best"] = float(abs(r.min()) / r.max()) if r.max() > 0 else np.nan
-
-    # items 10 and 20 -- magnitudes
-    out["mdd"] = mdd(px)
-    out["daily_sigma"] = float(np.std(r, ddof=1))
-    return out
-
-
-# statistics the generator's checklist defines on hidden or synthetic state; there is no real-window
-# counterpart, so no reference distribution can exist for them and none is invented.
-NOT_IN_REFERENCE = {
-    9: "mispricing persistence -- x is hidden state; no real-data counterpart",
-    11: "bubble shape -- defined on the generator's P/V and phase labels",
-    12: "sentiment dynamics -- the field is generated; item 12's b_pred is LIT (Phase 5 found the free "
-        "sentiment source does not reproduce Tetlock's 8.1 bp), so the criterion tests fidelity to the "
-        "configured value, not to the world (E6.8)",
-    13: "IV realism -- handled from the index VIX/RV relation and the five single-stock IV histories, "
-        "not from the price panel (separate E6.1 block)",
-    15: "phase/time separability -- defined on generator phase labels",
-    17: "conditioning / rejection rate -- a property of the sampler",
-}
 
 
 def ticker_windows(path: str, ticker: str, with_garch: bool = True, cache_dir: Optional[str] = None) -> List[Dict]:
