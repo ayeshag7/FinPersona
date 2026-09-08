@@ -193,6 +193,39 @@ def holdout():
     print("\n".join(L)); print(f"holdout: {time.time() - t0:.0f} s")
 
 
+def reattach():
+    """Re-read the derived gates from the criteria file into the stored audit (no refit): used when the gates block is
+    rewritten after the audit ran (the addendum's extra null draws)."""
+    from evaluation.leakage_audit import derived_verdicts, checklist_rows
+    p = os.path.join(OUT, "audit_after_derived.pkl")
+    with open(p, "rb") as fh:
+        res = pickle.load(fh)
+    res["gates"] = "derived"; res["derived"] = derived_verdicts(res)
+    with open(p, "wb") as fh:
+        pickle.dump(res, fh)
+    pd.DataFrame(checklist_rows(res)).to_csv(p.replace(".pkl", "_checklist_rows.csv"), index=False)
+    d = res["derived"]
+    md = os.path.join(OUT, "audit_after_derived.md")
+    txt = open(md, encoding="utf-8").read()
+    head = txt.split("## Derived gates")[0]
+    L = [head.rstrip(), "", "## Derived gates (PREREG_PHASE_6.md sections 6-8; re-attached from the criteria file)", "",
+         f"L1: ceiling {d['L1'].get('margin_5pct', float('nan')):.4f} on the within-5 % share -> {'PASS' if d['L1'].get('pass') else 'FAIL'}.", ""]
+    for name in ("l2_all", "l2_calm", "l2b"):
+        g = d.get(name, {})
+        if "error" in g:
+            L.append(f"- {name}: {g['error']}")
+        else:
+            L.append(f"- {name}: measured {g.get('measured_selectivity', float('nan')):+.4f}, null median {g.get('null_median', float('nan')):+.4f}, "
+                     f"p95 {g.get('null_p95', float('nan')):+.4f} ({g.get('null_n_draws')} draws), margin {g.get('margin', float('nan')):+.4f} -> "
+                     f"{'PASS' if g.get('pass') else 'FAIL'}" + (f"; the audit's own L2b selectivity {g.get('audit_selectivity', float('nan')):+.4f} -> "
+                     f"{'PASS' if g.get('pass_audit_statistic') else 'FAIL'}" if name == "l2b" else "") +
+                     f"; centred margin {g.get('centred_margin', float('nan')):+.4f} -> {'PASS' if g.get('pass_centred') else 'FAIL'}")
+    L.append(f"\naudit GBT all-rows selectivity (the audit's own construction): {d.get('audit_gbt_selectivity_all', float('nan')):+.4f}")
+    with open(md, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write("\n".join(L) + "\n")
+    print(json.dumps({k: v for k, v in d.items() if k != "L1"}, indent=1, default=str))
+
+
 def hashes():
     from tools.path_hashes import build, compare
     out = os.path.join(GEN, "path_hashes_phase6_after.json")
@@ -216,7 +249,7 @@ def main():
     a = ap.parse_args()
     pin_state()
     fns = {"checklist": lambda: checklist(a.seeds, a.workers), "audit": lambda: audit(False), "holdout": holdout,
-           "hashes": hashes, "freeze": freeze}
+           "reattach": reattach, "hashes": hashes, "freeze": freeze}
     for s in a.stages.split(","):
         t0 = time.time(); print(f"[after_state] {s} ...", flush=True)
         fns[s.strip()]()

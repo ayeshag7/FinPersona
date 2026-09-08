@@ -187,8 +187,37 @@ def t_e6_after() -> Optional[str]:
     return "\n".join(L)
 
 
+def t_e6_16a() -> Optional[str]:
+    d = _j("e6_16a/16A.json")
+    if not d or not d.get("summary", {}).get("G"):
+        return None
+    s = d["summary"]; m = d["meta"]; rules = d["rules"]
+    L = [f"{m['scored']} scored seeds per scenario, {m['train']} training seeds; best simple rule `{rules['best_family']}` "
+         f"(scale {rules[rules['best_family']]['scale']}, direction {rules[rules['best_family']]['direction']:+d}).", ""]
+    for th, G in s["G"].items():
+        tab = s["policies"][th]
+        L += [f"**θ = {th}**" + (" — the checkpoint" if float(th) == 0.05 else " (sensitivity)"), "",
+              "| scenario | oracle | L5 level-free observables | L5 level-free price-only | best rule | best trivial |", "|---|---|---|---|---|---|"]
+        def f(p):
+            return "—" if not p else f"{p['mean']:.4f} [{p['ci95'][0]:.4f}, {p['ci95'][1]:.4f}]"
+        for sc, t in tab.items():
+            L.append(f"| {sc} | {f(t.get('oracle'))} | {f(t.get('L5_full_level_free'))} | {f(t.get('L5_level_free'))} | "
+                     f"{f(t.get(G['G2']['best_rule']))} | {t['_best_trivial']}: {f(t.get(t['_best_trivial']))} |")
+        g3 = G["G3"]["per_scenario"]
+        L += ["", "| gate | per scenario | verdict |", "|---|---|---|",
+              f"| G1 | {G['G1']['per_scenario']} | {'PASS' if G['G1']['pass'] else 'FAIL'} |",
+              f"| G2 ({G['G2']['n_pass']} of 4) | {G['G2']['per_scenario']} | {'PASS' if G['G2']['pass'] else 'FAIL'} |",
+              "| G3 | " + ", ".join(f"{sc}: median {v['median_switches']:.0f}, share≥2 {v['share_ge2']:.2f}" for sc, v in g3.items()) + f" | {'PASS' if G['G3']['pass'] else 'FAIL'} |",
+              f"| G4a | {G['G4a']['per_scenario']} | {'PASS' if G['G4a']['pass'] else 'FAIL'} |", ""]
+    if "G4b" in s:
+        g = s["G4b"]
+        L.append(f"G4b: surrogate {g['surrogate_R2']:.4f} [{g['ci95'][0]:.4f}, {g['ci95'][1]:.4f}] vs ceiling {g['ceiling']:.4f} "
+                 f"(bound {g['bound_window_avg']:.4f} + allowance {g['allowance_rung4_minus_rung1']:.4f}) → {'PASS' if g['pass'] else 'FAIL'}")
+    return "\n".join(L)
+
+
 GENERATORS: Dict[str, Callable[[], Optional[str]]] = {"e6_9": t_e6_9, "e6_1": t_e6_1, "e6_3": t_e6_3, "e6_2": t_e6_2, "e6_5": t_e6_5,
-                                                        "e6_6": t_e6_6, "e6_null": t_e6_null, "e6_after": t_e6_after}
+                                                        "e6_6": t_e6_6, "e6_null": t_e6_null, "e6_after": t_e6_after, "e6_16a": t_e6_16a}
 
 
 def render(text: str) -> tuple:

@@ -4,9 +4,10 @@
 marked `<!-- table:... -->` are generated from those files by `tools/phase6/e6_report_tables.py` and read back by
 `tests/test_v2_1_phase_6.py::test_phase6_report_tables_match_files`. Sections follow the protocol's six headings.*
 
-**Status: IN PROGRESS (9 September 2026).** Pre-registration written (`PREREG_PHASE_6.md`, three cells pending on
-the nulls and one on the n = 500 size row); the diagnostic experiments done on the laptop; the lab box being
-brought up as the reference machine for the sklearn stages (section 0); no gated run yet.
+**Status: IN PROGRESS (9 September 2026).** Pre-registration written (`PREREG_PHASE_6.md`; two of its three cells
+filled from files — the n = 500 size row and the L2 null; the L2b null pending); one addendum section (the L2 null's
+location); the diagnostic experiments done; the gated runs (16A, the 500-seed checklist, the derived-gate audit) running
+on the laptop while the lab box is unreachable (section 0).
 
 ---
 
@@ -22,10 +23,13 @@ brought up as the reference machine for the sklearn stages (section 0); no gated
 | E6.2 criteria | **done** on the stored panel: A/B/C per item and population, the size and power of B and C on known-answer panels (B has no size at n = 200; C no power against D = 0.10), the concordance table; `evaluation/params/phase6_criteria.json` written with a loud loader |
 | E6.5 floor | **done** — the derived 5 % ceiling 0.606 + 0.011 = 0.617; price itself 0.426; the best of 27 extended candidates 0.399; expected PASS |
 | E6.6 bound / sweep / ladder | **done** — bound 0.177 / 0.200 at the adopted parameters; 40 of 40 sweep points valid; the ladder attributes the calm channel: process stack 0.20, feedback +0.001, events' pre-event calm +0.069 |
-| E6.6 / E6.7 nulls | **running** — 9 of 80 L2 fits done on the laptop before the laptop runs were stopped; resumed on the box once its reference rows reproduce |
-| The switches | **written** — `run_audit(gates=, holdout_scenario=)`, `run_checklist_reference`, `evaluation/reference_stats.py`, `evaluation/criteria.py`; inertness test in `tests/test_v2_1_phase_6.py` |
-| Final checklist (500 seeds), final audit (derived gates), held-out split, L3, 16A | **not run** |
-| Compute | laptop for everything so far; the box (128 cores) reached by the per-file `raw.githubusercontent.com` route through Fan's proxy after the tarball and `git clone` routes failed on the proxy's cuts (`docs/COMPUTE_GPU_ACCESS.md`) |
+| E6.6 L2 null | **done** (laptop, 80 fits) — the null sits **entirely below zero** (median −0.047 all rows, −0.069 calm-trained; p95 −0.034 / −0.054): the registered margin (p95 + half-width) is negative, **FAIL / FAIL as registered**; the registered centred sensitivity gives all rows PASS by 0.001 (within a half-width — undecided at 20 draws, raised to 40) and calm-trained **FAIL** (0.109 vs 0.038). `PREREG_PHASE_6_ADDENDUM.md` section 1 |
+| E6.7 L2b null | **running** (laptop, 42 fits; the FULL classifier under permutation sits at the majority class, ≈ 0.40–0.41) |
+| The switches | **written** — `run_audit(gates=, holdout_scenario=)`, `run_checklist_reference`, `evaluation/reference_stats.py`, `evaluation/criteria.py`; inertness test in `tests/test_v2_1_phase_6.py` (8 passed, 2 skipped pending files) |
+| 16A | **running** (laptop, 100 scored seeds × 4 scenarios × 3 personas; oracles and rules fitted on 40 training seeds) |
+| Final checklist (500 seeds), final audit (derived gates), held-out split | **queued** behind the nulls and 16A on the laptop |
+| L3 | **built, not run** (D2): 200 probes from day 22 on; the entitled reader (level-free GBT) at sign accuracy 0.780 [0.718, 0.832], ceiling 0.837, permutation null p95 0.57 (`e6_l3/l3.json`) |
+| Compute | laptop for everything so far. The box (128 cores; `docs/COMPUTE_GPU_ACCESS.md`): the repo made public on 8 Sep, so no credential is needed; `git clone` and the tarball fail on the proxy's mid-stream cuts; the per-file `raw.githubusercontent.com` route fetched 81 of 267 files (31 marked BAD after twenty retries each) before the proxy stopped answering at 03:01 (box time) and the ssh tunnel followed at ≈ 03:30; the downloaders resume by size when it returns; the reference-row check has not run there yet, so **no number in this report is the box's** |
 
 ---
 
@@ -305,9 +309,44 @@ Adopted: σ_V = 0.014573, h = 22.38 d, s_x = 0.0656 (identity with the jumps); b
 | 7 | generator, every calm row of the SEP panel (flat + pre-event calm) | 1600 | 0.2912 [0.2637, 0.3179] | 0.1695 | +0.0694 |
 <!-- /table:e6_6 -->
 
-### 3.7 E6.6 / E6.7 — the nulls and the derived gates *(pending)*
+### 3.7 E6.6 / E6.7 — the nulls and the derived gates (`e6_6/null/null.{json,md}`; L2b *pending*)
 
-### 3.8 E6.4, E6.8, the final checklist, the final audit, the held-out split *(pending)*
+<!-- table:e6_null -->
+| statistic | pop | BASE | FULL | measured selectivity [paired CI] | half-width | null median | null p95 (draws) | margin | verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| L2 R²(x) | all | +0.4059 | +0.4322 | +0.0263 [+0.0106, +0.0402] | 0.0148 | -0.0470 | -0.0343 (20) | -0.0195 | FAIL |
+| L2 R²(x) | calm | +0.2912 | +0.4000 | +0.1088 [+0.0849, +0.1307] | 0.0229 | -0.0692 | -0.0542 (20) | -0.0313 | FAIL |
+<!-- /table:e6_null -->
+
+**The L2 null's location decides the reading, and it was reported before the reading was written**
+(`PREREG_PHASE_6_ADDENDUM.md` section 1). Under a target permutation the FULL set (141 columns) fits a random target at
+R² ≈ −0.047 (all rows) / −0.069 (calm) and the level-free BASE (45 columns) at ≈ −0.004: every one of the 40 draws of
+the difference is negative, because the difference of two out-of-sample R² values from feature sets of different size is
+centred at the overfitting-penalty difference, not at zero — P5-16's column-permutation finding in another form. The
+plan's letter (margin = p95 + half-width) therefore gives **negative margins** (−0.020 / −0.031) that no field can pass:
+**FAIL / FAIL as registered**, written to the criteria file as such. The registered centred sensitivity (p95 − median +
+half-width) gives **+0.0275** on all rows — the measured +0.0263 passes by 0.0012, inside one half-width (0.0148), so
+*undecided at 20 draws*; the addendum raises the draw count to 40 — and **+0.0379** calm-trained, which the measured
+**+0.1088** exceeds by five half-widths: **FAIL**. That failure is the fields' calm-trained contribution Phase 5
+measured (0.104: VAL +0.051 with the wandering multiple as a slow signal, LEVELS +0.023, IV +0.019): information about x
+that a calm-day reader takes from the fields and cannot take from the price path. It is D17's (section 5).
+
+**MAPE(V)**: the audit's intervals are reported in `e6_after/audit_after_derived.md` when the final audit lands; no
+absolute threshold.
+
+### 3.8 The final checklist at 500 seeds under A, B and C; E6.4 and E6.8 (`e6_after_checklist*`)
+
+<!-- table:e6_after -->
+*(pending: running)*
+<!-- /table:e6_after -->
+
+### 3.8b 16A — the checkpoint (`e6_16a/16A.{json,md}`)
+
+<!-- table:e6_16a -->
+*(pending: running at 100 scored seeds per scenario)*
+<!-- /table:e6_16a -->
+
+### 3.8c The final audit under the derived gates and the held-out-scenario split (`e6_after/`) *(pending)*
 
 ### 3.10 The tuned-parameter ledger (weakness 7)
 
@@ -342,7 +381,25 @@ rows to 1e-9 (`test_reference_stats_is_the_reference_estimator`).
 
 ## 4. Decisions taken and the parameter file *(in progress — DECISION_LOG P6-*)*
 
-## 5. Decisions the team must take *(D2, D10, D15 open; D17 after 16A)*
+## 5. Decisions the team must take
+
+**D2** (the L3 roster and ≈ $12), **D10** (the yield's rendering), **D15** (the sentiment default) — open since Phase 5
+and this phase's first message; the audits ran on the deployed defaults (`shown`, A).
+
+**D17 — triggered.** Two of the checkpoint's clauses fail under the criteria as written before any of this phase's runs,
+and the ladder and the null say *where* the failure sits, which is what makes the options concrete. The full 16A table
+(G1, G2, G3, G4a) follows in section 3.8 when the 100-seed run lands; the two failures already decided:
+
+| gate | as registered | where the excess is | admissible responses (the plan's, 16A; none chosen here) |
+|---|---|---|---|
+| **G4(b)** the level-free price-only surrogate ≤ the Appendix-B bound + the nonlinear allowance | **FAIL** — 0.2912 [0.264, 0.318] against a ceiling of 0.2267 (0.1695 + 0.0572); no reading of the bound or the allowance passes (PREREG 7.3) | the ladder (`e6_6/bound.md`): the process stack 0.203, the generator's flat scenario 0.222 (inside the allowance), the feedback +0.001, **the events' pre-event calm +0.069** — a leak through the price path's own calm signature, Phase 4's territory | (i) **D5 / Phase 4 re-opened**: the pre-event calm of crash and bull-trap paths is distinguishable from flat calm to a level-free reader (the schedule's conditioning, the rejection sampling, or the calm-phase parameters of the event scenarios); the SEP audit of Phase 4 reported it could not narrow this, and the ladder now bounds it at 0.07 of R²(x). (ii) **D3**: a Vuolteenaho-type σ_V lowers the bound itself (Appendix B: ≈ 0.08 at 0.02/day) and would move the ceiling *down*, so it does not help this clause. (iii) Restrict the paper's claim: the price-only reader is entitled to ≈ 0.22 on flat paths and reads ≈ 0.29 on event paths' calm; state the calm channel as the engine's plus the events', with the bound beside. |
+| **L2 calm-trained selectivity** (E6.6's derived gate) | **FAIL** — +0.109 [+0.085, +0.131] against −0.031 as registered and +0.038 centred | the per-field-group ablation of Phase 5 (`e5_7a/final`): VAL +0.051 (the wandering multiple — a FIT log-AR(1) at ρ_d 0.9966 — is a slow signal a calm reader uses), LEVELS +0.023, IV +0.019, ANALYST +0.010 | (i) **Phase 5's field redesign re-opened for the multiple**: the P10–P90 width (P5-10) or a shorter within-stock persistence, each a FIT choice with a measured cost; (ii) hide the P/E and yield (D10's `hidden` arm carries the yield's half: −0.038 of R²(x) under a constant multiple, P5-14); (iii) accept and state: a calm-day reader with the fields reaches R²(x) ≈ 0.40 against ≈ 0.29 without them, and the benchmark's claim is made conditional on it. |
+| **L2 all-rows selectivity** | **FAIL as registered** (a negative margin); **undecided** under the centred sensitivity at 20 draws (+0.0263 vs +0.0275, inside a half-width); 40 draws pending | the fields add +0.026 of R²(x) over the level-free control on all rows (Phase 5's 93 % reduction from +0.39) | reported; the 40-draw reading follows |
+
+The plan's own note on **G3** (16A: "G3 will fail unless D8 changes the horizon or the scoring") was written at a
+half-life of 150 d; at the FIT 22.4 d the smoke run counts medians of 2–6 oracle switches per 200-day run. If the
+100-seed run confirms it, G3 passes at the FIT persistence and the expectation in `PREREG_PHASE_6.md` section 12 is
+recorded as disconfirmed — a measurement, not a criterion moved.
 
 ## 6. Files written or changed *(`PHASE_6_CHANGED_FILES.md`, verified against disk at the end)*
 
