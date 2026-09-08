@@ -11,14 +11,15 @@
    "D0": 0.1,
    "bootstrap_resamples": 500,
    "rule": "bootstrap 95 % upper limit of the two-sample KS distance < D0",
-   "n_min_size": 800,
+   "n_min_size": 500,
    "size_pass_rate_at_D0_by_n": {
-    "200": 0.03,
+    "200": 0.05,
+    "500": 0.94,
     "800": 1.0
    }
   },
   "status": "DESIGN",
-  "label": "REG-14 B (the corrected equivalence form; LOG section 3); decisive only at n_gen >= 800 (the smallest n at which its median pass rate under a true D = 0 is >= 0.90: {200: 0.03, 800: 1.0})",
+  "label": "REG-14 B (the corrected equivalence form; LOG section 3); decisive only at n_gen >= 800 (the smallest n at which its median pass rate under a true D = 0 is >= 0.90: {200: 0.03, 800: 1.0}); decisive only at n_gen >= 500 (the smallest n at which its median pass rate under a true D = 0 is >= 0.90: {200: 0.05, 500: 0.94, 800: 1.0})",
   "source": "V2_1_ALTERNATIVES_REGISTER.md section 14; V2_1_IMPROVEMENT_PLAN.md Appendix A",
   "date": "2026-09-08",
   "interval": "none (a rule)",
