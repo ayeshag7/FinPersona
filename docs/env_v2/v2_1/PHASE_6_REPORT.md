@@ -309,6 +309,27 @@ Adopted: σ_V = 0.014573, h = 22.38 d, s_x = 0.0656 (identity with the jumps); b
 
 ### 3.8 E6.4, E6.8, the final checklist, the final audit, the held-out split *(pending)*
 
+### 3.10 The tuned-parameter ledger (weakness 7)
+
+The v2 claim "nothing re-tuned to pass" is replaced by the record. Sources: `docs/env_v2/preregistration/PREREGISTRATION_AMENDMENTS.md`
+(A1–A9), `docs/env_v2/generated/e1_calibration_variants.md` (the calibration variants A–E, 25 seeds), `hazard_calibration.csv`
+(the hazard grid searched to item 11), `checklist_v2_sens_*.md` (the sensitivities' footers).
+
+| item | what moved, and when | parameters tuned against it | pre-amendment result | post-amendment result | Phase 6 reads it as |
+|---|---|---|---|---|---|
+| 7 (volume) | A1 (22 Aug): "log-normality not rejected" from a median Shapiro p > 0.05 to p > 0.01 in ≥ 50 % of seeds | none directly (the volume equation's \|r\| and \|x\| terms made the 5 % test reject) | median Shapiro p 0.006–0.03 → FAIL | PASS at the 1 %-majority form | the real windows reject log-normality in most cases (median p 0.0037); the generator over-satisfies it (C share 0.66 vs 0.78 required, the *other* way) — a mis-specified criterion in both forms; B/C decide |
+| 9 (persistence) | A2 (22 Aug): the pass criterion moved from 200-day calm windows to the T = 800 phase-free paths | the half-life itself (60 vs 150 d variants: `checklist_v2_sens_hl60`) | 200-day ACF(1) far below 0.98 | PASS at T = 800 | E6.9: the 200-day estimator cannot reach 0.98 at any FIT half-life; re-stated as fidelity to the FIT process with the same ruler (P6-6); T = 800/2000 descriptive only |
+| 10 (delta matters) | A7 (23 Aug): MDD over the event window instead of the whole path; thresholds unchanged | δ grid, D_V | partial R² 0.36–0.38, spread 16.5–18 pp → FAIL | 0.38 / 18.0 pp → still FAIL, published | the R² criterion is unattainable by construction (weakness 40); reported, not gated; the crash depth's structural floor is P4-41's |
+| 11 (bubble) | the hazard (h0, b, g_max) grid-searched to "40–60 % topped, peak P/V 1.6–2.5" (`hazard_calibration.csv`, best score 0.16–0.38); A5 capped the mania drift at g_max | h0, b, g_max | uncapped: every run exceeds P/V 3 | topped 47–58 %, peak 2.1–2.4 → PASS | a calibration target, not a test (weakness 41); reported as such |
+| 13 (IV) | bands 25–35 / 60–100 / corr 0.4–0.8 / gaps written to what the v2 IV block produced; A3 changed the phase multipliers from ω-only to whole-variance so panic IV could reach 60–100 | panic multiplier (×3, ×6 variants), IV horizon | calm 28–30 %, panic 50–56 %, corr 0.29–0.31 → FAIL | v2.1 E3.5 rebuilt IV as a past-only filter | the real reference (`e6_1/iv_reference.md`): single-stock IV 21.6 / 28.4 / 37.6, corr 0.55; the generator's corr 0.23 is structural (past-only filter) and reported so |
+| 17 (conditioning) | rejection rate "< 5 %" while A4/A4b's anchoring drift and variance multiplier (0.25 → 1.0) set the sustained-bull rejection at 11–17 %; the tile said "calibration" | anchoring drift −0.15 x, variance multiplier | 40 % (v2 pilot) | 11–17 % at 25 seeds; D14 (control A) in Phase 4 | a property of the sampler, reported (P4-43) |
+| 20 (magnitudes) | bands written to the panic targets (worst day −6..−15 %, σ 1.4–2.2 %); the σ̄, α/γ/β and jump-rate variants A–E were selected on the checklist subset | σ̄ (0.017), α/γ/β (0.10/0.10/0.83), panic multiplier (5), jump rate (0.008) — "final defaults = variant E" | variants A–D: 7–9 of 15 pass | E: 8 / 7 (50 seeds) | every one of these is FIT in v2.1 (Phases 2–4) and none is tuned to a checklist item; B/C judge the magnitudes against the crash windows (section 3.4) |
+| 14 (L1) | A6 (22 Aug): "≥ 99 % of steps above the 1 % floor" to "median APE ≥ 1 % or not inside the floor more than price itself + 1 pp" | — | FAIL for any process through zero | PASS | the 1 % floor was stated; E6.5 derives the ceiling (0.617) |
+| 14 (L2) | A8 (23 Aug, WITHDRAWN): selectivity margins 0.20 / 5 pp frozen after the E1 run with headroom | — | absolute: FAIL | selectivity: pass (withdrawn as a gate) | E6.6 derives the margin from the target-permutation null |
+| 16 (L2b) | the 10 pp margin "frozen after the E1 calibration run" | — | +6.9 pp (v2, with the level) | +1.8 pp (Phase 5, level-free) | E6.7 derives the margin from the label-permutation null |
+
+Sensitivity footers as stored (50 seeds, v2 criteria): default 8/7, `fw_index` 8/7, `hl60` 7/8, `omega_mode` 7/8, `panic3` 9/6, `panic6` 8/7, `pruna` 7/8 — the counts weakness 39 found mis-stated in five of six rows on the slides are these.
+
 ### 3.9 The switches, and the proof that they are inert when off
 
 `run_audit(gates="v2", holdout_scenario=False)` is the pre-Phase-6 call and returns the pre-Phase-6 dictionary;

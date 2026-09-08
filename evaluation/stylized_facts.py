@@ -679,6 +679,11 @@ def to_markdown_reference(res: Dict[str, object], title: str, v2_df: Optional[pd
     def fmt(p):
         return "n/a" if p is None or (isinstance(p, float) and math.isnan(p)) else ("PASS" if p else "FAIL")
     pi = res["per_item"]; ps = res["per_statistic"]; ex = res["extra"]
+    if len(ps) == 0:                       # fewer than 20 paths in every population: nothing to judge, and said so
+        ps = pd.DataFrame(columns=["item", "statistic", "population", "is_main", "n_gen", "n_ref", "gen_p10", "gen_p50", "gen_p90",
+                                   "ref_p10", "ref_p50", "ref_p90", "B_D", "B_upper95", "B_pass", "C_share", "C_threshold", "C_pass"])
+    if len(pi) == 0:
+        pi = pd.DataFrame(columns=["item", "property", "n_statistics", "population", "n_gen", "B_pass", "C_pass", "B_undecidable_at_n"])
     v2 = {} if v2_df is None else {int(r["item"]): r for _, r in v2_df.iterrows()}
     L = [f"# {title}", "", preamble, "",
          f"Populations: {', '.join(f'{k} {v}' for k, v in res['n_gen'].items())} paths (T = 200). B: bootstrap 95 % upper limit of the KS "

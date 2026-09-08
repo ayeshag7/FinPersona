@@ -1,0 +1,45 @@
+{
+ "state": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": true,
+  "observables": "multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A"
+ },
+ "n_probes": 200,
+ "theta": 0.05,
+ "seed": 630001,
+ "strata": {
+  "bull_trap|calm": 25,
+  "bull_trap|resolution": 25,
+  "bull_trap|up-event": 25,
+  "crash|calm": 25,
+  "crash|down-event": 25,
+  "crash|resolution": 25,
+  "flat|calm": 25,
+  "sustained_bull|calm": 25
+ },
+ "surrogate_levelfree_gbt": {
+  "sign_acc": 0.67,
+  "wilson95": [
+   0.6021668477213762,
+   0.7314257413074026
+  ],
+  "n": 200
+ },
+ "rule": "model normal-arm accuracy <= surrogate accuracy + Wilson half-width at n; shuffled arm within the null's p95",
+ "ceiling": 0.7346294467930132,
+ "models": {},
+ "null_of_accuracy_sign_perm": {
+  "median": 0.45,
+  "p95": 0.5,
+  "n": 500,
+  "note": "the surrogate's answers scored against permuted x signs; the same null applies to a model's answers"
+ }
+}
