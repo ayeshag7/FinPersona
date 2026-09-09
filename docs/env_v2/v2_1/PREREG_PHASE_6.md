@@ -154,9 +154,12 @@ and by the reference shifted to a true KS distance of 0.05 and 0.10, 100 simulat
 - **B at n_gen = 200 has no size**: it passes a sample drawn from the reference itself in only **2–8 %** of
   simulations, because the KS distance's own sampling noise at n = 200 carries its upper limit past 0.10. At
   n_gen = 800 it passes 99–100 % at D = 0 and rejects a true D = 0.10 in 99–100 %; at D = 0.05 it passes
-  60–100 % (statistic-dependent). The n = 500 row is being measured as this is written (`e6_2/run2.log`) and
-  is entered here before the final checklist runs. **B is the decisive criterion, and it is decisive only at n
-  ≥ the count that gives it size.**
+  60–100 % (statistic-dependent). *(Clarified 9 Sep 2026 from the same file, `e6_2/criteria.json`: the D = 0.05 pass
+  rate at 800 is 0–100 % with median 0.73 — two statistics, `jb_p` and `garch_alpha`, pile at a mass point and never
+  pass a shift; at 500 it is 0–96 % with median 0.43. B has power against the equivalence margin D = 0.10, not
+  against D = 0.05; the "60–100 %" above omitted the two mass-point statistics.)* The n = 500 row was measured after
+  this section was written and is entered in 5.3 from the file. **B is the decisive criterion, and it is decisive only
+  at n ≥ the count that gives it size.**
 - **C has size at every n** (pass rate 0.93–1.00 at D = 0) **but no power against a location shift of D = 0.10
   on most statistics** (pass rate still 0.96–1.00): a shift that moves the KS distance by 0.10 barely moves the
   P10–P90 share. It has power only where the band is narrow relative to the shift (MDD 0.22 → 0.00, the worst

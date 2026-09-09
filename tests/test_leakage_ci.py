@@ -106,13 +106,19 @@ def test_v2_L1_no_algebraic_inversion(v2_audit):
     assert bool(v2_audit["L1"]["pass"].all()), v2_audit["L1"].to_string()
 
 
-@pytest.mark.xfail(strict=True, reason="Pre-registered L2 absolute thresholds fail by construction: with a smooth V and a "
-                   "persistent dominant x, price history alone predicts x (calm R2 ~0.8) and V (MAPE ~4%). Reported, not "
-                   "re-gated (integrity review 23 Aug 2026 withdrew amendment A8 as a gate). If this starts passing, the "
-                   "generator changed: revisit.")
+@pytest.mark.xfail(strict=True, reason="DERIVED L2 gate (v2.1 Phase 6, E6.6): the selectivity of the rendered fields over the "
+                   "level-free control must be <= the target-permutation null's p95 + the paired half-width, on all rows and "
+                   "calm-trained (phase6_criteria.json `gates.l2_all` / `gates.l2_calm`, written from e6_6/null/null.json). "
+                   "The null sits entirely below zero, so the registered margin is negative and both populations FAIL; the "
+                   "centred sensitivity is reported beside (PREREG_PHASE_6_ADDENDUM.md section 1). The v2 absolute thresholds "
+                   "are reported under gates='v2' only. An XPASS here means the derived gate passes: remove the registry entry.")
 def test_v2_L2_surrogate_thresholds(v2_audit):
+    """The gate as the criteria file holds it. The CI panel's own L2 verdict (v2 absolute form) is reported in the
+    assertion message for the record; the derived verdict is the file's, computed on the 1,600-path panel."""
+    from evaluation import criteria as CR
     v = v2_audit["L2_verdict"]
-    assert v["mode"] == "absolute" and v["pass"], v
+    g_all, g_calm = CR.gate("l2_all")["value"], CR.gate("l2_calm")["value"]     # CriteriaError until the nulls are written
+    assert g_all["pass"] and g_calm["pass"], {"derived_all": g_all, "derived_calm": g_calm, "ci_panel_v2_absolute": v}
 
 
 def test_v2_L2_selectivity_reported_and_no_spurious_fit(v2_audit):
@@ -142,21 +148,24 @@ def test_v2_L2_selectivity_reported_and_no_spurious_fit(v2_audit):
         {k: float(published[k]) for k in ("max_R2_shuffledV",)})
 
 
-@pytest.mark.xfail(strict=True, reason="registered (Phase 6): with the level-free control (v2.1 Phase 1 default) the macro-phase "
-                                       "selectivity of the non-price fields is +11.7 pp on the published 1,600-path audit against the "
-                                       "pre-registered 10 pp margin (the v2 level control passed at +8.6 pp only because the price level "
-                                       "itself carried the phase); the gate is re-derived in Phase 6 with the level-free reference.")
+@pytest.mark.xfail(strict=True, reason="DERIVED L2b gate (v2.1 Phase 6, E6.7): the macro-class selectivity of the rendered fields "
+                                       "over the level-free control must be <= the label-permutation null's p95 + the paired "
+                                       "half-width (phase6_criteria.json `gates.l2b`, from e6_6/null/null.json `macro|all`); the "
+                                       "10 pp margin frozen after the result was known is retired to gates='v2'. An XPASS here means "
+                                       "the derived gate passes on the 1,600-path panel: remove the registry entry.")
 def test_v2_L2b_phase_clock_selectivity(v2_audit):
-    """The evidence is the published audit on the standard evaluation panel (1,600 paths), not this module's 8-seed CI
-    panel: at 8 seeds the statistic cannot decide a 10 pp margin and happens to pass. The stored result decides; the CI
-    panel is kept as a live guard that the statistic is still computed and in range."""
+    """The evidence is the published audit on the standard evaluation panel (1,600 paths) and the null simulated on it,
+    not this module's 8-seed CI panel: at 8 seeds the statistic cannot decide a margin of a few tenths of a point. The
+    file's verdict decides; the CI panel is kept as a live guard that the statistic is still computed and in range."""
     import pandas as pd
+    from evaluation import criteria as CR
+    g = CR.gate("l2b")["value"]                                                  # CriteriaError until the null is written
     rows = pd.read_csv(os.path.join(ROOT, "docs", "env_v2", "generated", "v2_1", "e1_6",
                                     "audit_after_levelfree_checklist_rows.csv"))
     l2b = rows[rows["item"] == 16].iloc[0]
     live = v2_audit["L2b"]
     assert 0.0 <= float(live["selectivity"]) <= 1.0, live      # live guard: the statistic is computed and in range
-    assert bool(l2b["pass"]), l2b.to_dict()                    # the published 1,600-path result decides
+    assert g["pass"], {"derived_l2b": g, "ci_panel_live": live, "phase1_published_row_under_the_v2_margin": l2b.to_dict()}
 
 
 def test_v2_phase_time_separability():

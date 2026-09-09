@@ -18,22 +18,30 @@ prints this registry with the observed outcomes at the end of every pytest sessi
 # section-9 refit re-identified the engine's (sigma_V, h) under it (DECISION_LOG P3-*); test_iv_continuity
 # (items 46, 25) is HARD with the DERIVED tolerance T_z -- E3.5's IV is a past-only filter of observed returns
 # (no phase input, no whole-path quantile), audited against the same filter's forecast (e3_5/audit.json).
+# v2.1 Phase 6 re-expressed both entries as the DERIVED gates (PREREG_PHASE_6.md sections 7-8; the margins live in
+# evaluation/params/phase6_criteria.json `gates`, written from the target-permutation nulls by
+# tools/phase6/e6_criteria_extra.py --stages gates). Each test asserts the gate AS THE FILE HOLDS IT; a strict xfail
+# keeps the suite green while the derived gate fails and XPASSes -- loudly -- the moment it passes, at which point the
+# entry is removed. The v2 absolute thresholds and the 10 pp margin stay behind run_audit(gates="v2"), reported only.
 V2_DEFECTS = [
     {"test": "tests/test_leakage_ci.py::test_v2_L2_surrogate_thresholds", "items": [5, 32, 1, 3],
-     "phase": 6, "reason": "pre-registered L2 absolute gate fails (anchor + field channels); gate re-derived in Phase 6 after Phases 1 and 5"},
+     "phase": 7, "reason": "DERIVED L2 gate (Phase 6, E6.6): selectivity of the rendered fields over the level-free control "
+                           "(FULL - BASE, the audit's GBT) <= the target-permutation null's p95 + the paired half-width. The "
+                           "null sits entirely below zero (median -0.047 all rows / -0.069 calm-trained; p95 -0.034 / -0.054), "
+                           "so the margin as registered is NEGATIVE and the measured +0.0263 [+0.0106, +0.0402] (all rows) and "
+                           "+0.1088 [+0.0849, +0.1307] (calm-trained) FAIL it; under the registered centred sensitivity "
+                           "(p95 - median + half-width) all rows is undecided at 20 draws (+0.0263 vs +0.0275, inside a "
+                           "half-width; 40 draws pending) and calm-trained FAILS (+0.1088 vs +0.0379) -- the fields' calm "
+                           "contribution (VAL, the wandering multiple). Evidence: e6_6/null/null.json; "
+                           "PREREG_PHASE_6_ADDENDUM.md section 1. Owner: D17 / Phase 7 (a Phase-5 field decision or D3)"},
     {"test": "tests/test_leakage_ci.py::test_v2_L2b_phase_clock_selectivity", "items": [16],
-     "phase": 6, "reason": "with the level-free control (v2.1 Phase 1) the macro-phase selectivity of the non-price fields is "
-                           "+10.4 pp on the 1,600-path audit of v2.1 Phase 4's POST-D14 hand-over, against the "
-                           "pre-registered 10 pp margin (+10.7 pp pre-D14, +12.7 pp at Phase 3, +11.7 pp at Phase 1, "
-                           "+15.4 pp at Phase 2; the v2 level control passed at +8.6 pp only because the price level "
-                           "itself carried the phase). Two DIFFERENT movements, and the distinction matters: the event "
-                           "redesign narrowed it 1.94 pp WITHOUT reducing the field channel -- full-field accuracy was "
-                           "unchanged (0.782507 -> 0.782618) and the whole narrowing was the price-only baseline rising, "
-                           "so the gap closed from the wrong side (P4-34). Adopting control definition A then narrowed it "
-                           "a further 0.39 pp the RIGHT way: full-field accuracy fell 0.782618 -> 0.760160 (-2.25 pp) and "
-                           "worst-group selectivity R2(x) fell 0.6878 -> 0.4821 (P4-45). Evidence: "
-                           "e4_21/audit_after_levelfree.pkl (post-D14), e4_16_preD14/ (pre-D14). Gate re-derived in "
-                           "Phase 6 with the level-free reference"},
+     "phase": 7, "reason": "DERIVED L2b gate (Phase 6, E6.7): macro-class accuracy of FULL minus the level-free control <= the "
+                           "label-permutation null's p95 + the paired half-width (the 10 pp margin frozen after the result "
+                           "was known, weakness 32, is retired to gates='v2'). Measured +0.0181 on the Phase-5 state "
+                           "(e5_after/audit_after_levelfree.pkl: 67.6 % - 65.8 %); the null and margin are e6_6/null/null.json "
+                           "`macro|all` and phase6_criteria.json `gates.l2b`; the entry stands until the file's verdict is PASS, "
+                           "when this xfail XPASSes and the entry is removed. History of the statistic: +10.4 pp post-D14 "
+                           "(Phase 4), +1.8 pp after the Phase-5 observables redesign (P5-19)"},
 ]
 
 # Documented v1 baseline defects (E0). Permanent: they describe the frozen v1 generator and are never emptied.

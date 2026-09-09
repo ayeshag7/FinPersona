@@ -29,16 +29,29 @@ on the laptop while the lab box is unreachable (section 0).
 | 16A | **running** (laptop, 100 scored seeds × 4 scenarios × 3 personas; oracles and rules fitted on 40 training seeds) |
 | Final checklist (500 seeds), final audit (derived gates), held-out split | **queued** behind the nulls and 16A on the laptop |
 | L3 | **built, not run** (D2): 200 probes from day 22 on; the entitled reader (level-free GBT) at sign accuracy 0.780 [0.718, 0.832], ceiling 0.837, permutation null p95 0.57 (`e6_l3/l3.json`) |
-| Compute | laptop for everything so far. The box (128 cores; `docs/COMPUTE_GPU_ACCESS.md`): the repo made public on 8 Sep, so no credential is needed; `git clone` and the tarball fail on the proxy's mid-stream cuts; the per-file `raw.githubusercontent.com` route fetched 81 of 267 files (31 marked BAD after twenty retries each) before the proxy stopped answering at 03:01 (box time) and the ssh tunnel followed at ≈ 03:30; the downloaders resume by size when it returns; the reference-row check has not run there yet, so **no number in this report is the box's** |
+| Compute | laptop for everything so far. The box (128 cores; `docs/COMPUTE_GPU_ACCESS.md`): the repo made public on 8 Sep, so no credential is needed; `git clone` and the tarball fail on the proxy's mid-stream cuts; the per-file `raw.githubusercontent.com` route fetched 81 of 267 files (31 marked BAD after twenty retries each) before the proxy stopped answering at 03:01 (box time) and the ssh tunnel followed at ≈ 03:30; the downloaders resume by size when it returns; from ≈ 04:00 the tunnel resets at the SSH banner (`kex_exchange_identification: Connection reset by peer`, the 5 Sep signature of a reset container), which is Fan's to restore; the reference-row check has not run there, so **no number in this report is the box's** |
 
 ---
 
 ## 1. Literature review and the citation table
 
-*(to be completed with the report: Cont 2001; Ratliff-Crain et al. 2025; Hashimoto et al. 2025 Table 3 and TwinMarket
-2025 Table 4 as the reference-table precedents; Vyetrenko et al. 2020; Hewitt & Liang 2019 for selectivity; Gururangan
-et al. 2018; Kaufman et al. 2012; Harvey 1989 for the steady-state Kalman filter behind Appendix B. Every statistic
-carries "(read at source)" or "(to verify)"; a "(to verify)" statistic appears in no parameter file, tolerance or slide.)*
+This phase takes **methods** from the literature and **no numbers**: every criterion, margin and seed count is FIT from
+E6.1's windows, derived from a bound or a null, or measured on a known-answer panel. The precedents' published
+statistics (the kurtosis and ACF values in `evaluation/stylized_facts.REFERENCE_NOTE`) appear in no criterion, tolerance
+or parameter file of this phase.
+
+| Statistic or method | Source | Status | Used for |
+|---|---|---|---|
+| The list of stylized facts the checklist items are named after (absence of linear autocorrelation, heavy tails, gain/loss asymmetry, volatility clustering, slow decay of \|r\| autocorrelation, leverage, volume–volatility correlation) | Cont (2001, Quantitative Finance) | read in the plan's verification pass (LOG); carried, not re-read here | the item names and the statistic set of E6.1; **no numeric value** |
+| Reference tables of the same facts on real single stocks; the revisit of Cont's list | Ratliff-Crain et al. (2025); Hashimoto et al. (2025, Table 3); TwinMarket (2025, Table 4) | **not re-read at source in this phase** | the *form* of a reference table (P10/P50/P90 per statistic); **their numbers are not used** — E6.1's reference is this panel's own 12,927 windows |
+| Distribution overlays for generator validation | Vyetrenko et al. (2020) | not re-read | the two-sample form of criterion B (a distance between distributions rather than a point band) |
+| Selectivity = full-model minus control-model performance as the measure of what a field set carries | Hewitt & Liang (2019) | read (the plan's 10.1) | E6.6/E6.7's statistic (FULL − BASE); the null is this phase's own |
+| Partial-input baselines (a model given only part of the input) | Gururangan et al. (2018) | read (the plan's 10.1) | the level-free control as the partial input; the L3 probe's shuffled arm |
+| Leakage defined as information available at test time that would not be available in deployment | Kaufman et al. (2012) | read (the plan's 10.1) | the framing of L1–L3; no number |
+| Probe design with Wilson intervals for an LLM's answers | KTD-Fin (as cited by the plan) | not re-read | the L3 probe's interval form (`e6_l3_probe.py`); no number |
+| The steady-state Kalman filter for a random-walk-plus-AR(1) signal | Harvey (1989) | read in LOG §3 (Appendix B, reproduced independently on 27 Aug 2026 to three decimals; `kalman_bound_verification.json` passed) | the analytic bound of E6.6, evaluated at the parameters in force |
+| Appendix A's power formulas (the share-type n; the median rule with the √(π/2) factor; the equivalence form of the KS criterion) | the plan's Appendix A (LOG §3) | read | E6.3; the measured size/power of B and C replaces the appendix's asserted "a true D ≤ 0.05 passes with ≈ 80 % power" with the table in `e6_2/criteria.md`: at n_gen = 500 B passes a true D = 0.05 in **0–96 % of simulations, median 43 %** (at 800: 0–100 %, median 73 %); two statistics (`jb_p`, `garch_alpha`) pile at a mass point and never pass a shift — so B is an equivalence test with power against D = 0.10 (≥ 95 % everywhere at 500) and only partial power against D = 0.05, not the uniform 80 % the appendix assumed |
+| Survivorship: the full-universe values of crash depth, tails and volatility that a survivor panel understates | REG-15's reading of Mishkin & White (2002), GSY (2019), ABD (2007) | read in the plan; not re-read | stated per item beside the reference (section 3.2); **no number enters a criterion** |
 
 ---
 

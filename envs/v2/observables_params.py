@@ -130,3 +130,37 @@ PE_CAP: float = float(in_force()["eps"].get("pe_cap", 200.0))
 DIVIDEND_FIELD: str = str(in_force()["dividend"].get("field", "shown"))
 ANALYST_FIELD: str = str(in_force()["analyst"].get("field", "shown"))
 AUDIT_BOUNDS: Dict = dict(OBSERVABLES["audit_bounds"]["value"]) if PRESENT else {}
+
+
+def _derived_audit_bounds(bounds: Dict) -> Dict:
+    """v2.1 Phase 6 (the `audit_bounds` entry names Phase 6 as its owner): when evaluation/params/phase6_criteria.json
+    carries the derived gates, the PROVISIONAL numbers are replaced by them and the provenance is recorded in the dict --
+    `no_field_deterministic_R2` by the centred L2 all-rows margin (a group's add-one over the level-free control is the
+    same construction as FULL - BASE; the uncentred registered margin is negative, PREREG_PHASE_6_ADDENDUM.md section 1,
+    and is carried beside), `l2b_margin_phase6_owned` by the derived L2b margin.  Without the file, or before the
+    gates are written, the PROVISIONAL values stand and `AUDIT_BOUNDS["status"]` says so."""
+    out = dict(bounds)
+    out["status"] = "PROVISIONAL"
+    try:
+        from evaluation import criteria as CR
+    except Exception:                                 # evaluation/ absent (a stripped deployment): the file's values stand
+        return out
+    if not CR.PRESENT:
+        return out
+    try:
+        g = CR.gate("l2_all")["value"]
+        out["no_field_deterministic_R2"] = float(g["centred_margin"])
+        out["no_field_deterministic_R2_registered_uncentred"] = float(g["margin"])
+        out["status"] = "DERIVED"
+        out["source"] = "evaluation/params/phase6_criteria.json gates.l2_all (tools/phase6/e6_criteria_extra.py --stages gates)"
+    except CR.CriteriaError:
+        pass
+    try:
+        out["l2b_margin_phase6_owned"] = float(CR.gate("l2b")["value"]["margin"])
+        out["status"] = "DERIVED"
+    except CR.CriteriaError:
+        pass
+    return out
+
+
+AUDIT_BOUNDS = _derived_audit_bounds(AUDIT_BOUNDS)
