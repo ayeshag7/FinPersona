@@ -1,4 +1,4 @@
-# Phase 6 — files written or changed (generated from git `0b2c48c..d45d461` and the working tree by `tools/phase6/e6_changed_files.py`; verified against disk by `--check`)
+# Phase 6 — files written or changed (generated from git `0b2c48c..74819bd` and the working tree by `tools/phase6/e6_changed_files.py`; verified against disk by `--check`)
 
 113 paths; 0 deleted; 0 empty on disk (an empty generated file is not a result).
 
@@ -35,7 +35,7 @@
 | `tools/phase6/e6_6_null.py` | added | 18,122 |
 | `tools/phase6/e6_9_known_answers.py` | added | 33,903 |
 | `tools/phase6/e6_after_state.py` | added | 17,945 |
-| `tools/phase6/e6_changed_files.py` | modified (uncommitted) | 4,707 |
+| `tools/phase6/e6_changed_files.py` | added | 4,707 |
 | `tools/phase6/e6_cite_check.py` | added | 3,519 |
 | `tools/phase6/e6_criteria_extra.py` | added | 9,635 |
 | `tools/phase6/e6_l3_probe.py` | added | 13,093 |
