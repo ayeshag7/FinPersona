@@ -142,6 +142,10 @@ def main():
     ap.add_argument("--perm-range", default=None, help="a:b -- only draws a..b-1 (to split a run across machines)")
     ap.add_argument("--workers", type=int, default=3)
     ap.add_argument("--reuse-fits", default=os.path.join(GEN, "e5_7a", "final", "ablation.json"))
+    ap.add_argument("--summary-only", action="store_true",
+                    help="recompute the summary from the stored fits for every stage/population named, fitting nothing "
+                         "(the summary is rebuilt only for the stages asked for, so a run on one population would otherwise "
+                         "drop the others' summaries while keeping their fits)")
     a = ap.parse_args()
     t0 = time.time()
     os.makedirs(a.out, exist_ok=True)
@@ -209,6 +213,10 @@ def main():
                 if key(nm, "macro", "all", k) not in res["fits"]:
                     jobs.append((prep, nm, sets[nm], "macro", "all", {"k": k, "perm": perms[k]}))
     jobs.sort(key=lambda j: -len(j[2]))
+    if a.summary_only:
+        print(f"[summary-only] {len(jobs)} fits would be needed for the full design; none run; the summary is rebuilt from "
+              f"the {len(res['fits'])} stored fits", flush=True)
+        jobs = []
     print(f"[fits] {len(jobs)} jobs on {a.workers} workers", flush=True)
 
     def save():

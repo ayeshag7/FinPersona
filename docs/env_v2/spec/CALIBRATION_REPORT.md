@@ -301,8 +301,9 @@ block by `tools/phase6/e6_criteria_extra.py --stages gates` and read back by `te
 <!-- table:e6_null -->
 | statistic | pop | BASE | FULL | measured selectivity [paired CI] | half-width | null median | null p95 (draws) | margin | verdict |
 |---|---|---|---|---|---|---|---|---|---|
-| L2 R²(x) | all | +0.4059 | +0.4322 | +0.0263 [+0.0106, +0.0402] | 0.0148 | -0.0470 | -0.0343 (20) | -0.0195 | FAIL |
+| L2 R²(x) | all | +0.4059 | +0.4322 | +0.0263 [+0.0106, +0.0402] | 0.0148 | -0.0481 | -0.0362 (40) | -0.0214 | FAIL |
 | L2 R²(x) | calm | +0.2912 | +0.4000 | +0.1088 [+0.0849, +0.1307] | 0.0229 | -0.0692 | -0.0542 (20) | -0.0313 | FAIL |
+| L2b accuracy | all | +0.6582 | +0.6877 | +0.0295 [+0.0237, +0.0352] | 0.0057 | -0.0129 | -0.0081 (20) | -0.0023 | FAIL |
 <!-- /table:e6_null -->
 
 ### 5.4 L2c — the onset audit
@@ -315,19 +316,87 @@ fixture proving the state unchanged.
 ## 6. The checklist on the frozen generator at the registered n (`generated/v2_1/e6_after_checklist*`)
 
 <!-- table:e6_after -->
-*(pending: the 500-seed checklist is running)*
+| item | property | population | n | A (v2) | B | C |
+|---|---|---|---|---|---|---|
+| 1 | No linear autocorrelation of returns | all | 3000 | PASS | FAIL | FAIL |
+| 2 | Heavy tails | all | 3000 | FAIL | FAIL | PASS |
+| 3 | Volatility clustering | all | 3000 | FAIL | FAIL | FAIL |
+| 4 | Decay of ACF|r| (descriptive) | all | 3000 | n/a | PASS | PASS |
+| 5 | GARCH persistence | all | 3000 | PASS | FAIL | FAIL |
+| 6 | Leverage effect | all | 3000 | FAIL | FAIL | FAIL |
+| 7 | Volume-volatility | all | 3000 | PASS | FAIL | FAIL |
+| 8 | Gain/loss asymmetry in crash | crash | 1500 | FAIL | FAIL | PASS |
+| 20 | Magnitudes | crash/flat | 500 | PASS | FAIL | FAIL |
+
+| item | statistic | pop | n_gen / n_ref | gen P50 | ref P50 | B: D (upper) | B | C: share (thr) | C |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | `lb_p_r` | all | 3000 / 12927 | 0.294 | 0.392 | 0.100 (0.119) | FAIL | 0.753 (0.786) | FAIL |
+| 1 | `abs_acf1_r` | all | 3000 / 12927 | 0.059 | 0.0585 | 0.029 (0.042) | PASS | 0.818 (0.786) | PASS |
+| 2 | `kurtosis` | all | 3000 / 12927 | 1.72 | 2.17 | 0.126 (0.142) | FAIL | 0.809 (0.786) | PASS |
+| 2 | `hill` | all | 3000 / 12927 | 3.86 | 3.56 | 0.120 (0.137) | FAIL | 0.828 (0.786) | PASS |
+| 2 | `jb_p` | all | 3000 / 12927 | 7.6e-07 | 8.24e-11 | 0.133 (0.149) | FAIL | 0.802 (0.786) | PASS |
+| 3 | `lb_p_absr` | all | 3000 / 12927 | 0.0171 | 0.182 | 0.242 (0.260) | FAIL | 0.595 (0.786) | FAIL |
+| 3 | `lb_p_r2` | all | 3000 / 12927 | 0.0851 | 0.447 | 0.189 (0.207) | FAIL | 0.717 (0.786) | FAIL |
+| 3 | `arch_lm_p` | all | 3000 / 12927 | 0.182 | 0.395 | 0.124 (0.141) | FAIL | 0.803 (0.786) | PASS |
+| 3 | `acf1_absr` | all | 3000 / 12927 | 0.1 | 0.0873 | 0.119 (0.138) | FAIL | 0.662 (0.786) | FAIL |
+| 4 | `acf1_absr` | all | 3000 / 12927 | 0.1 | 0.0873 | 0.119 (0.137) | FAIL | 0.662 (0.786) | FAIL |
+| 4 | `acf5_absr` | all | 3000 / 12927 | 0.0797 | 0.0427 | 0.188 (0.205) | FAIL | 0.672 (0.786) | FAIL |
+| 4 | `acf10_absr` | all | 3000 / 12927 | 0.066 | 0.0291 | 0.178 (0.197) | FAIL | 0.666 (0.786) | FAIL |
+| 4 | `acf20_absr` | all | 3000 / 12927 | 0.0437 | 0.00948 | 0.189 (0.206) | FAIL | 0.676 (0.786) | FAIL |
+| 4 | `acf50_absr` | all | 3000 / 12927 | -0.0124 | -0.00898 | 0.025 (0.046) | PASS | 0.781 (0.786) | FAIL |
+| 5 | `garch_persistence` | all | 3000 / 12927 | 0.981 | 0.93 | 0.267 (0.283) | FAIL | 0.723 (0.786) | FAIL |
+| 5 | `garch_alpha` | all | 3000 / 12927 | 0.0623 | 0.0579 | 0.121 (0.132) | FAIL | 0.975 (0.786) | PASS |
+| 5 | `garch_beta` | all | 3000 / 12927 | 0.891 | 0.825 | 0.258 (0.274) | FAIL | 0.838 (0.786) | PASS |
+| 6 | `leverage_corr` | all | 3000 / 12927 | -0.0155 | -0.0381 | 0.114 (0.133) | FAIL | 0.781 (0.786) | FAIL |
+| 6 | `gjr_gamma` | all | 3000 / 12927 | 0.046 | 0.0598 | 0.140 (0.153) | FAIL | 0.912 (0.786) | PASS |
+| 7 | `volume_absr_spearman` | all | 3000 / 12927 | 0.326 | 0.326 | 0.050 (0.063) | PASS | 0.876 (0.786) | PASS |
+| 7 | `logvolume_acf1` | all | 3000 / 12927 | 0.547 | 0.508 | 0.222 (0.238) | FAIL | 0.911 (0.786) | PASS |
+| 7 | `logvolume_shapiro_p` | all | 3000 / 12927 | 0.224 | 0.0037 | 0.402 (0.419) | FAIL | 0.616 (0.786) | FAIL |
+| 8 | `skew` | crash | 1500 / 6275 | -0.0266 | -0.135 | 0.137 (0.160) | FAIL | 0.880 (0.780) | PASS |
+| 8 | `worst_over_best` | crash | 1500 / 6275 | 1.02 | 1.11 | 0.142 (0.165) | FAIL | 0.879 (0.780) | PASS |
+| 20 | `mdd` | crash | 1500 / 6275 | -0.516 | -0.307 | 0.631 (0.649) | FAIL | 0.596 (0.780) | FAIL |
+| 20 | `worst_day` | crash | 1500 / 6275 | -0.138 | -0.0944 | 0.380 (0.398) | FAIL | 0.849 (0.780) | PASS |
+| 20 | `daily_sigma` | flat | 500 / 12927 | 0.0202 | 0.0175 | 0.422 (0.436) | FAIL | 0.976 (0.765) | PASS |
+
+| item | statistic | pop | value | reference | criterion | result | n |
+|---|---|---|---|---|---|---|---|
+| 12 | slope of r_t on z(s_{t-1}) | r_{t-1}, calm rows | all | 0.00055313 [0.00046254300506362415, 0.000633907770729876] | 0.0008 | CI contains the configured b_pred (E6.8) | FAIL | 3000 |
+| 13 | sd across seeds of the calm IV mean | all | 6.8059 [6.40094201867731, 7.231648870429242] | 0.0 | non-degenerate: CI excludes 0 (E6.8) | PASS | 2500 |
+| 9 | median 200-day ACF(1) of x, flat paths | flat | 0.94502  | [0.9060659079627575, 0.9684235368359597] | inside E6.9's AR(1) reference [P10, P90] at the FIT half-life | PASS | 500 |
+| 9 | median 200-day sd(x), flat paths | flat | 0.046321  | [0.03891957285254531, 0.07235255190542306] | inside the AR(1) reference [P10, P90] scaled to s_x | PASS | 500 |
+
+Long horizons (descriptive, 100 flat seeds): T = 800: ACF(1) of x 0.9642, half-life 19.0 d, sd(x) 0.0568; T = 2000: ACF(1) of x 0.9673, half-life 20.8 d, sd(x) 0.0647.
 <!-- /table:e6_after -->
 
 ## 7. The audits on the frozen generator under the derived gates (`generated/v2_1/e6_after/`)
 
-*(pending: `audit_after_derived.md` — L1 under the derived ceiling, L2 all-rows and calm-trained selectivity against the
-derived margins, L2b against its margin, the held-out-scenario split, MAPE(V) with intervals; every number carries its n
-and its interval, and no path is subsampled — `test_no_subsampling_in_published_audit`.)*
+`audit_after_derived.md` (1,600 paths, 320,000 steps, no subsampling — `test_no_subsampling_in_published_audit`;
+`run_audit(..., control="level_free", gates="derived")`; 11.3 h on the laptop):
+
+| gate | statistic | measured | margin as registered | verdict | centred margin | centred reading |
+|---|---|---|---|---|---|---|
+| L1 (E6.5) | within-5 % share of price itself | 0.426 | ≤ 0.617 | **PASS** | — | — |
+| L2 all rows (E6.6) | FULL − BASE R²(x) | +0.0263 [+0.0106, +0.0402] | −0.0214 (null p95 −0.0362 + hw 0.0148; 40 draws) | **FAIL** | +0.0267 | undecided (0.0004 on a half-width of 0.0148) |
+| L2 calm-trained (E6.6) | FULL − BASE R²(x), calm rows | +0.1088 [+0.0849, +0.1307] | −0.0313 (20 draws) | **FAIL** | +0.0379 | **FAIL** |
+| L2b (E6.7) | FULL − BASE macro-class accuracy | +0.0295 [+0.0237, +0.0352]; the audit's own +0.0181 | −0.0023 (20 draws) | **FAIL** | +0.0105 | **FAIL** |
+
+Items 14 and 16 of the Section-9 checklist read FAIL under `gates="derived"` and PASS under `gates="v2"` (the
+pre-Phase-6 dictionary, unchanged). MAPE(V) (GBT, held-out seeds): full 10.4 % [10.0, 10.9] calm / 12.8 % [12.3, 13.4]
+event / 15.9 % [15.2, 16.8] resolution / 12.6 % [12.3, 13.0] all; level-free 11.1 / 13.3 / 18.2 / 13.6 %.
+**Held-out-scenario split** (`holdout.md`, weakness 67, no gate): R²(x) is negative on every held-out scenario for both
+feature sets (GBT, all rows: bull-trap −1.27, crash −0.68, flat −0.23, sustained-bull −3.14 full; −1.31 / −0.82 / −0.25 /
+−2.30 level-free) except bull-trap's calm rows (+0.29 [+0.17, +0.38] full, +0.18 [+0.07, +0.25] level-free): the
+seed-split R² is within-scenario structure. Report section 3.8c.
 
 ## 8. 16A (`generated/v2_1/e6_16a/16A.md`)
 
-*(pending: G1–G4 under the criterion as written, θ = 0.05 the checkpoint, {0.03, 0.08, 0.12, 0.20} sensitivities; the
-D17 options laid out in the report if any gate fails.)*
+**Not met** (100 scored seeds × 4 scenarios × 3 personas, oracles trained on 240 paths; θ = 0.05 the checkpoint,
+{0.03, 0.08, 0.12, 0.20} sensitivities): **G1 FAIL** (0 of 4 scenarios with the true-V, observables and best-trivial
+MCRs apart — a constant band edge is the true-V oracle's resting place in a directional scenario), **G2 FAIL** (0 of 4:
+log(P/SMA50) at ±3 % tracks sign(x) as well as the field-bearing oracle at the FIT 22-day half-life), **G3 PASS**
+(2–6 oracle switches per 200-day run; the plan expected a fail at a 150-day half-life), **G4a FAIL** (0 of 4), **G4b
+FAIL** (0.2912 [0.264, 0.318] against the 0.2267 ceiling; the ladder puts +0.069 of it in the events' pre-event calm).
+D17 is laid out in the report (section 5) with the failure located per gate; no option is chosen.
 
 ## 9. The tuned-parameter ledger
 

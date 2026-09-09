@@ -1,0 +1,5 @@
+item,statistic,population,value,ci95,reference,criterion,pass,n_gen,n_rows
+12,"slope of r_t on z(s_{t-1}) | r_{t-1}, calm rows",all,0.0005531334037432206,"[0.00046254300506362415, 0.000633907770729876]",0.0008,CI contains the configured b_pred (E6.8),False,3000,256174.0
+13,sd across seeds of the calm IV mean,all,6.805932920299213,"[6.40094201867731, 7.231648870429242]",0.0,non-degenerate: CI excludes 0 (E6.8),True,2500,
+9,"median 200-day ACF(1) of x, flat paths",flat,0.9450165663786816,,"[0.9060659079627575, 0.9684235368359597]","inside E6.9's AR(1) reference [P10, P90] at the FIT half-life",True,500,
+9,"median 200-day sd(x), flat paths",flat,0.046320839557133606,,"[0.03891957285254531, 0.07235255190542306]","inside the AR(1) reference [P10, P90] scaled to s_x",True,500,

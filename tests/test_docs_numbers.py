@@ -99,8 +99,13 @@ def test_decision_log_stale_lines_are_annotated():
             assert "[Phase 0 correction" in line, line[:160]
 
 
+# v2.1 Phase 6: spec/CALIBRATION_REPORT.md was rewritten as the E6 appendix (generated table blocks, the derived criteria);
+# the v2 E6 draft these two tests were written against is archived verbatim and is what they read now.
+CAL_V2 = "spec/archive/CALIBRATION_REPORT_v2_E6_draft_22Aug2026.md"
+
+
 def test_canonical_statements_present(num):
-    spec = _read("spec/E1_V2_GENERATOR_SPEC.md"); cal = _read("spec/CALIBRATION_REPORT.md")
+    spec = _read("spec/E1_V2_GENERATOR_SPEC.md"); cal = _read(CAL_V2)
     for text in (spec, cal):
         assert "150-day PULL-RATE half-life" in text or "Pull-rate half-life ln2/(mu n_bar phi) = 150.0 d" in text
         assert "147 d" in text and "fw_fallback_hl150" in text
@@ -111,7 +116,7 @@ def test_canonical_statements_present(num):
 
 
 def test_sensitivity_counts_in_calibration_report_match_csvs(num):
-    cal = _read("spec/CALIBRATION_REPORT.md")
+    cal = _read(CAL_V2)
     want = {"fw_index": (8, 7), "pruna": (7, 8), "hl60": (7, 8), "omega_mode": (7, 8), "panic3": (9, 6), "panic6": (8, 7)}
     for k, (p, f) in want.items():
         csv = tuple(num["sensitivity_counts_csv"][f"checklist_v2_sens_{k}"])

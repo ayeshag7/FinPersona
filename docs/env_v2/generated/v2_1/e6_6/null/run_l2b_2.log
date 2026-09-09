@@ -2,3 +2,66 @@
 [panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_after.pkl: 320000 rows -> 288000 modelled, 1600 paths; BASE 45 cols, FULL 141; base_hash 6e070e84de402a41
 [reuse] 0 unpermuted fits reused from docs\env_v2\generated\v2_1\e5_7a\final\ablation.json
 [fits] 40 jobs on 2 workers
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_after.pkl: 320000 rows -> 288000 modelled, 1600 paths; BASE 45 cols, FULL 141; base_hash 6e070e84de402a41
+[reuse] 0 unpermuted fits reused from docs\env_v2\generated\v2_1\e5_7a\final\ablation.json
+[fits] 40 jobs on 3 workers
+    FULL  macro all  perm  0  acc +0.4021  (540.3 s)
+    FULL  macro all  perm  1  acc +0.4055  (536.9 s)
+    FULL  macro all  perm  2  acc +0.4006  (534.4 s)
+    FULL  macro all  perm  3  acc +0.3934  (573.8 s)
+    FULL  macro all  perm  4  acc +0.4026  (577.1 s)
+    FULL  macro all  perm  5  acc +0.4035  (568.1 s)
+    FULL  macro all  perm  6  acc +0.4045  (559.7 s)
+    FULL  macro all  perm  7  acc +0.4032  (559.4 s)
+    FULL  macro all  perm  8  acc +0.4091  (556.5 s)
+    FULL  macro all  perm  9  acc +0.4051  (556.2 s)
+    FULL  macro all  perm 10  acc +0.4123  (563.7 s)
+    FULL  macro all  perm 11  acc +0.4018  (561.1 s)
+    FULL  macro all  perm 12  acc +0.4040  (742.1 s)
+    FULL  macro all  perm 13  acc +0.4105  (769.6 s)
+    FULL  macro all  perm 14  acc +0.4004  (748.6 s)
+    FULL  macro all  perm 15  acc +0.4066  (1394.9 s)
+    FULL  macro all  perm 16  acc +0.4055  (1350.8 s)
+    FULL  macro all  perm 17  acc +0.4088  (1367.3 s)
+    FULL  macro all  perm 18  acc +0.4148  (1281.3 s)
+    FULL  macro all  perm 19  acc +0.4092  (1275.1 s)
+    BASE  macro all  perm  0  acc +0.4147  (714.6 s)
+    BASE  macro all  perm  1  acc +0.4210  (487.4 s)
+    BASE  macro all  perm  2  acc +0.4183  (448.6 s)
+    BASE  macro all  perm  3  acc +0.4152  (428.9 s)
+    BASE  macro all  perm  4  acc +0.4166  (433.3 s)
+    BASE  macro all  perm  5  acc +0.4184  (231.5 s)
+    BASE  macro all  perm  6  acc +0.4170  (231.8 s)
+    BASE  macro all  perm  7  acc +0.4192  (223.6 s)
+    BASE  macro all  perm  8  acc +0.4176  (221.4 s)
+    BASE  macro all  perm  9  acc +0.4181  (219.4 s)
+    BASE  macro all  perm 10  acc +0.4208  (220.2 s)
+    BASE  macro all  perm 11  acc +0.4189  (223.3 s)
+    BASE  macro all  perm 12  acc +0.4192  (222.1 s)
+    BASE  macro all  perm 13  acc +0.4215  (221.0 s)
+    BASE  macro all  perm 14  acc +0.4168  (216.1 s)
+    BASE  macro all  perm 15  acc +0.4180  (215.1 s)
+    BASE  macro all  perm 16  acc +0.4183  (201.3 s)
+    BASE  macro all  perm 17  acc +0.4182  (211.0 s)
+    BASE  macro all  perm 18  acc +0.4148  (209.1 s)
+    BASE  macro all  perm 19  acc +0.4189  (207.1 s)
+{
+ "macro|all": {
+  "measured_selectivity": 0.02952430555555552,
+  "selectivity_ci95_paired": [
+   0.023725434027777763,
+   0.03520937500000001
+  ],
+  "sampling_halfwidth": 0.005741970486111123,
+  "base_value": 0.6581527777777778,
+  "full_value": 0.6876770833333333,
+  "derived_margin": -0.002331640624999966,
+  "verdict_under_derived_margin": false,
+  "rule": "selectivity <= null p95 + sampling half-width (plan 10.2, E6.6/E6.7)",
+  "null_p95": -0.008073611111111089,
+  "null_median": -0.012878472222222243,
+  "n_draws": 20
+ }
+}
+-> docs/env_v2/generated/v2_1/e6_6/null (7167.0 s)

@@ -1,0 +1,21 @@
+{
+ "p_sma50": {
+  "train_mcr": 0.05412569064288908,
+  "scale": 0.03,
+  "direction": 1
+ },
+ "rsi": {
+  "train_mcr": 0.0576139891627407,
+  "scale": [
+   40,
+   60
+  ],
+  "direction": 1
+ },
+ "analyst": {
+  "train_mcr": 0.09283739598581757,
+  "scale": 0.02,
+  "direction": 1
+ },
+ "best_family": "p_sma50"
+}

@@ -1,0 +1,63 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+[panel] docs\env_v2\generated\v2_1\_panels\sep_phase5_after.pkl: 320000 rows -> 288000 modelled, 1600 paths; BASE 45 cols, FULL 141; base_hash 6e070e84de402a41
+[reuse] 0 unpermuted fits reused from docs\env_v2\generated\v2_1\e5_7a\final\ablation.json
+[fits] 40 jobs on 2 workers
+    FULL  x     all  perm 20  R2 -0.0553  (232.4 s)
+    FULL  x     all  perm 21  R2 -0.0430  (233.3 s)
+    FULL  x     all  perm 22  R2 -0.0606  (350.7 s)
+    FULL  x     all  perm 23  R2 -0.0601  (342.0 s)
+    FULL  x     all  perm 24  R2 -0.0500  (347.0 s)
+    FULL  x     all  perm 25  R2 -0.0611  (347.7 s)
+    FULL  x     all  perm 26  R2 -0.0537  (342.6 s)
+    FULL  x     all  perm 27  R2 -0.0605  (340.7 s)
+    FULL  x     all  perm 28  R2 -0.0564  (350.5 s)
+    FULL  x     all  perm 29  R2 -0.0587  (350.2 s)
+    FULL  x     all  perm 30  R2 -0.0485  (349.8 s)
+    FULL  x     all  perm 31  R2 -0.0547  (343.2 s)
+    FULL  x     all  perm 32  R2 -0.0538  (349.3 s)
+    FULL  x     all  perm 33  R2 -0.0466  (352.1 s)
+    FULL  x     all  perm 34  R2 -0.0647  (348.8 s)
+    FULL  x     all  perm 35  R2 -0.0445  (350.9 s)
+    FULL  x     all  perm 36  R2 -0.0519  (347.7 s)
+    FULL  x     all  perm 37  R2 -0.0516  (337.8 s)
+    FULL  x     all  perm 38  R2 -0.0535  (360.1 s)
+    FULL  x     all  perm 39  R2 -0.0490  (346.9 s)
+    BASE  x     all  perm 20  R2 -0.0041  (73.7 s)
+    BASE  x     all  perm 21  R2 -0.0032  (86.1 s)
+    BASE  x     all  perm 22  R2 -0.0020  (65.4 s)
+    BASE  x     all  perm 23  R2 -0.0074  (77.4 s)
+    BASE  x     all  perm 24  R2 -0.0050  (71.4 s)
+    BASE  x     all  perm 25  R2 -0.0050  (80.9 s)
+    BASE  x     all  perm 26  R2 -0.0037  (86.4 s)
+    BASE  x     all  perm 27  R2 -0.0029  (69.1 s)
+    BASE  x     all  perm 28  R2 -0.0034  (64.1 s)
+    BASE  x     all  perm 29  R2 -0.0061  (102.3 s)
+    BASE  x     all  perm 30  R2 -0.0039  (111.0 s)
+    BASE  x     all  perm 31  R2 -0.0067  (82.0 s)
+    BASE  x     all  perm 32  R2 -0.0034  (71.4 s)
+    BASE  x     all  perm 33  R2 -0.0066  (102.1 s)
+    BASE  x     all  perm 34  R2 -0.0055  (120.6 s)
+    BASE  x     all  perm 35  R2 -0.0040  (77.0 s)
+    BASE  x     all  perm 36  R2 -0.0040  (29222.4 s)
+    BASE  x     all  perm 37  R2 -0.0033  (29210.1 s)
+    BASE  x     all  perm 38  R2 -0.0040  (169.8 s)
+    BASE  x     all  perm 39  R2 -0.0043  (173.0 s)
+{
+ "x|all": {
+  "measured_selectivity": 0.026297934087198604,
+  "selectivity_ci95_paired": [
+   0.010621454886135376,
+   0.04021168191732311
+  ],
+  "sampling_halfwidth": 0.014795113515593868,
+  "base_value": 0.4058695137596712,
+  "full_value": 0.4321674478468698,
+  "derived_margin": -0.021386745662633985,
+  "verdict_under_derived_margin": false,
+  "rule": "selectivity <= null p95 + sampling half-width (plan 10.2, E6.6/E6.7)",
+  "null_p95": -0.03618185917822785,
+  "null_median": -0.048077491692505636,
+  "n_draws": 40
+ }
+}
+-> docs/env_v2/generated/v2_1/e6_6/null (33470.7 s)

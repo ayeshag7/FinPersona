@@ -1,0 +1,10 @@
+item,property,n_statistics,population,n_gen,descriptive,B_pass,C_pass,B_undecidable_at_n
+1,No linear autocorrelation of returns,2,all,3000,False,False,False,False
+2,Heavy tails,3,all,3000,False,False,True,False
+3,Volatility clustering,4,all,3000,False,False,False,False
+4,Decay of ACF|r| (descriptive),5,all,3000,True,,,False
+5,GARCH persistence,3,all,3000,False,False,False,False
+6,Leverage effect,2,all,3000,False,False,False,False
+7,Volume-volatility,3,all,3000,False,False,False,False
+8,Gain/loss asymmetry in crash,2,crash,1500,False,False,True,False
+20,Magnitudes,3,crash/flat,500,False,False,False,False

@@ -621,10 +621,14 @@ def _item9_rows(paths_all: Dict[str, List[PathData]], doc: Dict) -> List[Dict]:
 
 
 def run_checklist_reference(paths_all: Dict[str, List[PathData]], doc: Dict, reference_windows: pd.DataFrame,
-                            n_boot: int = 500, seed: int = 620001, gen_stats: Optional[pd.DataFrame] = None) -> Dict[str, object]:
+                            n_boot: int = 500, seed: int = 620001, gen_stats: Optional[pd.DataFrame] = None,
+                            extra: Optional[pd.DataFrame] = None) -> Dict[str, object]:
     """The checklist under REG-14 B and C (and E6.8's rows), per item, per statistic, per population.
 
-    `doc` is the criteria file (`evaluation.criteria.load()`); `reference_windows` the E6.1 windows frame it cites.
+    `doc` is the criteria file (`evaluation.criteria.load()`); `reference_windows` the E6.1 windows frame it cites;
+    `gen_stats` the per-path statistics (computed when absent); `extra` the E6.8 / item-9 rows (computed from
+    `paths_all` when absent).  Per-statistic population and reference overrides and the descriptive flag come from
+    the criteria file's `items` block (PREREG_PHASE_6.md 5.1).
     Returns {"per_statistic": DataFrame, "per_item": DataFrame, "extra": DataFrame, "n_gen": {...}}.
     """
     from evaluation.reference_stats import criterion_B, criterion_C
@@ -640,12 +644,12 @@ def run_checklist_reference(paths_all: Dict[str, List[PathData]], doc: Dict, ref
         for st in spec["statistics"]:
             if st not in g.columns or st not in ref_all.columns:
                 continue
-            ref_kind = spec.get("reference", "all")
+            ref_kind = spec.get("per_stat_reference", {}).get(st, spec.get("reference", "all"))
             ref_v = pd.to_numeric((ref_crash if ref_kind == "crash" else ref_all)[st], errors="coerce").to_numpy(float)
             ref_v = ref_v[np.isfinite(ref_v)]
             band_blk = refblk.get(st, {}).get("crash_windows" if ref_kind == "crash" else "all", {})
             band = (band_blk["p10"], band_blk["p90"]) if band_blk.get("n", 0) > 0 else None
-            main_pop = spec["population"]
+            main_pop = spec.get("per_stat_population", {}).get(st, spec["population"])
             for pop in ("all",) + SCENARIOS_T200:
                 gg = g if pop == "all" else g[g["scenario"] == pop]
                 gv = pd.to_numeric(gg[st], errors="coerce").to_numpy(float)
@@ -663,11 +667,14 @@ def run_checklist_reference(paths_all: Dict[str, List[PathData]], doc: Dict, ref
     per_item = []
     if len(per_stat):
         for item, gi in per_stat[per_stat["is_main"]].groupby("item"):
+            desc = bool(items[str(item)].get("descriptive", False))
             per_item.append({"item": int(item), "property": items[str(item)]["property"], "n_statistics": int(len(gi)),
-                             "population": gi["population"].iloc[0], "n_gen": int(gi["n_gen"].min()),
-                             "B_pass": bool(gi["B_pass"].all()), "C_pass": bool(gi["C_pass"].all()),
+                             "population": "/".join(sorted(gi["population"].unique())), "n_gen": int(gi["n_gen"].min()),
+                             "descriptive": desc,
+                             "B_pass": (None if desc else bool(gi["B_pass"].all())), "C_pass": (None if desc else bool(gi["C_pass"].all())),
                              "B_undecidable_at_n": bool(gi["n_gen"].min() < int(doc.get("criterion_B", {}).get("value", {}).get("n_min_size", 500)))})
-    extra = pd.DataFrame(_e6_8_rows(paths_all, n_boot, rng) + _item9_rows(paths_all, doc))
+    if extra is None:
+        extra = pd.DataFrame(_e6_8_rows(paths_all, n_boot, rng) + _item9_rows(paths_all, doc))
     n_gen = {sc: len(paths_all.get(sc, [])) for sc in SCENARIOS_T200}
     return {"per_statistic": per_stat, "per_item": pd.DataFrame(per_item), "extra": extra, "n_gen": n_gen,
             "gen_stats": g, "criteria": {"D0": doc["criterion_B"]["value"]["D0"], "p0": doc["criterion_C"]["value"]["p0"], "crash_mdd": crash_mdd}}
@@ -709,9 +716,11 @@ def to_markdown_reference(res: Dict[str, object], title: str, v2_df: Optional[pd
             val = f"{r['value']:.5g}" + (f" [{ci[0]:.4g}, {ci[1]:.4g}]" if isinstance(ci, (list, tuple)) else "")
             L.append(f"| {r['item']} | {r['statistic']} | {r['population']} | {val} | {r['reference']} | {r['criterion']} | {fmt(r['pass'])} | {r['n_gen']} |")
     for crit in ("B", "C"):
-        vals = [bool(v) for v in pi[f"{crit}_pass"]] if len(pi) else []
-        n_pass = sum(vals); n_fail = len(vals) - n_pass
-        L.append(f"\n**{crit}: pass {n_pass} / fail {n_fail} / not applicable {len(ex) if crit == 'C' else 0}.**")
+        col = pi[f"{crit}_pass"] if len(pi) else []
+        vals = [None if (v is None or (isinstance(v, float) and math.isnan(v))) else bool(v) for v in col]
+        n_pass = sum(1 for v in vals if v is True); n_fail = sum(1 for v in vals if v is False)
+        n_na = sum(1 for v in vals if v is None)            # descriptive items carry no verdict
+        L.append(f"\n**{crit}: pass {n_pass} / fail {n_fail} / not applicable {n_na}.**")
     L.append("")
     return "\n".join(L)
 

@@ -136,6 +136,33 @@ def checklist(n_seeds, workers, n_boot=500):
     print(f"checklist stage: {time.time() - t0:.0f} s", flush=True)
 
 
+def checklist_reference_cached(n_seeds, n_boot=500):
+    """Re-evaluate B and C from the cached per-path statistics and the cached E6.8 / item-9 rows (no path rebuild):
+    used when the criteria file's `items` block is corrected after the checklist ran (the per-statistic population
+    overrides and item 4's descriptive flag, PREREG 5.1)."""
+    from evaluation.stylized_facts import run_checklist_reference, to_markdown_reference
+    from evaluation import criteria as CR
+    doc = CR.load()
+    ref = pd.read_csv(REF_WINDOWS)
+    g = pd.read_csv(os.path.join(GEN, "e6_after_checklist_reference_paths.csv"))
+    extra_p = os.path.join(GEN, "e6_after_checklist_reference_extra.csv")
+    extra = pd.read_csv(extra_p) if os.path.exists(extra_p) else None
+    df = pd.read_csv(os.path.join(GEN, "e6_after_checklist.csv"))
+    paths_stub = {sc: [None] * int((g["scenario"] == sc).sum()) for sc in g["scenario"].unique()}
+    t0 = time.time()
+    res = run_checklist_reference(paths_stub, doc, ref, n_boot=n_boot, gen_stats=g, extra=extra)
+    out_r = os.path.join(GEN, "e6_after_checklist_reference.md")
+    pre_r = (f"The same {n_seeds}-seed SCL paths under the reference criteria (REG-14 B and C; PREREG_PHASE_6.md section 5), "
+             f"reference `e6_1/windows.csv` ({len(ref):,} windows); B is decisive only at n_gen >= {doc['criterion_B']['value'].get('n_min_size')}. "
+             "Re-evaluated from the cached per-path statistics after the criteria file's items block was corrected (per-statistic "
+             "population overrides; item 4 descriptive).")
+    with open(out_r, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(to_markdown_reference(res, "Section 9 checklist under the reference criteria (Phase 6 after)", v2_df=df, preamble=pre_r))
+    res["per_statistic"].to_csv(out_r.replace(".md", ".csv"), index=False)
+    res["per_item"].to_csv(out_r.replace(".md", "_items.csv"), index=False)
+    print(res["per_item"].to_string(index=False)); print(f"reference checklist (cached): {time.time() - t0:.0f} s")
+
+
 def audit(holdout=False):
     from evaluation.leakage_audit import run_audit, to_markdown, checklist_rows
     from agent.render import rendered_market_fields
@@ -248,8 +275,8 @@ def main():
     ap.add_argument("--seeds", type=int, default=500)
     a = ap.parse_args()
     pin_state()
-    fns = {"checklist": lambda: checklist(a.seeds, a.workers), "audit": lambda: audit(False), "holdout": holdout,
-           "reattach": reattach, "hashes": hashes, "freeze": freeze}
+    fns = {"checklist": lambda: checklist(a.seeds, a.workers), "checklist_reference": lambda: checklist_reference_cached(a.seeds),
+           "audit": lambda: audit(False), "holdout": holdout, "reattach": reattach, "hashes": hashes, "freeze": freeze}
     for s in a.stages.split(","):
         t0 = time.time(); print(f"[after_state] {s} ...", flush=True)
         fns[s.strip()]()

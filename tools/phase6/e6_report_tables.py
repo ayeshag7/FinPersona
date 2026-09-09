@@ -177,13 +177,40 @@ def t_e6_null() -> Optional[str]:
 
 
 def t_e6_after() -> Optional[str]:
-    p = os.path.join(GEN, "e6_after_checklist_items.csv")
+    p = os.path.join(GEN, "e6_after_checklist_reference_items.csv")
     if not os.path.exists(p):
         return None
     pi = pd.read_csv(p)
-    L = ["| item | property | population | n | B | C |", "|---|---|---|---|---|---|"]
+    v2 = {}
+    pa = os.path.join(GEN, "e6_after_checklist.csv")
+    if os.path.exists(pa):
+        a = pd.read_csv(pa)
+        v2 = {int(r["item"]): (None if pd.isna(r["pass"]) else str(r["pass"]) == "True") for _, r in a.iterrows()}
+    L = ["| item | property | population | n | A (v2) | B | C |", "|---|---|---|---|---|---|---|"]
     for _, r in pi.iterrows():
-        L.append(f"| {r['item']} | {r['property']} | {r['population']} | {r['n_gen']} | {'PASS' if r['B_pass'] else 'FAIL'} | {'PASS' if r['C_pass'] else 'FAIL'} |")
+        av = v2.get(int(r["item"]))
+        L.append(f"| {r['item']} | {r['property']} | {r['population']} | {r['n_gen']} | {'PASS' if av else ('FAIL' if av is False else 'n/a')} | "
+                 f"{'PASS' if r['B_pass'] else 'FAIL'} | {'PASS' if r['C_pass'] else 'FAIL'} |")
+    ps = os.path.join(GEN, "e6_after_checklist_reference.csv")
+    if os.path.exists(ps):
+        s = pd.read_csv(ps); s = s[s["is_main"] == True]
+        L += ["", "| item | statistic | pop | n_gen / n_ref | gen P50 | ref P50 | B: D (upper) | B | C: share (thr) | C |", "|---|---|---|---|---|---|---|---|---|---|"]
+        for _, r in s.iterrows():
+            L.append(f"| {r['item']} | `{r['statistic']}` | {r['population']} | {r['n_gen']} / {r['n_ref']} | {r['gen_p50']:.3g} | {r['ref_p50']:.3g} | "
+                     f"{r['B_D']:.3f} ({r['B_upper95']:.3f}) | {'PASS' if r['B_pass'] else 'FAIL'} | {r['C_share']:.3f} ({r['C_threshold']:.3f}) | {'PASS' if r['C_pass'] else 'FAIL'} |")
+    pe = os.path.join(GEN, "e6_after_checklist_reference_extra.csv")
+    if os.path.exists(pe):
+        e = pd.read_csv(pe)
+        L += ["", "| item | statistic | pop | value | reference | criterion | result | n |", "|---|---|---|---|---|---|---|---|"]
+        for _, r in e.iterrows():
+            L.append(f"| {r['item']} | {r['statistic']} | {r['population']} | {r['value']:.5g} {r['ci95'] if isinstance(r['ci95'], str) else ''} | {r['reference']} | "
+                     f"{r['criterion']} | {'PASS' if r['pass'] else 'FAIL'} | {r['n_gen']} |")
+    pl = os.path.join(GEN, "e6_after_checklist_long.json")
+    if os.path.exists(pl):
+        d = _j("e6_after_checklist_long.json")
+        L += ["", "Long horizons (descriptive, 100 flat seeds): " + "; ".join(
+            f"T = {T}: ACF(1) of x {v['acf1_x_median']:.4f}, half-life {v['half_life_median']:.1f} d, sd(x) {v['sd_x_median']:.4f}"
+            for T, v in d["by_T"].items()) + "."]
     return "\n".join(L)
 
 

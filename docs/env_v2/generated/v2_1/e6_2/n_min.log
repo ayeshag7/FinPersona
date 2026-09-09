@@ -1,0 +1,2 @@
+n_min for B: 500; median pass rate at D = 0 by n: {200: 0.05, 500: 0.94, 800: 1.0}
+written and validated: evaluation/params/phase6_criteria.json

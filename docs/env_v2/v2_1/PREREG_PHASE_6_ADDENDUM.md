@@ -62,3 +62,49 @@ The draw count of the all-rows null is raised from 20 to 40 in the same tool wit
 draws unchanged) to resolve the centred all-rows reading, which sits within a half-width of its margin; the calm-trained
 and L2b verdicts do not depend on it. No margin, statistic, estimator or population is changed. The negative registered
 margin is recorded in the criteria file as measured.
+
+**Result at 40 draws (9 Sep 2026, `e6_6/null/null.json`, `phase6_criteria.json` `gates.l2_all`):** null median −0.0481,
+p95 −0.0362 (20 more draws moved the p95 by −0.002); the registered margin **−0.0214 → FAIL**; the centred margin
+**+0.0267** against the measured **+0.0263** — a difference of 0.0004 on a paired half-width of 0.0148. The centred
+reading is therefore **undecided**: the all-rows selectivity of the rendered fields is indistinguishable from the
+centred margin at this panel's n, and doubling the draws did not move it. It is reported so; raising the draw count
+further cannot resolve a gap that is 3 % of the statistic's own sampling half-width.
+
+### 1.5 The L2b null, read the same way (9 Sep 2026, after the L2b draws; `gates.l2b`)
+
+Same construction, same location: under label permutation the FULL classifier (141 columns) reaches accuracy ≈ 0.40–0.41
+and BASE ≈ 0.41–0.42 (both at the majority class 0.414), so the selectivity null has median **−0.0129** and p95
+**−0.0081**; the registered margin (p95 + half-width 0.0057) is **−0.0023**, and the centred margin **+0.0105**. The
+measured selectivity is **+0.0295** in the gate's construction (FULL − BASE: 0.6877 − 0.6582) and **+0.0181** in the
+audit's own (67.62 % − 65.82 %): **FAIL under both margins in both constructions.** The Phase-5 "PASS at +1.8 pp" was
+against the 10 pp margin frozen after the result was known; the derived margin is a tenth of that, and the fields'
+macro-phase selectivity — small as the observables redesign made it — is above it. The registry entry stays
+(`tests/known_defects.py`), owner D17 / Phase 7.
+
+---
+
+## 2. The criteria file's `items` block dropped the registered per-statistic population overrides and item 4's descriptive status; the first 500-seed B/C table was read under that defect, the file was corrected to the registered rule and the evaluation re-run from the cached statistics
+
+### 2.1 Disclosure
+
+Written 9 September 2026 after the first `e6_after_checklist_reference.md` had been read. What had been seen: item 20's
+`daily_sigma` judged on the crash population (share inside the band 0.714, FAIL) where PREREG 5.1 registers it on the
+flat paths against every window; item 4 given B and C verdicts (FAIL / FAIL) where PREREG 5.1 registers it as
+descriptive. Every other row of that table was as registered.
+
+### 2.2 Why
+
+`tools/phase6/e6_2_criteria.py`'s `write_criteria_file` wrote the `items` block from the registered `ITEMS` dict but
+copied only `stats`, `pop` and `reference`, not `per_stat_pop` / `per_stat_reference`, and carried no descriptive flag;
+`run_checklist_reference` reads the file, not the dict. A file-writer defect (P5-12's family: the file was present and
+non-empty, and wrong in a field nobody had read back).
+
+### 2.3 What is done
+
+`e6_criteria_extra.py --stages items` rewrites the block from the registered dict with the overrides and the flag, the
+loud loader validating the result; `e6_after_state.py --stages checklist_reference` re-evaluates B and C from the cached
+per-path statistics and the cached E6.8 / item-9 rows (no path is rebuilt, no statistic recomputed). The verdicts that
+changed: item 4 → no verdict (descriptive); item 20's `daily_sigma` → the flat population (500 flat paths against every
+window; item 20 fails under C on its MDD statistic either way). No criterion, band, population or seed count was
+changed; the registered rule is what the file now holds. The test `test_checklist_criteria_from_reference` gains the
+check that every registered override is in the file.

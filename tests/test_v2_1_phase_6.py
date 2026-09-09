@@ -60,6 +60,15 @@ def test_checklist_criteria_from_reference():
     for item, spec in doc["items"].items():
         for st in spec["statistics"]:
             assert st in ref, (item, st)
+    # the registered per-statistic overrides and the descriptive flag are IN the file (addendum section 2: the first
+    # writer dropped them; `run_checklist_reference` reads the file, not the tool's dict)
+    from tools.phase6.e6_2_criteria import ITEMS
+    for k, v in ITEMS.items():
+        spec = doc["items"][str(k)]
+        assert spec["per_stat_population"] == v.get("per_stat_pop", {}), k
+        assert spec["per_stat_reference"] == v.get("per_stat_reference", {}), k
+        assert spec["descriptive"] is (k == 4), k
+    assert doc["items"]["20"]["per_stat_population"]["daily_sigma"] == "flat"
     # the reference's n and survivorship are recorded
     assert doc["reference"]["n"]["windows"] == ref["kurtosis"]["all"]["n"]
     assert "survivor" in json.dumps(doc["reference"]["survivorship"]).lower()
@@ -109,8 +118,8 @@ def test_footer_counts(name):
         pytest.skip("no Phase-6 checklist written yet")
     md = open(os.path.join(GEN, name + ".md"), encoding="utf-8").read()
     csv_p = os.path.join(GEN, name + ".csv")
-    if os.path.exists(csv_p):
-        df = pd.read_csv(csv_p)
+    df = pd.read_csv(csv_p) if os.path.exists(csv_p) else None
+    if df is not None and "pass" in df.columns:        # the v2-form table; the reference table is per statistic (B_pass / C_pass)
         vals = df["pass"].map(lambda v: None if pd.isna(v) else (str(v) == "True")).tolist()
         n_pass = sum(1 for v in vals if v is True); n_fail = sum(1 for v in vals if v is False)
         m = re.search(r"\*\*Pass (\d+) / fail (\d+) / not applicable (\d+)\.\*\*", md)
@@ -122,8 +131,11 @@ def test_footer_counts(name):
             items_p = os.path.join(GEN, name + f"_items.csv")
             if os.path.exists(items_p):
                 pi = pd.read_csv(items_p)
-                assert int(m.group(1)) == int(pi[f"{crit}_pass"].astype(bool).sum())
-                assert int(m.group(2)) == int((~pi[f"{crit}_pass"].astype(bool)).sum())
+                col = pi[f"{crit}_pass"]
+                vals = [None if pd.isna(v) else (str(v) == "True") for v in col]     # a descriptive item's verdict is NaN
+                assert int(m.group(1)) == sum(1 for v in vals if v is True)
+                assert int(m.group(2)) == sum(1 for v in vals if v is False)
+                assert int(m.group(3)) == sum(1 for v in vals if v is None)
 
 
 # --------------------------------------------------------------------------------- 10.4: known answers

@@ -1,0 +1,5 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+[after_state] hashes ...
+95 configurations hashed -> C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\path_hashes_phase6_after.json
+changes vs the Phase-5 fixture: {'n_configs': 95, 'changed_non_analyst': 0, 'changed_analyst': 0, 'unchanged_analyst': 190}
+[after_state] hashes: 10 s

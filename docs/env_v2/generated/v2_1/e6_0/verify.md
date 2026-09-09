@@ -1,6 +1,6 @@
 # PREREG_PHASE_6 section 1 — inherited numbers verified against their files
 
-59 rows; 0 mismatches; 0 unreadable. Generated 2026-09-08T17:20:19Z.
+59 rows; 0 mismatches; 0 unreadable. Generated 2026-09-09T09:29:51Z.
 
 | inherited figure | cited | file | file value | match |
 |---|---|---|---|---|

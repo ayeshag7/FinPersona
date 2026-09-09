@@ -1,6 +1,6 @@
 {
- "label": "v2.1 Phase 5 freeze",
- "written": "2026-09-07",
+ "label": "v2.1 Phase 6 freeze",
+ "written": "2026-09-09",
  "patterns": [
   "envs/v2/**/*.py",
   "envs/synthetic_market.py",
@@ -13,7 +13,7 @@
   "evaluation/targets.py"
  ],
  "line_endings": "CRLF normalised to LF before hashing",
- "manifest_hash": "bdd429eb35d1cd44a46a6c119b12be8dfd89add55119402c4cacdaec95695b05",
+ "manifest_hash": "6718696f3ee7026232b12028915f3387cc747613510efbb7355f7d110f5241c2",
  "files": {
   "envs/synthetic_market.py": "9e6ffde3f5711964d712f30a00897e58331409e6971e478bfec66e4c8cc643d0",
   "envs/v2/__init__.py": "24dd6056b3dd032e240ee0b5aa4aed7c68689d2afdc99f35903a0aab4f336040",
@@ -24,7 +24,7 @@
   "envs/v2/mispricing.py": "5d91530cf10dda6ba0b42e9139bd536ad571640c8b295732489adce592026801",
   "envs/v2/mispricing_params.py": "c277ece79706bd46cec2ea0d8a260ed6abe17290f35d18d40107e89ee7a4ab34",
   "envs/v2/observables.py": "32e15fc1884ad3220deef7693f5acc78001ca38974a762e9a1407dacbd8ce137",
-  "envs/v2/observables_params.py": "3cd4271591810261a6716f4f54ddf13d77d443516fe7202ba890c190ae1b6c09",
+  "envs/v2/observables_params.py": "96d440f0f9a837db587595319a7673e0da840d5cfbb0672f2a5f938bff0346ef",
   "envs/v2/params/events.json": "031a877afd63ca210af2f97cbb5ee92c613d4a3584379de1691408c3345806eb",
   "envs/v2/params/fw_single_stock.REJECTED.json": "c1bb7127834c39a77a16dd7e3c1b800602968f3bb6be4023dee63bc4e42aa4ba",
   "envs/v2/params/hazard.json": "2e764d082ec070f388340822f81b268c44d0a104516c28422f1e3004ca0524f0",
@@ -37,10 +37,10 @@
   "envs/v2/value_params.py": "d1651d0ec804b34b5c294d6720a2c6a538f7957bb4a5602216f30d1654343f45",
   "envs/v2/volatility_params.py": "f89333c09aa337050af801b14ad0c922b5b9d5045e17ebc0106a55cfbedc4d66",
   "evaluation/baselines_v2.py": "8bb6acb179c9ba012a34209c003a8b42495c5c0ef879144f3a4618394f73cf97",
-  "evaluation/leakage_audit.py": "db6e6851a0b73a2639f751e937beae5b3a9e04bf27c3dc0d6a542ff085c51ad2",
+  "evaluation/leakage_audit.py": "62fcd7b99bea72870593c518968cb0c00aa953f9e79ebcc0cdf02bafd274d593",
   "evaluation/metrics_v2.py": "b420595779c7b9afd4190160994a7b90adc2411f9b8d7962a7b7746c1a6bbc5e",
   "evaluation/observables_oracle.py": "eb643e31f48dea7bbba4fa7e7e0bd23ddf590bfe17e160597943f69afabc45fd",
-  "evaluation/stylized_facts.py": "16a2e4c16b00b1047ba999ba9d422c3a74e7570a4a3beffa2ae5ad26a9877362",
+  "evaluation/stylized_facts.py": "cd41c14d8e00732f19f9b949e415ed0daa4d130eeb109694ca283779ece98ec1",
   "evaluation/targets.py": "83fc576e87fc1f7f2732492883d5e3f7723ab47c6c0f1d5c22f778a910744459"
  }
 }

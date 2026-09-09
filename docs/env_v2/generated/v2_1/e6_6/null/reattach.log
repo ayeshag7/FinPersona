@@ -1,0 +1,60 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+[after_state] reattach ...
+{
+ "criteria_present": true,
+ "audit_gbt_selectivity_all": 0.014691556303385811,
+ "l2_all": {
+  "measured_selectivity": 0.026297934087198604,
+  "selectivity_ci95": [
+   0.010621454886135376,
+   0.04021168191732311
+  ],
+  "sampling_halfwidth": 0.014795113515593868,
+  "null_median": -0.048077491692505636,
+  "null_p95": -0.03618185917822785,
+  "null_n_draws": 40,
+  "margin": -0.021386745662633985,
+  "pass": false,
+  "centred_margin": 0.02669074602987165,
+  "pass_centred": true,
+  "base_value": 0.4058695137596712,
+  "full_value": 0.4321674478468698
+ },
+ "l2_calm": {
+  "measured_selectivity": 0.10883020086529671,
+  "selectivity_ci95": [
+   0.08489748431621441,
+   0.1307162932599545
+  ],
+  "sampling_halfwidth": 0.02290940447187005,
+  "null_median": -0.0691635841710938,
+  "null_p95": -0.05419462163440454,
+  "null_n_draws": 20,
+  "margin": -0.03128521716253449,
+  "pass": false,
+  "centred_margin": 0.037878367008559316,
+  "pass_centred": false,
+  "base_value": 0.29118292666664924,
+  "full_value": 0.40001312753194596
+ },
+ "l2b": {
+  "measured_selectivity": 0.02952430555555552,
+  "selectivity_ci95": [
+   0.023725434027777763,
+   0.03520937500000001
+  ],
+  "sampling_halfwidth": 0.005741970486111123,
+  "null_median": -0.012878472222222243,
+  "null_p95": -0.008073611111111089,
+  "null_n_draws": 20,
+  "margin": -0.002331640624999966,
+  "pass": false,
+  "centred_margin": 0.010546831597222276,
+  "pass_centred": false,
+  "base_value": 0.6581527777777778,
+  "full_value": 0.6876770833333333,
+  "audit_selectivity": 0.018052083333333302,
+  "pass_audit_statistic": false
+ }
+}
+[after_state] reattach: 8 s

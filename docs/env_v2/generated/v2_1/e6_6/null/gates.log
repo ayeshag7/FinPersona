@@ -1,0 +1,4 @@
+l2_all: not in the null summary yet -- skipped
+l2_calm: not in the null summary yet -- skipped
+l2b: measured +0.0295, null median -0.0129, p95 -0.0081, margin -0.0023 -> FAIL (centred margin +0.0105 -> FAIL)
+written and validated: evaluation/params/phase6_criteria.json

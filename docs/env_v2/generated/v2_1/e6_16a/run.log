@@ -1,0 +1,68 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+[oracle] fitting full_level_free on 40 seeds
+  oos: {'calm': {'R2': 0.10085866919775888, 'sign_acc': 0.8473415514879841}, 'event': {'R2': 0.6244096482982544, 'sign_acc': 0.9199478178368121}, 'resolution': {'R2': 0.4562001427213416, 'sign_acc': 0.8785593060531774}}
+[oracle] fitting level_free on 40 seeds
+  oos: {'calm': {'R2': -0.07750772988566457, 'sign_acc': 0.7844602166604407}, 'event': {'R2': 0.5855661358297028, 'sign_acc': 0.8976518026565465}, 'resolution': {'R2': 0.336489992821556, 'sign_acc': 0.8427305298887422}}
+[rules] fitting the family on the training seeds
+  rule p_sma50: scale 0.03, direction +1, training MCR 0.0541
+  rule rsi: scale (40, 60), direction +1, training MCR 0.0576
+  rule analyst: scale 0.02, direction +1, training MCR 0.0928
+[score] 400 (scenario, seed) jobs on 2 workers (0 done)
+  20/400 (1747 s)
+  40/400 (1817 s)
+  60/400 (1874 s)
+  80/400 (1936 s)
+  100/400 (1994 s)
+  120/400 (2055 s)
+  140/400 (2116 s)
+  160/400 (2185 s)
+  180/400 (2288 s)
+  200/400 (2402 s)
+  220/400 (2511 s)
+  240/400 (2619 s)
+  260/400 (2728 s)
+  280/400 (2833 s)
+  300/400 (2934 s)
+  320/400 (3022 s)
+  340/400 (3111 s)
+  360/400 (3258 s)
+  380/400 (3403 s)
+  400/400 (3551 s)
+# 16A — the go/no-go checkpoint on the frozen generator (Phase 6)
+
+100 scored seeds per scenario (seeds 0..), 40 training seeds (500..) for the oracles and the rules' scales; T = 200; 500-resample cluster bootstrap over seeds; personas ISFJ, INTJ, ENTJ. Checkpoint θ = 0.05; sensitivities at 0.03, 0.08, 0.12, 0.2.
+
+## Rules fitted on the training seeds
+
+| family | scale | direction | training MCR |
+|---|---|---|---|
+| p_sma50 | 0.03 | +1 | 0.0541 |
+| rsi | (40, 60) | +1 | 0.0576 |
+| analyst | 0.02 | +1 | 0.0928 |
+
+Best simple rule: **p_sma50**.
+
+## θ = 0.03 (sensitivity)
+
+| scenario | oracle | L5 level-free observables | L5 level-free price-only | best rule | best trivial | always-hold | random |
+|---|---|---|---|---|---|---|---|
+| flat | 0.0220 [0.0192, 0.0255] | 0.0781 [0.0705, 0.0859] | 0.0768 [0.0701, 0.0840] | 0.0623 [0.0564, 0.0690] | band_hi: 0.0885 [0.0779, 0.0989] | 0.1097 [0.1072, 0.1124] | 0.3743 [0.3730, 0.3757] |
+| bull_trap | 0.0116 [0.0102, 0.0129] | 0.0459 [0.0400, 0.0524] | 0.0483 [0.0426, 0.0546] | 0.0432 [0.0381, 0.0483] | band_hi: 0.0353 [0.0301, 0.0409] | 0.1299 [0.1261, 0.1337] | 0.3732 [0.3725, 0.3739] |
+| crash | 0.0140 [0.0124, 0.0157] | 0.0564 [0.0513, 0.0616] | 0.0536 [0.0493, 0.0581] | 0.0562 [0.0514, 0.0607] | band_lo: 0.0692 [0.0621, 0.0767] | 0.1326 [0.1288, 0.1366] | 0.3803 [0.3795, 0.3811] |
+| sustained_bull | 0.0225 [0.0194, 0.0252] | 0.0779 [0.0687, 0.0870] | 0.0788 [0.0707, 0.0874] | 0.0624 [0.0546, 0.0710] | band_hi: 0.0872 [0.0774, 0.0973] | 0.1160 [0.1111, 0.1211] | 0.3739 [0.3727, 0.3752] |
+
+| gate | per scenario | verdict |
+|---|---|---|
+| G1 oracle < observables < trivial (non-overlapping) | {'flat': False, 'bull_trap': False, 'crash': True, 'sustained_bull': False} | **FAIL** |
+| G2 best rule > observables oracle in ≥ 3 of 4 | {'flat': False, 'bull_trap': False, 'crash': False, 'sustained_bull': False} (0 of 4) | **FAIL** |
+| G3 median oracle switches ≥ 2 and share ≥ 0.5 (event scenarios) | flat: median 3, share 0.88, bull_trap: median 2, share 0.77, crash: median 6, share 0.92, sustained_bull: median 3, share 0.89 | **PASS** |
+| G4a level-free observables < level-free price-only (non-overlapping) | {'flat': False, 'bull_trap': False, 'crash': False, 'sustained_bull': False} | **FAIL** |
+
+## θ = 0.05 — the checkpoint
+
+| scenario | oracle | L5 level-free observables | L5 level-free price-only | best rule | best trivial | always-hold | random |
+|---|---|---|---|---|---|---|---|
+| flat | 0.0027 [0.0026, 0.0028] | 0.0770 [0.0669, 0.0856] | 0.0745 [0.0660, 0.0842] | 0.0541 [0.0458, 0.0622] | band_hi: 0.0874 [0.0751, 0.0997] | 0.1118 [0.1083, 0.1154] | 0.3742 [0.3727, 0.3758] |
+| bull_trap | 0.0033 [0.0033, 0.0034] | 0.0383 [0.0326, 0.0448] | 0.0405 [0.0342, 0.0476] | 0.0378 [0.0325, 0.0428] | band_hi: 0.0262 [0.0214, 0.0312] | 0.1347 [0.1301, 0.1397] | 0.3749 [0.3742, 0.3756] |
+| crash | 0.0022 [0.0022, 0.0023] | 0.0466 [0.0409, 0.0518] | 0.0437 [0.0395, 0.0482] | 0.0481 [0.0430, 0.0533] | band_lo: 0.0581 [0.0
+-> docs/env_v2/generated/v2_1/e6_16a (3589 s)

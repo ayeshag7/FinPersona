@@ -127,6 +127,21 @@ def block_gates(doc):
               f"(centred margin {centred:+.4f} -> {'PASS' if gates[name]['value']['pass_centred'] else 'FAIL'})")
 
 
+def block_items(doc):
+    """The registered item -> statistics mapping WITH its per-statistic population and reference overrides and the
+    descriptive flag (PREREG_PHASE_6.md 5.1): the first writer of the criteria file dropped `per_stat_pop` /
+    `per_stat_reference` (item 20's calm sigma is judged on the flat paths against every window) and carried no
+    descriptive flag for item 4 -- a defect of the file writer, corrected here from the E6.2 tool's registered dict."""
+    from tools.phase6.e6_2_criteria import ITEMS
+    doc["items"] = {str(k): {"statistics": v["stats"], "population": v["pop"], "reference": v.get("reference", "all"),
+                             "property": v["property"], "per_stat_population": v.get("per_stat_pop", {}),
+                             "per_stat_reference": v.get("per_stat_reference", {}),
+                             "descriptive": bool(k == 4)} for k, v in ITEMS.items()}
+    doc["_items_note"] = ("item 4 is descriptive (plan 10.2: 'never as the pass criterion'); item 20's daily_sigma is judged on the flat "
+                          "paths against every real window, its mdd and worst_day on the crash paths against the crash windows")
+    print("items block rewritten with the per-statistic overrides and item 4 descriptive")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--stages", default="item9,l1_floor,n_min")
@@ -134,7 +149,7 @@ def main(argv=None):
     doc = _j(CRIT)
     doc["_status_key"].setdefault("DERIVED", "computed from a null, a bound or a known-answer reference by a registered rule")
     for st in [s.strip() for s in a.stages.split(",")]:
-        {"item9": block_item9, "l1_floor": block_l1_floor, "n_min": block_n_min, "gates": block_gates}[st](doc)
+        {"item9": block_item9, "l1_floor": block_l1_floor, "n_min": block_n_min, "gates": block_gates, "items": block_items}[st](doc)
     tmp = CRIT + ".tmp"
     with open(tmp, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, indent=1)

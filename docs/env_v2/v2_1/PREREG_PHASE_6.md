@@ -298,6 +298,15 @@ margin (p95 − null median) + half-width, P5-16's repair, reported beside — n
 > resolution note applies), the derived margin, and the verdict for all rows and calm — *pending; the L2 null is
 > running (80 fits; FULL ≈ 345 s each on the laptop).* The expected verdicts, stated now: all rows FAIL if the
 > p95 is ≤ +0.015 (the measured +0.026 minus the half-width); calm-trained FAIL under any plausible null.
+>
+> **Cells filled 9 Sep 2026 from `e6_6/null/null.json` (`evaluation/params/phase6_criteria.json` `gates.l2_all`,
+> `gates.l2_calm`), before the final audit ran:** all rows — null median **−0.0481**, p95 **−0.0362** (40 draws: 20
+> registered here, 20 more by addendum section 1.4 under the section-14 rule, same seed stream), half-width 0.0148,
+> margin **−0.0214** against the measured **+0.0263** [+0.0106, +0.0402] → **FAIL**; centred sensitivity +0.0267 →
+> *undecided* (a 0.0004 gap on the half-width). Calm-trained — null median **−0.0692**, p95 **−0.0542** (20 draws),
+> half-width 0.0229, margin **−0.0313** against **+0.1088** [+0.0849, +0.1307] → **FAIL**; centred +0.0379 → FAIL.
+> The null sits entirely below zero (every draw of the difference negative), further below than the expectation above,
+> so the registered margin is negative; the reading is addendum section 1.
 
 **Held-out-scenario split (weakness 67).** Train on three scenarios, score the fourth, level-free and full,
 every scenario held out once; reported with intervals; no gate (the selectivity gate above is the gate).
@@ -333,6 +342,12 @@ margin (frozen after the result was known, weakness 32) is retired to the `gates
 > **Cells to fill from `e6_6/null/null.json` before the final audit:** null median, p95, the margin, the verdict
 > — *pending; the L2b null is running (42 fits).* Expected: the null sits near zero with a p95 of a few tenths
 > of a percentage point; whether +1.8 pp clears "p95 + half-width" is open, and the verdict is reported as it falls.
+>
+> **Cells filled 9 Sep 2026 from `e6_6/null/null.json` (`evaluation/params/phase6_criteria.json` `gates.l2b`), before
+> the final audit ran:** null median **−0.0129**, p95 **−0.0081** (20 draws), half-width 0.0057, margin **−0.0023**
+> against the measured **+0.0295** [+0.0237, +0.0352] in this construction and **+0.0181** in the audit's → **FAIL**
+> under both; centred +0.0105 → FAIL under both. The null is below zero, not near it: FULL (141 columns) reaches
+> ≈ 0.40–0.41 on a permuted label and BASE ≈ 0.41–0.42, both at the majority class 0.414. Addendum section 1.5.
 
 ### 8.2 L2c = the onset audit
 

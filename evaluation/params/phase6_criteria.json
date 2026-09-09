@@ -1134,7 +1134,10 @@
    ],
    "population": "all",
    "reference": "all",
-   "property": "No linear autocorrelation of returns"
+   "property": "No linear autocorrelation of returns",
+   "per_stat_population": {},
+   "per_stat_reference": {},
+   "descriptive": false
   },
   "2": {
    "statistics": [
@@ -1144,7 +1147,10 @@
    ],
    "population": "all",
    "reference": "all",
-   "property": "Heavy tails"
+   "property": "Heavy tails",
+   "per_stat_population": {},
+   "per_stat_reference": {},
+   "descriptive": false
   },
   "3": {
    "statistics": [
@@ -1155,7 +1161,10 @@
    ],
    "population": "all",
    "reference": "all",
-   "property": "Volatility clustering"
+   "property": "Volatility clustering",
+   "per_stat_population": {},
+   "per_stat_reference": {},
+   "descriptive": false
   },
   "4": {
    "statistics": [
@@ -1167,7 +1176,10 @@
    ],
    "population": "all",
    "reference": "all",
-   "property": "Decay of ACF|r| (descriptive)"
+   "property": "Decay of ACF|r| (descriptive)",
+   "per_stat_population": {},
+   "per_stat_reference": {},
+   "descriptive": true
   },
   "5": {
    "statistics": [
@@ -1177,7 +1189,10 @@
    ],
    "population": "all",
    "reference": "all",
-   "property": "GARCH persistence"
+   "property": "GARCH persistence",
+   "per_stat_population": {},
+   "per_stat_reference": {},
+   "descriptive": false
   },
   "6": {
    "statistics": [
@@ -1186,7 +1201,10 @@
    ],
    "population": "all",
    "reference": "all",
-   "property": "Leverage effect"
+   "property": "Leverage effect",
+   "per_stat_population": {},
+   "per_stat_reference": {},
+   "descriptive": false
   },
   "7": {
    "statistics": [
@@ -1196,7 +1214,10 @@
    ],
    "population": "all",
    "reference": "all",
-   "property": "Volume-volatility"
+   "property": "Volume-volatility",
+   "per_stat_population": {},
+   "per_stat_reference": {},
+   "descriptive": false
   },
   "8": {
    "statistics": [
@@ -1205,7 +1226,10 @@
    ],
    "population": "crash",
    "reference": "crash",
-   "property": "Gain/loss asymmetry in crash"
+   "property": "Gain/loss asymmetry in crash",
+   "per_stat_population": {},
+   "per_stat_reference": {},
+   "descriptive": false
   },
   "20": {
    "statistics": [
@@ -1215,7 +1239,14 @@
    ],
    "population": "crash",
    "reference": "crash",
-   "property": "Magnitudes"
+   "property": "Magnitudes",
+   "per_stat_population": {
+    "daily_sigma": "flat"
+   },
+   "per_stat_reference": {
+    "daily_sigma": "all"
+   },
+   "descriptive": false
   }
  },
  "not_in_reference": {
@@ -1266,6 +1297,91 @@
    "n": {
     "paths": 1600
    }
+  },
+  "l2b": {
+   "value": {
+    "measured_selectivity": 0.02952430555555552,
+    "selectivity_ci95": [
+     0.023725434027777763,
+     0.03520937500000001
+    ],
+    "sampling_halfwidth": 0.005741970486111123,
+    "null_median": -0.012878472222222243,
+    "null_p95": -0.008073611111111089,
+    "null_n_draws": 20,
+    "margin": -0.002331640624999966,
+    "pass": false,
+    "centred_margin": 0.010546831597222276,
+    "pass_centred": false,
+    "base_value": 0.6581527777777778,
+    "full_value": 0.6876770833333333
+   },
+   "status": "DERIVED",
+   "label": "l2b: selectivity (FULL - BASE, the audit's GBT, macro-class accuracy) <= null p95 + the paired sampling half-width, the null = paths' targets permuted across seeds with both feature sets refitted (20 draws; the 95th percentile of 20 draws lies between the 19th and 20th order statistic); the centred margin (p95 - median + half-width) is the registered sensitivity",
+   "source": "docs/env_v2/generated/v2_1/e6_6/null/null.json",
+   "date": "2026-09-09",
+   "interval": "the null's draws and the paired CI are the intervals",
+   "n": {
+    "paths": 1600,
+    "draws": 20
+   }
+  },
+  "l2_all": {
+   "value": {
+    "measured_selectivity": 0.026297934087198604,
+    "selectivity_ci95": [
+     0.010621454886135376,
+     0.04021168191732311
+    ],
+    "sampling_halfwidth": 0.014795113515593868,
+    "null_median": -0.048077491692505636,
+    "null_p95": -0.03618185917822785,
+    "null_n_draws": 40,
+    "margin": -0.021386745662633985,
+    "pass": false,
+    "centred_margin": 0.02669074602987165,
+    "pass_centred": true,
+    "base_value": 0.4058695137596712,
+    "full_value": 0.4321674478468698
+   },
+   "status": "DERIVED",
+   "label": "l2_all: selectivity (FULL - BASE, the audit's GBT, R2(x)) <= null p95 + the paired sampling half-width, the null = paths' targets permuted across seeds with both feature sets refitted (40 draws; the 95th percentile of 20 draws lies between the 19th and 20th order statistic); the centred margin (p95 - median + half-width) is the registered sensitivity",
+   "source": "docs/env_v2/generated/v2_1/e6_6/null/null.json",
+   "date": "2026-09-09",
+   "interval": "the null's draws and the paired CI are the intervals",
+   "n": {
+    "paths": 1600,
+    "draws": 40
+   }
+  },
+  "l2_calm": {
+   "value": {
+    "measured_selectivity": 0.10883020086529671,
+    "selectivity_ci95": [
+     0.08489748431621441,
+     0.1307162932599545
+    ],
+    "sampling_halfwidth": 0.02290940447187005,
+    "null_median": -0.0691635841710938,
+    "null_p95": -0.05419462163440454,
+    "null_n_draws": 20,
+    "margin": -0.03128521716253449,
+    "pass": false,
+    "centred_margin": 0.037878367008559316,
+    "pass_centred": false,
+    "base_value": 0.29118292666664924,
+    "full_value": 0.40001312753194596
+   },
+   "status": "DERIVED",
+   "label": "l2_calm: selectivity (FULL - BASE, the audit's GBT, R2(x)) <= null p95 + the paired sampling half-width, the null = paths' targets permuted across seeds with both feature sets refitted (20 draws; the 95th percentile of 20 draws lies between the 19th and 20th order statistic); the centred margin (p95 - median + half-width) is the registered sensitivity",
+   "source": "docs/env_v2/generated/v2_1/e6_6/null/null.json",
+   "date": "2026-09-09",
+   "interval": "the null's draws and the paired CI are the intervals",
+   "n": {
+    "paths": 1600,
+    "draws": 20
+   }
   }
- }
+ },
+ "_items_note": "item 4 is descriptive (plan 10.2: 'never as the pass criterion'); item 20's daily_sigma is judged on the flat paths against every real window, its mdd and worst_day on the crash paths against the crash windows"
 }
