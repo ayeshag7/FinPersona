@@ -1,6 +1,6 @@
-# Phase 6 — files written or changed (generated from git `0b2c48c..74819bd` and the working tree by `tools/phase6/e6_changed_files.py`; verified against disk by `--check`)
+# Phase 6 — files written or changed (generated from git `0b2c48c..2e7db55` and the working tree by `tools/phase6/e6_changed_files.py`; verified against disk by `--check`)
 
-113 paths; 0 deleted; 0 empty on disk (an empty generated file is not a result).
+115 paths; 0 deleted; 0 empty on disk (an empty generated file is not a result).
 
 ## envs/
 
@@ -57,7 +57,8 @@
 | path | status | bytes |
 |---|---|---|
 | `docs/env_v2/v2_1/PHASE_6_EXECUTION_PROMPT.md` | added | 36,764 |
-| `docs/env_v2/v2_1/PHASE_6_REPORT.md` | added | 78,353 |
+| `docs/env_v2/v2_1/PHASE_6_REPORT.md` | modified (uncommitted) | 78,726 |
+| `docs/env_v2/v2_1/PHASE_7_EXECUTION_PROMPT.md` | untracked | 36,579 |
 | `docs/env_v2/v2_1/PREREG_PHASE_6.md` | added | 37,357 |
 | `docs/env_v2/v2_1/PREREG_PHASE_6_ADDENDUM.md` | added | 8,646 |
 
@@ -73,7 +74,7 @@
 
 | path | status | bytes |
 |---|---|---|
-| `docs/env_v2/decisions/DECISION_LOG.md` | modified | 179,071 |
+| `docs/env_v2/decisions/DECISION_LOG.md` | modified (uncommitted) | 180,153 |
 
 ## docs/env_v2/generated/
 
@@ -81,6 +82,7 @@
 |---|---|---|
 | `docs/env_v2/generated/v2_1/e5_7b/final/l1ext.json` | added | 10,871 |
 | `docs/env_v2/generated/v2_1/e5_7b/final/l1ext.md` | added | 2,252 |
+| `docs/env_v2/generated/v2_1/e6_0/box_stage3.log` | untracked | 2,474 |
 | `docs/env_v2/generated/v2_1/e6_0/path_values_reference.json` | added | 1,178,797 |
 | `docs/env_v2/generated/v2_1/e6_0/verify.json` | added | 10,745 |
 | `docs/env_v2/generated/v2_1/e6_0/verify.md` | added | 5,997 |

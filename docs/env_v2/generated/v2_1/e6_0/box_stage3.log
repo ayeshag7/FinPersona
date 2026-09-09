@@ -1,0 +1,43 @@
+# Box stage 3 (9 Sep 2026, 22:28-22:30 box time; commit 74819bd; /nfs1/ayesha/logs/stage3.log, the tail as polled from the laptop)
+# The numeric cross-machine check's worst five columns and verdict, then the bootstrap's env, panel, hashes and refrow stages.
+# 'nproc 2' is GNU nproc honouring the OMP_NUM_THREADS=2 the bootstrap exports first; the container reports 128 cores without it.
+  2.336e-13  sentiment_MA5                {'scenario': 'flat', 'n_days': 200, 'seed': 0}
+  2.121e-13  MACD                         {'scenario': 'crash', 'n_days': 200, 'seed': 0, 'ordering': 'event_first'}
+  1.639e-13  sentiment_MA5                {'scenario': 'crash', 'n_days': 200, 'seed': 0, 'crash_discount': 0.7}
+  1.613e-13  sentiment_change             {'scenario': 'crash', 'n_days': 200, 'seed': 0, 'ordering': 'event_first'}
+  1.271e-13  trend_strength               {'scenario': 'sustained_bull', 'n_days': 200, 'seed': 0}
+
+SAME GENERATOR: 0 of 245 columns above 1e-09
+[22:28:45] bootstrap env,panel,hashes,refrow
+[22:28:45] host zhangf-6dffcfb96-nvf7l; nproc 2; cgroup 34359738368 bytes
+[22:28:45] commit 74819bd
+python 3.13.15 numpy 2.4.6 pandas 3.0.3 scipy 1.18.0 sklearn 1.9.0
+statsmodels 0.14.6 arch 8.0.0
+[22:28:54] building the SEP panel of the deployed state at 24 workers (verify=True on the first seed)
+    1200/1600 paths, 5 s
+    1400/1600 paths, 6 s
+    1600/1600 paths, 6 s
+[panel] after: 1600 paths, 320000 rows -> docs/env_v2/generated/v2_1/_panels/sep_phase5_after.pkl
+[after_state] panel: 7 s
+[22:29:02] panel written: 61M
+[22:29:02] computing the 95-configuration path hashes
+95 configurations hashed -> /nfs1/ayesha/logs/hashes_box.json
+[22:29:07] comparing with the laptop fixture
+  ]
+ ],
+ "changed_analyst": 95,
+ "unchanged_analyst": 95
+}
+NON-ANALYST CHANGES: 1877
+[22:29:07] reference row 1: test_smm_reference_row
+  tests/test_leakage_ci.py::test_v1_L1_no_algebraic_inversion  [not run]
+  tests/test_leakage_ci.py::test_v1_L2_surrogate_thresholds  [not run]
+1 passed in 2.97s
+[22:29:11] reference row 2: BASE|x|all refitted on the regenerated panel (e5_7a_ablation, add stage, VAL only, x, all rows)
+[fits] 2 jobs on 4 workers
+    BASE+VAL       x     all   R2 +0.4149  (52.9 s)
+    BASE           x     all   R2 +0.4059  (42.2 s)
+wrote /nfs1/ayesha/logs/refrow/ablation.json in 58.4 s
+BASE|x|all  box 0.4058695137596712  laptop 0.4058695137596712  diff 0.000e+00  -> AGREE
+[22:30:10] stages [env,panel,hashes,refrow] finished
+[22:30:10] STAGE3 DONE
