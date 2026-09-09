@@ -19,7 +19,8 @@ import time
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DOC = os.path.join(ROOT, "docs", "env_v2", "v2_1", "PHASE_6_CHANGED_FILES.md")
 BASE_DEFAULT = "0b2c48c"     # the Phase-5 commit
-IGNORE = ("docs/env_v2/generated/v2_1/e6_1/cache/", "COMMIT")
+IGNORE = ("docs/env_v2/generated/v2_1/e6_1/cache/", "COMMIT",
+          "docs/env_v2/v2_1/PHASE_6_CHANGED_FILES.md")      # the list itself (its own status flips on every write)
 
 
 def _git(*args):
