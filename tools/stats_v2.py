@@ -244,6 +244,253 @@ def run_stats(per_run: pd.DataFrame, out_prefix: str) -> Dict[str, pd.DataFrame]
     return {"contrasts": con, "mixedlm": me, "degeneracy": deg}
 
 
+# ======================================================================================================================
+# v2.1 Phase 8 (E8.3; PREREG_PHASE_8.md 3; weakness 59, 67).  NEW functions beside the v2 ones above, which are unchanged
+# (the golden record, tests/phase8_golden.json).  Every one was validated on simulated data with a known answer before
+# it touches a real contrast (tools/phase8/e8_3_simulate.py; docs/env_v2/generated/v2_1/e8_3/):
+#   * the v2 `mixed_effects` (seeds nested in models, random intercepts only) rejects a TRUE null in 36-58 % of
+#     simulated datasets once the arm effect varies by model;
+#   * `crossed_mixed_model` (E1) and `pigeonhole_ci` (E2) hold size at 6 models and do NOT at 3 (0.08-0.12) --
+#     their simulated size travels with every use;
+#   * BH across the metrics of one contrast (v2) gives an FDR of 0.43-0.996; BH within a question family holds on a
+#     one-family grid and not on a multi-family one; BY across families holds everywhere (addendum 5).
+# ======================================================================================================================
+TIER_C = ("band_mas", "v21_mcr_D_0.05", "v21_mcr_D_0.002")          # confirmatory (PREREG 3.4)
+TIER_S = ("turnover", "mdd_pct", "return_pct")                      # secondary, their own families
+NO_PERSONA = ("NONE", "TRADER", "O3_conservative", "O3_aggressive")
+
+
+def question_families() -> Dict[str, List[tuple]]:
+    """PREREG 3.4: each question's contrasts, (arm, reference), within persona x scenario cell."""
+    from experiments.arms_v2 import CONTEXT_LEVELS
+    q5 = []
+    for level, (st, mem) in CONTEXT_LEVELS.items():
+        q5 += [(mem, st), (mem, "memory")]
+    return {"Q1": [("memory", "static"), ("path_b_memory", "path_b_static")],
+            "Q2": [("memory", "placebo_directive"), ("swapped", "memory")],
+            "Q3": [("placebo_directive", "static"), ("placebo_declarative", "static"), ("wrapper_only", "static")],
+            "Q4": [("path_b_static", "static")],
+            "Q5": q5}
+
+
+def scenario_cell(df: pd.DataFrame) -> pd.Series:
+    """A scenario cell: the scenario, with the crash discount when the scenario is crash."""
+    sc = df["Scenario"].astype(str)
+    if "Crash_Discount" in df.columns:
+        return np.where(sc == "crash", sc + "_d" + df["Crash_Discount"].astype(str), sc)
+    return sc
+
+
+def seed_level_pairs(per_run: pd.DataFrame, metric: str, arm: str, reference: str) -> pd.DataFrame:
+    """PREREG 3.1: the pair is (model, persona, path); replicates are averaged per arm BEFORE the difference, never
+    paired by index.  Returns Model, Persona, Scenario_Cell, Seed, Path and d = mean(arm) - mean(reference)."""
+    d = per_run[per_run["Arm"].isin([arm, reference])].dropna(subset=[metric]).copy()
+    if d.empty:
+        return pd.DataFrame(columns=["Model", "Persona", "Scenario_Cell", "Seed", "Path", "d"])
+    d["Scenario_Cell"] = scenario_cell(d)
+    m = d.groupby(["Model", "Persona", "Scenario_Cell", "Seed", "Arm"])[metric].mean().unstack("Arm")
+    if arm not in m.columns or reference not in m.columns:
+        return pd.DataFrame(columns=["Model", "Persona", "Scenario_Cell", "Seed", "Path", "d"])
+    out = (m[arm] - m[reference]).dropna().rename("d").reset_index()
+    out["Path"] = out["Scenario_Cell"].astype(str) + "|" + out["Seed"].astype(str)
+    return out
+
+
+def pigeonhole_ci(pairs: pd.DataFrame, n_boot: int = 1999, seed: int = 0, alpha: float = 0.05, rng=None) -> Dict[str, float]:
+    """PREREG 3.3 (E2): two-way cluster bootstrap by model and path.  Each resample draws the models and, independently,
+    the paths with replacement; every pair is weighted by (its model's draw count x its path's draw count); the
+    statistic is the weighted mean difference; the interval is percentile.  With one model the model dimension is
+    degenerate and the bootstrap is one-way by path (`one_way`).  The two-sided p is read from the same draws."""
+    rng = rng if rng is not None else np.random.default_rng(seed)
+    if pairs.empty:
+        return {"n_models": 0, "n_paths": 0}
+    tab = pairs.pivot_table(index="Model", columns="Path", values="d", aggfunc="mean")
+    D = tab.to_numpy(float)
+    mask = np.isfinite(D).astype(float)
+    D0 = np.where(mask > 0, D, 0.0)
+    M, S = D.shape
+    wm = rng.multinomial(M, np.full(M, 1.0 / M), size=n_boot).astype(float)
+    ws = rng.multinomial(S, np.full(S, 1.0 / S), size=n_boot).astype(float)
+    num = np.einsum("bm,ms,bs->b", wm, D0, ws)
+    den = np.einsum("bm,ms,bs->b", wm, mask, ws)
+    stat = np.where(den > 0, num / np.where(den > 0, den, 1.0), np.nan)
+    stat = stat[np.isfinite(stat)]
+    est = float(D0.sum() / mask.sum())
+    lo, hi = np.percentile(stat, [100 * alpha / 2, 100 * (1 - alpha / 2)])
+    p = float(min(1.0, 2 * min((stat <= 0).mean(), (stat >= 0).mean()) + 1.0 / (len(stat) + 1)))
+    return {"estimate": est, "ci_lo": float(lo), "ci_hi": float(hi), "p_boot": p, "n_models": int(M), "n_paths": int(S),
+            "n_pairs": int(mask.sum()), "one_way": bool(M == 1), "n_boot": int(len(stat))}
+
+
+def path_sign_flip(pairs: pd.DataFrame, n_perm: int = 9999, seed: int = 0, exact_max: int = 16) -> Dict[str, float]:
+    """PREREG 3.6 (N3): the sign of every pair in a path is flipped together (paths are the exchangeable units);
+    exact over all 2^n sign vectors when n <= `exact_max`.  The smallest attainable two-sided p is 2 / 2^n, so a path
+    count below the minimum cannot reject at all -- returned, never hidden."""
+    if pairs.empty:
+        return {"n_paths": 0}
+    s = pairs.groupby("Path")["d"].agg(["sum", "size"])
+    tot, n_units = s["sum"].to_numpy(float), float(s["size"].sum())
+    n = len(tot)
+    obs = tot.sum() / n_units
+    if n <= exact_max:
+        signs = ((np.arange(2 ** n)[:, None] >> np.arange(n)[None, :]) & 1) * 2.0 - 1.0
+        null = signs @ tot / n_units
+        p = float(np.mean(np.abs(null) >= abs(obs) - 1e-15))
+        exact = True
+    else:
+        rng = np.random.default_rng(seed)
+        null = rng.choice([-1.0, 1.0], size=(n_perm, n)) @ tot / n_units
+        p = float((np.sum(np.abs(null) >= abs(obs)) + 1) / (n_perm + 1))
+        exact = False
+    return {"n_paths": int(n), "mean_d": float(obs), "p_signflip": p, "exact": exact,
+            "min_attainable_p": float(2.0 / 2 ** n) if exact else float(1.0 / (n_perm + 1))}
+
+
+def _reml_fit(model, optimizer: str):
+    """REML by lbfgs (the estimator P8-9 validated), or `optimizer="best"`: lbfgs and Powell, the higher restricted
+    likelihood kept.  lbfgs stops at a local optimum in 15-20 % of E1's fits, and in 34-61 % at a zero-variance boundary
+    (PREREG_PHASE_8_ADDENDUM.md 17); "best" equals `tools/phase8/e8_3_simulate.fit_e1_best`."""
+    if optimizer == "lbfgs":
+        return model.fit(reml=True, method="lbfgs", maxiter=400)
+    best = None
+    for m in ("lbfgs", "powell"):
+        try:
+            r = model.fit(reml=True, method=m, maxiter=400 if m == "lbfgs" else 1600)
+        except Exception:                                        # noqa: BLE001 -- the other method may still fit
+            continue
+        if best is None or (np.isfinite(r.llf) and r.llf > best.llf):
+            best = r
+    if best is None:
+        raise RuntimeError("no REML fit returned")
+    return best
+
+
+def crossed_mixed_model(per_run: pd.DataFrame, metric: str, reference: str = "static", arms=None,
+                        optimizer: str = "lbfgs") -> Dict[str, object]:
+    """PREREG 3.2 (E1): y ~ C(Arm, Treatment(ref)) * C(Persona) * C(Scenario) with CROSSED variance components --
+    model, model x arm (the random slope for arm by model, interaction-variance parameterisation), path, and path x arm
+    where replicates exist -- via one group and `vc_formula`.  statsmodels estimates no intercept-slope correlation;
+    the simulation planted one (rho = 0.5) and measured its effect on size.  Returns the fixed-effect table, the
+    variance components, the residual, the components at the zero boundary, the convergence flag, the optimizer and
+    the REML log-likelihood.  `optimizer="best"` fits at the better of the lbfgs and Powell optima (P8-17); the
+    crossed model is DESCRIPTIVE on the main grid -- addendum 17's rule did not adopt E1-amended, and at six models
+    with a model x arm sd of 0.03 neither E1 nor E2 holds size at the sized design."""
+    if optimizer not in ("lbfgs", "best"):
+        raise ValueError(f"optimizer must be 'lbfgs' or 'best', got {optimizer!r}")
+    import statsmodels.formula.api as smf
+    d = per_run.dropna(subset=[metric]).copy()
+    if arms is not None:
+        d = d[d["Arm"].isin(list(arms) + [reference])]
+    d["y"] = d[metric].astype(float)
+    d["Scenario"] = scenario_cell(d)
+    d["Path"] = d["Scenario"].astype(str) + "|" + d["Seed"].astype(str)
+    vc = {}                                     # the order the simulation validated (model, model_arm, path, path_arm)
+    if d["Model"].nunique() > 1:
+        vc.update({"model": "0 + C(Model)", "model_arm": "0 + C(Model):C(Arm)"})
+    vc["path"] = "0 + C(Path)"
+    if "Decode_Replicate" in d.columns and d["Decode_Replicate"].nunique() > 1:
+        vc["path_arm"] = "0 + C(Path):C(Arm)"
+    form = f"y ~ C(Arm, Treatment('{reference}'))" + (" * C(Persona)" if d["Persona"].nunique() > 1 else "") + \
+           (" * C(Scenario)" if d["Scenario"].nunique() > 1 else "")
+    try:
+        r = _reml_fit(smf.mixedlm(form, d, groups=np.ones(len(d)), re_formula="0", vc_formula=vc), optimizer)
+        comps = dict(zip(r.model.exog_vc.names, (float(v) for v in np.asarray(r.vcomp, float))))
+        fixed = pd.DataFrame({"term": r.params.index, "coef": r.params.values, "se": r.bse.reindex(r.params.index).values,
+                              "p": r.pvalues.reindex(r.params.index).values})
+        fixed = fixed[~fixed["term"].isin(["Group Var"]) & ~fixed["term"].str.endswith(" Var")]
+        return {"metric": metric, "formula": form, "vc_formula": vc, "fixed": fixed, "variance_components": comps,
+                "residual": float(r.scale), "at_boundary": sorted(k for k, v in comps.items() if v < 1e-8),
+                "converged": bool(r.converged), "n": int(len(d)), "optimizer": optimizer, "reml_llf": float(r.llf)}
+    except Exception as exc:                                     # noqa: BLE001 -- reported, never replaced
+        return {"metric": metric, "formula": form, "vc_formula": vc, "error": f"{type(exc).__name__}: {str(exc)[:160]}",
+                "n": int(len(d)), "optimizer": optimizer}
+
+
+def by_adjust(p: np.ndarray) -> np.ndarray:
+    """Benjamini-Yekutieli q-values: BH on p x sum_{i<=m} 1/i."""
+    p = np.asarray(p, float)
+    if len(p) == 0:
+        return p
+    c = float(np.sum(1.0 / np.arange(1, len(p) + 1)))
+    return bh_adjust(np.minimum(p * c, 1.0))
+
+
+def v2_family_count(n_nonreference_arms: int, n_personas: int, n_scenario_cells: int, n_metrics: int = len(METRICS)) -> int:
+    """The v2 construction's test count (`arm_contrasts` x METRICS): the number weakness 59 calls "roughly 840"."""
+    return int(n_nonreference_arms * n_personas * n_scenario_cells * n_metrics)
+
+
+def family_table(tests: pd.DataFrame) -> pd.DataFrame:
+    """The size of every family, COUNTED from the tests actually computed (a family's m is its number of p-values)."""
+    if tests.empty:
+        return pd.DataFrame(columns=["family", "question", "tier", "m"])
+    t = tests.groupby(["family", "question", "tier"]).size().rename("m").reset_index()
+    return t
+
+
+def run_stats_v21(per_run: pd.DataFrame, out_prefix: str, n_boot: int = 1999, seed: int = 0) -> Dict[str, pd.DataFrame]:
+    """The v2.1 statistics track: every registered contrast present in the table, per persona x scenario cell x metric,
+    with its two-way cluster-bootstrap interval and p, Cliff's delta beside, BH within its question family, BY across
+    all confirmatory (tier C) families and separately across the secondary ones, and the decision rule the parameter
+    file names for this grid's number of confirmatory families.  THE FAMILY SIZE IS WRITTEN BESIDE EVERY q-VALUE
+    (`test_bh_family_size_logged`)."""
+    rows = []
+    personas = [p for p in sorted(per_run["Persona"].astype(str).unique()) if p not in NO_PERSONA]
+    tiers = {"C": [m for m in TIER_C if m in per_run.columns], "S": [m for m in TIER_S if m in per_run.columns]}
+    for q, pairs in question_families().items():
+        for arm, ref in pairs:
+            if arm not in set(per_run["Arm"]) or ref not in set(per_run["Arm"]):
+                continue
+            for tier, mets in tiers.items():
+                for metric in mets:
+                    allp = seed_level_pairs(per_run, metric, arm, ref)
+                    for (persona, cell), g in allp.groupby(["Persona", "Scenario_Cell"]):
+                        if persona in NO_PERSONA or g["Path"].nunique() < 2:
+                            continue
+                        b = pigeonhole_ci(g, n_boot=n_boot, seed=seed)
+                        sub = per_run[(per_run["Persona"] == persona) & (scenario_cell(per_run) == cell)]
+                        a_v = sub[sub["Arm"] == arm][metric].dropna().to_numpy(); r_v = sub[sub["Arm"] == ref][metric].dropna().to_numpy()
+                        rows.append({"family": f"{q}|{tier}", "question": q, "tier": tier, "contrast": f"{arm} - {ref}",
+                                     "Persona": persona, "Scenario_Cell": cell, "metric": metric, **b,
+                                     "cliffs_delta": cliffs_delta(a_v, r_v)})
+    tests = pd.DataFrame(rows)
+    fam = family_table(tests)
+    if len(tests):
+        tests = tests.merge(fam[["family", "m"]].rename(columns={"m": "m_family"}), on="family")
+        tests["q_bh_within_family"] = np.nan
+        for f, idx in tests.groupby("family").groups.items():
+            tests.loc[idx, "q_bh_within_family"] = bh_adjust(tests.loc[idx, "p_boot"].to_numpy())
+        tests["q_by_across_families"] = np.nan
+        for tier in ("C", "S"):
+            idx = tests.index[tests["tier"] == tier]
+            tests.loc[idx, "q_by_across_families"] = by_adjust(tests.loc[idx, "p_boot"].to_numpy())
+            tests.loc[idx, "m_across_families"] = len(idx)
+        n_conf = int(fam[fam["tier"] == "C"]["family"].nunique())
+        rule = "no rule: experiments/params/inference.json absent"
+        try:
+            from experiments import inference_params as IP
+            if IP.PRESENT:
+                rule = IP.decision_rule(max(n_conf, 1))
+        except Exception as exc:                                  # noqa: BLE001
+            rule = f"no rule: {type(exc).__name__}"
+        tests["n_confirmatory_families"] = n_conf
+        tests["decision_rule"] = rule
+        qcol = {"bh_within": "q_bh_within_family", "by_across": "q_by_across_families"}.get(rule)
+        tests["claim"] = (tests[qcol] <= 0.05) & (tests["tier"] == "C") if qcol else False
+    models = {}
+    for metric in tiers["C"]:
+        models[metric] = crossed_mixed_model(per_run, metric, optimizer="best")     # descriptive, at the better optimum (P8-17)
+    os.makedirs(os.path.dirname(out_prefix) or ".", exist_ok=True)
+    tests.to_csv(out_prefix + "_v21_contrasts.csv", index=False)
+    fam.to_csv(out_prefix + "_v21_families.csv", index=False)
+    vc_rows = [{"metric": m, **{f"vc_{k}": v for k, v in r.get("variance_components", {}).items()},
+                "residual": r.get("residual"), "converged": r.get("converged"), "at_boundary": ",".join(r.get("at_boundary", [])),
+                "optimizer": r.get("optimizer"), "reml_llf": r.get("reml_llf"), "role": "descriptive (P8-17)",
+                "error": r.get("error", "")} for m, r in models.items()]
+    pd.DataFrame(vc_rows).to_csv(out_prefix + "_v21_variance_components.csv", index=False)
+    return {"contrasts": tests, "families": fam, "models": models}
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--per_run", default=os.path.join(ROOT, "docs", "env_v2", "generated", "report_v2_per_run.csv"))

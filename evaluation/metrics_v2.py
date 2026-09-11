@@ -13,6 +13,17 @@ Outputs (dict):
     trade_count, turnover, cost_paid, zero_trade, fallback_share, n_scored.
 Rows with Parse_Status == 'fallback' are excluded from action-based metrics and
 counted (plan 8.5); unresolvable steps are never scored right/wrong (8.3).
+
+v2.1 Phase 7 (E7.1, E7.2), switches DEFAULT-OFF and inert when off:
+
+* `score_run(..., scoring="v2_1")` adds the regret decomposition (B = band violation, D = the directional
+  remainder), the oracle switch count, the band-edge shares (item 48) and the per-window alternative, at the
+  thetas in force.  `scoring="v2"` is the default and returns the v2 dictionary bit for bit.
+* `floors_and_ceilings(..., convention="v2_1")` uses ceiling = the mandate-conditional oracle and floor = the
+  worst trivial policy (weakness 53, DECISION_LOG P0-2).  `convention="v2"` is the default and unchanged: its
+  published `norm_mcr` is normalised AGAINST CONSTANT-MIX.
+* `THETAS` -- the module constant -- does not move.  The v2_1 path reads `thetas_in_force()`, which returns the
+  constant until `evaluation/params/scoring.json` carries a `theta_in_force` block (written only after D7 and D8).
 """
 from __future__ import annotations
 
@@ -23,7 +34,25 @@ import pandas as pd
 
 from evaluation.targets import band, centre, V1_POINT_TARGETS, HALF_WIDTH
 
-THETAS = (0.03, 0.05, 0.08)
+THETAS = (0.03, 0.05, 0.08)          # the v2 constant; the v2 code path always uses exactly this
+
+
+def thetas_in_force():
+    """The thetas the v2.1 scoring path uses.
+
+    Returns the v2 constant unless `evaluation/params/scoring.json` is present AND carries a `theta_in_force`
+    block -- which it does only after D7 and D8 are recorded (PREREG_PHASE_7.md 1.4).  The absence of the block is
+    checked explicitly, not caught from an exception: a theta nobody chose must not reach a table by accident.
+    """
+    from evaluation import scoring_params as SP
+    if not SP.PRESENT:
+        return THETAS
+    doc = SP.load()
+    if "theta_in_force" not in doc:
+        return THETAS
+    return tuple(float(t) for t in doc["theta_in_force"]["value"]["thetas"])
+
+
 # v1 rationality rule: a HOLD while undervalued counts as rational only if the agent holds a position; "holds a
 # position" = holdings value above $1 (v1 convention carried over for the re-scoring; DESIGN, documented in v2.1 Phase 0,
 # weakness item 73). Fractional shares make a strictly-positive test meaningless, hence a dollar threshold.
@@ -60,7 +89,10 @@ def oracle_target(x: np.ndarray, theta: float, persona: Optional[str], prev_targ
 
 
 def score_run(df: pd.DataFrame, persona: str, start_cash_share: Optional[float] = None,
-              initial_value: float = 10000.0) -> Dict[str, float]:
+              initial_value: float = 10000.0, scoring: str = "v2") -> Dict[str, float]:
+    """`scoring="v2"` (default) returns the v2 dictionary bit for bit; `scoring="v2_1"` appends Phase 7's terms."""
+    if scoring not in ("v2", "v2_1"):
+        raise ValueError(f"scoring must be 'v2' or 'v2_1', got {scoring!r}")
     d = df.reset_index(drop=True)
     C = d["Cash_Share"].to_numpy(dtype=float)
     P = d["Price"].to_numpy(dtype=float)
@@ -103,6 +135,28 @@ def score_run(df: pd.DataFrame, persona: str, start_cash_share: Optional[float] 
     out["zero_trade"] = bool(out["trade_count"] == 0)
     out["fallback_share"] = float(fb.mean())
     out["n_rows"] = int(len(d))
+    if scoring == "v2_1":
+        out.update(_v2_1_terms(C, x, ok, persona, float(C[0])))
+    return out
+
+
+def _v2_1_terms(C, x, ok, persona: str, c0: float) -> Dict[str, float]:
+    """Phase 7's added terms (E7.2): the decomposition, the switch count, the band-edge shares and the per-window
+    alternative, at every theta in force.  Nothing here touches a v2 key -- every key is prefixed `v21_`.
+
+    `c0` is the oracle's seed target and is C[0], the SAME value the v2 `mcr_theta` above uses -- not
+    Start_Cash_Share, which differs from it under the common-start design.  A decomposition measured against a
+    different c* would not reconstruct the v2 MCR."""
+    from evaluation import scoring as SC
+    out: Dict[str, float] = {}
+    for th in thetas_in_force():
+        t = SC.regret_terms(C, x, th, persona, prev_target=c0, ok=ok)
+        w = SC.regret_terms_window(C, x, th, persona, prev_target=c0, ok=ok)
+        for k in ("mcr", "mcr_B", "mcr_D", "coverage", "n_resolvable", "oracle_switches",
+                  "share_target_lo", "share_target_hi", "share_agent_lo", "share_agent_hi", "share_agent_outside"):
+            out[f"v21_{k}_{th}"] = t[k]
+        for k in ("mcr_window", "mcr_window_B", "mcr_window_D", "window_switches", "n_windows_scored"):
+            out[f"v21_{k}_{th}"] = w[k]
     return out
 
 
@@ -179,8 +233,13 @@ def normalise(agent_val: float, floor: float, ceiling: float) -> float:
     return float((agent_val - floor) / (ceiling - floor))
 
 
-def floors_and_ceilings(baselines: Dict[str, Dict[str, float]], persona: str) -> Dict[str, Dict[str, float]]:
+def floors_and_ceilings(baselines: Dict[str, Dict[str, float]], persona: str,
+                        convention: str = "v2") -> Dict[str, Dict[str, float]]:
     """baselines: {policy_name: metrics}. Returns {metric: {floor, ceiling, degenerate}}.
+
+    v2.1 Phase 7: `convention="v2_1"` delegates to `evaluation.scoring.floors_and_ceilings_v21` (ceiling = the
+    mandate-conditional oracle, floor = the worst trivial policy, the sign in one function).  The default "v2" is
+    everything below, unchanged.
 
     Convention actually implemented (v2.1 Phase 0 made this docstring exact; weakness item 53):
       higher-is-better metrics (rg_v1, rg_theta_0.05, rg_action_0.05, return_pct, mdd_pct):
@@ -190,6 +249,11 @@ def floors_and_ceilings(baselines: Dict[str, Dict[str, float]], persona: str) ->
     So the published normalised MCR ("norm_mcr_0.05") is normalised AGAINST CONSTANT-MIX (1.0 = as good as the
     constant-mix policy), NOT against the mandate-conditional oracle as tools/report_v2.py and PILOT_NOTES.md said
     before Phase 0. Which convention v2.1 adopts, and the regret decomposition, is Phase 7 (plan E7.2; amendment A9)."""
+    if convention not in ("v2", "v2_1"):
+        raise ValueError(f"convention must be 'v2' or 'v2_1', got {convention!r}")
+    if convention == "v2_1":
+        from evaluation.scoring import floors_and_ceilings_v21
+        return floors_and_ceilings_v21(baselines, persona)
     out = {}
     trivial = [baselines[k] for k in ("always_hold", "random", "buy_day1_hold") if k in baselines]
     worst_pool = [baselines[k] for k in ("always_buy", "always_sell", "random") if k in baselines]

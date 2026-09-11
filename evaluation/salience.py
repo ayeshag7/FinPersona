@@ -16,6 +16,7 @@ Also the t = 0 separability gate on the common-start design (4.6).
 """
 from __future__ import annotations
 
+import json
 from typing import Dict, List, Optional
 
 import numpy as np
@@ -60,8 +61,10 @@ def _design(df: pd.DataFrame, include_state: bool) -> (np.ndarray, List[str], Di
 
 def surrogate_shares(runs: pd.DataFrame, target_col: str = "Target_Cash_Share", include_state: bool = False,
                      n_estimators: int = 200, n_repeats: int = 10, seed: int = 0,
-                     permute_persona: bool = False) -> Dict[str, float]:
-    """runs: rows of one model within one window (many runs). Returns shares and OOF R2."""
+                     permute_persona: bool = False, groups_col: str = "Seed") -> Dict[str, float]:
+    """runs: rows of one model within one window (many runs). Returns shares and OOF R2.
+    `groups_col` names the cross-validation blocks (default the seed; the seed-cluster bootstrap passes the original
+    seed of each resampled copy, so a seed drawn twice stays in one fold -- PREREG_PHASE_8_ADDENDUM.md 18)."""
     from sklearn.ensemble import RandomForestRegressor
     from sklearn.inspection import permutation_importance
     from sklearn.model_selection import GroupKFold
@@ -78,7 +81,7 @@ def surrogate_shares(runs: pd.DataFrame, target_col: str = "Target_Cash_Share", 
         d["prev_cash_share"] = d.groupby(["Persona", "Seed", "Arm", "Decode_Replicate"])["Cash_Share"].shift(1).fillna(d["Start_Cash_Share"])
     X, cols, blocks = _design(d, include_state)
     y = d[target_col].to_numpy(dtype=float)
-    groups = d["Seed"].to_numpy(dtype=object)
+    groups = d[groups_col].to_numpy(dtype=object)
     if len(np.unique(groups)) < 2 or len(d) < 30:
         return {"n": len(d), "r2": np.nan, "S_persona": np.nan, "S_directive": np.nan, "S_market": np.nan, "S_start": np.nan, "S_state": np.nan}
     rf = RandomForestRegressor(n_estimators=n_estimators, min_samples_leaf=5, random_state=seed, n_jobs=2)
@@ -97,9 +100,148 @@ def surrogate_shares(runs: pd.DataFrame, target_col: str = "Target_Cash_Share", 
     return {"n": int(len(d)), "r2": r2, **shares}
 
 
+NO_PERSONA_TEXT = ("NONE", "TRADER", "O3_conservative", "O3_aggressive")
+# a run is identified by every factor that separates one run from another -- the scenario and its crash discount and
+# the start design included: the pilot reused seed 42 across three scenarios, and without Scenario three runs collapsed
+# into one (a first identification table read 12 runs where the pilot has 36)
+RUN_KEYS = ("Model", "Persona", "Arm", "Scenario", "Crash_Discount", "Start_Design", "Seed", "Decode_Replicate")
+
+
+def _blocks_run_level(runs: pd.DataFrame):
+    """The persona (P), directive (D) and start (S) blocks, one row per run, as `_design` builds them."""
+    keys = [k for k in RUN_KEYS if k in runs.columns]
+    r = runs.drop_duplicates(subset=keys).reset_index(drop=True)
+    P = pd.get_dummies(r["Persona"].astype(str), prefix="p").to_numpy(dtype=float)
+    mb = r["Mandate_Block"].astype(str)
+    dlab = np.where(mb == "mandate", mb + ":" + r["Mandate_Persona"].astype(str), mb)
+    D = pd.get_dummies(pd.Series(dlab), prefix="d").to_numpy(dtype=float)
+    S = r[["Start_Cash_Share"]].to_numpy(dtype=float)
+    return r, {"persona": P, "directive": D, "start": S}
+
+
+def _rank(X: np.ndarray) -> int:
+    if X.size == 0:
+        return 0
+    Xc = X - X.mean(axis=0, keepdims=True)
+    return int(np.linalg.matrix_rank(Xc, tol=1e-9 * max(1.0, float(np.abs(Xc).max()))))
+
+
+def identification_check(runs: pd.DataFrame) -> Dict[str, object]:
+    """v2.1 Phase 8 (E8.4, weakness 55; PREREG_PHASE_8.md 4).  The salience shares are identified only if
+    (i) every block varies (rank >= 1 after centring), (ii) no block lies in the span of the others
+    (rank[P, D, S] = rank P + rank D + rank S), (iii) every run is on the common-start design, and (iv) the reference
+    levels are present: a run with no persona text, and a run whose directive's persona differs from its persona or
+    that shows no directive.  Returns the verdict, each clause, the ranks, the R^2 of each block on the other two, and
+    the largest canonical correlation between each pair of blocks -- the collinearity SHOWN, not described."""
+    r, B = _blocks_run_level(runs)
+    ranks = {k: _rank(v) for k, v in B.items()}
+    ranks["all"] = _rank(np.hstack(list(B.values())))
+    c1_registered = all(ranks[k] >= 1 for k in B)
+    # PREREG_PHASE_8_ADDENDUM.md 10: AS REGISTERED, clause (i) asks the START block to vary while clause (iii) requires a
+    # common start, under which it cannot -- no design could ever pass.  The reading adopted: (i) applies to the persona
+    # and directive blocks; at common start the start block is constant by design and its share is not applicable.  The
+    # registered verdict is returned beside, every time.
+    c1 = ranks["persona"] >= 1 and ranks["directive"] >= 1
+    c2 = ranks["all"] == sum(ranks[k] for k in B)
+    c3 = bool((r["Start_Design"].astype(str) == "common").all()) if "Start_Design" in r else False
+    no_text = r["Persona"].astype(str).isin(NO_PERSONA_TEXT)
+    other = (r["Mandate_Block"].astype(str) != "mandate") | (r["Mandate_Persona"].astype(str) != r["Persona"].astype(str))
+    c4 = bool(no_text.any() and (other & ~no_text).any())
+    centred = {k: v - v.mean(axis=0, keepdims=True) for k, v in B.items()}
+    r2, cc = {}, {}
+    for k, Y in centred.items():
+        Xo = np.hstack([v for kk, v in centred.items() if kk != k])
+        sst = float((Y ** 2).sum())
+        if sst <= 0 or Xo.size == 0:
+            r2[k] = float("nan"); continue
+        beta, *_ = np.linalg.lstsq(Xo, Y, rcond=None)
+        r2[k] = float(1 - ((Y - Xo @ beta) ** 2).sum() / sst)
+    names = list(centred)
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            Qa = np.linalg.svd(centred[a], full_matrices=False)[0][:, :max(ranks[a], 0)]
+            Qb = np.linalg.svd(centred[b], full_matrices=False)[0][:, :max(ranks[b], 0)]
+            cc[f"{a}~{b}"] = float(np.linalg.svd(Qa.T @ Qb, compute_uv=False).max()) if Qa.size and Qb.size else float("nan")
+    failing = [n for n, ok in (("i_persona_and_directive_vary", c1), ("ii_no_block_in_span_of_others", c2),
+                               ("iii_common_start", c3), ("iv_reference_levels_present", c4)) if not ok]
+    failing_reg = [n for n, ok in (("i_every_block_varies", c1_registered), ("ii_no_block_in_span_of_others", c2),
+                                   ("iii_common_start", c3), ("iv_reference_levels_present", c4)) if not ok]
+    return {"identified": bool(c1 and c2 and c3 and c4), "failing_clauses": failing,
+            "identified_as_registered": bool(c1_registered and c2 and c3 and c4), "failing_clauses_as_registered": failing_reg,
+            "clauses": {"i": c1, "ii": c2, "iii": c3, "iv": c4}, "clause_i_as_registered": c1_registered,
+            "start_share_applicable": ranks["start"] >= 1, "ranks": ranks, "n_runs": int(len(r)),
+            "r2_block_on_others": r2, "max_canonical_corr": cc,
+            "personas": sorted(set(r["Persona"].astype(str))), "arms": sorted(set(r["Arm"].astype(str))) if "Arm" in r else [],
+            "start_designs": sorted(set(r["Start_Design"].astype(str))) if "Start_Design" in r else []}
+
+
+_SHARE_KEYS = ("S_persona", "S_directive", "S_market", "S_start", "S_state", "r2")
+
+
+def _init_threads():
+    """Process-pool initializer: sklearn's inner parallelism on threads (a spawned process per call on Windows re-imports
+    sklearn, which made the refits crawl); with fixed random states only the order of float sums changes."""
+    from joblib import parallel_config
+    parallel_config(backend="threading").__enter__()
+
+
+def _boot_frame(dw: pd.DataFrame, pick) -> pd.DataFrame:
+    """One seed-cluster resample: each drawn copy's `Seed` relabelled `s#j`, so its runs stay distinct runs (the lag and
+    permutation keys), and `Boot_Group` = the ORIGINAL seed, so every copy of a seed falls in one cross-validation fold.
+    Relabelling alone put identical copies in train and test (PREREG_PHASE_8_ADDENDUM.md 18)."""
+    parts = []
+    for j, s in enumerate(pick):
+        part = dw[dw["Seed"] == s].copy()
+        part["Seed"] = f"{s}#{j}"
+        part["Boot_Group"] = s
+        parts.append(part)
+    return pd.concat(parts, ignore_index=True)
+
+
+def _boot_refit(args) -> Dict[str, float]:
+    dw, include_state, pick, refit_seed, kw = args
+    res = surrogate_shares(_boot_frame(dw, pick), include_state=include_state, seed=refit_seed, groups_col="Boot_Group", **kw)
+    return {k: res.get(k, np.nan) for k in _SHARE_KEYS}
+
+
+def _bootstrap_shares(dw: pd.DataFrame, include_state: bool, n_boot: int, seed: int, n_jobs: int = 1, **kw) -> Dict[str, tuple]:
+    """Cluster bootstrap by seed (weakness 67): resample seeds with replacement, keep every copy of a seed in one
+    cross-validation fold (`_boot_frame`), refit; percentile 95 % interval per share.  Every resample is drawn up front in
+    the order the sequential loop draws it and every refit has its own seed, so the draws are the same for any
+    `n_jobs`; `n_jobs > 1` runs the refits in a process pool."""
+    rng = np.random.default_rng(seed)
+    seeds = np.array(sorted(dw["Seed"].unique(), key=str), dtype=object)
+    picks = [rng.choice(seeds, len(seeds), replace=True) for _ in range(n_boot)]
+    tasks = [(dw, include_state, picks[b], seed + b, kw) for b in range(n_boot)]
+    if n_jobs > 1:
+        from concurrent.futures import ProcessPoolExecutor
+        with ProcessPoolExecutor(max_workers=n_jobs, initializer=_init_threads) as ex:
+            results = list(ex.map(_boot_refit, tasks))
+    else:
+        results = [_boot_refit(t) for t in tasks]
+    draws = {k: [r[k] for r in results] for k in _SHARE_KEYS}
+    return {k: (float(np.nanpercentile(v, 2.5)), float(np.nanpercentile(v, 97.5))) if np.isfinite(v).any() else (np.nan, np.nan)
+            for k, v in ((k, np.asarray(v, float)) for k, v in draws.items())}
+
+
 def salience_by_window(runs: pd.DataFrame, window: int = WINDOW, include_state: bool = False,
-                       null_reps: int = 5, **kw) -> pd.DataFrame:
-    """Per model x window: shares, R2, and the label-permutation null of S_persona."""
+                       null_reps: int = 5, identification: str = "v2", n_boot: int = 200, n_jobs: int = 1, **kw) -> pd.DataFrame:
+    """Per model x window: shares, R2, and the label-permutation null of S_persona.
+
+    `identification="v2"` (default) is the published behaviour.  `"v2_1"` (v2.1 Phase 8, E8.4) evaluates
+    `identification_check` first and returns NOT IDENTIFIED rows, with the failing clauses and no shares, when the
+    design cannot separate the blocks (under start-at-target it never can); when identified it adds a cluster-bootstrap
+    95 % interval by seed (`n_boot` refits) to every share."""
+    if identification not in ("v2", "v2_1"):
+        raise ValueError(f"identification must be 'v2' or 'v2_1', got {identification!r}")
+    chk = None
+    if identification == "v2_1":
+        chk = identification_check(runs)
+        if not chk["identified"]:
+            return pd.DataFrame([{"Model": m, "status": "NOT IDENTIFIED", "failing_clauses": ",".join(chk["failing_clauses"]),
+                                  "identified_as_registered": chk["identified_as_registered"],
+                                  "n_runs": chk["n_runs"], "ranks": json.dumps(chk["ranks"]),
+                                  "start_designs": ",".join(chk["start_designs"])} for m in sorted(set(runs["Model"]))])
     out = []
     for model, dm in runs.groupby("Model"):
         wmax = int(dm["Day"].max())
@@ -108,8 +250,18 @@ def salience_by_window(runs: pd.DataFrame, window: int = WINDOW, include_state: 
             res = surrogate_shares(dw, include_state=include_state, **kw)
             nulls = [surrogate_shares(dw, include_state=include_state, permute_persona=True, seed=s, **kw)["S_persona"]
                      for s in range(null_reps)] if not np.isnan(res["r2"]) else []
-            out.append({"Model": model, "window_start": w0, "window_end": min(w0 + window - 1, wmax),
-                        **res, "S_persona_null_mean": float(np.nanmean(nulls)) if nulls else np.nan})
+            row = {"Model": model, "window_start": w0, "window_end": min(w0 + window - 1, wmax),
+                   **res, "S_persona_null_mean": float(np.nanmean(nulls)) if nulls else np.nan}
+            if identification == "v2_1":
+                row["status"] = "IDENTIFIED"
+                row["identified_as_registered"] = chk["identified_as_registered"]
+                if not chk["start_share_applicable"]:
+                    row["S_start"] = np.nan              # constant at common start: not a share (addendum 10)
+                if not np.isnan(res["r2"]) and n_boot > 0:
+                    for k, (lo, hi) in _bootstrap_shares(dw, include_state, n_boot, kw.get("seed", 0), n_jobs=n_jobs,
+                                                         **{kk: v for kk, v in kw.items() if kk != "seed"}).items():
+                        row[f"{k}_lo"], row[f"{k}_hi"] = lo, hi
+            out.append(row)
     return pd.DataFrame(out)
 
 

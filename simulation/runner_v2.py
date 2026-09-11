@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import json
 import os
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field, asdict, fields
 from typing import Any, Dict, Optional
 
 import pandas as pd
@@ -51,6 +51,7 @@ class RunConfig:
     cost_bp: float = 5.0
     cost_visible: bool = False
     execution: str = "same_day"           # same_day | next_open
+    dividends: bool = False               # v2.1 Phase 7 E7.4 / D10: pay the quarterly DPS into cash on ex-dates
     disclose_horizon: bool = False
     field_order: str = "canonical"
     b_pred: Optional[float] = None
@@ -63,6 +64,9 @@ class RunConfig:
     context_mode: str = "stateless"       # stateless | rolling | full | summary   (E5 stateful arm)
     context_window: int = 20              # rolling: steps retained
     context_token_budget: int = 60000     # full: token budget
+    # v2.1 Phase 8 (PREREG_PHASE_8.md 1.1, 1.6): both default to the behaviour every published run used
+    harness_version: str = "v2"           # v2 | v2_1 (stateful arm corrections E8.1(a)-(d))
+    placebo_version: str = "v2"           # v2 | v2_1 (the per-persona matched directive placebo, E8.1(e))
     initial_value: float = 10000.0
     output_dir: str = "results_v2"
     env_config: Dict[str, Any] = field(default_factory=dict)
@@ -88,17 +92,22 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
                     action_interface=cfg.action_interface, n_assets=cfg.n_assets,
                     disclose_horizon=cfg.disclose_horizon, T=cfg.T, cost_visible=cfg.cost_visible,
                     cost_bp=cfg.cost_bp, objective=cfg.objective, mandate_in_system=cfg.mandate_in_system,
-                    temperature=cfg.temperature, liquidity_condition=cfg.liquidity_condition, llm=cfg.agent_llm)
+                    temperature=cfg.temperature, liquidity_condition=cfg.liquidity_condition, llm=cfg.agent_llm,
+                    placebo_version=cfg.placebo_version)
     if cfg.context_mode == "stateless":
         agent = V2Agent(**agent_kw)
     else:
         agent = StatefulV2Agent(context_mode=cfg.context_mode, window=cfg.context_window,
-                                token_budget=cfg.context_token_budget, **agent_kw)
+                                token_budget=cfg.context_token_budget, harness=cfg.harness_version, **agent_kw)
     persona_for_start = cfg.persona if cfg.persona not in ("NONE", "TRADER") else "TRADER"
     c0 = 0.5 if persona_for_start == "TRADER" and cfg.start_design != "v1" else start_cash_share(persona_for_start, cfg.start_design)
     obs = env.reset()
     p0 = [a["price"] for a in obs["assets"]] if cfg.n_assets > 1 else obs["price"]
-    port = PortfolioV2(cfg.initial_value, c0, p0, n_assets=cfg.n_assets)
+    port = PortfolioV2(cfg.initial_value, c0, p0, n_assets=cfg.n_assets, dividends=cfg.dividends)
+    div_sched = None
+    if cfg.dividends:
+        from simulation.dividends import dividend_schedule
+        div_sched = dividend_schedule(env, n_assets=cfg.n_assets, n_days=cfg.T)
     prov = {**env_provenance(env), **agent_provenance(agent)}
     meta = env.get_metadata()
     # the no-persona trader is band-free, (0, 1), as in evaluation/metrics_v2.py and baselines_v2.py (v2.1 Phase 0, item 73;
@@ -113,9 +122,17 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
         if obs is None:
             break
         price = obs["price"]
+        prices_t = [a["price"] for a in obs["assets"]] if cfg.n_assets > 1 else price
+        # E7.4: the dividend goes to the holder of record -- the holdings carried into the ex-date, before this
+        # day's settlement and trade.  A no-op unless cfg.dividends.
+        if div_sched is not None and t < len(div_sched) and float(div_sched[t].sum()) != 0.0:
+            port.pay_dividend([float(v) for v in div_sched[t]] if cfg.n_assets > 1 else float(div_sched[t, 0]), t + 1)
+        # weakness 60: the share BEFORE anything executes on this day (under next_open the settlement below is
+        # yesterday's decision), logged beside the share after everything has executed.
+        cash_share_pre = port.cash_share(prices_t)
         if cfg.execution == "next_open":
-            port.settle_pending([a["price"] for a in obs["assets"]] if cfg.n_assets > 1 else price, t + 1)
-        state = port.get_state([a["price"] for a in obs["assets"]] if cfg.n_assets > 1 else price)
+            port.settle_pending(prices_t, t + 1)
+        state = port.get_state(prices_t)
         decision = agent.decide(obs, state)
         parse_status = agent.last_parse_status
         prices = [a["price"] for a in obs["assets"]] if cfg.n_assets > 1 else price
@@ -150,6 +167,8 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
             "Resolvable_0.08": bool(gt["resolvable_0.08"]),
             "Portfolio_Value": st["total_value"], "Cash": st["cash"], "Holdings_Value": st["holdings_value"],
             "Cash_Share": st["cash_share"], "Holdings_Qty": port.holdings_qty[0],
+            "Cash_Share_Pre": cash_share_pre, "Cash_Share_Post": st["cash_share"],
+            "Dividends_Paid": port.dividends_paid_total,
             "Target_Cash_Share": target, "Quantity_Percent": qty, "Action": action_label,
             "Traded_Value": rec["traded_value"], "Cost_Paid": rec["cost_paid"],
             "Band_Lo": lo, "Band_Hi": hi, "Band_Centre": centre(persona_for_start) if persona_for_start != "TRADER" else 0.5,
@@ -185,8 +204,13 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
     out_dir = os.path.join(cfg.output_dir, cfg.model_name.replace("/", "_"), cfg.scenario, f"seed{cfg.seed}")
     os.makedirs(out_dir, exist_ok=True)
     df.to_csv(os.path.join(out_dir, f"{run_id}.csv"), index=False)
+    # v2.1 Phase 8: built field by field.  `asdict(cfg)` deep-copies EVERY field before the client is dropped, and a live
+    # provider client holds a thread lock that cannot be copied, so every run with an injected client wrote its CSV
+    # and then failed here (found by E8.5's smoke; tests/test_v2_1_phase_8.py::test_runner_meta_with_live_client).
+    # For a run without an injected client the JSON is identical to the asdict construction.
+    run_config = {f.name: getattr(cfg, f.name) for f in fields(cfg) if f.name != "agent_llm"}
     with open(os.path.join(out_dir, f"{run_id}.meta.json"), "w", encoding="utf-8") as fh:
-        json.dump({"run_config": {k: v for k, v in asdict(cfg).items() if k != "agent_llm"},
+        json.dump({"run_config": run_config,
                    "env_metadata": meta, "provenance": prov,
                    "turnover": port.turnover_value / cfg.initial_value, "cost_paid_total": port.cost_paid_total,
                    "n_trades": len(port.trades),

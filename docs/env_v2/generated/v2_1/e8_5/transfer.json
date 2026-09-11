@@ -1,0 +1,150 @@
+{
+ "per_metric": {
+  "band_mas": {
+   "sigma_d_flash_bull_trap": 0.029417672097081696,
+   "sigma_d_gpt5mini_bull_trap": 0.06513184722346853,
+   "ratio": 2.21403811316293,
+   "ratio_ci90": [
+    1.8779361595971433,
+    2.993030340966196
+   ],
+   "sigma2_rep_flash_bull_trap": 9.141807753575246e-05,
+   "sigma2_rep_gpt5mini_bull_trap": 0.00012315050795583835,
+   "sigma2_int_flash_bull_trap": 0.000804454046587584,
+   "sigma2_int_gpt5mini_bull_trap": 0.004160057184104019,
+   "ratio_R1": 2.1126010238608033,
+   "sigma_limit_main_grid": 0.08409404182215811,
+   "mdd_appA_bonf_main_grid": 0.04980426350551956
+  },
+  "v21_mcr_B_0.05": {
+   "sigma_d_flash_bull_trap": 0.023903414452414635,
+   "sigma_d_gpt5mini_bull_trap": 0.060620002790834175,
+   "ratio": 2.5360394813683436,
+   "ratio_ci90": [
+    1.8923782033590957,
+    3.3861332077861195
+   ],
+   "sigma2_rep_flash_bull_trap": 0.000121379183384631,
+   "sigma2_rep_gpt5mini_bull_trap": 0.00018000200862990066,
+   "sigma2_int_flash_bull_trap": 0.0004904537668941509,
+   "sigma2_int_gpt5mini_bull_trap": 0.0035547833992741426,
+   "ratio_R1": 2.3106771526136973,
+   "sigma_limit_main_grid": 0.13637867204444665,
+   "mdd_appA_bonf_main_grid": 0.08076956668819256
+  },
+  "v21_mcr_D_0.05": {
+   "sigma_d_flash_bull_trap": 0.010061100910625191,
+   "sigma_d_gpt5mini_bull_trap": 0.025950559540321643,
+   "ratio": 2.579296219255303,
+   "ratio_ci90": [
+    1.8876531330734445,
+    2.9896382534666706
+   ],
+   "sigma2_rep_flash_bull_trap": 3.182161275702627e-05,
+   "sigma2_rep_gpt5mini_bull_trap": 4.727670743342936e-05,
+   "sigma2_int_flash_bull_trap": 8.001134302909886e-05,
+   "sigma2_int_gpt5mini_bull_trap": 0.0006419137355001591,
+   "ratio_R1": 2.2642113810501288,
+   "sigma_limit_main_grid": 0.06515180482781939,
+   "mdd_appA_bonf_main_grid": 0.03858582112591369
+  },
+  "v21_mcr_0.05": {
+   "sigma_d_flash_bull_trap": 0.01974328021704388,
+   "sigma_d_gpt5mini_bull_trap": 0.05316392124370333,
+   "ratio": 2.6927603042278783,
+   "ratio_ci90": [
+    1.929357827363545,
+    3.760080069617614
+   ],
+   "sigma2_rep_flash_bull_trap": 0.00013586074269174262,
+   "sigma2_rep_gpt5mini_bull_trap": 0.00021284954864416423,
+   "sigma2_int_flash_bull_trap": 0.0002992232852675546,
+   "sigma2_int_gpt5mini_bull_trap": 0.002684502822910581,
+   "ratio_R1": 2.3339806049742102,
+   "sigma_limit_main_grid": 0.18376243210659393,
+   "mdd_appA_bonf_main_grid": 0.10883235473931557
+  },
+  "v21_mcr_B_0.002": {
+   "sigma_d_flash_bull_trap": 0.02903865457360721,
+   "sigma_d_gpt5mini_bull_trap": 0.06385053458818314,
+   "ratio": 2.1988117399287472,
+   "ratio_ci90": [
+    1.789122013705281,
+    2.9144699452843486
+   ],
+   "sigma2_rep_flash_bull_trap": 8.747540927889513e-05,
+   "sigma2_rep_gpt5mini_bull_trap": 0.00012356332840490967,
+   "sigma2_int_flash_bull_trap": 0.0007849265199260156,
+   "sigma2_int_gpt5mini_bull_trap": 0.003994515214926831,
+   "ratio_R1": 2.102127866841473,
+   "sigma_limit_main_grid": 0.08260555246453684,
+   "mdd_appA_bonf_main_grid": 0.04892271334351274
+  },
+  "v21_mcr_D_0.002": {
+   "sigma_d_flash_bull_trap": 0.009274301771617833,
+   "sigma_d_gpt5mini_bull_trap": 0.01928389763741867,
+   "ratio": 2.0792829597623435,
+   "ratio_ci90": [
+    1.407299263017168,
+    2.695945763904062
+   ],
+   "sigma2_rep_flash_bull_trap": 2.0403462901104246e-05,
+   "sigma2_rep_gpt5mini_bull_trap": 2.3145538152165584e-05,
+   "sigma2_int_flash_bull_trap": 7.241036475029749e-05,
+   "sigma2_int_gpt5mini_bull_trap": 0.00035643834932233104,
+   "ratio_R1": 1.8860374092773202,
+   "sigma_limit_main_grid": 0.025983553020913923,
+   "mdd_appA_bonf_main_grid": 0.015388625560416968
+  },
+  "v21_mcr_0.002": {
+   "sigma_d_flash_bull_trap": 0.024790681207894173,
+   "sigma_d_gpt5mini_bull_trap": 0.05829099830203753,
+   "ratio": 2.3513270092584526,
+   "ratio_ci90": [
+    1.8049245089826493,
+    4.347685876340554
+   ],
+   "sigma2_rep_flash_bull_trap": 0.00010644272680127454,
+   "sigma2_rep_gpt5mini_bull_trap": 0.00014412350431233846,
+   "sigma2_int_flash_bull_trap": 0.0005436160568839209,
+   "sigma2_int_gpt5mini_bull_trap": 0.0033017581468399167,
+   "ratio_R1": 2.178425120239384,
+   "sigma_limit_main_grid": 0.09645742201360315,
+   "mdd_appA_bonf_main_grid": 0.05712641179963811
+  },
+  "turnover": {
+   "sigma_d_flash_bull_trap": 7.287878908191935,
+   "sigma_d_gpt5mini_bull_trap": 5.791097070502712,
+   "ratio": 0.7946203749342259,
+   "ratio_ci90": [
+    0.48335640039481903,
+    1.1169023642600142
+   ],
+   "sigma2_rep_flash_bull_trap": 8.003636004173181,
+   "sigma2_rep_gpt5mini_bull_trap": 1.8211219918645352,
+   "sigma2_int_flash_bull_trap": 47.77742164435342,
+   "sigma2_int_gpt5mini_bull_trap": 32.3227239520754,
+   "ratio_R1": 0.7508991309707684,
+   "sigma_limit_main_grid": 10.475642561643973,
+   "mdd_appA_bonf_main_grid": 6.204145397519472
+  }
+ },
+ "band_mas_plugin": {
+  "sigma_limit_flash_R1": 0.0379822015358277,
+  "sigma_bootstrap_ucl90_flash_R1": 0.0372462012484005,
+  "ratio": 2.21403811316293,
+  "plugin_main_grid": 0.08409404182215811,
+  "plugin_at_ratio_upper": 0.11368188161342516,
+  "plugin_main_grid_bootstrap": 0.08246450913449542,
+  "alpha_bonferroni": 0.001388888888888889,
+  "seeds_appA_bonf_main_grid": 93,
+  "seeds_paired_bonf_main_grid": 47,
+  "seeds_appA_bonf_at_ratio_upper": 169,
+  "seeds_appA_bonf_main_grid_bootstrap": 89
+ },
+ "temperature": {
+  "gemini-2.5-flash": 0.2,
+  "gpt-5-mini": 1.0
+ },
+ "caveat": "GPT-5 mini runs at temperature 1.0 (the only value the provider accepts): the ratio is a transfer of model AND temperature"
+}

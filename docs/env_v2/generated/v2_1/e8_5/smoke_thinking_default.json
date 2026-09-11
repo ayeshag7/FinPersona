@@ -1,0 +1,153 @@
+{
+ "projected_total_usd": 594.428988,
+ "l3_estimate_usd": 12.0,
+ "approved_usd": 139.0,
+ "gate_usd": 174.0,
+ "pass": false,
+ "priced_on": "billed usage of every smoke run that completed all its calls",
+ "all_smoke_runs_ok": false,
+ "usd_spent_on_smoke": 2.4832575,
+ "per_design": {
+  "main": {
+   "model": "gemini-2.5-flash",
+   "usd_per_run_measured": 0.934339,
+   "n_smoke_runs_ok": 2,
+   "n_runs": 576,
+   "usd_projected": 538.179264,
+   "seconds_per_run": 1697.5271612405777,
+   "input_tokens_per_call": 1925.525,
+   "output_tokens_per_call": 1637.615,
+   "reasoning_tokens_per_call": 1540.3375
+  },
+  "transfer": {
+   "model": "gpt-5-mini",
+   "usd_per_run_measured": 0.30728975000000003,
+   "n_smoke_runs_ok": 2,
+   "n_runs": 144,
+   "usd_projected": 44.249724,
+   "seconds_per_run": 1298.2323324680328,
+   "input_tokens_per_call": 1838.595,
+   "output_tokens_per_call": 538.4,
+   "reasoning_tokens_per_call": 444.8
+  }
+ },
+ "runs": [
+  {
+   "which": "main",
+   "run_id": "gemini-2.5-flash__ISFJ__static__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "temperature": 0.2,
+   "status": "failed",
+   "error": "TypeError: cannot pickle '_thread.lock' object",
+   "seconds": 1999.5507082939148,
+   "n_llm_calls": 200,
+   "input_tokens": 377409,
+   "output_tokens": 387434,
+   "reasoning_tokens": 367673,
+   "usd": 1.0818077,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "llm_errors": [],
+   "cell": [
+    "ISFJ",
+    "static",
+    "bull_trap",
+    2001,
+    0
+   ],
+   "utc": "2026-09-10T08:59:27Z"
+  },
+  {
+   "which": "main",
+   "run_id": "gemini-2.5-flash__ISFJ__memory__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "temperature": 0.2,
+   "status": "failed",
+   "error": "TypeError: cannot pickle '_thread.lock' object",
+   "seconds": 1395.5036141872406,
+   "n_llm_calls": 200,
+   "input_tokens": 392801,
+   "output_tokens": 267612,
+   "reasoning_tokens": 248462,
+   "usd": 0.7868703,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "llm_errors": [],
+   "cell": [
+    "ISFJ",
+    "memory",
+    "bull_trap",
+    2001,
+    0
+   ],
+   "utc": "2026-09-10T08:49:23Z"
+  },
+  {
+   "which": "transfer",
+   "run_id": "gpt-5-mini__ISFJ__static__bull_trap__seed2001__rep0",
+   "model": "gpt-5-mini",
+   "temperature": 1.0,
+   "status": "failed",
+   "error": "TypeError: cannot pickle '_thread.RLock' object",
+   "seconds": 1453.5881633758545,
+   "n_llm_calls": 200,
+   "input_tokens": 360775,
+   "output_tokens": 121942,
+   "reasoning_tokens": 102464,
+   "usd": 0.33407775,
+   "prices_per_M": [
+    0.25,
+    2.0
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "llm_errors": [],
+   "cell": [
+    "ISFJ",
+    "static",
+    "bull_trap",
+    2001,
+    0
+   ],
+   "utc": "2026-09-10T08:50:26Z"
+  },
+  {
+   "which": "transfer",
+   "run_id": "gpt-5-mini__ISFJ__memory__bull_trap__seed2001__rep0",
+   "model": "gpt-5-mini",
+   "temperature": 1.0,
+   "status": "failed",
+   "error": "TypeError: cannot pickle '_thread.RLock' object",
+   "seconds": 1142.8765015602112,
+   "n_llm_calls": 200,
+   "input_tokens": 374663,
+   "output_tokens": 93418,
+   "reasoning_tokens": 75456,
+   "usd": 0.28050175,
+   "prices_per_M": [
+    0.25,
+    2.0
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "llm_errors": [],
+   "cell": [
+    "ISFJ",
+    "memory",
+    "bull_trap",
+    2001,
+    0
+   ],
+   "utc": "2026-09-10T08:45:15Z"
+  }
+ ],
+ "generated_utc": "2026-09-10T09:06:13Z"
+}

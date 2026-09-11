@@ -1,0 +1,1152 @@
+gemini-2.5-flash: 576 runs in the design, 2 done, 574 pending, 0 abandoned after 3 non-ok attempts; spend so far $3.43 (stop at $177.00)
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[1/574] gemini-2.5-flash__ISFJ__static__flat__seed2002__rep0 -> ok (521s, $0.166, fallbacks 0); spend $3.60; ETA 174.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[2/574] gemini-2.5-flash__ISFJ__static__flat__seed2001__rep0 -> ok (525s, $0.167, fallbacks 0); spend $3.93; ETA 87.2 h
+[3/574] gemini-2.5-flash__ISFJ__static__flat__seed2004__rep2 -> ok (525s, $0.167, fallbacks 0); spend $3.93; ETA 58.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[4/574] gemini-2.5-flash__ISFJ__static__flat__seed2003__rep1 -> ok (525s, $0.167, fallbacks 0); spend $4.27; ETA 43.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[5/574] gemini-2.5-flash__ISFJ__static__flat__seed2002__rep1 -> ok (525s, $0.167, fallbacks 0); spend $4.43; ETA 34.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[6/574] gemini-2.5-flash__ISFJ__static__flat__seed2006__rep0 -> ok (525s, $0.166, fallbacks 0); spend $4.60; ETA 28.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[7/574] gemini-2.5-flash__ISFJ__static__flat__seed2005__rep0 -> ok (525s, $0.168, fallbacks 0); spend $4.60; ETA 24.7 h
+[8/574] gemini-2.5-flash__ISFJ__static__flat__seed2003__rep2 -> ok (529s, $0.168, fallbacks 0); spend $4.77; ETA 21.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[9/574] gemini-2.5-flash__ISFJ__static__flat__seed2005__rep2 -> ok (546s, $0.167, fallbacks 0); spend $4.93; ETA 19.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[10/574] gemini-2.5-flash__ISFJ__static__flat__seed2002__rep2 -> ok (546s, $0.167, fallbacks 0); spend $5.27; ETA 17.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[11/574] gemini-2.5-flash__ISFJ__static__flat__seed2004__rep1 -> ok (546s, $0.167, fallbacks 0); spend $5.43; ETA 15.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[12/574] gemini-2.5-flash__ISFJ__static__flat__seed2003__rep0 -> ok (546s, $0.166, fallbacks 0); spend $5.60; ETA 14.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[13/574] gemini-2.5-flash__ISFJ__static__flat__seed2001__rep1 -> ok (546s, $0.167, fallbacks 0); spend $5.60; ETA 13.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[14/574] gemini-2.5-flash__ISFJ__static__flat__seed2004__rep0 -> ok (547s, $0.167, fallbacks 0); spend $5.77; ETA 12.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[15/574] gemini-2.5-flash__ISFJ__static__flat__seed2005__rep1 -> ok (548s, $0.168, fallbacks 0); spend $5.94; ETA 11.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[16/574] gemini-2.5-flash__ISFJ__static__flat__seed2001__rep2 -> ok (554s, $0.167, fallbacks 0); spend $6.10; ETA 10.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[17/574] gemini-2.5-flash__ISFJ__static__flat__seed2006__rep1 -> ok (259s, $0.166, fallbacks 0); spend $6.27; ETA 13.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[18/574] gemini-2.5-flash__ISFJ__static__flat__seed2007__rep0 -> ok (255s, $0.164, fallbacks 0); spend $6.43; ETA 12.6 h
+[19/574] gemini-2.5-flash__ISFJ__static__flat__seed2007__rep2 -> ok (252s, $0.165, fallbacks 0); spend $6.60; ETA 12.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[20/574] gemini-2.5-flash__ISFJ__static__flat__seed2006__rep2 -> ok (260s, $0.166, fallbacks 0); spend $6.76; ETA 11.4 h
+[21/574] gemini-2.5-flash__ISFJ__static__flat__seed2007__rep1 -> ok (259s, $0.165, fallbacks 0); spend $6.93; ETA 10.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[22/574] gemini-2.5-flash__ISFJ__static__flat__seed2008__rep0 -> ok (258s, $0.167, fallbacks 0); spend $7.10; ETA 10.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[23/574] gemini-2.5-flash__ISFJ__static__flat__seed2008__rep2 -> ok (258s, $0.166, fallbacks 0); spend $7.26; ETA 9.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[24/574] gemini-2.5-flash__ISFJ__static__flat__seed2008__rep1 -> ok (265s, $0.167, fallbacks 0); spend $7.43; ETA 9.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[25/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2003__rep1 -> ok (255s, $0.166, fallbacks 0); spend $7.60; ETA 9.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[26/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2002__rep2 -> ok (258s, $0.168, fallbacks 0); spend $7.76; ETA 8.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[27/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2003__rep2 -> ok (258s, $0.167, fallbacks 0); spend $7.93; ETA 8.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[28/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2003__rep0 -> ok (259s, $0.167, fallbacks 0); spend $8.10; ETA 8.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[29/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2002__rep0 -> ok (261s, $0.168, fallbacks 0); spend $8.27; ETA 7.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[30/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2001__rep2 -> ok (261s, $0.168, fallbacks 0); spend $8.43; ETA 7.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[31/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2002__rep1 -> ok (261s, $0.167, fallbacks 0); spend $8.60; ETA 7.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[32/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2001__rep1 -> ok (267s, $0.168, fallbacks 0); spend $8.77; ETA 7.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[33/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2004__rep0 -> ok (246s, $0.166, fallbacks 0); spend $8.94; ETA 7.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[34/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2004__rep1 -> ok (244s, $0.166, fallbacks 0); spend $9.10; ETA 7.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[35/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2004__rep2 -> ok (240s, $0.165, fallbacks 0); spend $9.27; ETA 7.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[36/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2005__rep0 -> ok (247s, $0.169, fallbacks 0); spend $9.43; ETA 7.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[37/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2005__rep2 -> ok (251s, $0.169, fallbacks 0); spend $9.60; ETA 7.1 h
+[38/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2005__rep1 -> ok (253s, $0.169, fallbacks 0); spend $9.77; ETA 6.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[39/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2006__rep0 -> ok (248s, $0.167, fallbacks 0); spend $9.94; ETA 6.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[40/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2006__rep1 -> ok (245s, $0.167, fallbacks 0); spend $10.11; ETA 6.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[41/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2007__rep1 -> ok (241s, $0.166, fallbacks 0); spend $10.44; ETA 6.4 h
+[42/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2006__rep2 -> ok (244s, $0.167, fallbacks 0); spend $10.44; ETA 6.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[43/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2007__rep0 -> ok (244s, $0.165, fallbacks 0); spend $10.61; ETA 6.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[44/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2008__rep2 -> ok (248s, $0.167, fallbacks 0); spend $10.77; ETA 6.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[45/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2007__rep2 -> ok (251s, $0.165, fallbacks 0); spend $11.11; ETA 5.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[46/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2008__rep1 -> ok (249s, $0.167, fallbacks 0); spend $11.11; ETA 5.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[47/574] gemini-2.5-flash__ISFJ__static__bull_trap__seed2008__rep0 -> ok (252s, $0.168, fallbacks 0); spend $11.44; ETA 5.6 h
+[48/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2001__rep0 -> ok (251s, $0.167, fallbacks 0); spend $11.44; ETA 5.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[49/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2001__rep1 -> ok (278s, $0.169, fallbacks 0); spend $15.13; ETA 6.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[50/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2001__rep2 -> ok (277s, $0.168, fallbacks 0); spend $15.30; ETA 5.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[51/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2002__rep0 -> ok (280s, $0.167, fallbacks 0); spend $15.47; ETA 5.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[52/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2002__rep1 -> ok (276s, $0.166, fallbacks 0); spend $15.64; ETA 5.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[53/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2003__rep1 -> ok (273s, $0.167, fallbacks 0); spend $15.80; ETA 5.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[54/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2002__rep2 -> ok (281s, $0.166, fallbacks 0); spend $16.14; ETA 5.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[55/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2003__rep0 -> ok (278s, $0.167, fallbacks 0); spend $16.14; ETA 5.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[56/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2003__rep2 -> ok (279s, $0.167, fallbacks 0); spend $16.30; ETA 5.3 h
+[57/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2004__rep0 -> ok (279s, $0.168, fallbacks 0); spend $16.81; ETA 5.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[58/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2004__rep1 -> ok (284s, $0.168, fallbacks 0); spend $16.98; ETA 5.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[59/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2004__rep2 -> ok (288s, $0.167, fallbacks 0); spend $17.14; ETA 5.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[60/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2005__rep0 -> ok (281s, $0.167, fallbacks 0); spend $17.48; ETA 5.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[61/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2005__rep2 -> ok (277s, $0.166, fallbacks 0); spend $17.48; ETA 4.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[62/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2006__rep1 -> ok (278s, $0.166, fallbacks 0); spend $17.64; ETA 4.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[63/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2005__rep1 -> ok (279s, $0.168, fallbacks 0); spend $17.81; ETA 4.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[64/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2006__rep0 -> ok (282s, $0.166, fallbacks 0); spend $17.98; ETA 4.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[65/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2006__rep2 -> ok (286s, $0.167, fallbacks 0); spend $18.14; ETA 5.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[66/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2007__rep0 -> ok (276s, $0.165, fallbacks 0); spend $18.31; ETA 4.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[67/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2007__rep1 -> ok (274s, $0.165, fallbacks 0); spend $18.47; ETA 4.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[68/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2007__rep2 -> ok (280s, $0.165, fallbacks 0); spend $18.64; ETA 4.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[69/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2008__rep2 -> ok (284s, $0.167, fallbacks 0); spend $18.80; ETA 4.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[70/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2008__rep1 -> ok (286s, $0.167, fallbacks 0); spend $19.14; ETA 4.7 h
+[71/574] gemini-2.5-flash__ISFJ__static__crash_d0.7__seed2008__rep0 -> ok (288s, $0.167, fallbacks 0); spend $19.14; ETA 4.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[72/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2001__rep0 -> ok (291s, $0.167, fallbacks 0); spend $19.31; ETA 4.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[73/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2001__rep1 -> ok (291s, $0.167, fallbacks 0); spend $19.47; ETA 4.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[74/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2002__rep0 -> ok (291s, $0.167, fallbacks 0); spend $19.64; ETA 4.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[75/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2001__rep2 -> ok (292s, $0.167, fallbacks 0); spend $19.81; ETA 4.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[76/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2003__rep0 -> ok (290s, $0.166, fallbacks 0); spend $19.97; ETA 4.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[77/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2003__rep1 -> ok (292s, $0.166, fallbacks 0); spend $20.14; ETA 4.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[78/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2002__rep1 -> ok (295s, $0.167, fallbacks 0); spend $20.31; ETA 4.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[79/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2003__rep2 -> ok (295s, $0.166, fallbacks 0); spend $20.47; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[80/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2002__rep2 -> ok (306s, $0.167, fallbacks 0); spend $20.64; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[81/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2004__rep0 -> ok (305s, $0.168, fallbacks 0); spend $20.81; ETA 4.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[82/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2004__rep1 -> ok (314s, $0.168, fallbacks 0); spend $20.98; ETA 4.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[83/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2004__rep2 -> ok (311s, $0.168, fallbacks 0); spend $21.14; ETA 4.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[84/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2005__rep0 -> ok (309s, $0.168, fallbacks 0); spend $21.31; ETA 4.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[85/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2005__rep2 -> ok (308s, $0.167, fallbacks 0); spend $21.48; ETA 4.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[86/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2006__rep0 -> ok (309s, $0.169, fallbacks 0); spend $21.65; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[87/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2005__rep1 -> ok (316s, $0.168, fallbacks 0); spend $21.82; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[88/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2006__rep1 -> ok (310s, $0.168, fallbacks 0); spend $21.98; ETA 4.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[89/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2007__rep0 -> ok (304s, $0.166, fallbacks 0); spend $22.32; ETA 4.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[90/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2006__rep2 -> ok (308s, $0.168, fallbacks 0); spend $22.32; ETA 4.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[91/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2007__rep1 -> ok (304s, $0.167, fallbacks 0); spend $22.48; ETA 4.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[92/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2007__rep2 -> ok (306s, $0.166, fallbacks 0); spend $22.65; ETA 4.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[93/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2008__rep1 -> ok (306s, $0.167, fallbacks 0); spend $22.98; ETA 3.9 h
+[94/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2008__rep0 -> ok (310s, $0.167, fallbacks 0); spend $22.98; ETA 3.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[95/574] gemini-2.5-flash__ISFJ__static__sustained_bull__seed2008__rep2 -> ok (306s, $0.167, fallbacks 0); spend $23.15; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[96/574] gemini-2.5-flash__ISFJ__memory__flat__seed2001__rep0 -> ok (303s, $0.169, fallbacks 0); spend $23.32; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[97/574] gemini-2.5-flash__ISFJ__memory__flat__seed2001__rep1 -> ok (291s, $0.169, fallbacks 0); spend $23.49; ETA 4.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[98/574] gemini-2.5-flash__ISFJ__memory__flat__seed2002__rep0 -> ok (294s, $0.168, fallbacks 0); spend $23.66; ETA 3.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[99/574] gemini-2.5-flash__ISFJ__memory__flat__seed2001__rep2 -> ok (301s, $0.169, fallbacks 0); spend $23.83; ETA 3.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[100/574] gemini-2.5-flash__ISFJ__memory__flat__seed2002__rep1 -> ok (290s, $0.168, fallbacks 0); spend $23.99; ETA 3.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[101/574] gemini-2.5-flash__ISFJ__memory__flat__seed2002__rep2 -> ok (291s, $0.167, fallbacks 0); spend $24.16; ETA 3.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[102/574] gemini-2.5-flash__ISFJ__memory__flat__seed2003__rep0 -> ok (287s, $0.169, fallbacks 0); spend $24.33; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[103/574] gemini-2.5-flash__ISFJ__memory__flat__seed2003__rep1 -> ok (287s, $0.171, fallbacks 0); spend $24.50; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[104/574] gemini-2.5-flash__ISFJ__memory__flat__seed2003__rep2 -> ok (295s, $0.170, fallbacks 0); spend $24.67; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[105/574] gemini-2.5-flash__ISFJ__memory__flat__seed2004__rep2 -> ok (287s, $0.168, fallbacks 0); spend $24.84; ETA 3.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[106/574] gemini-2.5-flash__ISFJ__memory__flat__seed2004__rep1 -> ok (288s, $0.168, fallbacks 0); spend $25.01; ETA 3.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[107/574] gemini-2.5-flash__ISFJ__memory__flat__seed2004__rep0 -> ok (298s, $0.168, fallbacks 0); spend $25.18; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[108/574] gemini-2.5-flash__ISFJ__memory__flat__seed2005__rep0 -> ok (285s, $0.169, fallbacks 0); spend $25.34; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[109/574] gemini-2.5-flash__ISFJ__memory__flat__seed2005__rep2 -> ok (285s, $0.169, fallbacks 0); spend $25.51; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[110/574] gemini-2.5-flash__ISFJ__memory__flat__seed2006__rep0 -> ok (285s, $0.168, fallbacks 0); spend $25.68; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[111/574] gemini-2.5-flash__ISFJ__memory__flat__seed2006__rep1 -> ok (287s, $0.168, fallbacks 0); spend $25.85; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[112/574] gemini-2.5-flash__ISFJ__memory__flat__seed2005__rep1 -> ok (290s, $0.169, fallbacks 0); spend $26.02; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[113/574] gemini-2.5-flash__ISFJ__memory__flat__seed2006__rep2 -> ok (278s, $0.168, fallbacks 0); spend $26.19; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[114/574] gemini-2.5-flash__ISFJ__memory__flat__seed2007__rep0 -> ok (275s, $0.167, fallbacks 0); spend $26.35; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[115/574] gemini-2.5-flash__ISFJ__memory__flat__seed2007__rep1 -> ok (274s, $0.167, fallbacks 0); spend $26.83; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[116/574] gemini-2.5-flash__ISFJ__memory__flat__seed2007__rep2 -> ok (281s, $0.167, fallbacks 0); spend $27.31; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[117/574] gemini-2.5-flash__ISFJ__memory__flat__seed2008__rep0 -> ok (284s, $0.169, fallbacks 0); spend $27.76; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[118/574] gemini-2.5-flash__ISFJ__memory__flat__seed2008__rep2 -> ok (278s, $0.169, fallbacks 0); spend $27.93; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[119/574] gemini-2.5-flash__ISFJ__memory__flat__seed2008__rep1 -> ok (285s, $0.169, fallbacks 0); spend $28.10; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[120/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2002__rep0 -> ok (271s, $0.169, fallbacks 0); spend $28.26; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[121/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2001__rep1 -> ok (279s, $0.169, fallbacks 0); spend $28.43; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[122/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2001__rep2 -> ok (278s, $0.169, fallbacks 0); spend $28.60; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[123/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2002__rep1 -> ok (274s, $0.169, fallbacks 0); spend $28.77; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[124/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2002__rep2 -> ok (278s, $0.169, fallbacks 0); spend $28.94; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[125/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2003__rep0 -> ok (271s, $0.170, fallbacks 0); spend $29.76; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[126/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2003__rep1 -> ok (275s, $0.170, fallbacks 0); spend $29.93; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[127/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2004__rep0 -> ok (278s, $0.167, fallbacks 0); spend $30.10; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[128/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2003__rep2 -> ok (280s, $0.172, fallbacks 0); spend $30.27; ETA 3.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[129/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2004__rep1 -> ok (268s, $0.168, fallbacks 0); spend $32.73; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[130/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2004__rep2 -> ok (272s, $0.167, fallbacks 0); spend $32.89; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[131/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2005__rep0 -> ok (281s, $0.170, fallbacks 0); spend $33.06; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[132/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2005__rep1 -> ok (274s, $0.169, fallbacks 0); spend $33.23; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[133/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2005__rep2 -> ok (278s, $0.169, fallbacks 0); spend $33.40; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[134/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2006__rep0 -> ok (274s, $0.168, fallbacks 0); spend $33.57; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[135/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2006__rep1 -> ok (280s, $0.169, fallbacks 0); spend $33.74; ETA 3.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[136/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2006__rep2 -> ok (280s, $0.170, fallbacks 0); spend $33.91; ETA 3.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[137/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2007__rep0 -> ok (278s, $0.167, fallbacks 0); spend $34.08; ETA 3.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[138/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2007__rep1 -> ok (278s, $0.168, fallbacks 0); spend $34.24; ETA 3.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[139/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2007__rep2 -> ok (282s, $0.167, fallbacks 0); spend $34.41; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[140/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2008__rep0 -> ok (288s, $0.170, fallbacks 0); spend $34.58; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[141/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2008__rep1 -> ok (285s, $0.171, fallbacks 0); spend $34.92; ETA 3.1 h
+[142/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2001__rep0 -> ok (280s, $0.170, fallbacks 0); spend $34.92; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[143/574] gemini-2.5-flash__ISFJ__memory__bull_trap__seed2008__rep2 -> ok (286s, $0.170, fallbacks 0); spend $35.26; ETA 3.1 h
+[144/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2001__rep1 -> ok (283s, $0.169, fallbacks 0); spend $35.26; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[145/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2001__rep2 -> ok (289s, $0.168, fallbacks 0); spend $35.43; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[146/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2002__rep1 -> ok (285s, $0.169, fallbacks 0); spend $35.77; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[147/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2002__rep0 -> ok (300s, $0.169, fallbacks 1); spend $35.77; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[148/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2002__rep2 -> ok (287s, $0.168, fallbacks 0); spend $35.93; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[149/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2003__rep0 -> ok (306s, $0.171, fallbacks 0); spend $36.11; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[150/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2003__rep1 -> ok (311s, $0.171, fallbacks 0); spend $36.28; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[151/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2003__rep2 -> ok (304s, $0.170, fallbacks 0); spend $36.45; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[152/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2004__rep1 -> ok (297s, $0.169, fallbacks 0); spend $36.62; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[153/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2004__rep0 -> ok (304s, $0.169, fallbacks 0); spend $36.78; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[154/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2004__rep2 -> ok (302s, $0.169, fallbacks 0); spend $36.95; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[155/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2005__rep0 -> ok (307s, $0.170, fallbacks 0); spend $37.12; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[156/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2005__rep1 -> ok (308s, $0.170, fallbacks 0); spend $37.29; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[157/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2006__rep0 -> ok (312s, $0.168, fallbacks 0); spend $37.46; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[158/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2006__rep2 -> ok (313s, $0.168, fallbacks 0); spend $37.63; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[159/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2006__rep1 -> ok (317s, $0.168, fallbacks 0); spend $37.80; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[160/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2005__rep2 -> ok (327s, $0.169, fallbacks 0); spend $37.97; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[161/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2007__rep0 -> ok (298s, $0.167, fallbacks 0); spend $38.13; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[162/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2007__rep1 -> ok (297s, $0.167, fallbacks 0); spend $38.30; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[163/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2007__rep2 -> ok (298s, $0.166, fallbacks 0); spend $38.47; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[164/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2008__rep0 -> ok (303s, $0.169, fallbacks 0); spend $38.64; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[165/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2008__rep1 -> ok (297s, $0.170, fallbacks 0); spend $38.81; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[166/574] gemini-2.5-flash__ISFJ__memory__crash_d0.7__seed2008__rep2 -> ok (305s, $0.170, fallbacks 0); spend $38.98; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[167/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2001__rep0 -> ok (288s, $0.169, fallbacks 0); spend $39.14; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[168/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2001__rep1 -> ok (299s, $0.169, fallbacks 0); spend $39.31; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[169/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2002__rep0 -> ok (304s, $0.168, fallbacks 0); spend $39.65; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[170/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2001__rep2 -> ok (316s, $0.170, fallbacks 0); spend $39.65; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[171/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2002__rep1 -> ok (312s, $0.169, fallbacks 0); spend $39.82; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[172/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2002__rep2 -> ok (304s, $0.168, fallbacks 0); spend $39.99; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[173/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2003__rep0 -> ok (306s, $0.169, fallbacks 0); spend $40.16; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[174/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2003__rep1 -> ok (305s, $0.168, fallbacks 0); spend $40.33; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[175/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2003__rep2 -> ok (306s, $0.168, fallbacks 0); spend $40.49; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[176/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2004__rep0 -> ok (306s, $0.169, fallbacks 0); spend $40.66; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[177/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2004__rep1 -> ok (294s, $0.169, fallbacks 0); spend $40.83; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[178/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2005__rep0 -> ok (291s, $0.170, fallbacks 0); spend $41.17; ETA 2.7 h
+[179/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2004__rep2 -> ok (293s, $0.169, fallbacks 0); spend $41.17; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[180/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2005__rep1 -> ok (288s, $0.169, fallbacks 0); spend $41.62; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[181/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2005__rep2 -> ok (292s, $0.170, fallbacks 0); spend $42.35; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[182/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2006__rep0 -> ok (277s, $0.168, fallbacks 0); spend $42.51; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[183/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2006__rep1 -> ok (277s, $0.169, fallbacks 0); spend $42.68; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[184/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2006__rep2 -> ok (270s, $0.169, fallbacks 0); spend $43.13; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[185/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2007__rep1 -> ok (273s, $0.167, fallbacks 0); spend $43.30; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[186/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2007__rep0 -> ok (278s, $0.167, fallbacks 0); spend $43.46; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[187/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2007__rep2 -> ok (279s, $0.167, fallbacks 0); spend $43.63; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[188/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2008__rep0 -> ok (281s, $0.171, fallbacks 0); spend $43.80; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[189/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2008__rep1 -> ok (260s, $0.169, fallbacks 0); spend $45.07; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[190/574] gemini-2.5-flash__ISFJ__memory__sustained_bull__seed2008__rep2 -> ok (260s, $0.171, fallbacks 0); spend $45.53; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[191/574] gemini-2.5-flash__INTJ__static__flat__seed2001__rep0 -> ok (281s, $0.161, fallbacks 0); spend $46.52; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[192/574] gemini-2.5-flash__INTJ__static__flat__seed2001__rep1 -> ok (299s, $0.162, fallbacks 0); spend $46.68; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[193/574] gemini-2.5-flash__INTJ__static__flat__seed2001__rep2 -> ok (296s, $0.161, fallbacks 0); spend $46.85; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[194/574] gemini-2.5-flash__INTJ__static__flat__seed2002__rep0 -> ok (297s, $0.160, fallbacks 0); spend $47.00; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[195/574] gemini-2.5-flash__INTJ__static__flat__seed2002__rep1 -> ok (301s, $0.160, fallbacks 0); spend $47.16; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[196/574] gemini-2.5-flash__INTJ__static__flat__seed2002__rep2 -> ok (299s, $0.160, fallbacks 0); spend $47.32; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[197/574] gemini-2.5-flash__INTJ__static__flat__seed2003__rep1 -> ok (308s, $0.161, fallbacks 0); spend $47.49; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[198/574] gemini-2.5-flash__INTJ__static__flat__seed2003__rep0 -> ok (314s, $0.163, fallbacks 0); spend $47.65; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[199/574] gemini-2.5-flash__INTJ__static__flat__seed2003__rep2 -> ok (317s, $0.163, fallbacks 0); spend $47.81; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[200/574] gemini-2.5-flash__INTJ__static__flat__seed2004__rep0 -> ok (316s, $0.160, fallbacks 0); spend $47.97; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[201/574] gemini-2.5-flash__INTJ__static__flat__seed2004__rep2 -> ok (319s, $0.159, fallbacks 0); spend $48.13; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[202/574] gemini-2.5-flash__INTJ__static__flat__seed2004__rep1 -> ok (330s, $0.160, fallbacks 0); spend $48.29; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[203/574] gemini-2.5-flash__INTJ__static__flat__seed2005__rep0 -> ok (330s, $0.161, fallbacks 0); spend $48.45; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[204/574] gemini-2.5-flash__INTJ__static__flat__seed2005__rep1 -> ok (331s, $0.161, fallbacks 0); spend $48.61; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[205/574] gemini-2.5-flash__INTJ__static__flat__seed2006__rep0 -> ok (329s, $0.161, fallbacks 0); spend $48.77; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[206/574] gemini-2.5-flash__INTJ__static__flat__seed2005__rep2 -> ok (337s, $0.162, fallbacks 0); spend $48.94; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[207/574] gemini-2.5-flash__INTJ__static__flat__seed2006__rep1 -> ok (331s, $0.160, fallbacks 0); spend $49.09; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[208/574] gemini-2.5-flash__INTJ__static__flat__seed2007__rep0 -> ok (311s, $0.159, fallbacks 0); spend $49.25; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[209/574] gemini-2.5-flash__INTJ__static__flat__seed2006__rep2 -> ok (336s, $0.159, fallbacks 0); spend $49.41; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[210/574] gemini-2.5-flash__INTJ__static__flat__seed2007__rep1 -> ok (304s, $0.159, fallbacks 0); spend $49.57; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[211/574] gemini-2.5-flash__INTJ__static__flat__seed2007__rep2 -> ok (306s, $0.159, fallbacks 0); spend $49.73; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[212/574] gemini-2.5-flash__INTJ__static__flat__seed2008__rep0 -> ok (312s, $0.161, fallbacks 0); spend $49.89; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[213/574] gemini-2.5-flash__INTJ__static__flat__seed2008__rep1 -> ok (311s, $0.161, fallbacks 0); spend $50.05; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[214/574] gemini-2.5-flash__INTJ__static__flat__seed2008__rep2 -> ok (312s, $0.162, fallbacks 0); spend $50.21; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[215/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2001__rep0 -> ok (320s, $0.162, fallbacks 0); spend $50.38; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[216/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2001__rep1 -> ok (319s, $0.162, fallbacks 0); spend $50.54; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[217/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2002__rep0 -> ok (322s, $0.160, fallbacks 0); spend $50.70; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[218/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2002__rep1 -> ok (330s, $0.160, fallbacks 0); spend $50.86; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[219/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2002__rep2 -> ok (336s, $0.160, fallbacks 0); spend $51.02; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[220/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2003__rep0 -> ok (340s, $0.161, fallbacks 0); spend $51.18; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[221/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2003__rep1 -> ok (344s, $0.162, fallbacks 0); spend $51.34; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[222/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2003__rep2 -> ok (351s, $0.162, fallbacks 0); spend $51.50; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[223/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2004__rep0 -> ok (349s, $0.159, fallbacks 0); spend $51.66; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[224/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2004__rep1 -> ok (367s, $0.158, fallbacks 0); spend $51.82; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[225/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2004__rep2 -> ok (365s, $0.157, fallbacks 0); spend $51.98; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[226/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2005__rep0 -> ok (386s, $0.163, fallbacks 0); spend $52.30; ETA 2.4 h
+[227/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2005__rep1 -> ok (374s, $0.162, fallbacks 0); spend $52.30; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[228/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2006__rep0 -> ok (390s, $0.159, fallbacks 0); spend $53.29; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[229/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2006__rep1 -> ok (390s, $0.160, fallbacks 0); spend $53.45; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[230/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2005__rep2 -> ok (402s, $0.162, fallbacks 0); spend $53.61; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[231/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2006__rep2 -> ok (379s, $0.159, fallbacks 0); spend $53.77; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[232/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2007__rep0 -> ok (373s, $0.159, fallbacks 0); spend $54.20; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[233/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2007__rep1 -> ok (363s, $0.159, fallbacks 0); spend $54.36; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[234/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2007__rep2 -> ok (371s, $0.160, fallbacks 0); spend $54.52; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[235/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2008__rep0 -> ok (358s, $0.161, fallbacks 0); spend $54.68; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[236/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2008__rep1 -> ok (365s, $0.162, fallbacks 0); spend $55.55; ETA 2.3 h
+[237/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2008__rep2 -> ok (358s, $0.161, fallbacks 0); spend $55.55; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[238/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2001__rep0 -> ok (347s, $0.162, fallbacks 0); spend $55.99; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[239/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2001__rep1 -> ok (343s, $0.161, fallbacks 0); spend $56.70; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[240/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2001__rep2 -> ok (349s, $0.163, fallbacks 0); spend $57.14; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[241/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2002__rep1 -> ok (360s, $0.161, fallbacks 0); spend $57.47; ETA 2.3 h
+[242/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2002__rep0 -> ok (364s, $0.162, fallbacks 0); spend $57.47; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[243/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2003__rep0 -> ok (377s, $0.162, fallbacks 0); spend $57.63; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[244/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2003__rep1 -> ok (382s, $0.163, fallbacks 0); spend $57.79; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[245/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2002__rep2 -> ok (403s, $0.161, fallbacks 0); spend $57.95; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[246/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2003__rep2 -> ok (387s, $0.164, fallbacks 0); spend $58.12; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[247/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2004__rep0 -> ok (383s, $0.163, fallbacks 0); spend $58.28; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[248/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2004__rep1 -> ok (379s, $0.163, fallbacks 0); spend $58.44; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[249/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2004__rep2 -> ok (389s, $0.163, fallbacks 0); spend $58.61; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[250/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2005__rep0 -> ok (399s, $0.162, fallbacks 0); spend $58.77; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[251/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2005__rep1 -> ok (402s, $0.162, fallbacks 0); spend $59.09; ETA 2.2 h
+[252/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2005__rep2 -> ok (398s, $0.163, fallbacks 0); spend $59.09; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[253/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2006__rep0 -> ok (415s, $0.160, fallbacks 0); spend $59.25; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[254/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2006__rep1 -> ok (433s, $0.161, fallbacks 0); spend $60.11; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[255/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2006__rep2 -> ok (423s, $0.161, fallbacks 0); spend $60.28; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[256/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2007__rep0 -> ok (421s, $0.159, fallbacks 0); spend $60.43; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[257/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2007__rep1 -> ok (427s, $0.160, fallbacks 0); spend $60.59; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[258/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2008__rep0 -> ok (432s, $0.163, fallbacks 0); spend $60.76; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[259/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2008__rep1 -> ok (440s, $0.162, fallbacks 0); spend $61.08; ETA 2.2 h
+[260/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2008__rep2 -> ok (431s, $0.163, fallbacks 0); spend $61.08; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[261/574] gemini-2.5-flash__INTJ__static__crash_d0.7__seed2007__rep2 -> ok (458s, $0.160, fallbacks 0); spend $61.24; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[262/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2001__rep0 -> ok (418s, $0.161, fallbacks 0); spend $61.40; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[263/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2001__rep1 -> ok (423s, $0.161, fallbacks 0); spend $61.56; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[264/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2001__rep2 -> ok (422s, $0.160, fallbacks 0); spend $61.72; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[265/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2002__rep0 -> ok (409s, $0.160, fallbacks 0); spend $61.88; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[266/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2002__rep2 -> ok (409s, $0.160, fallbacks 0); spend $62.04; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[267/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2002__rep1 -> ok (419s, $0.160, fallbacks 0); spend $62.20; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[268/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2003__rep0 -> ok (404s, $0.162, fallbacks 0); spend $62.37; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[269/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2003__rep1 -> ok (405s, $0.163, fallbacks 0); spend $62.53; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[270/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2003__rep2 -> ok (413s, $0.163, fallbacks 0); spend $62.69; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[271/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2004__rep1 -> ok (391s, $0.158, fallbacks 0); spend $62.85; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[272/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2004__rep0 -> ok (401s, $0.160, fallbacks 0); spend $63.01; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[273/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2004__rep2 -> ok (385s, $0.160, fallbacks 0); spend $63.17; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[274/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2005__rep0 -> ok (412s, $0.162, fallbacks 0); spend $63.33; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[275/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2005__rep1 -> ok (415s, $0.161, fallbacks 0); spend $63.65; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[276/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2006__rep0 -> ok (404s, $0.160, fallbacks 0); spend $63.65; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[277/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2005__rep2 -> ok (418s, $0.161, fallbacks 0); spend $63.97; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[278/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2006__rep1 -> ok (400s, $0.161, fallbacks 0); spend $63.97; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[279/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2007__rep0 -> ok (394s, $0.158, fallbacks 0); spend $64.96; ETA 2.1 h
+[280/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2006__rep2 -> ok (417s, $0.161, fallbacks 0); spend $64.96; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[281/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2007__rep2 -> ok (394s, $0.158, fallbacks 0); spend $65.47; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[282/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2007__rep1 -> ok (406s, $0.159, fallbacks 0); spend $65.63; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[283/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2008__rep0 -> ok (426s, $0.161, fallbacks 0); spend $66.13; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[284/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2008__rep1 -> ok (434s, $0.161, fallbacks 0); spend $66.63; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[285/574] gemini-2.5-flash__INTJ__memory__flat__seed2001__rep0 -> ok (433s, $0.164, fallbacks 0); spend $66.96; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[286/574] gemini-2.5-flash__INTJ__static__sustained_bull__seed2008__rep2 -> ok (442s, $0.161, fallbacks 0); spend $67.30; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[287/574] gemini-2.5-flash__INTJ__memory__flat__seed2001__rep1 -> ok (451s, $0.165, fallbacks 0); spend $67.47; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[288/574] gemini-2.5-flash__INTJ__memory__flat__seed2001__rep2 -> ok (448s, $0.164, fallbacks 0); spend $68.65; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[289/574] gemini-2.5-flash__INTJ__memory__flat__seed2002__rep1 -> ok (446s, $0.165, fallbacks 0); spend $69.33; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[290/574] gemini-2.5-flash__INTJ__memory__flat__seed2002__rep0 -> ok (454s, $0.164, fallbacks 0); spend $69.49; ETA 2.1 h
+[291/574] gemini-2.5-flash__INTJ__memory__flat__seed2002__rep2 -> ok (445s, $0.165, fallbacks 0); spend $69.49; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[292/574] gemini-2.5-flash__INTJ__memory__flat__seed2003__rep1 -> ok (448s, $0.168, fallbacks 0); spend $69.66; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[293/574] gemini-2.5-flash__INTJ__memory__flat__seed2003__rep0 -> ok (463s, $0.166, fallbacks 0); spend $69.83; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[294/574] gemini-2.5-flash__INTJ__memory__flat__seed2003__rep2 -> ok (437s, $0.167, fallbacks 0); spend $69.99; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[295/574] gemini-2.5-flash__INTJ__memory__flat__seed2004__rep0 -> ok (449s, $0.165, fallbacks 0); spend $70.16; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[296/574] gemini-2.5-flash__INTJ__memory__flat__seed2004__rep2 -> ok (427s, $0.165, fallbacks 0); spend $70.49; ETA 2.0 h
+[297/574] gemini-2.5-flash__INTJ__memory__flat__seed2004__rep1 -> ok (433s, $0.165, fallbacks 0); spend $70.49; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[298/574] gemini-2.5-flash__INTJ__memory__flat__seed2005__rep0 -> ok (434s, $0.164, fallbacks 0); spend $70.65; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[299/574] gemini-2.5-flash__INTJ__memory__flat__seed2005__rep1 -> ok (424s, $0.164, fallbacks 0); spend $70.82; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[300/574] gemini-2.5-flash__INTJ__memory__flat__seed2005__rep2 -> ok (431s, $0.165, fallbacks 0); spend $70.98; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[301/574] gemini-2.5-flash__INTJ__memory__flat__seed2006__rep0 -> ok (431s, $0.163, fallbacks 0); spend $71.15; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[302/574] gemini-2.5-flash__INTJ__memory__flat__seed2006__rep1 -> ok (435s, $0.163, fallbacks 0); spend $71.31; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[303/574] gemini-2.5-flash__INTJ__memory__flat__seed2006__rep2 -> ok (440s, $0.164, fallbacks 0); spend $71.47; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[304/574] gemini-2.5-flash__INTJ__memory__flat__seed2007__rep0 -> ok (415s, $0.162, fallbacks 0); spend $72.50; ETA 2.0 h
+[305/574] gemini-2.5-flash__INTJ__memory__flat__seed2007__rep1 -> ok (413s, $0.163, fallbacks 0); spend $72.50; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[306/574] gemini-2.5-flash__INTJ__memory__flat__seed2008__rep0 -> ok (418s, $0.166, fallbacks 0); spend $72.83; ETA 2.0 h
+[307/574] gemini-2.5-flash__INTJ__memory__flat__seed2007__rep2 -> ok (423s, $0.163, fallbacks 0); spend $72.83; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[308/574] gemini-2.5-flash__INTJ__memory__flat__seed2008__rep1 -> ok (428s, $0.166, fallbacks 0); spend $72.99; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[309/574] gemini-2.5-flash__INTJ__memory__flat__seed2008__rep2 -> ok (411s, $0.165, fallbacks 0); spend $73.16; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[310/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2001__rep0 -> ok (409s, $0.166, fallbacks 0); spend $73.32; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[311/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2001__rep1 -> ok (407s, $0.166, fallbacks 0); spend $73.65; ETA 1.9 h
+[312/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2001__rep2 -> ok (406s, $0.165, fallbacks 0); spend $73.65; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[313/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2002__rep0 -> ok (426s, $0.164, fallbacks 0); spend $73.82; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[314/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2002__rep1 -> ok (411s, $0.164, fallbacks 0); spend $73.98; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[315/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2002__rep2 -> ok (441s, $0.164, fallbacks 0); spend $74.15; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[316/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2003__rep0 -> ok (423s, $0.165, fallbacks 0); spend $74.31; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[317/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2003__rep1 -> ok (425s, $0.165, fallbacks 0); spend $74.64; ETA 1.9 hBoth GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+
+[318/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2003__rep2 -> ok (428s, $0.166, fallbacks 0); spend $74.64; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[319/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2004__rep1 -> ok (421s, $0.162, fallbacks 0); spend $74.80; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[320/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2004__rep0 -> ok (423s, $0.161, fallbacks 0); spend $75.13; ETA 1.9 hBoth GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+
+[321/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2004__rep2 -> ok (406s, $0.161, fallbacks 0); spend $75.29; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[322/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2005__rep0 -> ok (413s, $0.165, fallbacks 0); spend $75.29; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[323/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2005__rep1 -> ok (419s, $0.165, fallbacks 0); spend $75.46; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[324/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2005__rep2 -> ok (422s, $0.165, fallbacks 0); spend $75.62; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[325/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2006__rep0 -> ok (400s, $0.162, fallbacks 0); spend $75.78; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[326/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2006__rep1 -> ok (406s, $0.163, fallbacks 0); spend $76.11; ETA 1.8 h
+[327/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2006__rep2 -> ok (405s, $0.164, fallbacks 0); spend $76.11; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[328/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2007__rep0 -> ok (407s, $0.163, fallbacks 0); spend $76.27; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[329/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2007__rep1 -> ok (395s, $0.164, fallbacks 0); spend $76.44; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[330/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2007__rep2 -> ok (429s, $0.164, fallbacks 0); spend $76.60; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[331/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2008__rep2 -> ok (458s, $0.167, fallbacks 0); spend $77.28; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[332/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2008__rep1 -> ok (462s, $0.167, fallbacks 0); spend $77.28; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[333/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2001__rep0 -> ok (650s, $0.166, fallbacks 0); spend $80.51; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[334/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2001__rep1 -> ok (654s, $0.166, fallbacks 0); spend $80.67; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[335/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2002__rep1 -> ok (661s, $0.166, fallbacks 0); spend $80.84; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[336/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2004__rep0 -> ok (651s, $0.166, fallbacks 0); spend $81.00; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[337/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2002__rep0 -> ok (709s, $0.168, fallbacks 0); spend $81.17; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[338/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2001__rep2 -> ok (719s, $0.168, fallbacks 0); spend $81.34; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[339/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2002__rep2 -> ok (715s, $0.166, fallbacks 0); spend $81.50; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[340/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2003__rep0 -> ok (720s, $0.168, fallbacks 0); spend $82.01; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[341/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2003__rep1 -> ok (714s, $0.168, fallbacks 0); spend $82.01; ETA 1.9 h
+[342/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2003__rep2 -> ok (714s, $0.167, fallbacks 0); spend $82.01; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[343/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2004__rep1 -> ok (706s, $0.167, fallbacks 0); spend $82.17; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[344/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2004__rep2 -> ok (616s, $0.166, fallbacks 0); spend $82.67; ETA 1.8 h
+[345/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2005__rep1 -> ok (611s, $0.167, fallbacks 0); spend $82.67; ETA 1.8 h
+[346/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2005__rep0 -> ok (612s, $0.165, fallbacks 0); spend $82.67; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[347/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2005__rep2 -> ok (409s, $0.165, fallbacks 0); spend $83.65; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[348/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2006__rep0 -> ok (472s, $0.165, fallbacks 0); spend $83.81; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[349/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2006__rep1 -> ok (508s, $0.165, fallbacks 0); spend $83.98; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[350/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2006__rep2 -> ok (514s, $0.165, fallbacks 0); spend $84.14; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[351/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2007__rep0 -> ok (501s, $0.163, fallbacks 0); spend $84.31; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[352/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2007__rep1 -> ok (501s, $0.164, fallbacks 0); spend $84.47; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[353/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2007__rep2 -> ok (508s, $0.164, fallbacks 0); spend $84.63; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[354/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2002__rep0 -> ok (495s, $0.164, fallbacks 0); spend $85.13; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[355/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2001__rep1 -> ok (498s, $0.165, fallbacks 0); spend $85.46; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[356/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2001__rep2 -> ok (498s, $0.165, fallbacks 0); spend $85.63; ETA 1.8 h
+[357/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2008__rep1 -> ok (512s, $0.166, fallbacks 0); spend $85.63; ETA 1.8 h
+[358/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2008__rep0 -> ok (515s, $0.167, fallbacks 0); spend $85.63; ETA 1.8 h
+[359/574] gemini-2.5-flash__INTJ__memory__crash_d0.7__seed2008__rep2 -> ok (518s, $0.167, fallbacks 0); spend $85.63; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[360/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2002__rep1 -> ok (495s, $0.162, fallbacks 0); spend $85.79; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[361/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2002__rep2 -> ok (535s, $0.162, fallbacks 0); spend $89.87; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[362/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2003__rep0 -> ok (526s, $0.166, fallbacks 0); spend $90.03; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[363/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2003__rep1 -> ok (540s, $0.167, fallbacks 0); spend $90.20; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[364/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2003__rep2 -> ok (545s, $0.166, fallbacks 0); spend $90.53; ETA 1.8 h
+[365/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2004__rep0 -> ok (536s, $0.164, fallbacks 0); spend $90.53; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[366/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2004__rep1 -> ok (535s, $0.164, fallbacks 0); spend $90.70; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[367/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2004__rep2 -> ok (537s, $0.164, fallbacks 0); spend $90.86; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[368/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2005__rep0 -> ok (521s, $0.164, fallbacks 0); spend $91.02; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[369/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2005__rep1 -> ok (521s, $0.164, fallbacks 0); spend $91.19; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[370/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2006__rep2 -> ok (513s, $0.164, fallbacks 0); spend $91.35; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[371/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2006__rep1 -> ok (528s, $0.164, fallbacks 0); spend $91.52; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[372/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2005__rep2 -> ok (535s, $0.164, fallbacks 0); spend $91.84; ETA 1.7 h
+[373/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2006__rep0 -> ok (534s, $0.164, fallbacks 0); spend $91.84; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[374/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2007__rep0 -> ok (476s, $0.164, fallbacks 0); spend $92.01; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[375/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2007__rep1 -> ok (459s, $0.163, fallbacks 0); spend $92.17; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[376/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2007__rep2 -> ok (465s, $0.162, fallbacks 0); spend $92.33; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[377/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2008__rep0 -> ok (480s, $0.165, fallbacks 0); spend $92.66; ETA 1.7 h
+[378/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2008__rep1 -> ok (477s, $0.165, fallbacks 0); spend $92.66; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[379/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2008__rep2 -> ok (462s, $0.165, fallbacks 0); spend $92.83; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[380/574] gemini-2.5-flash__ENTJ__static__flat__seed2001__rep0 -> ok (415s, $0.162, fallbacks 0); spend $92.99; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[381/574] gemini-2.5-flash__ENTJ__static__flat__seed2001__rep1 -> ok (415s, $0.161, fallbacks 0); spend $93.15; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[382/574] gemini-2.5-flash__ENTJ__static__flat__seed2001__rep2 -> ok (417s, $0.162, fallbacks 0); spend $93.31; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[383/574] gemini-2.5-flash__ENTJ__static__flat__seed2002__rep0 -> ok (414s, $0.162, fallbacks 0); spend $93.48; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[384/574] gemini-2.5-flash__ENTJ__static__flat__seed2002__rep1 -> ok (418s, $0.162, fallbacks 0); spend $93.64; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[385/574] gemini-2.5-flash__ENTJ__static__flat__seed2003__rep0 -> ok (414s, $0.163, fallbacks 0); spend $93.96; ETA 1.6 h
+[386/574] gemini-2.5-flash__ENTJ__static__flat__seed2002__rep2 -> ok (418s, $0.163, fallbacks 0); spend $93.96; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[387/574] gemini-2.5-flash__ENTJ__static__flat__seed2003__rep1 -> ok (385s, $0.163, fallbacks 0); spend $94.13; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[388/574] gemini-2.5-flash__ENTJ__static__flat__seed2003__rep2 -> ok (400s, $0.163, fallbacks 0); spend $95.09; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[389/574] gemini-2.5-flash__ENTJ__static__flat__seed2004__rep0 -> ok (370s, $0.163, fallbacks 0); spend $95.25; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[390/574] gemini-2.5-flash__ENTJ__static__flat__seed2004__rep1 -> ok (379s, $0.162, fallbacks 0); spend $95.57; ETA 1.6 h
+[391/574] gemini-2.5-flash__ENTJ__static__flat__seed2004__rep2 -> ok (378s, $0.163, fallbacks 0); spend $95.57; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[392/574] gemini-2.5-flash__ENTJ__static__flat__seed2005__rep0 -> ok (376s, $0.163, fallbacks 0); spend $95.74; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[393/574] gemini-2.5-flash__ENTJ__static__flat__seed2005__rep2 -> ok (380s, $0.162, fallbacks 0); spend $95.90; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[394/574] gemini-2.5-flash__ENTJ__static__flat__seed2006__rep1 -> ok (376s, $0.163, fallbacks 0); spend $96.39; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[395/574] gemini-2.5-flash__ENTJ__static__flat__seed2005__rep1 -> ok (399s, $0.163, fallbacks 0); spend $96.55; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[396/574] gemini-2.5-flash__ENTJ__static__flat__seed2006__rep0 -> ok (386s, $0.163, fallbacks 0); spend $96.55; ETA 1.5 h
+[397/574] gemini-2.5-flash__ENTJ__static__flat__seed2006__rep2 -> ok (373s, $0.162, fallbacks 0); spend $96.55; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[398/574] gemini-2.5-flash__ENTJ__static__flat__seed2007__rep0 -> ok (376s, $0.161, fallbacks 0); spend $96.87; ETA 1.5 h
+[399/574] gemini-2.5-flash__ENTJ__static__flat__seed2007__rep1 -> ok (375s, $0.161, fallbacks 0); spend $96.87; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[400/574] gemini-2.5-flash__ENTJ__static__flat__seed2007__rep2 -> ok (386s, $0.160, fallbacks 0); spend $97.03; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[401/574] gemini-2.5-flash__ENTJ__static__flat__seed2008__rep0 -> ok (396s, $0.163, fallbacks 0); spend $97.20; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[402/574] gemini-2.5-flash__ENTJ__static__flat__seed2008__rep1 -> ok (401s, $0.162, fallbacks 0); spend $97.36; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[403/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2001__rep0 -> ok (425s, $0.163, fallbacks 0); spend $97.85; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[404/574] gemini-2.5-flash__ENTJ__static__flat__seed2008__rep2 -> ok (432s, $0.163, fallbacks 0); spend $97.85; ETA 1.5 h
+[405/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2001__rep1 -> ok (424s, $0.164, fallbacks 0); spend $97.85; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[406/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2001__rep2 -> ok (420s, $0.163, fallbacks 0); spend $98.01; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[407/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2002__rep1 -> ok (428s, $0.161, fallbacks 0); spend $98.33; ETA 1.4 h
+[408/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2002__rep0 -> ok (432s, $0.161, fallbacks 0); spend $98.50; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[409/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2002__rep2 -> ok (435s, $0.162, fallbacks 0); spend $98.50; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[410/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2003__rep1 -> ok (438s, $0.162, fallbacks 0); spend $98.82; ETA 1.4 h
+[411/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2003__rep2 -> ok (440s, $0.162, fallbacks 0); spend $98.82; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[412/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2003__rep0 -> ok (464s, $0.163, fallbacks 0); spend $98.98; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[413/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2004__rep0 -> ok (504s, $0.161, fallbacks 0); spend $99.14; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[414/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2004__rep1 -> ok (516s, $0.160, fallbacks 0); spend $100.10; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[415/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2004__rep2 -> ok (543s, $0.160, fallbacks 0); spend $102.64; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[416/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2005__rep0 -> ok (498s, $0.163, fallbacks 0); spend $102.97; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[417/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2005__rep1 -> ok (501s, $0.163, fallbacks 0); spend $103.13; ETA 1.4 h
+[418/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2005__rep2 -> ok (498s, $0.164, fallbacks 0); spend $103.13; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[419/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2006__rep0 -> ok (516s, $0.161, fallbacks 0); spend $104.09; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[420/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2007__rep2 -> ok (485s, $0.162, fallbacks 0); spend $104.57; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[421/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2007__rep1 -> ok (490s, $0.162, fallbacks 0); spend $104.74; ETA 1.3 h
+[422/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2006__rep2 -> ok (498s, $0.162, fallbacks 0); spend $104.90; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[423/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2008__rep0 -> ok (480s, $0.163, fallbacks 0); spend $104.90; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[424/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2006__rep1 -> ok (513s, $0.162, fallbacks 0); spend $105.06; ETA 1.3 h
+[425/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2007__rep0 -> ok (514s, $0.161, fallbacks 0); spend $105.06; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[426/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2008__rep1 -> ok (493s, $0.163, fallbacks 0); spend $105.22; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[427/574] gemini-2.5-flash__ENTJ__static__bull_trap__seed2008__rep2 -> ok (466s, $0.163, fallbacks 0); spend $105.39; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[428/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2001__rep0 -> ok (440s, $0.163, fallbacks 0); spend $105.55; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[429/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2001__rep1 -> ok (434s, $0.164, fallbacks 0); spend $105.71; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[430/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2001__rep2 -> ok (441s, $0.163, fallbacks 0); spend $105.88; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[431/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2002__rep0 -> ok (447s, $0.163, fallbacks 0); spend $106.04; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[432/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2002__rep1 -> ok (410s, $0.163, fallbacks 0); spend $106.20; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[433/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2002__rep2 -> ok (397s, $0.162, fallbacks 0); spend $106.53; ETA 1.2 h
+[434/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2003__rep1 -> ok (398s, $0.163, fallbacks 0); spend $106.53; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[435/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2003__rep0 -> ok (404s, $0.164, fallbacks 0); spend $107.02; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[436/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2004__rep0 -> ok (394s, $0.163, fallbacks 0); spend $107.18; ETA 1.2 h
+[437/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2003__rep2 -> ok (402s, $0.164, fallbacks 0); spend $107.18; ETA 1.2 h
+[438/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2004__rep1 -> ok (393s, $0.163, fallbacks 0); spend $107.18; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[439/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2004__rep2 -> ok (366s, $0.164, fallbacks 0); spend $107.35; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[440/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2005__rep0 -> ok (364s, $0.164, fallbacks 0); spend $108.20; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[441/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2005__rep1 -> ok (369s, $0.164, fallbacks 0); spend $108.37; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[442/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2005__rep2 -> ok (382s, $0.164, fallbacks 0); spend $108.53; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[443/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2006__rep1 -> ok (374s, $0.162, fallbacks 0); spend $108.86; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[444/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2006__rep2 -> ok (357s, $0.163, fallbacks 0); spend $109.02; ETA 1.1 h
+[445/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2006__rep0 -> ok (388s, $0.162, fallbacks 0); spend $109.02; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[446/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2007__rep0 -> ok (367s, $0.161, fallbacks 0); spend $109.50; ETA 1.1 h
+[447/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2007__rep1 -> ok (365s, $0.161, fallbacks 0); spend $109.50; ETA 1.1 h
+[448/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2008__rep0 -> ok (359s, $0.163, fallbacks 0); spend $109.50; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[449/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2007__rep2 -> ok (371s, $0.161, fallbacks 0); spend $109.67; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[450/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2008__rep1 -> ok (373s, $0.162, fallbacks 0); spend $109.99; ETA 1.1 h
+[451/574] gemini-2.5-flash__ENTJ__static__crash_d0.7__seed2008__rep2 -> ok (370s, $0.164, fallbacks 0); spend $109.99; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[452/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2001__rep0 -> ok (363s, $0.163, fallbacks 0); spend $110.15; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[453/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2001__rep1 -> ok (362s, $0.162, fallbacks 0); spend $110.32; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[454/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2001__rep2 -> ok (364s, $0.162, fallbacks 0); spend $110.48; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[455/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2002__rep0 -> ok (366s, $0.160, fallbacks 0); spend $110.80; ETA 1.0 h
+[456/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2002__rep2 -> ok (353s, $0.161, fallbacks 0); spend $110.80; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[457/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2002__rep1 -> ok (366s, $0.160, fallbacks 0); spend $110.96; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[458/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2003__rep0 -> ok (365s, $0.162, fallbacks 0); spend $111.28; ETA 1.0 h
+[459/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2003__rep2 -> ok (348s, $0.163, fallbacks 0); spend $111.61; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[460/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2005__rep0 -> ok (339s, $0.162, fallbacks 0); spend $111.61; ETA 1.0 h
+[461/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2004__rep0 -> ok (353s, $0.164, fallbacks 0); spend $111.77; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[462/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2003__rep1 -> ok (361s, $0.162, fallbacks 0); spend $111.93; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[463/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2004__rep1 -> ok (357s, $0.162, fallbacks 0); spend $111.93; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[464/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2004__rep2 -> ok (359s, $0.163, fallbacks 0); spend $112.10; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[465/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2005__rep1 -> ok (368s, $0.162, fallbacks 0); spend $112.26; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[466/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2005__rep2 -> ok (389s, $0.162, fallbacks 0); spend $112.76; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[467/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2006__rep0 -> ok (389s, $0.164, fallbacks 0); spend $113.59; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[468/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2006__rep2 -> ok (370s, $0.163, fallbacks 0); spend $113.75; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[469/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2006__rep1 -> ok (384s, $0.162, fallbacks 0); spend $114.27; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[470/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2007__rep2 -> ok (376s, $0.162, fallbacks 0); spend $114.43; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[471/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2007__rep1 -> ok (387s, $0.162, fallbacks 0); spend $114.76; ETA 0.9 h
+[472/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2008__rep1 -> ok (380s, $0.162, fallbacks 0); spend $114.76; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[473/574] gemini-2.5-flash__ENTJ__memory__flat__seed2001__rep0 -> ok (374s, $0.159, fallbacks 0); spend $115.26; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[474/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2008__rep0 -> ok (392s, $0.162, fallbacks 0); spend $115.58; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[475/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2007__rep0 -> ok (407s, $0.162, fallbacks 0); spend $116.09; ETA 0.9 h
+[476/574] gemini-2.5-flash__ENTJ__static__sustained_bull__seed2008__rep2 -> ok (390s, $0.162, fallbacks 0); spend $116.44; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[477/574] gemini-2.5-flash__ENTJ__memory__flat__seed2001__rep1 -> ok (388s, $0.159, fallbacks 0); spend $116.60; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[478/574] gemini-2.5-flash__ENTJ__memory__flat__seed2001__rep2 -> ok (388s, $0.159, fallbacks 0); spend $117.78; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[479/574] gemini-2.5-flash__ENTJ__memory__flat__seed2002__rep0 -> ok (334s, $0.158, fallbacks 0); spend $117.94; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[480/574] gemini-2.5-flash__ENTJ__memory__flat__seed2002__rep1 -> ok (341s, $0.157, fallbacks 0); spend $118.26; ETA 0.8 h
+[481/574] gemini-2.5-flash__ENTJ__memory__flat__seed2002__rep2 -> ok (334s, $0.158, fallbacks 0); spend $118.26; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[482/574] gemini-2.5-flash__ENTJ__memory__flat__seed2003__rep1 -> ok (335s, $0.159, fallbacks 0); spend $118.41; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[483/574] gemini-2.5-flash__ENTJ__memory__flat__seed2004__rep0 -> ok (331s, $0.158, fallbacks 0); spend $118.73; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[484/574] gemini-2.5-flash__ENTJ__memory__flat__seed2003__rep0 -> ok (358s, $0.159, fallbacks 0); spend $118.89; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[485/574] gemini-2.5-flash__ENTJ__memory__flat__seed2004__rep2 -> ok (327s, $0.158, fallbacks 0); spend $118.89; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[486/574] gemini-2.5-flash__ENTJ__memory__flat__seed2003__rep2 -> ok (346s, $0.159, fallbacks 0); spend $119.05; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[487/574] gemini-2.5-flash__ENTJ__memory__flat__seed2004__rep1 -> ok (349s, $0.158, fallbacks 0); spend $119.21; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[488/574] gemini-2.5-flash__ENTJ__memory__flat__seed2005__rep0 -> ok (344s, $0.159, fallbacks 0); spend $119.37; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[489/574] gemini-2.5-flash__ENTJ__memory__flat__seed2005__rep1 -> ok (354s, $0.159, fallbacks 0); spend $119.52; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[490/574] gemini-2.5-flash__ENTJ__memory__flat__seed2005__rep2 -> ok (348s, $0.159, fallbacks 0); spend $119.68; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[491/574] gemini-2.5-flash__ENTJ__memory__flat__seed2006__rep0 -> ok (337s, $0.159, fallbacks 0); spend $119.84; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[492/574] gemini-2.5-flash__ENTJ__memory__flat__seed2006__rep1 -> ok (332s, $0.159, fallbacks 0); spend $120.00; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[493/574] gemini-2.5-flash__ENTJ__memory__flat__seed2007__rep0 -> ok (321s, $0.158, fallbacks 0); spend $120.16; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[494/574] gemini-2.5-flash__ENTJ__memory__flat__seed2006__rep2 -> ok (326s, $0.159, fallbacks 0); spend $120.32; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[495/574] gemini-2.5-flash__ENTJ__memory__flat__seed2007__rep2 -> ok (314s, $0.159, fallbacks 0); spend $120.64; ETA 0.7 h
+[496/574] gemini-2.5-flash__ENTJ__memory__flat__seed2007__rep1 -> ok (320s, $0.159, fallbacks 0); spend $120.64; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[497/574] gemini-2.5-flash__ENTJ__memory__flat__seed2008__rep1 -> ok (310s, $0.159, fallbacks 0); spend $120.80; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[498/574] gemini-2.5-flash__ENTJ__memory__flat__seed2008__rep0 -> ok (324s, $0.159, fallbacks 0); spend $120.96; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[499/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2001__rep0 -> ok (305s, $0.159, fallbacks 0); spend $121.27; ETA 0.6 h
+[500/574] gemini-2.5-flash__ENTJ__memory__flat__seed2008__rep2 -> ok (316s, $0.159, fallbacks 0); spend $121.27; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[501/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2001__rep1 -> ok (307s, $0.159, fallbacks 0); spend $121.76; ETA 0.6 h
+[502/574] gemini-2.5-flash__INTJ__static__bull_trap__seed2001__rep2 -> ok (10365s, $0.325, fallbacks 0); spend $121.76; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[503/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2001__rep2 -> ok (305s, $0.159, fallbacks 0); spend $122.26; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[504/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2002__rep0 -> ok (306s, $0.158, fallbacks 0); spend $122.42; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[505/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2002__rep1 -> ok (302s, $0.158, fallbacks 0); spend $122.92; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[506/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2002__rep2 -> ok (300s, $0.158, fallbacks 0); spend $123.08; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[507/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2003__rep0 -> ok (294s, $0.158, fallbacks 0); spend $123.24; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[508/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2003__rep1 -> ok (297s, $0.159, fallbacks 0); spend $123.40; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[509/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2004__rep0 -> ok (288s, $0.157, fallbacks 0); spend $123.55; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[510/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2003__rep2 -> ok (294s, $0.158, fallbacks 0); spend $123.71; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[511/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2004__rep1 -> ok (298s, $0.158, fallbacks 0); spend $123.87; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[512/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2005__rep1 -> ok (300s, $0.159, fallbacks 0); spend $124.34; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[513/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2005__rep2 -> ok (299s, $0.159, fallbacks 0); spend $124.50; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[514/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2004__rep2 -> ok (306s, $0.157, fallbacks 0); spend $124.66; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[515/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2005__rep0 -> ok (305s, $0.159, fallbacks 0); spend $124.66; ETA 0.5 h
+[516/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2006__rep0 -> ok (302s, $0.159, fallbacks 0); spend $124.66; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[517/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2006__rep1 -> ok (297s, $0.159, fallbacks 0); spend $124.82; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[518/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2006__rep2 -> ok (294s, $0.159, fallbacks 0); spend $124.98; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[519/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2007__rep0 -> ok (287s, $0.159, fallbacks 0); spend $125.14; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[520/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2007__rep1 -> ok (280s, $0.159, fallbacks 0); spend $125.30; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[521/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2007__rep2 -> ok (278s, $0.159, fallbacks 0); spend $125.46; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[522/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2008__rep0 -> ok (275s, $0.159, fallbacks 0); spend $125.62; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[523/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2008__rep1 -> ok (278s, $0.159, fallbacks 0); spend $125.78; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[524/574] gemini-2.5-flash__ENTJ__memory__bull_trap__seed2008__rep2 -> ok (274s, $0.160, fallbacks 0); spend $125.94; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[525/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2001__rep0 -> ok (273s, $0.159, fallbacks 0); spend $126.10; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[526/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2002__rep0 -> ok (256s, $0.158, fallbacks 0); spend $126.25; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[527/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2001__rep1 -> ok (264s, $0.159, fallbacks 0); spend $126.57; ETA 0.4 h
+[528/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2001__rep2 -> ok (261s, $0.160, fallbacks 0); spend $126.57; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[529/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2002__rep2 -> ok (257s, $0.159, fallbacks 0); spend $126.73; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[530/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2003__rep0 -> ok (258s, $0.160, fallbacks 0); spend $127.05; ETA 0.4 h
+[531/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2002__rep1 -> ok (262s, $0.159, fallbacks 0); spend $127.05; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[532/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2003__rep1 -> ok (261s, $0.159, fallbacks 0); spend $127.21; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[533/574] gemini-2.5-flash__INTJ__memory__bull_trap__seed2008__rep0 -> ok (7532s, $0.330, fallbacks 0); spend $127.54; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[534/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2003__rep2 -> ok (255s, $0.159, fallbacks 0); spend $127.70; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[535/574] gemini-2.5-flash__INTJ__memory__sustained_bull__seed2001__rep0 -> ok (5874s, $0.328, fallbacks 0); spend $128.03; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[536/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2004__rep0 -> ok (253s, $0.159, fallbacks 0); spend $128.19; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[537/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2004__rep1 -> ok (247s, $0.159, fallbacks 0); spend $128.34; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[538/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2004__rep2 -> ok (245s, $0.159, fallbacks 0); spend $128.50; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[539/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2005__rep0 -> ok (247s, $0.159, fallbacks 0); spend $128.66; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[540/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2005__rep2 -> ok (245s, $0.159, fallbacks 0); spend $128.82; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[541/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2005__rep1 -> ok (251s, $0.160, fallbacks 0); spend $128.98; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[542/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2006__rep0 -> ok (247s, $0.160, fallbacks 0); spend $129.14; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[543/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2006__rep1 -> ok (243s, $0.160, fallbacks 0); spend $129.30; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[544/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2006__rep2 -> ok (241s, $0.159, fallbacks 0); spend $129.46; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[545/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2007__rep0 -> ok (241s, $0.159, fallbacks 0); spend $129.96; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[546/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2007__rep1 -> ok (242s, $0.159, fallbacks 0); spend $130.12; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[547/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2008__rep0 -> ok (242s, $0.160, fallbacks 0); spend $130.28; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[548/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2007__rep2 -> ok (243s, $0.159, fallbacks 0); spend $130.44; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[549/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2008__rep1 -> ok (247s, $0.160, fallbacks 0); spend $130.60; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[550/574] gemini-2.5-flash__ENTJ__memory__crash_d0.7__seed2008__rep2 -> ok (254s, $0.160, fallbacks 0); spend $131.44; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[551/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2001__rep0 -> ok (226s, $0.159, fallbacks 0); spend $131.60; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[552/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2001__rep1 -> ok (223s, $0.159, fallbacks 0); spend $131.76; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[553/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2001__rep2 -> ok (227s, $0.159, fallbacks 0); spend $132.95; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[554/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2002__rep0 -> ok (228s, $0.158, fallbacks 0); spend $133.44; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[555/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2002__rep1 -> ok (226s, $0.158, fallbacks 0); spend $133.60; ETA 0.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[556/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2002__rep2 -> ok (228s, $0.158, fallbacks 0); spend $134.11; ETA 0.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[557/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2003__rep0 -> ok (226s, $0.159, fallbacks 0); spend $134.26; ETA 0.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[558/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2003__rep1 -> ok (230s, $0.158, fallbacks 0); spend $134.42; ETA 0.1 h
+[559/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2004__rep0 -> ok (226s, $0.158, fallbacks 0); spend $134.92; ETA 0.1 h
+[560/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2003__rep2 -> ok (228s, $0.158, fallbacks 0); spend $135.08; ETA 0.1 h
+[561/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2004__rep1 -> ok (226s, $0.158, fallbacks 0); spend $135.24; ETA 0.1 h
+[562/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2004__rep2 -> ok (228s, $0.158, fallbacks 0); spend $135.74; ETA 0.1 h
+[563/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2005__rep0 -> ok (230s, $0.159, fallbacks 0); spend $135.90; ETA 0.1 h
+[564/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2005__rep1 -> ok (230s, $0.160, fallbacks 0); spend $136.06; ETA 0.1 h
+[565/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2005__rep2 -> ok (232s, $0.160, fallbacks 0); spend $136.22; ETA 0.1 h
+[566/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2006__rep0 -> ok (237s, $0.159, fallbacks 0); spend $136.38; ETA 0.1 h
+[567/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2006__rep1 -> ok (233s, $0.159, fallbacks 0); spend $136.54; ETA 0.1 h
+[568/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2006__rep2 -> ok (232s, $0.159, fallbacks 0); spend $136.70; ETA 0.0 h
+[569/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2007__rep1 -> ok (231s, $0.159, fallbacks 0); spend $136.86; ETA 0.0 h
+[570/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2007__rep0 -> ok (244s, $0.159, fallbacks 0); spend $137.01; ETA 0.0 h
+[571/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2007__rep2 -> ok (232s, $0.159, fallbacks 0); spend $137.17; ETA 0.0 h
+[572/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2008__rep1 -> ok (232s, $0.159, fallbacks 0); spend $137.33; ETA 0.0 h
+[573/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2008__rep0 -> ok (234s, $0.158, fallbacks 0); spend $137.49; ETA 0.0 h
+[574/574] gemini-2.5-flash__ENTJ__memory__sustained_bull__seed2008__rep2 -> ok (229s, $0.158, fallbacks 0); spend $137.65; ETA 0.0 h

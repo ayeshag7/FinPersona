@@ -75,12 +75,33 @@ def _runs(start_design):
 
 
 def test_gate_common_start_only():
+    """Item 54, as Phase 0 stated it and as Phase 7 re-specified it.
+
+    Phase 0's contract was: no gate on start-at-target rows, and the delta-C_1 table kept as EXPLORATORY with its
+    reason in a `note` column, "re-specified in Phase 7". **Phase 7 re-specified it by REMOVING that table**
+    (E7.5, DECISION_LOG P7-6/P7-7): a level/band-membership test fed a difference cannot separate personas under
+    start-at-target whatever the agent does, so its verdict carries no information about the agent, and labelling
+    it exploratory invited it to be read as weak evidence.
+
+    What item 54 actually asserts is unchanged and is asserted here: **the gate is never computed on
+    start-at-target rows.** The two clauses that referred to the withdrawn table are updated to the contract that
+    replaced them, and the removal now has to announce itself in `gate_removed_note`.
+    """
     from tools.report_v2 import salience_tables
     t = salience_tables(_runs("target"))
-    assert "gate_common_start" not in t and not any(k.startswith("gate_") for k in t), list(t)
-    assert "exploratory_deltaC1_start_at_target" in t and "note" in t["exploratory_deltaC1_start_at_target"].columns
+    # item 54's substance: no gate verdict is produced from start-at-target rows
+    assert "gate_common_start" not in t and "gate_common_start_null" not in t, list(t)
+    # the ill-posed delta-C_1 table is gone, and its removal is recorded rather than silent (Phase 7 E7.5)
+    assert "exploratory_deltaC1_start_at_target" not in t
+    assert "gate_removed_note" in t
+    note = t["gate_removed_note"].iloc[0]
+    assert note["removed"] == "exploratory_deltaC1_start_at_target" and "ill-posed" in note["reason"]
+
     c = salience_tables(_runs("common"))
     assert "gate_common_start" in c and "exploratory_deltaC1_start_at_target" not in c
+    # and the gate's null is reported either way: these synthetic runs carry no no-persona arm, so NOT COMPUTABLE
+    assert "gate_common_start_null" in c
+    assert c["gate_common_start_null"]["status"].iloc[0] == "NOT COMPUTABLE"
 
 
 # ----------------------------------------------------------------------------------------- item 69

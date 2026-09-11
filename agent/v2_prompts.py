@@ -92,8 +92,22 @@ WRAPPER_INSTRUCTION = "Strictly adhere to your core mandate:"
 WRAPPER_CLOSE = "Evaluate this trade ONLY through the lens of this mandate."
 
 
-def mandate_block(kind: str, persona: Optional[str], wording: str = "rewritten") -> str:
-    """The per-step injected block for the given arm kind ('' for none)."""
+def _placebo_directive_block(text: str) -> str:
+    return f"{WRAPPER_OPEN}\nStrictly adhere to your core procedure:\n{text}\n\nWrite this decision ONLY in the manner of this procedure."
+
+
+PLACEBO_VERSIONS = ("v2", "v2_1")
+
+
+def mandate_block(kind: str, persona: Optional[str], wording: str = "rewritten", placebo_version: str = "v2") -> str:
+    """The per-step injected block for the given arm kind ('' for none).
+
+    `placebo_version="v2"` (default) is the directive placebo every published run used, identical for every persona.
+    `"v2_1"` is the per-persona matched placebo of PREREG_PHASE_8.md 1.6 (weakness 60): whole clauses removed or
+    appended, in a registered order, until the block's imperative-clause count equals the persona's mandate block's
+    (`agent/prompt_matching.py`); the word criterion is then measured, not enforced."""
+    if placebo_version not in PLACEBO_VERSIONS:
+        raise ValueError(f"placebo_version must be one of {PLACEBO_VERSIONS}, got {placebo_version!r}")
     if kind == "none":
         return ""
     if kind == "mandate":
@@ -104,7 +118,11 @@ def mandate_block(kind: str, persona: Optional[str], wording: str = "rewritten")
     if kind == "placebo_declarative":
         return PLACEBO_DECLARATIVE
     if kind == "placebo_directive":
-        return f"{WRAPPER_OPEN}\nStrictly adhere to your core procedure:\n{PLACEBO_DIRECTIVE}\n\nWrite this decision ONLY in the manner of this procedure."
+        if placebo_version == "v2":
+            return _placebo_directive_block(PLACEBO_DIRECTIVE)
+        from agent import prompt_matching as PM
+        target = PM.imperatives(mandate_block("mandate", persona, wording))
+        return _placebo_directive_block(PM.matched_placebo_text(PLACEBO_DIRECTIVE, target, _placebo_directive_block))
     if kind == "wrapper_only":
         return f"{WRAPPER_OPEN}\n{WRAPPER_INSTRUCTION}\n\n{WRAPPER_CLOSE}"
     raise ValueError(f"unknown mandate block kind {kind!r}")

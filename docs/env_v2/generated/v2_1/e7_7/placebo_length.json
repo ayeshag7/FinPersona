@@ -1,0 +1,56 @@
+{
+ "n_by_arm": {
+  "memory": 11,
+  "placebo_directive": 9,
+  "stateful_memory": 3,
+  "swapped": 9
+ },
+ "state": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": true,
+  "observables": "multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A"
+ },
+ "generated_utc": "2026-09-10T01:05:17Z",
+ "chars": {
+  "real_mean": 315.45454545454544,
+  "real_sd": 20.593026180547803,
+  "n_real": 11,
+  "placebo_mean": 317.0,
+  "placebo_sd": 0.0,
+  "n_placebo": 9,
+  "ratio_placebo_over_real": 1.0048991354466859,
+  "mannwhitney_u": 36.0,
+  "p": 0.2956071558462503
+ },
+ "words": {
+  "real_mean": 52.90909090909091,
+  "real_sd": 1.868397465987655,
+  "n_real": 11,
+  "placebo_mean": 51.0,
+  "placebo_sd": 0.0,
+  "n_placebo": 9,
+  "ratio_placebo_over_real": 0.9639175257731959,
+  "mannwhitney_u": 72.0,
+  "p": 0.06879470838897857
+ },
+ "tokens_approx": {
+  "real_mean": 68.27272727272727,
+  "real_sd": 2.4936282437809005,
+  "n_real": 11,
+  "placebo_mean": 67.0,
+  "placebo_sd": 0.0,
+  "n_placebo": 9,
+  "ratio_placebo_over_real": 0.9813581890812251,
+  "mannwhitney_u": 72.0,
+  "p": 0.07672967400076902
+ },
+ "rule": "weakness 60: the matching is TESTED, not asserted. n is small (one model, one seed), so a non-significant p is not evidence of matching -- the ratio and its n are the statement."
+}

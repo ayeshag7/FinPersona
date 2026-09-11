@@ -122,9 +122,21 @@ def surrogate_on_probes(panel: pd.DataFrame, probes: pd.DataFrame) -> np.ndarray
 
 
 # ------------------------------------------------------------------------------------------ calls
-def ask(model_name: str, prompts: List[str], out_csv: str, sleep: float = 0.0) -> pd.DataFrame:
+def make_llm_without_temperature(model_name: str):
+    """v2.1 Phase 8 (DECISION_LOG P8-12): Claude Sonnet 5 and Opus 5 reject any temperature -- every call with the
+    registered temperature 0.0 returned HTTP 400 "`temperature` is deprecated for this model" -- so the client is built
+    without one and the provider default applies; l3.json records which models ran that way."""
+    from dotenv import load_dotenv
+    load_dotenv()
+    if "claude" in model_name.lower():
+        from langchain_anthropic import ChatAnthropic
+        return ChatAnthropic(model=model_name, anthropic_api_key=os.getenv("ANTHROPIC_API_KEY"))
+    raise ValueError(f"--no-temperature is implemented for Anthropic models only, not {model_name!r}")
+
+
+def ask(model_name: str, prompts: List[str], out_csv: str, sleep: float = 0.0, no_temperature: bool = False) -> pd.DataFrame:
     from agent.llm_factory import make_llm
-    llm = make_llm(model_name, temperature=0.0)
+    llm = make_llm_without_temperature(model_name) if no_temperature else make_llm(model_name, temperature=0.0)
     done = pd.read_csv(out_csv) if os.path.exists(out_csv) else pd.DataFrame(columns=["i", "raw"])
     have = set(done["i"].tolist())
     rows = done.to_dict("records")
@@ -135,7 +147,12 @@ def ask(model_name: str, prompts: List[str], out_csv: str, sleep: float = 0.0) -
             r = llm.invoke(p)
             raw = r.content if hasattr(r, "content") else str(r)
             if isinstance(raw, list):
-                raw = " ".join(str(x.get("text", x)) if isinstance(x, dict) else str(x) for x in raw)
+                # v2.1 Phase 8 (P8-12): keep the TEXT parts only.  A model that thinks by default (Claude Sonnet 5, Opus 5)
+                # returns a thinking block with a long signature before its answer; joining every part put that block
+                # into `raw`, and the 500-character cut below then removed the answer itself (17 of 146 rows on the
+                # first attempt), which scored as wrong.
+                raw = " ".join(x.get("text", "") if isinstance(x, dict) else str(x) for x in raw
+                               if (isinstance(x, dict) and x.get("type") == "text") or isinstance(x, str))
         except Exception as e:
             raw = f"ERROR: {type(e).__name__}: {e}"
         rows.append({"i": i, "raw": str(raw)[:500]})
@@ -162,7 +179,10 @@ def main():
     ap.add_argument("--arms", default="normal,shuffled")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--n-null", type=int, default=500)
+    ap.add_argument("--no-temperature", default="",
+                    help="comma list of models whose client is built with NO temperature (they reject one; P8-12)")
     a = ap.parse_args()
+    no_temp = {m.strip() for m in a.no_temperature.split(",") if m.strip()}
     os.makedirs(a.out, exist_ok=True)
     state = pin_state()
     rng = np.random.default_rng(SEED)
@@ -205,15 +225,22 @@ def main():
         res["models"][m] = {}
         for arm in arms:
             col = "prompt" if arm == "normal" else "prompt_shuffled"
-            ans = ask(m, probes[col].tolist(), os.path.join(a.out, f"answers_{re.sub(r'[^A-Za-z0-9_.-]', '_', m)}_{arm}.csv"))
+            ans = ask(m, probes[col].tolist(), os.path.join(a.out, f"answers_{re.sub(r'[^A-Za-z0-9_.-]', '_', m)}_{arm}.csv"),
+                      no_temperature=m in no_temp)
             pred = np.array([parse(r) for r in ans["raw"]])
             k = int(np.sum(pred == y)); p, lo, hi = wilson(k, n)
             fair = float(np.mean(pred == 0)); err = int(sum(str(r).startswith("ERROR") for r in ans["raw"]))
-            blk = {"sign_acc": p, "wilson95": [lo, hi], "n": n, "share_fair_or_unparsed": fair, "n_errors": err}
+            blk = {"sign_acc": p, "wilson95": [lo, hi], "n": n, "share_fair_or_unparsed": fair, "n_errors": err,
+                   "temperature": ("none sent (provider default; the model rejects one, P8-12)" if m in no_temp else
+                                   "0.0 requested; langchain_openai drops it for gpt-5 models, so the provider default 1.0 ran"
+                                   if m.lower().startswith("gpt-5") else "0.0")}
+            # v2.1 Phase 8 (P8-12): an arm with provider errors has no accuracy to judge -- an accuracy of 0 from 200
+            # rejected calls previously read as PASS ("below the ceiling") -- so its verdict is NOT COMPUTABLE
+            blk["verdict"] = "NOT COMPUTABLE" if err > 0 else None
             if arm == "normal":
-                blk["pass_vs_surrogate_ceiling"] = bool(p <= res["ceiling"])
+                blk["pass_vs_surrogate_ceiling"] = None if err > 0 else bool(p <= res["ceiling"])
             else:
-                blk["within_null"] = bool(p <= res["null_of_accuracy_sign_perm"]["p95"])
+                blk["within_null"] = None if err > 0 else bool(p <= res["null_of_accuracy_sign_perm"]["p95"])
             res["models"][m][arm] = blk
             print(f"{m} {arm}: sign accuracy {p:.3f} [{lo:.3f}, {hi:.3f}], fair/unparsed {fair:.2f}, errors {err}", flush=True)
         json.dump(res, open(os.path.join(a.out, "l3.json"), "w", encoding="utf-8"), indent=1, default=str)
@@ -223,7 +250,8 @@ def main():
     for m, arms_ in res["models"].items():
         for arm, b in arms_.items():
             v = b.get("pass_vs_surrogate_ceiling", b.get("within_null"))
-            L.append(f"| {m} | {arm} | {b['sign_acc']:.3f} [{b['wilson95'][0]:.3f}, {b['wilson95'][1]:.3f}] | {b['share_fair_or_unparsed']:.2f} | {b['n_errors']} | {'PASS' if v else 'FAIL'} |")
+            verdict = b.get("verdict") or ("PASS" if v else "FAIL")
+            L.append(f"| {m} | {arm} | {b['sign_acc']:.3f} [{b['wilson95'][0]:.3f}, {b['wilson95'][1]:.3f}] | {b['share_fair_or_unparsed']:.2f} | {b['n_errors']} | {verdict} |")
     with open(os.path.join(a.out, "l3.md"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(L) + "\n")
     print("->", a.out)

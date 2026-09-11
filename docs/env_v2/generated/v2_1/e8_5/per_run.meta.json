@@ -1,0 +1,13 @@
+{
+ "scoring_json_sha256": "112843968c060d88bf8ee88fc4d8735b01d22a071e430c3c13d2a6a544ede45a",
+ "thetas_in_force": [
+  0.002,
+  0.05
+ ],
+ "n_runs": 720,
+ "by_model": {
+  "gemini-2.5-flash": 576,
+  "gpt-5-mini": 144
+ },
+ "generated_utc": "2026-09-10T15:25:27Z"
+}

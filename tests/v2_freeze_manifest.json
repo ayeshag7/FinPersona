@@ -1,6 +1,6 @@
 {
- "label": "v2.1 Phase 6 freeze",
- "written": "2026-09-09",
+ "label": "v2.1 Phase 7 freeze (scoring layer added; DECISION_LOG P7-15)",
+ "written": "2026-09-10",
  "patterns": [
   "envs/v2/**/*.py",
   "envs/synthetic_market.py",
@@ -10,10 +10,13 @@
   "evaluation/observables_oracle.py",
   "evaluation/metrics_v2.py",
   "evaluation/baselines_v2.py",
-  "evaluation/targets.py"
+  "evaluation/targets.py",
+  "evaluation/scoring.py",
+  "evaluation/scoring_params.py",
+  "evaluation/params/scoring.json"
  ],
  "line_endings": "CRLF normalised to LF before hashing",
- "manifest_hash": "6718696f3ee7026232b12028915f3387cc747613510efbb7355f7d110f5241c2",
+ "manifest_hash": "03ce96aadef0f6086286fe6e048539853c607b97c69ad3d7b1dd35e9c6c30104",
  "files": {
   "envs/synthetic_market.py": "9e6ffde3f5711964d712f30a00897e58331409e6971e478bfec66e4c8cc643d0",
   "envs/v2/__init__.py": "24dd6056b3dd032e240ee0b5aa4aed7c68689d2afdc99f35903a0aab4f336040",
@@ -36,11 +39,14 @@
   "envs/v2/schedule.py": "0780cdb88d109827076997214e1d28ef818bcc182826962a962ee053c0f3712f",
   "envs/v2/value_params.py": "d1651d0ec804b34b5c294d6720a2c6a538f7957bb4a5602216f30d1654343f45",
   "envs/v2/volatility_params.py": "f89333c09aa337050af801b14ad0c922b5b9d5045e17ebc0106a55cfbedc4d66",
-  "evaluation/baselines_v2.py": "8bb6acb179c9ba012a34209c003a8b42495c5c0ef879144f3a4618394f73cf97",
+  "evaluation/baselines_v2.py": "e47f75e36a7371f0265ed09d4a3e22f22bb56526c9266e03686fa3fafa7911f0",
   "evaluation/leakage_audit.py": "62fcd7b99bea72870593c518968cb0c00aa953f9e79ebcc0cdf02bafd274d593",
-  "evaluation/metrics_v2.py": "b420595779c7b9afd4190160994a7b90adc2411f9b8d7962a7b7746c1a6bbc5e",
+  "evaluation/metrics_v2.py": "48b96aaba6437783ca6e614220dc58d2e6c86aab4d0f9ae714103ecf29169be2",
   "evaluation/observables_oracle.py": "eb643e31f48dea7bbba4fa7e7e0bd23ddf590bfe17e160597943f69afabc45fd",
+  "evaluation/params/scoring.json": "112843968c060d88bf8ee88fc4d8735b01d22a071e430c3c13d2a6a544ede45a",
+  "evaluation/scoring.py": "70c767dd0e9d509b657488592b6cfa7a8c3553094c84bd95aaa7be53c01cc85b",
+  "evaluation/scoring_params.py": "b8f39fe105a1f05aff9118ad56cfb05d1f3b1c44aaf26b6b3d1b11fa994b1b83",
   "evaluation/stylized_facts.py": "cd41c14d8e00732f19f9b949e415ed0daa4d130eeb109694ca283779ece98ec1",
-  "evaluation/targets.py": "83fc576e87fc1f7f2732492883d5e3f7723ab47c6c0f1d5c22f778a910744459"
+  "evaluation/targets.py": "3c3941e8970aae8dd8f8e7ed9a128e425bcb35764e25034d1a10cfd6c64ef92b"
  }
 }

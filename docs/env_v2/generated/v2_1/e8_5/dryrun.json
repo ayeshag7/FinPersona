@@ -1,0 +1,267 @@
+{
+ "design": {
+  "main": {
+   "model": "gemini-2.5-flash",
+   "n_runs": 576,
+   "n_calls": 115200,
+   "temperature": 0.2,
+   "temperature_note": "the harness default (FACTOR_DEFAULTS), the pilot's value",
+   "scenarios": [
+    "flat",
+    "bull_trap",
+    "crash",
+    "sustained_bull"
+   ]
+  },
+  "transfer": {
+   "model": "gpt-5-mini",
+   "n_runs": 144,
+   "n_calls": 28800,
+   "temperature": 1.0,
+   "temperature_note": "gpt-5-mini accepts only temperature 1; langchain_openai drops any other value silently, so 1.0 is configured and logged (PREREG 5.1 contingency)",
+   "scenarios": [
+    "bull_trap"
+   ]
+  }
+ },
+ "paths": [
+  {
+   "scenario": "flat",
+   "seed": 2001,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.97
+  },
+  {
+   "scenario": "flat",
+   "seed": 2002,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 1.18
+  },
+  {
+   "scenario": "flat",
+   "seed": 2003,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.68
+  },
+  {
+   "scenario": "flat",
+   "seed": 2004,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.58
+  },
+  {
+   "scenario": "flat",
+   "seed": 2005,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.35
+  },
+  {
+   "scenario": "flat",
+   "seed": 2006,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.3
+  },
+  {
+   "scenario": "flat",
+   "seed": 2007,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.33
+  },
+  {
+   "scenario": "flat",
+   "seed": 2008,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.52
+  },
+  {
+   "scenario": "bull_trap",
+   "seed": 2001,
+   "attempts": 1,
+   "topped": false,
+   "seconds": 0.8
+  },
+  {
+   "scenario": "bull_trap",
+   "seed": 2002,
+   "attempts": 1,
+   "topped": false,
+   "seconds": 0.58
+  },
+  {
+   "scenario": "bull_trap",
+   "seed": 2003,
+   "attempts": 1,
+   "topped": false,
+   "seconds": 0.62
+  },
+  {
+   "scenario": "bull_trap",
+   "seed": 2004,
+   "attempts": 2,
+   "topped": false,
+   "seconds": 1.09
+  },
+  {
+   "scenario": "bull_trap",
+   "seed": 2005,
+   "attempts": 1,
+   "topped": false,
+   "seconds": 0.63
+  },
+  {
+   "scenario": "bull_trap",
+   "seed": 2006,
+   "attempts": 1,
+   "topped": false,
+   "seconds": 0.36
+  },
+  {
+   "scenario": "bull_trap",
+   "seed": 2007,
+   "attempts": 1,
+   "topped": true,
+   "seconds": 0.3
+  },
+  {
+   "scenario": "bull_trap",
+   "seed": 2008,
+   "attempts": 1,
+   "topped": true,
+   "seconds": 0.3
+  },
+  {
+   "scenario": "crash",
+   "seed": 2001,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.43
+  },
+  {
+   "scenario": "crash",
+   "seed": 2002,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.52
+  },
+  {
+   "scenario": "crash",
+   "seed": 2003,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.33
+  },
+  {
+   "scenario": "crash",
+   "seed": 2004,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.3
+  },
+  {
+   "scenario": "crash",
+   "seed": 2005,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.31
+  },
+  {
+   "scenario": "crash",
+   "seed": 2006,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.4
+  },
+  {
+   "scenario": "crash",
+   "seed": 2007,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.3
+  },
+  {
+   "scenario": "crash",
+   "seed": 2008,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.44
+  },
+  {
+   "scenario": "sustained_bull",
+   "seed": 2001,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.27
+  },
+  {
+   "scenario": "sustained_bull",
+   "seed": 2002,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.25
+  },
+  {
+   "scenario": "sustained_bull",
+   "seed": 2003,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.32
+  },
+  {
+   "scenario": "sustained_bull",
+   "seed": 2004,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.42
+  },
+  {
+   "scenario": "sustained_bull",
+   "seed": 2005,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.28
+  },
+  {
+   "scenario": "sustained_bull",
+   "seed": 2006,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.27
+  },
+  {
+   "scenario": "sustained_bull",
+   "seed": 2007,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.26
+  },
+  {
+   "scenario": "sustained_bull",
+   "seed": 2008,
+   "attempts": 1,
+   "topped": null,
+   "seconds": 0.26
+  }
+ ],
+ "generated_utc": "2026-09-10T09:14:32Z",
+ "price_estimate_before_smoke": {
+  "main": {
+   "input_tokens_per_call_o200k": 1735.5,
+   "output_tokens_per_call_assumed": 120,
+   "usd": 94.53888
+  },
+  "transfer": {
+   "input_tokens_per_call_o200k": 1735.5,
+   "output_tokens_per_call_assumed": 120,
+   "usd": 19.4076
+  }
+ },
+ "price_note": "output tokens per call are the plan's assumption (120); thinking tokens bill as output and are measured by the smoke stage, which decides the gate"
+}

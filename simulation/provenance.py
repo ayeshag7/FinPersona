@@ -39,9 +39,15 @@ from typing import Any, Dict, Iterable, Optional
 
 HASH_LEN = 16
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# v2.1 Phase 7 adds the scoring layer to the freeze: `evaluation/scoring.py` defines the statistic exactly as
+# `metrics_v2.py` does (which is already covered), `scoring_params.py` is its loud loader and
+# `params/scoring.json` the values in force, so a change to any of them must move Env_Code_Hash for the same
+# reason a change to metrics_v2 does.  (Phase 6's `criteria.py` / `phase6_criteria.json` were left out of the
+# patterns; that inconsistency is carried, not fixed here — see PHASE_7_REPORT.md section 7.)
 V2_FREEZE_PATTERNS = ("envs/v2/**/*.py", "envs/synthetic_market.py", "envs/v2/params/*.json",
                       "evaluation/stylized_facts.py", "evaluation/leakage_audit.py", "evaluation/observables_oracle.py",
-                      "evaluation/metrics_v2.py", "evaluation/baselines_v2.py", "evaluation/targets.py")
+                      "evaluation/metrics_v2.py", "evaluation/baselines_v2.py", "evaluation/targets.py",
+                      "evaluation/scoring.py", "evaluation/scoring_params.py", "evaluation/params/scoring.json")
 MANIFEST_PATH = os.path.join(REPO_ROOT, "tests", "v2_freeze_manifest.json")
 
 

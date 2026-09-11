@@ -36,8 +36,9 @@ class V2Agent(BaseAgent):
                  track: str = "B", action_interface: str = "target", n_assets: int = 1,
                  disclose_horizon: bool = False, T: int = 200, cost_visible: bool = False, cost_bp: float = 5.0,
                  objective: str = "none", mandate_in_system: bool = False, temperature: float = 0.2,
-                 liquidity_condition: bool = False, llm=None):
+                 liquidity_condition: bool = False, llm=None, placebo_version: str = "v2"):
         super().__init__(persona)
+        self.placebo_version = placebo_version          # v2.1 Phase 8 (E8.1(e)): "v2" = the published placebo
         self.persona = persona
         self.model_name = model_name
         self.mandate_block_kind = mandate_block
@@ -60,7 +61,8 @@ class V2Agent(BaseAgent):
             disclose_horizon=disclose_horizon, T=T, cost_visible=cost_visible, cost_bp=cost_bp,
             objective=objective, mandate_in_system=mandate_in_system, wording=wording,
             liquidity_condition=liquidity_condition)
-        self.core_mandate = P.mandate_block(mandate_block, self.mandate_persona, wording) if mandate_block != "none" else ""
+        self.core_mandate = (P.mandate_block(mandate_block, self.mandate_persona, wording, placebo_version)
+                             if mandate_block != "none" else "")
         self.human_template = P.HUMAN_TEMPLATE_V2 if action_interface == "target" else HUMAN_TEMPLATE_STATIC
         self.parser = PydanticOutputParser(pydantic_object=TargetAllocation if action_interface == "target" else TradeDecision)
         self.llm = llm if llm is not None else make_llm(model_name, temperature)

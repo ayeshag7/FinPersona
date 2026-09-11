@@ -1,0 +1,26 @@
+{
+ "rule": "PREREG_PHASE_7.md 4.3 / REG-12, written before any number here was read: adopt the scoring under which (i) every scripted sweep is monotone in its target metric and (ii) |corr(MCR, band-MAS)| across cells is below the ceiling derived from the sweeps; if both qualify, A; if neither, the matrices and D8",
+ "per_scoring": {
+  "A_decomposition": {
+   "all_sweeps_monotone": true,
+   "below_ceiling": true,
+   "qualifies": true,
+   "failing_sweeps": [],
+   "observed_abs_corr_mcr_band_mas": 0.9758069118419032,
+   "ceiling": 0.9949506159905679
+  },
+  "B_per_window": {
+   "all_sweeps_monotone": true,
+   "below_ceiling": true,
+   "qualifies": true,
+   "failing_sweeps": [],
+   "observed_abs_corr_mcr_band_mas": 0.9826730048935122,
+   "ceiling": 0.9991275684395997
+  }
+ },
+ "adopted": "A_decomposition",
+ "why": "both qualify; REG-12's tie-break adopts A, for comparability with the pilot",
+ "theta_reported": 0.05,
+ "half_width": 0.1,
+ "generated_utc": "2026-09-09T20:56:01Z"
+}

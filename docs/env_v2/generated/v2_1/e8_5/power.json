@@ -1,0 +1,648 @@
+{
+ "delta_band_mas": 0.05,
+ "power": 0.8,
+ "alpha": 0.05,
+ "m_Q1_C": 36,
+ "alpha_bonferroni": 0.001388888888888889,
+ "plugin": "PRIMARY: the closed-form one-sided 90 % limit (modified large-sample; known-answer coverage 0.915-0.945); BESIDE: the registered percentile path-bootstrap limit (coverage 0.60-0.67 when seed x arm variance is present) -- P8-15, addendum 16",
+ "sized_band_mas": {
+  "1": {
+   "sigma_limit": 0.0379822015358277,
+   "sigma_point": 0.0347598929736085,
+   "appA_bonf": 19,
+   "paired_bonf": 10,
+   "appA_nominal": 10,
+   "paired_nominal": 5,
+   "appA_bonf_at_point": 16,
+   "sigma_bootstrap_ucl90": 0.0372462012484005,
+   "appA_bonf_bootstrap": 19,
+   "appA_bonf_bootstrap_ucl80": 17,
+   "appA_bonf_bootstrap_ucl95": 20,
+   "runs_per_contrast_cell_appA_bonf": 38
+  },
+  "2": {
+   "sigma_limit": 0.0356649412792413,
+   "sigma_point": 0.0322277133297668,
+   "appA_bonf": 17,
+   "paired_bonf": 9,
+   "appA_nominal": 8,
+   "paired_nominal": 4,
+   "appA_bonf_at_point": 14,
+   "sigma_bootstrap_ucl90": 0.0343869566001121,
+   "appA_bonf_bootstrap": 16,
+   "appA_bonf_bootstrap_ucl80": 15,
+   "appA_bonf_bootstrap_ucl95": 17,
+   "runs_per_contrast_cell_appA_bonf": 68
+  },
+  "3": {
+   "sigma_limit": 0.0348622622031018,
+   "sigma_point": 0.0313382187662594,
+   "appA_bonf": 16,
+   "paired_bonf": 8,
+   "appA_nominal": 8,
+   "paired_nominal": 4,
+   "appA_bonf_at_point": 13,
+   "sigma_bootstrap_ucl90": 0.0334931883675954,
+   "appA_bonf_bootstrap": 15,
+   "appA_bonf_bootstrap_ucl80": 14,
+   "appA_bonf_bootstrap_ucl95": 16,
+   "runs_per_contrast_cell_appA_bonf": 96
+  }
+ },
+ "mdd": [
+  {
+   "metric": "band_mas",
+   "design": "E8.5 (8 seeds, 3 reps)",
+   "seeds_per_cell": 8,
+   "reps": 3,
+   "sigma_limit": 0.0348622622,
+   "sigma_point": 0.0313382188,
+   "sigma_bootstrap_ucl90": 0.0334931884,
+   "mdd_appA_bonf": 0.0703968686,
+   "mdd_paired_bonf": 0.0497781032,
+   "mdd_appA_nominal": 0.0488347992,
+   "mdd_paired_nominal": 0.0345314177,
+   "mdd_appA_bonf_bootstrap": 0.0676323174
+  },
+  {
+   "metric": "band_mas",
+   "design": "Tier A (5 seeds, 1 rep)",
+   "seeds_per_cell": 5,
+   "reps": 1,
+   "sigma_limit": 0.0379822015,
+   "sigma_point": 0.034759893,
+   "sigma_bootstrap_ucl90": 0.0372462012,
+   "mdd_appA_bonf": 0.0970147797,
+   "mdd_paired_bonf": 0.0685998086,
+   "mdd_appA_nominal": 0.0672998299,
+   "mdd_paired_nominal": 0.0475881661,
+   "mdd_appA_bonf_bootstrap": 0.0951348753
+  },
+  {
+   "metric": "band_mas",
+   "design": "band-MAS-sized (R=1, App. A, Bonferroni)",
+   "seeds_per_cell": 19,
+   "reps": 1,
+   "sigma_limit": 0.0379822015,
+   "sigma_point": 0.034759893,
+   "sigma_bootstrap_ucl90": 0.0372462012,
+   "mdd_appA_bonf": 0.0497675319,
+   "mdd_paired_bonf": 0.0351909593,
+   "mdd_appA_nominal": 0.0345240843,
+   "mdd_paired_nominal": 0.0244122141,
+   "mdd_appA_bonf_bootstrap": 0.0488031613
+  },
+  {
+   "metric": "v21_mcr_B_0.05",
+   "design": "E8.5 (8 seeds, 3 reps)",
+   "seeds_per_cell": 8,
+   "reps": 3,
+   "sigma_limit": 0.050634063,
+   "sigma_point": 0.0455157308,
+   "sigma_bootstrap_ucl90": 0.0521996058,
+   "mdd_appA_bonf": 0.1022446408,
+   "mdd_paired_bonf": 0.0722978789,
+   "mdd_appA_nominal": 0.0709278212,
+   "mdd_paired_nominal": 0.0501535433,
+   "mdd_appA_bonf_bootstrap": 0.1054059193
+  },
+  {
+   "metric": "v21_mcr_B_0.05",
+   "design": "Tier A (5 seeds, 1 rep)",
+   "seeds_per_cell": 5,
+   "reps": 1,
+   "sigma_limit": 0.0537762417,
+   "sigma_point": 0.0489761391,
+   "sigma_bootstrap_ucl90": 0.0555714049,
+   "mdd_appA_bonf": 0.1373561833,
+   "mdd_paired_bonf": 0.0971254887,
+   "mdd_appA_nominal": 0.0952849433,
+   "mdd_paired_nominal": 0.0673766295,
+   "mdd_appA_bonf_bootstrap": 0.1419414195
+  },
+  {
+   "metric": "v21_mcr_B_0.05",
+   "design": "band-MAS-sized (R=1, App. A, Bonferroni)",
+   "seeds_per_cell": 19,
+   "reps": 1,
+   "sigma_limit": 0.0537762417,
+   "sigma_point": 0.0489761391,
+   "sigma_bootstrap_ucl90": 0.0555714049,
+   "mdd_appA_bonf": 0.0704622353,
+   "mdd_paired_bonf": 0.0498243244,
+   "mdd_appA_nominal": 0.0488801445,
+   "mdd_paired_nominal": 0.0345634817,
+   "mdd_appA_bonf_bootstrap": 0.0728144119
+  },
+  {
+   "metric": "v21_mcr_D_0.05",
+   "design": "E8.5 (8 seeds, 3 reps)",
+   "seeds_per_cell": 8,
+   "reps": 3,
+   "sigma_limit": 0.0229907334,
+   "sigma_point": 0.0206667207,
+   "sigma_bootstrap_ucl90": 0.0235894754,
+   "mdd_appA_bonf": 0.04642486,
+   "mdd_paired_bonf": 0.0328273333,
+   "mdd_appA_nominal": 0.0322052495,
+   "mdd_paired_nominal": 0.0227725503,
+   "mdd_appA_bonf_bootstrap": 0.0476338912
+  },
+  {
+   "metric": "v21_mcr_D_0.05",
+   "design": "Tier A (5 seeds, 1 rep)",
+   "seeds_per_cell": 5,
+   "reps": 1,
+   "sigma_limit": 0.0252595279,
+   "sigma_point": 0.0231515698,
+   "sigma_bootstrap_ucl90": 0.0259374292,
+   "mdd_appA_bonf": 0.0645183121,
+   "mdd_paired_bonf": 0.045621336,
+   "mdd_appA_nominal": 0.0447568035,
+   "mdd_paired_nominal": 0.0316478393,
+   "mdd_appA_bonf_bootstrap": 0.0662498191
+  },
+  {
+   "metric": "v21_mcr_D_0.05",
+   "design": "band-MAS-sized (R=1, App. A, Bonferroni)",
+   "seeds_per_cell": 19,
+   "reps": 1,
+   "sigma_limit": 0.0252595279,
+   "sigma_point": 0.0231515698,
+   "sigma_bootstrap_ucl90": 0.0259374292,
+   "mdd_appA_bonf": 0.0330971958,
+   "mdd_paired_bonf": 0.0234032516,
+   "mdd_appA_nominal": 0.0229597558,
+   "mdd_paired_nominal": 0.016234999,
+   "mdd_appA_bonf_bootstrap": 0.0339854401
+  },
+  {
+   "metric": "v21_mcr_0.05",
+   "design": "E8.5 (8 seeds, 3 reps)",
+   "seeds_per_cell": 8,
+   "reps": 3,
+   "sigma_limit": 0.0650334895,
+   "sigma_point": 0.0584595948,
+   "sigma_bootstrap_ucl90": 0.0694067263,
+   "mdd_appA_bonf": 0.1313211975,
+   "mdd_paired_bonf": 0.0928581093,
+   "mdd_appA_nominal": 0.0910984315,
+   "mdd_paired_nominal": 0.0644163187,
+   "mdd_appA_bonf_bootstrap": 0.1401520121
+  },
+  {
+   "metric": "v21_mcr_0.05",
+   "design": "Tier A (5 seeds, 1 rep)",
+   "seeds_per_cell": 5,
+   "reps": 1,
+   "sigma_limit": 0.0682431451,
+   "sigma_point": 0.0620013336,
+   "sigma_bootstrap_ucl90": 0.0725228321,
+   "mdd_appA_bonf": 0.174307792,
+   "mdd_paired_bonf": 0.1232542217,
+   "mdd_appA_nominal": 0.1209185322,
+   "mdd_paired_nominal": 0.0855023141,
+   "mdd_appA_bonf_bootstrap": 0.1852390406
+  },
+  {
+   "metric": "v21_mcr_0.05",
+   "design": "band-MAS-sized (R=1, App. A, Bonferroni)",
+   "seeds_per_cell": 19,
+   "reps": 1,
+   "sigma_limit": 0.0682431451,
+   "sigma_point": 0.0620013336,
+   "sigma_bootstrap_ucl90": 0.0725228321,
+   "mdd_appA_bonf": 0.0894180106,
+   "mdd_paired_bonf": 0.0632280816,
+   "mdd_appA_nominal": 0.0620298982,
+   "mdd_paired_nominal": 0.0438617616,
+   "mdd_appA_bonf_bootstrap": 0.0950256228
+  },
+  {
+   "metric": "v21_mcr_B_0.002",
+   "design": "E8.5 (8 seeds, 3 reps)",
+   "seeds_per_cell": 8,
+   "reps": 3,
+   "sigma_limit": 0.0344235525,
+   "sigma_point": 0.0309438559,
+   "sigma_bootstrap_ucl90": 0.0329773654,
+   "mdd_appA_bonf": 0.0695109883,
+   "mdd_paired_bonf": 0.0491516912,
+   "mdd_appA_nominal": 0.0482202579,
+   "mdd_paired_nominal": 0.0340968713,
+   "mdd_appA_bonf_bootstrap": 0.0665907234
+  },
+  {
+   "metric": "v21_mcr_B_0.002",
+   "design": "Tier A (5 seeds, 1 rep)",
+   "seeds_per_cell": 5,
+   "reps": 1,
+   "sigma_limit": 0.0375682697,
+   "sigma_point": 0.0343917546,
+   "sigma_bootstrap_ucl90": 0.0369172744,
+   "mdd_appA_bonf": 0.095957508,
+   "mdd_paired_bonf": 0.0678522046,
+   "mdd_appA_nominal": 0.0665663932,
+   "mdd_paired_nominal": 0.047069548,
+   "mdd_appA_bonf_bootstrap": 0.0942947248
+  },
+  {
+   "metric": "v21_mcr_B_0.002",
+   "design": "band-MAS-sized (R=1, App. A, Bonferroni)",
+   "seeds_per_cell": 19,
+   "reps": 1,
+   "sigma_limit": 0.0375682697,
+   "sigma_point": 0.0343917546,
+   "sigma_bootstrap_ucl90": 0.0369172744,
+   "mdd_appA_bonf": 0.049225163,
+   "mdd_paired_bonf": 0.0348074465,
+   "mdd_appA_nominal": 0.0341478392,
+   "mdd_paired_nominal": 0.0241461687,
+   "mdd_appA_bonf_bootstrap": 0.0483721732
+  },
+  {
+   "metric": "v21_mcr_D_0.002",
+   "design": "E8.5 (8 seeds, 3 reps)",
+   "seeds_per_cell": 8,
+   "reps": 3,
+   "sigma_limit": 0.0111796811,
+   "sigma_point": 0.0100495857,
+   "sigma_bootstrap_ucl90": 0.0104737463,
+   "mdd_appA_bonf": 0.0225749706,
+   "mdd_paired_bonf": 0.0159629148,
+   "mdd_appA_nominal": 0.0156604147,
+   "mdd_paired_nominal": 0.0110735854,
+   "mdd_appA_bonf_bootstrap": 0.0211494865
+  },
+  {
+   "metric": "v21_mcr_D_0.002",
+   "design": "Tier A (5 seeds, 1 rep)",
+   "seeds_per_cell": 5,
+   "reps": 1,
+   "sigma_limit": 0.0124964007,
+   "sigma_point": 0.0114877295,
+   "sigma_bootstrap_ucl90": 0.0119459554,
+   "mdd_appA_bonf": 0.0319185174,
+   "mdd_paired_bonf": 0.0225698001,
+   "mdd_appA_nominal": 0.0221420983,
+   "mdd_paired_nominal": 0.0156568279,
+   "mdd_appA_bonf_bootstrap": 0.0305125608
+  },
+  {
+   "metric": "v21_mcr_D_0.002",
+   "design": "band-MAS-sized (R=1, App. A, Bonferroni)",
+   "seeds_per_cell": 19,
+   "reps": 1,
+   "sigma_limit": 0.0124964007,
+   "sigma_point": 0.0114877295,
+   "sigma_bootstrap_ucl90": 0.0119459554,
+   "mdd_appA_bonf": 0.0163738539,
+   "mdd_paired_bonf": 0.0115780631,
+   "mdd_appA_nominal": 0.0113586568,
+   "mdd_paired_nominal": 0.0080317832,
+   "mdd_appA_bonf_bootstrap": 0.0156526134
+  },
+  {
+   "metric": "v21_mcr_0.002",
+   "design": "E8.5 (8 seeds, 3 reps)",
+   "seeds_per_cell": 8,
+   "reps": 3,
+   "sigma_limit": 0.037602848,
+   "sigma_point": 0.0338017731,
+   "sigma_bootstrap_ucl90": 0.0365107463,
+   "mdd_appA_bonf": 0.0759308944,
+   "mdd_paired_bonf": 0.0536912503,
+   "mdd_appA_nominal": 0.0526737915,
+   "mdd_paired_nominal": 0.0372459952,
+   "mdd_appA_bonf_bootstrap": 0.073725629
+  },
+  {
+   "metric": "v21_mcr_0.002",
+   "design": "Tier A (5 seeds, 1 rep)",
+   "seeds_per_cell": 5,
+   "reps": 1,
+   "sigma_limit": 0.0410225467,
+   "sigma_point": 0.0375513921,
+   "sigma_bootstrap_ucl90": 0.0401952856,
+   "mdd_appA_bonf": 0.1047804805,
+   "mdd_paired_bonf": 0.0740909883,
+   "mdd_appA_nominal": 0.0726869508,
+   "mdd_paired_nominal": 0.0513974358,
+   "mdd_appA_bonf_bootstrap": 0.1026674763
+  },
+  {
+   "metric": "v21_mcr_0.002",
+   "design": "band-MAS-sized (R=1, App. A, Bonferroni)",
+   "seeds_per_cell": 19,
+   "reps": 1,
+   "sigma_limit": 0.0410225467,
+   "sigma_point": 0.0375513921,
+   "sigma_bootstrap_ucl90": 0.0401952856,
+   "mdd_appA_bonf": 0.0537512524,
+   "mdd_paired_bonf": 0.038007875,
+   "mdd_appA_nominal": 0.037287619,
+   "mdd_paired_nominal": 0.0263663283,
+   "mdd_appA_bonf_bootstrap": 0.0526673041
+  },
+  {
+   "metric": "turnover",
+   "design": "E8.5 (8 seeds, 3 reps)",
+   "seeds_per_cell": 8,
+   "reps": 3,
+   "sigma_limit": 9.8847681041,
+   "sigma_point": 8.8855686844,
+   "sigma_bootstrap_ucl90": 9.5867888393,
+   "mdd_appA_bonf": 19.9601711903,
+   "mdd_paired_bonf": 14.1139724023,
+   "mdd_appA_nominal": 13.8465101024,
+   "mdd_paired_nominal": 9.7909611892,
+   "mdd_appA_bonf_bootstrap": 19.3584659127
+  },
+  {
+   "metric": "turnover",
+   "design": "Tier A (5 seeds, 1 rep)",
+   "seeds_per_cell": 5,
+   "reps": 1,
+   "sigma_limit": 10.4756425616,
+   "sigma_point": 9.5365148719,
+   "sigma_bootstrap_ucl90": 10.2194119011,
+   "mdd_appA_bonf": 26.7570628828,
+   "mdd_paired_bonf": 18.920100609,
+   "mdd_appA_nominal": 18.5615613206,
+   "mdd_paired_nominal": 13.1250058792,
+   "mdd_appA_bonf_bootstrap": 26.1025942088
+  },
+  {
+   "metric": "turnover",
+   "design": "band-MAS-sized (R=1, App. A, Bonferroni)",
+   "seeds_per_cell": 19,
+   "reps": 1,
+   "sigma_limit": 10.4756425616,
+   "sigma_point": 9.5365148719,
+   "sigma_bootstrap_ucl90": 10.2194119011,
+   "mdd_appA_bonf": 13.7260836415,
+   "mdd_paired_bonf": 9.7058068221,
+   "mdd_appA_nominal": 9.5218800479,
+   "mdd_paired_nominal": 6.7329859515,
+   "mdd_appA_bonf_bootstrap": 13.3903482957
+  }
+ ],
+ "replicates_vs_seeds": [
+  {
+   "metric": "band_mas",
+   "R": 1,
+   "var_x_cost": 0.0012082501595365,
+   "share_int_R1": 0.7192226266518708
+  },
+  {
+   "metric": "band_mas",
+   "R": 2,
+   "var_x_cost": 0.002077251012931,
+   "share_int_R1": 0.7192226266518708
+  },
+  {
+   "metric": "band_mas",
+   "R": 3,
+   "var_x_cost": 0.0029462518663255,
+   "share_int_R1": 0.7192226266518708
+  },
+  {
+   "metric": "v21_mcr_B_0.05",
+   "R": 1,
+   "var_x_cost": 0.0023986622031413,
+   "share_int_R1": 0.7955232391258317
+  },
+  {
+   "metric": "v21_mcr_B_0.05",
+   "R": 2,
+   "var_x_cost": 0.004306853728553,
+   "share_int_R1": 0.7955232391258317
+  },
+  {
+   "metric": "v21_mcr_B_0.05",
+   "R": 3,
+   "var_x_cost": 0.0062150452539647,
+   "share_int_R1": 0.7955232391258317
+  },
+  {
+   "metric": "v21_mcr_D_0.05",
+   "R": 1,
+   "var_x_cost": 0.0005359951828002301,
+   "share_int_R1": 0.695290619401348
+  },
+  {
+   "metric": "v21_mcr_D_0.05",
+   "R": 2,
+   "var_x_cost": 0.00090866760544553,
+   "share_int_R1": 0.695290619401348
+  },
+  {
+   "metric": "v21_mcr_D_0.05",
+   "R": 3,
+   "var_x_cost": 0.0012813400280908302,
+   "share_int_R1": 0.695290619401348
+  },
+  {
+   "metric": "v21_mcr_0.05",
+   "R": 1,
+   "var_x_cost": 0.0038441653696564,
+   "share_int_R1": 0.8335238847210584
+  },
+  {
+   "metric": "v21_mcr_0.05",
+   "R": 2,
+   "var_x_cost": 0.0070483690220826,
+   "share_int_R1": 0.8335238847210584
+  },
+  {
+   "metric": "v21_mcr_0.05",
+   "R": 3,
+   "var_x_cost": 0.010252572674508801,
+   "share_int_R1": 0.8335238847210584
+  },
+  {
+   "metric": "v21_mcr_B_0.002",
+   "R": 1,
+   "var_x_cost": 0.0011827927830535,
+   "share_int_R1": 0.7143152613635911
+  },
+  {
+   "metric": "v21_mcr_B_0.002",
+   "R": 2,
+   "var_x_cost": 0.0020276797190194,
+   "share_int_R1": 0.7143152613635911
+  },
+  {
+   "metric": "v21_mcr_B_0.002",
+   "R": 3,
+   "var_x_cost": 0.0028725666549853004,
+   "share_int_R1": 0.7143152613635911
+  },
+  {
+   "metric": "v21_mcr_D_0.002",
+   "R": 1,
+   "var_x_cost": 0.00013196792928387742,
+   "share_int_R1": 0.6479399669904187
+  },
+  {
+   "metric": "v21_mcr_D_0.002",
+   "R": 2,
+   "var_x_cost": 0.00021747522502786685,
+   "share_int_R1": 0.6479399669904187
+  },
+  {
+   "metric": "v21_mcr_D_0.002",
+   "R": 3,
+   "var_x_cost": 0.00030298252077185634,
+   "share_int_R1": 0.6479399669904187
+  },
+  {
+   "metric": "v21_mcr_0.002",
+   "R": 1,
+   "var_x_cost": 0.0014101070485476,
+   "share_int_R1": 0.7153969426875663
+  },
+  {
+   "metric": "v21_mcr_0.002",
+   "R": 2,
+   "var_x_cost": 0.0024188933199408,
+   "share_int_R1": 0.7153969426875663
+  },
+  {
+   "metric": "v21_mcr_0.002",
+   "R": 3,
+   "var_x_cost": 0.0034276795913340003,
+   "share_int_R1": 0.7153969426875663
+  },
+  {
+   "metric": "turnover",
+   "R": 1,
+   "var_x_cost": 90.94511590127581,
+   "share_int_R1": 0.8022139242364967
+  },
+  {
+   "metric": "turnover",
+   "R": 2,
+   "var_x_cost": 163.90255421858132,
+   "share_int_R1": 0.8022139242364967
+  },
+  {
+   "metric": "turnover",
+   "R": 3,
+   "var_x_cost": 236.8599925358868,
+   "share_int_R1": 0.8022139242364967
+  }
+ ],
+ "model_level_DESIGN": [
+  {
+   "models": 2,
+   "tau_over_sigma": 0.5,
+   "tau": 0.01899110076791385,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.005891074559182058,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 2,
+   "tau_over_sigma": 1.0,
+   "tau": 0.0379822015358277,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.0032064944195547077,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 2,
+   "tau_over_sigma": 2.0,
+   "tau": 0.0759644030716554,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.0019438170682916285,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 3,
+   "tau_over_sigma": 0.5,
+   "tau": 0.01899110076791385,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.024916720096676996,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 3,
+   "tau_over_sigma": 1.0,
+   "tau": 0.0379822015358277,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.008210691748170575,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 3,
+   "tau_over_sigma": 2.0,
+   "tau": 0.0759644030716554,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.003165283751492079,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 5,
+   "tau_over_sigma": 0.5,
+   "tau": 0.01899110076791385,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.24673324325362694,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 5,
+   "tau_over_sigma": 1.0,
+   "tau": 0.0379822015358277,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.04439247316562024,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 5,
+   "tau_over_sigma": 2.0,
+   "tau": 0.0759644030716554,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.008660760474406901,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 8,
+   "tau_over_sigma": 0.5,
+   "tau": 0.01899110076791385,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.8631762360369175,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 8,
+   "tau_over_sigma": 1.0,
+   "tau": 0.0379822015358277,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.2218874980948318,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  },
+  {
+   "models": 8,
+   "tau_over_sigma": 2.0,
+   "tau": 0.0759644030716554,
+   "seeds_per_cell": 19,
+   "power_bonf": 0.02791986191357224,
+   "label": "DESIGN",
+   "power_method": "noncentral t by integration over the chi-square (power_t_two_sided)"
+  }
+ ],
+ "note_D": "P8-2: no Delta_D is stipulated; D's minimum detectable difference at the band-MAS-sized design is its achieved power, in D's units",
+ "generated_utc": "2026-09-11T07:16:01Z"
+}

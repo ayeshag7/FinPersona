@@ -58,7 +58,15 @@ ARMS: Dict[str, Dict] = {
     # matched control for the summary arm (same raw-turn count, no summary): rolling window of 5
     "stateful_r5_static": {"mandate_block": "none", "mandate_in_system": True, "context_mode": "rolling", "context_window": 5},
     "stateful_r5_memory": {"mandate_block": "mandate", "mandate_in_system": True, "context_mode": "rolling", "context_window": 5},
+    # v2.1 Phase 8 (E8.2, weakness 28): context length is a pre-registered factor of the decay thesis at
+    # {5, 20, 50, full} (PREREG_PHASE_8.md 2); the 50 level did not exist and is added here.
+    "stateful_w50_static": {"mandate_block": "none", "mandate_in_system": True, "context_mode": "rolling", "context_window": 50},
+    "stateful_w50_memory": {"mandate_block": "mandate", "mandate_in_system": True, "context_mode": "rolling", "context_window": 50},
 }
+
+# The context-length factor (E8.2): level -> (static arm, memory arm).  `full` is the 60,000-token budget.
+CONTEXT_LEVELS = {5: ("stateful_r5_static", "stateful_r5_memory"), 20: ("stateful_static", "stateful_memory"),
+                  50: ("stateful_w50_static", "stateful_w50_memory"), "full": ("stateful_full_static", "stateful_full_memory")}
 
 # Multi-asset extension (decision 8): the scenario asset, a correlated peer and a low-volatility
 # 'defensive' risky asset (vol/omega x 0.5); the scheduled event applies to all three, each with its own

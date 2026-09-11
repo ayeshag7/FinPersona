@@ -1,0 +1,5 @@
+                       S_persona                     S_directive                            r2                    
+                          median       min       max      median       min       max    median       min       max
+variant                                                                                                           
+copies in one CV group  0.978203  0.973738  0.981789    0.000019  0.000001  0.000099  0.967817  0.964479  0.970288
+relabelled (as run)     0.969122  0.961507  0.978438    0.000944  0.000166  0.002861  0.979492  0.973161  0.986852

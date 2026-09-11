@@ -1,0 +1,208 @@
+scored 720 runs {'gemini-2.5-flash': 576, 'gpt-5-mini': 144}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash band_mas {'sigma2_rep': 0.00017, 'sigma2_int': 0.00087, 'sigma_d_R1': 0.03476, 'sigma_d_R1_mls90': 0.03798, 'sigma_d_R1_ucl90': 0.03725, 'sigma_d_R1_ucl80': 0.0357, 'sigma_d_R1_ucl95': 0.03841, 'icc_path': np.float64(0.30009), 'icc_path_arm': np.float64(0.0)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_B_0.05 {'sigma2_rep': 0.00025, 'sigma2_int': 0.00191, 'sigma_d_R1': 0.04898, 'sigma_d_R1_mls90': 0.05378, 'sigma_d_R1_ucl90': 0.05557, 'sigma_d_R1_ucl80': 0.05324, 'sigma_d_R1_ucl95': 0.05712, 'icc_path': np.float64(0.27865), 'icc_path_arm': np.float64(0.0)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_D_0.05 {'sigma2_rep': 8e-05, 'sigma2_int': 0.00037, 'sigma_d_R1': 0.02315, 'sigma_d_R1_mls90': 0.02526, 'sigma_d_R1_ucl90': 0.02594, 'sigma_d_R1_ucl80': 0.02463, 'sigma_d_R1_ucl95': 0.02653, 'icc_path': np.float64(0.27507), 'icc_path_arm': np.float64(0.0)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_0.05 {'sigma2_rep': 0.00032, 'sigma2_int': 0.0032, 'sigma_d_R1': 0.062, 'sigma_d_R1_mls90': 0.06824, 'sigma_d_R1_ucl90': 0.07252, 'sigma_d_R1_ucl80': 0.06945, 'sigma_d_R1_ucl95': 0.075, 'icc_path': np.float64(0.25268), 'icc_path_arm': np.float64(0.00544)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_B_0.002 {'sigma2_rep': 0.00017, 'sigma2_int': 0.00084, 'sigma_d_R1': 0.03439, 'sigma_d_R1_mls90': 0.03757, 'sigma_d_R1_ucl90': 0.03692, 'sigma_d_R1_ucl80': 0.03529, 'sigma_d_R1_ucl95': 0.03797, 'icc_path': np.float64(0.30385), 'icc_path_arm': np.float64(0.0)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_D_0.002 {'sigma2_rep': 2e-05, 'sigma2_int': 9e-05, 'sigma_d_R1': 0.01149, 'sigma_d_R1_mls90': 0.0125, 'sigma_d_R1_ucl90': 0.01195, 'sigma_d_R1_ucl80': 0.01163, 'sigma_d_R1_ucl95': 0.01214, 'icc_path': np.float64(0.37418), 'icc_path_arm': np.float64(0.00049)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_0.002 {'sigma2_rep': 0.0002, 'sigma2_int': 0.00101, 'sigma_d_R1': 0.03755, 'sigma_d_R1_mls90': 0.04102, 'sigma_d_R1_ucl90': 0.0402, 'sigma_d_R1_ucl80': 0.03882, 'sigma_d_R1_ucl95': 0.04138, 'icc_path': np.float64(0.28213), 'icc_path_arm': np.float64(0.0)}
+gemini-2.5-flash turnover {'sigma2_rep': 8.99384, 'sigma2_int': 72.95744, 'sigma_d_R1': 9.53651, 'sigma_d_R1_mls90': 10.47564, 'sigma_d_R1_ucl90': 10.21941, 'sigma_d_R1_ucl80': 9.80986, 'sigma_d_R1_ucl95': 10.57237, 'icc_path': np.float64(0.12706), 'icc_path_arm': np.float64(0.25456)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gpt-5-mini band_mas {'sigma2_rep': 0.00012, 'sigma2_int': 0.00416, 'sigma_d_R1': 0.06638, 'sigma_d_R1_mls90': 0.08303, 'sigma_d_R1_ucl90': 0.07879, 'sigma_d_R1_ucl80': 0.07355, 'sigma_d_R1_ucl95': 0.08428, 'icc_path': np.float64(0.29606), 'icc_path_arm': np.float64(0.08632)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gpt-5-mini v21_mcr_B_0.05 {'sigma2_rep': 0.00018, 'sigma2_int': 0.00355, 'sigma_d_R1': 0.06257, 'sigma_d_R1_mls90': 0.07791, 'sigma_d_R1_ucl90': 0.07063, 'sigma_d_R1_ucl80': 0.06642, 'sigma_d_R1_ucl95': 0.07417, 'icc_path': np.float64(0.26063), 'icc_path_arm': np.float64(0.08958)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gpt-5-mini v21_mcr_D_0.05 {'sigma2_rep': 5e-05, 'sigma2_int': 0.00064, 'sigma_d_R1': 0.02714, 'sigma_d_R1_mls90': 0.03364, 'sigma_d_R1_ucl90': 0.03028, 'sigma_d_R1_ucl80': 0.02871, 'sigma_d_R1_ucl95': 0.03139, 'icc_path': np.float64(0.39703), 'icc_path_arm': np.float64(0.18332)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gpt-5-mini v21_mcr_0.05 {'sigma2_rep': 0.00021, 'sigma2_int': 0.00268, 'sigma_d_R1': 0.05577, 'sigma_d_R1_mls90': 0.06905, 'sigma_d_R1_ucl90': 0.06017, 'sigma_d_R1_ucl80': 0.05756, 'sigma_d_R1_ucl95': 0.06244, 'icc_path': np.float64(0.24301), 'icc_path_arm': np.float64(0.00259)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gpt-5-mini v21_mcr_B_0.002 {'sigma2_rep': 0.00012, 'sigma2_int': 0.00399, 'sigma_d_R1': 0.06513, 'sigma_d_R1_mls90': 0.08143, 'sigma_d_R1_ucl90': 0.07581, 'sigma_d_R1_ucl80': 0.071, 'sigma_d_R1_ucl95': 0.08065, 'icc_path': np.float64(0.30111), 'icc_path_arm': np.float64(0.08302)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gpt-5-mini v21_mcr_D_0.002 {'sigma2_rep': 2e-05, 'sigma2_int': 0.00036, 'sigma_d_R1': 0.02007, 'sigma_d_R1_mls90': 0.02492, 'sigma_d_R1_ucl90': 0.02203, 'sigma_d_R1_ucl80': 0.02107, 'sigma_d_R1_ucl95': 0.02256, 'icc_path': np.float64(0.63064), 'icc_path_arm': np.float64(0.08326)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gpt-5-mini v21_mcr_0.002 {'sigma2_rep': 0.00014, 'sigma2_int': 0.0033, 'sigma_d_R1': 0.05992, 'sigma_d_R1_mls90': 0.07471, 'sigma_d_R1_ucl90': 0.06779, 'sigma_d_R1_ucl80': 0.06435, 'sigma_d_R1_ucl95': 0.07157, 'icc_path': np.float64(0.34945), 'icc_path_arm': np.float64(0.03741)}
+gpt-5-mini turnover {'sigma2_rep': 1.82112, 'sigma2_int': 32.32272, 'sigma_d_R1': 5.99708, 'sigma_d_R1_mls90': 7.45854, 'sigma_d_R1_ucl90': 7.22393, 'sigma_d_R1_ucl80': 6.63253, 'sigma_d_R1_ucl95': 7.65598, 'icc_path': np.float64(0.20831), 'icc_path_arm': np.float64(0.09811)}
+{
+ "1": {
+  "sigma_limit": 0.0379822015358277,
+  "sigma_point": 0.0347598929736085,
+  "appA_bonf": 19,
+  "paired_bonf": 10,
+  "appA_nominal": 10,
+  "paired_nominal": 5,
+  "appA_bonf_at_point": 16,
+  "sigma_bootstrap_ucl90": 0.0372462012484005,
+  "appA_bonf_bootstrap": 19,
+  "appA_bonf_bootstrap_ucl80": 17,
+  "appA_bonf_bootstrap_ucl95": 20,
+  "runs_per_contrast_cell_appA_bonf": 38
+ },
+ "2": {
+  "sigma_limit": 0.0356649412792413,
+  "sigma_point": 0.0322277133297668,
+  "appA_bonf": 17,
+  "paired_bonf": 9,
+  "appA_nominal": 8,
+  "paired_nominal": 4,
+  "appA_bonf_at_point": 14,
+  "sigma_bootstrap_ucl90": 0.0343869566001121,
+  "appA_bonf_bootstrap": 16,
+  "appA_bonf_bootstrap_ucl80": 15,
+  "appA_bonf_bootstrap_ucl95": 17,
+  "runs_per_contrast_cell_appA_bonf": 68
+ },
+ "3": {
+  "sigma_limit": 0.0348622622031018,
+  "sigma_point": 0.0313382187662594,
+  "appA_bonf": 16,
+  "paired_bonf": 8,
+  "appA_nominal": 8,
+  "paired_nominal": 4,
+  "appA_bonf_at_point": 13,
+  "sigma_bootstrap_ucl90": 0.0334931883675954,
+  "appA_bonf_bootstrap": 15,
+  "appA_bonf_bootstrap_ucl80": 14,
+  "appA_bonf_bootstrap_ucl95": 16,
+  "runs_per_contrast_cell_appA_bonf": 96
+ }
+}
+         metric                                   design  seeds_per_cell  reps  sigma_limit  sigma_point  sigma_bootstrap_ucl90  mdd_appA_bonf  mdd_paired_bonf  mdd_appA_nominal  mdd_paired_nominal  mdd_appA_bonf_bootstrap
+       band_mas                   E8.5 (8 seeds, 3 reps)               8     3       0.0349       0.0313                 0.0335         0.0704           0.0498            0.0488              0.0345                   0.0676
+       band_mas                  Tier A (5 seeds, 1 rep)               5     1       0.0380       0.0348                 0.0372         0.0970           0.0686            0.0673              0.0476                   0.0951
+       band_mas band-MAS-sized (R=1, App. A, Bonferroni)              19     1       0.0380       0.0348                 0.0372         0.0498           0.0352            0.0345              0.0244                   0.0488
+ v21_mcr_B_0.05                   E8.5 (8 seeds, 3 reps)               8     3       0.0506       0.0455                 0.0522         0.1022           0.0723            0.0709              0.0502                   0.1054
+ v21_mcr_B_0.05                  Tier A (5 seeds, 1 rep)               5     1       0.0538       0.0490                 0.0556         0.1374           0.0971            0.0953              0.0674                   0.1419
+ v21_mcr_B_0.05 band-MAS-sized (R=1, App. A, Bonferroni)              19     1       0.0538       0.0490                 0.0556         0.0705           0.0498            0.0489              0.0346                   0.0728
+ v21_mcr_D_0.05                   E8.5 (8 seeds, 3 reps)               8     3       0.0230       0.0207                 0.0236         0.0464           0.0328            0.0322              0.0228                   0.0476
+ v21_mcr_D_0.05                  Tier A (5 seeds, 1 rep)               5     1       0.0253       0.0232                 0.0259         0.0645           0.0456            0.0448              0.0316                   0.0662
+ v21_mcr_D_0.05 band-MAS-sized (R=1, App. A, Bonferroni)              19     1       0.0253       0.0232                 0.0259         0.0331           0.0234            0.0230              0.0162                   0.0340
+   v21_mcr_0.05                   E8.5 (8 seeds, 3 reps)               8     3       0.0650       0.0585                 0.0694         0.1313           0.0929            0.0911              0.0644                   0.1402
+   v21_mcr_0.05                  Tier A (5 seeds, 1 rep)               5     1       0.0682       0.0620                 0.0725         0.1743           0.1233            0.1209              0.0855                   0.1852
+   v21_mcr_0.05 band-MAS-sized (R=1, App. A, Bonferroni)              19     1       0.0682       0.0620                 0.0725         0.0894           0.0632            0.0620              0.0439                   0.0950
+v21_mcr_B_0.002                   E8.5 (8 seeds, 3 reps)               8     3       0.0344       0.0309                 0.0330         0.0695           0.0492            0.0482              0.0341                   0.0666
+v21_mcr_B_0.002                  Tier A (5 seeds, 1 rep)               5     1       0.0376       0.0344                 0.0369         0.0960           0.0679            0.0666              0.0471                   0.0943
+v21_mcr_B_0.002 band-MAS-sized (R=1, App. A, Bonferroni)              19     1       0.0376       0.0344                 0.0369         0.0492           0.0348            0.0341              0.0241                   0.0484
+v21_mcr_D_0.002                   E8.5 (8 seeds, 3 reps)               8     3       0.0112       0.0100                 0.0105         0.0226           0.0160            0.0157              0.0111                   0.0211
+v21_mcr_D_0.002                  Tier A (5 seeds, 1 rep)               5     1       0.0125       0.0115                 0.0119         0.0319           0.0226            0.0221              0.0157                   0.0305
+v21_mcr_D_0.002 band-MAS-sized (R=1, App. A, Bonferroni)              19     1       0.0125       0.0115                 0.0119         0.0164           0.0116            0.0114              0.0080                   0.0157
+  v21_mcr_0.002                   E8.5 (8 seeds, 3 reps)               8     3       0.0376       0.0338                 0.0365         0.0759           0.0537            0.0527              0.0372                   0.0737
+  v21_mcr_0.002                  Tier A (5 seeds, 1 rep)               5     1       0.0410       0.0376                 0.0402         0.1048           0.0741            0.0727              0.0514                   0.1027
+  v21_mcr_0.002 band-MAS-sized (R=1, App. A, Bonferroni)              19     1       0.0410       0.0376                 0.0402         0.0538           0.0380            0.0373              0.0264                   0.0527
+       turnover                   E8.5 (8 seeds, 3 reps)               8     3       9.8848       8.8856                 9.5868        19.9602          14.1140           13.8465              9.7910                  19.3585
+       turnover                  Tier A (5 seeds, 1 rep)               5     1      10.4756       9.5365                10.2194        26.7571          18.9201           18.5616             13.1250                  26.1026
+       turnover band-MAS-sized (R=1, App. A, Bonferroni)              19     1      10.4756       9.5365                10.2194        13.7261           9.7058            9.5219              6.7330                  13.3903
+{
+ "per_metric": {
+  "band_mas": {
+   "sigma_d_flash_bull_trap": 0.029417672097081696,
+   "sigma_d_gpt5mini_bull_trap": 0.06513184722346853,
+   "ratio": 2.21403811316293,
+   "ratio_ci90": [
+    1.8779361595971433,
+    2.993030340966196
+   ]
+  },
+  "v21_mcr_B_0.05": {
+   "sigma_d_flash_bull_trap": 0.023903414452414635,
+   "sigma_d_gpt5mini_bull_trap": 0.060620002790834175,
+   "ratio": 2.5360394813683436,
+   "ratio_ci90": [
+    1.8923782033590957,
+    3.3861332077861195
+   ]
+  },
+  "v21_mcr_D_0.05": {
+   "sigma_d_flash_bull_trap": 0.010061100910625191,
+   "sigma_d_gpt5mini_bull_trap": 0.025950559540321643,
+   "ratio": 2.579296219255303,
+   "ratio_ci90": [
+    1.8876531330734445,
+    2.9896382534666706
+   ]
+  },
+  "v21_mcr_0.05": {
+   "sigma_d_flash_bull_trap": 0.01974328021704388,
+   "sigma_d_gpt5mini_bull_trap": 0.05316392124370333,
+   "ratio": 2.6927603042278783,
+   "ratio_ci90": [
+    1.929357827363545,
+    3.760080069617614
+   ]
+  },
+  "v21_mcr_B_0.002": {
+   "sigma_d_flash_bull_trap": 0.02903865457360721,
+   "sigma_d_gpt5mini_bull_trap": 0.06385053458818314,
+   "ratio": 2.1988117399287472,
+   "ratio_ci90": [
+    1.789122013705281,
+    2.9144699452843486
+   ]
+  },
+  "v21_mcr_D_0.002": {
+   "sigma_d_flash_bull_trap": 0.009274301771617833,
+   "sigma_d_gpt5mini_bull_trap": 0.01928389763741867,
+   "ratio": 2.0792829597623435,
+   "ratio_ci90": [
+    1.407299263017168,
+    2.695945763904062
+   ]
+  },
+  "v21_mcr_0.002": {
+   "sigma_d_flash_bull_trap": 0.024790681207894173,
+   "sigma_d_gpt5mini_bull_trap": 0.05829099830203753,
+   "ratio": 2.3513270092584526,
+   "ratio_ci90": [
+    1.8049245089826493,
+    4.347685876340554
+   ]
+  },
+  "turnover": {
+   "sigma_d_flash_bull_trap": 7.287878908191935,
+   "sigma_d_gpt5mini_bull_trap": 5.791097070502712,
+   "ratio": 0.7946203749342259,
+   "ratio_ci90": [
+    0.48335640039481903,
+    1.1169023642600142
+   ]
+  }
+ },
+ "band_mas_plugin": {
+  "sigma_limit_flash_R1": 0.0379822015358277,
+  "sigma_bootstrap_ucl90_flash_R1": 0.0372462012484005,
+  "ratio": 2.21403811316293,
+  "plugin_main_grid": 0.08409404182215811,
+  "plugin_at_ratio_upper": 0.11368188161342516,
+  "plugin_main_grid_bootstrap": 0.08246450913449542,
+  "alpha_bonferroni": 0.001388888888888889,
+  "seeds_appA_bonf_main_grid": 93,
+  "seeds_paired_bonf_main_grid": 47,
+  "seeds_appA_bonf_at_ratio_upper": 169,
+  "seeds_appA_bonf_main_grid_bootstrap": 89
+ },
+ "temperature": {
+  "gemini-2.5-flash": 0.2,
+  "gpt-5-mini": 1.0
+ },
+ "caveat": "GPT-5 mini runs at temperature 1.0 (the only value the provider accepts): the ratio is a transfer of model AND temperature"
+}

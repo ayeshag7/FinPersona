@@ -1,0 +1,268 @@
+{
+ "meta": {
+  "seeds_per_scenario": 500,
+  "seed0": 40000,
+  "T": 200,
+  "trading_days": 252,
+  "risk_free": 0.0,
+  "gammas": [
+   2,
+   3,
+   4,
+   6,
+   8,
+   10
+  ],
+  "state": {
+   "events_json": true,
+   "control": "A",
+   "dynamics": "A",
+   "blowoff": "dynamic",
+   "post_top": "decay/40.0",
+   "randomise_eps_quarter": true,
+   "depth_mode": "centred",
+   "volatility_json": true,
+   "iv": "v21",
+   "observables_json": true,
+   "observables": "multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A"
+  },
+  "dividends": "paid into cash on the generator's own ex-dates (E7.4 / D10); the price path is NOT ex-dividend adjusted, so the total return is the price return plus the yield",
+  "superseded": "the v2 documents' 'price-only drift 6.5 %/yr, annual sigma ~ 28 %' is superseded by the numbers in this file, measured on the frozen v2.1 generator",
+  "seconds": 49,
+  "generated_utc": "2026-09-09T20:52:28Z"
+ },
+ "primary_population": "flat",
+ "per_scenario": {
+  "flat": {
+   "total_return": {
+    "mu": 0.08740850003322395,
+    "mu_ci95": [
+     0.06182894761541059,
+     0.11506649062825829
+    ],
+    "sigma": 0.34679383831405985,
+    "sigma_ci95": [
+     0.3381050107293785,
+     0.3556332138839579
+    ],
+    "n_paths": 500,
+    "n_days": 99500
+   },
+   "price_only": {
+    "mu": 0.0548407167582731,
+    "mu_ci95": [
+     0.026795330759171548,
+     0.07995395800014775
+    ],
+    "sigma": 0.3456307826585655,
+    "sigma_ci95": [
+     0.3376168206482008,
+     0.3557038555633918
+    ],
+    "n_paths": 500,
+    "n_days": 99500
+   },
+   "dividend_yield_realised_annualised": 0.03420933244530457,
+   "payer_share": 0.908,
+   "mean_ex_dates_per_path": 2.89
+  },
+  "bull_trap": {
+   "total_return": {
+    "mu": 0.528947969724752,
+    "mu_ci95": [
+     0.5058324844157824,
+     0.5541431906846654
+    ],
+    "sigma": 0.3833756971647324,
+    "sigma_ci95": [
+     0.3727280825325265,
+     0.39681905517838295
+    ],
+    "n_paths": 500,
+    "n_days": 99500
+   },
+   "price_only": {
+    "mu": 0.5005757836951752,
+    "mu_ci95": [
+     0.4753905406242284,
+     0.5288746012379953
+    ],
+    "sigma": 0.38264070818707374,
+    "sigma_ci95": [
+     0.37100824652096603,
+     0.3949567552329686
+    ],
+    "n_paths": 500,
+    "n_days": 99500
+   },
+   "dividend_yield_realised_annualised": 0.03299616180205149,
+   "payer_share": 0.904,
+   "mean_ex_dates_per_path": 2.886
+  },
+  "crash": {
+   "total_return": {
+    "mu": -0.32114513612686946,
+    "mu_ci95": [
+     -0.3502984491096134,
+     -0.29306195330752094
+    ],
+    "sigma": 0.6590957206987775,
+    "sigma_ci95": [
+     0.6305355616369273,
+     0.6934758641785279
+    ],
+    "n_paths": 500,
+    "n_days": 99500
+   },
+   "price_only": {
+    "mu": -0.3579890620332111,
+    "mu_ci95": [
+     -0.3835455541562554,
+     -0.32954870610759257
+    ],
+    "sigma": 0.6582634949949934,
+    "sigma_ci95": [
+     0.6287895727046235,
+     0.692851032005425
+    ],
+    "n_paths": 500,
+    "n_days": 99500
+   },
+   "dividend_yield_realised_annualised": 0.032086549414783894,
+   "payer_share": 0.906,
+   "mean_ex_dates_per_path": 2.882
+  },
+  "sustained_bull": {
+   "total_return": {
+    "mu": 0.62088787380866,
+    "mu_ci95": [
+     0.5972543595939709,
+     0.6406473528491271
+    ],
+    "sigma": 0.3463955584050893,
+    "sigma_ci95": [
+     0.3380873835146875,
+     0.3551545305772181
+    ],
+    "n_paths": 500,
+    "n_days": 99500
+   },
+   "price_only": {
+    "mu": 0.5901925027541823,
+    "mu_ci95": [
+     0.5680153156129123,
+     0.6123932161440488
+    ],
+    "sigma": 0.3453716367883177,
+    "sigma_ci95": [
+     0.336926203980741,
+     0.3550600550367058
+    ],
+    "n_paths": 500,
+    "n_days": 99500
+   },
+   "dividend_yield_realised_annualised": 0.0400225754942187,
+   "payer_share": 0.904,
+   "mean_ex_dates_per_path": 2.888
+  }
+ },
+ "merton_table": [
+  {
+   "gamma": 2,
+   "risky_share_unclipped": 0.36339665629329193,
+   "risky_share": 0.36339665629329193,
+   "cash_share": 0.636603343706708,
+   "cash_share_unclipped": 0.636603343706708,
+   "cash_share_ci95_lo": 0.4967130632058341,
+   "cash_share_ci95_hi": 0.7555684680160784
+  },
+  {
+   "gamma": 3,
+   "risky_share_unclipped": 0.2422644375288613,
+   "risky_share": 0.2422644375288613,
+   "cash_share": 0.7577355624711387,
+   "cash_share_unclipped": 0.7577355624711387,
+   "cash_share_ci95_lo": 0.6644753754705561,
+   "cash_share_ci95_hi": 0.8370456453440522
+  },
+  {
+   "gamma": 4,
+   "risky_share_unclipped": 0.18169832814664597,
+   "risky_share": 0.18169832814664597,
+   "cash_share": 0.818301671853354,
+   "cash_share_unclipped": 0.818301671853354,
+   "cash_share_ci95_lo": 0.748356531602917,
+   "cash_share_ci95_hi": 0.8777842340080392
+  },
+  {
+   "gamma": 6,
+   "risky_share_unclipped": 0.12113221876443064,
+   "risky_share": 0.12113221876443064,
+   "cash_share": 0.8788677812355694,
+   "cash_share_unclipped": 0.8788677812355694,
+   "cash_share_ci95_lo": 0.8322376877352781,
+   "cash_share_ci95_hi": 0.9185228226720261
+  },
+  {
+   "gamma": 8,
+   "risky_share_unclipped": 0.09084916407332298,
+   "risky_share": 0.09084916407332298,
+   "cash_share": 0.909150835926677,
+   "cash_share_unclipped": 0.909150835926677,
+   "cash_share_ci95_lo": 0.8741782658014585,
+   "cash_share_ci95_hi": 0.9388921170040196
+  },
+  {
+   "gamma": 10,
+   "risky_share_unclipped": 0.07267933125865839,
+   "risky_share": 0.07267933125865839,
+   "cash_share": 0.9273206687413416,
+   "cash_share_unclipped": 0.9273206687413416,
+   "cash_share_ci95_lo": 0.8993426126411668,
+   "cash_share_ci95_hi": 0.9511136936032156
+  }
+ ],
+ "placement": [
+  {
+   "persona": "ISFJ",
+   "category": "conservative",
+   "band": [
+    0.7,
+    0.9
+   ],
+   "gammas_inside_band": [
+    3,
+    4,
+    6
+   ],
+   "nearest_gamma_to_band_centre": 4,
+   "merton_cash_at_nearest_gamma": 0.818301671853354
+  },
+  {
+   "persona": "INTJ",
+   "category": "balanced",
+   "band": [
+    0.4,
+    0.6
+   ],
+   "gammas_inside_band": [],
+   "nearest_gamma_to_band_centre": 2,
+   "merton_cash_at_nearest_gamma": 0.636603343706708
+  },
+  {
+   "persona": "ENTJ",
+   "category": "aggressive",
+   "band": [
+    0.0,
+    0.2
+   ],
+   "gammas_inside_band": [],
+   "nearest_gamma_to_band_centre": 2,
+   "merton_cash_at_nearest_gamma": 0.636603343706708
+  }
+ ],
+ "jfe_ordering_check": {
+  "available": false,
+  "reason": "Jiang, Peng & Yan (2024, JFE) Table 7 gives trait coefficients on the equity-to-wealth ratio, not a conservative-minus-aggressive spread; no spread is derivable from it without a persona-to-trait mapping and a trait-score scale that the paper does not supply. v2.1 Phase 7 E7.3 withdrew the constant and removed the ordering check rather than keep an unsourced number."
+ }
+}

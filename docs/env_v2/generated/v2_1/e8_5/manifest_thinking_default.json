@@ -1,0 +1,111 @@
+{
+ "design": {
+  "main": {
+   "model": "gemini-2.5-flash",
+   "n_runs": 576,
+   "n_calls": 115200,
+   "temperature": 0.2,
+   "temperature_note": "the harness default (FACTOR_DEFAULTS), the pilot's value",
+   "scenarios": [
+    "flat",
+    "bull_trap",
+    "crash",
+    "sustained_bull"
+   ]
+  },
+  "transfer": {
+   "model": "gpt-5-mini",
+   "n_runs": 144,
+   "n_calls": 28800,
+   "temperature": 1.0,
+   "temperature_note": "gpt-5-mini accepts only temperature 1; langchain_openai drops any other value silently, so 1.0 is configured and logged (PREREG 5.1 contingency)",
+   "scenarios": [
+    "bull_trap"
+   ]
+  }
+ },
+ "seeds": [
+  2001,
+  2002,
+  2003,
+  2004,
+  2005,
+  2006,
+  2007,
+  2008
+ ],
+ "personas": [
+  "ISFJ",
+  "INTJ",
+  "ENTJ"
+ ],
+ "arms": [
+  "static",
+  "memory"
+ ],
+ "scenarios": [
+  "flat",
+  "bull_trap",
+  "crash",
+  "sustained_bull"
+ ],
+ "transfer_scenarios": [
+  "bull_trap"
+ ],
+ "reps": 3,
+ "T": 200,
+ "crash_discount": 0.7,
+ "dividends": true,
+ "prices_per_M": {
+  "gemini-2.5-flash": [
+   0.3,
+   2.5
+  ],
+  "gpt-5-mini": [
+   0.25,
+   2.0
+  ]
+ },
+ "approved_usd": 139.0,
+ "gate_usd": 174.0,
+ "fingerprint": {
+  "prompt_hash": {
+   "gemini-2.5-flash|ISFJ|static": "2cf22a92f78cb5d0",
+   "gemini-2.5-flash|ISFJ|memory": "0a06e9f0f3732ce4",
+   "gemini-2.5-flash|INTJ|static": "ec58a7feadbbe7e4",
+   "gemini-2.5-flash|INTJ|memory": "d33a9291c458ce9f",
+   "gemini-2.5-flash|ENTJ|static": "a718a154a03f3123",
+   "gemini-2.5-flash|ENTJ|memory": "51fb0e0c63d663a0",
+   "gpt-5-mini|ISFJ|static": "2cf22a92f78cb5d0",
+   "gpt-5-mini|ISFJ|memory": "0a06e9f0f3732ce4",
+   "gpt-5-mini|INTJ|static": "ec58a7feadbbe7e4",
+   "gpt-5-mini|INTJ|memory": "d33a9291c458ce9f",
+   "gpt-5-mini|ENTJ|static": "a718a154a03f3123",
+   "gpt-5-mini|ENTJ|memory": "51fb0e0c63d663a0"
+  },
+  "system_prompt_hash": {
+   "gemini-2.5-flash|ISFJ|static": "97f8b3286d003ede",
+   "gemini-2.5-flash|ISFJ|memory": "97f8b3286d003ede",
+   "gemini-2.5-flash|INTJ|static": "1fb950263e5dbe5f",
+   "gemini-2.5-flash|INTJ|memory": "1fb950263e5dbe5f",
+   "gemini-2.5-flash|ENTJ|static": "a726dc0fa98f2883",
+   "gemini-2.5-flash|ENTJ|memory": "a726dc0fa98f2883",
+   "gpt-5-mini|ISFJ|static": "97f8b3286d003ede",
+   "gpt-5-mini|ISFJ|memory": "97f8b3286d003ede",
+   "gpt-5-mini|INTJ|static": "1fb950263e5dbe5f",
+   "gpt-5-mini|INTJ|memory": "1fb950263e5dbe5f",
+   "gpt-5-mini|ENTJ|static": "a726dc0fa98f2883",
+   "gpt-5-mini|ENTJ|memory": "a726dc0fa98f2883"
+  },
+  "Env_Code_Hash": "03ce96aadef0f608"
+ },
+ "source_sha256_lf": {
+  "agent/v2_agent.py": "0c317184ffd433641862308cb6ff9d18e5754c9e818da9f085ea4e74f8bc9889",
+  "agent/v2_prompts.py": "1135d72e2f0a2c033454138c544bf535d2108db74b195550fdff41f7416bd627",
+  "agent/render.py": "28404eb028db237665c960864b99d08e481ddb38845b33fccc26a5940cfb8cb4",
+  "simulation/runner_v2.py": "7eb0ff2be7d9b251739e5e3388296ed8b159971cd274d7085b25629fa4a76eff",
+  "simulation/portfolio_v2.py": "130c46522356308a3d4e59390fb92dea73331610d0d5a75c23ae38f8d32ef54e",
+  "experiments/arms_v2.py": "2ec3e69f2918b426958d77c3cb11807d2100e2dd36c1db464769f41330703d40"
+ },
+ "written_utc": "2026-09-10T08:23:26Z"
+}

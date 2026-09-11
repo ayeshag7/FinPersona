@@ -1,0 +1,68 @@
+{
+ "registered": false,
+ "reason": "PREREG 3.8 simulated E8.3's estimators, not E8.5's plug-ins; this adds that evidence",
+ "design": {
+  "personas": 3,
+  "scenarios": 4,
+  "seeds": 8,
+  "reps": 3,
+  "s_path": 0.05,
+  "beta": 0.05,
+  "boot": 2000
+ },
+ "nominal_coverage": 0.9,
+ "seconds": 482.1941599845886,
+ "table": [
+  {
+   "s_int": 0.0,
+   "s_rep": 0.05,
+   "n_datasets": 200,
+   "share_sigma2_int_at_zero": 0.5,
+   "median_est_over_truth_R1": 1.0083567515,
+   "ucl90_coverage_R1": 0.92,
+   "ucl90_coverage_R1_lo": 0.8740105117,
+   "ucl90_coverage_R1_hi": 0.9501594141,
+   "median_est_over_truth_R3": 1.0262600884,
+   "ucl90_coverage_R3": 0.97,
+   "ucl90_coverage_R3_lo": 0.9361057075,
+   "ucl90_coverage_R3_hi": 0.9861796857,
+   "median_n_seeds_truth_R1": 66.0,
+   "median_n_seeds_plugin_R1": 72.0,
+   "share_plugin_n_below_truth_n": 0.07
+  },
+  {
+   "s_int": 0.03,
+   "s_rep": 0.04,
+   "n_datasets": 200,
+   "share_sigma2_int_at_zero": 0.0,
+   "median_est_over_truth_R1": 0.9978419912,
+   "ucl90_coverage_R1": 0.67,
+   "ucl90_coverage_R1_lo": 0.6021668477,
+   "ucl90_coverage_R1_hi": 0.7314257413,
+   "median_est_over_truth_R3": 1.0021900339,
+   "ucl90_coverage_R3": 0.64,
+   "ucl90_coverage_R3_lo": 0.5714152817,
+   "ucl90_coverage_R3_hi": 0.703308027,
+   "median_n_seeds_truth_R1": 54.0,
+   "median_n_seeds_plugin_R1": 55.0,
+   "share_plugin_n_below_truth_n": 0.29
+  },
+  {
+   "s_int": 0.05,
+   "s_rep": 0.02,
+   "n_datasets": 200,
+   "share_sigma2_int_at_zero": 0.0,
+   "median_est_over_truth_R1": 0.9984029299,
+   "ucl90_coverage_R1": 0.6,
+   "ucl90_coverage_R1_lo": 0.5308367204,
+   "ucl90_coverage_R1_hi": 0.6653942143,
+   "median_est_over_truth_R3": 0.9969433857,
+   "ucl90_coverage_R3": 0.595,
+   "ucl90_coverage_R3_lo": 0.5257971008,
+   "ucl90_coverage_R3_hi": 0.6606222872,
+   "median_n_seeds_truth_R1": 44.0,
+   "median_n_seeds_plugin_R1": 45.0,
+   "share_plugin_n_below_truth_n": 0.4
+  }
+ ]
+}

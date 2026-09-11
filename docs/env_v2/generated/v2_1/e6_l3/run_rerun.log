@@ -1,0 +1,8 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+probes 200; surrogate sign accuracy 0.780 [0.718, 0.832]; ceiling 0.837; null p95 0.560
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+gemini-2.5-flash normal: sign accuracy 0.520 [0.451, 0.588], fair/unparsed 0.01, errors 0
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+gemini-2.5-flash shuffled: sign accuracy 0.485 [0.417, 0.554], fair/unparsed 0.01, errors 0
+gpt-5-mini normal: sign accuracy 0.520 [0.451, 0.588], fair/unparsed 0.01, errors 0
+gpt-5-mini shuffled: sign accuracy 0.480 [0.412, 0.549], fair/unparsed 0.02, errors 0

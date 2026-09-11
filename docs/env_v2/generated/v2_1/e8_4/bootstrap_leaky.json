@@ -1,0 +1,39 @@
+{
+ "n_boot": 200,
+ "seconds": 16224.787969112396,
+ "windows": [
+  {
+   "window_start": 1,
+   "status": "IDENTIFIED",
+   "S_persona": 0.978950459198212,
+   "S_persona_ci": [
+    0.961870046421674,
+    0.9777867812443686
+   ],
+   "S_directive": 3.201775674146796e-06,
+   "S_directive_ci": [
+    0.00018965614247311167,
+    0.0028925128995376482
+   ],
+   "directive_interval_covers_0": false,
+   "persona_interval_excludes_0": true
+  },
+  {
+   "window_start": 26,
+   "status": "IDENTIFIED",
+   "S_persona": 0.9750772322189579,
+   "S_persona_ci": [
+    0.9585706934861622,
+    0.9738542164399488
+   ],
+   "S_directive": 1.1132602123603989e-05,
+   "S_directive_ci": [
+    0.00017433491086110125,
+    0.0027493885532567045
+   ],
+   "directive_interval_covers_0": false,
+   "persona_interval_excludes_0": true
+  }
+ ],
+ "note": "the shares are sums of max(permutation importance, 0), so a share cannot be negative and its lower percentile reaches 0 only if at least 2.5 % of refits give it exactly 0"
+}

@@ -1,0 +1,224 @@
+{
+ "generated_utc": "2026-09-10T09:55:26Z",
+ "n_pilot_runs": 3,
+ "pilot_runs": [
+  {
+   "persona": "ENTJ",
+   "day1_provider": 1929.0,
+   "per_turn_provider_v2": 927.75,
+   "per_turn_chars_v2": 2932.6,
+   "block_chars": 311,
+   "block_share_of_turn_chars": 0.1060492396,
+   "provider_tokens_per_char": 0.3163574985,
+   "stateless_calls_total_provider_input": 3936295.0
+  },
+  {
+   "persona": "INTJ",
+   "day1_provider": 1788.0,
+   "per_turn_provider_v2": 917.8,
+   "per_turn_chars_v2": 2970.2,
+   "block_chars": 290,
+   "block_share_of_turn_chars": 0.0976365228,
+   "provider_tokens_per_char": 0.3090027608,
+   "stateless_calls_total_provider_input": 3892661.0
+  },
+  {
+   "persona": "ISFJ",
+   "day1_provider": 2016.0,
+   "per_turn_provider_v2": 927.35,
+   "per_turn_chars_v2": 2996.6,
+   "block_chars": 339,
+   "block_share_of_turn_chars": 0.113128212,
+   "provider_tokens_per_char": 0.3094673964,
+   "stateless_calls_total_provider_input": 4007087.0
+  }
+ ],
+ "day1_context_provider": 1911.0,
+ "per_turn_provider_v2": 924.3000000000001,
+ "block_share_of_turn": 0.10560465811642362,
+ "per_turn_provider_v2_1": 826.6896145029897,
+ "full_budget_turns": {
+  "v2": 80,
+  "v2_1": 77
+ },
+ "chars_per_o200k_token": 3.405897263824861,
+ "output_tokens_per_call": {
+  "gemini-2.5-flash": {
+   "value": 105.8475,
+   "source": "e8_5/smoke.json, billed usage, thinking off"
+  },
+  "gpt-5-mini": {
+   "value": 534.285,
+   "source": "e8_5/smoke.json, billed usage, provider-default thinking"
+  }
+ },
+ "tier_a_runs_per_level": 90,
+ "prices_per_M": {
+  "gemini-2.5-flash": [
+   0.3,
+   2.5
+  ],
+  "gpt-5-mini": [
+   0.25,
+   2.0
+  ]
+ },
+ "table": [
+  {
+   "harness": "v2",
+   "level": "stateless",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 382200.0,
+   "retained_turns_at_plateau": 0,
+   "usd_per_run_gemini-2.5-flash": 0.16758375,
+   "usd_tierA_block_gemini-2.5-flash": 15.0825375,
+   "usd_per_run_gpt-5-mini": 0.309264,
+   "usd_tierA_block_gpt-5-mini": 27.83376,
+   "x_stateless_gemini-2.5-flash": 1.0,
+   "x_stateless_gpt-5-mini": 1.0
+  },
+  {
+   "harness": "v2",
+   "level": "rolling 5",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 1292635.5,
+   "retained_turns_at_plateau": 5,
+   "usd_per_run_gemini-2.5-flash": 0.4407144,
+   "usd_tierA_block_gemini-2.5-flash": 39.664296,
+   "usd_per_run_gpt-5-mini": 0.536872875,
+   "usd_tierA_block_gpt-5-mini": 48.31855875,
+   "x_stateless_gemini-2.5-flash": 2.6298158383,
+   "x_stateless_gpt-5-mini": 1.7359695115
+  },
+  {
+   "harness": "v2",
+   "level": "rolling 20",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 3885297.0,
+   "retained_turns_at_plateau": 20,
+   "usd_per_run_gemini-2.5-flash": 1.21851285,
+   "usd_tierA_block_gemini-2.5-flash": 109.6661565,
+   "usd_per_run_gpt-5-mini": 1.18503825,
+   "usd_tierA_block_gpt-5-mini": 106.6534425,
+   "x_stateless_gemini-2.5-flash": 7.2710680481,
+   "x_stateless_gpt-5-mini": 3.8318014706
+  },
+  {
+   "harness": "v2",
+   "level": "rolling 50",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 8446717.5,
+   "retained_turns_at_plateau": 50,
+   "usd_per_run_gemini-2.5-flash": 2.586939,
+   "usd_tierA_block_gemini-2.5-flash": 232.82451,
+   "usd_per_run_gpt-5-mini": 2.325393375,
+   "usd_tierA_block_gpt-5-mini": 209.28540375,
+   "x_stateless_gemini-2.5-flash": 15.4366935935,
+   "x_stateless_gpt-5-mini": 7.5191207997
+  },
+  {
+   "harness": "v2",
+   "level": "full (60k)",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 12176268.0,
+   "retained_turns_at_plateau": 80,
+   "usd_per_run_gemini-2.5-flash": 3.70580415,
+   "usd_tierA_block_gemini-2.5-flash": 333.5223735,
+   "usd_per_run_gpt-5-mini": 3.257781,
+   "usd_tierA_block_gpt-5-mini": 293.20029,
+   "x_stateless_gemini-2.5-flash": 22.1131473069,
+   "x_stateless_gpt-5-mini": 10.5339806767
+  },
+  {
+   "harness": "v2",
+   "level": "summary (5 raw)",
+   "calls_per_run": 220,
+   "input_tokens_per_run": 1363682.4018259756,
+   "retained_turns_at_plateau": 5,
+   "usd_per_run_gemini-2.5-flash": 0.4673208455,
+   "usd_tierA_block_gemini-2.5-flash": 42.0588760993,
+   "usd_per_run_gpt-5-mini": 0.5760060005,
+   "usd_tierA_block_gpt-5-mini": 51.8405400411,
+   "x_stateless_gemini-2.5-flash": 2.7885809068,
+   "x_stateless_gpt-5-mini": 1.8625058217
+  },
+  {
+   "harness": "v2_1",
+   "level": "stateless",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 382200.0,
+   "retained_turns_at_plateau": 0,
+   "usd_per_run_gemini-2.5-flash": 0.16758375,
+   "usd_tierA_block_gemini-2.5-flash": 15.0825375,
+   "usd_per_run_gpt-5-mini": 0.309264,
+   "usd_tierA_block_gpt-5-mini": 27.83376,
+   "x_stateless_gemini-2.5-flash": 1.0,
+   "x_stateless_gpt-5-mini": 1.0
+  },
+  {
+   "harness": "v2_1",
+   "level": "rolling 5",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 1196489.2702854448,
+   "retained_turns_at_plateau": 5,
+   "usd_per_run_gemini-2.5-flash": 0.4118705311,
+   "usd_tierA_block_gemini-2.5-flash": 37.0683477977,
+   "usd_per_run_gpt-5-mini": 0.5128363176,
+   "usd_tierA_block_gpt-5-mini": 46.1552685814,
+   "x_stateless_gemini-2.5-flash": 2.4576996939,
+   "x_stateless_gpt-5-mini": 1.6582477028
+  },
+  {
+   "harness": "v2_1",
+   "level": "rolling 20",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 3515353.6389663313,
+   "retained_turns_at_plateau": 20,
+   "usd_per_run_gemini-2.5-flash": 1.1075298417,
+   "usd_tierA_block_gemini-2.5-flash": 99.6776857521,
+   "usd_per_run_gpt-5-mini": 1.0925524097,
+   "usd_tierA_block_gpt-5-mini": 98.3297168767,
+   "x_stateless_gemini-2.5-flash": 6.6088140508,
+   "x_stateless_gpt-5-mini": 3.5327500444
+  },
+  {
+   "harness": "v2_1",
+   "level": "rolling 50",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 7595066.886538586,
+   "retained_turns_at_plateau": 50,
+   "usd_per_run_gemini-2.5-flash": 2.331443816,
+   "usd_tierA_block_gemini-2.5-flash": 209.8299434365,
+   "usd_per_run_gpt-5-mini": 2.1124807216,
+   "usd_tierA_block_gpt-5-mini": 190.1232649471,
+   "x_stateless_gemini-2.5-flash": 13.9121115022,
+   "x_stateless_gpt-5-mini": 6.8306712764
+  },
+  {
+   "harness": "v2_1",
+   "level": "full (60k)",
+   "calls_per_run": 200,
+   "input_tokens_per_run": 10630671.150993563,
+   "retained_turns_at_plateau": 77,
+   "usd_per_run_gemini-2.5-flash": 3.2421250953,
+   "usd_tierA_block_gemini-2.5-flash": 291.7912585768,
+   "usd_per_run_gpt-5-mini": 2.8713817877,
+   "usd_tierA_block_gpt-5-mini": 258.4243608974,
+   "x_stateless_gemini-2.5-flash": 19.3462975694,
+   "x_stateless_gpt-5-mini": 9.2845652509
+  },
+  {
+   "harness": "v2_1",
+   "level": "summary (5 raw)",
+   "calls_per_run": 220,
+   "input_tokens_per_run": 1267536.1721114207,
+   "retained_turns_at_plateau": 5,
+   "usd_per_run_gemini-2.5-flash": 0.4384769766,
+   "usd_tierA_block_gemini-2.5-flash": 39.462927897,
+   "usd_per_run_gpt-5-mini": 0.551969443,
+   "usd_tierA_block_gpt-5-mini": 49.6772498725,
+   "x_stateless_gemini-2.5-flash": 2.6164647624,
+   "x_stateless_gpt-5-mini": 1.7847840131
+  }
+ ]
+}

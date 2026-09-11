@@ -18,6 +18,20 @@ Portfolio accounting v2 (plan 2.1 blocks 8-9; decisions 4, 5, 9; checklist 18-19
   price (sensitivity).  Fractional shares; long-only; no leverage.
 * The v1 interface (BUY/SELL fraction-of-side) is kept behind
   `execute_v1_action()` for the bridge cell (A1 x A2 factorial).
+
+v2.1 Phase 7 (E7.4, E7.7; DECISION_LOG P7-2), both switches DEFAULT-OFF and inert when off:
+
+* `dividends=True` lets `pay_dividend()` credit cash with (shares held x DPS per share) on an ex-date, so the
+  rendered `dividend_yield` is real money (D10 = pay).  With `dividends=False` (the default) `pay_dividend()` is a
+  no-op returning 0.0 and every number this class produces is unchanged.
+  **The generator's price path is NOT ex-dividend adjusted** -- `envs/` is frozen in this phase and no path may
+  move -- so paying the dividend makes the holder a TOTAL-return holder on a price-return path rather than
+  redistributing value out of the price.  That is a property of the construction, stated wherever a dividend
+  number is reported, not a modelling claim.
+* `retarget(..., execution="next_open")` now returns the pre-trade share under BOTH keys with `pending=True`
+  beside, instead of returning the pre-trade share under the name `cash_share_after` (weakness 60: the logged
+  share was ambiguous between pre- and post-trade).  No value the class computes changes; one mislabelled key
+  becomes two correctly labelled ones.
 """
 from __future__ import annotations
 
@@ -28,8 +42,9 @@ DEAD_BAND = 0.01
 
 class PortfolioV2:
     def __init__(self, initial_value: float = 10000.0, start_cash_share: float = 0.5, price: float = 100.0,
-                 n_assets: int = 1, start_weights: Optional[Sequence[float]] = None):
+                 n_assets: int = 1, start_weights: Optional[Sequence[float]] = None, dividends: bool = False):
         self.n_assets = int(n_assets)
+        self.dividends = bool(dividends)          # v2.1 Phase 7 / D10; False = the v2 behaviour, bit for bit
         self.initial_value = float(initial_value)
         self.start_cash_share = float(start_cash_share)
         if not 0.0 <= self.start_cash_share <= 1.0:
@@ -43,6 +58,8 @@ class PortfolioV2:
         self.trades: List[Dict] = []
         self.turnover_value = 0.0
         self.cost_paid_total = 0.0
+        self.dividends_paid_total = 0.0
+        self.dividend_records: List[Dict] = []
         self.pending: Optional[Dict] = None   # next-open execution
 
     # ------------------------------------------------------------------ helpers
@@ -65,6 +82,26 @@ class PortfolioV2:
         return {"cash": self.cash, "holdings_value": self.holdings_value(price),
                 "cash_share": self.cash_share(price), "total_value": self.total_value(price)}
 
+    def pay_dividend(self, dps, day=None) -> Dict[str, float]:
+        """Credit cash with (shares held x DPS per share) on an ex-date (v2.1 Phase 7 E7.4; D10 = pay).
+
+        `dps` is the dividend per share -- a scalar for N = 1 or a per-asset sequence.  Paid on the holdings as
+        they stand when this is called, which the caller does at the START of the ex-date, before that day's
+        settlement and trade, so the holder of record is yesterday's holder.  No price adjustment is made: see the
+        class docstring.  With `dividends=False` this is a no-op and returns 0.0.
+        """
+        if not self.dividends:
+            return {"day": day, "dividend_paid": 0.0}
+        per = [float(dps)] * self.n_assets if isinstance(dps, (int, float)) else [float(d) for d in dps]
+        amount = sum(q * d for q, d in zip(self.holdings_qty, per))
+        if not amount or amount != amount:      # 0.0 or NaN: nothing to pay
+            return {"day": day, "dividend_paid": 0.0}
+        self.cash += amount
+        self.dividends_paid_total += amount
+        rec = {"day": day, "dividend_paid": amount, "dps": per}
+        self.dividend_records.append(rec)
+        return rec
+
     # ------------------------------------------------------------------ actions
     def retarget(self, target_cash_share: float, price, day, cost_bp: float = 5.0,
                  target_weights: Optional[Sequence[float]] = None, execution: str = "same_day") -> Dict:
@@ -75,8 +112,11 @@ class PortfolioV2:
             # record the intent; execute at the next call of settle_pending(price)
             self.pending = {"target_cash_share": target_cash_share, "target_weights": target_weights,
                             "cost_bp": cost_bp, "day": day}
-            return {"day": day, "derived_action": "PENDING", "traded_value": 0.0, "cost_paid": 0.0,
-                    "target_cash_share": target_cash_share, "cash_share_after": self.cash_share(price)}
+            # weakness 60: nothing has executed, so the share is the PRE-trade one under both names, with the
+            # pending flag beside it.  Before v2.1 Phase 7 the pre-trade share was returned as "cash_share_after".
+            cs = self.cash_share(price)
+            return {"day": day, "derived_action": "PENDING", "traded_value": 0.0, "cost_paid": 0.0, "pending": True,
+                    "target_cash_share": target_cash_share, "cash_share_before": cs, "cash_share_after": cs}
         return self._execute(target_cash_share, price, day, cost_bp, target_weights)
 
     def settle_pending(self, price, day) -> Optional[Dict]:

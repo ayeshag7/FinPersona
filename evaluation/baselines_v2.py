@@ -39,14 +39,22 @@ def _frame(env: SyntheticMarketEnv, port_rows: List[Dict]) -> pd.DataFrame:
 
 
 def _run_policy(env: SyntheticMarketEnv, start_cash_share: float, policy: Callable, cost_bp: float = 5.0,
-                interface: str = "target", initial_value: float = 10000.0) -> pd.DataFrame:
+                interface: str = "target", initial_value: float = 10000.0, dividends: bool = False) -> pd.DataFrame:
+    """v2.1 Phase 7 (E7.4): `dividends=True` credits cash on the generator's own ex-dates before the day's trade.
+    `dividends=False` is the default and reproduces the v2 trajectory bit for bit."""
     d = env.data[env.data["asset"] == 0].reset_index(drop=True)
     P = d["price"].to_numpy(dtype=float)
-    port = PortfolioV2(initial_value, start_cash_share, P[0])
+    port = PortfolioV2(initial_value, start_cash_share, P[0], dividends=dividends)
+    sched = None
+    if dividends:
+        from simulation.dividends import dividend_schedule
+        sched = dividend_schedule(env, n_assets=1, n_days=len(P))
     rows = []
     state = {}
     for t in range(len(P)):
         row = d.iloc[t]
+        if sched is not None and sched[t, 0] != 0.0:
+            port.pay_dividend(float(sched[t, 0]), t + 1)
         st = port.get_state(P[t])
         if interface == "target":
             tgt = policy(t, row, st, state)
@@ -60,6 +68,8 @@ def _run_policy(env: SyntheticMarketEnv, start_cash_share: float, policy: Callab
         rows.append({"Day": t + 1, "Cash_Share": st2["cash_share"], "Portfolio_Value": st2["total_value"],
                      "Cash": st2["cash"], "Holdings_Value": st2["holdings_value"], "Action": action,
                      "Traded_Value": rec["traded_value"], "Cost_Paid": rec["cost_paid"],
+                     "Cash_Share_Pre": rec.get("cash_share_before", st["cash_share"]),
+                     "Cash_Share_Post": st2["cash_share"],
                      "Start_Cash_Share": start_cash_share})
     return _frame(env, rows)
 
@@ -89,18 +99,18 @@ def baseline_policies(persona: Optional[str], start_cash_share: float, theta: fl
 
 
 def run_baselines(env: SyntheticMarketEnv, persona: Optional[str], start_cash_share: float, cost_bp: float = 5.0,
-                  theta: float = THETA, random_seeds: int = 10) -> Dict[str, pd.DataFrame]:
+                  theta: float = THETA, random_seeds: int = 10, dividends: bool = False) -> Dict[str, pd.DataFrame]:
     out = {}
     for name, (fn, iface) in baseline_policies(persona, start_cash_share, theta, random_seeds).items():
-        out[name] = _run_policy(env, start_cash_share, fn, cost_bp=cost_bp, interface=iface)
+        out[name] = _run_policy(env, start_cash_share, fn, cost_bp=cost_bp, interface=iface, dividends=dividends)
     return out
 
 
 def baseline_metrics(env: SyntheticMarketEnv, persona: Optional[str], start_cash_share: float, cost_bp: float = 5.0,
-                     theta: float = THETA, random_seeds: int = 10) -> Dict[str, Dict[str, float]]:
+                     theta: float = THETA, random_seeds: int = 10, dividends: bool = False) -> Dict[str, Dict[str, float]]:
     """Per-policy metrics; the k random seeds are averaged into one 'random' entry."""
     from evaluation.metrics_v2 import score_run
-    trajs = run_baselines(env, persona, start_cash_share, cost_bp, theta, random_seeds)
+    trajs = run_baselines(env, persona, start_cash_share, cost_bp, theta, random_seeds, dividends=dividends)
     scored = {name: score_run(df, persona if persona else "TRADER", start_cash_share) for name, df in trajs.items()}
     rand = [v for k, v in scored.items() if k.startswith("random_")]
     out = {k: v for k, v in scored.items() if not k.startswith("random_")}

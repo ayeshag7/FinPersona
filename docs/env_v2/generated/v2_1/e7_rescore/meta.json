@@ -1,0 +1,85 @@
+{
+ "thetas": [
+  0.002,
+  0.03,
+  0.032791,
+  0.046321,
+  0.05,
+  0.065609,
+  0.08,
+  0.12,
+  0.2
+ ],
+ "theta_labels": {
+  "0.03": [
+   "grid"
+  ],
+  "0.05": [
+   "grid",
+   "theta_info_all"
+  ],
+  "0.08": [
+   "grid"
+  ],
+  "0.12": [
+   "grid"
+  ],
+  "0.2": [
+   "grid",
+   "theta_info_calm"
+  ],
+  "0.002": [
+   "theta_cost"
+  ],
+  "0.032791": [
+   "theta_cost_one_day"
+  ],
+  "0.046321": [
+   "theta_var"
+  ],
+  "0.065609": [
+   "theta_var_stationary"
+  ]
+ },
+ "half_widths": [
+  0.05,
+  0.1,
+  0.15
+ ],
+ "half_width_in_force": 0.1,
+ "n_cell_rows": 1620000,
+ "scenarios": [
+  "flat",
+  "bull_trap",
+  "crash",
+  "sustained_bull"
+ ],
+ "state": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": true,
+  "observables": "multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A"
+ },
+ "panel_meta": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": true,
+  "observables": "multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A"
+ },
+ "seconds": 100,
+ "generated_utc": "2026-09-09T20:51:07Z"
+}

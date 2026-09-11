@@ -26,6 +26,16 @@ from evaluation.metrics_v2 import score_run, floors_and_ceilings, beats_k_of_n, 
 from evaluation.baselines_v2 import baseline_metrics  # noqa: E402
 from evaluation.salience import salience_by_window, separability_gate  # noqa: E402
 
+# E7.5's null: the arms in which no persona TEXT is shown (PREREG_PHASE_7.md 6).  Two of them, and they are
+# identified by different columns in the run log:
+#   * the no-persona trader -- `experiments/arms_v2.py` gives arms "trader" / "trader_maximise" the persona label
+#     "NONE" with `mandate_block: none`, so it carries no persona text and no mandate;
+#   * the O3 numerical-only ablation -- `agent/ocean_prompts.py` labels its personas "O3_conservative" and
+#     "O3_aggressive"; the prompt states a numeric target with no personality description.
+# Both lists are matched, so a run qualifies on either its Persona or its Arm.
+NULL_ARM_PERSONAS = ("NONE", "TRADER", "O3_conservative", "O3_aggressive")
+NULL_ARM_ARMS = ("trader", "trader_maximise", "numerical_only", "o3_numerical_only", "no_persona")
+
 
 def load_runs(results_dir: str) -> List[pd.DataFrame]:
     files = sorted(glob.glob(os.path.join(results_dir, "**", "*.csv"), recursive=True))
@@ -50,13 +60,39 @@ def _cell_key(df: pd.DataFrame) -> tuple:
 _BASE_CACHE: Dict[tuple, Dict] = {}
 
 
-def cell_baselines(df: pd.DataFrame) -> Dict[str, Dict[str, float]]:
-    key = _cell_key(df)
+def _meta_path(df: pd.DataFrame) -> str:
+    f = df["__file"].iloc[0] if "__file" in df.columns else None
+    if not f:
+        raise KeyError("the run frame carries no __file, so its meta.json cannot be located; "
+                       "cell_baselines(from_meta=True) needs load_runs' __file column")
+    return str(f).replace(".csv", ".meta.json")
+
+
+def cell_baselines(df: pd.DataFrame, from_meta: bool = False, dividends: bool = False) -> Dict[str, Dict[str, float]]:
+    """Per-cell baselines on the cell's own price path.
+
+    v2.1 Phase 7 (E7.6, weakness 56): `from_meta=True` rebuilds the environment from the run's `meta.json` --
+    `env_metadata.gen_config`, the engine, `n_assets`, `b_pred`, the ordering, the start price, every field hashed
+    into `Gen_Config_Hash` -- instead of from the seven run-CSV columns below, which cannot express any of them.
+    The default is `False`, the v2 behaviour, unchanged.
+
+    A missing or unreadable `meta.json` RAISES: a baseline silently computed on a different path than the agent
+    saw is the defect this switch exists to close.
+    """
+    key = _cell_key(df) + (bool(from_meta), bool(dividends))
     if key not in _BASE_CACHE:
         r = df.iloc[0]
-        env = SyntheticMarketEnv(r["Scenario"], int(df["Day"].max()), int(r["Seed"]), crash_discount=float(r["Crash_Discount"]),
-                                 ordering=str(r.get("Ordering", "setup_first")))
-        _BASE_CACHE[key] = baseline_metrics(env, str(r["Persona"]), float(r["Start_Cash_Share"]), cost_bp=float(r["Cost_bp"]))
+        if from_meta:
+            import json as _json
+            from tools.phase7.e7_6_baselines import env_from_meta
+            mp = _meta_path(df)
+            with open(mp, "r", encoding="utf-8") as fh:
+                env = env_from_meta(_json.load(fh))
+        else:
+            env = SyntheticMarketEnv(r["Scenario"], int(df["Day"].max()), int(r["Seed"]), crash_discount=float(r["Crash_Discount"]),
+                                     ordering=str(r.get("Ordering", "setup_first")))
+        _BASE_CACHE[key] = baseline_metrics(env, str(r["Persona"]), float(r["Start_Cash_Share"]),
+                                            cost_bp=float(r["Cost_bp"]), dividends=dividends)
     return _BASE_CACHE[key]
 
 
@@ -107,22 +143,47 @@ def salience_tables(runs: List[pd.DataFrame]) -> Dict[str, pd.DataFrame]:
     if allr["Persona"].nunique() >= 2 and allr["Seed"].nunique() >= 2:
         out["salience_primary"] = salience_by_window(allr, include_state=False)
         out["salience_with_state"] = salience_by_window(allr, include_state=True, null_reps=0)
-    # The t = 0 separability gate is pre-registered on the COMMON-START design (C_1 levels, PREREGISTRATION.md 4).
-    # Under start-at-target every persona starts at its own centre, so C_1 - C_0 ~ 0 for a persona-consistent agent and a
-    # gate that tests level ordering and band membership cannot pass (weakness item 54). v2.1 Phase 0: the gate is
-    # computed on common-start cells only; the delta-C_1 table is kept as EXPLORATORY with the reason; Phase 7 (E7.5)
-    # re-specifies it.
+    out.update(gate_tables(allr))
+    return out
+
+
+def gate_tables(allr: pd.DataFrame) -> Dict[str, pd.DataFrame]:
+    """The day-1 gate, on its own so that it can be exercised without the salience surrogate (E7.5)."""
+    out: Dict[str, pd.DataFrame] = {}
+    # v2.1 Phase 7 (E7.5, weakness 54; PREREG_PHASE_7.md 6).  The day-1 gate is computed on the COMMON-START design
+    # only, on C_1 LEVELS.  The delta-C_1 version under start-at-target is REMOVED, not demoted: under
+    # start-at-target every persona begins at its own band centre, so C_1 - C_0 is ~ 0 for any persona-consistent
+    # agent, and a test of level ordering and band membership on it cannot separate personas whatever the agent
+    # does -- its verdict carries no information about the agent.  Keeping it as "exploratory" invited it to be
+    # read as weak evidence; Phase 7 removes it and records the reason in the table below.
+    # The null is the arms in which no persona text is shown: the O3 numerical-only arm and the no-persona trader.
+    out["gate_removed_note"] = pd.DataFrame([{
+        "removed": "exploratory_deltaC1_start_at_target",
+        "reason": "delta C_1 under start-at-target is ~ 0 for a persona-consistent agent, so a level/band-membership "
+                  "test on it is ill-posed (weakness 54); removed in v2.1 Phase 7 E7.5, DECISION_LOG P7-6",
+        "replacement": "gate_common_start (C_1 levels, common-start cells only) with the null from the O3 "
+                       "numerical-only arm and the no-persona trader"}])
     common = allr[(allr["Start_Design"] == "common") & (allr["Day"] == 1)]
     if len(common):
         g = common.rename(columns={"Cash_Share": "C1"})
-        out["gate_common_start"] = pd.DataFrame([{"Model": m, **separability_gate(dm)} for m, dm in g.groupby("Model")])
-    tgt = allr[(allr["Start_Design"] == "target") & (allr["Day"] == 1)].copy()
-    if len(tgt):
-        tgt["C1"] = tgt["Cash_Share"] - tgt["Start_Cash_Share"]   # delta C_1 under start-at-target
-        ex = pd.DataFrame([{"Model": m, **separability_gate(dm)} for m, dm in tgt.groupby("Model")])
-        ex["note"] = ("EXPLORATORY, not a gate: delta C_1 fed to a level/band-membership test is ill-posed under "
-                      "start-at-target (item 54); re-specified in Phase 7")
-        out["exploratory_deltaC1_start_at_target"] = ex
+        gate = pd.DataFrame([{"Model": m, **separability_gate(dm)} for m, dm in g.groupby("Model")])
+        gate["n_runs"] = [int((g["Model"] == m).sum()) for m in gate["Model"]]
+        gate["arm_population"] = "persona arms, common-start"
+        out["gate_common_start"] = gate
+        null_rows = g[g["Persona"].isin(NULL_ARM_PERSONAS) | g["Arm"].isin(NULL_ARM_ARMS)]
+        if len(null_rows) and null_rows["Persona"].nunique() >= 2:
+            nl = pd.DataFrame([{"Model": m, **separability_gate(dm)} for m, dm in null_rows.groupby("Model")])
+            nl["n_runs"] = [int((null_rows["Model"] == m).sum()) for m in nl["Model"]]
+            nl["arm_population"] = "null: no persona text shown"
+            out["gate_common_start_null"] = nl
+        else:
+            out["gate_common_start_null"] = pd.DataFrame([{
+                "status": "NOT COMPUTABLE",
+                "reason": "the common-start runs carry no arm in which no persona text is shown "
+                          "(looked for personas %s or arms %s)" % (sorted(NULL_ARM_PERSONAS), sorted(NULL_ARM_ARMS)),
+                "n_common_start_runs": int(len(g)),
+                "personas_present": ",".join(sorted(set(g["Persona"].astype(str)))),
+                "arms_present": ",".join(sorted(set(g["Arm"].astype(str))))}])
     return out
 
 
@@ -145,7 +206,7 @@ def write_report(tables: Dict[str, pd.DataFrame], out_prefix: str):
         L += ["## Reliability", "", tables["reliability"].round(3).to_string(index=False), ""]
     if "bull_trap_strata" in tables:
         L += ["## Bull-trap strata (topped / un-topped)", "", tables["bull_trap_strata"].round(3).to_string(index=False), ""]
-    for k in ("salience_primary", "salience_with_state", "gate_common_start", "exploratory_deltaC1_start_at_target"):
+    for k in ("salience_primary", "salience_with_state", "gate_common_start", "gate_common_start_null", "gate_removed_note"):
         if k in tables:
             L += [f"## {k}", "", tables[k].round(3).to_string(index=False), ""]
     with open(out_prefix + ".md", "w", encoding="utf-8", newline="\n") as fh:

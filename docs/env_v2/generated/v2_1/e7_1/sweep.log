@@ -1,0 +1,23 @@
+[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
+         scope population feature_set  theta_info  reached  max_acc  theta_at_max  n_at_max note  coverage_at_theta_info  n_resolvable_at_theta_info
+     bull_trap        all        full        0.01     True 0.929339          0.30     20662                     0.957389                       68932
+     bull_trap        all  price_only        0.01     True 0.936405          0.30     20662                     0.957389                       68932
+     bull_trap       calm        full        0.15     True 0.937500          0.20        64                     0.021060                         246
+     bull_trap       calm  price_only        0.15     True 0.937500          0.20        64                     0.021060                         246
+         crash        all        full        0.05     True 0.989604          0.30      8369                     0.610806                       87956
+         crash        all  price_only        0.08     True 0.984466          0.30      8369                     0.450556                       64880
+         crash       calm        full        0.08     True 1.000000          0.20       312                     0.165867                        5914
+         crash       calm  price_only        0.12     True 1.000000          0.25        95                     0.052447                        1870
+          flat        all        full        0.20     True 1.000000          0.25       126                     0.009639                         347
+          flat        all  price_only        0.15     True 1.000000          0.25       126                     0.029306                        1055
+          flat       calm        full        0.20     True 1.000000          0.25       126                     0.009639                         347
+          flat       calm  price_only        0.15     True 1.000000          0.25       126                     0.029306                        1055
+        pooled        all        full        0.05     True 0.946915          0.30     29142                     0.596931                      171916
+        pooled        all  price_only        0.06     True 0.950450          0.30     29142                     0.538743                      155158
+        pooled       calm        full        0.20     True 1.000000          0.30       136                     0.009125                        1089
+        pooled       calm  price_only        0.20     True 1.000000          0.30       136                     0.009125                        1089
+sustained_bull        all        full        0.25     True 1.000000          0.30        53                     0.003639                         131
+sustained_bull        all  price_only        0.25     True 1.000000          0.30        53                     0.003639                         131
+sustained_bull       calm        full        0.25     True 1.000000          0.30        53                     0.003639                         131
+sustained_bull       calm  price_only        0.25     True 1.000000          0.30        53                     0.003639                         131
+[sweep] -> C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e7_1 (4 s)

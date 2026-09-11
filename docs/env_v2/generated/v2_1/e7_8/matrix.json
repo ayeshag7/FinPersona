@@ -1,0 +1,143 @@
+{
+ "theta": 0.05,
+ "half_width": 0.1,
+ "state": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": true,
+  "observables": "multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A"
+ },
+ "collinear_by_construction": [
+  {
+   "a": "mcr_B",
+   "b": "band_mas",
+   "why": "B is band-MAS restricted to the resolvable steps"
+  },
+  {
+   "a": "mcr_B",
+   "b": "mcr",
+   "why": "MCR = B + D"
+  },
+  {
+   "a": "mcr_D",
+   "b": "mcr",
+   "why": "MCR = B + D"
+  },
+  {
+   "a": "mcr_window_B",
+   "b": "band_mas",
+   "why": "the per-window B is band-MAS restricted to the scored windows"
+  },
+  {
+   "a": "mcr_window_B",
+   "b": "mcr_window",
+   "why": "MCR_window = B + D"
+  },
+  {
+   "a": "mcr_window_D",
+   "b": "mcr_window",
+   "why": "MCR_window = B + D"
+  },
+  {
+   "a": "turnover",
+   "b": "cost_paid",
+   "why": "the cost is a fixed multiple of the traded value"
+  }
+ ],
+ "generated_utc": "2026-09-09T20:56:00Z",
+ "A_decomposition": {
+  "matrix": {
+   "band_mas|mcr_B": 0.9958978179929944,
+   "band_mas|mcr_D": 0.06878710696394044,
+   "band_mas|mcr": 0.9758069118419032,
+   "band_mas|return_pct": 0.005582526889710759,
+   "band_mas|mdd_pct": 0.05491649482018862,
+   "band_mas|turnover": 0.19263950440072686,
+   "mcr_B|mcr_D": 0.06259975892818721,
+   "mcr_B|mcr": 0.9784888124163609,
+   "mcr_B|return_pct": 0.009338682513699292,
+   "mcr_B|mdd_pct": 0.058846615558770604,
+   "mcr_B|turnover": 0.1791112460077157,
+   "mcr_D|mcr": 0.2671484386808784,
+   "mcr_D|return_pct": 0.001112617358581465,
+   "mcr_D|mdd_pct": 0.020223019895881048,
+   "mcr_D|turnover": 0.10129818622211854,
+   "mcr|return_pct": 0.008786972694033285,
+   "mcr|mdd_pct": 0.06099950265364321,
+   "mcr|turnover": 0.193879575970562,
+   "return_pct|mdd_pct": 0.45387647963322014,
+   "return_pct|turnover": 0.015030288860472557,
+   "mdd_pct|turnover": 0.07593688442429976
+  },
+  "n_cells": 600,
+  "ceiling": {
+   "collinearity_floor": 0.9906857569228671,
+   "floor_ci95": [
+    0.9858472335477595,
+    0.9943769516831612
+   ],
+   "half_width": 0.004264859067700855,
+   "ceiling": 0.9949506159905679,
+   "n_ceiling_cells": 72,
+   "construction": "|r|(MCR, band-MAS) across the ceil_* cells -- the directional probability held fixed at 0.5, only the drift rate varying -- plus the half-width of its own cluster-bootstrap 95 % interval over cells"
+  },
+  "observed_abs_corr_mcr_band_mas": 0.9758069118419032,
+  "below_ceiling": true,
+  "sensitivity_16a_policies_only": {
+   "abs_corr_mcr_band_mas": 0.9811730117870475,
+   "n_cells": 312,
+   "note": "UNREGISTERED sensitivity, computed after the registered number was read and disclosed in PREREG_PHASE_7_ADDENDUM.md: the same |r| on the 16A policy set alone, with the scripted sweeps excluded. It does not enter the adoption rule."
+  }
+ },
+ "B_per_window": {
+  "matrix": {
+   "band_mas|mcr_window_B": 0.9990517969543438,
+   "band_mas|mcr_window_D": 0.06270080256789771,
+   "band_mas|mcr_window": 0.9826730048935122,
+   "band_mas|return_pct": 0.005582526889710759,
+   "band_mas|mdd_pct": 0.05491649482018862,
+   "band_mas|turnover": 0.19263950440072686,
+   "mcr_window_B|mcr_window_D": 0.055018887197583605,
+   "mcr_window_B|mcr_window": 0.9821471825196978,
+   "mcr_window_B|return_pct": 0.007064969534536126,
+   "mcr_window_B|mdd_pct": 0.05731244357113218,
+   "mcr_window_B|turnover": 0.1841966143050341,
+   "mcr_window_D|mcr_window": 0.24186580393304905,
+   "mcr_window_D|return_pct": 0.011271365522742684,
+   "mcr_window_D|mdd_pct": 0.025555659862464292,
+   "mcr_window_D|turnover": 0.09711736254351082,
+   "mcr_window|return_pct": 0.008989126943062137,
+   "mcr_window|mdd_pct": 0.06050985369122807,
+   "mcr_window|turnover": 0.19729574903845445,
+   "return_pct|mdd_pct": 0.45387647963322014,
+   "return_pct|turnover": 0.015030288860472557,
+   "mdd_pct|turnover": 0.07593688442429976
+  },
+  "n_cells": 600,
+  "ceiling": {
+   "collinearity_floor": 0.9983358872722284,
+   "floor_ci95": [
+    0.9974739023359468,
+    0.9990572646706894
+   ],
+   "half_width": 0.0007916811673713275,
+   "ceiling": 0.9991275684395997,
+   "n_ceiling_cells": 72,
+   "construction": "|r|(MCR, band-MAS) across the ceil_* cells -- the directional probability held fixed at 0.5, only the drift rate varying -- plus the half-width of its own cluster-bootstrap 95 % interval over cells"
+  },
+  "observed_abs_corr_mcr_band_mas": 0.9826730048935122,
+  "below_ceiling": true,
+  "sensitivity_16a_policies_only": {
+   "abs_corr_mcr_band_mas": 0.9871977916874688,
+   "n_cells": 312,
+   "note": "UNREGISTERED sensitivity, computed after the registered number was read and disclosed in PREREG_PHASE_7_ADDENDUM.md: the same |r| on the 16A policy set alone, with the scripted sweeps excluded. It does not enter the adoption rule."
+  }
+ }
+}

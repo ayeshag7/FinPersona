@@ -1,0 +1,23 @@
+scored 698 runs {'gemini-2.5-flash': 576, 'gpt-5-mini': 122}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash band_mas {'sigma2_rep': 0.00017, 'sigma2_int': 0.00087, 'sigma_d_R1': 0.03476, 'sigma_d_R1_mls90': 0.03798, 'sigma_d_R1_ucl90': 0.03725, 'sigma_d_R1_ucl80': 0.0357, 'sigma_d_R1_ucl95': 0.03841, 'icc_path': np.float64(0.30009), 'icc_path_arm': np.float64(0.0)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_B_0.05 {'sigma2_rep': 0.00025, 'sigma2_int': 0.00191, 'sigma_d_R1': 0.04898, 'sigma_d_R1_mls90': 0.05378, 'sigma_d_R1_ucl90': 0.05557, 'sigma_d_R1_ucl80': 0.05324, 'sigma_d_R1_ucl95': 0.05712, 'icc_path': np.float64(0.27865), 'icc_path_arm': np.float64(0.0)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_D_0.05 {'sigma2_rep': 8e-05, 'sigma2_int': 0.00037, 'sigma_d_R1': 0.02315, 'sigma_d_R1_mls90': 0.02526, 'sigma_d_R1_ucl90': 0.02594, 'sigma_d_R1_ucl80': 0.02463, 'sigma_d_R1_ucl95': 0.02653, 'icc_path': np.float64(0.27507), 'icc_path_arm': np.float64(0.0)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_0.05 {'sigma2_rep': 0.00032, 'sigma2_int': 0.0032, 'sigma_d_R1': 0.062, 'sigma_d_R1_mls90': 0.06824, 'sigma_d_R1_ucl90': 0.07252, 'sigma_d_R1_ucl80': 0.06945, 'sigma_d_R1_ucl95': 0.075, 'icc_path': np.float64(0.25268), 'icc_path_arm': np.float64(0.00544)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_B_0.002 {'sigma2_rep': 0.00017, 'sigma2_int': 0.00084, 'sigma_d_R1': 0.03439, 'sigma_d_R1_mls90': 0.03757, 'sigma_d_R1_ucl90': 0.03692, 'sigma_d_R1_ucl80': 0.03529, 'sigma_d_R1_ucl95': 0.03797, 'icc_path': np.float64(0.30385), 'icc_path_arm': np.float64(0.0)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_D_0.002 {'sigma2_rep': 2e-05, 'sigma2_int': 9e-05, 'sigma_d_R1': 0.01149, 'sigma_d_R1_mls90': 0.0125, 'sigma_d_R1_ucl90': 0.01195, 'sigma_d_R1_ucl80': 0.01163, 'sigma_d_R1_ucl95': 0.01214, 'icc_path': np.float64(0.37418), 'icc_path_arm': np.float64(0.00049)}
+C:\Users\ayesha.gull01\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\mixed_linear_model.py:2237: ConvergenceWarning: The MLE may be on the boundary of the parameter space.
+  warnings.warn(msg, ConvergenceWarning)
+gemini-2.5-flash v21_mcr_0.002 {'sigma2_rep': 0.0002, 'sigma2_int': 0.00101, 'sigma_d_R1': 0.03755, 'sigma_d_R1_mls90': 0.04102, 'sigma_d_R1_ucl90': 0.0402, 'sigma_d_R1_ucl80': 0.03882, 'sigma_d_R1_ucl95': 0.04138, 'icc_path': np.float64(0.28213), 'icc_path_arm': np.float64(0.0)}
+gemini-2.5-flash turnover {'sigma2_rep': 8.99384, 'sigma2_int': 72.95744, 'sigma_d_R1': 9.53651, 'sigma_d_R1_mls90': 10.47564, 'sigma_d_R1_ucl90': 10.21941, 'sigma_d_R1_ucl80': 9.80986, 'sigma_d_R1_ucl95': 10.57237, 'icc_path': np.float64(0.12706), 'icc_path_arm': np.float64(0.25456)}

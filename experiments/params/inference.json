@@ -1,0 +1,613 @@
+{
+ "_note": "v2.1 Phase 8 inference parameters. Written by tools/phase8/e8_write_inference.py from the e8_3 / e8_5 result files by the registered adoption rules; read by the loud loader experiments/inference_params.py.",
+ "_status_key": {
+  "MEASURED": "measured in this phase on a named file, with its n",
+  "DERIVED": "computed in this phase from measured or fitted inputs named by file",
+  "REGISTERED": "a rule fixed in PREREG_PHASE_8.md before any number under it was read",
+  "DESIGN": "a design choice with no data source; carried with a stated sensitivity",
+  "TEAM": "a decision the team recorded in DECISION_LOG.md",
+  "READ": "taken from a source that was read and is cited in PHASE_8_REPORT.md section 1"
+ },
+ "min_effect": {
+  "value": {
+   "band_mas": 0.05,
+   "D": null,
+   "cliffs_delta": "reported, sizes nothing"
+  },
+  "status": "TEAM",
+  "label": "D12: a band-MAS difference of 0.05 (half a band half-width); D gets no stipulated effect -- its minimum detectable difference at the band-MAS-sized design is its achieved power (P8-2); Phase 9's equivalence margin is half of D12 = 0.025",
+  "source": "DECISION_LOG P8-1, P8-2; PREREG_PHASE_8.md 5.5",
+  "date": "2026-09-10",
+  "interval": "not applicable (a decision)",
+  "n": "not applicable"
+ },
+ "sigma_plugin": {
+  "value": {
+   "quantile": 0.9,
+   "method_primary": "closed-form modified large-sample limit for sigma_d(R') (tools/phase8/e8_5_analyse.mls_ucl_sigma_d)",
+   "method_beside": "the registered percentile cluster bootstrap over paths within scenario, 2,000 resamples",
+   "known_answer_coverage": {
+    "n_datasets_per_setting": 200,
+    "nominal": 0.9,
+    "per_setting": {
+     "s_int=0.0|s_rep=0.05": {
+      "closed_form_R1": 0.945,
+      "closed_form_R3": 0.94,
+      "bootstrap_R1": 0.92,
+      "bootstrap_R3": 0.97,
+      "sized_too_small_closed_form": 0.045,
+      "sized_too_small_bootstrap": 0.07
+     },
+     "s_int=0.03|s_rep=0.04": {
+      "closed_form_R1": 0.935,
+      "closed_form_R3": 0.915,
+      "bootstrap_R1": 0.67,
+      "bootstrap_R3": 0.64,
+      "sized_too_small_closed_form": 0.055,
+      "sized_too_small_bootstrap": 0.29
+     },
+     "s_int=0.05|s_rep=0.02": {
+      "closed_form_R1": 0.94,
+      "closed_form_R3": 0.935,
+      "bootstrap_R1": 0.6,
+      "bootstrap_R3": 0.595,
+      "sized_too_small_closed_form": 0.06,
+      "sized_too_small_bootstrap": 0.4
+     }
+    },
+    "closed_form_R1_range": [
+     0.935,
+     0.945
+    ],
+    "bootstrap_R1_range": [
+     0.6,
+     0.92
+    ]
+   },
+   "band_mas_R1_limit": 0.0379822015358277,
+   "band_mas_R1_bootstrap_ucl90": 0.0372462012484005
+  },
+  "status": "MEASURED",
+  "label": "the one-sided 90 % upper confidence limit of sigma_d, never the point estimate (P8-1); sized on the closed-form limit because the registered bootstrap limit under-covers (P8-15, addendum 16)",
+  "source": "DECISION_LOG P8-1, P8-15; docs/env_v2/generated/v2_1/e8_5/validate.json; e8_5/power.json",
+  "date": "2026-09-10",
+  "interval": "the bootstrap's 80 % and 95 % limits reported beside",
+  "n": 600
+ },
+ "pairing_unit": {
+  "value": "seed (replicate means per arm)",
+  "status": "TEAM",
+  "label": "replicates are exchangeable; pairing replicate k with replicate k adds noise (P8-1; plan amendment)",
+  "source": "DECISION_LOG P8-1",
+  "date": "2026-09-10",
+  "interval": "not applicable",
+  "n": "not applicable"
+ },
+ "alpha_rule": {
+  "value": {
+   "alpha": 0.05,
+   "sizing": "Bonferroni within the contrast's confirmatory question family",
+   "reported_beside": "nominal alpha"
+  },
+  "status": "TEAM",
+  "label": "the power table is computed at alpha / m(family), the nominal row beside (P8-1)",
+  "source": "DECISION_LOG P8-1; PREREG_PHASE_8.md 5.5",
+  "date": "2026-09-10",
+  "interval": "not applicable",
+  "n": 36
+ },
+ "power": {
+  "value": 0.8,
+  "status": "REGISTERED",
+  "label": "Appendix A's power, used as written (factor 2), paired-correct beside",
+  "source": "V2_1_IMPROVEMENT_PLAN.md Appendix A; PREREG_PHASE_8.md 5.5",
+  "date": "2026-09-10",
+  "interval": "not applicable",
+  "n": "not applicable"
+ },
+ "family_definition": {
+  "value": {
+   "tier_C": [
+    "band_mas",
+    "mcr_D@0.05",
+    "mcr_D@0.002"
+   ],
+   "tier_S": [
+    "turnover",
+    "mdd_pct",
+    "return_pct"
+   ],
+   "descriptive": [
+    "mcr",
+    "mcr_B",
+    "point_mas_v2",
+    "rg_theta",
+    "per-window variants"
+   ],
+   "questions": {
+    "Q1": [
+     "memory-static",
+     "path_b_memory-path_b_static"
+    ],
+    "Q2": [
+     "memory-placebo_directive",
+     "swapped-memory"
+    ],
+    "Q3": [
+     "placebo_directive-static",
+     "placebo_declarative-static",
+     "wrapper_only-static"
+    ],
+    "Q4": [
+     "path_b_static-static"
+    ],
+    "Q5": [
+     "stateful_L_memory-stateful_L_static",
+     "stateful_L_memory-memory"
+    ]
+   },
+   "size": "m(F) = contrasts present x personas x scenario cells x metrics of the tier, from the grid run",
+   "tier_C_abs_corr": [
+    [
+     1.0,
+     0.06878710696394044,
+     0.06602014376681649
+    ],
+    [
+     0.06878710696394044,
+     1.0,
+     0.992127828429022
+    ],
+    [
+     0.06602014376681649,
+     0.992127828429022,
+     1.0
+    ]
+   ]
+  },
+  "status": "REGISTERED",
+  "label": "tier C carries two near-duplicate D tests: |r|(D@0.05, D@0.002) = 0.992 on E7.8's cells (addendum 4)",
+  "source": "PREREG_PHASE_8.md 3.4; docs/env_v2/generated/v2_1/e8_3/multiplicity.json",
+  "date": "2026-09-10",
+  "interval": "not applicable (a definition)",
+  "n": 600
+ },
+ "multiplicity": {
+  "value": {
+   "q": 0.05,
+   "decision_rule": {
+    "one_family": "bh_within",
+    "several_families": "by_across"
+   },
+   "reported_beside": "BH within family on every grid",
+   "withdrawn": "v2: BH across metrics within a contrast"
+  },
+  "status": "MEASURED",
+  "label": "adopted by the registered rule on the simulated FDR: on a single-family grid BH within family holds; on a multi-family grid it does not and BY across families is the decision rule (addendum 5)",
+  "source": "docs/env_v2/generated/v2_1/e8_3/multiplicity.json; PREREG_PHASE_8_ADDENDUM.md 5",
+  "date": "2026-09-10",
+  "interval": "Monte-Carlo half-width per row in the file",
+  "n": 5000
+ },
+ "temporal_null": {
+  "value": {
+   "adopted": [
+    "N3"
+   ],
+   "phi_pilot": 0.9214006513478186,
+   "sign_flip_min_pairs_for_p_below_alpha": 6
+  },
+  "status": "MEASURED",
+  "label": "a null is used only if its simulated size holds at the pilot's persistence for every run count; the path-level sign-flip's exact p cannot fall below 2 / 2^n, so fewer pairs than the minimum cannot reject",
+  "source": "docs/env_v2/generated/v2_1/e8_3/null.json",
+  "date": "2026-09-10",
+  "interval": "Wilson 95 % per row in the file",
+  "n": 1000
+ },
+ "cluster_bootstrap": {
+  "value": {
+   "method": "two-way pigeonhole by model and path",
+   "n_boot": 1999,
+   "interval": "percentile 95 %",
+   "simulated_size": {
+    "conditions": 13,
+    "size_holds_in": 9,
+    "fails_in": [
+     "M3.0_S10.0_R1.0_sma0.03_rho0.0_beta0.0",
+     "M3.0_S10.0_R1.0_sma0.03_rho0.5_beta0.0",
+     "M3.0_S5.0_R1.0_sma0.03_rho0.5_beta0.0",
+     "M6.0_S5.0_R3.0_sma0.03_rho0.0_beta0.0"
+    ]
+   },
+   "simulated_size_measured_components": {
+    "M3_S19_sma0.0_shared": {
+     "size": 0.025,
+     "wilson95": [
+      0.0107247197,
+      0.0571783404
+     ],
+     "holds": true
+    },
+    "M3_S19_sma0.03_shared": {
+     "size": 0.2,
+     "wilson95": [
+      0.1504520093,
+      0.2608551866
+     ],
+     "holds": false
+    },
+    "M6_S19_sma0.0_shared": {
+     "size": 0.08,
+     "wilson95": [
+      0.0498405859,
+      0.1259894883
+     ],
+     "holds": true
+    },
+    "M6_S19_sma0.03_shared": {
+     "size": 0.09,
+     "wilson95": [
+      0.0576874489,
+      0.1377657188
+     ],
+     "holds": false
+    },
+    "M3_S19_sma0.0_modelspecific": {
+     "size": 0.0,
+     "wilson95": [
+      1.734723476e-18,
+      0.0188453264
+     ],
+     "holds": true
+    },
+    "M3_S19_sma0.03_modelspecific": {
+     "size": 0.2,
+     "wilson95": [
+      0.1504520093,
+      0.2608551866
+     ],
+     "holds": false
+    },
+    "M6_S19_sma0.0_modelspecific": {
+     "size": 0.005,
+     "wilson95": [
+      0.0008831687,
+      0.0277737044
+     ],
+     "holds": true
+    },
+    "M6_S19_sma0.03_modelspecific": {
+     "size": 0.135,
+     "wilson95": [
+      0.0944657045,
+      0.1892913837
+     ],
+     "holds": false
+    }
+   }
+  },
+  "status": "MEASURED",
+  "label": "E2 of 3.8(a), the contrast interval (P8-9; addendum 17's fallback). Its size at E8.3's conditions and at E8.5's measured components is in the file: at six models with a model x arm sd of 0.03 and the sized seeds it does NOT hold (P8-17)",
+  "source": "docs/env_v2/generated/v2_1/e8_3/mixed.json; e8_3/mixed_pp.json; DECISION_LOG P8-17",
+  "date": "2026-09-10",
+  "interval": "Wilson 95 % per condition in the file",
+  "n": 300
+ },
+ "mixed_model": {
+  "value": {
+   "formula": "y ~ C(Arm, Treatment(ref)) * C(Persona) * C(Scenario)",
+   "groups": "one",
+   "re_formula": "0",
+   "vc_formula": {
+    "model": "0 + C(Model)",
+    "model_arm": "0 + C(Model):C(Arm)",
+    "path": "0 + C(Path)",
+    "path_arm": "0 + C(Path):C(Arm) when R >= 2"
+   },
+   "simulated_size": {
+    "conditions": 13,
+    "size_holds_in": 9,
+    "fails_in": [
+     "M3.0_S10.0_R1.0_sma0.03_rho0.0_beta0.0",
+     "M3.0_S10.0_R1.0_sma0.03_rho0.5_beta0.0",
+     "M3.0_S5.0_R1.0_sma0.03_rho0.0_beta0.0",
+     "M3.0_S5.0_R1.0_sma0.03_rho0.5_beta0.0"
+    ]
+   },
+   "v2_simulated_size": {
+    "conditions": 13,
+    "size_holds_in": 3,
+    "fails_in": [
+     "M3.0_S10.0_R1.0_sma0.03_rho0.0_beta0.0",
+     "M3.0_S10.0_R1.0_sma0.03_rho0.5_beta0.0",
+     "M3.0_S5.0_R1.0_sma0.03_rho0.0_beta0.0",
+     "M3.0_S5.0_R1.0_sma0.03_rho0.5_beta0.0",
+     "M3.0_S5.0_R1.0_sma0.0_rho0.0_beta0.0",
+     "M6.0_S10.0_R1.0_sma0.03_rho0.0_beta0.0",
+     "M6.0_S10.0_R1.0_sma0.03_rho0.5_beta0.0",
+     "M6.0_S5.0_R1.0_sma0.03_rho0.0_beta0.0",
+     "M6.0_S5.0_R1.0_sma0.03_rho0.5_beta0.0",
+     "M6.0_S5.0_R3.0_sma0.03_rho0.0_beta0.0"
+    ]
+   },
+   "optimizer": "best: lbfgs and Powell, the higher REML likelihood kept (tools/stats_v2.crossed_mixed_model(optimizer='best'))",
+   "decides_claims": false,
+   "e1_amended_adopted": false,
+   "simulated_size_best_optimum": {
+    "M3_S10_sma0.03": {
+     "size": 0.14,
+     "wilson95": [
+      0.0852634366,
+      0.2213718821
+     ],
+     "holds": false
+    },
+    "M6_S10_sma0.03": {
+     "size": 0.07,
+     "wilson95": [
+      0.0343192611,
+      0.1374951474
+     ],
+     "holds": true
+    },
+    "M3_S19_sma0.0_shared": {
+     "size": 0.005,
+     "wilson95": [
+      0.0008831687,
+      0.0277737044
+     ],
+     "holds": true
+    },
+    "M3_S19_sma0.03_shared": {
+     "size": 0.115,
+     "wilson95": [
+      0.0778637323,
+      0.166647169
+     ],
+     "holds": false
+    },
+    "M6_S19_sma0.0_shared": {
+     "size": 0.085,
+     "wilson95": [
+      0.0537457502,
+      0.1318958707
+     ],
+     "holds": false
+    },
+    "M6_S19_sma0.03_shared": {
+     "size": 0.085,
+     "wilson95": [
+      0.0537457502,
+      0.1318958707
+     ],
+     "holds": false
+    },
+    "M3_S19_sma0.0_modelspecific": {
+     "size": 0.0,
+     "wilson95": [
+      1.734723476e-18,
+      0.0188453264
+     ],
+     "holds": true
+    },
+    "M3_S19_sma0.03_modelspecific": {
+     "size": 0.1,
+     "wilson95": [
+      0.0656704487,
+      0.1494058124
+     ],
+     "holds": false
+    },
+    "M6_S19_sma0.0_modelspecific": {
+     "size": 0.0,
+     "wilson95": [
+      1.734723476e-18,
+      0.0188453264
+     ],
+     "holds": true
+    },
+    "M6_S19_sma0.03_modelspecific": {
+     "size": 0.095,
+     "wilson95": [
+      0.0616631027,
+      0.1436016116
+     ],
+     "holds": false
+    }
+   },
+   "simulated_size_e1_amended": {
+    "M3_S19_sma0.0_shared": {
+     "size": 0.055,
+     "wilson95": [
+      0.0309853417,
+      0.0957869988
+     ],
+     "holds": true
+    },
+    "M3_S19_sma0.03_shared": {
+     "size": 0.14,
+     "wilson95": [
+      0.0986698263,
+      0.1948988087
+     ],
+     "holds": false
+    },
+    "M6_S19_sma0.0_shared": {
+     "size": 0.065,
+     "wilson95": [
+      0.0383763546,
+      0.1080190793
+     ],
+     "holds": true
+    },
+    "M6_S19_sma0.03_shared": {
+     "size": 0.08,
+     "wilson95": [
+      0.0498405859,
+      0.1259894883
+     ],
+     "holds": true
+    },
+    "M3_S19_sma0.0_modelspecific": {
+     "size": 0.06,
+     "wilson95": [
+      0.0346521943,
+      0.101931693
+     ],
+     "holds": true
+    },
+    "M3_S19_sma0.03_modelspecific": {
+     "size": 0.145,
+     "wilson95": [
+      0.1028935064,
+      0.2004866753
+     ],
+     "holds": false
+    },
+    "M6_S19_sma0.0_modelspecific": {
+     "size": 0.055,
+     "wilson95": [
+      0.0309853417,
+      0.0957869988
+     ],
+     "holds": true
+    },
+    "M6_S19_sma0.03_modelspecific": {
+     "size": 0.135,
+     "wilson95": [
+      0.0944657045,
+      0.1892913837
+     ],
+     "holds": false
+    }
+   }
+  },
+  "status": "MEASURED",
+  "label": "E1 of 3.2, reported DESCRIPTIVELY at the better REML optimum: addendum 17's rule did not adopt E1-amended, so by its fallback no mixed-model p-value decides a claim (P8-17); the v2 nested intercept-only model's size beside",
+  "source": "docs/env_v2/generated/v2_1/e8_3/mixed.json; e8_3/recovery_band.json; e8_3/mixed_pp.json; e8_3/mixed_optimizer.json; PREREG_PHASE_8_ADDENDUM.md 17; DECISION_LOG P8-17",
+  "date": "2026-09-10",
+  "interval": "Wilson 95 % per condition in the file",
+  "n": 300
+ },
+ "variance_pilot_design": {
+  "value": {
+   "model": "gemini-2.5-flash",
+   "thinking_budget": 0,
+   "personas": [
+    "ISFJ",
+    "INTJ",
+    "ENTJ"
+   ],
+   "arms": [
+    "static",
+    "memory"
+   ],
+   "scenarios": [
+    "flat",
+    "bull_trap",
+    "crash",
+    "sustained_bull"
+   ],
+   "seeds": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008
+   ],
+   "reps": 3,
+   "T": 200,
+   "crash_discount": 0.7,
+   "dividends": true
+  },
+  "status": "TEAM",
+  "label": "PREREG 5.1 as amended by P8-8 (thinking off)",
+  "source": "PREREG_PHASE_8.md 5.1; PREREG_PHASE_8_ADDENDUM.md 9; DECISION_LOG P8-8",
+  "date": "2026-09-10",
+  "interval": "not applicable",
+  "n": 576
+ },
+ "transfer_rule": {
+  "value": {
+   "model": "gpt-5-mini",
+   "temperature": 1.0,
+   "scenario": "bull_trap",
+   "plugin": "sigma_UCL(main) x max(1, ratio)",
+   "measured": {
+    "sigma_limit_flash_R1": 0.0379822015358277,
+    "sigma_bootstrap_ucl90_flash_R1": 0.0372462012484005,
+    "ratio": 2.21403811316293,
+    "plugin_main_grid": 0.08409404182215811,
+    "plugin_at_ratio_upper": 0.11368188161342516,
+    "plugin_main_grid_bootstrap": 0.08246450913449542,
+    "alpha_bonferroni": 0.001388888888888889,
+    "seeds_appA_bonf_main_grid": 93,
+    "seeds_paired_bonf_main_grid": 47,
+    "seeds_appA_bonf_at_ratio_upper": 169,
+    "seeds_appA_bonf_main_grid_bootstrap": 89
+   }
+  },
+  "status": "MEASURED",
+  "label": "a transfer of model AND temperature (gpt-5-mini accepts only 1.0; addendum 6)",
+  "source": "PREREG_PHASE_8.md 5.6; docs/env_v2/generated/v2_1/e8_5/transfer.json",
+  "date": "2026-09-10",
+  "interval": "90 % paired path bootstrap of the ratio",
+  "n": 24
+ },
+ "main_grid_sizing": {
+  "value": {
+   "R": 1,
+   "seeds_per_persona_scenario_cell": 93,
+   "plugin_sigma_d": 0.08409404182215811,
+   "transfer_ratio": 2.21403811316293,
+   "flash_only_seeds": 19,
+   "paired_correct_seeds": 47,
+   "at_ratio_upper_seeds": 169,
+   "at_bootstrap_limit_seeds": 89,
+   "alpha_bonferroni": 0.001388888888888889,
+   "assumes": "an analysis that pairs within persona x path (PREREG_PHASE_8_ADDENDUM.md 17)"
+  },
+  "status": "MEASURED",
+  "label": "D12 sized by the registered rule: Flash's closed-form 90 % limit x max(1, GPT-5 mini's transfer ratio), Appendix A as written, R = 1; whether the count is affordable is the team's (D2 for Phase 9)",
+  "source": "DECISION_LOG P8-16; docs/env_v2/generated/v2_1/e8_5/transfer.json; e8_5/power.json; e8_5/components.json",
+  "date": "2026-09-10",
+  "interval": {
+   "transfer_ratio_ci90": [
+    1.8779361595971433,
+    2.993030340966196
+   ]
+  },
+  "n": {
+   "seed_level_pairs": {
+    "gemini-2.5-flash": 96,
+    "gpt-5-mini": 24
+   },
+   "transfer_scenario": "bull_trap",
+   "main_model": "gemini-2.5-flash"
+  }
+ },
+ "cost_gate": {
+  "value": {
+   "approved_usd": 151.0,
+   "gate_usd": 189.0,
+   "rule": "125 % of the approval",
+   "first_gate": {
+    "projected_usd": 594.428988,
+    "pass": false
+   },
+   "amended_gate": {
+    "projected_usd": 153.0429888,
+    "pass": true
+   }
+  },
+  "status": "MEASURED",
+  "label": "PREREG 5.3; the first gate stopped the registered design (addendum 8; P8-8)",
+  "source": "docs/env_v2/generated/v2_1/e8_5/smoke_thinking_default.json; e8_5/smoke.json",
+  "date": "2026-09-10",
+  "interval": "n = 2 smoke runs per model",
+  "n": 4
+ }
+}

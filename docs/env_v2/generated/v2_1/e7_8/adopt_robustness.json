@@ -1,0 +1,230 @@
+{
+ "n_combinations": 27,
+ "adopts_A": 27,
+ "adopts_B": 0,
+ "adopts_none": 0,
+ "stable": true,
+ "thetas": [
+  0.002,
+  0.03,
+  0.032791,
+  0.046321,
+  0.05,
+  0.065609,
+  0.08,
+  0.12,
+  0.2
+ ],
+ "half_widths": [
+  0.05,
+  0.1,
+  0.15
+ ],
+ "rule": "PREREG 4.3 applied at every theta in the re-score and every half-width in E7.7's sensitivity; the theta the matrix is read at was NOT pre-registered, so its influence is measured here",
+ "worst_margin_A": 0.002403964157143723,
+ "verdicts": [
+  {
+   "half_width": 0.05,
+   "theta": 0.002,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.05,
+   "theta": 0.03,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.05,
+   "theta": 0.032791,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.05,
+   "theta": 0.046321,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.05,
+   "theta": 0.05,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.05,
+   "theta": 0.065609,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.05,
+   "theta": 0.08,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.05,
+   "theta": 0.12,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.05,
+   "theta": 0.2,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.002,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.03,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.032791,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.046321,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.05,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.065609,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.08,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.12,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.1,
+   "theta": 0.2,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.002,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.03,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.032791,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.046321,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.05,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.065609,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.08,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.12,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  },
+  {
+   "half_width": 0.15,
+   "theta": 0.2,
+   "A_qualifies": true,
+   "B_qualifies": true,
+   "adopted": "A_decomposition"
+  }
+ ],
+ "state": {
+  "events_json": true,
+  "control": "A",
+  "dynamics": "A",
+  "blowoff": "dynamic",
+  "post_top": "decay/40.0",
+  "randomise_eps_quarter": true,
+  "depth_mode": "centred",
+  "volatility_json": true,
+  "iv": "v21",
+  "observables_json": true,
+  "observables": "multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A"
+ },
+ "generated_utc": "2026-09-10T06:25:58Z"
+}
