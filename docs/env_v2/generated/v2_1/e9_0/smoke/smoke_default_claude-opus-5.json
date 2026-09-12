@@ -1,0 +1,128 @@
+{
+ "key": "claude-opus-5|default",
+ "basis": "rejects any temperature (P8-12); adaptive thinking is the provider default",
+ "runs": [
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": null,
+    "temperature_client": null,
+    "reasoning_tokens_per_call": 186.365,
+    "output_tokens_per_call": 359.7,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "nan"
+    ]
+   },
+   "run_id": "claude-opus-5__ISFJ__static__bull_trap__seed2001__rep0",
+   "run_key": "default|claude-opus-5__ISFJ__static__bull_trap__seed2001__rep0",
+   "model": "claude-opus-5",
+   "config_tag": "default",
+   "kind": "smoke",
+   "setting": "default",
+   "temperature": null,
+   "provider_options": {
+    "provider": "anthropic",
+    "model": "claude-opus-5",
+    "config_tag": "default",
+    "temperature_sent": null,
+    "temperature_client": null,
+    "options": {},
+    "max_tokens_client": 128000,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 1300.7587428092957,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 549661,
+   "output_tokens": 71940,
+   "reasoning_tokens": 37273,
+   "usd": null,
+   "prices_per_M": null,
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "static",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": null,
+    "temperature_client": null,
+    "reasoning_tokens_per_call": 197.83,
+    "output_tokens_per_call": 374.545,
+    "parse_status_counts": {
+     "ok": 199,
+     "ok_retry1": 1
+    },
+    "llm_errors": 1,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "nan"
+    ]
+   },
+   "run_id": "claude-opus-5__ISFJ__memory__bull_trap__seed2001__rep0",
+   "run_key": "default|claude-opus-5__ISFJ__memory__bull_trap__seed2001__rep0",
+   "model": "claude-opus-5",
+   "config_tag": "default",
+   "kind": "smoke",
+   "setting": "default",
+   "temperature": null,
+   "provider_options": {
+    "provider": "anthropic",
+    "model": "claude-opus-5",
+    "config_tag": "default",
+    "temperature_sent": null,
+    "temperature_client": null,
+    "options": {},
+    "max_tokens_client": 128000,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 1457.387526512146,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 580601,
+   "output_tokens": 74909,
+   "reasoning_tokens": 39566,
+   "usd": null,
+   "prices_per_M": null,
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 199,
+    "ok_retry1": 1
+   },
+   "llm_errors": [
+    "AnthropicOverloadedError: Error code: 529 - {'type': 'error', 'error': {'type': 'overloaded_error', 'message': 'Overloaded'}, 'request_id': 'req_011CewdjxtVjNNwKoJgnXLBm'}"
+   ],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "memory",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  }
+ ],
+ "pass": true,
+ "generated_utc": "2026-09-11T13:15:50Z"
+}

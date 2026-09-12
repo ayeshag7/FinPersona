@@ -1,0 +1,338 @@
+{
+ "registered": "PREREG_PHASE_9.md 2 (P8-16's rule on measured models); truncation: addendum 5",
+ "roster": [
+  "gemini-2.5-flash|thinking0",
+  "gpt-5-mini|default",
+  "gemini-2.5-flash-lite|default",
+  "gemini-2.5-pro|default",
+  "gemini-3.5-flash|default",
+  "gpt-5-nano|default",
+  "gpt-5|default",
+  "gpt-5.4-mini|default",
+  "gpt-5.5|default",
+  "openrouter/anthropic/claude-haiku-4.5|default",
+  "openrouter/deepseek/deepseek-v4-flash|default",
+  "openrouter/qwen/qwen3.7-flash|default",
+  "openrouter/z-ai/glm-4.7-flash|default",
+  "openrouter/qwen/qwen3-235b-a22b-2507|default"
+ ],
+ "missing_models": [
+  "openrouter/qwen/qwen3.7-flash|default",
+  "openrouter/z-ai/glm-4.7-flash|default"
+ ],
+ "runs_done_vs_planned": {
+  "claude-fable-5-1|default": [
+   93,
+   384
+  ],
+  "claude-haiku-4-5-20251001|default": [
+   252,
+   384
+  ],
+  "claude-opus-5|default": [
+   110,
+   384
+  ],
+  "claude-sonnet-5|default": [
+   158,
+   384
+  ],
+  "gemini-2.5-flash-lite|default": [
+   384,
+   384
+  ],
+  "gemini-2.5-pro|default": [
+   279,
+   384
+  ],
+  "gemini-3.5-flash|default": [
+   384,
+   384
+  ],
+  "gpt-5-mini|default": [
+   384,
+   384
+  ],
+  "gpt-5-nano|default": [
+   281,
+   384
+  ],
+  "gpt-5.4-mini|default": [
+   384,
+   384
+  ],
+  "gpt-5.5|default": [
+   384,
+   384
+  ],
+  "gpt-5|default": [
+   384,
+   384
+  ],
+  "openrouter/anthropic/claude-haiku-4.5|default": [
+   192,
+   192
+  ],
+  "openrouter/deepseek/deepseek-v4-flash|default": [
+   96,
+   96
+  ],
+  "openrouter/qwen/qwen3-235b-a22b-2507|default": [
+   96,
+   96
+  ]
+ },
+ "truncated_by_the_clock": [
+  "gemini-2.5-pro|default",
+  "gpt-5-nano|default"
+ ],
+ "truncated_seed_lists_addendum_10": [
+  "manifest_openrouter_deepseek.json",
+  "manifest_openrouter_haiku.json",
+  "manifest_openrouter_qwen235b.json"
+ ],
+ "not_piloted_registered": [
+  "openrouter/qwen/qwen3.7-flash|default",
+  "openrouter/z-ai/glm-4.7-flash|default"
+ ],
+ "missing_unregistered": [],
+ "plugin_over_n_of_roster": [
+  12,
+  14
+ ],
+ "unfinished_models": [],
+ "dropped_and_unfinished": [
+  "claude-fable-5-1|default",
+  "claude-haiku-4-5-20251001|default",
+  "claude-opus-5|default",
+  "claude-sonnet-5|default"
+ ],
+ "complete": true,
+ "plugin_sigma_d_band_mas": 0.09584190645639466,
+ "plugin_model": "openrouter/deepseek/deepseek-v4-flash|default",
+ "alpha_bonferroni": 0.001388888888888889,
+ "delta": 0.05,
+ "stage1_seeds_appA": 120,
+ "stage1_seeds_paired_correct": 60,
+ "per_model_band_mas": {
+  "gemini-2.5-flash|thinking0": {
+   "sigma_d_R1": 0.034759893,
+   "sigma_d_R1_limit90": 0.0379822015,
+   "df_d": 84,
+   "source": "E8.5 closed form at R' = 1 (P8-15)"
+  },
+  "gpt-5-mini|default": {
+   "sigma_d_R1": 0.0594880815,
+   "sigma_d_R1_limit90": 0.0638692136,
+   "df_d": 180,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "gemini-2.5-flash-lite|default": {
+   "sigma_d_R1": 0.041523724,
+   "sigma_d_R1_limit90": 0.0445818311,
+   "df_d": 180,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "gemini-2.5-pro|default": {
+   "sigma_d_R1": 0.0539884905,
+   "sigma_d_R1_limit90": 0.0589578741,
+   "df_d": 120,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "gemini-3.5-flash|default": {
+   "sigma_d_R1": 0.0547211313,
+   "sigma_d_R1_limit90": 0.0587511909,
+   "df_d": 180,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "gpt-5-nano|default": {
+   "sigma_d_R1": 0.0154213553,
+   "sigma_d_R1_limit90": 0.0168408177,
+   "df_d": 120,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "gpt-5|default": {
+   "sigma_d_R1": 0.0381177634,
+   "sigma_d_R1_limit90": 0.0409250309,
+   "df_d": 180,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "gpt-5.4-mini|default": {
+   "sigma_d_R1": 0.06703383,
+   "sigma_d_R1_limit90": 0.0719706856,
+   "df_d": 180,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "gpt-5.5|default": {
+   "sigma_d_R1": 0.0532662757,
+   "sigma_d_R1_limit90": 0.0571891892,
+   "df_d": 180,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "openrouter/anthropic/claude-haiku-4.5|default": {
+   "sigma_d_R1": 0.0555573681,
+   "sigma_d_R1_limit90": 0.0618049018,
+   "df_d": 84,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "openrouter/deepseek/deepseek-v4-flash|default": {
+   "sigma_d_R1": 0.0808893134,
+   "sigma_d_R1_limit90": 0.0958419065,
+   "df_d": 36,
+   "source": "e9_2 pilot (R = 1)"
+  },
+  "openrouter/qwen/qwen3-235b-a22b-2507|default": {
+   "sigma_d_R1": 0.0445342537,
+   "sigma_d_R1_limit90": 0.0527665225,
+   "df_d": 36,
+   "source": "e9_2 pilot (R = 1)"
+  }
+ },
+ "mdd_at_stage1_seeds": {
+  "band_mas": {
+   "claude-fable-5-1|default": 0.056388427791273725,
+   "claude-haiku-4-5-20251001|default": 0.01223887295874094,
+   "claude-opus-5|default": 0.05228043186231499,
+   "claude-sonnet-5|default": 0.03882873292061469,
+   "gemini-2.5-flash-lite|default": 0.023243956222070428,
+   "gemini-2.5-pro|default": 0.030739299197236107,
+   "gemini-3.5-flash|default": 0.030631539250532882,
+   "gpt-5-mini|default": 0.03329996032786101,
+   "gpt-5-nano|default": 0.008780420618640242,
+   "gpt-5.4-mini|default": 0.037523884192163105,
+   "gpt-5.5|default": 0.02981714697372367,
+   "gpt-5|default": 0.021337383503743458,
+   "openrouter/anthropic/claude-haiku-4.5|default": 0.032223674918760256,
+   "openrouter/deepseek/deepseek-v4-flash|default": 0.049969797665795186,
+   "openrouter/qwen/qwen3-235b-a22b-2507|default": 0.027511268815846947,
+   "gemini-2.5-flash|thinking0": 0.01980305897306294
+  },
+  "turnover": {
+   "claude-fable-5-1|default": 0.3207435667111259,
+   "claude-haiku-4-5-20251001|default": 0.29857002166284047,
+   "claude-opus-5|default": 0.6425432866193889,
+   "claude-sonnet-5|default": 0.8319935441794183,
+   "gemini-2.5-flash-lite|default": 3.1720633174210193,
+   "gemini-2.5-pro|default": 1.304279259634597,
+   "gemini-3.5-flash|default": 2.266171827418985,
+   "gpt-5-mini|default": 2.448912658176295,
+   "gpt-5-nano|default": 0.9826970843926743,
+   "gpt-5.4-mini|default": 1.9601490414182952,
+   "gpt-5.5|default": 1.3391009740882993,
+   "gpt-5|default": 1.5343870220342168,
+   "openrouter/anthropic/claude-haiku-4.5|default": 0.8606897553332008,
+   "openrouter/deepseek/deepseek-v4-flash|default": 1.8021946922405485,
+   "openrouter/qwen/qwen3-235b-a22b-2507|default": 1.589609848942151,
+   "gemini-2.5-flash|thinking0": 5.461762589861499
+  },
+  "v21_mcr_0.002": {
+   "claude-fable-5-1|default": 0.06148820946628483,
+   "claude-haiku-4-5-20251001|default": 0.01225886002892589,
+   "claude-opus-5|default": 0.051933068071862175,
+   "claude-sonnet-5|default": 0.04112064125870159,
+   "gemini-2.5-flash-lite|default": 0.033297036616778235,
+   "gemini-2.5-pro|default": 0.03209804129526468,
+   "gemini-3.5-flash|default": 0.03178243245538406,
+   "gpt-5-mini|default": 0.035501243020702816,
+   "gpt-5-nano|default": 0.011558191087684643,
+   "gpt-5.4-mini|default": 0.043979480644784165,
+   "gpt-5.5|default": 0.030902221902330634,
+   "gpt-5|default": 0.02586981827403275,
+   "openrouter/anthropic/claude-haiku-4.5|default": 0.03152470361853425,
+   "openrouter/deepseek/deepseek-v4-flash|default": 0.04493291578852822,
+   "openrouter/qwen/qwen3-235b-a22b-2507|default": 0.03532892948741678,
+   "gemini-2.5-flash|thinking0": 0.021388226022146364
+  },
+  "v21_mcr_0.05": {
+   "claude-fable-5-1|default": 0.07229393921058833,
+   "claude-haiku-4-5-20251001|default": 0.013045424732512719,
+   "claude-opus-5|default": 0.06383203445229019,
+   "claude-sonnet-5|default": 0.05114871964763878,
+   "gemini-2.5-flash-lite|default": 0.05249073274624041,
+   "gemini-2.5-pro|default": 0.03954048840959323,
+   "gemini-3.5-flash|default": 0.04451225019595464,
+   "gpt-5-mini|default": 0.0522626308284715,
+   "gpt-5-nano|default": 0.02254299388125552,
+   "gpt-5.4-mini|default": 0.06301175117909032,
+   "gpt-5.5|default": 0.043881454954736956,
+   "gpt-5|default": 0.03952134919651004,
+   "openrouter/anthropic/claude-haiku-4.5|default": 0.049993525869532957,
+   "openrouter/deepseek/deepseek-v4-flash|default": 0.06945843791354593,
+   "openrouter/qwen/qwen3-235b-a22b-2507|default": 0.06180574647683236,
+   "gemini-2.5-flash|thinking0": 0.035580429039852556
+  },
+  "v21_mcr_B_0.002": {
+   "claude-fable-5-1|default": 0.056882638826555185,
+   "claude-haiku-4-5-20251001|default": 0.012193569196266206,
+   "claude-opus-5|default": 0.05242845090680606,
+   "claude-sonnet-5|default": 0.03882588906055379,
+   "gemini-2.5-flash-lite|default": 0.023321329169930283,
+   "gemini-2.5-pro|default": 0.030948166030475798,
+   "gemini-3.5-flash|default": 0.03040333616159091,
+   "gpt-5-mini|default": 0.033291250509819716,
+   "gpt-5-nano|default": 0.008870070668157313,
+   "gpt-5.4-mini|default": 0.037522639104511556,
+   "gpt-5.5|default": 0.029476501808960505,
+   "gpt-5|default": 0.021406577377840123,
+   "openrouter/anthropic/claude-haiku-4.5|default": 0.03154324272332041,
+   "openrouter/deepseek/deepseek-v4-flash|default": 0.049146335452398195,
+   "openrouter/qwen/qwen3-235b-a22b-2507|default": 0.027456449945775275,
+   "gemini-2.5-flash|thinking0": 0.019587244295925562
+  },
+  "v21_mcr_B_0.05": {
+   "claude-fable-5-1|default": 0.06289658804035027,
+   "claude-haiku-4-5-20251001|default": 0.01264727008652821,
+   "claude-opus-5|default": 0.057927028429353274,
+   "claude-sonnet-5|default": 0.04526086479166906,
+   "gemini-2.5-flash-lite|default": 0.03164255245236469,
+   "gemini-2.5-pro|default": 0.03640469034479411,
+   "gemini-3.5-flash|default": 0.04254700482749444,
+   "gpt-5-mini|default": 0.04977082301354743,
+   "gpt-5-nano|default": 0.018097009480668377,
+   "gpt-5.4-mini|default": 0.04681310308319392,
+   "gpt-5.5|default": 0.04081338721202775,
+   "gpt-5|default": 0.032517539881723796,
+   "openrouter/anthropic/claude-haiku-4.5|default": 0.04633531485067804,
+   "openrouter/deepseek/deepseek-v4-flash|default": 0.06720624691368886,
+   "openrouter/qwen/qwen3-235b-a22b-2507|default": 0.04232114709555583,
+   "gemini-2.5-flash|thinking0": 0.028037713512000535
+  },
+  "v21_mcr_D_0.002": {
+   "claude-fable-5-1|default": 0.022009149555245744,
+   "claude-haiku-4-5-20251001|default": 0.003310499731755689,
+   "claude-opus-5|default": 0.020727919978190523,
+   "claude-sonnet-5|default": 0.021312796926133824,
+   "gemini-2.5-flash-lite|default": 0.022054228277775208,
+   "gemini-2.5-pro|default": 0.013739639941298716,
+   "gemini-3.5-flash|default": 0.015015913579111044,
+   "gpt-5-mini|default": 0.017660113145624712,
+   "gpt-5-nano|default": 0.008496520627357295,
+   "gpt-5.4-mini|default": 0.022342597253551172,
+   "gpt-5.5|default": 0.01892430013462415,
+   "gpt-5|default": 0.018293195049290865,
+   "openrouter/anthropic/claude-haiku-4.5|default": 0.017432573074128738,
+   "openrouter/deepseek/deepseek-v4-flash|default": 0.022258631457987274,
+   "openrouter/qwen/qwen3-235b-a22b-2507|default": 0.03102315676768132,
+   "gemini-2.5-flash|thinking0": 0.006515340077280163
+  },
+  "v21_mcr_D_0.05": {
+   "claude-fable-5-1|default": 0.03467388818366802,
+   "claude-haiku-4-5-20251001|default": 0.004585964058955847,
+   "claude-opus-5|default": 0.031815875713246566,
+   "claude-sonnet-5|default": 0.02890220784477868,
+   "gemini-2.5-flash-lite|default": 0.03322436843899796,
+   "gemini-2.5-pro|default": 0.020095542750439434,
+   "gemini-3.5-flash|default": 0.023294611782452315,
+   "gpt-5-mini|default": 0.026567611135025173,
+   "gpt-5-nano|default": 0.01409309752676635,
+   "gpt-5.4-mini|default": 0.033298221477477546,
+   "gpt-5.5|default": 0.027538163922152633,
+   "gpt-5|default": 0.0258343356108758,
+   "openrouter/anthropic/claude-haiku-4.5|default": 0.023966858883843065,
+   "openrouter/deepseek/deepseek-v4-flash|default": 0.04519301034833759,
+   "openrouter/qwen/qwen3-235b-a22b-2507|default": 0.05247785101932477,
+   "gemini-2.5-flash|thinking0": 0.01316974531558157
+  }
+ },
+ "generated_utc": "2026-09-12T14:15:15Z"
+}

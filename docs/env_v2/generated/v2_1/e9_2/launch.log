@@ -1,0 +1,24 @@
+[launch] gpt-5-mini|default: pid 24380 -> docs\env_v2\generated\v2_1\e9_2\run_default_gpt-5-mini.log
+[launch] gemini-2.5-flash-lite|default: pid 18980 -> docs\env_v2\generated\v2_1\e9_2\run_default_gemini-2.5-flash-lite.log
+[launch] gemini-2.5-pro|default: pid 20688 -> docs\env_v2\generated\v2_1\e9_2\run_default_gemini-2.5-pro.log
+[launch] gemini-3.5-flash|default: pid 30832 -> docs\env_v2\generated\v2_1\e9_2\run_default_gemini-3.5-flash.log
+[launch] gpt-5-nano|default: pid 30512 -> docs\env_v2\generated\v2_1\e9_2\run_default_gpt-5-nano.log
+[launch] gpt-5|default: pid 800 -> docs\env_v2\generated\v2_1\e9_2\run_default_gpt-5.log
+[launch] gpt-5.4-mini|default: pid 22080 -> docs\env_v2\generated\v2_1\e9_2\run_default_gpt-5.4-mini.log
+[launch] gpt-5.5|default: pid 29504 -> docs\env_v2\generated\v2_1\e9_2\run_default_gpt-5.5.log
+[launch] claude-haiku-4-5-20251001|default: pid 23844 -> docs\env_v2\generated\v2_1\e9_2\run_default_claude-haiku-4-5-20251001.log
+[launch] claude-sonnet-5|default: pid 29060 -> docs\env_v2\generated\v2_1\e9_2\run_default_claude-sonnet-5.log
+[launch] claude-opus-5|default: pid 25952 -> docs\env_v2\generated\v2_1\e9_2\run_default_claude-opus-5.log
+[launch] claude-fable-5-1|default: pid 14500 -> docs\env_v2\generated\v2_1\e9_2\run_default_claude-fable-5-1.log
+[launch] gpt-5.4-mini|default: exit 0 after 2.61 h
+[launch] gemini-2.5-flash-lite|default: exit 0 after 3.19 h
+[launch] claude-haiku-4-5-20251001|default: exit 4294967295 after 4.14 h
+[launch] claude-sonnet-5|default: exit 4294967295 after 4.14 h
+[launch] claude-opus-5|default: exit 4294967295 after 4.14 h
+[launch] claude-fable-5-1|default: exit 4294967295 after 4.14 h
+[launch] gpt-5.5|default: exit 0 after 7.40 h
+[launch] gemini-3.5-flash|default: exit 0 after 8.59 h
+[launch] gpt-5-mini|default: exit 0 after 15.63 h
+[launch] gpt-5|default: exit 0 after 15.75 h
+[launch] gemini-2.5-pro|default: exit 4294967295 after 16.34 h
+[launch] gpt-5-nano|default: exit 4294967295 after 16.34 h

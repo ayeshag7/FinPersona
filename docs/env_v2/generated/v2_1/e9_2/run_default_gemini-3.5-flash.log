@@ -1,0 +1,774 @@
+[e9_2_pilot] gemini-3.5-flash|default: 384 runs in the manifest, 0 done, 384 pending, 0 abandoned after 3 non-ok attempts; 15 workers; started 2026-09-11T16:11:18Z
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+[1/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3013__rep0 -> ok (1124s, fallbacks 0, errors 0); non-ok so far 0; 1.9 runs/h; ETA 203.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[2/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3009__rep0 -> ok (1155s, fallbacks 0, errors 0); non-ok so far 0; 3.7 runs/h; ETA 103.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[3/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3011__rep0 -> ok (1162s, fallbacks 0, errors 0); non-ok so far 0; 5.5 runs/h; ETA 68.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[4/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3012__rep0 -> ok (1178s, fallbacks 0, errors 0); non-ok so far 0; 7.3 runs/h; ETA 51.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[5/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3003__rep0 -> ok (1201s, fallbacks 0, errors 0); non-ok so far 0; 9.1 runs/h; ETA 41.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[6/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3010__rep0 -> ok (1228s, fallbacks 0, errors 0); non-ok so far 0; 10.7 runs/h; ETA 35.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[7/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3006__rep0 -> ok (1249s, fallbacks 0, errors 0); non-ok so far 0; 12.4 runs/h; ETA 30.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[8/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3001__rep0 -> ok (1265s, fallbacks 0, errors 0); non-ok so far 0; 14.0 runs/h; ETA 26.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[9/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3014__rep0 -> ok (1266s, fallbacks 0, errors 0); non-ok so far 0; 15.8 runs/h; ETA 23.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[10/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3007__rep0 -> ok (1270s, fallbacks 0, errors 0); non-ok so far 0; 17.5 runs/h; ETA 21.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[11/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3008__rep0 -> ok (1270s, fallbacks 0, errors 0); non-ok so far 0; 19.2 runs/h; ETA 19.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[12/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3005__rep0 -> ok (1297s, fallbacks 0, errors 0); non-ok so far 0; 20.7 runs/h; ETA 18.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[13/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3002__rep0 -> ok (1301s, fallbacks 0, errors 0); non-ok so far 0; 22.4 runs/h; ETA 16.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[14/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3015__rep0 -> ok (1352s, fallbacks 0, errors 0); non-ok so far 0; 23.5 runs/h; ETA 15.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[15/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3004__rep0 -> ok (1379s, fallbacks 0, errors 0); non-ok so far 0; 24.9 runs/h; ETA 14.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[16/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3001__rep0 -> ok (1183s, fallbacks 0, errors 0); non-ok so far 0; 17.3 runs/h; ETA 21.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[17/384] default|gemini-3.5-flash__ISFJ__static__flat__seed3016__rep0 -> ok (1315s, fallbacks 0, errors 0); non-ok so far 0; 18.2 runs/h; ETA 20.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[18/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3005__rep0 -> ok (1149s, fallbacks 0, errors 0); non-ok so far 0; 19.1 runs/h; ETA 19.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[19/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3009__rep0 -> ok (1165s, fallbacks 0, errors 0); non-ok so far 0; 19.9 runs/h; ETA 18.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[20/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3012__rep0 -> ok (1159s, fallbacks 0, errors 0); non-ok so far 0; 20.9 runs/h; ETA 17.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[21/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3002__rep0 -> ok (1293s, fallbacks 0, errors 0); non-ok so far 0; 21.8 runs/h; ETA 16.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[22/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3011__rep0 -> ok (1170s, fallbacks 0, errors 0); non-ok so far 0; 22.9 runs/h; ETA 15.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[23/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3013__rep0 -> ok (1169s, fallbacks 0, errors 0); non-ok so far 0; 23.8 runs/h; ETA 15.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[24/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3003__rep0 -> ok (1280s, fallbacks 0, errors 0); non-ok so far 0; 24.8 runs/h; ETA 14.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[25/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3007__rep0 -> ok (1227s, fallbacks 0, errors 0); non-ok so far 0; 25.7 runs/h; ETA 14.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[26/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3006__rep0 -> ok (1247s, fallbacks 0, errors 0); non-ok so far 0; 26.7 runs/h; ETA 13.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[27/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3004__rep0 -> ok (1309s, fallbacks 0, errors 0); non-ok so far 0; 27.7 runs/h; ETA 12.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[28/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3010__rep0 -> ok (1246s, fallbacks 0, errors 0); non-ok so far 0; 28.6 runs/h; ETA 12.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[29/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3008__rep0 -> ok (1254s, fallbacks 0, errors 0); non-ok so far 0; 29.6 runs/h; ETA 12.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[30/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3014__rep0 -> ok (1278s, fallbacks 0, errors 0); non-ok so far 0; 30.1 runs/h; ETA 11.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[31/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3001__rep0 -> ok (1175s, fallbacks 0, errors 0); non-ok so far 0; 24.5 runs/h; ETA 14.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[32/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3003__rep0 -> ok (1145s, fallbacks 0, errors 0); non-ok so far 0; 25.1 runs/h; ETA 14.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[33/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3015__rep0 -> ok (1276s, fallbacks 0, errors 0); non-ok so far 0; 25.8 runs/h; ETA 13.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[34/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3009__rep0 -> ok (1121s, fallbacks 0, errors 0); non-ok so far 0; 26.4 runs/h; ETA 13.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[35/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3011__rep0 -> ok (1123s, fallbacks 0, errors 0); non-ok so far 0; 27.1 runs/h; ETA 12.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[36/384] default|gemini-3.5-flash__ISFJ__static__bull_trap__seed3016__rep0 -> ok (1309s, fallbacks 0, errors 0); non-ok so far 0; 27.7 runs/h; ETA 12.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[37/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3012__rep0 -> ok (1147s, fallbacks 0, errors 0); non-ok so far 0; 28.5 runs/h; ETA 12.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[38/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3013__rep0 -> ok (1093s, fallbacks 0, errors 0); non-ok so far 0; 29.2 runs/h; ETA 11.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[39/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3006__rep0 -> ok (1226s, fallbacks 0, errors 0); non-ok so far 0; 29.9 runs/h; ETA 11.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[40/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3002__rep0 -> ok (1262s, fallbacks 0, errors 0); non-ok so far 0; 30.6 runs/h; ETA 11.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[41/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3007__rep0 -> ok (1253s, fallbacks 0, errors 0); non-ok so far 0; 31.2 runs/h; ETA 11.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[42/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3010__rep0 -> ok (1226s, fallbacks 0, errors 0); non-ok so far 0; 31.9 runs/h; ETA 10.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[43/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3008__rep0 -> ok (1248s, fallbacks 0, errors 0); non-ok so far 0; 32.6 runs/h; ETA 10.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[44/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3005__rep0 -> ok (1313s, fallbacks 0, errors 0); non-ok so far 0; 33.1 runs/h; ETA 10.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[45/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3004__rep0 -> ok (1348s, fallbacks 0, errors 0); non-ok so far 0; 33.6 runs/h; ETA 10.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[46/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3014__rep0 -> ok (1239s, fallbacks 0, errors 0); non-ok so far 0; 28.5 runs/h; ETA 11.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[47/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3001__rep0 -> ok (1238s, fallbacks 0, errors 0); non-ok so far 0; 28.8 runs/h; ETA 11.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[48/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3015__rep0 -> ok (1304s, fallbacks 0, errors 0); non-ok so far 0; 29.3 runs/h; ETA 11.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[49/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3003__rep0 -> ok (1252s, fallbacks 0, errors 0); non-ok so far 0; 29.7 runs/h; ETA 11.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[50/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3002__rep0 -> ok (1299s, fallbacks 0, errors 0); non-ok so far 0; 30.2 runs/h; ETA 11.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[51/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3009__rep0 -> ok (1189s, fallbacks 0, errors 0); non-ok so far 0; 30.8 runs/h; ETA 10.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[52/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3007__rep0 -> ok (1254s, fallbacks 0, errors 0); non-ok so far 0; 31.4 runs/h; ETA 10.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[53/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3006__rep0 -> ok (1279s, fallbacks 0, errors 0); non-ok so far 0; 31.9 runs/h; ETA 10.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[54/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3005__rep0 -> ok (1302s, fallbacks 0, errors 0); non-ok so far 0; 32.5 runs/h; ETA 10.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[55/384] default|gemini-3.5-flash__ISFJ__static__crash_d0.7__seed3016__rep0 -> ok (1377s, fallbacks 0, errors 0); non-ok so far 0; 33.0 runs/h; ETA 10.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[56/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3008__rep0 -> ok (1272s, fallbacks 0, errors 0); non-ok so far 0; 33.5 runs/h; ETA 9.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[57/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3004__rep0 -> ok (1403s, fallbacks 0, errors 0); non-ok so far 0; 33.7 runs/h; ETA 9.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[58/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3011__rep0 -> ok (1204s, fallbacks 0, errors 0); non-ok so far 0; 34.2 runs/h; ETA 9.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[59/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3012__rep0 -> ok (1233s, fallbacks 0, errors 0); non-ok so far 0; 34.5 runs/h; ETA 9.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[60/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3010__rep0 -> ok (1318s, fallbacks 0, errors 0); non-ok so far 0; 34.8 runs/h; ETA 9.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[61/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3001__rep0 -> ok (1071s, fallbacks 0, errors 0); non-ok so far 0; 31.2 runs/h; ETA 10.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[62/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3003__rep0 -> ok (1033s, fallbacks 0, errors 0); non-ok so far 0; 31.7 runs/h; ETA 10.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[63/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3002__rep0 -> ok (1076s, fallbacks 0, errors 0); non-ok so far 0; 32.1 runs/h; ETA 10.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[64/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3013__rep0 -> ok (1284s, fallbacks 0, errors 0); non-ok so far 0; 32.5 runs/h; ETA 9.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[65/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3014__rep0 -> ok (1367s, fallbacks 0, errors 0); non-ok so far 0; 32.3 runs/h; ETA 9.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[66/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3015__rep0 -> ok (1405s, fallbacks 0, errors 0); non-ok so far 0; 32.5 runs/h; ETA 9.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[67/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3005__rep0 -> ok (1038s, fallbacks 0, errors 0); non-ok so far 0; 32.9 runs/h; ETA 9.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[68/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3006__rep0 -> ok (1032s, fallbacks 0, errors 0); non-ok so far 0; 33.3 runs/h; ETA 9.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[69/384] default|gemini-3.5-flash__ISFJ__static__sustained_bull__seed3016__rep0 -> ok (1418s, fallbacks 0, errors 0); non-ok so far 0; 33.8 runs/h; ETA 9.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[70/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3007__rep0 -> ok (1031s, fallbacks 0, errors 0); non-ok so far 0; 34.1 runs/h; ETA 9.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[71/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3004__rep0 -> ok (1135s, fallbacks 0, errors 0); non-ok so far 0; 34.5 runs/h; ETA 9.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[72/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3009__rep0 -> ok (950s, fallbacks 0, errors 0); non-ok so far 0; 34.5 runs/h; ETA 9.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[73/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3008__rep0 -> ok (1080s, fallbacks 0, errors 0); non-ok so far 0; 34.8 runs/h; ETA 8.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[74/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3011__rep0 -> ok (943s, fallbacks 0, errors 0); non-ok so far 0; 35.3 runs/h; ETA 8.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[75/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3010__rep0 -> ok (1044s, fallbacks 0, errors 0); non-ok so far 0; 35.3 runs/h; ETA 8.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[76/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3012__rep0 -> ok (899s, fallbacks 0, errors 0); non-ok so far 0; 34.0 runs/h; ETA 9.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[77/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3013__rep0 -> ok (894s, fallbacks 0, errors 0); non-ok so far 0; 33.9 runs/h; ETA 9.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[78/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3014__rep0 -> ok (943s, fallbacks 0, errors 0); non-ok so far 0; 32.4 runs/h; ETA 9.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[79/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3015__rep0 -> ok (1004s, fallbacks 0, errors 0); non-ok so far 0; 32.4 runs/h; ETA 9.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[80/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3001__rep0 -> ok (933s, fallbacks 0, errors 0); non-ok so far 0; 32.2 runs/h; ETA 9.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[81/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3005__rep0 -> ok (863s, fallbacks 0, errors 0); non-ok so far 0; 32.6 runs/h; ETA 9.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[82/384] default|gemini-3.5-flash__ISFJ__memory__flat__seed3016__rep0 -> ok (1034s, fallbacks 0, errors 0); non-ok so far 0; 32.9 runs/h; ETA 9.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[83/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3002__rep0 -> ok (970s, fallbacks 0, errors 0); non-ok so far 0; 33.1 runs/h; ETA 9.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[84/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3003__rep0 -> ok (983s, fallbacks 0, errors 0); non-ok so far 0; 33.4 runs/h; ETA 9.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[85/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3004__rep0 -> ok (991s, fallbacks 0, errors 0); non-ok so far 0; 33.8 runs/h; ETA 8.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[86/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3006__rep0 -> ok (953s, fallbacks 0, errors 0); non-ok so far 0; 34.1 runs/h; ETA 8.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[87/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3009__rep0 -> ok (886s, fallbacks 0, errors 0); non-ok so far 0; 34.4 runs/h; ETA 8.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[88/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3007__rep0 -> ok (941s, fallbacks 0, errors 0); non-ok so far 0; 34.7 runs/h; ETA 8.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[89/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3008__rep0 -> ok (972s, fallbacks 0, errors 0); non-ok so far 0; 34.8 runs/h; ETA 8.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[90/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3010__rep0 -> ok (964s, fallbacks 0, errors 0); non-ok so far 0; 35.0 runs/h; ETA 8.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[91/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3011__rep0 -> ok (892s, fallbacks 0, errors 0); non-ok so far 0; 34.4 runs/h; ETA 8.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[92/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3012__rep0 -> ok (906s, fallbacks 0, errors 0); non-ok so far 0; 34.7 runs/h; ETA 8.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[93/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3013__rep0 -> ok (908s, fallbacks 0, errors 0); non-ok so far 0; 34.9 runs/h; ETA 8.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[94/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3014__rep0 -> ok (935s, fallbacks 0, errors 0); non-ok so far 0; 34.8 runs/h; ETA 8.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[95/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3001__rep0 -> ok (884s, fallbacks 0, errors 0); non-ok so far 0; 34.5 runs/h; ETA 8.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[96/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3003__rep0 -> ok (863s, fallbacks 0, errors 0); non-ok so far 0; 34.8 runs/h; ETA 8.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[97/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3015__rep0 -> ok (946s, fallbacks 0, errors 0); non-ok so far 0; 35.1 runs/h; ETA 8.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[98/384] default|gemini-3.5-flash__ISFJ__memory__bull_trap__seed3016__rep0 -> ok (990s, fallbacks 0, errors 0); non-ok so far 0; 35.2 runs/h; ETA 8.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[99/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3002__rep0 -> ok (947s, fallbacks 0, errors 0); non-ok so far 0; 35.6 runs/h; ETA 8.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[100/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3006__rep0 -> ok (925s, fallbacks 0, errors 0); non-ok so far 0; 35.9 runs/h; ETA 7.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[101/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3005__rep0 -> ok (958s, fallbacks 0, errors 0); non-ok so far 0; 36.2 runs/h; ETA 7.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[102/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3004__rep0 -> ok (1008s, fallbacks 0, errors 0); non-ok so far 0; 36.4 runs/h; ETA 7.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[103/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3007__rep0 -> ok (949s, fallbacks 0, errors 0); non-ok so far 0; 36.8 runs/h; ETA 7.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[104/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3009__rep0 -> ok (889s, fallbacks 0, errors 0); non-ok so far 0; 36.8 runs/h; ETA 7.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[105/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3008__rep0 -> ok (1004s, fallbacks 0, errors 0); non-ok so far 0; 37.0 runs/h; ETA 7.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[106/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3011__rep0 -> ok (883s, fallbacks 0, errors 0); non-ok so far 0; 35.7 runs/h; ETA 7.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[107/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3010__rep0 -> ok (962s, fallbacks 0, errors 0); non-ok so far 0; 36.0 runs/h; ETA 7.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[108/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3012__rep0 -> ok (921s, fallbacks 0, errors 0); non-ok so far 0; 36.2 runs/h; ETA 7.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[109/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3013__rep0 -> ok (861s, fallbacks 0, errors 0); non-ok so far 0; 36.3 runs/h; ETA 7.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[110/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3014__rep0 -> ok (916s, fallbacks 0, errors 0); non-ok so far 0; 36.2 runs/h; ETA 7.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[111/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3015__rep0 -> ok (985s, fallbacks 0, errors 0); non-ok so far 0; 36.3 runs/h; ETA 7.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[112/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3001__rep0 -> ok (906s, fallbacks 0, errors 0); non-ok so far 0; 36.4 runs/h; ETA 7.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[113/384] default|gemini-3.5-flash__ISFJ__memory__crash_d0.7__seed3016__rep0 -> ok (1039s, fallbacks 0, errors 0); non-ok so far 0; 36.7 runs/h; ETA 7.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[114/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3003__rep0 -> ok (935s, fallbacks 0, errors 0); non-ok so far 0; 36.8 runs/h; ETA 7.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[115/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3002__rep0 -> ok (994s, fallbacks 0, errors 0); non-ok so far 0; 37.1 runs/h; ETA 7.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[116/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3006__rep0 -> ok (942s, fallbacks 0, errors 0); non-ok so far 0; 37.2 runs/h; ETA 7.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[117/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3004__rep0 -> ok (1025s, fallbacks 0, errors 0); non-ok so far 0; 37.5 runs/h; ETA 7.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[118/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3005__rep0 -> ok (983s, fallbacks 0, errors 0); non-ok so far 0; 37.7 runs/h; ETA 7.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[119/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3007__rep0 -> ok (915s, fallbacks 0, errors 0); non-ok so far 0; 38.0 runs/h; ETA 7.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[120/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3008__rep0 -> ok (924s, fallbacks 0, errors 0); non-ok so far 0; 38.0 runs/h; ETA 6.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[121/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3009__rep0 -> ok (878s, fallbacks 0, errors 0); non-ok so far 0; 37.7 runs/h; ETA 7.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[122/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3011__rep0 -> ok (884s, fallbacks 0, errors 0); non-ok so far 0; 37.8 runs/h; ETA 6.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[123/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3010__rep0 -> ok (939s, fallbacks 0, errors 0); non-ok so far 0; 38.0 runs/h; ETA 6.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[124/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3012__rep0 -> ok (894s, fallbacks 0, errors 0); non-ok so far 0; 38.2 runs/h; ETA 6.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[125/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3013__rep0 -> ok (883s, fallbacks 0, errors 0); non-ok so far 0; 38.1 runs/h; ETA 6.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[126/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3014__rep0 -> ok (950s, fallbacks 0, errors 0); non-ok so far 0; 37.9 runs/h; ETA 6.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[127/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3015__rep0 -> ok (973s, fallbacks 0, errors 0); non-ok so far 0; 37.9 runs/h; ETA 6.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[128/384] default|gemini-3.5-flash__ISFJ__memory__sustained_bull__seed3016__rep0 -> ok (998s, fallbacks 0, errors 0); non-ok so far 0; 38.1 runs/h; ETA 6.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[129/384] default|gemini-3.5-flash__INTJ__static__flat__seed3001__rep0 -> ok (1094s, fallbacks 0, errors 0); non-ok so far 0; 37.9 runs/h; ETA 6.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[130/384] default|gemini-3.5-flash__INTJ__static__flat__seed3002__rep0 -> ok (1089s, fallbacks 0, errors 0); non-ok so far 0; 38.2 runs/h; ETA 6.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[131/384] default|gemini-3.5-flash__INTJ__static__flat__seed3004__rep0 -> ok (1110s, fallbacks 0, errors 0); non-ok so far 0; 38.2 runs/h; ETA 6.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[132/384] default|gemini-3.5-flash__INTJ__static__flat__seed3006__rep0 -> ok (1093s, fallbacks 0, errors 0); non-ok so far 0; 38.4 runs/h; ETA 6.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[133/384] default|gemini-3.5-flash__INTJ__static__flat__seed3003__rep0 -> ok (1179s, fallbacks 0, errors 0); non-ok so far 0; 38.6 runs/h; ETA 6.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[134/384] default|gemini-3.5-flash__INTJ__static__flat__seed3005__rep0 -> ok (1234s, fallbacks 0, errors 0); non-ok so far 0; 38.6 runs/h; ETA 6.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[135/384] default|gemini-3.5-flash__INTJ__static__flat__seed3007__rep0 -> ok (1192s, fallbacks 0, errors 0); non-ok so far 0; 38.7 runs/h; ETA 6.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[136/384] default|gemini-3.5-flash__INTJ__static__flat__seed3008__rep0 -> ok (1161s, fallbacks 0, errors 0); non-ok so far 0; 38.5 runs/h; ETA 6.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[137/384] default|gemini-3.5-flash__INTJ__static__flat__seed3010__rep0 -> ok (1082s, fallbacks 0, errors 0); non-ok so far 0; 38.7 runs/h; ETA 6.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[138/384] default|gemini-3.5-flash__INTJ__static__flat__seed3009__rep0 -> ok (1197s, fallbacks 0, errors 0); non-ok so far 0; 38.8 runs/h; ETA 6.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[139/384] default|gemini-3.5-flash__INTJ__static__flat__seed3011__rep0 -> ok (1192s, fallbacks 0, errors 0); non-ok so far 0; 38.8 runs/h; ETA 6.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[140/384] default|gemini-3.5-flash__INTJ__static__flat__seed3012__rep0 -> ok (1274s, fallbacks 0, errors 0); non-ok so far 0; 38.5 runs/h; ETA 6.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[141/384] default|gemini-3.5-flash__INTJ__static__flat__seed3013__rep0 -> ok (1187s, fallbacks 0, errors 0); non-ok so far 0; 38.6 runs/h; ETA 6.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[142/384] default|gemini-3.5-flash__INTJ__static__flat__seed3015__rep0 -> ok (1247s, fallbacks 0, errors 0); non-ok so far 0; 38.3 runs/h; ETA 6.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[143/384] default|gemini-3.5-flash__INTJ__static__flat__seed3014__rep0 -> ok (1287s, fallbacks 0, errors 0); non-ok so far 0; 38.6 runs/h; ETA 6.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[144/384] default|gemini-3.5-flash__INTJ__static__flat__seed3016__rep0 -> ok (1197s, fallbacks 0, errors 0); non-ok so far 0; 38.6 runs/h; ETA 6.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[145/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3004__rep0 -> ok (1052s, fallbacks 0, errors 0); non-ok so far 0; 38.8 runs/h; ETA 6.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[146/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3002__rep0 -> ok (1143s, fallbacks 0, errors 0); non-ok so far 0; 38.9 runs/h; ETA 6.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[147/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3001__rep0 -> ok (1229s, fallbacks 0, errors 0); non-ok so far 0; 39.2 runs/h; ETA 6.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[148/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3003__rep0 -> ok (1174s, fallbacks 0, errors 0); non-ok so far 0; 39.2 runs/h; ETA 6.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[149/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3006__rep0 -> ok (1148s, fallbacks 0, errors 0); non-ok so far 0; 39.1 runs/h; ETA 6.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[150/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3005__rep0 -> ok (1276s, fallbacks 0, errors 0); non-ok so far 0; 39.2 runs/h; ETA 6.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[151/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3008__rep0 -> ok (1200s, fallbacks 0, errors 0); non-ok so far 0; 39.0 runs/h; ETA 6.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[152/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3007__rep0 -> ok (1228s, fallbacks 0, errors 0); non-ok so far 0; 39.2 runs/h; ETA 5.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[153/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3010__rep0 -> ok (1128s, fallbacks 0, errors 0); non-ok so far 0; 39.3 runs/h; ETA 5.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[154/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3009__rep0 -> ok (1285s, fallbacks 0, errors 0); non-ok so far 0; 39.3 runs/h; ETA 5.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[155/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3011__rep0 -> ok (1242s, fallbacks 0, errors 0); non-ok so far 0; 38.9 runs/h; ETA 5.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[156/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3012__rep0 -> ok (1256s, fallbacks 0, errors 0); non-ok so far 0; 38.9 runs/h; ETA 5.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[157/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3013__rep0 -> ok (1182s, fallbacks 0, errors 0); non-ok so far 0; 38.9 runs/h; ETA 5.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[158/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3002__rep0 -> ok (1093s, fallbacks 0, errors 0); non-ok so far 0; 38.9 runs/h; ETA 5.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[159/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3014__rep0 -> ok (1295s, fallbacks 0, errors 0); non-ok so far 0; 39.1 runs/h; ETA 5.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[160/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3001__rep0 -> ok (1133s, fallbacks 0, errors 0); non-ok so far 0; 39.3 runs/h; ETA 5.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[161/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3016__rep0 -> ok (1184s, fallbacks 0, errors 0); non-ok so far 0; 39.5 runs/h; ETA 5.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[162/384] default|gemini-3.5-flash__INTJ__static__bull_trap__seed3015__rep0 -> ok (1212s, fallbacks 0, errors 0); non-ok so far 0; 39.8 runs/h; ETA 5.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[163/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3003__rep0 -> ok (1207s, fallbacks 0, errors 0); non-ok so far 0; 39.7 runs/h; ETA 5.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[164/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3004__rep0 -> ok (1154s, fallbacks 0, errors 0); non-ok so far 0; 39.7 runs/h; ETA 5.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[165/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3005__rep0 -> ok (1242s, fallbacks 0, errors 0); non-ok so far 0; 39.5 runs/h; ETA 5.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[166/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3006__rep0 -> ok (1161s, fallbacks 0, errors 0); non-ok so far 0; 39.5 runs/h; ETA 5.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[167/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3007__rep0 -> ok (1155s, fallbacks 0, errors 0); non-ok so far 0; 39.8 runs/h; ETA 5.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[168/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3008__rep0 -> ok (1134s, fallbacks 0, errors 0); non-ok so far 0; 39.9 runs/h; ETA 5.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[169/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3009__rep0 -> ok (1182s, fallbacks 0, errors 0); non-ok so far 0; 39.8 runs/h; ETA 5.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[170/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3010__rep0 -> ok (1106s, fallbacks 0, errors 0); non-ok so far 0; 39.6 runs/h; ETA 5.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[171/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3011__rep0 -> ok (1122s, fallbacks 0, errors 0); non-ok so far 0; 39.6 runs/h; ETA 5.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[172/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3012__rep0 -> ok (1193s, fallbacks 0, errors 0); non-ok so far 0; 39.4 runs/h; ETA 5.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[173/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3013__rep0 -> ok (1155s, fallbacks 0, errors 0); non-ok so far 0; 39.5 runs/h; ETA 5.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[174/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3016__rep0 -> ok (1129s, fallbacks 0, errors 0); non-ok so far 0; 39.7 runs/h; ETA 5.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[175/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3002__rep0 -> ok (1052s, fallbacks 0, errors 0); non-ok so far 0; 39.8 runs/h; ETA 5.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[176/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3015__rep0 -> ok (1185s, fallbacks 0, errors 0); non-ok so far 0; 40.0 runs/h; ETA 5.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[177/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3001__rep0 -> ok (1201s, fallbacks 0, errors 0); non-ok so far 0; 40.2 runs/h; ETA 5.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[178/384] default|gemini-3.5-flash__INTJ__static__crash_d0.7__seed3014__rep0 -> ok (1234s, fallbacks 0, errors 0); non-ok so far 0; 40.3 runs/h; ETA 5.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[179/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3003__rep0 -> ok (1201s, fallbacks 0, errors 0); non-ok so far 0; 40.1 runs/h; ETA 5.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[180/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3004__rep0 -> ok (1072s, fallbacks 0, errors 0); non-ok so far 0; 40.2 runs/h; ETA 5.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[181/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3006__rep0 -> ok (1061s, fallbacks 0, errors 0); non-ok so far 0; 40.3 runs/h; ETA 5.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[182/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3007__rep0 -> ok (1156s, fallbacks 0, errors 0); non-ok so far 0; 40.1 runs/h; ETA 5.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[183/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3005__rep0 -> ok (1240s, fallbacks 0, errors 0); non-ok so far 0; 40.3 runs/h; ETA 5.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[184/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3008__rep0 -> ok (1132s, fallbacks 0, errors 0); non-ok so far 0; 40.3 runs/h; ETA 5.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[185/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3010__rep0 -> ok (1074s, fallbacks 0, errors 0); non-ok so far 0; 40.1 runs/h; ETA 5.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[186/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3009__rep0 -> ok (1199s, fallbacks 0, errors 0); non-ok so far 0; 40.2 runs/h; ETA 4.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[187/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3011__rep0 -> ok (1155s, fallbacks 0, errors 0); non-ok so far 0; 39.9 runs/h; ETA 4.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[188/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3013__rep0 -> ok (1155s, fallbacks 0, errors 0); non-ok so far 0; 39.9 runs/h; ETA 4.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[189/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3001__rep0 -> ok (1096s, fallbacks 0, errors 0); non-ok so far 0; 40.1 runs/h; ETA 4.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[190/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3012__rep0 -> ok (1241s, fallbacks 0, errors 0); non-ok so far 0; 40.2 runs/h; ETA 4.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[191/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3016__rep0 -> ok (1171s, fallbacks 0, errors 0); non-ok so far 0; 40.3 runs/h; ETA 4.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[192/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3015__rep0 -> ok (1218s, fallbacks 0, errors 0); non-ok so far 0; 40.5 runs/h; ETA 4.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[193/384] default|gemini-3.5-flash__INTJ__static__sustained_bull__seed3014__rep0 -> ok (1286s, fallbacks 0, errors 0); non-ok so far 0; 40.5 runs/h; ETA 4.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[194/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3002__rep0 -> ok (1077s, fallbacks 0, errors 0); non-ok so far 0; 40.7 runs/h; ETA 4.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[195/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3003__rep0 -> ok (1180s, fallbacks 0, errors 0); non-ok so far 0; 40.6 runs/h; ETA 4.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[196/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3004__rep0 -> ok (1134s, fallbacks 0, errors 0); non-ok so far 0; 40.7 runs/h; ETA 4.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[197/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3006__rep0 -> ok (1096s, fallbacks 0, errors 0); non-ok so far 0; 40.6 runs/h; ETA 4.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[198/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3005__rep0 -> ok (1232s, fallbacks 0, errors 0); non-ok so far 0; 40.6 runs/h; ETA 4.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[199/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3007__rep0 -> ok (1183s, fallbacks 0, errors 0); non-ok so far 0; 40.7 runs/h; ETA 4.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[200/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3008__rep0 -> ok (1175s, fallbacks 0, errors 0); non-ok so far 0; 40.5 runs/h; ETA 4.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[201/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3009__rep0 -> ok (1183s, fallbacks 0, errors 0); non-ok so far 0; 40.6 runs/h; ETA 4.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[202/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3010__rep0 -> ok (1072s, fallbacks 0, errors 0); non-ok so far 0; 40.5 runs/h; ETA 4.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[203/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3011__rep0 -> ok (1192s, fallbacks 0, errors 0); non-ok so far 0; 40.3 runs/h; ETA 4.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[204/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3013__rep0 -> ok (1176s, fallbacks 0, errors 0); non-ok so far 0; 40.4 runs/h; ETA 4.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[205/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3012__rep0 -> ok (1276s, fallbacks 0, errors 0); non-ok so far 0; 40.4 runs/h; ETA 4.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[206/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3015__rep0 -> ok (1223s, fallbacks 0, errors 0); non-ok so far 0; 40.5 runs/h; ETA 4.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[207/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3016__rep0 -> ok (1177s, fallbacks 0, errors 0); non-ok so far 0; 40.7 runs/h; ETA 4.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[208/384] default|gemini-3.5-flash__INTJ__memory__flat__seed3014__rep0 -> ok (1284s, fallbacks 0, errors 0); non-ok so far 0; 40.9 runs/h; ETA 4.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[209/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3002__rep0 -> ok (1081s, fallbacks 0, errors 0); non-ok so far 0; 41.0 runs/h; ETA 4.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[210/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3001__rep0 -> ok (1261s, fallbacks 0, errors 0); non-ok so far 0; 41.0 runs/h; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[211/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3004__rep0 -> ok (1033s, fallbacks 0, errors 0); non-ok so far 0; 41.1 runs/h; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[212/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3003__rep0 -> ok (1191s, fallbacks 0, errors 0); non-ok so far 0; 41.2 runs/h; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[213/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3006__rep0 -> ok (1126s, fallbacks 0, errors 0); non-ok so far 0; 40.9 runs/h; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[214/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3005__rep0 -> ok (1283s, fallbacks 0, errors 0); non-ok so far 0; 40.9 runs/h; ETA 4.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[215/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3007__rep0 -> ok (1189s, fallbacks 0, errors 0); non-ok so far 0; 40.8 runs/h; ETA 4.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[216/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3008__rep0 -> ok (1168s, fallbacks 0, errors 0); non-ok so far 0; 40.9 runs/h; ETA 4.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[217/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3009__rep0 -> ok (1236s, fallbacks 0, errors 0); non-ok so far 0; 40.7 runs/h; ETA 4.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[218/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3010__rep0 -> ok (1115s, fallbacks 0, errors 0); non-ok so far 0; 40.8 runs/h; ETA 4.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[219/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3011__rep0 -> ok (1264s, fallbacks 0, errors 0); non-ok so far 0; 40.5 runs/h; ETA 4.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[220/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3013__rep0 -> ok (1188s, fallbacks 0, errors 0); non-ok so far 0; 40.6 runs/h; ETA 4.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[221/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3012__rep0 -> ok (1250s, fallbacks 0, errors 0); non-ok so far 0; 40.8 runs/h; ETA 4.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[222/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3016__rep0 -> ok (1152s, fallbacks 0, errors 0); non-ok so far 0; 40.9 runs/h; ETA 4.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[223/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3002__rep0 -> ok (1045s, fallbacks 0, errors 0); non-ok so far 0; 41.1 runs/h; ETA 3.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[224/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3015__rep0 -> ok (1223s, fallbacks 0, errors 0); non-ok so far 0; 41.2 runs/h; ETA 3.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[225/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3001__rep0 -> ok (1141s, fallbacks 0, errors 0); non-ok so far 0; 41.4 runs/h; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[226/384] default|gemini-3.5-flash__INTJ__memory__bull_trap__seed3014__rep0 -> ok (1284s, fallbacks 0, errors 0); non-ok so far 0; 41.5 runs/h; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[227/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3003__rep0 -> ok (1215s, fallbacks 0, errors 0); non-ok so far 0; 41.4 runs/h; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[228/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3004__rep0 -> ok (1132s, fallbacks 0, errors 0); non-ok so far 0; 41.3 runs/h; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[229/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3005__rep0 -> ok (1244s, fallbacks 0, errors 0); non-ok so far 0; 41.0 runs/h; ETA 3.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[230/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3006__rep0 -> ok (1116s, fallbacks 0, errors 0); non-ok so far 0; 41.2 runs/h; ETA 3.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[231/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3007__rep0 -> ok (1152s, fallbacks 0, errors 0); non-ok so far 0; 41.2 runs/h; ETA 3.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[232/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3008__rep0 -> ok (1179s, fallbacks 0, errors 0); non-ok so far 0; 41.0 runs/h; ETA 3.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[233/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3009__rep0 -> ok (1190s, fallbacks 0, errors 0); non-ok so far 0; 41.0 runs/h; ETA 3.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[234/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3010__rep0 -> ok (1140s, fallbacks 0, errors 0); non-ok so far 0; 40.9 runs/h; ETA 3.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[235/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3011__rep0 -> ok (1156s, fallbacks 0, errors 0); non-ok so far 0; 41.0 runs/h; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[236/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3016__rep0 -> ok (1144s, fallbacks 0, errors 0); non-ok so far 0; 41.0 runs/h; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[237/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3012__rep0 -> ok (1217s, fallbacks 0, errors 0); non-ok so far 0; 41.2 runs/h; ETA 3.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[238/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3013__rep0 -> ok (1212s, fallbacks 0, errors 0); non-ok so far 0; 41.3 runs/h; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[239/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3015__rep0 -> ok (1211s, fallbacks 0, errors 0); non-ok so far 0; 41.4 runs/h; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[240/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3002__rep0 -> ok (1109s, fallbacks 0, errors 0); non-ok so far 0; 41.5 runs/h; ETA 3.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[241/384] default|gemini-3.5-flash__INTJ__memory__crash_d0.7__seed3014__rep0 -> ok (1307s, fallbacks 0, errors 0); non-ok so far 0; 41.6 runs/h; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[242/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3001__rep0 -> ok (1263s, fallbacks 0, errors 0); non-ok so far 0; 41.8 runs/h; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[243/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3003__rep0 -> ok (1291s, fallbacks 0, errors 0); non-ok so far 0; 41.3 runs/h; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[244/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3004__rep0 -> ok (1168s, fallbacks 0, errors 0); non-ok so far 0; 41.3 runs/h; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[245/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3006__rep0 -> ok (1126s, fallbacks 0, errors 0); non-ok so far 0; 41.4 runs/h; ETA 3.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[246/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3005__rep0 -> ok (1310s, fallbacks 0, errors 0); non-ok so far 0; 41.3 runs/h; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[247/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3007__rep0 -> ok (1225s, fallbacks 0, errors 0); non-ok so far 0; 41.2 runs/h; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[248/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3008__rep0 -> ok (1216s, fallbacks 0, errors 0); non-ok so far 0; 41.2 runs/h; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[249/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3010__rep0 -> ok (1086s, fallbacks 0, errors 0); non-ok so far 0; 41.3 runs/h; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[250/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3009__rep0 -> ok (1285s, fallbacks 0, errors 0); non-ok so far 0; 41.1 runs/h; ETA 3.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[251/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3013__rep0 -> ok (1223s, fallbacks 0, errors 0); non-ok so far 0; 41.1 runs/h; ETA 3.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[252/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3001__rep0 -> ok (1117s, fallbacks 0, errors 0); non-ok so far 0; 41.3 runs/h; ETA 3.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[253/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3011__rep0 -> ok (1286s, fallbacks 0, errors 0); non-ok so far 0; 41.4 runs/h; ETA 3.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[254/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3012__rep0 -> ok (1301s, fallbacks 0, errors 0); non-ok so far 0; 41.5 runs/h; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[255/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3016__rep0 -> ok (1201s, fallbacks 0, errors 0); non-ok so far 0; 41.6 runs/h; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[256/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3015__rep0 -> ok (1252s, fallbacks 0, errors 0); non-ok so far 0; 41.7 runs/h; ETA 3.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[257/384] default|gemini-3.5-flash__INTJ__memory__sustained_bull__seed3014__rep0 -> ok (1376s, fallbacks 0, errors 0); non-ok so far 0; 41.8 runs/h; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[258/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3002__rep0 -> ok (1090s, fallbacks 0, errors 0); non-ok so far 0; 41.7 runs/h; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[259/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3003__rep0 -> ok (1137s, fallbacks 0, errors 0); non-ok so far 0; 41.6 runs/h; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[260/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3004__rep0 -> ok (1153s, fallbacks 0, errors 0); non-ok so far 0; 41.7 runs/h; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[261/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3005__rep0 -> ok (1150s, fallbacks 0, errors 0); non-ok so far 0; 41.6 runs/h; ETA 3.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[262/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3006__rep0 -> ok (1053s, fallbacks 0, errors 0); non-ok so far 0; 41.6 runs/h; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[263/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3008__rep0 -> ok (1104s, fallbacks 0, errors 0); non-ok so far 0; 41.5 runs/h; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[264/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3007__rep0 -> ok (1187s, fallbacks 0, errors 0); non-ok so far 0; 41.6 runs/h; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[265/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3010__rep0 -> ok (1043s, fallbacks 0, errors 0); non-ok so far 0; 41.5 runs/h; ETA 2.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[266/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3009__rep0 -> ok (1151s, fallbacks 0, errors 0); non-ok so far 0; 41.6 runs/h; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[267/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3013__rep0 -> ok (1088s, fallbacks 0, errors 0); non-ok so far 0; 41.6 runs/h; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[268/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3011__rep0 -> ok (1153s, fallbacks 0, errors 0); non-ok so far 0; 41.7 runs/h; ETA 2.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[269/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3012__rep0 -> ok (1150s, fallbacks 0, errors 0); non-ok so far 0; 41.8 runs/h; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[270/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3015__rep0 -> ok (1165s, fallbacks 0, errors 0); non-ok so far 0; 41.8 runs/h; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[271/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3014__rep0 -> ok (1214s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[272/384] default|gemini-3.5-flash__ENTJ__static__flat__seed3016__rep0 -> ok (1159s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 2.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[273/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3001__rep0 -> ok (1164s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[274/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3002__rep0 -> ok (1150s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[275/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3003__rep0 -> ok (1126s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[276/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3004__rep0 -> ok (1143s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[277/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3005__rep0 -> ok (1194s, fallbacks 0, errors 0); non-ok so far 0; 41.8 runs/h; ETA 2.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[278/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3006__rep0 -> ok (1124s, fallbacks 0, errors 0); non-ok so far 0; 41.8 runs/h; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[279/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3007__rep0 -> ok (1249s, fallbacks 0, errors 0); non-ok so far 0; 41.7 runs/h; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[280/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3008__rep0 -> ok (1145s, fallbacks 0, errors 0); non-ok so far 0; 41.7 runs/h; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[281/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3009__rep0 -> ok (1198s, fallbacks 0, errors 0); non-ok so far 0; 41.7 runs/h; ETA 2.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[282/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3010__rep0 -> ok (1126s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[283/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3011__rep0 -> ok (1203s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[284/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3012__rep0 -> ok (1235s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[285/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3013__rep0 -> ok (1143s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 2.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[286/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3015__rep0 -> ok (1202s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[287/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3014__rep0 -> ok (1244s, fallbacks 0, errors 0); non-ok so far 0; 42.2 runs/h; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[288/384] default|gemini-3.5-flash__ENTJ__static__bull_trap__seed3016__rep0 -> ok (1177s, fallbacks 0, errors 0); non-ok so far 0; 42.1 runs/h; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[289/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3001__rep0 -> ok (1206s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 2.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[290/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3002__rep0 -> ok (1190s, fallbacks 0, errors 0); non-ok so far 0; 42.2 runs/h; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[291/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3003__rep0 -> ok (1209s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[292/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3004__rep0 -> ok (1225s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[293/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3005__rep0 -> ok (1206s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[294/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3006__rep0 -> ok (1159s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[295/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3008__rep0 -> ok (1119s, fallbacks 0, errors 0); non-ok so far 0; 41.9 runs/h; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[296/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3007__rep0 -> ok (1233s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[297/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3009__rep0 -> ok (1198s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 2.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[298/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3010__rep0 -> ok (1136s, fallbacks 0, errors 0); non-ok so far 0; 42.1 runs/h; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[299/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3011__rep0 -> ok (1149s, fallbacks 0, errors 0); non-ok so far 0; 42.1 runs/h; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[300/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3012__rep0 -> ok (1207s, fallbacks 0, errors 0); non-ok so far 0; 42.2 runs/h; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[301/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3013__rep0 -> ok (1133s, fallbacks 0, errors 0); non-ok so far 0; 42.3 runs/h; ETA 2.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[302/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3014__rep0 -> ok (1258s, fallbacks 0, errors 0); non-ok so far 0; 42.2 runs/h; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[303/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3015__rep0 -> ok (1194s, fallbacks 0, errors 0); non-ok so far 0; 42.3 runs/h; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[304/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3001__rep0 -> ok (1168s, fallbacks 0, errors 0); non-ok so far 0; 42.2 runs/h; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[305/384] default|gemini-3.5-flash__ENTJ__static__crash_d0.7__seed3016__rep0 -> ok (1203s, fallbacks 0, errors 0); non-ok so far 0; 42.3 runs/h; ETA 1.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[306/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3002__rep0 -> ok (1097s, fallbacks 0, errors 0); non-ok so far 0; 42.3 runs/h; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[307/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3003__rep0 -> ok (1206s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[308/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3004__rep0 -> ok (1204s, fallbacks 0, errors 0); non-ok so far 0; 42.0 runs/h; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[309/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3006__rep0 -> ok (1076s, fallbacks 0, errors 0); non-ok so far 0; 42.1 runs/h; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[310/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3005__rep0 -> ok (1224s, fallbacks 0, errors 0); non-ok so far 0; 42.1 runs/h; ETA 1.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[311/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3008__rep0 -> ok (1125s, fallbacks 0, errors 0); non-ok so far 0; 42.1 runs/h; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[312/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3007__rep0 -> ok (1192s, fallbacks 0, errors 0); non-ok so far 0; 42.3 runs/h; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[313/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3010__rep0 -> ok (1116s, fallbacks 0, errors 0); non-ok so far 0; 42.3 runs/h; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[314/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3009__rep0 -> ok (1193s, fallbacks 0, errors 0); non-ok so far 0; 42.4 runs/h; ETA 1.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[315/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3011__rep0 -> ok (1220s, fallbacks 0, errors 0); non-ok so far 0; 42.3 runs/h; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[316/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3012__rep0 -> ok (1188s, fallbacks 0, errors 0); non-ok so far 0; 42.4 runs/h; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[317/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3013__rep0 -> ok (1150s, fallbacks 0, errors 0); non-ok so far 0; 42.4 runs/h; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[318/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3001__rep0 -> ok (908s, fallbacks 0, errors 0); non-ok so far 0; 42.5 runs/h; ETA 1.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[319/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3014__rep0 -> ok (1220s, fallbacks 0, errors 0); non-ok so far 0; 42.5 runs/h; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[320/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3016__rep0 -> ok (1175s, fallbacks 0, errors 0); non-ok so far 0; 42.4 runs/h; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[321/384] default|gemini-3.5-flash__ENTJ__static__sustained_bull__seed3015__rep0 -> ok (1222s, fallbacks 0, errors 0); non-ok so far 0; 42.5 runs/h; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[322/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3002__rep0 -> ok (898s, fallbacks 0, errors 0); non-ok so far 0; 42.6 runs/h; ETA 1.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[323/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3003__rep0 -> ok (928s, fallbacks 0, errors 0); non-ok so far 0; 42.6 runs/h; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[324/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3004__rep0 -> ok (926s, fallbacks 0, errors 0); non-ok so far 0; 42.6 runs/h; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[325/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3005__rep0 -> ok (905s, fallbacks 0, errors 0); non-ok so far 0; 42.7 runs/h; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[326/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3006__rep0 -> ok (890s, fallbacks 0, errors 0); non-ok so far 0; 42.7 runs/h; ETA 1.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[327/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3007__rep0 -> ok (899s, fallbacks 0, errors 0); non-ok so far 0; 42.8 runs/h; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[328/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3009__rep0 -> ok (887s, fallbacks 0, errors 0); non-ok so far 0; 42.8 runs/h; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[329/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3008__rep0 -> ok (912s, fallbacks 0, errors 0); non-ok so far 0; 43.0 runs/h; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[330/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3010__rep0 -> ok (860s, fallbacks 0, errors 0); non-ok so far 0; 42.9 runs/h; ETA 1.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[331/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3011__rep0 -> ok (871s, fallbacks 0, errors 0); non-ok so far 0; 43.0 runs/h; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[332/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3012__rep0 -> ok (908s, fallbacks 0, errors 0); non-ok so far 0; 42.9 runs/h; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[333/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3013__rep0 -> ok (901s, fallbacks 0, errors 0); non-ok so far 0; 43.1 runs/h; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[334/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3014__rep0 -> ok (921s, fallbacks 0, errors 0); non-ok so far 0; 43.0 runs/h; ETA 1.2 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[335/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3015__rep0 -> ok (867s, fallbacks 0, errors 0); non-ok so far 0; 43.0 runs/h; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[336/384] default|gemini-3.5-flash__ENTJ__memory__flat__seed3016__rep0 -> ok (885s, fallbacks 0, errors 0); non-ok so far 0; 43.1 runs/h; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[337/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3001__rep0 -> ok (866s, fallbacks 0, errors 0); non-ok so far 0; 43.2 runs/h; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[338/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3002__rep0 -> ok (841s, fallbacks 0, errors 0); non-ok so far 0; 43.2 runs/h; ETA 1.1 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[339/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3003__rep0 -> ok (824s, fallbacks 0, errors 0); non-ok so far 0; 43.3 runs/h; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[340/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3004__rep0 -> ok (845s, fallbacks 0, errors 0); non-ok so far 0; 43.3 runs/h; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[341/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3006__rep0 -> ok (832s, fallbacks 0, errors 0); non-ok so far 0; 43.4 runs/h; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[342/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3005__rep0 -> ok (854s, fallbacks 0, errors 0); non-ok so far 0; 43.5 runs/h; ETA 1.0 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[343/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3008__rep0 -> ok (807s, fallbacks 0, errors 0); non-ok so far 0; 43.5 runs/h; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[344/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3007__rep0 -> ok (844s, fallbacks 0, errors 0); non-ok so far 0; 43.6 runs/h; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[345/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3009__rep0 -> ok (779s, fallbacks 0, errors 0); non-ok so far 0; 43.6 runs/h; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[346/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3010__rep0 -> ok (775s, fallbacks 0, errors 0); non-ok so far 0; 43.7 runs/h; ETA 0.9 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[347/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3011__rep0 -> ok (772s, fallbacks 0, errors 0); non-ok so far 0; 43.7 runs/h; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[348/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3012__rep0 -> ok (804s, fallbacks 0, errors 0); non-ok so far 0; 43.7 runs/h; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[349/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3013__rep0 -> ok (774s, fallbacks 0, errors 0); non-ok so far 0; 43.7 runs/h; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[350/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3014__rep0 -> ok (813s, fallbacks 0, errors 0); non-ok so far 0; 43.7 runs/h; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[351/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3015__rep0 -> ok (783s, fallbacks 0, errors 0); non-ok so far 0; 43.8 runs/h; ETA 0.8 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[352/384] default|gemini-3.5-flash__ENTJ__memory__bull_trap__seed3016__rep0 -> ok (787s, fallbacks 0, errors 0); non-ok so far 0; 43.9 runs/h; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[353/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3001__rep0 -> ok (832s, fallbacks 0, errors 0); non-ok so far 0; 43.9 runs/h; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[354/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3002__rep0 -> ok (804s, fallbacks 0, errors 0); non-ok so far 0; 43.9 runs/h; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[355/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3003__rep0 -> ok (780s, fallbacks 0, errors 0); non-ok so far 0; 44.0 runs/h; ETA 0.7 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[356/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3004__rep0 -> ok (802s, fallbacks 0, errors 0); non-ok so far 0; 44.0 runs/h; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[357/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3005__rep0 -> ok (798s, fallbacks 0, errors 0); non-ok so far 0; 44.1 runs/h; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[358/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3006__rep0 -> ok (790s, fallbacks 0, errors 0); non-ok so far 0; 44.2 runs/h; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[359/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3007__rep0 -> ok (800s, fallbacks 0, errors 0); non-ok so far 0; 44.2 runs/h; ETA 0.6 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[360/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3008__rep0 -> ok (796s, fallbacks 0, errors 0); non-ok so far 0; 44.3 runs/h; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[361/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3009__rep0 -> ok (796s, fallbacks 0, errors 0); non-ok so far 0; 44.4 runs/h; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[362/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3010__rep0 -> ok (754s, fallbacks 0, errors 0); non-ok so far 0; 44.4 runs/h; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[363/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3011__rep0 -> ok (834s, fallbacks 0, errors 0); non-ok so far 0; 44.3 runs/h; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[364/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3012__rep0 -> ok (782s, fallbacks 0, errors 0); non-ok so far 0; 44.4 runs/h; ETA 0.5 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[365/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3013__rep0 -> ok (792s, fallbacks 0, errors 0); non-ok so far 0; 44.4 runs/h; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[366/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3015__rep0 -> ok (787s, fallbacks 0, errors 0); non-ok so far 0; 44.5 runs/h; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[367/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3014__rep0 -> ok (820s, fallbacks 0, errors 0); non-ok so far 0; 44.6 runs/h; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[368/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3001__rep0 -> ok (741s, fallbacks 0, errors 0); non-ok so far 0; 44.5 runs/h; ETA 0.4 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[369/384] default|gemini-3.5-flash__ENTJ__memory__crash_d0.7__seed3016__rep0 -> ok (849s, fallbacks 0, errors 0); non-ok so far 0; 44.5 runs/h; ETA 0.3 h
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+[370/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3002__rep0 -> ok (802s, fallbacks 0, errors 0); non-ok so far 0; 44.6 runs/h; ETA 0.3 h
+[371/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3003__rep0 -> ok (800s, fallbacks 0, errors 0); non-ok so far 0; 44.6 runs/h; ETA 0.3 h
+[372/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3005__rep0 -> ok (758s, fallbacks 0, errors 0); non-ok so far 0; 44.7 runs/h; ETA 0.3 h
+[373/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3004__rep0 -> ok (814s, fallbacks 0, errors 0); non-ok so far 0; 44.8 runs/h; ETA 0.2 h
+[374/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3006__rep0 -> ok (749s, fallbacks 0, errors 0); non-ok so far 0; 44.9 runs/h; ETA 0.2 h
+[375/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3008__rep0 -> ok (786s, fallbacks 0, errors 0); non-ok so far 0; 44.9 runs/h; ETA 0.2 h
+[376/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3007__rep0 -> ok (800s, fallbacks 0, errors 0); non-ok so far 0; 45.0 runs/h; ETA 0.2 h
+[377/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3009__rep0 -> ok (782s, fallbacks 0, errors 0); non-ok so far 0; 45.0 runs/h; ETA 0.2 h
+[378/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3010__rep0 -> ok (763s, fallbacks 0, errors 0); non-ok so far 0; 45.0 runs/h; ETA 0.1 h
+[379/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3011__rep0 -> ok (821s, fallbacks 0, errors 0); non-ok so far 0; 45.0 runs/h; ETA 0.1 h
+[380/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3013__rep0 -> ok (797s, fallbacks 0, errors 0); non-ok so far 0; 45.0 runs/h; ETA 0.1 h
+[381/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3012__rep0 -> ok (806s, fallbacks 0, errors 0); non-ok so far 0; 45.1 runs/h; ETA 0.1 h
+[382/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3014__rep0 -> ok (795s, fallbacks 0, errors 0); non-ok so far 0; 45.2 runs/h; ETA 0.0 h
+[383/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3015__rep0 -> ok (824s, fallbacks 0, errors 0); non-ok so far 0; 45.1 runs/h; ETA 0.0 h
+[384/384] default|gemini-3.5-flash__ENTJ__memory__sustained_bull__seed3016__rep0 -> ok (809s, fallbacks 0, errors 0); non-ok so far 0; 45.1 runs/h; ETA 0.0 h

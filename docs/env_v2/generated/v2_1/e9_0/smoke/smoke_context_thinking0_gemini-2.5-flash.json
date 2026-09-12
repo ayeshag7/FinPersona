@@ -1,0 +1,512 @@
+{
+ "key": "gemini-2.5-flash|thinking0",
+ "basis": "P8-8: thinking off; E8.5's configuration",
+ "runs": [
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 0.0,
+    "output_tokens_per_call": 98.915,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-flash__ISFJ__stateful_r5_static__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-flash__ISFJ__stateful_r5_static__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "config_tag": "thinking0",
+   "kind": "smoke_context",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 253.75080394744873,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 1226758,
+   "output_tokens": 19783,
+   "reasoning_tokens": 0,
+   "usd": 0.4174849,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "stateful_r5_static",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 0.0,
+    "output_tokens_per_call": 111.7,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-flash__ISFJ__stateful_r5_memory__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-flash__ISFJ__stateful_r5_memory__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "config_tag": "thinking0",
+   "kind": "smoke_context",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 262.3750853538513,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 1252569,
+   "output_tokens": 22340,
+   "reasoning_tokens": 0,
+   "usd": 0.4316207,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "stateful_r5_memory",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 0.0,
+    "output_tokens_per_call": 99.39,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-flash__ISFJ__stateful_static__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-flash__ISFJ__stateful_static__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "config_tag": "thinking0",
+   "kind": "smoke_context",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 305.1523871421814,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 3619092,
+   "output_tokens": 19878,
+   "reasoning_tokens": 0,
+   "usd": 1.1354226,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "stateful_static",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 0.0,
+    "output_tokens_per_call": 112.245,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-flash__ISFJ__stateful_memory__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-flash__ISFJ__stateful_memory__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "config_tag": "thinking0",
+   "kind": "smoke_context",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 322.5276563167572,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 3671613,
+   "output_tokens": 22449,
+   "reasoning_tokens": 0,
+   "usd": 1.1576064,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "stateful_memory",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 0.0,
+    "output_tokens_per_call": 100.04,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-flash__ISFJ__stateful_w50_static__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-flash__ISFJ__stateful_w50_static__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "config_tag": "thinking0",
+   "kind": "smoke_context",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 400.60716009140015,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 7822566,
+   "output_tokens": 20008,
+   "reasoning_tokens": 0,
+   "usd": 2.3967898,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "stateful_w50_static",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 0.0,
+    "output_tokens_per_call": 113.955,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-flash__ISFJ__stateful_w50_memory__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-flash__ISFJ__stateful_w50_memory__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "config_tag": "thinking0",
+   "kind": "smoke_context",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 418.27835035324097,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 7939151,
+   "output_tokens": 22791,
+   "reasoning_tokens": 0,
+   "usd": 2.4387228,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "stateful_w50_memory",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 0.0,
+    "output_tokens_per_call": 89.32,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-flash__ISFJ__stateful_full_static__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-flash__ISFJ__stateful_full_static__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "config_tag": "thinking0",
+   "kind": "smoke_context",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 456.4212112426758,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 10809599,
+   "output_tokens": 17864,
+   "reasoning_tokens": 0,
+   "usd": 3.2875397,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "stateful_full_static",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 0.0,
+    "output_tokens_per_call": 120.66,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-flash__ISFJ__stateful_full_memory__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-flash__ISFJ__stateful_full_memory__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-flash",
+   "config_tag": "thinking0",
+   "kind": "smoke_context",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 479.4275414943695,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 10902446,
+   "output_tokens": 24132,
+   "reasoning_tokens": 0,
+   "usd": 3.3310638,
+   "prices_per_M": [
+    0.3,
+    2.5
+   ],
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "stateful_full_memory",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  }
+ ],
+ "pass": true,
+ "generated_utc": "2026-09-11T12:48:36Z"
+}

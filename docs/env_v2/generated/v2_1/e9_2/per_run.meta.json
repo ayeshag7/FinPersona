@@ -1,0 +1,22 @@
+{
+ "scoring_json_sha256": "112843968c060d88bf8ee88fc4d8735b01d22a071e430c3c13d2a6a544ede45a",
+ "n_runs": 3861,
+ "by_model": {
+  "claude-fable-5-1|default": 93,
+  "claude-haiku-4-5-20251001|default": 252,
+  "claude-opus-5|default": 110,
+  "claude-sonnet-5|default": 158,
+  "gemini-2.5-flash-lite|default": 384,
+  "gemini-2.5-pro|default": 279,
+  "gemini-3.5-flash|default": 384,
+  "gpt-5-mini|default": 384,
+  "gpt-5-nano|default": 281,
+  "gpt-5.4-mini|default": 384,
+  "gpt-5.5|default": 384,
+  "gpt-5|default": 384,
+  "openrouter/anthropic/claude-haiku-4.5|default": 192,
+  "openrouter/deepseek/deepseek-v4-flash|default": 96,
+  "openrouter/qwen/qwen3-235b-a22b-2507|default": 96
+ },
+ "generated_utc": "2026-09-12T14:13:21Z"
+}

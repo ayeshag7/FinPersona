@@ -1,0 +1,124 @@
+{
+ "key": "gemini-2.5-pro|default",
+ "basis": "provider default reasoning; harness temperature",
+ "runs": [
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 1540.735,
+    "output_tokens_per_call": 1645.495,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-pro__ISFJ__memory__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-pro__ISFJ__memory__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-pro",
+   "config_tag": "default",
+   "kind": "smoke",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-pro",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 3100.676710128784,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 392907,
+   "output_tokens": 329099,
+   "reasoning_tokens": 308147,
+   "usd": null,
+   "prices_per_M": null,
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "memory",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  },
+  {
+   "checks": {
+    "calls_complete": true,
+    "status_ok": true,
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "reasoning_tokens_per_call": 1669.33,
+    "output_tokens_per_call": 1779.2,
+    "parse_status_counts": {
+     "ok": 200
+    },
+    "llm_errors": 0,
+    "provider_options_column_every_row": true,
+    "temperature_column": [
+     "0.2"
+    ]
+   },
+   "run_id": "gemini-2.5-pro__ISFJ__static__bull_trap__seed2001__rep0",
+   "run_key": "default|gemini-2.5-pro__ISFJ__static__bull_trap__seed2001__rep0",
+   "model": "gemini-2.5-pro",
+   "config_tag": "default",
+   "kind": "smoke",
+   "setting": "default",
+   "temperature": 0.2,
+   "provider_options": {
+    "provider": "google",
+    "model": "gemini-2.5-pro",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8
+   },
+   "status": "ok",
+   "error": "",
+   "seconds": 3380.065146446228,
+   "n_llm_calls": 200,
+   "calls_expected": 200,
+   "input_tokens": 377507,
+   "output_tokens": 355840,
+   "reasoning_tokens": 333866,
+   "usd": null,
+   "prices_per_M": null,
+   "n_fallbacks": 0,
+   "n_provider_fallbacks": 0,
+   "parse_status_counts": {
+    "ok": 200
+   },
+   "llm_errors": [],
+   "cell": {
+    "persona": "ISFJ",
+    "arm": "static",
+    "scenario": "bull_trap",
+    "seed": 2001,
+    "rep": 0
+   }
+  }
+ ],
+ "pass": true,
+ "generated_utc": "2026-09-11T13:15:50Z"
+}

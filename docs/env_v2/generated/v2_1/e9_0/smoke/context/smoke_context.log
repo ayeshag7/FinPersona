@@ -1,0 +1,32 @@
+[smoke_context] 8 runs on 1 configurations, all at once; started 2026-09-11T12:40:06Z
+[smoke_context] start gemini-2.5-flash|thinking0 ISFJ stateful_r5_static[smoke_context] start gemini-2.5-flash|thinking0 ISFJ stateful_r5_memory
+
+[smoke_context] start gemini-2.5-flash|thinking0 ISFJ stateful_static
+[smoke_context] start gemini-2.5-flash|thinking0 ISFJ stateful_memory
+[smoke_context] start gemini-2.5-flash|thinking0 ISFJ stateful_w50_static
+[smoke_context] start gemini-2.5-flash|thinking0 ISFJ stateful_w50_memory
+[smoke_context] start gemini-2.5-flash|thinking0 ISFJ stateful_full_static[smoke_context] start gemini-2.5-flash|thinking0 ISFJ stateful_full_memory
+
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+[smoke] gemini-2.5-flash|thinking0 stateful_r5_static: ok 254s, 200 calls, in 1,226,758 out 19,783 (reasoning 0), parse {'ok': 200}, errors 0  [284s elapsed]
+[smoke] gemini-2.5-flash|thinking0 stateful_r5_memory: ok 262s, 200 calls, in 1,252,569 out 22,340 (reasoning 0), parse {'ok': 200}, errors 0  [293s elapsed]
+[smoke] gemini-2.5-flash|thinking0 stateful_static: ok 305s, 200 calls, in 3,619,092 out 19,878 (reasoning 0), parse {'ok': 200}, errors 0  [336s elapsed]
+[smoke] gemini-2.5-flash|thinking0 stateful_memory: ok 323s, 200 calls, in 3,671,613 out 22,449 (reasoning 0), parse {'ok': 200}, errors 0  [353s elapsed]
+[smoke] gemini-2.5-flash|thinking0 stateful_w50_static: ok 401s, 200 calls, in 7,822,566 out 20,008 (reasoning 0), parse {'ok': 200}, errors 0  [431s elapsed]
+[smoke] gemini-2.5-flash|thinking0 stateful_w50_memory: ok 418s, 200 calls, in 7,939,151 out 22,791 (reasoning 0), parse {'ok': 200}, errors 0  [449s elapsed]
+[smoke] gemini-2.5-flash|thinking0 stateful_full_static: ok 456s, 200 calls, in 10,809,599 out 17,864 (reasoning 0), parse {'ok': 200}, errors 0  [487s elapsed]
+[smoke] gemini-2.5-flash|thinking0 stateful_full_memory: ok 479s, 200 calls, in 10,902,446 out 24,132 (reasoning 0), parse {'ok': 200}, errors 0  [510s elapsed]
+[smoke_context] gemini-2.5-flash|thinking0: PASS

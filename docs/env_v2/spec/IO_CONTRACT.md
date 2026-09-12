@@ -185,3 +185,42 @@ replayed copies — two units in one log; on the pilot's day 200 the offset read
 is 409 (chars/4) away (`docs/env_v2/generated/v2_1/e8_1/pilot_offsets.json`). The per-call billed usage of the
 variance pilot is written beside each run as `<run_id>.usage.json` by `tools/phase8/e8_5_variance_pilot.py`; it is
 not part of the runner's schema.
+
+**Added in v2.1 Phase 9 — only on runs whose `RunConfig.provider_options` is set; a log without it is unchanged in
+its columns and values** (`tests/test_v2_1_phase_9.py::test_provider_options_column_inert`):
+
+| column | meaning |
+|---|---|
+| `Provider_Options` | JSON, identical on every row of a run: `provider`, `model`, `config_tag`, `temperature_sent` (null = no temperature sent: Claude Sonnet 5 / Opus 5 reject one, P8-12), `temperature_client` (the value the client object holds; `langchain_openai` drops any value other than 1 for gpt-5 models), `options` (e.g. `{"thinking_budget": 0}` for Flash under P8-8), `max_tokens_client`, `max_retries` |
+
+`meta.json`'s `run_config` gains `provider_options` (null by default). `Temperature` is `agent.temperature`, the
+temperature actually passed: it is empty for a model sent none.
+
+Phase 9's runner (`tools/phase9/e9_runner.py`) writes `<run_id>.usage.json` beside each run, as E8.5's did. It adds:
+
+- `kind` (`smoke`, `smoke_context`, `pilot`, `grid`), `setting` (the generator setting), `run_key` (`setting|run_id`);
+- `provider_options`, `calls_expected`, `parse_status_counts`;
+- `usd` with `usd_source` — `provider-reported` (the cost the provider returns on each call, summed) on OpenRouter
+  routes, `price table` where a price was read, `not priced` otherwise. A dollar figure is never typed from a price
+  that was not read;
+- `n_fallbacks`, and `n_provider_fallbacks` — a parse fallback whose rationale carries no parser marker, i.e. one the
+  provider caused. **A run with any provider fallback is `contaminated`**: it is discarded whole, its outputs are
+  renamed with the status and a timestamp, and it is retried, up to three attempts;
+- `llm_errors` (the first 50 recorded by the per-call callback).
+
+**OpenRouter routes only (P9-8):**
+
+- `upstream_pinned` — the single backend the configuration allows. It is enforced in the request by
+  `provider: {order: [...], allow_fallbacks: false}`, so an unavailable upstream **fails** instead of re-routing
+  silently (measured: a wrong upstream returns HTTP 404; with fallbacks on, Haiku was served by Azure).
+- `generation_ids` (the first and last five) and `n_generation_ids`. The serving backend does **not** reach the
+  LangChain callback, so the pin is audited out of band: each id is resolved through OpenRouter's generation
+  endpoint, which returns the provider and the exact model snapshot. `upstreams_served_by` stays empty until that
+  audit is wired into the runner itself.
+- The client sends `max_tokens` = 8,192 (`tools/phase9/e9_roster.py`, `OPENROUTER_MAX_TOKENS`). With no cap,
+  OpenRouter requests the model's full context window and some upstreams reject every call
+  (`docs/env_v2/v2_1/PREREG_PHASE_9_ADDENDUM.md` 7). First-party routes send no cap.
+
+The per-model ledgers are `ledger_<config_tag>_<model>.jsonl` under the manifest's ledger directory. Runs are written
+under `results_v2/phase9/<subdir>/<setting>/<config_tag>/<model>/<scenario>/seed<seed>/` because `run_id` does not
+carry the generator setting.

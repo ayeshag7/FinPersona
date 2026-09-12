@@ -1,0 +1,64 @@
+reproduced: {'phase8': 0.8631762360369175, 'here': 0.8631762360369175}
+models                                  2      3      4      5      6      8      10     12     14
+seeds_per_cell tau_over_flash_limit                                                               
+19             0.5                   0.005  0.015  0.048  0.123  0.248  0.580  0.835  0.952  0.989
+               1.0                   0.003  0.007  0.017  0.035  0.066  0.169  0.317  0.481  0.633
+               2.0                   0.002  0.003  0.005  0.008  0.013  0.026  0.046  0.073  0.106
+47             0.5                   0.005  0.022  0.075  0.201  0.398  0.789  0.959  0.995  1.000
+               1.0                   0.003  0.008  0.019  0.042  0.080  0.206  0.381  0.562  0.716
+               2.0                   0.002  0.003  0.005  0.009  0.013  0.027  0.049  0.077  0.113
+93             0.5                   0.006  0.025  0.091  0.247  0.477  0.863  0.982  0.999  1.000
+               1.0                   0.003  0.008  0.020  0.044  0.085  0.222  0.406  0.593  0.745
+               2.0                   0.002  0.003  0.005  0.009  0.013  0.028  0.050  0.079  0.115
+169            0.5                   0.006  0.027  0.101  0.274  0.521  0.895  0.990  0.999  1.000
+               1.0                   0.003  0.008  0.021  0.046  0.088  0.230  0.419  0.607  0.759
+               2.0                   0.002  0.003  0.005  0.009  0.014  0.028  0.050  0.080  0.116
+ seeds_per_cell  tau_over_flash_limit   within_sigma_d   alpha  models_for_power_0.8
+             19                   0.5 main_grid_plugin    bonf                    10
+             19                   0.5 main_grid_plugin nominal                     5
+             19                   0.5      flash_limit    bonf                     8
+             19                   0.5      flash_limit nominal                     4
+             19                   1.0 main_grid_plugin    bonf                    17
+             19                   1.0 main_grid_plugin nominal                     8
+             19                   1.0      flash_limit    bonf                    15
+             19                   1.0      flash_limit nominal                     7
+             19                   2.0 main_grid_plugin    bonf                    46
+             19                   2.0 main_grid_plugin nominal                    22
+             19                   2.0      flash_limit    bonf                    44
+             19                   2.0      flash_limit nominal                    21
+             47                   0.5 main_grid_plugin    bonf                     9
+             47                   0.5 main_grid_plugin nominal                     4
+             47                   0.5      flash_limit    bonf                     8
+             47                   0.5      flash_limit nominal                     4
+             47                   1.0 main_grid_plugin    bonf                    16
+             47                   1.0 main_grid_plugin nominal                     8
+             47                   1.0      flash_limit    bonf                    15
+             47                   1.0      flash_limit nominal                     7
+             47                   2.0 main_grid_plugin    bonf                    44
+             47                   2.0 main_grid_plugin nominal                    21
+             47                   2.0      flash_limit    bonf                    43
+             47                   2.0      flash_limit nominal                    21
+             93                   0.5 main_grid_plugin    bonf                     8
+             93                   0.5 main_grid_plugin nominal                     4
+             93                   0.5      flash_limit    bonf                     8
+             93                   0.5      flash_limit nominal                     4
+             93                   1.0 main_grid_plugin    bonf                    15
+             93                   1.0 main_grid_plugin nominal                     7
+             93                   1.0      flash_limit    bonf                    15
+             93                   1.0      flash_limit nominal                     7
+             93                   2.0 main_grid_plugin    bonf                    44
+             93                   2.0 main_grid_plugin nominal                    21
+             93                   2.0      flash_limit    bonf                    43
+             93                   2.0      flash_limit nominal                    21
+            169                   0.5 main_grid_plugin    bonf                     8
+            169                   0.5 main_grid_plugin nominal                     4
+            169                   0.5      flash_limit    bonf                     8
+            169                   0.5      flash_limit nominal                     4
+            169                   1.0 main_grid_plugin    bonf                    15
+            169                   1.0 main_grid_plugin nominal                     7
+            169                   1.0      flash_limit    bonf                    15
+            169                   1.0      flash_limit nominal                     7
+            169                   2.0 main_grid_plugin    bonf                    44
+            169                   2.0 main_grid_plugin nominal                    21
+            169                   2.0      flash_limit    bonf                    43
+            169                   2.0      flash_limit nominal                    21

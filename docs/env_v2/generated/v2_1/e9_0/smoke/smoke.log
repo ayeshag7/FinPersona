@@ -1,0 +1,65 @@
+[smoke] 22 runs on 11 configurations, all at once; started 2026-09-11T12:13:06Z
+[smoke] start gemini-2.5-flash-lite|default ISFJ static
+[smoke] start gemini-2.5-flash-lite|default ISFJ memory
+[smoke] start gemini-2.5-pro|default ISFJ static
+[smoke] start gemini-2.5-pro|default ISFJ memory
+[smoke] start gemini-3.5-flash|default ISFJ static
+[smoke] start gemini-3.5-flash|default ISFJ memory
+[smoke] start gpt-5-nano|default ISFJ static
+[smoke] start gpt-5-nano|default ISFJ memory
+[smoke] start gpt-5|default ISFJ static
+[smoke] start gpt-5|default ISFJ memory
+[smoke] start gpt-5.4-mini|default ISFJ static
+[smoke] start gpt-5.4-mini|default ISFJ memory
+[smoke] start gpt-5.5|default ISFJ static
+[smoke] start gpt-5.5|default ISFJ memory[smoke] start claude-haiku-4-5-20251001|default ISFJ static
+
+[smoke] start claude-haiku-4-5-20251001|default ISFJ memory
+[smoke] start claude-sonnet-5|default ISFJ static
+[smoke] start claude-sonnet-5|default ISFJ memory
+[smoke] start claude-opus-5|default ISFJ static
+[smoke] start claude-opus-5|default ISFJ memory
+[smoke] start claude-fable-5-1|default ISFJ static
+[smoke] start claude-fable-5-1|default ISFJ memory
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+[smoke] gemini-2.5-flash-lite|default static: ok 211s, 200 calls, in 377,419 out 17,316 (reasoning 0), parse {'ok': 200}, errors 0  [245s elapsed]
+[smoke] gemini-2.5-flash-lite|default memory: ok 243s, 200 calls, in 392,784 out 24,788 (reasoning 0), parse {'ok': 200}, errors 0  [278s elapsed]
+[smoke] gpt-5.4-mini|default memory: ok 282s, 200 calls, in 374,680 out 15,329 (reasoning 0), parse {'ok': 200}, errors 0  [312s elapsed]
+[smoke] gpt-5.4-mini|default static: ok 296s, 200 calls, in 360,821 out 16,120 (reasoning 0), parse {'ok': 200}, errors 0  [325s elapsed]
+[smoke] claude-haiku-4-5-20251001|default memory: ok 589s, 200 calls, in 410,103 out 34,074 (reasoning 0), parse {'ok': 200}, errors 0  [595s elapsed]
+[smoke] claude-haiku-4-5-20251001|default static: ok 595s, 200 calls, in 392,871 out 35,058 (reasoning 0), parse {'ok': 200}, errors 0  [601s elapsed]
+[smoke] claude-sonnet-5|default memory: ok 660s, 200 calls, in 580,514 out 33,840 (reasoning 2,275), parse {'ok': 200}, errors 0  [665s elapsed]
+[smoke] gpt-5.5|default memory: ok 925s, 200 calls, in 374,664 out 45,414 (reasoning 28,020), parse {'ok': 200}, errors 0  [955s elapsed]
+[smoke] gemini-3.5-flash|default memory: ok 1079s, 200 calls, in 392,863 out 188,722 (reasoning 168,693), parse {'ok': 200}, errors 0  [1113s elapsed]
+[smoke] gpt-5.5|default static: ok 1160s, 201 calls, in 362,550 out 57,983 (reasoning 39,706), parse {'ok': 199, 'ok_retry1': 1}, errors 0  [1190s elapsed]
+[smoke] claude-opus-5|default static: ok 1301s, 200 calls, in 549,661 out 71,940 (reasoning 37,273), parse {'ok': 200}, errors 0  [1306s elapsed]
+[smoke] claude-sonnet-5|default static: ok 1366s, 200 calls, in 549,596 out 100,135 (reasoning 66,483), parse {'ok': 200}, errors 0  [1372s elapsed]
+[smoke] gemini-3.5-flash|default static: ok 1413s, 200 calls, in 377,538 out 260,527 (reasoning 238,148), parse {'ok': 200}, errors 0  [1447s elapsed]
+[smoke] claude-opus-5|default memory: ok 1457s, 200 calls, in 580,601 out 74,909 (reasoning 39,566), parse {'ok': 199, 'ok_retry1': 1}, errors 1  [1463s elapsed]
+[smoke] claude-fable-5-1|default memory: ok 1765s, 200 calls, in 580,981 out 78,387 (reasoning 46,094), parse {'ok': 200}, errors 0  [1770s elapsed]
+[smoke] claude-fable-5-1|default static: ok 1845s, 200 calls, in 549,997 out 84,358 (reasoning 50,632), parse {'ok': 200}, errors 0  [1851s elapsed]
+[smoke] gpt-5|default memory: ok 2180s, 200 calls, in 374,664 out 152,035 (reasoning 133,504), parse {'ok': 200}, errors 0  [2210s elapsed]
+[smoke] gpt-5-nano|default memory: ok 2462s, 201 calls, in 376,542 out 338,111 (reasoning 316,800), parse {'ok': 199, 'ok_retry1': 1}, errors 0  [2491s elapsed]
+[smoke] gpt-5|default static: ok 2960s, 200 calls, in 360,710 out 205,164 (reasoning 185,792), parse {'ok': 200}, errors 0  [2989s elapsed]
+[smoke] gemini-2.5-pro|default memory: ok 3101s, 200 calls, in 392,907 out 329,099 (reasoning 308,147), parse {'ok': 200}, errors 0  [3135s elapsed]
+[smoke] gemini-2.5-pro|default static: ok 3380s, 200 calls, in 377,507 out 355,840 (reasoning 333,866), parse {'ok': 200}, errors 0  [3414s elapsed]
+[smoke] gpt-5-nano|default static: ok 3733s, 202 calls, in 364,331 out 517,404 (reasoning 494,208), parse {'ok': 198, 'ok_retry1': 2}, errors 0  [3763s elapsed]
+[smoke] gemini-2.5-flash-lite|default: PASS
+[smoke] gpt-5.4-mini|default: PASS
+[smoke] claude-haiku-4-5-20251001|default: PASS
+[smoke] claude-sonnet-5|default: PASS
+[smoke] gpt-5.5|default: PASS
+[smoke] gemini-3.5-flash|default: PASS
+[smoke] claude-opus-5|default: PASS
+[smoke] claude-fable-5-1|default: PASS
+[smoke] gpt-5|default: PASS
+[smoke] gpt-5-nano|default: PASS
+[smoke] gemini-2.5-pro|default: PASS

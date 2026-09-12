@@ -1,0 +1,531 @@
+{
+ "registered": "PREREG_PHASE_9.md 1.1-1.2",
+ "candidates": [
+  {
+   "candidate": "sigma_V",
+   "plan_six": true,
+   "in_force": 0.014573291000253476,
+   "levels": {
+    "low": 0.012749899669113959,
+    "high": 0.015268692244791758
+   },
+   "interval_type": "30-refit CI95",
+   "source": "value.json sigma_V",
+   "config": {
+    "low": {
+     "sigma_V": 0.012749899669113959
+    },
+    "high": {
+     "sigma_V": 0.015268692244791758
+    }
+   }
+  },
+  {
+   "candidate": "half_life",
+   "plan_six": true,
+   "in_force": 22.380929759136894,
+   "levels": {
+    "low": 18.749884832420413,
+    "high": 32.63933501637798
+   },
+   "interval_type": "30-refit CI95, matched sd(x)",
+   "source": "mispricing.json half_life",
+   "config": {
+    "low": {
+     "half_life": 18.749884832420413
+    },
+    "high": {
+     "half_life": 32.63933501637798
+    }
+   }
+  },
+  {
+   "candidate": "garch_set",
+   "plan_six": true,
+   "in_force": {
+    "alpha": 0.027,
+    "gamma": 0.058,
+    "beta": 0.932,
+    "df": 6.649760745437838
+   },
+   "levels": {
+    "low": "P25",
+    "high": "P75"
+   },
+   "interval_type": "per-stock quartile sets",
+   "source": "volatility.json shape_sensitivity_sets",
+   "config": {
+    "low": {
+     "garch": {
+      "alpha": 0.019,
+      "gamma": 0.0434,
+      "beta": 0.9457,
+      "df": 4.291
+     }
+    },
+    "high": {
+     "garch": {
+      "alpha": 0.0417,
+      "gamma": 0.0764,
+      "beta": 0.9157,
+      "df": 5.742
+     }
+    }
+   }
+  },
+  {
+   "candidate": "pe_dispersion",
+   "plan_six": true,
+   "in_force": "P10-P90",
+   "levels": {
+    "low": "P25-P75",
+    "high": "P5-P95"
+   },
+   "interval_type": "stored grids",
+   "source": "observables.json multiple",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "multiple": {
+       "width": "P25-P75"
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "multiple": {
+       "width": "P5-P95"
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "analyst_sd",
+   "plan_six": true,
+   "in_force": 0.5639913617919751,
+   "levels": {
+    "low": 0.3,
+    "high": 0.6
+   },
+   "interval_type": "recorded LIT bracket",
+   "source": "observables.json analyst",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "analyst": {
+       "sd": 0.3
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "analyst": {
+       "sd": 0.6
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "sentiment_loading",
+   "plan_six": true,
+   "in_force": 0.0,
+   "levels": {
+    "half": 0.47496604504765394,
+    "full": 0.9499320900953079
+   },
+   "interval_type": "plan's levels on the stored FIT",
+   "source": "observables.json sentiment",
+   "config": {
+    "half": {
+     "obs_overrides": {
+      "sentiment": {
+       "design": "B",
+       "c_val": 0.47496604504765394
+      }
+     }
+    },
+    "full": {
+     "obs_overrides": {
+      "sentiment": {
+       "design": "B",
+       "c_val": 0.9499320900953079
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "mu_V",
+   "plan_six": false,
+   "in_force": 0.0002281,
+   "levels": {
+    "low": -5.13e-05,
+    "high": 0.0004787
+   },
+   "interval_type": "CI",
+   "source": "value.json mu_V",
+   "config": {
+    "low": {
+     "mu_V": -5.13e-05
+    },
+    "high": {
+     "mu_V": 0.0004787
+    }
+   }
+  },
+  {
+   "candidate": "jump_rate",
+   "plan_six": false,
+   "in_force": 0.0005825113429448942,
+   "levels": {
+    "low": 0.0004606512932822671,
+    "high": 0.0008165075929636751
+   },
+   "interval_type": "CI",
+   "source": "value.json jump",
+   "config": {
+    "low": {
+     "jump_rate": 0.0004606512932822671
+    },
+    "high": {
+     "jump_rate": 0.0008165075929636751
+    }
+   }
+  },
+  {
+   "candidate": "jump_sd",
+   "plan_six": false,
+   "in_force": 0.23029694055201125,
+   "levels": {
+    "low": 0.08641026593306138,
+    "high": 0.2409333207620556
+   },
+   "interval_type": "CI",
+   "source": "value.json jump",
+   "config": {
+    "low": {
+     "jump_sd": 0.08641026593306138
+    },
+    "high": {
+     "jump_sd": 0.2409333207620556
+    }
+   }
+  },
+  {
+   "candidate": "sbar",
+   "plan_six": false,
+   "in_force": 0.015087876849108794,
+   "levels": {
+    "low": 0.013424611148725429,
+    "high": 0.01677603864929626
+   },
+   "interval_type": "CI",
+   "source": "volatility.json sbar",
+   "config": {
+    "low": {
+     "garch": {
+      "sbar": 0.013424611148725429
+     }
+    },
+    "high": {
+     "garch": {
+      "sbar": 0.01677603864929626
+     }
+    }
+   }
+  },
+  {
+   "candidate": "blowoff_g",
+   "plan_six": false,
+   "in_force": 0.009843538730025459,
+   "levels": {
+    "low": 0.005904672684104176,
+    "high": 0.02079977323059732
+   },
+   "interval_type": "CI",
+   "source": "events.json blowoff",
+   "config": {
+    "low": {
+     "blowoff_g": 0.005904672684104176
+    },
+    "high": {
+     "blowoff_g": 0.02079977323059732
+    }
+   }
+  },
+  {
+   "candidate": "s_eps",
+   "plan_six": false,
+   "in_force": 0.17073819394108877,
+   "levels": {
+    "low": 0.14967879292956385,
+    "high": 0.19277050535461496
+   },
+   "interval_type": "CI",
+   "source": "observables.json eps.s_eps",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "eps": {
+       "s_eps": 0.14967879292956385
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "eps": {
+       "s_eps": 0.19277050535461496
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "p_loss",
+   "plan_six": false,
+   "in_force": 0.09746485277956725,
+   "levels": {
+    "low": 0.08555376477837204,
+    "high": 0.109710788853799
+   },
+   "interval_type": "CI",
+   "source": "observables.json eps.p_loss",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "eps": {
+       "p_loss": 0.08555376477837204
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "eps": {
+       "p_loss": 0.109710788853799
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "pe_cap",
+   "plan_six": false,
+   "in_force": 191.54973157246968,
+   "levels": {
+    "low": 154.7453604473273,
+    "high": 244.6774663423237
+   },
+   "interval_type": "CI",
+   "source": "observables.json eps.pe_cap_p99",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "eps": {
+       "pe_cap": 154.7453604473273
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "eps": {
+       "pe_cap": 244.6774663423237
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "div_c_speed",
+   "plan_six": false,
+   "in_force": 0.6971535189961907,
+   "levels": {
+    "low": 0.005233437315450265,
+    "high": 1.0750600082600645
+   },
+   "interval_type": "CI",
+   "source": "observables.json dividend.c_speed",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "dividend": {
+       "c_speed": 0.005233437315450265
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "dividend": {
+       "c_speed": 1.0750600082600645
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "div_tau",
+   "plan_six": false,
+   "in_force": 0.40631648936170217,
+   "levels": {
+    "low": 0.2510395145749058,
+    "high": 0.6386050660903654
+   },
+   "interval_type": "CI",
+   "source": "observables.json dividend.tau",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "dividend": {
+       "tau": 0.2510395145749058
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "dividend": {
+       "tau": 0.6386050660903654
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "sent_rho",
+   "plan_six": false,
+   "in_force": 0.21127624401947614,
+   "levels": {
+    "low": 0.1552108466290126,
+    "high": 0.2561215461691362
+   },
+   "interval_type": "CI",
+   "source": "observables.json sentiment.rho_window",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "sentiment": {
+       "rho": 0.1552108466290126
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "sentiment": {
+       "rho": 0.2561215461691362
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "sent_b1",
+   "plan_six": false,
+   "in_force": 0.11097693054019067,
+   "levels": {
+    "low": 0.06163547920094077,
+    "high": 0.1315614145124275
+   },
+   "interval_type": "CI",
+   "source": "observables.json sentiment.b1_window",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "sentiment": {
+       "b1": 0.06163547920094077
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "sentiment": {
+       "b1": 0.1315614145124275
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "vol_rho_v",
+   "plan_six": false,
+   "in_force": 0.525916765977577,
+   "levels": {
+    "low": 0.5224468216793224,
+    "high": 0.5286014427654556
+   },
+   "interval_type": "CI",
+   "source": "observables.json volume.rho_v",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "volume": {
+       "rho_v": 0.5224468216793224
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "volume": {
+       "rho_v": 0.5286014427654556
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "vol_beta_absr",
+   "plan_six": false,
+   "in_force": 0.2026552181805277,
+   "levels": {
+    "low": 0.19827325262734558,
+    "high": 0.20599198743448185
+   },
+   "interval_type": "CI",
+   "source": "observables.json volume.beta_absr",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "volume": {
+       "beta_absr": 0.19827325262734558
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "volume": {
+       "beta_absr": 0.20599198743448185
+      }
+     }
+    }
+   }
+  },
+  {
+   "candidate": "vol_sd_e",
+   "plan_six": false,
+   "in_force": 0.34686231428914344,
+   "levels": {
+    "low": 0.3389373565510483,
+    "high": 0.350879141380601
+   },
+   "interval_type": "CI",
+   "source": "observables.json volume.sd_e",
+   "config": {
+    "low": {
+     "obs_overrides": {
+      "volume": {
+       "sd_e": 0.3389373565510483
+      }
+     }
+    },
+    "high": {
+     "obs_overrides": {
+      "volume": {
+       "sd_e": 0.350879141380601
+      }
+     }
+    }
+   }
+  }
+ ],
+ "mismatch_with_prereg": [],
+ "generated_utc": "2026-09-11T12:26:24Z"
+}

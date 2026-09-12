@@ -172,6 +172,9 @@ def capture_prompts() -> dict:
 # the registry, still shows as a difference.
 PHASE8_ADDED_ARMS = ("stateful_w50_static", "stateful_w50_memory")
 PHASE8_ADDED_FIELDS = {"harness_version": "v2", "placebo_version": "v2"}
+# v2.1 Phase 9's declared addition (PREREG_PHASE_9.md): the provider-options field, None by default, which leaves the
+# run log unchanged (tests/test_v2_1_phase_9.py::test_provider_options_column_inert)
+PHASE9_ADDED_FIELDS = {"provider_options": None}
 
 
 def capture_arms() -> dict:
@@ -184,7 +187,7 @@ def capture_arms() -> dict:
             continue
         cfg = build_config("fake", "ENTJ", arm, "crash", 3, 1)
         d = {k: v for k, v in asdict(cfg).items() if k != "agent_llm"}
-        for k, default in PHASE8_ADDED_FIELDS.items():
+        for k, default in {**PHASE8_ADDED_FIELDS, **PHASE9_ADDED_FIELDS}.items():
             if k in d and d[k] == default:
                 d.pop(k)
         configs[arm] = _clean(d)

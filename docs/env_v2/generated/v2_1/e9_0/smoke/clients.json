@@ -1,0 +1,313 @@
+{
+ "clients": [
+  {
+   "key": "gemini-2.5-flash|thinking0",
+   "basis": "P8-8: thinking off; E8.5's configuration",
+   "record": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "config_tag": "thinking0",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {
+     "thinking_budget": 0
+    },
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "gpt-5-mini|default",
+   "basis": "E8.5's transfer configuration (temperature 1.0, provider default reasoning)",
+   "record": {
+    "provider": "openai",
+    "model": "gpt-5-mini",
+    "config_tag": "default",
+    "temperature_sent": 1.0,
+    "temperature_client": 1.0,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "gemini-2.5-flash-lite|default",
+   "basis": "provider default reasoning; harness temperature",
+   "record": {
+    "provider": "google",
+    "model": "gemini-2.5-flash-lite",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "gemini-2.5-pro|default",
+   "basis": "provider default reasoning; harness temperature",
+   "record": {
+    "provider": "google",
+    "model": "gemini-2.5-pro",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "gemini-3.5-flash|default",
+   "basis": "provider default reasoning; harness temperature",
+   "record": {
+    "provider": "google",
+    "model": "gemini-3.5-flash",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "gpt-5-nano|default",
+   "basis": "provider default reasoning; gpt-5 models accept only temperature 1",
+   "record": {
+    "provider": "openai",
+    "model": "gpt-5-nano",
+    "config_tag": "default",
+    "temperature_sent": 1.0,
+    "temperature_client": 1.0,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "gpt-5|default",
+   "basis": "provider default reasoning; gpt-5 models accept only temperature 1",
+   "record": {
+    "provider": "openai",
+    "model": "gpt-5",
+    "config_tag": "default",
+    "temperature_sent": 1.0,
+    "temperature_client": 1.0,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "gpt-5.4-mini|default",
+   "basis": "provider default reasoning; gpt-5 models accept only temperature 1",
+   "record": {
+    "provider": "openai",
+    "model": "gpt-5.4-mini",
+    "config_tag": "default",
+    "temperature_sent": 1.0,
+    "temperature_client": 1.0,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "gpt-5.5|default",
+   "basis": "provider default reasoning; gpt-5 models accept only temperature 1",
+   "record": {
+    "provider": "openai",
+    "model": "gpt-5.5",
+    "config_tag": "default",
+    "temperature_sent": 1.0,
+    "temperature_client": 1.0,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "claude-haiku-4-5-20251001|default",
+   "basis": "accepts a temperature (L3 ran it at 0.0, P8-12)",
+   "record": {
+    "provider": "anthropic",
+    "model": "claude-haiku-4-5-20251001",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": 64000,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "claude-sonnet-5|default",
+   "basis": "rejects any temperature (P8-12); adaptive thinking is the provider default",
+   "record": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "config_tag": "default",
+    "temperature_sent": null,
+    "temperature_client": null,
+    "options": {},
+    "max_tokens_client": 128000,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "claude-opus-5|default",
+   "basis": "rejects any temperature (P8-12); adaptive thinking is the provider default",
+   "record": {
+    "provider": "anthropic",
+    "model": "claude-opus-5",
+    "config_tag": "default",
+    "temperature_sent": null,
+    "temperature_client": null,
+    "options": {},
+    "max_tokens_client": 128000,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "claude-fable-5-1|default",
+   "basis": "not tested with a temperature; starts as Sonnet 5 / Opus 5 do",
+   "record": {
+    "provider": "anthropic",
+    "model": "claude-fable-5-1",
+    "config_tag": "default",
+    "temperature_sent": null,
+    "temperature_client": null,
+    "options": {},
+    "max_tokens_client": 4096,
+    "max_retries": 8,
+    "upstream_pinned": null,
+    "base_url": null
+   },
+   "error": ""
+  },
+  {
+   "key": "openrouter/anthropic/claude-haiku-4.5|default",
+   "basis": "Claude via OpenRouter, pinned to Anthropic's own API ($0.56/run). Its 252 direct-API runs are NOT pooled with this route's (addendum 6); they are reported as a route sensitivity",
+   "record": {
+    "provider": "openrouter",
+    "model": "openrouter/anthropic/claude-haiku-4.5",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": "Anthropic",
+    "base_url": "https://openrouter.ai/api/v1"
+   },
+   "error": ""
+  },
+  {
+   "key": "openrouter/deepseek/deepseek-v4-flash|default",
+   "basis": "open-weight ($0.040/run; Baidu and StreamLake tie on price, Baidu has the larger context: 1,048,576)",
+   "record": {
+    "provider": "openrouter",
+    "model": "openrouter/deepseek/deepseek-v4-flash",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": "Baidu",
+    "base_url": "https://openrouter.ai/api/v1"
+   },
+   "error": ""
+  },
+  {
+   "key": "openrouter/qwen/qwen3.7-flash|default",
+   "basis": "open-weight ($0.021/run; Alibaba is the only upstream, so the pin is inherent)",
+   "record": {
+    "provider": "openrouter",
+    "model": "openrouter/qwen/qwen3.7-flash",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": "Alibaba",
+    "base_url": "https://openrouter.ai/api/v1"
+   },
+   "error": ""
+  },
+  {
+   "key": "openrouter/z-ai/glm-4.7-flash|default",
+   "basis": "open-weight ($0.050/run; Venice and Cloudflare tie on price, Cloudflare has the larger context: 131,072). Its context is the roster's smallest -- ample for a stateless run of ~2,800 tokens per call, not for stateful arms",
+   "record": {
+    "provider": "openrouter",
+    "model": "openrouter/z-ai/glm-4.7-flash",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": "Cloudflare",
+    "base_url": "https://openrouter.ai/api/v1"
+   },
+   "error": ""
+  },
+  {
+   "key": "openrouter/qwen/qwen3-235b-a22b-2507|default",
+   "basis": "open-weight ($0.061/run; cheapest of ten upstreams, context 262,144)",
+   "record": {
+    "provider": "openrouter",
+    "model": "openrouter/qwen/qwen3-235b-a22b-2507",
+    "config_tag": "default",
+    "temperature_sent": 0.2,
+    "temperature_client": 0.2,
+    "options": {},
+    "max_tokens_client": null,
+    "max_retries": 8,
+    "upstream_pinned": "GMICloud",
+    "base_url": "https://openrouter.ai/api/v1"
+   },
+   "error": ""
+  }
+ ],
+ "generated_utc": "2026-09-12T07:58:00Z"
+}

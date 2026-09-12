@@ -1,0 +1,340 @@
+[bridge] 1/2 (11 s; ETA 11 s)
+[bridge] 2/2 (11 s; ETA 0 s)
+{
+ "registered": "PREREG_PHASE_9.md 3.1 (bridge)",
+ "rows": [
+  {
+   "reading": "shared",
+   "here": [
+    0.098,
+    0.0857302075571977,
+    0.11181109845692967
+   ],
+   "n_here": 2000,
+   "phase8_e2": [
+    0.09,
+    0.0576874489,
+    0.1377657188
+   ],
+   "n_phase8": 200,
+   "wilson_overlap": true
+  },
+  {
+   "reading": "model-specific",
+   "here": [
+    0.117,
+    0.10364199138514973,
+    0.13182646683229002
+   ],
+   "n_here": 2000,
+   "phase8_e2": [
+    0.135,
+    0.0944657045,
+    0.1892913837
+   ],
+   "n_phase8": 200,
+   "wilson_overlap": true
+  }
+ ],
+ "pass": true,
+ "inputs": {
+  "path_arm": 2.0648129894001198e-05,
+  "persona_path_arm": 0.00041384202974903834,
+  "replicate": 0.00016962651061304648,
+  "int_ratio": 5.171280077153665,
+  "rep_ratio": 1.3471132983263154,
+  "flash_limit": 0.0379822015358277,
+  "delta": 0.05,
+  "s_ma_p8": 0.03
+ },
+ "generated_utc": "2026-09-11T12:22:22Z"
+}
+[refdist] 24/864 conditions (9 s; ETA 310 s)
+[refdist] 48/864 conditions (10 s; ETA 176 s)
+[refdist] 72/864 conditions (13 s; ETA 142 s)
+[refdist] 96/864 conditions (16 s; ETA 126 s)
+[refdist] 120/864 conditions (17 s; ETA 106 s)
+[refdist] 144/864 conditions (19 s; ETA 97 s)
+[refdist] 168/864 conditions (23 s; ETA 96 s)
+[refdist] 192/864 conditions (27 s; ETA 96 s)
+[refdist] 216/864 conditions (29 s; ETA 88 s)
+[refdist] 240/864 conditions (32 s; ETA 83 s)
+[refdist] 264/864 conditions (37 s; ETA 83 s)
+[refdist] 288/864 conditions (42 s; ETA 84 s)
+[refdist] 312/864 conditions (44 s; ETA 78 s)
+[refdist] 336/864 conditions (47 s; ETA 74 s)
+[refdist] 360/864 conditions (52 s; ETA 73 s)
+[refdist] 384/864 conditions (59 s; ETA 74 s)
+[refdist] 408/864 conditions (61 s; ETA 68 s)
+[refdist] 432/864 conditions (64 s; ETA 64 s)
+[refdist] 456/864 conditions (70 s; ETA 63 s)
+[refdist] 480/864 conditions (77 s; ETA 62 s)
+[refdist] 504/864 conditions (80 s; ETA 57 s)
+[refdist] 528/864 conditions (85 s; ETA 54 s)
+[refdist] 552/864 conditions (93 s; ETA 52 s)
+[refdist] 576/864 conditions (102 s; ETA 51 s)
+[refdist] 600/864 conditions (105 s; ETA 46 s)
+[refdist] 624/864 conditions (111 s; ETA 43 s)
+[refdist] 648/864 conditions (121 s; ETA 40 s)
+[refdist] 672/864 conditions (133 s; ETA 38 s)
+[refdist] 696/864 conditions (136 s; ETA 33 s)
+[refdist] 720/864 conditions (143 s; ETA 29 s)
+[refdist] 744/864 conditions (154 s; ETA 25 s)
+[refdist] 768/864 conditions (169 s; ETA 21 s)
+[refdist] 792/864 conditions (173 s; ETA 16 s)
+[refdist] 816/864 conditions (181 s; ETA 11 s)
+[refdist] 840/864 conditions (193 s; ETA 6 s)
+[refdist] 864/864 conditions (209 s; ETA 0 s)
+[refdist] 864 conditions in 219 s
+[refdist_boot] 1/64 (13 s; ETA 790 s)
+[refdist_boot] 2/64 (13 s; ETA 389 s)
+[refdist_boot] 3/64 (13 s; ETA 256 s)
+[refdist_boot] 4/64 (13 s; ETA 190 s)
+[refdist_boot] 5/64 (13 s; ETA 153 s)
+[refdist_boot] 6/64 (13 s; ETA 125 s)
+[refdist_boot] 7/64 (18 s; ETA 149 s)
+[refdist_boot] 8/64 (18 s; ETA 128 s)
+[refdist_boot] 9/64 (37 s; ETA 228 s)
+[refdist_boot] 10/64 (38 s; ETA 203 s)
+[refdist_boot] 11/64 (38 s; ETA 181 s)
+[refdist_boot] 12/64 (38 s; ETA 166 s)
+[refdist_boot] 13/64 (42 s; ETA 166 s)
+[refdist_boot] 14/64 (43 s; ETA 154 s)
+[refdist_boot] 15/64 (44 s; ETA 145 s)
+[refdist_boot] 16/64 (44 s; ETA 133 s)
+[refdist_boot] 17/64 (49 s; ETA 135 s)
+[refdist_boot] 18/64 (49 s; ETA 126 s)
+[refdist_boot] 19/64 (50 s; ETA 119 s)
+[refdist_boot] 20/64 (51 s; ETA 111 s)
+[refdist_boot] 21/64 (55 s; ETA 113 s)
+[refdist_boot] 22/64 (56 s; ETA 106 s)
+[refdist_boot] 23/64 (63 s; ETA 113 s)
+[refdist_boot] 24/64 (64 s; ETA 107 s)
+[refdist_boot] 25/64 (78 s; ETA 121 s)
+[refdist_boot] 26/64 (79 s; ETA 116 s)
+[refdist_boot] 27/64 (83 s; ETA 114 s)
+[refdist_boot] 28/64 (84 s; ETA 108 s)
+[refdist_boot] 29/64 (91 s; ETA 110 s)
+[refdist_boot] 30/64 (92 s; ETA 104 s)
+[refdist_boot] 31/64 (93 s; ETA 99 s)
+[refdist_boot] 32/64 (93 s; ETA 93 s)
+[refdist_boot] 33/64 (99 s; ETA 93 s)
+[refdist_boot] 34/64 (99 s; ETA 88 s)
+[refdist_boot] 35/64 (100 s; ETA 83 s)
+[refdist_boot] 36/64 (101 s; ETA 79 s)
+[refdist_boot] 37/64 (105 s; ETA 77 s)
+[refdist_boot] 38/64 (106 s; ETA 73 s)
+[refdist_boot] 39/64 (106 s; ETA 68 s)
+[refdist_boot] 40/64 (110 s; ETA 66 s)
+[refdist_boot] 41/64 (133 s; ETA 75 s)
+[refdist_boot] 42/64 (134 s; ETA 70 s)
+[refdist_boot] 43/64 (138 s; ETA 67 s)
+[refdist_boot] 44/64 (139 s; ETA 63 s)
+[refdist_boot] 45/64 (140 s; ETA 59 s)
+[refdist_boot] 46/64 (142 s; ETA 56 s)
+[refdist_boot] 47/64 (151 s; ETA 55 s)
+[refdist_boot] 48/64 (152 s; ETA 51 s)
+[refdist_boot] 49/64 (153 s; ETA 47 s)
+[refdist_boot] 50/64 (154 s; ETA 43 s)
+[refdist_boot] 51/64 (161 s; ETA 41 s)
+[refdist_boot] 52/64 (163 s; ETA 38 s)
+[refdist_boot] 53/64 (168 s; ETA 35 s)
+[refdist_boot] 54/64 (169 s; ETA 31 s)
+[refdist_boot] 55/64 (170 s; ETA 28 s)
+[refdist_boot] 56/64 (179 s; ETA 26 s)
+[refdist_boot] 57/64 (203 s; ETA 25 s)
+[refdist_boot] 58/64 (206 s; ETA 21 s)
+[refdist_boot] 59/64 (231 s; ETA 20 s)
+[refdist_boot] 60/64 (231 s; ETA 15 s)
+[refdist_boot] 61/64 (231 s; ETA 11 s)
+[refdist_boot] 62/64 (231 s; ETA 7 s)
+[refdist_boot] 63/64 (231 s; ETA 4 s)
+[refdist_boot] 64/64 (232 s; ETA 0 s)
+ M  S  tau_label   tau  shared  hetero  beta  n_datasets    B  R3_reject  R3_reject_lo  R3_reject_hi  R3_reject_prime  R3_reject_prime_lo  R3_reject_prime_hi  R3_coverage  R3_min_attainable_p
+ 3 19          0 0.000    True   False  0.00        1000 1999      0.052         0.040         0.068            0.004               0.002               0.010        0.948                  0.0
+ 3 19          0 0.000    True   False  0.05        1000 1999      1.000         0.996         1.000            0.998               0.993               0.999        0.938                  0.0
+ 3 19          0 0.000   False   False  0.00        1000 1999      0.005         0.002         0.012            0.000               0.000               0.004        0.995                  0.0
+ 3 19          0 0.000   False   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.993                  0.0
+ 3 19 p8_sma0.03 0.042    True   False  0.00        1000 1999      0.195         0.172         0.221            0.093               0.077               0.113        0.805                  0.0
+ 3 19 p8_sma0.03 0.042    True   False  0.05        1000 1999      0.663         0.633         0.692            0.492               0.461               0.523        0.795                  0.0
+ 3 19 p8_sma0.03 0.042   False   False  0.00        1000 1999      0.225         0.200         0.252            0.089               0.073               0.108        0.775                  0.0
+ 3 19 p8_sma0.03 0.042   False   False  0.05        1000 1999      0.680         0.650         0.708            0.491               0.460               0.522        0.769                  0.0
+ 3 93          0 0.000    True   False  0.00        1000 1999      0.042         0.031         0.056            0.001               0.000               0.006        0.958                  0.0
+ 3 93          0 0.000    True   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.959                  0.0
+ 3 93          0 0.000   False   False  0.00        1000 1999      0.003         0.001         0.009            0.000               0.000               0.004        0.997                  0.0
+ 3 93          0 0.000   False   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.990                  0.0
+ 3 93 p8_sma0.03 0.042    True   False  0.00        1000 1999      0.249         0.223         0.277            0.158               0.137               0.182        0.751                  0.0
+ 3 93 p8_sma0.03 0.042    True   False  0.05        1000 1999      0.699         0.670         0.727            0.606               0.575               0.636        0.750                  0.0
+ 3 93 p8_sma0.03 0.042   False   False  0.00        1000 1999      0.248         0.222         0.276            0.170               0.148               0.195        0.752                  0.0
+ 3 93 p8_sma0.03 0.042   False   False  0.05        1000 1999      0.714         0.685         0.741            0.614               0.583               0.644        0.731                  0.0
+ 6 19          0 0.000    True   False  0.00        1000 1999      0.068         0.054         0.085            0.003               0.001               0.009        0.932                  0.0
+ 6 19          0 0.000    True   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.928                  0.0
+ 6 19          0 0.000   False   False  0.00        1000 1999      0.012         0.007         0.021            0.000               0.000               0.004        0.988                  0.0
+ 6 19          0 0.000   False   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.993                  0.0
+ 6 19 p8_sma0.03 0.042    True   False  0.00        1000 1999      0.101         0.084         0.121            0.020               0.013               0.031        0.899                  0.0
+ 6 19 p8_sma0.03 0.042    True   False  0.05        1000 1999      0.793         0.767         0.817            0.498               0.467               0.529        0.879                  0.0
+ 6 19 p8_sma0.03 0.042   False   False  0.00        1000 1999      0.091         0.075         0.110            0.027               0.019               0.039        0.909                  0.0
+ 6 19 p8_sma0.03 0.042   False   False  0.05        1000 1999      0.825         0.800         0.847            0.555               0.524               0.586        0.880                  0.0
+ 6 93          0 0.000    True   False  0.00        1000 1999      0.042         0.031         0.056            0.001               0.000               0.006        0.958                  0.0
+ 6 93          0 0.000    True   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.952                  0.0
+ 6 93          0 0.000   False   False  0.00        1000 1999      0.003         0.001         0.009            0.000               0.000               0.004        0.997                  0.0
+ 6 93          0 0.000   False   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.994                  0.0
+ 6 93 p8_sma0.03 0.042    True   False  0.00        1000 1999      0.143         0.123         0.166            0.040               0.030               0.054        0.857                  0.0
+ 6 93 p8_sma0.03 0.042    True   False  0.05        1000 1999      0.836         0.812         0.858            0.605               0.574               0.635        0.868                  0.0
+ 6 93 p8_sma0.03 0.042   False   False  0.00        1000 1999      0.120         0.101         0.142            0.037               0.027               0.051        0.880                  0.0
+ 6 93 p8_sma0.03 0.042   False   False  0.05        1000 1999      0.830         0.805         0.852            0.600               0.569               0.630        0.860                  0.0
+ 8 19          0 0.000    True   False  0.00        1000 1999      0.072         0.058         0.090            0.008               0.004               0.016        0.928                  0.0
+ 8 19          0 0.000    True   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.941                  0.0
+ 8 19          0 0.000   False   False  0.00        1000 1999      0.004         0.002         0.010            0.000               0.000               0.004        0.996                  0.0
+ 8 19          0 0.000   False   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.992                  0.0
+ 8 19 p8_sma0.03 0.042    True   False  0.00        1000 1999      0.099         0.082         0.119            0.012               0.007               0.021        0.901                  0.0
+ 8 19 p8_sma0.03 0.042    True   False  0.05        1000 1999      0.877         0.855         0.896            0.568               0.537               0.598        0.906                  0.0
+ 8 19 p8_sma0.03 0.042   False   False  0.00        1000 1999      0.095         0.078         0.115            0.024               0.016               0.035        0.905                  0.0
+ 8 19 p8_sma0.03 0.042   False   False  0.05        1000 1999      0.901         0.881         0.918            0.606               0.575               0.636        0.914                  0.0
+ 8 93          0 0.000    True   False  0.00        1000 1999      0.042         0.031         0.056            0.003               0.001               0.009        0.958                  0.0
+ 8 93          0 0.000    True   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.963                  0.0
+ 8 93          0 0.000   False   False  0.00        1000 1999      0.003         0.001         0.009            0.000               0.000               0.004        0.997                  0.0
+ 8 93          0 0.000   False   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.997                  0.0
+ 8 93 p8_sma0.03 0.042    True   False  0.00        1000 1999      0.109         0.091         0.130            0.027               0.019               0.039        0.891                  0.0
+ 8 93 p8_sma0.03 0.042    True   False  0.05        1000 1999      0.913         0.894         0.929            0.656               0.626               0.685        0.897                  0.0
+ 8 93 p8_sma0.03 0.042   False   False  0.00        1000 1999      0.114         0.096         0.135            0.032               0.023               0.045        0.886                  0.0
+ 8 93 p8_sma0.03 0.042   False   False  0.05        1000 1999      0.911         0.892         0.927            0.688               0.659               0.716        0.886                  0.0
+12 19          0 0.000    True   False  0.00        1000 1999      0.058         0.045         0.074            0.002               0.001               0.007        0.942                  0.0
+12 19          0 0.000    True   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.940                  0.0
+12 19          0 0.000   False   False  0.00        1000 1999      0.002         0.001         0.007            0.000               0.000               0.004        0.998                  0.0
+12 19          0 0.000   False   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.993                  0.0
+12 19 p8_sma0.03 0.042    True   False  0.00        1000 1999      0.065         0.051         0.082            0.008               0.004               0.016        0.935                  0.0
+12 19 p8_sma0.03 0.042    True   False  0.05        1000 1999      0.955         0.940         0.966            0.690               0.661               0.718        0.923                  0.0
+12 19 p8_sma0.03 0.042   False   False  0.00        1000 1999      0.069         0.055         0.086            0.008               0.004               0.016        0.931                  0.0
+12 19 p8_sma0.03 0.042   False   False  0.05        1000 1999      0.974         0.962         0.982            0.776               0.749               0.801        0.940                  0.0
+12 93          0 0.000    True   False  0.00        1000 1999      0.056         0.043         0.072            0.002               0.001               0.007        0.944                  0.0
+12 93          0 0.000    True   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.946                  0.0
+12 93          0 0.000   False   False  0.00        1000 1999      0.003         0.001         0.009            0.000               0.000               0.004        0.997                  0.0
+12 93          0 0.000   False   False  0.05        1000 1999      1.000         0.996         1.000            1.000               0.996               1.000        0.998                  0.0
+12 93 p8_sma0.03 0.042    True   False  0.00        1000 1999      0.074         0.059         0.092            0.008               0.004               0.016        0.926                  0.0
+12 93 p8_sma0.03 0.042    True   False  0.05        1000 1999      0.976         0.965         0.984            0.813               0.788               0.836        0.914                  0.0
+12 93 p8_sma0.03 0.042   False   False  0.00        1000 1999      0.093         0.077         0.113            0.014               0.008               0.023        0.907                  0.0
+12 93 p8_sma0.03 0.042   False   False  0.05        1000 1999      0.982         0.972         0.989            0.838               0.814               0.860        0.921                  0.0
+{
+ "2": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 0.7228,
+   "R2": 0.0063,
+   "R4": 0.14
+  },
+  "recommended": null
+ },
+ "3": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false,
+   "R3": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 0.8191,
+   "R2": 0.0317,
+   "R4": 0.0539
+  },
+  "recommended": null
+ },
+ "4": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 0.9114,
+   "R2": 0.11,
+   "R4": 0.1227
+  },
+  "recommended": null
+ },
+ "5": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 0.9639,
+   "R2": 0.2927,
+   "R4": 0.3051
+  },
+  "recommended": null
+ },
+ "6": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false,
+   "R3": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 0.9871,
+   "R2": 0.5621,
+   "R4": 0.5726
+  },
+  "recommended": null
+ },
+ "8": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false,
+   "R3": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 0.9992,
+   "R2": 0.9181,
+   "R4": 0.9194
+  },
+  "recommended": null
+ },
+ "10": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 1.0,
+   "R2": 0.9936,
+   "R4": 0.9937
+  },
+  "recommended": null
+ },
+ "12": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false,
+   "R3": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 1.0,
+   "R2": 0.9999,
+   "R4": 0.9999
+  },
+  "recommended": null
+ },
+ "14": {
+  "holds_size": {
+   "R1": false,
+   "R2": false,
+   "R4": false
+  },
+  "power_alpha_prime_at_half_limit_S93": {
+   "R1": 1.0,
+   "R2": 1.0,
+   "R4": 1.0
+  },
+  "recommended": null
+ }
+}

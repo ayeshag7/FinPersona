@@ -1,0 +1,1389 @@
+{
+ "name": "manifest_openrouter_haiku",
+ "kind": "pilot",
+ "subdir": "pilot",
+ "ledger_dir": "e9_2",
+ "T": 200,
+ "configs": [
+  "openrouter/anthropic/claude-haiku-4.5|default"
+ ],
+ "cells": [
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3008,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3005,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3006,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3007,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3008,
+   "rep": 0
+  }
+ ],
+ "seeds": [
+  3001,
+  3002,
+  3003,
+  3004,
+  3005,
+  3006,
+  3007,
+  3008
+ ],
+ "registered": "PREREG_PHASE_9.md 2 truncated by PREREG_PHASE_9_ADDENDUM.md 10; DECISION_LOG P9-8",
+ "written_utc": "2026-09-12T11:13:56Z",
+ "fingerprint": {
+  "prompt_hash": {
+   "openrouter/anthropic/claude-haiku-4.5|default|ENTJ|memory": "51fb0e0c63d663a0",
+   "openrouter/anthropic/claude-haiku-4.5|default|ENTJ|static": "a718a154a03f3123",
+   "openrouter/anthropic/claude-haiku-4.5|default|INTJ|memory": "d33a9291c458ce9f",
+   "openrouter/anthropic/claude-haiku-4.5|default|INTJ|static": "ec58a7feadbbe7e4",
+   "openrouter/anthropic/claude-haiku-4.5|default|ISFJ|memory": "0a06e9f0f3732ce4",
+   "openrouter/anthropic/claude-haiku-4.5|default|ISFJ|static": "2cf22a92f78cb5d0"
+  },
+  "Env_Code_Hash": "03ce96aadef0f608",
+  "sources_sha256_lf": {
+   "agent/v2_agent.py": "11455d89aeb926223932cd11ca19a9722e482e7fe6962ca83ac67a50cefa92c8",
+   "agent/v2_prompts.py": "67cef709c3d6553c5bebe84c8a442fa48541a6acf3836bb345124f8472330270",
+   "agent/render.py": "28404eb028db237665c960864b99d08e481ddb38845b33fccc26a5940cfb8cb4",
+   "agent/stateful_agent.py": "e15bd9f936d27ea70b47443b2b96b2727ff3bf7055d9f1ad49c1bc80468feb73",
+   "simulation/runner_v2.py": "a3f92401c38beb6e2adb0918a1901e514b4577ccaf6c36a8d215245352ceefa1",
+   "simulation/portfolio_v2.py": "130c46522356308a3d4e59390fb92dea73331610d0d5a75c23ae38f8d32ef54e",
+   "experiments/arms_v2.py": "66ba7e7928e395bb0ba4bda5c3a8de67d4f68c80a651902e9cc88d0754a0f029",
+   "tools/phase9/e9_roster.py": "70186edcce983d50e3e59c00c075497a5c1e4eceb5da4dd580fd4d11a2b28f55"
+  }
+ }
+}

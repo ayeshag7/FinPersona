@@ -1,0 +1,17 @@
+scored 3289 {'claude-fable-5-1|default': 93, 'claude-haiku-4-5-20251001|default': 252, 'claude-opus-5|default': 110, 'claude-sonnet-5|default': 158, 'gemini-2.5-flash-lite|default': 384, 'gemini-2.5-pro|default': 240, 'gemini-3.5-flash|default': 384, 'gpt-5-mini|default': 331, 'gpt-5-nano|default': 238, 'gpt-5.4-mini|default': 384, 'gpt-5.5|default': 384, 'gpt-5|default': 331}
+                                   sigma_d_R1  sigma_d_R1_limit90  df_d
+Model                                                                  
+gpt-5-nano|default                     0.0150              0.0165   103
+claude-haiku-4-5-20251001|default      0.0215              0.0235   116
+gpt-5|default                          0.0311              0.0338   130
+gemini-2.5-flash|thinking0             0.0348              0.0380    84
+gpt-5-mini|default                     0.0379              0.0413   130
+gemini-2.5-flash-lite|default          0.0415              0.0446   180
+gpt-5.5|default                        0.0533              0.0572   180
+gemini-3.5-flash|default               0.0547              0.0588   180
+gemini-2.5-pro|default                 0.0564              0.0620   105
+gpt-5.4-mini|default                   0.0670              0.0720   180
+claude-sonnet-5|default                0.0655              0.0745    60
+claude-opus-5|default                  0.0858              0.1003    42
+claude-fable-5-1|default               0.0886              0.1082    27
+{'complete': True, 'missing_models': [], 'plugin_sigma_d_band_mas': 0.10815281778284584, 'plugin_model': 'claude-fable-5-1|default', 'stage1_seeds_appA': 153, 'stage1_seeds_paired_correct': 77}

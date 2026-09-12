@@ -1,0 +1,11 @@
+{
+ "registered": "PREREG_PHASE_9.md 1.3",
+ "flat_L5_full_level_free_mcr_0.05": 0.07700798157251569,
+ "published": 0.077,
+ "row_a_pass": true,
+ "rows_compared_with_e6_16a": 2400,
+ "worst_abs_diff": 3.608224830031759e-16,
+ "row_b_pass": true,
+ "pass": true,
+ "generated_utc": "2026-09-11T12:34:09Z"
+}

@@ -1,0 +1,72 @@
+{
+ "registered": "PREREG_PHASE_9.md 2",
+ "reference_seeds": 93,
+ "stage1_runs_at_reference": 5952,
+ "G_ref": 4809.50531011111,
+ "e8_5_shape": {
+  "runs": 576,
+  "pairs": 96,
+  "df_d": 84,
+  "df_rep": 384,
+  "f2_at_df_d": 1.23754931458065
+ },
+ "table": [
+  {
+   "seeds_per_cell": 4,
+   "runs": 96,
+   "pairs": 48,
+   "df_d": 36,
+   "f2": 1.4038754828,
+   "f": 1.1848525152,
+   "expected_total_runs_per_model": 6847.9465893718
+  },
+  {
+   "seeds_per_cell": 8,
+   "runs": 192,
+   "pairs": 96,
+   "df_d": 84,
+   "f2": 1.2375493146,
+   "f": 1.1124519381,
+   "expected_total_runs_per_model": 6144.0
+  },
+  {
+   "seeds_per_cell": 12,
+   "runs": 288,
+   "pairs": 144,
+   "df_d": 132,
+   "f2": 1.182241477,
+   "f": 1.087309283,
+   "expected_total_runs_per_model": 5973.9966613413
+  },
+  {
+   "seeds_per_cell": 16,
+   "runs": 384,
+   "pairs": 192,
+   "df_d": 180,
+   "f2": 1.1527183654,
+   "f": 1.0736472258,
+   "expected_total_runs_per_model": 5928.0050994077
+  },
+  {
+   "seeds_per_cell": 24,
+   "runs": 576,
+   "pairs": 288,
+   "df_d": 276,
+   "f2": 1.120352616,
+   "f": 1.0584671067,
+   "expected_total_runs_per_model": 5964.3418559076
+  },
+  {
+   "seeds_per_cell": 32,
+   "runs": 768,
+   "pairs": 384,
+   "df_d": 372,
+   "f2": 1.1022218812,
+   "f": 1.0498675541,
+   "expected_total_runs_per_model": 6069.1419907828
+  }
+ ],
+ "chosen_seeds_per_cell": 16,
+ "chosen_runs_per_model": 384,
+ "generated_utc": "2026-09-11T16:02:34Z"
+}

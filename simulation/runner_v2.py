@@ -67,6 +67,10 @@ class RunConfig:
     # v2.1 Phase 8 (PREREG_PHASE_8.md 1.1, 1.6): both default to the behaviour every published run used
     harness_version: str = "v2"           # v2 | v2_1 (stateful arm corrections E8.1(a)-(d))
     placebo_version: str = "v2"           # v2 | v2_1 (the per-persona matched directive placebo, E8.1(e))
+    # v2.1 Phase 9 (PREREG_PHASE_8_ADDENDUM.md 9, carried): the options the run's client was built with -- the provider,
+    # the configuration tag, the temperature actually sent (None = none sent), the thinking / reasoning settings.  None
+    # (the default) leaves the log unchanged; a dict is written to every row as the JSON column `Provider_Options`.
+    provider_options: Optional[Dict[str, Any]] = None
     initial_value: float = 10000.0
     output_dir: str = "results_v2"
     env_config: Dict[str, Any] = field(default_factory=dict)
@@ -192,6 +196,8 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
             row.update({"Context_Mode": "stateless", "Context_Tokens": None, "Mandate_Offset_Tokens": None, "Context_Turns": 0,
                         "Summary_Calls": 0, "Summary_Mentions_Mandate": False, "Summary_Text": ""})
         row.update(prov)
+        if cfg.provider_options is not None:          # v2.1 Phase 9: absent from a log run without provider options
+            row["Provider_Options"] = json.dumps(cfg.provider_options, sort_keys=True, default=str)
         rows.append(row)
         obs, done = env.step()
         if done:
