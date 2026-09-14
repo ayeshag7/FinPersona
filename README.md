@@ -34,6 +34,30 @@ before spending money (section 3).
 
 Files under `results_v2/` (the runs) are git-ignored.
 
+### Why some paths and modules still say v2, phase 6 or phase 8
+
+The finalised environment is the v2.1 one, and it lives under `envs/v2/`: v2.1 re-fitted every parameter inside the
+v2 module tree rather than forking a new one, so the path name is the module's name, not an older version. The v1
+generator is not on this branch at all. Three other names look like history and are not:
+
+- **Superseded engines inside the frozen environment.** `envs/v2/mispricing.py` still implements the
+  Franke-Westerhoff and Pruna mispricing engines, and four `params/burn_in_states_*.npz` files back them. The engine
+  that runs is the fitted `ar1_fit`, named in `params/mispricing.json`; the others are inert switches kept as
+  sensitivity arms. `params/fw_single_stock.REJECTED.json` is deliberate too: the loader refuses to start an engine
+  from a rejected fit, and the file's presence is what that guard is tested against. All of this sits inside the 30
+  files of the freeze manifest, so removing any of it would change `Env_Code_Hash` and break the equality with
+  `main` that this branch exists to preserve.
+- **`tools/phase8/`.** Three modules, imported directly by the grid tooling and its test: the metric names and seed
+  counts the scorer uses, the runner's usage recorder, and the fake client the grid test runs against. They are
+  dependencies of the grid, not leftover analysis.
+- **`evaluation/params/phase6_criteria.json`, `tests/phase8_golden.json`, `tests/test_v2_1_phase_3.py`.** The
+  criteria file is read by the audit modules the environment exposes and by `simulation/provenance.py`; the golden
+  record is what `tools/phase8/e8_0_golden.py` compares the harness against, so that a harness edit cannot pass
+  unnoticed; the test covers the volatility block.
+
+The analysis tooling of Phases 0 to 9, the reports, the pre-registrations and the decision log are all absent, as is
+every phase result file except the two sizing inputs the grid reads.
+
 ## 2. Setup
 
 Python 3.11 or newer. The pilots ran on Python 3.13.13; `requirements.txt` pins the exact package versions they
@@ -54,8 +78,9 @@ copy .env.example .env            # then fill in the keys (cp on Linux or macOS)
 Run these in order. Each one takes seconds to a minute and makes no paid call.
 
 1. **Tests.** `python -m pytest -q`
-   Expected: every test passes; two are skipped (the grid-manifest check skips until manifests exist; one
-   environment test skips on a missing optional fixture). At the cut this was 49 passed, 2 skipped.
+   Expected: every test passes, with one or two skipped (the grid-manifest check skips until manifests exist; one
+   environment test skips when an optional fixture is absent). At the cut this was 49 passed and 2 skipped; a
+   checkout carrying the optional fixture gives 50 passed and 1 skipped. A failure, never a skip, is the signal.
    `tests/test_v2_freeze.py` proves the environment code hash equals the frozen manifest, which is the same file
    `main` carries; if it fails, the environment has been changed and every run's `Env_Code_Hash` will differ from
    the published one.
@@ -96,9 +121,14 @@ P9-8 and P9-10. In short:
   full roster would have given.
 - **Concurrency**: at most 15 in-flight calls per model (P9-1). The runner refuses more, across processes.
 
-**Two decisions are still open for the team and can change this design** (PHASE_9_REPORT.md section 5 on `main`):
-which reading of the sign criterion the robustness table uses, and the roster size M. Do not start paid grid runs
-until they are settled; the manifest is cheap to rebuild afterwards.
+**The two decisions Phase 9 referred to the team have since been taken** (they were open at the cut; PHASE_9_REPORT.md
+section 5 on `main` records why each was referred). The robustness table uses the **significant-only reading of the
+sign criterion** as its headline, with the plain reading of the plan's sentence reported beside it: on the simulated
+conditions the plain reading declares a conclusion level-dependent up to 0.241 of the time when the effect is
+identical at every level, while the significant-only reading of the same sentence does so at most 0.008 of the time.
+The roster is the **twelve piloted configurations**, rising to fourteen if Qwen3.7 Flash and GLM 4.7 Flash can be
+piloted: criteria (ii) and (iii) turn on the number of models and not on the seeds, so the grid runs on the largest
+roster the budget allows. Neither decision changes the manifests below, which are built from the twelve.
 
 ### Cost and wall-clock, from measured runs
 

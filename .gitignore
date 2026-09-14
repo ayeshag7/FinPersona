@@ -61,3 +61,9 @@ docs/env_v2/generated/v2_1/e6_1/cache/
 # tools/phase9/e9_3_simulate.py from the registered streams; its SUMMARIES (criteria.csv/json,
 # refdist*.csv/json, rule_check.*) are committed and are what the report cites
 docs/env_v2/generated/v2_1/e9_3/_cache/
+
+# v2.1 Phase 9 grid outputs on this branch: the manifests, ledgers, status and scored rows the runner writes
+# (the runs themselves are under results_v2/, above). The two sizing inputs the grid READS, e9_2/ and e8_5/,
+# are tracked and must stay so.
+docs/env_v2/generated/v2_1/e9_4/
+docs/env_v2/generated/v2_1/e9_0/
