@@ -1,187 +1,194 @@
-# <img width="80" alt="FinPersona Logo" src="https://github.com/user-attachments/assets/5e09882c-f303-4fff-a112-438520448771" /> FinPersona-Bench: A Benchmark for Longitudinal Psychometric Stability of Autonomous Financial Agents
+# FinPersona synthetic market environment v2.1: the grid runner branch
 
-FinPersona-Bench is a simulation benchmark for measuring **Mandate Salience Decay (MSD)** — the tendency of LLM-based financial agents to gradually drift from their behavioral mandates as market context accumulates over long horizons. A synthetic market decouples observable price from hidden fundamental value, enabling falsifiable evaluation of 18 frontier and open-source LLMs across three market regimes and three behavioral profiles.
+This branch holds only what is needed to build, run, verify and score the main grid experiments (E9.4) of the
+v2.1 programme: the finalised synthetic market environment, the LLM harness, the paid-call runner and the grid
+tooling. It was cut from `main` at commit `470bc5c` on 14 September 2026.
 
----
+Everything else lives on `main` and is deliberately absent here: the phase reports and pre-registrations, the
+decision log, the analysis tools of Phases 0 to 9, the v1 environment, old results and the third-party data panel.
+When you need the reasoning behind a number, read `main`; when you need to run the grid, stay here.
 
-## Environment v2 rebuild (Aug 2026)
+**The environment code on this branch is byte-identical to `main`.** Two checks prove it, and you should run both
+before spending money (section 3).
 
-The synthetic market, harness and evaluation layer are being rebuilt per
-`docs/FinPersona-Bench_Synthetic_Environment_v2_Plan_Aug2026` (reviewer-identified defects: the P/E leak of the hidden
-value, fixed phase indices, no volatility clustering, inert crash severity, 100%-cash start, asymmetric BUY/SELL).
-The v1 generator used for every result below is frozen at tag `v1-env-freeze` (`envs/v1/`). The v2 generator lives in
-`envs/v2/` behind the same `envs/synthetic_market.py` API; the v2 harness is `agent/v2_agent.py` +
-`simulation/runner_v2.py` + `experiments/arms_v2.py`; the evaluation layer is `evaluation/`. Status, validation
-tables, decisions and open issues: **`docs/env_v2/`** (start with `docs/env_v2/README.md` and `E1_E4_STATUS.md`).
+## 1. What is in this branch
 
-## Architecture
+| path | what it is |
+|---|---|
+| `envs/synthetic_market.py`, `envs/v2/` | the synthetic market environment: the calibrated generator (GJR-GARCH-t volatility with jumps, an AR(1) mispricing process, scripted events and phases, the observables), and its fitted parameters in `envs/v2/params/*.json` |
+| `agent/` | the LLM agent (`v2_agent.py` stateless, `stateful_agent.py` the memory arms), the prompts, the persona mandates (`personas/mbti_profiles.json`), the harness settings (`params/harness.json`) |
+| `simulation/` | the day loop (`runner_v2.py`), the portfolio, dividends, and `provenance.py`, which stamps every run with the environment code hash |
+| `experiments/arms_v2.py` | `build_config`: arms, factors and their defaults; `experiments/params/inference.json`: the statistical settings in force |
+| `evaluation/` | scoring (`metrics_v2.score_run`), the mandate bands (`targets.py`), the scoring parameters (`params/scoring.json`) and the audit modules the environment exposes |
+| `tools/phase9/e9_roster.py` | the model configurations (the roster) and how each client is built, including the OpenRouter pins |
+| `tools/phase9/e9_runner.py` | the paid-call runner: fingerprinting, per-run checkpointing, the 15-call concurrency cap, the contamination rule, per-model ledgers |
+| `tools/phase9/e9_4_grid.py` | the grid: `manifest`, `status`, `verify`, `score` |
+| `tools/phase9/e9_launch.py` | starts one runner process per model for a manifest |
+| `tools/phase9/e9_2_pilot.py` | the pilot scoring and sizing that produced `sizing.json` (kept so the seed count can be re-derived) |
+| `tools/stats_v2.py` | the model-level statistics: the R5 reference distribution, BH within a family, BY across families, the two-way cluster bootstrap |
+| `tools/path_hashes.py` | hashes 95 fixed environment configurations; with the reference file below it proves the environment is unchanged |
+| `docs/env_v2/generated/v2_1/e9_2/sizing.json` | the pilot's result: the plug-in sigma_d and the seed count the grid uses (120) |
+| `docs/env_v2/generated/v2_1/e8_5/` | the Phase 8 inputs that sizing read |
+| `docs/env_v2/generated/v2_1/path_hashes_phase9_after.json` | the frozen path-hash reference |
+| `tests/` | the environment, harness, freeze and grid tests (section 3) |
 
-### 1. Market Environment (`envs/`)
+Files under `results_v2/` (the runs) are git-ignored.
 
-Generates synthetic financial data with three scenario types:
-- **`flat`** — Regime-based GARCH-like volatility clustering; low signal-to-noise baseline.
-- **`bull_trap`** — Multi-phase bubble: legitimate rise → mania → blow-off top.
-- **`crash`** — Panic selling: fundamental deterioration → oversold panic → stabilization.
+## 2. Setup
 
-Each scenario exposes per-step observables (price, SMA20/SMA60, RSI14, P/E, implied volatility, volume ratio, news sentiment) and a hidden `Fundamental_Value` used for rationality scoring.
+Python 3.11 or newer. The pilots ran on Python 3.13.13; `requirements.txt` pins the exact package versions they
+ran on, and `pyproject.toml` carries the same packages as lower bounds.
 
-### 2. Agent Layer (`agent/`)
-
-Four agent types built on a shared `BaseAgent` interface:
-
-| Agent | Description |
-|-------|-------------|
-| `StaticAgent` | Baseline. Persona injected once at init; never re-injected. |
-| `ActiveMemoryAgent` | Extends Static with **Periodic Mandate Retrieval**: core persona mandate re-injected at every decision step. |
-| `PlaceboAgent` | Re-injects semantically irrelevant boilerplate each step — matches the token-overhead of memory without reinstating the mandate. Used as a three-arm control. |
-| `InjectionFreqAgent` | Parameterized injection schedule (k ∈ {1, 5, 25, 100, ∞}) with a per-step `Mandate_Injected` audit column. |
-
-Structured output (action, quantity, rationale) is enforced via **Pydantic** schemas. 
-
-Personality profiles are defined in `agent/personas/mbti_profiles.json` and cover all 16 MBTI types plus `EXPERT` and `NONE` baselines, and the four OCEAN archetypes (`O1_conservative`, `O2_aggressive`, `O3_conservative`, `O3_aggressive`).
-
-### 3. Simulation & Execution (`simulation/`)
-
-- **`runner.py`** — Main orchestrator. Connects environment to agent, manages the trading loop (100–800 days), and logs portfolio state + market observables daily to CSV.
-- **`portfolio_tracker.py`** — Accounting module tracking cash, shares, mark-to-market value, and a full transaction log.
-
-### 4. Benchmarking (`experiments/run_experiments.py`)
-
-Full experimental matrix with concurrent execution (up to 10 parallel workers):
-- **Personas:** 3 primary (ENTJ, ISFJ, INTJ); expandable to all 16 MBTI types
-- **Scenarios:** `flat`, `bull_trap`, `crash` (+ crash sensitivity at discounts 0.85/0.92/0.95)
-- **Agent types:** `static`, `memory`
-- **Seeds:** 5 (42, 123, 456, 789, 999)
-- **Checkpointing:** Completed runs are tracked in `checkpoint.txt` so experiments are fully resumable.
-
-### 5. Analysis (`analysis_may/`)
-
-- **`numerical_analysis.py`** — Computes financial metrics (Return %, Max Drawdown), rationality score, stereotype metrics (trade count), drift (MAS Deviation from `cideal`), and bubble participation (Avg Buy P/E). Produces per-metric, per-model, and per-persona breakdowns with Wilcoxon signed-rank significance tests.
-- **`analysis_may/outputs/`** contains all generated figures and tables:
-  - `figures/hero_figure.{png,pdf}` — Oral-grade 3-panel linguistic decay curve with 95% CI bands and effect-size annotations.
-  - `effect_sizes/effect_size_table.csv` + `forest_plot.png` — Paired Cliff's δ and Hedges' g for all scenario × metric cells.
-  - `injection_freq/injection_freq_curve.{csv,png,pdf}` — Adherence vs. injection frequency Pareto curve.
-  - `persona_classifier/decay_curves.png` + `drift_scores.csv` — DistilBERT classifier adherence trajectories over the simulation horizon.
-  - `rationale_linguistic/lcr_aggregate.csv` — Lexical Conflict Rate analysis on crash scenario.
-
-### 6. Persona Classifier (`finpersona_classifier_model/`)
-
-A DistilBERT (`distilbert-base-uncased`) fine-tuned for 3-class persona classification (ENTJ / ISFJ / INTJ) on rationales from Days 1–5 (when persona is freshest). Applied to all rationales to score per-day adherence as `P(intended persona)`.
-
-| Property | Value |
-|----------|-------|
-| Architecture | DistilBERT-base-uncased, 3-class head |
-| Val macro-F1 | **0.94** |
-| Per-class F1 | ENTJ 0.92, ISFJ 0.97, INTJ 0.92 |
-
-### 7. Annotation App (`annotation_app/`)
-
-Interactive **Streamlit** app for human evaluation of agent rationale quality. Supports pairwise comparison of agent decisions for inter-rater reliability analysis.
-
----
-
-## Experiments
-
-### Main Panel — Open-Weight & API Models (`results_may/`)
-
-Extends the original 3-model API-only panel to a **9-model panel** spanning 4B–frontier parameters across two access classes:
-
-| Model | Family | Access | Params |
-|-------|--------|--------|--------|
-| `google/gemma-3-4b-it` | Gemma 3 | open-weight (vLLM) | 4 B |
-| `Qwen/Qwen2.5-7B-Instruct` | Qwen 2.5 | open-weight (vLLM) | 7 B |
-| `meta-llama/Llama-3.1-8B-Instruct` | Llama 3.1 | open-weight (vLLM) | 8 B |
-| `google/gemma-2-9b-it` | Gemma 2 | open-weight (vLLM) | 9 B |
-| `Qwen/Qwen2.5-14B-Instruct` | Qwen 2.5 | open-weight (vLLM) | 14 B |
-| `google/gemma-3-27b-it` | Gemma 3 | open-weight (vLLM) | 27 B |
-| `gemini-2.5-flash` | Gemini 2.5 | API (Google) | — |
-| `gemini-3-flash-preview` | Gemini 3 | API (Google) | — |
-| `claude-sonnet-4-6` | Claude Sonnet 4 | API (Anthropic) | — |
-
-**Design:** 9 models × 3 personas × 3 scenarios × 2 agent types × 5 seeds = ~810 simulations, T=200 days, temperature=0.2. The 6 open-weight models are fully reproducible without API access.
-
-### OCEAN Framework-Independence Replication (`results_ocean/`, `analysis_ocean/`)
-
-Tests whether the MBTI drift/recovery pattern generalizes to **OCEAN (Big Five)** personality scaffolding. Two behavioral archetypes plus a numerical-only ablation (O3) are evaluated across three API models (`claude-sonnet-4-6`, `gpt-4o-mini`, `gemini-2.5-flash`) on all three scenarios.
-
-| Persona | Description | `cideal` |
-|---------|-------------|---------|
-| `O1_conservative` | High-agreeableness, risk-averse | 1.0 |
-| `O2_aggressive` | High-extraversion, risk-seeking | 0.2 |
-| `O3_conservative` | Numerical-only conservative (ablation) | 1.0 |
-| `O3_aggressive` | Numerical-only aggressive (ablation) | 0.2 |
-
-### Placebo Re-injection Control (`placebo_reinjection_control/`)
-
-A three-arm causal study isolating *mandate salience* as the active ingredient of memory re-injection:
-
-| Arm | What is re-injected | Purpose |
-|-----|---------------------|---------|
-| **Static** | Nothing (mandate at init only) | Baseline drift condition |
-| **Placebo** | Semantically irrelevant boilerplate each step | Controls for token attention from any re-injection |
-| **Memory** | Persona mandate each step | The intervention |
-
-Run on `claude-sonnet-4-6`, flat scenario, all three personas across 5 seeds (15 new simulations). If placebo ≈ static and memory > placebo, the benefit is specific to mandate content rather than mere text volume.
-
-### Injection Frequency Ablation (`results_may/injection_freq/`)
-
-Sweeps mandate-refresh cadence k ∈ {1, 5, 25, 100, ∞} to characterize the Pareto trade-off between token overhead and persona adherence. k=∞ is the static baseline; k=1 is the memory agent. Run on `Qwen/Qwen2.5-7B-Instruct`, flat scenario, all three personas, seeds 42/123/456 (45 simulations total, T=200). Each per-step CSV records a `Mandate_Injected` column as an audit trail.
-
-### Rationality & Linguistic Analysis (`rationale_linguistic_analysis/`)
-
-Provides linguistic evidence for signal interference in mini-model crash reversals using existing rationale strings — no new simulations required. Two complementary analyses:
-
-1. **Persona Classifier Confidence Trajectories** — DistilBERT classifier applied to crash-scenario rationales, segmented by quartile, for mini vs. flagship models under static vs. memory conditions.
-2. **Lexical Conflict Rate (LCR)** — counts rationales that co-express mandate-aligned language *and* market-reactive stress language simultaneously.
-
-Models studied: `gpt-4o-mini`, `gpt-4.1-mini` (mini); `gpt-4o`, `claude-sonnet-4-6` (flagship). Scenario: crash/discount0.92.
-
-### Long-Horizon T=800 (`results_may/long_horizon/`)
-
-Extends the simulation horizon to T=800 to connect with long-context NLP evaluation standards. Since the agent has no knowledge of its stopping point, the first 100/200/400 days of a T=800 trajectory are statistically equivalent to standalone runs at those horizons — one dataset yields decay curves at every shorter horizon. Run on `google/gemma-2-9b-it` and `google/gemma-3-27b-it`, flat scenario, seeds 42/123/456.
-
----
-
-## Setup
-
-**Prerequisites:** Python 3.9+ and API keys for the model providers you intend to use.
-
-1. Clone the repository:
-```bash
-git clone https://github.com/ayeshag7/FinPersona.git
-cd FinPersona
+```
+python -m venv .venv
+.venv\Scripts\activate            # Windows;  source .venv/bin/activate on Linux or macOS
+pip install -r requirements.txt   # exact versions
+pip install -e .                  # optional; running from the repository root works without it
+copy .env.example .env            # then fill in the keys (cp on Linux or macOS)
 ```
 
-2. Install dependencies:
-```bash
-pip install -e .[dev]
+`.env` is read from the repository root. Only four keys are used (`.env.example` lists them). Never commit `.env`.
+
+## 3. Verify before you spend money
+
+Run these in order. Each one takes seconds to a minute and makes no paid call.
+
+1. **Tests.** `python -m pytest -q`
+   Expected: every test passes; two are skipped (the grid-manifest check skips until manifests exist; one
+   environment test skips on a missing optional fixture). At the cut this was 49 passed, 2 skipped.
+   `tests/test_v2_freeze.py` proves the environment code hash equals the frozen manifest, which is the same file
+   `main` carries; if it fails, the environment has been changed and every run's `Env_Code_Hash` will differ from
+   the published one.
+
+2. **Path hashes.** The 95 fixed configurations must reproduce the frozen reference bit for bit:
+   ```
+   python -m tools.path_hashes --out %TEMP%\ph.json
+   python -m tools.path_hashes --compare docs/env_v2/generated/v2_1/path_hashes_phase9_after.json %TEMP%\ph.json
+   ```
+   Expected: `NON-ANALYST CHANGES: 0`. At the cut: 95 configurations, 0 changed.
+
+3. **Clients.** `python -m tools.phase9.e9_runner check-clients`
+   Builds every candidate client with the keys in `.env` and makes no call. Expected: exit 0, 18 candidates,
+   0 errors. A configuration whose key is missing shows an error here rather than mid-grid.
+
+4. **Optional, paid:** a smoke of one configuration, two runs of 200 calls each:
+   `python -m tools.phase9.e9_runner smoke --configs "gemini-2.5-flash-lite|default"`
+
+## 4. The grid as designed
+
+The design is PREREG_PHASE_9.md section 4.1 on `main`, fixed by decisions P9-2, P9-3 and P9-5, and re-cut by
+P9-8 and P9-10. In short:
+
+- **Twelve configurations**, the roster members whose pilots completed. Nine first-party: Gemini 2.5 Flash
+  (thinking off), Gemini 2.5 Flash-Lite, Gemini 2.5 Pro, Gemini 3.5 Flash, GPT-5, GPT-5 mini, GPT-5 nano,
+  GPT-5.4 mini, GPT-5.5. Three through OpenRouter, each pinned to one upstream with fallbacks off: Claude Haiku 4.5
+  (Anthropic), DeepSeek V4 Flash (Baidu), Qwen3 235B (GMICloud). Two roster members, Qwen3.7 Flash and GLM 4.7
+  Flash, failed the registered smoke stopping rule and are named in each manifest as `configs_not_piloted`; they
+  are not run.
+- **Headline manifest**: 3 personas (ISFJ, INTJ, ENTJ) x 2 arms (static, memory) x 4 scenarios (flat, bull_trap,
+  crash, sustained_bull) x 120 seeds (10001 to 10120), 200 simulated days per run. **2,880 runs per model.**
+- **Slice manifest** (the D11 common-start slice, run after the headline per model): 3 personas x 3 arms (static,
+  memory, swapped) plus the no-persona NONE trader, all at a common start, the same scenarios and seeds.
+  **4,800 runs per model.**
+- **Seeds**: 120 per cell, from `e9_2/sizing.json`. This is the plug-in sigma_d of 0.0958 (the largest 90 % upper
+  limit over the piloted roster, DeepSeek V4 Flash, 36 df) put through Appendix A at alpha' = 0.05/36 for a minimum
+  effect of 0.05 in band-MAS. Because it is a maximum over 12 of 14 configurations, 120 is a lower bound on what the
+  full roster would have given.
+- **Concurrency**: at most 15 in-flight calls per model (P9-1). The runner refuses more, across processes.
+
+**Two decisions are still open for the team and can change this design** (PHASE_9_REPORT.md section 5 on `main`):
+which reading of the sign criterion the robustness table uses, and the roster size M. Do not start paid grid runs
+until they are settled; the manifest is cheap to rebuild afterwards.
+
+### Cost and wall-clock, from measured runs
+
+Seconds per run are the Phase 9 pilot means (or the Phase 8 batch for Flash), from `e9_0/throughput.csv` on `main`.
+Hours are at 15 concurrent calls per model; every model runs at once, so the roster's wall-clock is its slowest
+member's. Dollars per run are provider-reported for the OpenRouter routes and read from a price table for Flash and
+GPT-5 mini; **seven configurations have no measured price**, so the total below is a partial sum, not the bill.
+
+| configuration | timed by | s per run | headline, hours | both manifests, hours | $ per run | $ both manifests |
+|---|---|---|---|---|---|---|
+| gemini-2.5-flash-lite | pilot, n = 384 | 293 | 15.6 | 41.7 | not measured | |
+| gpt-5.4-mini | pilot, n = 384 | 322 | 17.2 | 45.8 | not measured | |
+| gemini-2.5-flash (thinking off) | batch, n = 574 | 399 | 21.3 | 56.7 | 0.165 | 1,264 |
+| claude-haiku-4.5 via OpenRouter | pilot, n = 192 | 635 | 33.9 | 90.3 | 0.553 | 4,245 |
+| qwen3-235b via OpenRouter | pilot, n = 96 | 931 | 49.7 | 132.5 | 0.024 | 184 |
+| gpt-5.5 | pilot, n = 384 | 990 | 52.8 | 140.8 | not measured | |
+| gemini-3.5-flash | pilot, n = 384 | 1,095 | 58.4 | 155.7 | not measured | |
+| deepseek-v4-flash via OpenRouter | pilot, n = 96 | 1,197 | 63.8 | 170.2 | 0.030 | 229 |
+| gpt-5-mini | pilot, n = 384 | 2,135 | 113.8 | 303.6 | 0.329 | 2,530 |
+| gpt-5 | pilot, n = 384 | 2,152 | 114.8 | 306.1 | not measured | |
+| gemini-2.5-pro | pilot, n = 279 | 2,996 | 159.8 | 426.1 | not measured | |
+| gpt-5-nano | pilot, n = 281 | 3,003 | 160.2 | 427.1 | not measured | |
+
+Read this before running anything: the slowest two models need about 427 hours (18 days) for both manifests at the
+cap, and the five priced configurations alone come to about $8,450. The whole grid is 92,160 runs of 200 calls.
+This is the design as sized; it is not a recommendation to run it as is, and the open decisions above exist partly
+because of these numbers.
+
+## 5. Running
+
+```
+# 1. build the two manifests (reads e9_2/sizing.json; refuses if the sizing lacks a roster model without a registered reason)
+python -m tools.phase9.e9_4_grid --stages manifest
+
+# 2. run every model at once, one process per model, headline first, then the slice
+python -m tools.phase9.e9_launch --manifest docs/env_v2/generated/v2_1/e9_4/manifest_headline.json --workers 15
+python -m tools.phase9.e9_launch --manifest docs/env_v2/generated/v2_1/e9_4/manifest_slice.json --workers 15
+
+# 3. watch, verify, score
+python -m tools.phase9.e9_4_grid --stages status
+python -m tools.phase9.e9_4_grid --stages verify
+python -m tools.phase9.e9_4_grid --stages score
 ```
 
-3. Create a `.env` file in the root directory with your API keys:
-```bash
-GOOGLE_API_KEY=your_google_key_here
-ANTHROPIC_API_KEY=your_anthropic_key_here
-OPENAI_API_KEY=your_openai_key_here
-DEEPSEEK_API_KEY=your_deepseek_key_here
+One model at a time, or to resume after an interruption (the runner skips completed runs):
 ```
-Only include keys for the providers you plan to use. For open-weight models, a vLLM server must be running locally.
-
-## Usage
-
-All experiment entry points live in [`experiments/`](experiments/). Run them from the
-repo root so that output paths (`results*/`) resolve correctly.
-
-**Single backtest run** (ENTJ persona, 50 days):
-```bash
-python experiments/run_backtest.py
+python -m tools.phase9.e9_runner run --manifest docs/env_v2/generated/v2_1/e9_4/manifest_headline.json --config "gpt-5-mini|default" --workers 15
 ```
 
-**Full benchmark suite** (all models × personas × scenarios × seeds):
-```bash
-python experiments/run_experiments.py
-```
+### What the runner guarantees
 
-**Human annotation app:**
-```bash
-streamlit run annotation_app/annotation_app.py
-```
+- **Fingerprint.** A manifest carries the hash of every prompt, the environment code hash and the harness sources.
+  The runner refuses to run if the working tree no longer matches, so a design cannot move after its first batch.
+- **Checkpointing.** Every completed run is recorded; re-running the same command resumes. Runs land under
+  `results_v2/phase9/<subdir>/<setting>/<config_tag>/<model>/<scenario>/seed<seed>/<run_id>.{csv,meta.json,usage.json}`.
+- **Contamination rule.** A run in which the provider caused a fallback (an error the agent's own three attempts
+  did not absorb) is discarded whole, its files renamed with the status, and it is retried up to three attempts;
+  after that it is counted as abandoned, never silently passed. The ledger `docs/env_v2/generated/v2_1/e9_4/ledger_<tag>_<model>.jsonl`
+  records every attempt with its tokens, seconds, status and, on OpenRouter, the provider-reported cost and the
+  generation ids that let the serving upstream be audited afterwards.
+- **OpenRouter.** Each configuration names one upstream and is sent with `allow_fallbacks: false` (a wrong upstream
+  fails with 404 instead of being re-routed) and `max_tokens` 8,192 (without a cap OpenRouter requests the model's
+  full context window and some upstreams reject every call). First-party routes send neither.
+- **Verify** checks every run on disk against its manifest: prompt hash, environment code hash, harness and placebo
+  versions (`v2_1`), configuration tag, model, scenario, seed and start design. Missing runs are counted.
+- **Score** writes `e9_4/per_run.csv`, one row per completed run with band-MAS and the other metrics, scored exactly
+  as the pilots were (`evaluation.metrics_v2.score_run(scoring="v2_1")`); a run whose scoring fails is kept with
+  its error in `score_error`.
+
+### Known behaviour from the pilots
+
+- The Anthropic upstream on OpenRouter returned HTTP 403 ("Request not allowed") on 36 of 76,808 pilot calls
+  (0.047 %). Nearly all were absorbed by the agent's own retries; one run in 192 was contaminated and re-run.
+  DeepSeek and Qwen3 235B saw none.
+- The runner re-fingerprints every configuration at start; the first run of a large manifest lands some minutes
+  after launch.
+- Offline computation on the same machine starves the paid batches. Run analysis elsewhere while a grid is in
+  flight.
+
+## 6. Statistics on the scored runs
+
+`tools/stats_v2.py` holds the registered machinery: `run_stats_v21(per_run, out_prefix)` computes the model-level
+contrasts with the R5 reference distribution (a two-way random-effects variance referred to t with M minus 1
+degrees of freedom), BH within the single confirmatory family, BY across families, and the two-way cluster
+bootstrap beside it. The pre-registered robustness criteria for the parameter sweep and their measured operating
+characteristics are in PHASE_9_REPORT.md sections 3.2b and 3.6 on `main`; they are not code on this branch.
+
+## 7. Where to read more, on `main`
+
+- `docs/env_v2/v2_1/PREREG_PHASE_9.md` (section 4.1, the grid) and `PREREG_PHASE_9_ADDENDUM.md` (items 6 to 11)
+- `docs/env_v2/v2_1/PHASE_9_REPORT.md` (sections 3.1, 3.4, 5 and 7)
+- `docs/env_v2/decisions/DECISION_LOG.md`, entries P9-1 to P9-10
+- `docs/env_v2/spec/IO_CONTRACT.md` (the run log schema, including `Provider_Options` and the usage file)

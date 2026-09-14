@@ -1,5 +1,0 @@
-deadline armed 2026-09-12T06:26:21Z; stopping gemini-2.5-pro and gpt-5-nano pilots in 7200 s (PREREG_PHASE_9_ADDENDUM.md 5)
-deadline reached 2026-09-12T08:26:21Z
-stopped 20688 gemini-2.5-pro|default
-stopped 30512 gpt-5-nano|default
-stop done 2026-09-12T08:26:24Z

@@ -1,8 +1,0 @@
-[theta set] 9 values: 0.002 (theta_cost), 0.03 (grid), 0.032791 (theta_cost_one_day), 0.046321 (theta_var), 0.05 (grid|theta_info_all), 0.065609 (theta_var_stationary), 0.08 (grid), 0.12 (grid), 0.2 (grid|theta_info_calm)
-  flat: 405000 cell-rows (21 s)
-  bull_trap: 405000 cell-rows (23 s)
-  crash: 405000 cell-rows (25 s)
-  sustained_bull: 405000 cell-rows (22 s)
-[state] events_json=True | control=A | dynamics=A | blowoff=dynamic | post_top=decay/40.0 | randomise_eps_quarter=True | depth_mode=centred | volatility_json=True | iv=v21 | observables_json=True | observables=multiple=B eps=v21 dividend=v21/shown analyst=C/shown sentiment=A volume=A
-[cells] 1620000 rows -> C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e7_rescore (100 s)
-[theta_table] 576 rows -> C:\Users\ayesha.gull01\FinPersona\docs\env_v2\generated\v2_1\e7_rescore (209 s)

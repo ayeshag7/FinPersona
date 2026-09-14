@@ -1,2 +1,0 @@
-[manifest_openrouter_haiku] openrouter/anthropic/claude-haiku-4.5|default: 192 runs in the manifest, 191 done, 1 pending, 0 abandoned after 3 non-ok attempts; 13 workers; started 2026-09-12T13:59:22Z
-[1/1] default|openrouter_anthropic_claude-haiku-4.5__ISFJ__static__flat__seed3007__rep0 -> ok (627s, fallbacks 0, errors 0); non-ok so far 0; 5.6 runs/h; ETA 0.0 h

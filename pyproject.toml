@@ -1,52 +1,40 @@
 [project]
-name = "finpersona"
-version = "0.1.0"
-description = "FinPersona: Modeling MBTI Personality in Financial Trading Agents"
-authors = [
-    { name = "Ayesha Gull", email = "ayeshaiqbal2592@gmail.com" },
-]
+name = "finpersona-synthetic-env"
+version = "2.1.0"
+description = "FinPersona synthetic market environment v2.1 and the harness that runs the main grid experiments"
 readme = "README.md"
-requires-python = ">=3.9"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-]
+requires-python = ">=3.11"
 
+# The import closure of the grid entry points (tools/phase9/e9_runner, e9_4_grid, e9_launch, e9_2_pilot,
+# tools/stats_v2, tools/path_hashes), computed by AST when this branch was cut. Lower bounds are the versions the
+# Phase 9 pilots ran on; requirements.txt pins them exactly.
 dependencies = [
-    "pandas",
-    "yfinance",
-    "vectorbt",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "scipy>=1.13",
+    "statsmodels>=0.14",
+    "scikit-learn>=1.5",
+    "arch>=7.0",
+    "joblib>=1.4",
+    "threadpoolctl>=3.5",
     "pydantic>=2.0",
-    "langchain",
-    "langchain-google-genai",
-    "langchain-anthropic",
-    "langchain-openai",
-    "python-dotenv",
-    "tqdm",
-    "streamlit>=1.30",
+    "langchain-core>=1.6,<2",
+    "langchain-openai>=1.6,<2",
+    "langchain-google-genai>=4.3,<5",
+    "langchain-anthropic>=1.6,<2",
+    "python-dotenv>=1.0",
+    "tiktoken>=0.9",
 ]
 
 [project.optional-dependencies]
-dev = [
-    "pytest",
-    "flake8",
-    "mypy",
-    "black"
-]
+dev = ["pytest>=8"]
 
 [tool.setuptools.packages.find]
 where = ["."]
-exclude = ["tests*", "results*", ".venv*"]
+include = ["agent*", "envs*", "evaluation*", "experiments*", "simulation*", "tools*"]
+exclude = ["tests*", "results*", "docs*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-norecursedirs = ["venv", ".venv", ".git"]
+norecursedirs = ["venv", ".venv", ".git", "results_v2"]
 addopts = "-p no:cacheprovider"
-
-[tool.mypy]
-cache_dir = "venv/.mypy_cache"
-exclude = ["venv", ".venv", "build", "dist"]
-ignore_missing_imports = true
-incremental = false
