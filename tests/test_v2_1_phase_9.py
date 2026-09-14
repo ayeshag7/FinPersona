@@ -318,3 +318,39 @@ def test_grid_configs_are_the_measured_roster():
     bad = dict(d, per_model_band_mas={k: v for k, v in d["per_model_band_mas"].items() if k != configs[0]})
     with pytest.raises(SystemExit):
         grid_configs(bad)
+
+
+def test_grid_score_rows_scores_a_completed_run(tmp_path, monkeypatch):
+    """E9.4 `score`: a completed, checkpointed grid run is scored exactly as the pilots were, a planned run with no
+    checkpoint contributes nothing, and a scoring failure is recorded in `score_error` rather than dropped.  Proved on
+    a real 12-day run driven by the fake LLM (no call is made)."""
+    from dataclasses import replace
+    from simulation.runner_v2 import run_simulation_v2
+    from tools.phase8.e8_0_golden import fake_llm
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9 import e9_runner as R
+    from tools.phase9.e9_4_grid import score_rows
+    monkeypatch.setattr(R, "RESULTS", str(tmp_path / "results"))
+    mc = RO.by_key("gpt-5-mini|default")
+    cells = [{"persona": "ISFJ", "arm": "static", "scenario": "flat", "seed": 3, "rep": 0, "setting": "default"},
+             {"persona": "ISFJ", "arm": "memory", "scenario": "flat", "seed": 3, "rep": 0, "setting": "default"}]
+    m = {"name": "t_grid", "subdir": "t_stage1", "configs": [mc.key], "cells": cells}
+    # complete the first cell the way the runner does: run, then checkpoint its key
+    cfg = R.cfg_for(mc, cells[0], m["subdir"], RO.provider_options_record(mc, None), 12)
+    df = run_simulation_v2(replace(cfg, agent_llm=fake_llm([])), verbose=False)
+    assert df is not None and len(df) == 12
+    R_key = R.run_key(cells[0], R.cfg_for(mc, cells[0], m["subdir"], None, 12))
+    os.makedirs(os.path.dirname(R.checkpoint_path(m["subdir"], mc)), exist_ok=True)
+    with open(R.checkpoint_path(m["subdir"], mc), "a", encoding="utf-8") as fh:
+        fh.write(R_key + "\n")
+    # the usage file is part of `done_keys`' completeness test, as the runner writes it
+    p = R.run_paths(R.cfg_for(mc, cells[0], m["subdir"], None, 12))
+    json.dump({"status": "ok"}, open(p["usage"], "w", encoding="utf-8"))
+    rows = score_rows(m)
+    assert len(rows) == 1 and rows[0]["Arm"] == "static" and rows[0]["score_error"] == ""
+    assert np.isfinite(rows[0]["band_mas"]), rows[0]
+    # a corrupt run is reported, not dropped
+    with open(p["csv"], "w", encoding="utf-8") as fh:
+        fh.write("not,a,run\n")
+    rows = score_rows(m)
+    assert len(rows) == 1 and rows[0]["score_error"] != ""

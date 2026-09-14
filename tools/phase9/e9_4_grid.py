@@ -22,8 +22,10 @@ common-start slice (P8-13, P8-14) runs after them, so no model's headline answer
             v2_1, `Provider_Options` names the cell's configuration, and the scenario, seed and start design are the
             planned ones.  Missing runs are counted, never silently passed.
 `status`    Runs done and pending per configuration, per manifest.
+`score`     Every completed run of both manifests -> e9_4/per_run.csv, scored as the pilots were
+            (`evaluation.metrics_v2.score_run(scoring="v2_1")`); per_run.meta.json carries scored / planned counts.
 
-Outputs: docs/env_v2/generated/v2_1/e9_4/{manifest_headline.json, manifest_slice.json, verify.json}
+Outputs: docs/env_v2/generated/v2_1/e9_4/{manifest_headline.json, manifest_slice.json, verify.json, per_run.csv}
 """
 from __future__ import annotations
 
@@ -182,6 +184,62 @@ def stage_verify():
     return 0 if doc["pass"] else 1
 
 
+def score_rows(m: dict) -> list:
+    """One scored row per COMPLETED run of manifest `m` (checkpointed and on disk), scored exactly as the pilots were:
+    `evaluation.metrics_v2.score_run(scoring="v2_1")`.  A planned run without a checkpoint contributes nothing; a run
+    whose scoring raises is recorded with `score_error` rather than dropped, so the count of scored runs can be read
+    against the count planned."""
+    from evaluation.metrics_v2 import score_run
+    from tools.phase8.e8_5_analyse import metric_names
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9 import e9_runner as R
+    rows = []
+    for key in m["configs"]:
+        mc = RO.by_key(key)
+        done = R.done_keys(m["subdir"], mc, m["cells"])
+        for c in m["cells"]:
+            cfg = R.cfg_for(mc, c, m["subdir"])
+            if R.run_key(c, cfg) not in done:
+                continue
+            row = {"Manifest": m["name"], "Setting": c.get("setting", "default"), "Model": key, "Persona": cfg.persona,
+                   "Arm": cfg.arm, "Scenario": cfg.scenario, "Seed": cfg.seed, "Decode_Replicate": 0, "score_error": ""}
+            try:
+                sc = score_run(pd.read_csv(R.run_paths(cfg)["csv"]), cfg.persona, scoring="v2_1")
+                row.update({k: sc.get(k) for k in metric_names() + ["mdd_pct", "return_pct", "fallback_share", "trade_count"]})
+            except Exception as e:                            # noqa: BLE001 -- recorded, not hidden
+                row["score_error"] = f"{type(e).__name__}: {str(e)[:160]}"
+            rows.append(row)
+    return rows
+
+
+def stage_score():
+    """Every completed run of every stage-1 manifest -> e9_4/per_run.csv, with per_run.meta.json carrying the scoring
+    file's hash and the scored / planned counts per configuration."""
+    from evaluation import scoring_params as SP
+    from tools.phase9 import e9_runner as R
+    SP.load()
+    rows, planned = [], {}
+    for kind, fname in MANIFESTS.items():
+        path = os.path.join(OUT, fname)
+        if not os.path.exists(path):
+            continue
+        m = R.load_manifest(path)
+        rows += score_rows(m)
+        for key in m["configs"]:
+            planned[f"{m['name']}|{key}"] = len(m["cells"])
+    t = pd.DataFrame(rows)
+    os.makedirs(OUT, exist_ok=True)
+    t.to_csv(os.path.join(OUT, "per_run.csv"), index=False)
+    scored = t.groupby(["Manifest", "Model"]).size().to_dict() if len(t) else {}
+    json.dump({"scoring_json_sha256": SP.SHA256, "n_runs_scored": int(len(t)),
+               "n_score_errors": int((t["score_error"] != "").sum()) if len(t) else 0,
+               "scored_vs_planned": {k: [int(scored.get(tuple(k.split("|", 1)), 0)), v] for k, v in sorted(planned.items())},
+               "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
+              open(os.path.join(OUT, "per_run.meta.json"), "w", encoding="utf-8"), indent=1)
+    print(f"scored {len(t)} runs" + (f"; {int((t['score_error'] != '').sum())} scoring errors" if len(t) else ""))
+    return 0
+
+
 def stage_status():
     from tools.phase9 import e9_roster as RO
     from tools.phase9 import e9_runner as R
@@ -210,6 +268,8 @@ def main(argv=None):
             rc = stage_verify() or rc
         elif st == "status":
             stage_status()
+        elif st == "score":
+            rc = stage_score() or rc
         else:
             raise SystemExit(f"unknown stage {st!r}")
     return rc
