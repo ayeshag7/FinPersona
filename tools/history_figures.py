@@ -41,7 +41,7 @@ SEQ = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e
        "#184f95", "#104281", "#0d366b"]
 GOOD, CRITICAL, WARNING = "#0ca30c", "#d03b3b", "#fab219"
 DEEMPH = "#c3c2b7"
-DPI = 170
+DPI = 300          # the document scales every figure to 17.6 cm, so a lower value visibly softens the narrow ones
 
 plt.rcParams.update({
     "font.family": "serif", "font.serif": ["Times New Roman", "Times", "DejaVu Serif"],
@@ -347,6 +347,18 @@ def dot_ci(ax, x, y, lo, hi, color, label=None, ms=7, horizontal=False):
                     elinewidth=1.2, capsize=2.5, markersize=ms, markeredgecolor=SURFACE, markeredgewidth=1.5, label=label)
 
 
+def _wrap(text: str, width: int) -> str:
+    """Break a long tick label on spaces so that it does not eat the plotting area."""
+    out, line = [], ""
+    for word in text.split():
+        if line and len(line) + 1 + len(word) > width:
+            out.append(line); line = word
+        else:
+            line = f"{line} {word}".strip()
+    out.append(line)
+    return "\n".join(out)
+
+
 # ================================================================================================== Phase 1
 def F4_phase1_estimators():
     """Phase 1: the three estimators of the mispricing half-life and sd, and where the engine fit later put them."""
@@ -354,7 +366,7 @@ def F4_phase1_estimators():
     est = d["estimates"]; use = d["usability"]
     labels, h, hlo, hhi, sx, slo, shi, usable = [], [], [], [], [], [], [], []
     for k in ("A", "B", "C"):
-        e = est[k]; labels.append(f"{k}: {e['name']}"[:38])
+        e = est[k]; labels.append(_wrap(f"{k}: {e['name']}", 44))      # wrapped, not cut: a cut at 38 lost a closing bracket
         h.append(float(e["h"])); lo, hi = ci(e.get("h_ci")); hlo.append(lo); hhi.append(hi)
         sx.append(float(e["s_x"])); lo, hi = ci(e.get("s_x_ci")); slo.append(lo); shi.append(hi)
         u = use.get(k, {}); usable.append(bool(u.get("usable")) if isinstance(u, dict) else bool(u))
@@ -506,17 +518,18 @@ def F8_garch_fits():
     t = t[(t["set"] == "A") & (t["converged"].astype(str) == "True")]
     periods = ["full", "2000-07", "2008-12", "2013-19", "2020-24"]
     params = [("alpha", "α (news)"), ("gamma", "γ (leverage)"), ("beta", "β (memory)"), ("nu", "ν (tail df)"), ("persistence", "α + γ/2 + β")]
-    fig, axes = plt.subplots(1, 5, figsize=(11, 3.4), gridspec_kw={"wspace": 0.5})
+    fig, axes = plt.subplots(1, 5, figsize=(11, 3.8), gridspec_kw={"wspace": 0.5})
+    # the stock counts go in the title rather than beside each box, where they collided with the whiskers
+    ns = [int(t[t.period == per][params[0][0]].notna().sum()) for per in periods]
+    nlab = f"{ns[0]} stocks per period" if len(set(ns)) == 1 else f"{max(ns)} stocks per period ({min(ns)} in the last two)"
     for ax, (p, lab) in zip(axes, params):
         data = [t[t.period == per][p].dropna().to_numpy() for per in periods]
-        bp = ax.boxplot(data, widths=0.5, showfliers=False, patch_artist=True,
-                        medianprops={"color": INK, "lw": 1.2}, whiskerprops={"color": CAT[0], "lw": 1}, capprops={"color": CAT[0], "lw": 1},
-                        boxprops={"facecolor": CAT[0], "alpha": 0.25, "edgecolor": CAT[0]})
-        ax.set_xticks(range(1, 6)); ax.set_xticklabels(periods, fontsize=6.5, rotation=45)
-        ax.set_title(lab, fontsize=9); tidy(ax)
-        for i, dta in enumerate(data):
-            ax.text(i + 1, np.percentile(dta, 75), f"n={len(dta)}", ha="center", va="bottom", fontsize=5.5, color=MUTED)
-    fig.suptitle("GJR-GARCH-t parameters fitted per stock, by period (boxes: quartiles; whiskers: 1.5 IQR)", fontsize=10)
+        ax.boxplot(data, widths=0.5, showfliers=False, patch_artist=True,
+                   medianprops={"color": INK, "lw": 1.2}, whiskerprops={"color": CAT[0], "lw": 1}, capprops={"color": CAT[0], "lw": 1},
+                   boxprops={"facecolor": CAT[0], "alpha": 0.25, "edgecolor": CAT[0]})
+        ax.set_xticks(range(1, 6)); ax.set_xticklabels(periods, fontsize=7.5, rotation=45, ha="right", rotation_mode="anchor")
+        ax.set_title(lab, fontsize=9.5); tidy(ax)
+    fig.suptitle(f"GJR-GARCH-t parameters fitted per stock, by period ({nlab}; boxes: quartiles, whiskers: 1.5 IQR)", fontsize=10)
     save(fig, "F08_garch_fits_by_period", "Phase 3: per-stock GJR-GARCH-t fits by sub-period",
          ["v2_1/e3_1/garch_fits.csv"], f"{len(t)} converged fits over {t.ticker.nunique()} stocks",
          "The full-sample medians (α 0.027, γ 0.058, β 0.932) are the parameters in force; ν was set jointly with the jumps.")
@@ -532,20 +545,31 @@ def F9_event_multipliers():
     inside = [bool(cal["verify"][p].get("inside_ci")) for p in phases]
     n = [cal["verify"][p].get("n") for p in phases]
     neps = [ep[f"m_{p}"].get("n_episodes") for p in phases]
-    x = np.arange(len(phases))
-    fig, ax = plt.subplots(figsize=(7.6, 4.0))
-    dot_ci(ax, x - 0.1, tgt, lo, hi, CAT[0], label="panel target (median variance ratio, 95 % CI)")
-    ax.scatter(x + 0.1, real, marker="D", s=46, color=[GOOD if i else CRITICAL for i in inside], edgecolor=SURFACE, linewidth=1.2, zorder=3,
-               label="realised by the generator (green inside the CI, red outside)")
+    # one row per phase: the panel's interval as a bar, its median as a dot, the generator's realisation as a diamond
+    y = np.arange(len(phases))[::-1]
+    fig, ax = plt.subplots(figsize=(8.2, 4.2))
     for i in range(len(phases)):
-        ax.text(x[i] - 0.22, tgt[i], f"{tgt[i]:.2f}", ha="right", va="center", fontsize=7, color=INK2)
+        ax.plot([lo[i], hi[i]], [y[i], y[i]], color=CAT[0], lw=5, alpha=0.32, solid_capstyle="butt", zorder=1)
+    ax.scatter(tgt, y, s=46, color=CAT[0], edgecolor=SURFACE, linewidth=1.2, zorder=3,
+               label="panel target: median variance ratio, with its 95 % interval")
+    ax.scatter(real, y, marker="D", s=52, color=[GOOD if i else CRITICAL for i in inside], edgecolor=SURFACE, linewidth=1.2, zorder=4,
+               label="realised by the generator (green inside the interval, red outside)")
+    for i in range(len(phases)):
+        ax.text(lo[i] * 0.93, y[i], f"{tgt[i]:.2f}", ha="right", va="center", fontsize=8, color=CAT[0])
         if np.isfinite(real[i]):
-            ax.text(x[i] + 0.22, real[i], f"{real[i]:.2f}", ha="left", va="center", fontsize=7, color=INK2)
-    ax.set_yscale("log"); ax.set_xticks(x)
-    ax.set_xticklabels([f"{p}\npanel n {neps[i]:,}\ngen. n {n[i]}" for i, p in enumerate(phases)], fontsize=7)
-    ax.set_ylabel("total-return variance relative to the stock's unconditional level (log)")
+            col = GOOD if inside[i] else CRITICAL
+            if real[i] < lo[i]:                      # each label sits beside its own marker, on the outer side
+                ax.text(real[i] * 0.93, y[i] - 0.28, f"{real[i]:.2f}", ha="center", va="center", fontsize=8, color=col)
+            else:
+                ax.text(max(hi[i], real[i]) * 1.07, y[i], f"{real[i]:.2f}", ha="left", va="center", fontsize=8, color=col)
+    ax.axvline(1.0, color=AXIS, lw=0.9, zorder=0)
+    ax.set_xscale("log"); ax.set_xlim(0.85, 16)
+    ax.set_xticks([1, 1.5, 2, 3, 5, 7.5, 10]); ax.set_xticklabels(["1", "1.5", "2", "3", "5", "7.5", "10"])
+    ax.set_yticks(y); ax.set_yticklabels([f"{p.capitalize()}\npanel n {neps[i]:,}; generator n {n[i]}" for i, p in enumerate(phases)], fontsize=8)
+    ax.set_ylim(-0.7, len(phases) - 0.3)
+    ax.set_xlabel("total-return variance relative to the stock's unconditional level (log scale; 1 = no elevation)")
     ax.set_title("Event-phase variance multipliers: panel target (417 stocks) and generator realisation")
-    ax.legend(loc="upper right"); tidy(ax)
+    ax.legend(loc="lower right", fontsize=7.5); tidy(ax, ygrid=False, xgrid=True)
     save(fig, "F09_event_multipliers", "Phase 3: event-phase variance multipliers, target vs realised",
          ["v2_1/e3_4/calibration.json", "v2_1/e3_3/episodes.json"],
          "targets: 1,592 drawdown and 3,125 run-up episodes over 412 / 394 stocks; realised: 200 generator seeds per phase",
@@ -636,7 +660,7 @@ def F13_crash_depth_duration():
         ax.scatter(t["duration"], t["depth"], s=14, color=col, alpha=0.6, marker=mk, linewidths=0, label=lab)
     dlo, dhi = ci(box["depth"]); ulo, uhi = ci(box["duration"])
     ax.add_patch(plt.Rectangle((ulo, dlo), uhi - ulo, dhi - dlo, fill=False, edgecolor=INK, lw=1.2))
-    ax.text(uhi, dhi, " panel box (P10 to P90)", fontsize=7, color=INK, va="bottom")
+    ax.text(uhi, dhi, " Panel box: P10 to P90 on both axes", fontsize=8.5, color=INK, va="bottom", fontweight="bold")
     ax.set_xscale("log"); ax.set_xlabel("peak-to-trough duration (trading days, log)"); ax.set_ylabel("depth (trough / peak minus 1)")
     ax.set_title("Crash depth against duration: 417 stocks and the generator")
     ax.legend(loc="lower left", fontsize=7); tidy(ax, xgrid=True)
@@ -652,18 +676,37 @@ def F14_dynamics_stop():
     cov = [float(c[a]["coverage"]) for a in arms]; clo = [ci(c[a]["coverage_ci95"])[0] for a in arms]; chi = [ci(c[a]["coverage_ci95"])[1] for a in arms]
     ss = [float(c[a]["script_share_median"]) for a in arms]; slo = [ci(c[a].get("script_share_ci95"))[0] for a in arms]; shi = [ci(c[a].get("script_share_ci95"))[1] for a in arms]
     x = np.arange(len(arms))
-    fig, axes = plt.subplots(1, 2, figsize=(9.2, 3.8), gridspec_kw={"wspace": 0.35})
+    nice = {"A_lam0.02": "A\ngain 0.02", "A_lam0.05": "A\ngain 0.05", "A_lam0.1": "A\ngain 0.10", "A_lam0.25": "A\ngain 0.25",
+            "B_shifted_pstar": "B\nshifted\ntarget", "C_scripted_no_feedback": "C\nfully\nscripted", "D_unscripted_regime": "D\nunscripted\nswitch"}
+    labs = [nice.get(a, a.replace("_", "\n")) for a in arms]
+    cols = [CAT[0] if a.startswith("A_") else CAT[3] for a in arms]      # the incumbent family apart from the three alternatives
+    fig, axes = plt.subplots(1, 2, figsize=(9.6, 4.2), gridspec_kw={"wspace": 0.3})
     ax = axes[0]
-    dot_ci(ax, x, cov, clo, chi, CAT[0])
+    for i in range(len(arms)):
+        dot_ci(ax, [x[i]], [cov[i]], [clo[i]], [chi[i]], cols[i])
     ceil = dyn.get("ceiling", {})
+    reg = 0.70                                                          # the registered coverage threshold
+    ax.axhline(reg, color=CRITICAL, lw=1.2, ls=(0, (5, 3)))
+    ax.text(x[0] - 0.4, reg + 0.006, f"registered rule: at least {reg:.2f}", fontsize=7.5, color=CRITICAL, va="bottom", ha="left")
     if "panel_self_coverage" in ceil:
-        ax.axhline(float(ceil["panel_self_coverage"]), color=CAT[1], lw=1.2); ax.text(x[-1] + 0.3, float(ceil["panel_self_coverage"]), f"panel's own coverage {float(ceil['panel_self_coverage']):.2f}", fontsize=7, color=INK2, va="bottom", ha="right")
-    ax.set_xticks(x); ax.set_xticklabels([a.replace("_", "\n") for a in arms], fontsize=6.5)
-    ax.set_ylabel("share of generator crashes inside the panel box"); ax.set_title("(a) share of generator crashes inside the panel's depth and duration box", fontsize=9); tidy(ax)
+        psc = float(ceil["panel_self_coverage"])
+        ax.axhline(psc, color=CAT[1], lw=1.2)
+        ax.text(x[0] - 0.4, psc + 0.006, f"what the panel scores on itself: {psc:.2f}", fontsize=7.5, color=CAT[1], va="bottom", ha="left")
+    ax.set_ylim(min(clo) - 0.04, reg + 0.055)
+    ax.set_xlim(-0.75, len(arms) - 0.25)
+    ax.set_xticks(x); ax.set_xticklabels(labs, fontsize=7.5)
+    ax.set_ylabel("share of generator crashes inside the panel box")
+    ax.set_title("(a) coverage of the panel's depth and duration box", fontsize=9.5); tidy(ax)
     ax = axes[1]
-    dot_ci(ax, x, ss, slo, shi, CAT[0])
-    ax.set_xticks(x); ax.set_xticklabels([a.replace("_", "\n") for a in arms], fontsize=6.5)
-    ax.set_ylabel("median share of the event's move that is scripted"); ax.set_title("(b) median share of the event's move written by the script", fontsize=9); tidy(ax)
+    for i in range(len(arms)):
+        dot_ci(ax, [x[i]], [ss[i]], [slo[i]], [shi[i]], cols[i])
+    ax.set_xlim(-0.75, len(arms) - 0.25)
+    ax.set_xticks(x); ax.set_xticklabels(labs, fontsize=7.5)
+    ax.set_ylabel("median share of the event's move that is scripted")
+    ax.set_title("(b) how much of the move the script writes directly", fontsize=9.5); tidy(ax)
+    hs = [plt.Line2D([], [], color=CAT[0], marker="o", ls="", markersize=6), plt.Line2D([], [], color=CAT[3], marker="o", ls="", markersize=6)]
+    fig.legend(hs, ["Formulation A, the incumbent, at four gains", "Formulations B, C and D"],
+               loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=2, fontsize=8)
     save(fig, "F14_event_dynamics_stop", "Phase 4: event-dynamics formulations against the coverage rule (the D5 stop)",
          ["v2_1/e4_19/criteria.json", "v2_1/e4_6/dynamics.json"], "1,000 generator seeds per formulation",
          f"Decision status recorded in the file: {dyn.get('status', '')}. Eligible formulations: {dyn.get('eligible', [])}.")
@@ -673,7 +716,7 @@ def F14_dynamics_stop():
 def F15_observables_fits():
     """Phase 5: the observable processes fitted to data, beside the values v2 had assumed."""
     mult = jsn("v2_1/e5_1/multiple.json"); div = jsn("v2_1/e5_3/dividends.json"); vol = jsn("v2_1/e5_6/volume.json"); eps = jsn("v2_1/e5_2/eps.json")
-    fig, axes = plt.subplots(1, 4, figsize=(11.5, 3.4), gridspec_kw={"wspace": 0.6})
+    fig, axes = plt.subplots(1, 4, figsize=(11.5, 3.8), gridspec_kw={"wspace": 0.62})
     # (a) P/E cross-section
     ax = axes[0]
     qs = ["p10", "p25", "p50", "p75", "p90"]
@@ -681,7 +724,8 @@ def F15_observables_fits():
     dot_ci(ax, range(5), v, lo, hi, CAT[0], label="panel percentiles (95 % CI)")
     kr = ci(mult["v2_incumbent"]["k_range"])
     ax.axhspan(kr[0], kr[1], color=CAT[1], alpha=0.18, label=f"v2 design range [{kr[0]:g}, {kr[1]:g}]")
-    ax.set_xticks(range(5)); ax.set_xticklabels([q.upper() for q in qs], fontsize=7); ax.set_ylabel("trailing P/E"); ax.set_title("(a) the earnings multiple", fontsize=9); ax.legend(fontsize=6.5, loc="upper left"); tidy(ax)
+    ax.set_xticks(range(5)); ax.set_xticklabels([q.upper() for q in qs], fontsize=7.5); ax.set_ylabel("trailing P/E")
+    ax.set_title("(a) the earnings multiple", fontsize=9.5); ax.set_ylim(0, max(hi) * 1.18); tidy(ax)
     # (b) payout ratio
     ax = axes[1]
     pm = num(div["payout"]["median"]); piqr = ci(div["payout"].get("iqr")); inc = num(div["payout"].get("v2_incumbent"))
@@ -690,7 +734,8 @@ def F15_observables_fits():
         ax.scatter([0.35], [inc], marker="D", color=CAT[1], s=40, zorder=3, label="v2 assumed")
         ax.text(0.42, inc, f"{inc:.2f}", fontsize=7, color=INK2, va="center")
     ax.text(0.07, pm, f"{pm:.3f}", fontsize=7, color=INK2, va="center")
-    ax.set_xlim(-0.5, 0.9); ax.set_xticks([]); ax.set_ylabel("dividend payout ratio"); ax.set_title(f"(b) payout ({int(div['payout'].get('n_stock_years', 0)):,} stock-years)", fontsize=9); ax.legend(fontsize=6.5, loc="upper right"); tidy(ax)
+    ax.set_xlim(-0.5, 0.9); ax.set_xticks([]); ax.set_ylabel("dividend payout ratio")
+    ax.set_title(f"(b) payout ({int(div['payout'].get('n_stock_years', 0)):,} stock-years)", fontsize=9.5); tidy(ax)
     # (c) volume
     ax = axes[2]
     keys = [("rho_v", "rho"), ("beta_absr_per_sd_z", "b_absr"), ("sd_e", "sd_e")]
@@ -698,7 +743,10 @@ def F15_observables_fits():
     inc = [num(vol["v2_incumbent"].get(i2)) for _, i2 in keys]
     dot_ci(ax, range(3), v, lo, hi, CAT[0], label="panel (95 % CI)")
     ax.scatter(np.arange(3) + 0.25, inc, marker="D", color=CAT[1], s=40, zorder=3, label="v2 assumed")
-    ax.set_xticks(range(3)); ax.set_xticklabels(["AR(1) ρ", "β on |return|", "innovation sd"], fontsize=7); ax.set_title(f"(c) Log-volume process ({vol['design_A']['rho_v'].get('n')} stocks)", fontsize=9); ax.legend(fontsize=6.5); tidy(ax)
+    ax.set_xticks(range(3)); ax.set_xticklabels(["AR(1) ρ", "β on |return|", "innovation sd"], fontsize=7.5,
+                                                rotation=20, ha="right", rotation_mode="anchor")
+    ax.set_title(f"(c) Log-volume process ({vol['design_A']['rho_v'].get('n')} stocks)", fontsize=9.5)
+    ax.set_xlim(-0.5, 2.75); ax.set_ylim(min(lo) - 0.04, max(max(hi), max(inc)) + 0.06); tidy(ax)
     # (d) announcement lag
     ax = axes[3]
     a8 = eps["announcement_lags"]["announcement_8k"]
@@ -711,7 +759,16 @@ def F15_observables_fits():
         ax.set_ylim(8, max(38, float(lag_v2[1]) + 3))
     for i, vv in enumerate(v):
         ax.text(i, vv + 0.6, f"{vv:g}", ha="center", fontsize=7, color=INK2)
-    ax.set_xticks([0, 1, 2]); ax.set_xticklabels(["P10", "P50", "P90"], fontsize=7); ax.set_ylabel("trading days after quarter end"); ax.set_title(f"(d) earnings announcement lag ({int(a8.get('n_filings', 0)):,} filings)", fontsize=9); ax.legend(fontsize=6.5, loc="upper left"); tidy(ax)
+    ax.set_xticks([0, 1, 2]); ax.set_xticklabels(["P10", "P50", "P90"], fontsize=7.5); ax.set_ylabel("trading days after quarter end")
+    ax.set_title(f"(d) earnings announcement lag ({int(a8.get('n_filings', 0)):,} filings)", fontsize=9.5)
+    ax.set_xlim(-0.35, 2.35); tidy(ax)
+    # one legend for the four panels: what the data give against what v2 had assumed
+    hs = [plt.Line2D([], [], color=CAT[0], marker="o", ls="-", markersize=6, markeredgecolor=SURFACE, markeredgewidth=1.2),
+          plt.Line2D([], [], color=CAT[1], marker="D", ls="", markersize=6),
+          plt.Rectangle((0, 0), 1, 1, color=CAT[1], alpha=0.18)]
+    fig.legend(hs, ["What the data give: the fitted value with its 95 % interval or IQR",
+                    "What v2 assumed: a single value", "What v2 assumed: a range"],
+               loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3, fontsize=8)
     save(fig, "F15_observables_fits", "Phase 5: observable processes fitted to data vs the v2 assumptions",
          ["v2_1/e5_1/multiple.json", "v2_1/e5_3/dividends.json", "v2_1/e5_6/volume.json", "v2_1/e5_2/eps.json"],
          "P/E: 411 tickers monthly 2009 to 2024; payout: EDGAR stock-years; volume: 417 stocks; lags: 8-K filings",
@@ -907,11 +964,14 @@ def F21_variance_components():
         axes[0].scatter(x + (j - (len(models) - 1) / 2) * w, s["sigma_d_R1_mls90"], marker="_", s=180, color=INK, linewidths=1.6, zorder=3)
         axes[1].bar(x + (j - (len(models) - 1) / 2) * w, s["share_int_R1"], width=w * 0.9, color=CAT[j])
     axes[0].scatter([], [], marker="_", s=180, color=INK, label="one-sided 90 % upper limit")
-    axes[0].set_xticks(x); axes[0].set_xticklabels(mets, rotation=20, fontsize=7); axes[0].set_ylabel("σ_d at R = 1 (sd of the paired difference)")
+    shown = {"band_mas": "band-MAS", "v21_mcr_0.05": "MCR\nat θ = 0.05", "v21_mcr_B_0.05": "B term\nat θ = 0.05",
+             "v21_mcr_D_0.05": "D term\nat θ = 0.05", "v21_mcr_0.002": "MCR\nat θ = 0.002"}    # the document's metric names
+    tick = [shown.get(m, m) for m in mets]
+    axes[0].set_xticks(x); axes[0].set_xticklabels(tick, fontsize=7.5); axes[0].set_ylabel("σ_d at R = 1 (sd of the paired difference)")
     axes[0].set_ylim(0, float(t[t["metric"].isin(mets)]["sigma_d_R1_mls90"].max()) * 1.55)
     axes[0].set_title("(a) sd of the seed-level memory minus static difference", fontsize=9)
     axes[0].legend(fontsize=7, loc="upper center", ncol=2); tidy(axes[0])
-    axes[1].set_xticks(x); axes[1].set_xticklabels(mets, rotation=20, fontsize=7); axes[1].set_ylabel("share of that variance from seed x arm"); axes[1].set_ylim(0, 1)
+    axes[1].set_xticks(x); axes[1].set_xticklabels(tick, fontsize=7.5); axes[1].set_ylabel("share of that variance from seed x arm"); axes[1].set_ylim(0, 1)
     axes[1].set_title("(b) share of that variance from seed by arm interaction", fontsize=9); tidy(axes[1])
     save(fig, "F21_variance_components", "Phase 8: variance components per model and metric", ["v2_1/e8_5/components.csv"],
          "; ".join(f"{m}: {int(t[t.Model == m]['n_pairs'].max())} pairs" for m in models), "Flash ran thinking off; GPT-5 mini at temperature 1 on one scenario.")
@@ -1206,7 +1266,8 @@ def F30_jumps_and_iv():
     ax.set_xticks(x); ax.set_xticklabels([t[1] for t in trans], fontsize=8)
     ax.set_ylabel("mean z-score of the one-day change in log IV")
     ax.set_title("(b) implied volatility at the crash transitions: the phase step removed", fontsize=9)
-    ax.set_ylim(-9.5, 9.5); ax.legend(fontsize=7, loc="lower left"); tidy(ax)
+    ax.set_ylim(-9.8, 14.5); ax.legend(fontsize=7, loc="upper left")      # headroom above the bars for the legend
+    tidy(ax)
     save(fig, "F30_jumps_and_iv_transitions", "Phase 3: jump detection and the implied-volatility transition step",
          ["v2_1/e3_2/detection.json", "v2_1/e3_5/audit.json", "v2_1/findings/R16_iv_step.json"],
          "(a) 417 stocks, 2,622,096 stock-days, 1,000-resample stock bootstrap; (b) v2: 50 crash seeds (Phase 0); v2.1: 200 crash seeds",
@@ -1218,7 +1279,8 @@ def F31_field_group_ablation():
     b = jsn("v2_1/e5_7a/baseline/ablation.json")["tables"]; f = jsn("v2_1/e5_7a/final/ablation.json")["tables"]
     groups = [("VOL", "volume"), ("VAL", "valuation (P/E, yield, days since announcement)"), ("SENT", "sentiment"),
               ("ANALYST", "analyst estimate"), ("LEVELS", "price levels (price, averages, MACD)"), ("IV", "implied volatility")]
-    fig, axes = plt.subplots(1, 2, figsize=(9.6, 4.0), gridspec_kw={"wspace": 0.55})
+    # the group names are long, so they are written once on the left and the two panels share them
+    fig, axes = plt.subplots(1, 2, figsize=(9.6, 4.0), sharey=True, gridspec_kw={"wspace": 0.09})
     for ax, pop, title in ((axes[0], "x|all", "(a) all rows"), (axes[1], "x|calm", "(b) calm rows, calm-trained")):
         y = np.arange(len(groups)); w = 0.36
         for j, (src, lab, col) in enumerate(((b, "fields as inherited (v2 constructions)", CAT[1]), (f, "fields after Phase 5", CAT[0]))):
@@ -1227,11 +1289,12 @@ def F31_field_group_ablation():
             his = np.array([ci(src[pop]["groups"][g]["add_one"]["ci"])[1] for g, _ in groups])
             ax.barh(y + (j - 0.5) * w, vals, height=w * 0.92, color=col, label=lab)
             ax.errorbar(vals, y + (j - 0.5) * w, xerr=[np.maximum(vals - los, 0), np.maximum(his - vals, 0)], fmt="none", ecolor=INK2, elinewidth=0.8, capsize=2)
-        base, full = float(src[pop]["BASE"]["value"]), float(src[pop]["FULL"]["value"])
-        ax.set_yticks(y); ax.set_yticklabels([g[1] for g in groups], fontsize=7); ax.invert_yaxis()
+        ax.set_yticks(y); ax.set_yticklabels([g[1] for g in groups], fontsize=8)
         ax.axvline(0, color=AXIS, lw=0.8); ax.set_xlabel("R² for x added by the group to the level-free base (add-one)")
-        ax.set_title(title, fontsize=9); tidy(ax, ygrid=False, xgrid=True)
-    axes[0].legend(fontsize=7, loc="lower right")
+        ax.set_title(title, fontsize=9.5); tidy(ax, ygrid=False, xgrid=True)
+    axes[0].invert_yaxis()                                   # shared axis: invert once, or the two calls cancel
+    hs, ls = axes[0].get_legend_handles_labels()
+    fig.legend(hs, ls, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=2, fontsize=8.5)
     save(fig, "F31_field_group_ablation", "Phase 5: the field-group ablation before and after the redesign",
          ["v2_1/e5_7a/baseline/ablation.json", "v2_1/e5_7a/final/ablation.json"],
          "1,600 paths, 288,000 modelled rows; 500-resample paired cluster bootstrap by path",
