@@ -298,3 +298,23 @@ def test_uncapped_openrouter_rows_are_not_timed():
         po = [p for p in t["provider_options"] if isinstance(p, dict) and p.get("provider") == "openrouter"]
         assert po, "no OpenRouter rows survived: the ledgers or the filter are wrong"
         assert all(p.get("max_tokens_client") == OPENROUTER_MAX_TOKENS for p in po)
+
+
+def test_grid_configs_are_the_measured_roster():
+    """P9-10: the grid manifest carries exactly the roster configurations the sizing MEASURED.  The two that failed
+    the smoke stopping rule are named in the manifest (`configs_not_piloted`), neither silently included -- they
+    could not run -- nor silently dropped; and a roster member missing from the sizing with no registered reason is
+    refused, as e9_4_grid's docstring always promised."""
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9.e9_4_grid import SIZING, grid_configs
+    if not os.path.exists(SIZING):
+        pytest.skip("e9_2/sizing.json not written yet")
+    d = json.load(open(SIZING, encoding="utf-8"))
+    configs, left_out = grid_configs(d)
+    assert set(configs) | set(left_out) == set(RO.ROSTER) and not set(configs) & set(left_out)
+    assert set(left_out) == set(d["not_piloted_registered"])
+    assert all(k in d["per_model_band_mas"] for k in configs)
+    assert len(configs) == d["plugin_over_n_of_roster"][0]
+    bad = dict(d, per_model_band_mas={k: v for k, v in d["per_model_band_mas"].items() if k != configs[0]})
+    with pytest.raises(SystemExit):
+        grid_configs(bad)

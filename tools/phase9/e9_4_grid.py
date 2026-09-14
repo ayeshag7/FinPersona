@@ -62,6 +62,26 @@ def seeds_from_sizing() -> tuple:
     return S, list(range(GRID_SEED0, GRID_SEED0 + S)), d
 
 
+def grid_configs(sizing: dict) -> tuple:
+    """The configurations the grid runs: the roster members the sizing actually MEASURED (PREREG_PHASE_9.md 2).
+
+    A configuration that was never piloted cannot be in a grid sized without it -- Qwen3.7 Flash and GLM 4.7 Flash
+    failed the registered smoke stopping rule (DECISION_LOG P9-10) -- so it is named in the manifest rather than
+    included silently.  A roster member missing from the sizing WITHOUT a registered reason is refused, which is what
+    the docstring above always promised and `sizing.json`'s `complete` no longer checks on its own."""
+    from tools.phase9 import e9_roster as RO
+    measured = set(sizing.get("per_model_band_mas", {}))
+    configs = [k for k in RO.ROSTER if k in measured]
+    left_out = [k for k in RO.ROSTER if k not in measured]
+    unregistered = [k for k in left_out if k not in set(sizing.get("not_piloted_registered", []))]
+    if unregistered:
+        raise SystemExit(f"roster configurations missing from the sizing with no registered reason: {unregistered}. "
+                         f"Stage 1 does not start on a plug-in that lacks a roster model (PREREG_PHASE_9.md 2)")
+    if not configs:
+        raise SystemExit("the sizing measured no roster configuration")
+    return configs, left_out
+
+
 def cells_for(kind: str, seeds) -> list:
     out = []
     if kind == "headline":
@@ -87,11 +107,15 @@ def stage_manifest():
     from tools.phase9 import e9_roster as RO
     from tools.phase9 import e9_runner as R
     S, seeds, sizing = seeds_from_sizing()
+    configs, left_out = grid_configs(sizing)
+    if left_out:
+        print(f"[manifest] {len(left_out)} roster configuration(s) not piloted and therefore NOT in the grid (P9-10): {left_out}")
     os.makedirs(OUT, exist_ok=True)
     for kind, fname in MANIFESTS.items():
         cells = cells_for(kind, seeds)
         m = {"name": f"e9_4_stage1_{kind}", "kind": "grid", "subdir": f"stage1_{kind}", "ledger_dir": "e9_4",
-             "T": 200, "configs": list(RO.ROSTER), "cells": cells, "seeds": seeds, "seeds_per_cell": S,
+             "T": 200, "configs": configs, "configs_not_piloted": left_out, "cells": cells, "seeds": seeds,
+             "seeds_per_cell": S,
              "sizing": {k: sizing[k] for k in ("plugin_sigma_d_band_mas", "plugin_model", "alpha_bonferroni", "delta",
                                                "stage1_seeds_appA", "stage1_seeds_paired_correct")},
              "registered": "PREREG_PHASE_9.md 4.1; DECISION_LOG P9-2, P9-3, P9-5",
