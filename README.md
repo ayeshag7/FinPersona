@@ -14,6 +14,36 @@ The v1 generator used for every result below is frozen at tag `v1-env-freeze` (`
 `simulation/runner_v2.py` + `experiments/arms_v2.py`; the evaluation layer is `evaluation/`. Status, validation
 tables, decisions and open issues: **`docs/env_v2/`** (start with `docs/env_v2/README.md` and `E1_E4_STATUS.md`).
 
+### The history of the environment
+
+Every change made to the synthetic environment, from v1 through v2 to the ten phases of the v2.1 programme, with
+the evidence behind each one and what remains a design choice, is written up in
+**`docs/env_v2/history/SYNTHETIC_ENVIRONMENT_HISTORY.pdf`** (63 pages, 33 figures; the `.docx` and the source `.md`
+sit beside it). Read it when you want to know why a parameter has the value it has. Its figures are drawn from the
+programme's own result files by `tools/history_figures.py`; `tools/history_docx.py` builds the document and exports
+the PDF through Word.
+
+## Branches
+
+| Branch | What it holds | Who needs it |
+|---|---|---|
+| `main` | everything: the v1 and v2 environments, the harness, every phase report, pre-registration and decision, the analysis tools, the results and the history document | anyone working on the benchmark |
+| `synthetic-env-grid` | only the finalised v2.1 environment and what is needed to run and score the main LLM grid: the generator and its fitted parameters, the agent harness, the scoring layer, the grid tooling, the tests and a README | anyone running the grid, or reading the environment without the history around it |
+
+**Why the second branch exists.** The main grid is a long paid run, and the machine that runs it needs none of the
+programme's history: no phase reports, no analysis tools, no v1 generator, no old results, no third-party data
+panel. Cutting those away leaves a small surface that is quick to review before money is spent, and it removes any
+doubt about which code produced a run. The branch is not a fork: it is a branch of this repository, cut from `main`
+by deleting files, and the environment code is byte-identical to `main`. Two checks prove it, and the branch's own
+README explains how to run them: the freeze manifest gives the same environment code hash on both branches
+(`03ce96aadef0f608` over the same 30 files), and the 95 fixed path configurations reproduce the frozen reference
+with 0 changed. Nothing is developed on the branch that is not also on `main`.
+
+```
+git checkout synthetic-env-grid     # the runner branch
+git checkout main                   # back to the full project
+```
+
 ## Architecture
 
 ### 1. Market Environment (`envs/`)
