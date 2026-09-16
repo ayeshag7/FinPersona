@@ -1,6 +1,6 @@
 {
- "label": "v2.1 Phase 7 freeze (scoring layer added; DECISION_LOG P7-15)",
- "written": "2026-09-10",
+ "label": "v2.1 pre-grid freeze: the team decisions of 14 Sep 2026 recorded in the deployed parameter files (metadata only; 0 of 95 path configurations changed)",
+ "written": "2026-09-16",
  "patterns": [
   "envs/v2/**/*.py",
   "envs/synthetic_market.py",
@@ -16,7 +16,7 @@
   "evaluation/params/scoring.json"
  ],
  "line_endings": "CRLF normalised to LF before hashing",
- "manifest_hash": "03ce96aadef0f6086286fe6e048539853c607b97c69ad3d7b1dd35e9c6c30104",
+ "manifest_hash": "8dc4c7d0c9817dcd2bcccf8219357371041b822c47fb35ae9e3463592108764c",
  "files": {
   "envs/synthetic_market.py": "9e6ffde3f5711964d712f30a00897e58331409e6971e478bfec66e4c8cc643d0",
   "envs/v2/__init__.py": "24dd6056b3dd032e240ee0b5aa4aed7c68689d2afdc99f35903a0aab4f336040",
@@ -28,11 +28,11 @@
   "envs/v2/mispricing_params.py": "c277ece79706bd46cec2ea0d8a260ed6abe17290f35d18d40107e89ee7a4ab34",
   "envs/v2/observables.py": "32e15fc1884ad3220deef7693f5acc78001ca38974a762e9a1407dacbd8ce137",
   "envs/v2/observables_params.py": "96d440f0f9a837db587595319a7673e0da840d5cfbb0672f2a5f938bff0346ef",
-  "envs/v2/params/events.json": "031a877afd63ca210af2f97cbb5ee92c613d4a3584379de1691408c3345806eb",
+  "envs/v2/params/events.json": "3c1fc71a420ac708144bc557e13dd7eeca80299f214c13d36cc317aee23a6b15",
   "envs/v2/params/fw_single_stock.REJECTED.json": "c1bb7127834c39a77a16dd7e3c1b800602968f3bb6be4023dee63bc4e42aa4ba",
   "envs/v2/params/hazard.json": "2e764d082ec070f388340822f81b268c44d0a104516c28422f1e3004ca0524f0",
   "envs/v2/params/mispricing.json": "22278a2f0d081ad703f9ee97ccb7441ce2382b7ef4fccf37267f8fc81cb9975c",
-  "envs/v2/params/observables.json": "66cedeaf76a998083428ff2ac5a768fa50dde05ac8ae973b065b1067a5c69ff3",
+  "envs/v2/params/observables.json": "eff39728f69cb8becf4ff75a9f0fa769ef650ca1b4034bef7a295d1c7d5a24c6",
   "envs/v2/params/value.json": "6358154d2333f40e4842695546f9b33f264e43f56139c4ec2ccc3045332fb2eb",
   "envs/v2/params/volatility.json": "28d3c3829b506a04f68e834ebc57a8c8a6f4ae9c21d75e60a8940abe4a09d4e9",
   "envs/v2/rng.py": "012445d6a7bcbde380a786b3e9ebd5466f6f109f182beef601dd4d7a1f14c714",

@@ -36,7 +36,7 @@ panel. Cutting those away leaves a small surface that is quick to review before 
 doubt about which code produced a run. The branch is not a fork: it is a branch of this repository, cut from `main`
 by deleting files, and the environment code is byte-identical to `main`. Two checks prove it, and the branch's own
 README explains how to run them: the freeze manifest gives the same environment code hash on both branches
-(`03ce96aadef0f608` over the same 30 files), and the 95 fixed path configurations reproduce the frozen reference
+(`8dc4c7d0c9817dcd` over the same 30 files), and the 95 fixed path configurations reproduce the frozen reference
 with 0 changed. Nothing is developed on the branch that is not also on `main`.
 
 ```

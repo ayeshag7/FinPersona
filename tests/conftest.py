@@ -23,7 +23,7 @@ def _outcomes(terminalreporter):
 
 def pytest_terminal_summary(terminalreporter, exitstatus, config):
     try:
-        from tests.known_defects import V2_DEFECTS, V1_BASELINE_XFAILS
+        from tests.known_defects import V2_DEFECTS, V2_1_RESIDUALS, V1_BASELINE_XFAILS
     except Exception as exc:  # pragma: no cover
         terminalreporter.write_line(f"[known-defect registry unavailable: {exc}]")
         return
@@ -34,6 +34,11 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     for d in V2_DEFECTS:
         obs = seen.get(d["test"], "not run")
         terminalreporter.write_line(f"  {d['test']}  items {d['items']}  -> Phase {d['phase']}  [{obs}]  {d['reason']}")
+    terminalreporter.write_line("v2.1 residuals (permanent; closed by decision, not by a fix -- state them in the paper):")
+    for d in V2_1_RESIDUALS:
+        obs = seen.get(d["test"], "not run")
+        terminalreporter.write_line(
+            f"  {d['test']}  items {d['items']}  [{obs}]  {d['closed_by']}; state in: {d['state_in']}")
     terminalreporter.write_line("v1 baseline defects (permanent):")
     for t in V1_BASELINE_XFAILS:
         terminalreporter.write_line(f"  {t}  [{seen.get(t, 'not run')}]")

@@ -254,8 +254,16 @@ def test_phase6_report_tables_match_files():
 
 
 def test_known_defect_registry_names_derived_gates():
-    """The registry's Phase-6 entries (if any remain) name a derived gate, never a chosen margin."""
-    from tests.known_defects import V2_DEFECTS
+    """Every Phase-6 entry names a DERIVED gate, never a chosen margin -- wherever it now lives.
+
+    The two Phase-6 gates moved from V2_DEFECTS to V2_1_RESIDUALS when the team closed them by restricting
+    the claim instead of fixing them, so this guard follows them; checking V2_DEFECTS alone would now pass
+    vacuously."""
+    from tests.known_defects import V2_DEFECTS, V2_1_RESIDUALS
     for d in V2_DEFECTS:
         if d["phase"] >= 6:
             assert "derived" in d["reason"].lower() or "null" in d["reason"].lower(), d
+    assert V2_1_RESIDUALS, "the Phase-6 derived gates must be registered somewhere"
+    for d in V2_1_RESIDUALS:
+        assert "derived" in d["reason"].lower() or "null" in d["reason"].lower(), d
+        assert d.get("closed_by") and d.get("state_in"), d
