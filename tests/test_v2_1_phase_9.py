@@ -380,3 +380,53 @@ def test_grid_score_rows_scores_a_completed_run(tmp_path, monkeypatch):
         fh.write("not,a,run\n")
     rows = score_rows(m)
     assert len(rows) == 1 and rows[0]["score_error"] != ""
+
+
+# ================================================================================================ prompt-hash keying
+def test_prompt_hash_key_carries_the_prompt_affecting_factors():
+    """A cell whose factors change the rendered prompt gets its own prompt-hash entry.
+
+    Before this, `fingerprint()` built its probe from a synthetic cell with no `factors`, so a Track-A manifest
+    stored the Track-B hash and `stage_verify` would have failed the prompt-hash check on every completed run.
+    The guarantee under test is the end-to-end one: the hash an agent actually produces for a cell equals the hash
+    the manifest stored under that cell's key.
+    """
+    from langchain_core.runnables import RunnableLambda
+    from agent.v2_agent import V2Agent
+    from simulation.provenance import agent_provenance
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9 import e9_runner as R
+
+    def observed(mc, cell, subdir):
+        cfg = R.cfg_for(mc, cell, subdir)
+        ag = V2Agent(persona=cfg.persona, model_name=cfg.model_name, mandate_block=cfg.mandate_block,
+                     mandate_persona=cfg.mandate_persona, wording=cfg.wording, track=cfg.track,
+                     action_interface=cfg.action_interface, n_assets=cfg.n_assets,
+                     disclose_horizon=cfg.disclose_horizon, T=cfg.T, cost_visible=cfg.cost_visible,
+                     cost_bp=cfg.cost_bp, objective=cfg.objective, mandate_in_system=cfg.mandate_in_system,
+                     temperature=cfg.temperature, liquidity_condition=cfg.liquidity_condition,
+                     llm=RunnableLambda(lambda m: None), placebo_version=cfg.placebo_version)
+        return agent_provenance(ag)["Prompt_Hash"]
+
+    seen = {}
+    for name in ("headline", "track_a"):
+        path = os.path.join(GEN, "e9_4", f"manifest_{name}.json")
+        if not os.path.exists(path):
+            pytest.skip(f"manifest_{name}.json absent")
+        m = R.load_manifest(path)
+        key = m["configs"][0]
+        mc = RO.by_key(key)
+        cell = next(c for c in m["cells"] if c["persona"] == "ISFJ" and c["arm"] == "static")
+        want = m["fingerprint"]["prompt_hash"][R.prompt_key(key, cell)]
+        assert observed(mc, cell, m["subdir"]) == want, (name, "manifest hash is not the hash a run produces")
+        seen[name] = want
+
+    # Track A really does render a different prompt, so the two manifests must not agree
+    assert seen["headline"] != seen["track_a"]
+
+    # a factor that does not touch the prompt must not split the key
+    assert R.prompt_key("m", {"persona": "ISFJ", "arm": "static"}) == "m|ISFJ|static"
+    assert R.prompt_key("m", {"persona": "ISFJ", "arm": "static",
+                              "factors": {"start_design": "common"}}) == "m|ISFJ|static"
+    assert R.prompt_key("m", {"persona": "ISFJ", "arm": "static",
+                              "factors": {"track": "A"}}) == "m|ISFJ|static|track=A"

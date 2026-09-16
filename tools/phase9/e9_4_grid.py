@@ -164,7 +164,7 @@ def stage_verify():
                     continue
                 meta = json.load(open(p["meta"], encoding="utf-8"))
                 prov, rc = meta["provenance"], meta["run_config"]
-                want_prompt = fp["prompt_hash"].get(f"{key}|{c['persona']}|{c['arm']}")
+                want_prompt = fp["prompt_hash"].get(R.prompt_key(key, c))
                 checks = {
                     "prompt_hash": want_prompt is None or prov.get("Prompt_Hash") == want_prompt,
                     "env_code_hash": prov.get("Env_Code_Hash") == fp["Env_Code_Hash"],

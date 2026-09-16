@@ -1,0 +1,152 @@
+{
+ "scoring_json_sha256": "112843968c060d88bf8ee88fc4d8735b01d22a071e430c3c13d2a6a544ede45a",
+ "n_runs_scored": 4,
+ "n_score_errors": 0,
+ "scored_vs_planned": {
+  "e9_4_stage1_headline|gemini-2.5-flash-lite|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|gemini-2.5-flash|thinking0": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|gemini-2.5-pro|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|gemini-3.5-flash|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|gpt-5-mini|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|gpt-5-nano|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|gpt-5.4-mini|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|gpt-5.5|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|gpt-5|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|openrouter/anthropic/claude-haiku-4.5|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_headline|openrouter/deepseek/deepseek-v4-flash|default": [
+   4,
+   2880
+  ],
+  "e9_4_stage1_headline|openrouter/qwen/qwen3-235b-a22b-2507|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_slice|gemini-2.5-flash-lite|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|gemini-2.5-flash|thinking0": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|gemini-2.5-pro|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|gemini-3.5-flash|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|gpt-5-mini|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|gpt-5-nano|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|gpt-5.4-mini|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|gpt-5.5|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|gpt-5|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|openrouter/anthropic/claude-haiku-4.5|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|openrouter/deepseek/deepseek-v4-flash|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_slice|openrouter/qwen/qwen3-235b-a22b-2507|default": [
+   0,
+   4800
+  ],
+  "e9_4_stage1_track_a|gemini-2.5-flash-lite|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|gemini-2.5-flash|thinking0": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|gemini-2.5-pro|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|gemini-3.5-flash|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|gpt-5-mini|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|gpt-5-nano|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|gpt-5.4-mini|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|gpt-5.5|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|gpt-5|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|openrouter/anthropic/claude-haiku-4.5|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|openrouter/deepseek/deepseek-v4-flash|default": [
+   0,
+   2880
+  ],
+  "e9_4_stage1_track_a|openrouter/qwen/qwen3-235b-a22b-2507|default": [
+   0,
+   2880
+  ]
+ },
+ "generated_utc": "2026-09-16T21:15:37Z"
+}

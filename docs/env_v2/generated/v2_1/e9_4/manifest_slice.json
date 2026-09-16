@@ -51516,7 +51516,7 @@
   "stage1_seeds_paired_correct": 60
  },
  "registered": "PREREG_PHASE_9.md 4.1; DECISION_LOG P9-2, P9-3, P9-5",
- "written_utc": "2026-09-16T19:25:45Z",
+ "written_utc": "2026-09-16T20:46:09Z",
  "fingerprint": {
   "prompt_hash": {
    "gemini-2.5-flash|thinking0|ENTJ|memory": "51fb0e0c63d663a0",

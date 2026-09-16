@@ -85,8 +85,8 @@
    "manifest": "headline",
    "config": "openrouter/deepseek/deepseek-v4-flash|default",
    "planned": 2880,
-   "verified": 0,
-   "missing": 2880,
+   "verified": 4,
+   "missing": 2876,
    "mismatched": 0
   },
   {
@@ -293,5 +293,5 @@
  "mismatches": [],
  "pass": true,
  "complete": false,
- "generated_utc": "2026-09-16T19:29:50Z"
+ "generated_utc": "2026-09-16T21:15:26Z"
 }

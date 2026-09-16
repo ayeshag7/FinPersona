@@ -390,19 +390,52 @@ def stage_smoke(configs: str, cells_kind: str = "stateless") -> int:
 
 
 # ---------------------------------------------------------------------------------------------- manifests
+# The RunConfig fields a cell's `factors` can set that reach the RENDERED PROMPT (agent/v2_prompts.system_prompt and
+# mandate_block).  A factor outside this set -- start_design, ordering, env_config -- changes the run but not the text
+# the model sees, so it must not split the prompt-hash key: if it did, the slice manifest's fingerprint would move for
+# no reason.  Track A was the first grid factor to touch the prompt, and it exposed that the key had no room for one.
+PROMPT_FACTORS = ("track", "wording", "action_interface", "disclose_horizon", "cost_visible", "cost_bp", "objective",
+                  "mandate_in_system", "liquidity_condition", "n_assets", "T", "placebo_version")
+
+
+def prompt_factors(cell: dict) -> dict:
+    """The subset of a cell's factors that changes the rendered prompt."""
+    f = cell.get("factors") or {}
+    return {k: f[k] for k in PROMPT_FACTORS if k in f}
+
+
+def prompt_key(config_key: str, cell: dict) -> str:
+    """The prompt-hash key for one cell.  Cells whose factors do not touch the prompt keep the historic three-part
+    key, so manifests written before this existed keep their fingerprints unchanged."""
+    pf = prompt_factors(cell)
+    base = f"{config_key}|{cell['persona']}|{cell['arm']}"
+    return base if not pf else base + "|" + ",".join(f"{k}={pf[k]}" for k in sorted(pf))
+
+
 def fingerprint(manifest: dict) -> dict:
-    """What a resumed manifest run must still be: every (configuration, persona, arm) prompt hash, Env_Code_Hash, the
-    harness sources."""
+    """What a resumed manifest run must still be: every (configuration, persona, arm, prompt-factor) prompt hash,
+    Env_Code_Hash, the harness sources.
+
+    The probe config is built from a REAL cell of the manifest, not a synthetic one, so that the cell's
+    prompt-affecting factors reach the rendered prompt and the stored hash is the hash the runs will produce."""
     from langchain_core.runnables import RunnableLambda
     from agent.v2_agent import V2Agent
     from envs.synthetic_market import SyntheticMarketEnv
     from simulation.provenance import agent_provenance, env_provenance
     out = {"prompt_hash": {}}
-    pa = sorted({(c["persona"], c["arm"]) for c in manifest["cells"]})
+    # One representative cell per (persona, arm, prompt-factor signature); a signature the prompt does not depend on
+    # collapses to the historic (persona, arm) pair.
+    reps: Dict[tuple, dict] = {}
+    for c in manifest["cells"]:
+        reps.setdefault((c["persona"], c["arm"], json.dumps(prompt_factors(c), sort_keys=True)), c)
     for key in manifest["configs"]:
         mc = RO.by_key(key)
-        for p, a in pa:
-            cfg = cfg_for(mc, {"persona": p, "arm": a, "scenario": "flat", "seed": 1}, manifest["subdir"])
+        for (p, a, _), rep in sorted(reps.items()):
+            probe = {"persona": p, "arm": a, "scenario": "flat", "seed": 1}
+            pf = prompt_factors(rep)
+            if pf:
+                probe["factors"] = pf
+            cfg = cfg_for(mc, probe, manifest["subdir"])
             if cfg.context_mode != "stateless":
                 continue
             ag = V2Agent(persona=cfg.persona, model_name=cfg.model_name, mandate_block=cfg.mandate_block,
@@ -412,7 +445,7 @@ def fingerprint(manifest: dict) -> dict:
                          mandate_in_system=cfg.mandate_in_system, temperature=cfg.temperature,
                          liquidity_condition=cfg.liquidity_condition, llm=RunnableLambda(lambda m: None),
                          placebo_version=cfg.placebo_version)
-            out["prompt_hash"][f"{key}|{p}|{a}"] = agent_provenance(ag)["Prompt_Hash"]
+            out["prompt_hash"][prompt_key(key, rep)] = agent_provenance(ag)["Prompt_Hash"]
     out["Env_Code_Hash"] = env_provenance(SyntheticMarketEnv("flat", T, 1))["Env_Code_Hash"]
     out["sources_sha256_lf"] = {rel: hashlib.sha256(open(os.path.join(ROOT, rel), "rb").read().replace(b"\r\n", b"\n")).hexdigest()
                                 for rel in SOURCES}

@@ -233,7 +233,7 @@
     "temperature_sent": 0.2,
     "temperature_client": 0.2,
     "options": {},
-    "max_tokens_client": null,
+    "max_tokens_client": 8192,
     "max_retries": 8,
     "upstream_pinned": "Anthropic",
     "base_url": "https://openrouter.ai/api/v1"
@@ -250,7 +250,7 @@
     "temperature_sent": 0.2,
     "temperature_client": 0.2,
     "options": {},
-    "max_tokens_client": null,
+    "max_tokens_client": 8192,
     "max_retries": 8,
     "upstream_pinned": "Baidu",
     "base_url": "https://openrouter.ai/api/v1"
@@ -267,7 +267,7 @@
     "temperature_sent": 0.2,
     "temperature_client": 0.2,
     "options": {},
-    "max_tokens_client": null,
+    "max_tokens_client": 8192,
     "max_retries": 8,
     "upstream_pinned": "Alibaba",
     "base_url": "https://openrouter.ai/api/v1"
@@ -284,7 +284,7 @@
     "temperature_sent": 0.2,
     "temperature_client": 0.2,
     "options": {},
-    "max_tokens_client": null,
+    "max_tokens_client": 8192,
     "max_retries": 8,
     "upstream_pinned": "Cloudflare",
     "base_url": "https://openrouter.ai/api/v1"
@@ -301,7 +301,7 @@
     "temperature_sent": 0.2,
     "temperature_client": 0.2,
     "options": {},
-    "max_tokens_client": null,
+    "max_tokens_client": 8192,
     "max_retries": 8,
     "upstream_pinned": "GMICloud",
     "base_url": "https://openrouter.ai/api/v1"
@@ -309,5 +309,5 @@
    "error": ""
   }
  ],
- "generated_utc": "2026-09-12T07:58:00Z"
+ "generated_utc": "2026-09-16T20:51:42Z"
 }
