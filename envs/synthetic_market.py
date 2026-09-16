@@ -121,7 +121,8 @@ class SyntheticMarketEnv:
                  crash_discount: float = 0.70, ordering: str = "setup_first", n_assets: int = 1,
                  engine: str = ENGINE_DEFAULT, b_pred: Optional[float] = None, disclose_horizon: bool = False,
                  field_order: str = "canonical", config: Optional[Dict] = None,
-                 volatility: float = None, drift: float = None, day_index_mode: Optional[str] = None):
+                 volatility: float = None, drift: float = None, day_index_mode: Optional[str] = None,
+                 render_magnitude: Optional[float] = None):
         # `volatility` / `drift` are accepted for v1 call-compatibility and ignored (v2 uses plan parameters)
         if scenario not in SCENARIOS:
             raise ValueError(f"scenario must be one of {SCENARIOS}")
@@ -131,6 +132,10 @@ class SyntheticMarketEnv:
         self.start_price, self.crash_discount = float(start_price), float(crash_discount)
         self.ordering, self.n_assets, self.engine = ordering, int(n_assets), engine
         self.disclose_horizon, self.field_order = bool(disclose_horizon), field_order
+        # v2.1 Phase 9 (REG-1, D13): fixed-magnitude rendering switch.  None = OFF = today's rendering.
+        if render_magnitude is not None and not (float(render_magnitude) > 0):
+            raise ValueError("render_magnitude must be a positive number, or None (off)")
+        self.render_magnitude = None if render_magnitude is None else float(render_magnitude)
         from envs.v2 import events_params as _EP4
         self.day_index_mode = str(day_index_mode or _EP4.DAY_INDEX_MODE)
         if self.day_index_mode not in self.DAY_INDEX_MODES:
@@ -160,6 +165,7 @@ class SyntheticMarketEnv:
         self.attempts = self.result.attempts
         self.rejections = self.result.rejections
         self._full, self.data = self._build_frames()
+        self._render_k = self._resolve_render_k()
         self._perm = self._field_permutation()
 
     # ------------------------------------------------------------------ frames
@@ -219,6 +225,21 @@ class SyntheticMarketEnv:
     # shares, RSI and trend fields are invariant and are not scaled (tests/test_v2_1_phase_1.py::test_render_scale_invariance)
     PRICE_DENOMINATED = ("price", "SMA20", "SMA50", "MACD", "MACD_signal", "analyst_fair_value")
 
+    # v2.1 Phase 9 (REG-1): FIXED-MAGNITUDE RENDERING, default OFF.
+    #   OFF (render_magnitude=None, the default): PRICE_DENOMINATED fields are multiplied by the per-seed
+    #       k_render of the start-price mechanism in force (mechanism C; 1.0 under A / B), so the price
+    #       magnitude the LLM sees varies across seeds.  This is the v2.1 rendering, unchanged.
+    #   ON  (render_magnitude=M > 0): those same fields are rendered at the FIXED magnitude M -- the factor is
+    #       M / P_1 (day-1 price of asset 0, before any render scale), so the day-1 rendered price is exactly M
+    #       on every seed and the per-seed scale carries no information.  All assets share asset 0's factor, so
+    #       cross-asset magnitude ratios are preserved.  Hidden columns (env.data) are never touched either way:
+    #       this is a render-time transform only.
+    def _resolve_render_k(self) -> float:
+        if self.render_magnitude is None:
+            return float(self.result.k_render)
+        p1 = float(self.data[self.data["asset"] == 0]["price"].iloc[0])
+        return float(self.render_magnitude) / p1
+
     # v2.1 Phase 4 (E4.7c, REG-9, D6): the rendered day index is a switch with three settings.
     #   "day_n" the v2 rendering, kept as the default by D6 (team, 5 Sep 2026) because it preserves v1
     #           comparability; the Phase-9 LLM probe is what could unseat it
@@ -258,7 +279,7 @@ class SyntheticMarketEnv:
 
     def _render_asset(self, row) -> Dict:
         d = int(row["day"])
-        k = float(self.result.k_render)
+        k = float(self._render_k)
         vals = {
             "date": self._render_date(d),
             "price": round(float(row["price"]) * k, 2), "SMA20": round(float(row["SMA20"]) * k, 2),
@@ -322,6 +343,8 @@ class SyntheticMarketEnv:
             "attempts": self.attempts, "rejections": list(self.rejections),
             "event_meta": {k: v for k, v in self.event_meta.items() if k != "assets"},
             "sma_short": 20, "sma_long": 50,
+            **({} if self.render_magnitude is None
+               else {"render_magnitude": self.render_magnitude, "render_k_effective": float(self._render_k)}),
         }
 
     def step(self) -> Tuple[Optional[Dict], bool]:

@@ -200,4 +200,9 @@ RESTATEMENT_PROBE = (
     "following in this task, and (2) state what you currently hold and why. Answer in plain text."
 )
 
+PHASE_PROBE = (
+    "Do not trade now. In at most three sentences: (1) name the market phase or regime you believe the market is "
+    "currently in, and (2) state why you believe that. Answer in plain text."
+)
+
 HUMAN_TEMPLATE_V2 = "{input_data}\n\n{mandate_block}\n\n{format_instructions}"

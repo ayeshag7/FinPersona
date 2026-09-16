@@ -1,6 +1,6 @@
 {
- "label": "v2.1 pre-grid freeze: the team decisions of 14 Sep 2026 recorded in the deployed parameter files (metadata only; 0 of 95 path configurations changed)",
- "written": "2026-09-16",
+ "label": "v2.1 pre-grid build: Track-A grid stage, OCEAN vocabulary personas, fixed-magnitude render switch (default off) and the REG-9 phase probe (default off)",
+ "written": "2026-09-17",
  "patterns": [
   "envs/v2/**/*.py",
   "envs/synthetic_market.py",
@@ -16,9 +16,9 @@
   "evaluation/params/scoring.json"
  ],
  "line_endings": "CRLF normalised to LF before hashing",
- "manifest_hash": "8dc4c7d0c9817dcd2bcccf8219357371041b822c47fb35ae9e3463592108764c",
+ "manifest_hash": "1d689aaf82a33a2ef31f3466beab13f233897f7b516c86f84a9d987d1c6a9cce",
  "files": {
-  "envs/synthetic_market.py": "9e6ffde3f5711964d712f30a00897e58331409e6971e478bfec66e4c8cc643d0",
+  "envs/synthetic_market.py": "5bba9f0ceee9361995ff1896b51a5fd6255278fe5b9a03999b9c6ee95c592bab",
   "envs/v2/__init__.py": "24dd6056b3dd032e240ee0b5aa4aed7c68689d2afdc99f35903a0aab4f336040",
   "envs/v2/events.py": "80560c5fd572192c0211a89c70ed799f5c77cd8a12d1aecc9fb398a4a50ceb86",
   "envs/v2/events_params.py": "96fd2662972e82f6368c0a8f9a22fd3956a27e045f7cb9226fc3648321194326",

@@ -5,7 +5,8 @@ One function, `run_simulation_v2(cfg)`, drives: v2 environment -> V2Agent (any a
 -> PortfolioV2 (target-share or v1 interface, start design, cost tier, execution
 rule) -> one CSV row per day with the referee fields, the harness factors and the
 provenance hashes (IO_CONTRACT.md section 2.5).  Optional forked restatement
-probe every `probe_every` days (off-transcript; logged to a separate column).
+probe every `probe_every` days, and the REG-9 phase-restatement probe every `phase_probe_every`
+days (both off-transcript; each logged to its own separate column).
 Parse fallbacks are flagged (`Parse_Status`) rather than hidden.
 """
 from __future__ import annotations
@@ -61,6 +62,7 @@ class RunConfig:
                                           # the parameter file names -- test_engine_named_honestly)
     temperature: float = 0.2
     probe_every: int = 0                  # 0 = no restatement probe
+    phase_probe_every: int = 0            # REG-9: 0 = no phase-restatement probe (own column, own cadence)
     context_mode: str = "stateless"       # stateless | rolling | full | summary   (E5 stateful arm)
     context_window: int = 20              # rolling: steps retained
     context_token_budget: int = 60000     # full: token budget
@@ -155,6 +157,9 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
         probe = ""
         if cfg.probe_every and (t % cfg.probe_every == 0):
             probe = agent.probe_restatement(obs, state)
+        phase_probe = ""
+        if cfg.phase_probe_every and (t % cfg.phase_probe_every == 0):
+            phase_probe = agent.probe_phase(obs, state)
         gt = env.get_ground_truth()
         st = port.get_state(prices)
         row = {
@@ -196,6 +201,8 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
             row.update({"Context_Mode": "stateless", "Context_Tokens": None, "Mandate_Offset_Tokens": None, "Context_Turns": 0,
                         "Summary_Calls": 0, "Summary_Mentions_Mandate": False, "Summary_Text": ""})
         row.update(prov)
+        if cfg.phase_probe_every:                     # REG-9: its own column, absent from a run without the phase probe
+            row["Phase_Probe"] = phase_probe
         if cfg.provider_options is not None:          # v2.1 Phase 9: absent from a log run without provider options
             row["Provider_Options"] = json.dumps(cfg.provider_options, sort_keys=True, default=str)
         rows.append(row)
