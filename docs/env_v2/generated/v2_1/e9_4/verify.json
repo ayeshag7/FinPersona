@@ -1,0 +1,297 @@
+{
+ "registered": "plan 13.4; PREREG_PHASE_9.md 4.1",
+ "rows": [
+  {
+   "manifest": "headline",
+   "config": "gemini-2.5-flash|thinking0",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "gpt-5-mini|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "gemini-2.5-flash-lite|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "gemini-2.5-pro|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "gemini-3.5-flash|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "gpt-5-nano|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "gpt-5|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "gpt-5.4-mini|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "gpt-5.5|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "openrouter/anthropic/claude-haiku-4.5|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "openrouter/deepseek/deepseek-v4-flash|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline",
+   "config": "openrouter/qwen/qwen3-235b-a22b-2507|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gemini-2.5-flash|thinking0",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gpt-5-mini|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gemini-2.5-flash-lite|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gemini-2.5-pro|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gemini-3.5-flash|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gpt-5-nano|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gpt-5|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gpt-5.4-mini|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "gpt-5.5|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "openrouter/anthropic/claude-haiku-4.5|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "openrouter/deepseek/deepseek-v4-flash|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice",
+   "config": "openrouter/qwen/qwen3-235b-a22b-2507|default",
+   "planned": 4800,
+   "verified": 0,
+   "missing": 4800,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gemini-2.5-flash|thinking0",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gpt-5-mini|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gemini-2.5-flash-lite|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gemini-2.5-pro|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gemini-3.5-flash|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gpt-5-nano|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gpt-5|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gpt-5.4-mini|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "gpt-5.5|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "openrouter/anthropic/claude-haiku-4.5|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "openrouter/deepseek/deepseek-v4-flash|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a",
+   "config": "openrouter/qwen/qwen3-235b-a22b-2507|default",
+   "planned": 2880,
+   "verified": 0,
+   "missing": 2880,
+   "mismatched": 0
+  }
+ ],
+ "mismatches": [],
+ "pass": true,
+ "complete": false,
+ "generated_utc": "2026-09-16T19:29:50Z"
+}

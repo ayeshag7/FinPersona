@@ -264,3 +264,24 @@ def test_phase5_report_parameter_table_matches_observables_json():
             wrong.append((key, status, m.group(1).strip()))
     assert not missing, f"observables.json entries absent from the report's parameter table: {missing}"
     assert not wrong, "the report's parameter table disagrees with the deployed observables.json (entry, file, report): " + repr(wrong)
+
+
+def test_ocean_vocabulary_personas_run_on_the_v2_harness():
+    """B2: O1_conservative / O2_aggressive build v2 prompts and resolve to their MBTI-equivalent bands."""
+    from agent import v2_prompts as P
+    from evaluation.targets import band, centre
+
+    for persona, mandate_kw in (("O1_conservative", "GUARDIAN"), ("O2_aggressive", "MOMENTUM COMMANDER")):
+        sp = P.system_prompt(persona, track="A")
+        assert isinstance(sp, str) and sp.strip(), f"empty system prompt for {persona}"
+        assert "Openness to Experience:" in sp, f"OCEAN trait block missing from {persona} system prompt"
+        assert "As a financial trader, this means:" in sp, f"financial extension missing from {persona} system prompt"
+
+        mt = P.mandate_text(persona)
+        assert isinstance(mt, str) and mt.strip(), f"empty mandate for {persona}"
+        assert mandate_kw in mt, f"{persona} mandate does not carry its persona vocabulary"
+
+    assert band("O1_conservative") == (0.70, 0.90)
+    assert band("O2_aggressive") == (0.00, 0.20)
+    assert centre("O1_conservative") == pytest.approx(0.80)
+    assert centre("O2_aggressive") == pytest.approx(0.10)

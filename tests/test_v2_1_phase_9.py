@@ -220,6 +220,32 @@ def test_grid_manifest_matches_runs():
     assert v["rows"], "verify wrote no rows"
 
 
+def test_track_a_manifest_mirrors_headline():
+    """The Track-A communicated-target manifest is the headline grid cell for cell, differing only in the factor it
+    exists to vary: every track_a cell carries `factors={"track": "A"}` and no headline cell sets a track factor at
+    all (the headline grid is Track B, `experiments.arms_v2.FACTOR_DEFAULTS`).  Checked on the generated cells, and
+    on the manifests themselves wherever they are already on disk."""
+    from tools.phase9.e9_4_grid import MANIFESTS, OUT, cells_for
+    assert MANIFESTS["track_a"] == "manifest_track_a.json"
+    seeds = list(range(10001, 10004))
+    head, track_a = cells_for("headline", seeds), cells_for("track_a", seeds)
+    assert len(track_a) == len(head) and head
+    assert all(c.get("factors") == {"track": "A"} for c in track_a)
+    assert all(c["setting"] == "track_a" for c in track_a)
+    assert not any("track" in (c.get("factors") or {}) for c in head)
+    # the cells are the same grid: identical but for the setting and the factor
+    strip = lambda cs: [{k: v for k, v in c.items() if k not in ("setting", "factors")} for c in cs]   # noqa: E731
+    assert strip(track_a) == strip(head)
+    on_disk = {k: os.path.join(OUT, MANIFESTS[k]) for k in ("headline", "track_a")}
+    if all(os.path.exists(f) for f in on_disk.values()):
+        mh = json.load(open(on_disk["headline"], encoding="utf-8"))
+        mt = json.load(open(on_disk["track_a"], encoding="utf-8"))
+        assert len(mt["cells"]) == len(mh["cells"])
+        assert all(c.get("factors") == {"track": "A"} for c in mt["cells"])
+        assert not any("track" in (c.get("factors") or {}) for c in mh["cells"])
+        assert mt["subdir"] != mh["subdir"] and mt["configs"] == mh["configs"]
+
+
 def test_phase9_report_tables_match_files():
     """Rule 15: every PHASE_9_REPORT.md table is generated from its file and read back (`--check` exits 1 when stale)."""
     report = os.path.join(ROOT, "docs", "env_v2", "v2_1", "PHASE_9_REPORT.md")

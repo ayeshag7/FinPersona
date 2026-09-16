@@ -366,3 +366,68 @@ def test_status_vocabulary_is_declared_and_enforced():
             json.dump(bad, fh)
         with pytest.raises(RuntimeError, match="does not declare"):
             ep.load(q)
+
+
+def test_fixed_magnitude_rendering_switch_is_off_by_default_and_hidden_columns_are_untouched():
+    """B3a (REG-1): `render_magnitude` renders the price-denominated fields at a FIXED magnitude, and is OFF
+    by default.
+
+    REG-1 is the LLM-side test of start-price mechanism A against C.  Under C (`start_price_mode='both'`,
+    in force) every price-denominated RENDERED field is multiplied by a per-seed k_render, so the price
+    magnitude the model sees varies across seeds; the fixed-magnitude option removes that variation at
+    render time only.  Three things are asserted, in the order that matters:
+      1. the default is OFF -- `render_magnitude is None` and the rendering equals the k_render rendering;
+      2. ON, the rendered price-denominated fields differ (they sit at the fixed magnitude on every seed);
+      3. ON, the HIDDEN path (env.data, every column) is bit-identical -- the switch is a render-time
+         transform and must never reach the generator."""
+    import pandas as pd
+
+    seed, T = 7, 60
+    off = SyntheticMarketEnv("bull_trap", T, seed)
+    on = SyntheticMarketEnv("bull_trap", T, seed, render_magnitude=100.0)
+
+    # 1. default OFF, and OFF is exactly the k_render rendering
+    assert off.render_magnitude is None, "the fixed-magnitude switch must default to OFF"
+    assert off._render_k == float(off.result.k_render)
+    assert "render_magnitude" not in off.get_metadata(), (
+        "an extra metadata key when the switch is off would change generator_config_hash")
+    assert on.get_metadata()["render_magnitude"] == 100.0
+
+    # 2. ON: the rendered price-denominated fields differ, and sit at the fixed magnitude on every seed
+    o_off, o_on = off.reset(), on.reset()
+    assert o_on["price"] == 100.0, "day-1 rendered price must be the requested fixed magnitude"
+    k = float(off.result.k_render)
+    assert abs(k - 1.0) > 1e-6, (
+        f"k_render = {k}: this seed carries no render scale, so the arms cannot be distinguished")
+    priced = [f for f in SyntheticMarketEnv.PRICE_DENOMINATED if f in o_off]
+    assert priced, "no price-denominated field is rendered"
+    assert any(o_off[f] != o_on[f] for f in priced), "the switch changed no price-denominated field"
+    for f in o_off:
+        if f in priced:
+            continue
+        assert o_off[f] == o_on[f], f"the switch must not touch the scale-free field {f!r}"
+
+    # and across the whole path, not just day 1: each arm is the SAME hidden path rendered at its own
+    # scale -- OFF at k_render, ON at the fixed magnitude M / P_1
+    p1 = float(off.data[off.data["asset"] == 0]["price"].iloc[0])
+    k_on = 100.0 / p1
+    dp = {"MACD": 4, "MACD_signal": 4}
+    rows = off.data[off.data["asset"] == 0].reset_index(drop=True)
+    for t in range(T):
+        off.current_step = on.current_step = t
+        a, b = off.get_observation(), on.get_observation()
+        for f in priced:
+            nd = dp.get(f, 2)
+            raw = float(rows[f].iloc[t])
+            assert a[f] == round(raw * k, nd), f"day {t + 1}: OFF rendering of {f!r} is not the k_render rendering"
+            assert b[f] == round(raw * k_on, nd), f"day {t + 1}: ON rendering of {f!r} is not at the fixed magnitude"
+
+    # 3. ON: every hidden column is unchanged
+    d_off, d_on = off.data, on.data
+    assert list(d_off.columns) == list(d_on.columns)
+    for c in d_off.columns:
+        pd.testing.assert_series_equal(d_off[c], d_on[c], check_exact=True, obj=f"column {c}")
+
+    # a non-positive magnitude is refused rather than silently rendering a degenerate scale
+    with pytest.raises(ValueError, match="render_magnitude"):
+        SyntheticMarketEnv("flat", 20, 0, render_magnitude=0.0)

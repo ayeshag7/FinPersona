@@ -12,7 +12,8 @@ experiments/arms_v2.py), not a subclass:
 decide(market_state, portfolio_state) -> TargetAllocation (or TradeDecision for the
 v1 interface); parse failures are retried 3x and then returned as a fallback with
 parse_status="fallback" so the evaluation layer can exclude them (plan 8.5).
-probe_restatement(...) is the forked off-transcript restatement probe (B7).
+probe_restatement(...) is the forked off-transcript restatement probe (B7); probe_phase(...) is
+its phase/regime analogue (REG-9).  Both are off-transcript: neither enters the decision context.
 prompt_components() feeds simulation/provenance.py.
 """
 from __future__ import annotations
@@ -76,6 +77,7 @@ class V2Agent(BaseAgent):
                                       format_instructions=self.parser.get_format_instructions()) | self.llm | self.parser
         probe_tmpl = ChatPromptTemplate.from_messages([("system", "{persona}"), ("human", "{input_data}\n\n{probe}")])
         self.probe_chain = probe_tmpl.partial(persona=self.full_system_prompt, probe=P.RESTATEMENT_PROBE) | self.llm | StrOutputParser()
+        self.phase_probe_chain = probe_tmpl.partial(persona=self.full_system_prompt, probe=P.PHASE_PROBE) | self.llm | StrOutputParser()
 
     # ------------------------------------------------------------------ prompts
     def render_input(self, market_state: Dict[str, Any], portfolio_state: Dict[str, float]) -> str:
@@ -125,6 +127,13 @@ class V2Agent(BaseAgent):
         """Forked, off-transcript restatement probe (B7). Never enters the decision context."""
         try:
             return self.probe_chain.invoke({"input_data": self.render_input(market_state, portfolio_state)})
+        except Exception as exc:
+            return f"PROBE_ERROR: {exc}"
+
+    def probe_phase(self, market_state: Dict[str, Any], portfolio_state: Dict[str, float]) -> str:
+        """Forked, off-transcript phase-restatement probe (REG-9). Never enters the decision context."""
+        try:
+            return self.phase_probe_chain.invoke({"input_data": self.render_input(market_state, portfolio_state)})
         except Exception as exc:
             return f"PROBE_ERROR: {exc}"
 

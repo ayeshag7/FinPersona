@@ -175,6 +175,33 @@ PHASE8_ADDED_FIELDS = {"harness_version": "v2", "placebo_version": "v2"}
 # v2.1 Phase 9's declared addition (PREREG_PHASE_9.md): the provider-options field, None by default, which leaves the
 # run log unchanged (tests/test_v2_1_phase_9.py::test_provider_options_column_inert)
 PHASE9_ADDED_FIELDS = {"provider_options": None}
+# v2.1 pre-grid additions (B3b, B2), declared here for the same reason Phase 8 and Phase 9 declared theirs.
+#   phase_probe_every: REG-9's phase-restatement side call, 0 by default, which leaves the run log unchanged
+#     (tests/test_v2_1_phase_8.py::test_phase_probe_off_by_default).
+#   O1_conservative / O2_aggressive: the OCEAN vocabulary personas. The golden record was captured while
+#     agent/prompts.py had no BASELINE_PERSONAS entry for them, so it stores "ERROR:ValueError" for every one of
+#     their prompt keys; now that they resolve, those keys hold real hashes. Dropping them from BOTH sides is the
+#     treatment PHASE8_ADDED_ARMS gets in capture_arms(): every other key still has to match exactly, and the new
+#     personas' prompts are checked by tests/test_v2_1_phase_5.py instead.
+PRE_GRID_ADDED_FIELDS = {"phase_probe_every": 0}
+PRE_GRID_ADDED_PERSONAS = ("O1_conservative", "O2_aggressive")
+
+
+def _drop_added_personas(doc: dict) -> dict:
+    """Both sides of --check lose the declared-addition personas' prompt keys; nothing else is touched."""
+    out = dict(doc)
+    prompts = out.get("prompts")
+    if not isinstance(prompts, dict):
+        return out
+    pruned = dict(prompts)
+    for section in ("blocks", "systems"):
+        entries = pruned.get(section)
+        if isinstance(entries, dict):
+            pruned[section] = {k: v for k, v in entries.items()
+                               if not any(f"|{p}|" in f"|{k}|" or k.startswith(f"{p}|") or f"|{p}|" in k
+                                          for p in PRE_GRID_ADDED_PERSONAS)}
+    out["prompts"] = pruned
+    return out
 
 
 def capture_arms() -> dict:
@@ -187,7 +214,7 @@ def capture_arms() -> dict:
             continue
         cfg = build_config("fake", "ENTJ", arm, "crash", 3, 1)
         d = {k: v for k, v in asdict(cfg).items() if k != "agent_llm"}
-        for k, default in {**PHASE8_ADDED_FIELDS, **PHASE9_ADDED_FIELDS}.items():
+        for k, default in {**PHASE8_ADDED_FIELDS, **PHASE9_ADDED_FIELDS, **PRE_GRID_ADDED_FIELDS}.items():
             if k in d and d[k] == default:
                 d.pop(k)
         configs[arm] = _clean(d)
@@ -338,7 +365,7 @@ def main(argv=None):
     with open(GOLDEN, "r", encoding="utf-8") as fh:
         ref = json.load(fh)
     ref = {k: v for k, v in ref.items() if not k.startswith("_")}
-    d = diff(ref, cur)
+    d = diff(_drop_added_personas(ref), _drop_added_personas(cur))
     print(f"{len(d)} differences from the golden record")
     for x in d[:40]:
         print("  ", x)

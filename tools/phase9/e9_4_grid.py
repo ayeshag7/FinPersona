@@ -5,27 +5,32 @@ right hashes and configuration (plan 13.4; PREREG_PHASE_9.md 4.1).
     python -u -m tools.phase9.e9_4_grid --stages manifest          # after E9.2's sizing.json exists
     python -u -m tools.phase9.e9_launch --manifest docs/env_v2/generated/v2_1/e9_4/manifest_headline.json --workers 15
     python -u -m tools.phase9.e9_launch --manifest docs/env_v2/generated/v2_1/e9_4/manifest_slice.json --workers 15
+    python -u -m tools.phase9.e9_launch --manifest docs/env_v2/generated/v2_1/e9_4/manifest_track_a.json --workers 15
     python -u -m tools.phase9.e9_4_grid --stages verify,status
 
-**Two manifests, run in order per model.** The headline cells answer the question the team staged first; the D11
-common-start slice (P8-13, P8-14) runs after them, so no model's headline answer waits on it.
+**Three manifests, run in order per model.** The headline cells answer the question the team staged first; the D11
+common-start slice (P8-13, P8-14) runs after them, so no model's headline answer waits on it, and the Track-A
+communicated-target mirror of the headline grid runs last.
 
 `manifest`  Reads the seed count S from `e9_2/sizing.json` (E9.2's rule: the maximum of the roster's band-MAS sigma_d
             limits, then Appendix A at alpha' = 0.05 / 36).  Refuses if any roster model is missing from the sizing.
             * headline: 3 personas x (static, memory) x 4 scenarios x seeds 10001..10000+S, setting "default";
             * slice: 3 personas x (static, memory, swapped) + the NONE trader, all at `start_design="common"`, the
               same scenarios and seeds, setting "common_start" (the setting is a path and run-key component, so a
-              slice run never collides with its headline twin).
-            Both carry the fingerprint `tools/phase9/e9_runner.fingerprint` computes.
+              slice run never collides with its headline twin);
+            * track_a: the headline cells exactly, each at `track="A"` (the persona's cash band is stated in the
+              system prompt), setting "track_a".
+            All three carry the fingerprint `tools/phase9/e9_runner.fingerprint` computes.
 `verify`    For every planned cell with a run on disk: the run's `Prompt_Hash` equals the manifest's for that
             (configuration, persona, arm), `Env_Code_Hash` equals the manifest's, the harness and placebo versions are
             v2_1, `Provider_Options` names the cell's configuration, and the scenario, seed and start design are the
             planned ones.  Missing runs are counted, never silently passed.
 `status`    Runs done and pending per configuration, per manifest.
-`score`     Every completed run of both manifests -> e9_4/per_run.csv, scored as the pilots were
+`score`     Every completed run of every manifest -> e9_4/per_run.csv, scored as the pilots were
             (`evaluation.metrics_v2.score_run(scoring="v2_1")`); per_run.meta.json carries scored / planned counts.
 
-Outputs: docs/env_v2/generated/v2_1/e9_4/{manifest_headline.json, manifest_slice.json, verify.json, per_run.csv}
+Outputs: docs/env_v2/generated/v2_1/e9_4/{manifest_headline.json, manifest_slice.json, manifest_track_a.json,
+         verify.json, per_run.csv}
 """
 from __future__ import annotations
 
@@ -49,7 +54,8 @@ SCENARIOS = ("flat", "bull_trap", "crash", "sustained_bull")
 HEADLINE_ARMS = ("static", "memory")
 SLICE_ARMS = ("static", "memory", "swapped")
 GRID_SEED0 = 10001
-MANIFESTS = {"headline": "manifest_headline.json", "slice": "manifest_slice.json"}
+MANIFESTS = {"headline": "manifest_headline.json", "slice": "manifest_slice.json",
+             "track_a": "manifest_track_a.json"}
 
 
 def seeds_from_sizing() -> tuple:
@@ -86,12 +92,16 @@ def grid_configs(sizing: dict) -> tuple:
 
 def cells_for(kind: str, seeds) -> list:
     out = []
-    if kind == "headline":
+    if kind in ("headline", "track_a"):
+        # track_a mirrors the headline grid cell for cell; only the communicated-target factor and the setting (a path
+        # and run-key component, so a track_a run never collides with its headline twin) differ.
+        extra = ({"setting": "default"} if kind == "headline"
+                 else {"setting": "track_a", "factors": {"track": "A"}})
         for p in PERSONAS:
             for a in HEADLINE_ARMS:
                 for sc in SCENARIOS:
                     for s in seeds:
-                        out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0, "setting": "default"})
+                        out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0, **extra})
         return out
     for p in PERSONAS:
         for a in SLICE_ARMS:

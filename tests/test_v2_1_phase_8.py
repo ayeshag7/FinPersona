@@ -689,3 +689,100 @@ def test_phase8_switches_inert():
     stats_v2 and salience on fixed frames)."""
     from tools.phase8.e8_0_golden import main as golden
     assert golden(["--check"]) == 0, "a Phase-8 default no longer reproduces the pre-Phase-8 behaviour"
+
+
+# ================================================================================================ REG-9 phase probe
+def _probe_llm(seen: list):
+    """Deterministic fake: records every message list it is given; answers the two probes with tagged text and every
+    other call with a parseable target."""
+    from langchain_core.messages import AIMessage
+    from langchain_core.runnables import RunnableLambda
+    import agent.v2_prompts as P
+
+    def _run(messages):
+        msgs = messages if isinstance(messages, list) else [messages]
+        contents = [getattr(m, "content", str(m)) for m in msgs]
+        seen.append(contents)
+        last = contents[-1]
+        if P.PHASE_PROBE in last:
+            return AIMessage(content="PHASE_ANSWER: calm regime; the price sits close to its moving averages.")
+        if P.RESTATEMENT_PROBE in last:
+            return AIMessage(content="RESTATEMENT_ANSWER: preserve capital; mostly cash.")
+        return AIMessage(content=json.dumps({"target_cash_share": 0.30, "rationale": "holding to plan"}))
+    return RunnableLambda(_run)
+
+
+def _decision_calls(seen):
+    import agent.v2_prompts as P
+    return [c for c in seen if P.PHASE_PROBE not in c[-1] and P.RESTATEMENT_PROBE not in c[-1]]
+
+
+def test_reg9_phase_probe_off_by_default(tmp_path):
+    """REG-9: the phase-restatement probe is off unless asked for -- the RunConfig default is 0, no phase probe is
+    ever sent, and the log has no `Phase_Probe` column (the restatement column keeps its published behaviour)."""
+    from dataclasses import replace
+    import agent.v2_prompts as P
+    from experiments.arms_v2 import build_config
+    from simulation.runner_v2 import RunConfig, run_simulation_v2
+    assert RunConfig().phase_probe_every == 0
+    assert build_config("fake", "ISFJ", "memory", "flat", 3).phase_probe_every == 0
+    seen = []
+    cfg = build_config("fake", "ISFJ", "memory", "flat", 3, T=6, output_dir=str(tmp_path))
+    df = run_simulation_v2(replace(cfg, agent_llm=_probe_llm(seen)), verbose=False)
+    assert df is not None and len(df) == 6
+    assert "Phase_Probe" not in df.columns, "the off default added a column to the log"
+    assert "Restatement_Probe" in df.columns and list(df["Restatement_Probe"]) == [""] * 6
+    assert not any(P.PHASE_PROBE in c[-1] for c in seen), "a phase probe was sent with the switch off"
+    assert len(seen) == 6, "the off default changed the number of model calls"
+
+
+def test_reg9_phase_probe_cadence_and_off_transcript(tmp_path):
+    """REG-9: with `phase_probe_every=k` the answer is logged to its OWN column on days 1, k+1, 2k+1 ... ; the
+    restatement probe keeps its own cadence and column; and the probe is forked -- no decision call ever carries the
+    phase probe or its answer, and the decisions are bit for bit those of the same run with the probe off."""
+    from dataclasses import replace
+    import agent.v2_prompts as P
+    from experiments.arms_v2 import build_config
+    from simulation.runner_v2 import run_simulation_v2
+    cfg = build_config("fake", "ISFJ", "memory", "flat", 3, T=9, output_dir=str(tmp_path))
+    base_seen = []
+    base = run_simulation_v2(replace(cfg, agent_llm=_probe_llm(base_seen)), verbose=False)
+    seen = []
+    df = run_simulation_v2(replace(cfg, agent_llm=_probe_llm(seen), probe_every=4, phase_probe_every=2,
+                                   output_dir=str(tmp_path / "on")), verbose=False)
+    assert df is not None and len(df) == 9
+    assert "Phase_Probe" in df.columns
+    on_days = [int(d) for d, v in zip(df["Day"], df["Phase_Probe"]) if v]
+    assert on_days == [1, 3, 5, 7, 9]
+    assert all(v.startswith("PHASE_ANSWER:") for v in df["Phase_Probe"] if v)
+    # the restatement column is untouched: its own cadence, its own answers
+    rest_days = [int(d) for d, v in zip(df["Day"], df["Restatement_Probe"]) if v]
+    assert rest_days == [1, 5, 9]
+    assert all(v.startswith("RESTATEMENT_ANSWER:") for v in df["Restatement_Probe"] if v)
+    assert not any(v.startswith("PHASE_ANSWER:") for v in df["Restatement_Probe"] if v)
+    # forked: the decision context never sees the phase probe, and the decisions are unchanged by it
+    dec = _decision_calls(seen)
+    assert len(dec) == 9 and len(seen) == 9 + 5 + 3
+    assert not any(P.PHASE_PROBE in c or "PHASE_ANSWER" in c for call in dec for c in call)
+    assert dec == _decision_calls(base_seen)
+    assert list(df["Target_Cash_Share"]) == list(base["Target_Cash_Share"])
+    assert list(df["Cash_Share"]) == list(base["Cash_Share"])
+
+
+def test_reg9_phase_probe_not_in_stateful_history(obs):
+    """REG-9: the probe is off-transcript for the stateful agent too -- neither the probe nor its answer enters the
+    retained history, so the next decision's context is the one it would have been without the probe."""
+    import agent.v2_prompts as P
+    from agent.stateful_agent import StatefulV2Agent
+    seen = []
+    a = StatefulV2Agent("ENTJ", "fake", mandate_block="mandate", context_mode="rolling", window=5,
+                        harness="v2_1", llm=_probe_llm(seen))
+    port = {"cash": 1000.0, "holdings_value": 9000.0, "cash_share": 0.10}
+    a.decide(obs[0], port)
+    before = json.dumps(a.history)
+    ans = a.probe_phase(obs[0], port)
+    assert ans.startswith("PHASE_ANSWER:")
+    assert json.dumps(a.history) == before, "the phase probe entered the retained history"
+    a.decide(obs[1], port)
+    msgs = [m.content for m in a.build_messages(obs[2], port)]
+    assert not any(P.PHASE_PROBE in m or "PHASE_ANSWER" in m for m in msgs)
