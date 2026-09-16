@@ -1,5 +1,5 @@
 {
- "_note": "v2.1 Phase 4 (events, schedule, controls, calendar). Written by tools/phase4/apply_e4.py. Read by envs/v2/events_params.py, which raises if any entry lacks provenance or ships a null interval. Every value here is FIT, CAL, DESIGN or INCUMBENT and says which.",
+ "_note": "v2.1 Phase 4 (events, schedule, controls, calendar). Written by tools/phase4/apply_e4.py. Read by envs/v2/events_params.py, which raises if any entry lacks provenance or ships a null interval. Every value here is FIT, CAL, DESIGN or INCUMBENT and says which. CAUTION: the `team_decision` fields were added by hand after this file was generated -- they record the team's decisions of 14 Sep 2026 on the frozen state, which no phase tool knows about. Re-running the generator above WILL DROP THEM; re-apply them and re-run tools.freeze_manifest --write if you do.",
  "_status_key": {
   "ADOPTED": "a pre-registered rule decided it on data",
   "INCUMBENT": "the phase stopped for a team decision; the v2 behaviour stays and is labelled as the incumbent, not as a result",
@@ -350,7 +350,8 @@
    "delta_end": "U(delta, 1)"
   },
   "criterion_not_met": "E4.2's rise-time rule is NOT MET: the generator's median onset-to-RV21-peak rise is 58 d [52, 64] against the panel's 30 d [29, 35]. The FIT ranges improve it from 70 d, but the binding constraint is the pre-event calm SETUP (corr(onset lag, rise) 0.68 against corr(det_len, rise) 0.14), which is E4.7's parameter. On the 167 of 500 paths whose onset coincides with the scripted event the generator gives rise 32 d and duration 54 d against the panel's 30 and 53.",
-  "survivor_vs_literature_gap": "REG-15: set A is survivor-only, so depths and durations are understated; the index tables (12 Shiller episodes >= 20 %) are published beside in e4_1/index_shiller.csv but are far too thin to set a range, which is what D4 decided"
+  "survivor_vs_literature_gap": "REG-15: set A is survivor-only, so depths and durations are understated; the index tables (12 Shiller episodes >= 20 %) are published beside in e4_1/index_shiller.csv but are far too thin to set a range, which is what D4 decided",
+  "team_decision": "THE CRASH RISE-TIME CRITERION IS RETIRED AS A GENERATOR CRITERION (team, 14 Sep 2026); the onset-to-volatility-peak rise time is REPORTED as a property of the scenarios. The generator's 58 d [52, 64] against the panel's 30 d [29, 35] is owned by the SETUP length, not by the variance mechanism (no mechanism reaches the panel's interval: 75.5 / 103 / 80 d for A / B / C): a 13-day median setup meets the panel's value at 37 d [34, 41], but leaves almost no pre-event baseline on a 200-day horizon, so the setup range stays as it is -- measured and not adopted, as Phase 4 recorded."
  },
  "hazard": {
   "value": {
@@ -382,7 +383,8 @@
    "b_gsy_from_3_points": "no interval: fitted through three published points, not a sample; the panel's own b = 1.074 is the comparator"
   },
   "outcome_not_target": "the 40-60 % topped band and the P/V 1.6-2.5 band are RETIRED as targets (PREREG section 5). Topped share is an outcome: generator 0.108 [0.081, 0.135] against the panel's 0.110 [0.097, 0.125]; peak P/V median 1.49, reported not tested. v2's incumbent (h0 3e-4, b 6.0) gives 0.064, outside the panel CI.",
-  "survivor_vs_literature_gap": "REG-15: the survivor panel understates crash frequency, so the panel topped share is a lower bound and mapping A may under-fire"
+  "survivor_vs_literature_gap": "REG-15: the survivor panel understates crash frequency, so the panel topped share is a lower bound and mapping A may under-fire",
+  "team_decision": "THE TOPPED-SHARE CRITERION IS RETIRED AS A GENERATOR CRITERION (team, 14 Sep 2026); the topped share and the peak P/V are REPORTED as properties of the scenarios instead. The criterion is horizon-dominated and not evaluable on a 200-day scenario: only 0.9 % of generated topped paths have 120 days left after the top (median 29), while the panel's 11 % share is reached only where 150-201 post-top days are available, and on window-matched comparisons the two agree (0.025 against 0.029 at 0-50 post-top days). This retires the CRITERION, not the withdrawal: the hazard values stay deployed and the status above is unchanged."
  },
  "blowoff": {
   "value": {
@@ -507,7 +509,8 @@
    "panel_self_coverage": 0.643,
    "panel_self_coverage_n": 642,
    "note": "coverage CIs per arm are in e4_6/dynamics.json"
-  }
+  },
+  "team_decision": "ADOPTED AS A DESIGN CHOICE (team, 14 Sep 2026). D5 is closed: formulation A at panic gain 0.10 is adopted on the COMPARISON rather than on the registered rule. A's coverage of the panel's depth-by-duration box (0.474-0.562 across its gains) spans the best of the four formulations run at 1,000 crash seeds each (B shifted target 0.521, C fully scripted 0.462, D unscripted regime switch 0.323), and the registered 0.70 threshold sat ABOVE the panel's own self-coverage of 0.643, so no formulation could have met it; the script-share statistic was separately shown not to rank formulations (the fully scripted C scores below the unscripted D). The gap that remains is traced to the stipulated fundamental decline that floors the crash depth, not to the formulation. The status above stays INCUMBENT because it records what PHASE 4 found; this field records what the team decided afterwards on that finding."
  },
  "calendar": {
   "value": {
@@ -687,6 +690,7 @@
     0.2031244906646682,
     1.706470022622804
    ]
-  }
+  },
+  "team_decision": "THE INCUMBENT RANGE IS ADOPTED AS A SCENARIO PARAMETER (DESIGN; team, 14 Sep 2026). kappa ~ U(0.02, 0.04) stays in force. The fitted super-exponential drift is ZERO -- the panel's run-ups decelerate, last-third to first-third log-gain ratio 0.342 [0.318, 0.368] over 3,186 run-ups with the endpoint constraint removed -- and it remains TESTED, NOT ADOPTED because a zero drift cannot produce the scenario: 96.3 % of draws fail the bull-trap validity criterion at kappa = 0 against 10.8 % at the incumbent. A bull trap is a stress scenario, a run-up that tops, and not the average run-up. The fitted value stays recorded beside the deployed range."
  }
 }

@@ -1,5 +1,5 @@
 {
- "_note": "v2.1 Phase 5 (observables). Written by tools/phase5/apply_e5.py from the E5.1-E5.6 result files through tools/phase5/e5_params.sections(), the same function that built the arms. Read by envs/v2/observables_params.py, which raises if any entry lacks provenance, ships a null interval or carries an undeclared status. Every value is FIT, LIT, DESIGN, PROVISIONAL or INCUMBENT and says which.",
+ "_note": "v2.1 Phase 5 (observables). Written by tools/phase5/apply_e5.py from the E5.1-E5.6 result files through tools/phase5/e5_params.sections(), the same function that built the arms. Read by envs/v2/observables_params.py, which raises if any entry lacks provenance, ships a null interval or carries an undeclared status. Every value is FIT, LIT, DESIGN, PROVISIONAL or INCUMBENT and says which. CAUTION: the `team_decision` fields were added by hand after this file was generated -- they record the team's decisions of 14 Sep 2026 on the frozen state, which no phase tool knows about. Re-running the generator above WILL DROP THEM; re-apply them and re-run tools.freeze_manifest --write if you do.",
  "_status_key": {
   "ADOPTED": "a pre-registered rule decided it on data",
   "INCUMBENT": "the phase stopped for a team decision; the v2 behaviour stays and is labelled as the incumbent, not as a result",
@@ -459,7 +459,8 @@
    },
    "unconditional_4q_cut_rate": 0.07259700735480598,
    "n_unconditional_windows": 15772
-  }
+  },
+  "team_decision": "ADOPTED (team): dividends are PAID INTO CASH on announcement days (taken before any of Phase 7's experiments) and the yield FIELD IS SHOWN, closing D10 (14 Sep 2026). The cost of showing it is measured and stated rather than assumed: it adds +0.0382 [+0.0292, +0.0480] of R2 for x over hiding it. The hidden variant stays switchable."
  },
  "analyst": {
   "value": {
@@ -497,7 +498,8 @@
    "label": "DESIGN, below every read value (weakness item 21)"
   },
   "horizon_mismatch": "the read anchor is a 12-month target-price error; the field is a fair-value estimate",
-  "decision_pending": "C vs B (drop the field) is Phase 9's: its condition -- C's inclusion changes no arm contrast beyond the equivalence margin -- is an LLM-grid statement no generator audit can evaluate; B is the fallback if Phase 9 rejects C"
+  "decision_pending": "C vs B (drop the field) is Phase 9's: its condition -- C's inclusion changes no arm contrast beyond the equivalence margin -- is an LLM-grid statement no generator audit can evaluate; B is the fallback if Phase 9 rejects C",
+  "team_decision": "ADOPTED (team, 14 Sep 2026): design C is the field shown, closing the PROVISIONAL status above, which records what Phase 5 could decide on its own evidence. C is the only construction that passes the onset audit at all six phase transitions, and it carries nothing about the mispricing (add-one R2(x) -0.001 on all rows, +0.010 calm-trained). Whether the field is shown AT ALL is a factor of the LLM grid rather than a question about the environment: the L3 probe found every model reading its answer off this field (93-99 % of answers follow the rule 'over-valued when the price is above the estimate', a rule whose own accuracy is 0.520), so showing and hiding it measures the models. Shown-or-hidden is on the grid's factor list."
  },
  "sentiment": {
   "value": {
@@ -556,7 +558,8 @@
    "label": "DESIGN (weakness item 23); sentiment read x directly"
   },
   "design_choices_stated": "the deconvolution kernel (geometric weights, 5 % depreciation) is LIT read at source; the market-level loadings transfer to a single stock per sd of the standardised return (DESIGN); the valuation coefficient transfers from the log-CAPE deviation to x = log(P/V) (DESIGN); S_raw is a rendering constant with sd(tanh(S z)) = 0.35 (DESIGN); b_pred stays the LIT Tetlock value in every design and the reverse regression on the SF Fed index does NOT reproduce it (reported)",
-  "D15": "the team's default, after this table: the rule selects A; A: dR2_add(SENT) -0.0007 [-0.0012, -0.0002], rule (i) True, B-full: dR2_add(SENT) +0.0813 [+0.0731, +0.0883], rule (i) True, B-half: dR2_add(SENT) +0.0205 [+0.0168, +0.0236], rule (i) True, C: dR2_add(SENT) -0.0009 [-0.0021, +0.0003], rule (i) False"
+  "D15": "the team's default, after this table: the rule selects A; A: dR2_add(SENT) -0.0007 [-0.0012, -0.0002], rule (i) True, B-full: dR2_add(SENT) +0.0813 [+0.0731, +0.0883], rule (i) True, B-half: dR2_add(SENT) +0.0205 [+0.0168, +0.0236], rule (i) True, C: dR2_add(SENT) -0.0009 [-0.0021, +0.0003], rule (i) False",
+  "team_decision": "ADOPTED (team, 14 Sep 2026), closing D15: design A, returns only, is the default; the B valuation-link variants are carried as grid sensitivities. A was selected by the registered rule (add-one selectivity -0.0007 [-0.0012, -0.0002] against +0.0205 for B-half and +0.0813 for B-full). The realised next-day return loading is 0.00055 [0.00046, 0.00063] against a configured 0.0008 -- the field's own persistence absorbs the rest -- and it is REPORTED as the field's property rather than re-tuned to a literature target the free data source did not reproduce (checklist item 12)."
  },
  "volume": {
   "value": {
@@ -619,6 +622,7 @@
   "n": {
    "paths": 1600
   },
-  "interval": "none: a provisional reference bound, owned by Phase 6"
+  "interval": "none: a provisional reference bound, owned by Phase 6",
+  "team_decision": "SUPERSEDED BY PHASE 6'S DERIVED GATES, AND THE TWO RESIDUALS STAND (team, taken before any of Phase 7's experiments). The provisional 0.20 add-one ceiling is replaced by the derived L2 and L2b margins wherever evaluation/params/phase6_criteria.json is present. Both derived gates FAIL and are kept as REGISTERED RESIDUALS rather than re-specified: the shown fields add +0.109 of calm-trained R2(x) against a derived margin of +0.038, and the macro-phase clock adds +0.030 against +0.011. They are covered by the decision to restrict the benchmark's claim to a one-shot mandate-conflict benchmark, and are to be stated in one sentence in the paper's limitations. Registry: tests/known_defects.py V2_1_RESIDUALS."
  }
 }
