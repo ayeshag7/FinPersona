@@ -23196,7 +23196,7 @@
   "stage1_seeds_paired_correct": 60
  },
  "registered": "PREREG_PHASE_9.md 4.1; DECISION_LOG P9-2, P9-3, P9-5",
- "written_utc": "2026-09-16T20:45:48Z",
+ "written_utc": "2026-09-17T11:45:40Z",
  "fingerprint": {
   "prompt_hash": {
    "gemini-2.5-flash|thinking0|ENTJ|memory": "51fb0e0c63d663a0",
@@ -23281,7 +23281,7 @@
    "simulation/runner_v2.py": "d0741c8f08739f52995ba0f636a72f1651cdf6375776a8764f462d7aeb9e5e5f",
    "simulation/portfolio_v2.py": "130c46522356308a3d4e59390fb92dea73331610d0d5a75c23ae38f8d32ef54e",
    "experiments/arms_v2.py": "66ba7e7928e395bb0ba4bda5c3a8de67d4f68c80a651902e9cc88d0754a0f029",
-   "tools/phase9/e9_roster.py": "70186edcce983d50e3e59c00c075497a5c1e4eceb5da4dd580fd4d11a2b28f55"
+   "tools/phase9/e9_roster.py": "c0d7b19a63ff40f363835dc209a73e355a4a005bfd88e9ec0ee63a1d726449d7"
   }
  }
 }
