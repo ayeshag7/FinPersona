@@ -36,7 +36,19 @@ HARNESS_TEMPERATURE = 0.2                           # experiments/arms_v2.py FAC
 # across every run on disk (3,097 output tokens per call, GPT-5 nano), not stipulated; a truncated reply would show as
 # a parse fallback, which is reported per configuration.
 OPENROUTER_MAX_TOKENS = 8192
-PRICES_READ = {"gemini-2.5-flash": (0.30, 2.50), "gpt-5-mini": (0.25, 2.00)}   # USD per M input / output (plan 0.4)
+# USD per M input / output.  The rule is unchanged: a price not READ is not typed.  The first two were read for
+# plan 0.4 (26-27 Aug).  The rest were read at source on 17 Sep 2026 -- Google at ai.google.dev/gemini-api/docs/pricing
+# and OpenAI at developers.openai.com/api/docs/pricing -- so that every first-party run logs its own cost instead of
+# tokens alone; a provider-reported figure still wins over this table wherever one is returned (e9_runner.stage_run).
+# Both original entries reproduced exactly from those pages, and the table reproduces gpt-5-mini's provider-reported
+# cost to 0.4 % on the E9.2 pilot (0.3357 against 0.3342), which is the check that it is applied correctly.
+# Gemini 2.5 Pro is tiered at a 200k PROMPT; every call here is ~1.8k, so the <= 200k rate is the right one.
+PRICES_READ = {
+    "gemini-2.5-flash": (0.30, 2.50), "gpt-5-mini": (0.25, 2.00),           # plan 0.4, re-verified 17 Sep 2026
+    "gemini-2.5-flash-lite": (0.10, 0.40), "gemini-2.5-pro": (1.25, 10.00),
+    "gemini-3.5-flash": (1.50, 9.00),
+    "gpt-5": (1.25, 10.00), "gpt-5-nano": (0.05, 0.40), "gpt-5.4-mini": (0.75, 4.50), "gpt-5.5": (5.00, 30.00),
+}
 
 
 @dataclass(frozen=True)
