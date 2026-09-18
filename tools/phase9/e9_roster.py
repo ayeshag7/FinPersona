@@ -145,6 +145,15 @@ CANDIDATES = (
     _v("vllm/meta/muse-glimmer-30b",
        "open-weight (Meta, 29.8B dense, 60 GB), served locally; pinned to HF revision "
        "a4e59da52a7bc87ae7251dd5545c0dd437c44b68"),
+    # The Gemma 4 SCALE LADDER.  Every other open configuration sits at 20-31B, so model size and model family are
+    # confounded: a difference between two of them could be either.  These two hold the lab, the training recipe and
+    # the tokenizer fixed and vary only size against gemma-4-31b-it, which makes capability a factor we can read.
+    _v("vllm/google/gemma-4-12b-it",
+       "open-weight (Google, 12.0B dense, 24 GB), served locally; the ladder's middle rung against gemma-4-31b-it; "
+       "pinned to HF revision 707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7"),
+    _v("vllm/google/gemma-4-e4b-it",
+       "open-weight (Google, 8.0B dense, 16 GB), served locally; the ladder's bottom rung against gemma-4-31b-it; "
+       "pinned to HF revision ee0ef6023621cff504d758262d4e04895a5af4a2"),
 )
 TIMED_IN_E8_5 = {"gemini-2.5-flash|thinking0", "gpt-5-mini|default"}
 # DECISION_LOG P9-2 (11 Sep 2026): the roster was every candidate that passed its smoke (13).

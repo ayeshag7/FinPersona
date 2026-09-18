@@ -688,7 +688,7 @@
   3004
  ],
  "registered": "PREREG_PHASE_9.md 2 truncated by PREREG_PHASE_9_ADDENDUM.md 10; cells and seeds identical to the OpenRouter pilots",
- "written_utc": "2026-09-18T11:30:22Z",
+ "written_utc": "2026-09-18T17:57:23Z",
  "fingerprint": {
   "prompt_hash": {
    "vllm/meta/muse-glimmer-30b|default|ENTJ|memory": "51fb0e0c63d663a0",
@@ -707,7 +707,7 @@
    "simulation/runner_v2.py": "d0741c8f08739f52995ba0f636a72f1651cdf6375776a8764f462d7aeb9e5e5f",
    "simulation/portfolio_v2.py": "130c46522356308a3d4e59390fb92dea73331610d0d5a75c23ae38f8d32ef54e",
    "experiments/arms_v2.py": "66ba7e7928e395bb0ba4bda5c3a8de67d4f68c80a651902e9cc88d0754a0f029",
-   "tools/phase9/e9_roster.py": "38aabc419b37ffb1b8503c1ba39bd6267da7146a3bcbec881fb087a253c1106f"
+   "tools/phase9/e9_roster.py": "842731136401b9fd7caead282d073b0938478736ec92aaf5b50e149a04395f40"
   }
  }
 }
