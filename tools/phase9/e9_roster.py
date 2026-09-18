@@ -90,6 +90,11 @@ def _r(model, upstream, basis, temperature=HARNESS_TEMPERATURE, tag="default", o
     return ModelConfig(model, "openrouter", tag, temperature, dict(options or {}), basis, upstream)
 
 
+def _v(model, basis, temperature=HARNESS_TEMPERATURE, tag="default", options=None):
+    """Open weights served by our own vLLM on HiPerGator: no key, no price, no upstream to pin."""
+    return ModelConfig(model, "vllm", tag, temperature, dict(options or {}), basis)
+
+
 CANDIDATES = (
     # timed in E8.5 (batch ledgers)
     _g("gemini-2.5-flash", "thinking0", {"thinking_budget": 0}, "P8-8: thinking off; E8.5's configuration"),
@@ -122,6 +127,24 @@ CANDIDATES = (
        "context is the roster's smallest -- ample for a stateless run of ~2,800 tokens per call, not for stateful arms"),
     _r("openrouter/qwen/qwen3-235b-a22b-2507", "GMICloud",
        "open-weight ($0.061/run; cheapest of ten upstreams, context 262,144)"),
+    # Served on HiPerGator's own GPUs (fire-finai, RTX PRO 6000 Blackwell 96 GB) rather than bought by the token.
+    # Apache-2.0, 30.7B dense, 59 GB in BF16, so it fits one GPU with room for the KV cache; vLLM 0.29.0 loaded and
+    # served it in the E9.2 smoke.  Pinned by Hugging Face revision, which is the strongest reproducibility guarantee
+    # on the roster: unlike every hosted route, these exact weights can be re-served byte-for-byte.
+    _v("vllm/google/gemma-4-31b-it",
+       "open-weight, served locally on fire-finai GPUs (no token cost); pinned to HF revision "
+       "842da3794eaa0b77d5f08bae87a17459d91ff475"),
+    # The other three that fit one 96 GB GPU in BF16, each from a DIFFERENT lab, so an effect seen across them is not
+    # one lab's post-training signature.  All Apache-2.0, all pinned by HF revision.
+    _v("vllm/openai/gpt-oss-20b",
+       "open-weight (OpenAI, 20.9B, 28 GB), served locally; pinned to HF revision "
+       "6cee5e81ee83917806bbde320786a8fb61efebee"),
+    _v("vllm/qwen/qwen3.8-27b",
+       "open-weight (Alibaba, 27.8B dense, 56 GB), served locally; pinned to HF revision "
+       "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0"),
+    _v("vllm/meta/muse-glimmer-30b",
+       "open-weight (Meta, 29.8B dense, 60 GB), served locally; pinned to HF revision "
+       "a4e59da52a7bc87ae7251dd5545c0dd437c44b68"),
 )
 TIMED_IN_E8_5 = {"gemini-2.5-flash|thinking0", "gpt-5-mini|default"}
 # DECISION_LOG P9-2 (11 Sep 2026): the roster was every candidate that passed its smoke (13).
@@ -178,6 +201,16 @@ def make_client(mc: ModelConfig, max_retries: int = 8):
                           max_tokens=OPENROUTER_MAX_TOKENS,
                           extra_body={"provider": {"order": [mc.upstream], "allow_fallbacks": False}},
                           **temp, **mc.options)
+    if mc.provider == "vllm":
+        # Open weights served by our own vLLM on HiPerGator (OpenAI-compatible API).  There is no key and no price:
+        # the run costs GPU hours, not tokens, so it logs its tokens and no dollar figure, exactly as an unpriced
+        # first-party configuration does.  There is no upstream to pin either -- the weights ARE the pin, by their
+        # Hugging Face revision, which is recorded in `options` and reproduces the server exactly.  `VLLM_BASE_URL`
+        # names the server; a run against an absent server FAILS rather than falling back to any hosted route.
+        from langchain_openai import ChatOpenAI
+        return ChatOpenAI(model=mc.model[len("vllm/"):], api_key=os.getenv("VLLM_API_KEY", "EMPTY"),
+                          base_url=os.getenv("VLLM_BASE_URL", "http://127.0.0.1:8000/v1"),
+                          max_retries=max_retries, **temp, **mc.options)
     raise ValueError(f"unknown provider {mc.provider!r}")
 
 
