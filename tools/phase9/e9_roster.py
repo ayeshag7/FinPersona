@@ -127,6 +127,14 @@ CANDIDATES = (
        "context is the roster's smallest -- ample for a stateless run of ~2,800 tokens per call, not for stateful arms"),
     _r("openrouter/qwen/qwen3-235b-a22b-2507", "GMICloud",
        "open-weight ($0.061/run; cheapest of ten upstreams, context 262,144)"),
+    # DeepSeek's newest official release (10 Sep 2026), and the first on its Causal Encoder-Decoder architecture
+    # (763B total, 510 GB), so it is a generational step within one lab against the V4 Flash already piloted.
+    # Named by its version, never by the undated V4 Flash name: from 10 Sep DeepSeek's own API silently routes that
+    # name to V4.1.  (Our V4 Flash pilot is unaffected -- OpenRouter's records show every sampled generation served
+    # as deepseek-v4-flash-20260423 by Baidu.)  Upstream by the registered rule, read 19 Sep 2026: DeepInfra is the
+    # cheapest of 21 at our measured token profile and serves fp8, so the rule does not select a 4-bit upstream here.
+    _r("openrouter/deepseek/deepseek-v4.1-flash", "DeepInfra",
+       "open-weight ($0.100/run at DeepInfra, fp8; cheapest of 21 upstreams, context 1,048,576)"),
     # Served on HiPerGator's own GPUs (fire-finai, RTX PRO 6000 Blackwell 96 GB) rather than bought by the token.
     # Apache-2.0, 30.7B dense, 59 GB in BF16, so it fits one GPU with room for the KV cache; vLLM 0.29.0 loaded and
     # served it in the E9.2 smoke.  Pinned by Hugging Face revision, which is the strongest reproducibility guarantee
