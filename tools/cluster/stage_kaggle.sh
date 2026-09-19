@@ -21,14 +21,21 @@ DATASET="ayeshaiq/finpersona-vllm-pilots"
 rm -rf "$STAGE"; mkdir -p "$STAGE/e9_2" "$STAGE/results" "$STAGE/provenance" "$STAGE/about"
 cd "$REPO"
 cp docs/env_v2/generated/v2_1/e9_2/ledger_default_vllm_*.jsonl "$STAGE/e9_2/" 2>/dev/null || true
-cp docs/env_v2/generated/v2_1/e9_2/manifest_vllm_*.json        "$STAGE/e9_2/" 2>/dev/null || true
 for d in results_v2/phase9/pilot/default/default/vllm_*; do [ -d "$d" ] && cp -r "$d" "$STAGE/results/"; done
 # OpenRouter pilots whose per-run outputs exist only on this disk (results_v2/ is gitignored), named explicitly
 for slug in ${FP_OPENROUTER_SLUGS:-openrouter_deepseek_deepseek-v4.1-flash}; do
   cp docs/env_v2/generated/v2_1/e9_2/ledger_default_${slug}.jsonl "$STAGE/e9_2/" 2>/dev/null || true
   d=results_v2/phase9/pilot/default/default/$slug; [ -d "$d" ] && cp -r "$d" "$STAGE/results/"
 done
-cp docs/env_v2/generated/v2_1/e9_2/manifest_openrouter_deepseek41.json "$STAGE/e9_2/" 2>/dev/null || true
+# a manifest goes up exactly when its ledger does -- so no manifest travels without the runs it describes
+python - "$STAGE" <<'PYM'
+import glob, json, os, shutil, sys
+e92 = "docs/env_v2/generated/v2_1/e9_2"
+for m in glob.glob(f"{e92}/manifest_vllm_*.json") + glob.glob(f"{e92}/manifest_openrouter_*.json"):
+    slug = json.load(open(m, encoding="utf-8"))["configs"][0].split("|")[0].replace("/", "_")
+    if os.path.exists(os.path.join(sys.argv[1], "e9_2", f"ledger_default_{slug}.jsonl")):   # its ledger is staged
+        shutil.copy(m, os.path.join(sys.argv[1], "e9_2"))
+PYM
 cp tools/phase9/e9_roster.py "$STAGE/provenance/"
 
 cat > "$STAGE/dataset-metadata.json" <<JSON
