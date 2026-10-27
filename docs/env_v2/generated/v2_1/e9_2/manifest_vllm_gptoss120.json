@@ -1,0 +1,713 @@
+{
+ "name": "manifest_vllm_gptoss120",
+ "kind": "pilot",
+ "subdir": "pilot",
+ "ledger_dir": "e9_2",
+ "T": 200,
+ "configs": [
+  "vllm/openai/gpt-oss-120b|default"
+ ],
+ "cells": [
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "INTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "static",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "flat",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "bull_trap",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "crash",
+   "seed": 3004,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3001,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3002,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3003,
+   "rep": 0
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "memory",
+   "scenario": "sustained_bull",
+   "seed": 3004,
+   "rep": 0
+  }
+ ],
+ "seeds": [
+  3001,
+  3002,
+  3003,
+  3004
+ ],
+ "registered": "PREREG_PHASE_9.md 2 truncated by PREREG_PHASE_9_ADDENDUM.md 10; cells and seeds identical to the OpenRouter pilots; roster and B200 route DECISION_LOG P9-12",
+ "written_utc": "2026-10-24T09:16:22Z",
+ "fingerprint": {
+  "prompt_hash": {
+   "vllm/openai/gpt-oss-120b|default|ENTJ|memory": "51fb0e0c63d663a0",
+   "vllm/openai/gpt-oss-120b|default|ENTJ|static": "a718a154a03f3123",
+   "vllm/openai/gpt-oss-120b|default|INTJ|memory": "d33a9291c458ce9f",
+   "vllm/openai/gpt-oss-120b|default|INTJ|static": "ec58a7feadbbe7e4",
+   "vllm/openai/gpt-oss-120b|default|ISFJ|memory": "0a06e9f0f3732ce4",
+   "vllm/openai/gpt-oss-120b|default|ISFJ|static": "2cf22a92f78cb5d0"
+  },
+  "Env_Code_Hash": "1d689aaf82a33a2e",
+  "sources_sha256_lf": {
+   "agent/v2_agent.py": "107e261ce9ed561e62b6cb731eb914251ef2506d468f5bea05a31ece53b5c43e",
+   "agent/v2_prompts.py": "8949ee555bd9e8ec9c9f78818c4c04499a1651f6b7059e9f0d1625b99427077c",
+   "agent/render.py": "28404eb028db237665c960864b99d08e481ddb38845b33fccc26a5940cfb8cb4",
+   "agent/stateful_agent.py": "e15bd9f936d27ea70b47443b2b96b2727ff3bf7055d9f1ad49c1bc80468feb73",
+   "simulation/runner_v2.py": "d0741c8f08739f52995ba0f636a72f1651cdf6375776a8764f462d7aeb9e5e5f",
+   "simulation/portfolio_v2.py": "130c46522356308a3d4e59390fb92dea73331610d0d5a75c23ae38f8d32ef54e",
+   "experiments/arms_v2.py": "66ba7e7928e395bb0ba4bda5c3a8de67d4f68c80a651902e9cc88d0754a0f029",
+   "tools/phase9/e9_roster.py": "12e028bd5db2de85fd61126650bd8fdffe257de9714e26322c99fe23d972c055"
+  }
+ }
+}
