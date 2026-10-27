@@ -1,0 +1,166 @@
+{
+ "registered": "DECISION_LOG P9-17: P9-13's paired-correct count and P8-16's maximum, over the second batch's configurations (e9_roster.HEADLINE_OPEN_B2); predictions by PREREG_PHASE_9_STAGE1_OPEN.md 4's rule",
+ "roster": [
+  "vllm/meta-llama/llama-3.1-8b-instruct|default",
+  "vllm/meta-llama/llama-3.1-70b-instruct|default",
+  "vllm/microsoft/phi-4|default"
+ ],
+ "missing_models": [],
+ "runs_done_vs_planned": {
+  "vllm/meta-llama/llama-3.1-8b-instruct|default": [
+   96,
+   96
+  ],
+  "vllm/meta-llama/llama-3.1-70b-instruct|default": [
+   96,
+   96
+  ],
+  "vllm/microsoft/phi-4|default": [
+   96,
+   96
+  ]
+ },
+ "complete": true,
+ "plugin_sigma_d_band_mas": 0.05378892983517916,
+ "plugin_model": "vllm/meta-llama/llama-3.1-8b-instruct|default",
+ "alpha_bonferroni": 0.001388888888888889,
+ "delta": 0.05,
+ "stage1_seeds": 19,
+ "stage1_seeds_rule": "paired-correct (P9-13)",
+ "stage1_seeds_appA": 38,
+ "stage1_seeds_paired_correct": 19,
+ "per_model_band_mas": {
+  "vllm/meta-llama/llama-3.1-8b-instruct|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.04539715208790819,
+   "sigma_d_R1_limit90": 0.05378892983517916,
+   "mean_d": -0.08025202426747576
+  },
+  "vllm/meta-llama/llama-3.1-70b-instruct|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.03560317878583808,
+   "sigma_d_R1_limit90": 0.042184515934224655,
+   "mean_d": -0.09655414382058225
+  },
+  "vllm/microsoft/phi-4|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.02256336653517064,
+   "sigma_d_R1_limit90": 0.02673426159102585,
+   "mean_d": -0.08743942928867025
+  }
+ },
+ "power_band_mas_at_stage1_seeds": {
+  "vllm/meta-llama/llama-3.1-8b-instruct|default": 0.803698080211468,
+  "vllm/meta-llama/llama-3.1-70b-instruct|default": 0.9755531619259007,
+  "vllm/microsoft/phi-4|default": 0.9999996389448219
+ },
+ "mdd_paired_at_stage1_seeds": {
+  "band_mas": {
+   "vllm/meta-llama/llama-3.1-8b-instruct|default": 0.04983608013295626,
+   "vllm/meta-llama/llama-3.1-70b-instruct|default": 0.03908445330498158,
+   "vllm/microsoft/phi-4|default": 0.024769609788265482
+  },
+  "v21_mcr_B_0.05": {
+   "vllm/meta-llama/llama-3.1-8b-instruct|default": 0.09901658375702456,
+   "vllm/meta-llama/llama-3.1-70b-instruct|default": 0.057666860958672045,
+   "vllm/microsoft/phi-4|default": 0.05308456629893528
+  },
+  "v21_mcr_D_0.05": {
+   "vllm/meta-llama/llama-3.1-8b-instruct|default": 0.06761535718559256,
+   "vllm/meta-llama/llama-3.1-70b-instruct|default": 0.09799310123473977,
+   "vllm/microsoft/phi-4|default": 0.08906197019662286
+  },
+  "v21_mcr_0.05": {
+   "vllm/meta-llama/llama-3.1-8b-instruct|default": 0.11284577943137143,
+   "vllm/meta-llama/llama-3.1-70b-instruct|default": 0.12618179222884396,
+   "vllm/microsoft/phi-4|default": 0.10358543169086477
+  },
+  "v21_mcr_B_0.002": {
+   "vllm/meta-llama/llama-3.1-8b-instruct|default": 0.04887972704490748,
+   "vllm/meta-llama/llama-3.1-70b-instruct|default": 0.0379608670063648,
+   "vllm/microsoft/phi-4|default": 0.023685331409721528
+  },
+  "v21_mcr_D_0.002": {
+   "vllm/meta-llama/llama-3.1-8b-instruct|default": 0.038169635673964954,
+   "vllm/meta-llama/llama-3.1-70b-instruct|default": 0.057450851809315584,
+   "vllm/microsoft/phi-4|default": 0.051491472141436276
+  },
+  "v21_mcr_0.002": {
+   "vllm/meta-llama/llama-3.1-8b-instruct|default": 0.05594101541839125,
+   "vllm/meta-llama/llama-3.1-70b-instruct|default": 0.06278766808500384,
+   "vllm/microsoft/phi-4|default": 0.059443028659110116
+  },
+  "turnover": {
+   "vllm/meta-llama/llama-3.1-8b-instruct|default": 5.602706915613224,
+   "vllm/meta-llama/llama-3.1-70b-instruct|default": 1.6745264424833253,
+   "vllm/microsoft/phi-4|default": 6.484266304892871
+  }
+ },
+ "scoring_json_sha256": "112843968c060d88bf8ee88fc4d8735b01d22a071e430c3c13d2a6a544ede45a",
+ "generated_utc": "2026-10-26T09:16:05Z",
+ "predictions": {
+  "vllm/meta-llama/llama-3.1-8b-instruct|default": {
+   "ISFJ": {
+    "n_pairs": 16,
+    "mean_d": 0.04538590266285185,
+    "t": 12.529346446714298,
+    "direction": "higher"
+   },
+   "INTJ": {
+    "n_pairs": 16,
+    "mean_d": -0.03258637189899463,
+    "t": -4.150722069150643,
+    "direction": "lower"
+   },
+   "ENTJ": {
+    "n_pairs": 16,
+    "mean_d": -0.2535556035662845,
+    "t": -10.729260782487025,
+    "direction": "lower"
+   }
+  },
+  "vllm/meta-llama/llama-3.1-70b-instruct|default": {
+   "ISFJ": {
+    "n_pairs": 16,
+    "mean_d": 0.020305561818105604,
+    "t": 4.064322245536612,
+    "direction": "higher"
+   },
+   "INTJ": {
+    "n_pairs": 16,
+    "mean_d": 0.0033932737778654847,
+    "t": 0.33960415641715225,
+    "direction": "none"
+   },
+   "ENTJ": {
+    "n_pairs": 16,
+    "mean_d": -0.31336126705771783,
+    "t": -13.955509318962186,
+    "direction": "lower"
+   }
+  },
+  "vllm/microsoft/phi-4|default": {
+   "ISFJ": {
+    "n_pairs": 16,
+    "mean_d": 0.02072260018777746,
+    "t": 6.899668049139459,
+    "direction": "higher"
+   },
+   "INTJ": {
+    "n_pairs": 16,
+    "mean_d": 0.04386362793145167,
+    "t": 10.22317339289484,
+    "direction": "higher"
+   },
+   "ENTJ": {
+    "n_pairs": 16,
+    "mean_d": -0.3269045159852399,
+    "t": -19.022175508752103,
+    "direction": "lower"
+   }
+  }
+ }
+}

@@ -1,0 +1,167 @@
+{
+ "registered": "DECISION_LOG P9-13 (PREREG_PHASE_8.md 5.5's paired-correct count, adopted) and P9-14; the plug-in is P8-16's maximum, over the six configurations of e9_roster.HEADLINE_OPEN",
+ "roster": [
+  "vllm/google/gemma-4-31b-it|default",
+  "vllm/google/gemma-4-e4b-it|default",
+  "vllm/openai/gpt-oss-20b|default",
+  "vllm/meta/muse-glimmer-30b|default",
+  "vllm/allenai/olmo-3.1-32b-instruct|default",
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default"
+ ],
+ "missing_models": [],
+ "runs_done_vs_planned": {
+  "vllm/google/gemma-4-31b-it|default": [
+   96,
+   96
+  ],
+  "vllm/google/gemma-4-e4b-it|default": [
+   96,
+   96
+  ],
+  "vllm/openai/gpt-oss-20b|default": [
+   96,
+   96
+  ],
+  "vllm/meta/muse-glimmer-30b|default": [
+   96,
+   96
+  ],
+  "vllm/allenai/olmo-3.1-32b-instruct|default": [
+   96,
+   96
+  ],
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default": [
+   96,
+   96
+  ]
+ },
+ "complete": true,
+ "plugin_sigma_d_band_mas": 0.13639420617770004,
+ "plugin_model": "vllm/openai/gpt-oss-20b|default",
+ "alpha_bonferroni": 0.001388888888888889,
+ "delta": 0.05,
+ "stage1_seeds": 122,
+ "stage1_seeds_rule": "paired-correct (P9-13)",
+ "stage1_seeds_appA": 243,
+ "stage1_seeds_paired_correct": 122,
+ "per_model_band_mas": {
+  "vllm/google/gemma-4-31b-it|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.048198541069936617,
+   "sigma_d_R1_limit90": 0.05710816261664489,
+   "mean_d": 0.04334755494891773
+  },
+  "vllm/google/gemma-4-e4b-it|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.03421795844517074,
+   "sigma_d_R1_limit90": 0.04054323412945116,
+   "mean_d": 0.015740576619233018
+  },
+  "vllm/openai/gpt-oss-20b|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.11511492310280007,
+   "sigma_d_R1_limit90": 0.13639420617770004,
+   "mean_d": 0.021289049743412846
+  },
+  "vllm/meta/muse-glimmer-30b|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.08550507068014683,
+   "sigma_d_R1_limit90": 0.10131089805942879,
+   "mean_d": 0.005877956152952957
+  },
+  "vllm/allenai/olmo-3.1-32b-instruct|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.010229202786903433,
+   "sigma_d_R1_limit90": 0.012120096650757122,
+   "mean_d": 0.001166641376024774
+  },
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default": {
+   "n_pairs": 48,
+   "df_d": 36,
+   "sigma_d_R1": 0.06861536100935611,
+   "sigma_d_R1_limit90": 0.08129908307465825,
+   "mean_d": -0.026413642958687044
+  }
+ },
+ "power_band_mas_at_stage1_seeds": {
+  "vllm/google/gemma-4-31b-it|default": 0.9999999999521564,
+  "vllm/google/gemma-4-e4b-it|default": 1.0,
+  "vllm/openai/gpt-oss-20b|default": 0.8029228586616733,
+  "vllm/meta/muse-glimmer-30b|default": 0.9879104168122869,
+  "vllm/allenai/olmo-3.1-32b-instruct|default": 1.0,
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.9998384827930693
+ },
+ "mdd_paired_at_stage1_seeds": {
+  "band_mas": {
+   "vllm/google/gemma-4-31b-it|default": 0.02088074762537578,
+   "vllm/google/gemma-4-e4b-it|default": 0.01482402866743339,
+   "vllm/openai/gpt-oss-20b|default": 0.04987050653123159,
+   "vllm/meta/muse-glimmer-30b|default": 0.03704281834944786,
+   "vllm/allenai/olmo-3.1-32b-instruct|default": 0.004431532512409344,
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.02972579677010333
+  },
+  "v21_mcr_B_0.05": {
+   "vllm/google/gemma-4-31b-it|default": 0.029451964904386726,
+   "vllm/google/gemma-4-e4b-it|default": 0.0234411795334293,
+   "vllm/openai/gpt-oss-20b|default": 0.0685757939775507,
+   "vllm/meta/muse-glimmer-30b|default": 0.05017261937250933,
+   "vllm/allenai/olmo-3.1-32b-instruct|default": 0.007238395249754767,
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.037372792739233815
+  },
+  "v21_mcr_D_0.05": {
+   "vllm/google/gemma-4-31b-it|default": 0.016331893133725867,
+   "vllm/google/gemma-4-e4b-it|default": 0.019411808569428753,
+   "vllm/openai/gpt-oss-20b|default": 0.016550035192873465,
+   "vllm/meta/muse-glimmer-30b|default": 0.023710739690748387,
+   "vllm/allenai/olmo-3.1-32b-instruct|default": 0.026610480883597295,
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.019842665467684806
+  },
+  "v21_mcr_0.05": {
+   "vllm/google/gemma-4-31b-it|default": 0.03055866315389926,
+   "vllm/google/gemma-4-e4b-it|default": 0.03680308893795912,
+   "vllm/openai/gpt-oss-20b|default": 0.056361069417377334,
+   "vllm/meta/muse-glimmer-30b|default": 0.047013979370282385,
+   "vllm/allenai/olmo-3.1-32b-instruct|default": 0.02823161597714276,
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.05104408661204141
+  },
+  "v21_mcr_B_0.002": {
+   "vllm/google/gemma-4-31b-it|default": 0.020461343244437834,
+   "vllm/google/gemma-4-e4b-it|default": 0.015118848552697,
+   "vllm/openai/gpt-oss-20b|default": 0.049935920486623896,
+   "vllm/meta/muse-glimmer-30b|default": 0.03680946053961384,
+   "vllm/allenai/olmo-3.1-32b-instruct|default": 0.004482692842851304,
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.029368402621661224
+  },
+  "v21_mcr_D_0.002": {
+   "vllm/google/gemma-4-31b-it|default": 0.008813898340285325,
+   "vllm/google/gemma-4-e4b-it|default": 0.011634349584759224,
+   "vllm/openai/gpt-oss-20b|default": 0.010028572801090539,
+   "vllm/meta/muse-glimmer-30b|default": 0.011526974043117432,
+   "vllm/allenai/olmo-3.1-32b-instruct|default": 0.015929058824986707,
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.010700352758770706
+  },
+  "v21_mcr_0.002": {
+   "vllm/google/gemma-4-31b-it|default": 0.02032504069468739,
+   "vllm/google/gemma-4-e4b-it|default": 0.02362739050648313,
+   "vllm/openai/gpt-oss-20b|default": 0.042978432524797223,
+   "vllm/meta/muse-glimmer-30b|default": 0.032862427563905706,
+   "vllm/allenai/olmo-3.1-32b-instruct|default": 0.01629588320812308,
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.03216289667246761
+  },
+  "turnover": {
+   "vllm/google/gemma-4-31b-it|default": 0.893215021096134,
+   "vllm/google/gemma-4-e4b-it|default": 0.42610813190008245,
+   "vllm/openai/gpt-oss-20b|default": 1.337399313572935,
+   "vllm/meta/muse-glimmer-30b|default": 0.923483434795103,
+   "vllm/allenai/olmo-3.1-32b-instruct|default": 0.4795228250791851,
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default": 0.9915649382013348
+  }
+ },
+ "scoring_json_sha256": "112843968c060d88bf8ee88fc4d8735b01d22a071e430c3c13d2a6a544ede45a",
+ "generated_utc": "2026-10-24T16:41:18Z"
+}
