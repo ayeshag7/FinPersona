@@ -1,0 +1,29 @@
+--- vllm_meta-llama_llama-3.1-8b-instruct ---
+  PASS  manifest is the registered one (manifest_headline_open_b2.json, sha256 4780cb4e...)
+  PASS  2928 rows
+  PASS  every row ok
+  PASS  one row per planned cell, none extra
+  PASS  every row is vllm/meta-llama/llama-3.1-8b-instruct
+  PASS  all 200 calls expected
+  PASS  calls complete (>= expected)
+  PASS  zero fallbacks
+  PASS  zero provider fallbacks
+  PASS  2928 csv
+  PASS  2928 meta
+  PASS  2928 usage
+  PASS  checkpoint lists exactly the ledger's runs
+  PASS  env hash frozen
+  PASS  one temperature throughout (0.2)
+  PASS  served locally
+  PASS  no upstream pinned
+  PASS  no cost recorded
+  PASS  no api key recorded
+
+  input  tokens/run :    356,718
+  output tokens/run :     53,648
+  seconds/run       :        412
+  parse statuses    : {'ok': 585456, 'ok_retry1': 141, 'ok_retry2': 3}
+  llm errors        : 0 (retried transport events)
+  first, last utc   : 2026-10-26T10:44:07Z, 2026-10-26T15:54:37Z
+
+VALIDATION: PASS (19/19)

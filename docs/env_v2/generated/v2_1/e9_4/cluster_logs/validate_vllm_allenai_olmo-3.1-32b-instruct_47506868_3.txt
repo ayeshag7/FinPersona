@@ -1,0 +1,29 @@
+--- vllm_allenai_olmo-3.1-32b-instruct ---
+  PASS  manifest is the registered one (sha256 736b5bc8...)
+  PASS  2928 rows
+  PASS  every row ok
+  PASS  one row per planned cell, none extra
+  PASS  every row is vllm/allenai/olmo-3.1-32b-instruct
+  PASS  all 200 calls expected
+  PASS  calls complete (>= expected)
+  PASS  zero fallbacks
+  PASS  zero provider fallbacks
+  PASS  2928 csv
+  PASS  2928 meta
+  PASS  2928 usage
+  PASS  checkpoint lists exactly the ledger's runs
+  PASS  env hash frozen
+  PASS  one temperature throughout (0.2)
+  PASS  served locally
+  PASS  no upstream pinned
+  PASS  no cost recorded
+  PASS  no api key recorded
+
+  input  tokens/run :    352,202
+  output tokens/run :     21,286
+  seconds/run       :        841
+  parse statuses    : {'ok': 585600}
+  llm errors        : 0 (retried transport events)
+  first, last utc   : 2026-10-24T19:23:19Z, 2026-10-25T05:55:41Z
+
+VALIDATION: PASS (19/19)

@@ -21,8 +21,8 @@
    "manifest": "headline",
    "config": "gemini-2.5-flash-lite|default",
    "planned": 2880,
-   "verified": 0,
-   "missing": 2880,
+   "verified": 810,
+   "missing": 2070,
    "mismatched": 0
   },
   {
@@ -288,10 +288,82 @@
    "verified": 0,
    "missing": 2880,
    "mismatched": 0
+  },
+  {
+   "manifest": "headline_open",
+   "config": "vllm/google/gemma-4-31b-it|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline_open",
+   "config": "vllm/google/gemma-4-e4b-it|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline_open",
+   "config": "vllm/openai/gpt-oss-20b|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline_open",
+   "config": "vllm/meta/muse-glimmer-30b|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline_open",
+   "config": "vllm/allenai/olmo-3.1-32b-instruct|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline_open",
+   "config": "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline_open_b2",
+   "config": "vllm/meta-llama/llama-3.1-8b-instruct|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline_open_b2",
+   "config": "vllm/meta-llama/llama-3.1-70b-instruct|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
+  },
+  {
+   "manifest": "headline_open_b2",
+   "config": "vllm/microsoft/phi-4|default",
+   "planned": 2928,
+   "verified": 2928,
+   "missing": 0,
+   "mismatched": 0
   }
  ],
  "mismatches": [],
  "pass": true,
  "complete": false,
- "generated_utc": "2026-09-17T07:48:49Z"
+ "generated_utc": "2026-10-27T19:15:00Z"
 }

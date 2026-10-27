@@ -1,0 +1,29 @@
+--- vllm_microsoft_phi-4 ---
+  PASS  manifest is the registered one (manifest_headline_open_b2.json, sha256 4780cb4e...)
+  PASS  2928 rows
+  PASS  every row ok
+  PASS  one row per planned cell, none extra
+  PASS  every row is vllm/microsoft/phi-4
+  PASS  all 200 calls expected
+  PASS  calls complete (>= expected)
+  PASS  zero fallbacks
+  PASS  zero provider fallbacks
+  PASS  2928 csv
+  PASS  2928 meta
+  PASS  2928 usage
+  PASS  checkpoint lists exactly the ledger's runs
+  PASS  env hash frozen
+  PASS  one temperature throughout (0.2)
+  PASS  served locally
+  PASS  no upstream pinned
+  PASS  no cost recorded
+  PASS  no api key recorded
+
+  input  tokens/run :    351,820
+  output tokens/run :     26,618
+  seconds/run       :        438
+  parse statuses    : {'ok': 585538, 'ok_retry1': 62}
+  llm errors        : 0 (retried transport events)
+  first, last utc   : 2026-10-26T10:54:36Z, 2026-10-26T16:22:55Z
+
+VALIDATION: PASS (19/19)

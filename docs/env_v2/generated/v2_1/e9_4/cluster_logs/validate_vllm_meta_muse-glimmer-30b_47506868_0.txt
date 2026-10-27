@@ -1,0 +1,29 @@
+--- vllm_meta_muse-glimmer-30b ---
+  PASS  manifest is the registered one (manifest_headline_open.json, sha256 736b5bc8...)
+  PASS  2928 rows
+  PASS  every row ok
+  PASS  one row per planned cell, none extra
+  PASS  every row is vllm/meta/muse-glimmer-30b
+  PASS  all 200 calls expected
+  PASS  calls complete (>= expected)
+  FAIL  zero fallbacks
+  PASS  zero provider fallbacks
+  PASS  2928 csv
+  PASS  2928 meta
+  PASS  2928 usage
+  PASS  checkpoint lists exactly the ledger's runs
+  PASS  env hash frozen
+  PASS  one temperature throughout (0.2)
+  PASS  served locally
+  PASS  no upstream pinned
+  PASS  no cost recorded
+  PASS  no api key recorded
+
+  input  tokens/run :    352,811
+  output tokens/run :    269,889
+  seconds/run       :      3,942
+  parse statuses    : {'ok': 585227, 'ok_retry1': 362, 'ok_retry2': 9, 'fallback': 2}
+  llm errors        : 0 (retried transport events)
+  first, last utc   : 2026-10-24T20:01:21Z, 2026-10-26T21:35:07Z
+
+VALIDATION: FAIL -> zero fallbacks (18/19)

@@ -1,0 +1,29 @@
+--- vllm_openai_gpt-oss-20b ---
+  PASS  manifest is the registered one (sha256 736b5bc8...)
+  PASS  2928 rows
+  PASS  every row ok
+  PASS  one row per planned cell, none extra
+  PASS  every row is vllm/openai/gpt-oss-20b
+  PASS  all 200 calls expected
+  PASS  calls complete (>= expected)
+  PASS  zero fallbacks
+  PASS  zero provider fallbacks
+  PASS  2928 csv
+  PASS  2928 meta
+  PASS  2928 usage
+  PASS  checkpoint lists exactly the ledger's runs
+  PASS  env hash frozen
+  PASS  one temperature throughout (0.2)
+  PASS  served locally
+  PASS  no upstream pinned
+  PASS  no cost recorded
+  PASS  no api key recorded
+
+  input  tokens/run :    361,618
+  output tokens/run :    106,246
+  seconds/run       :        535
+  parse statuses    : {'ok': 585571, 'ok_retry1': 28, 'ok_retry2': 1}
+  llm errors        : 0 (retried transport events)
+  first, last utc   : 2026-10-24T19:17:47Z, 2026-10-25T01:59:28Z
+
+VALIDATION: PASS (19/19)

@@ -1,0 +1,29 @@
+--- vllm_mistralai_ministral-3-14b-instruct-2512 ---
+  PASS  manifest is the registered one (sha256 736b5bc8...)
+  PASS  2928 rows
+  PASS  every row ok
+  PASS  one row per planned cell, none extra
+  PASS  every row is vllm/mistralai/ministral-3-14b-instruct-2512
+  PASS  all 200 calls expected
+  PASS  calls complete (>= expected)
+  PASS  zero fallbacks
+  PASS  zero provider fallbacks
+  PASS  2928 csv
+  PASS  2928 meta
+  PASS  2928 usage
+  PASS  checkpoint lists exactly the ledger's runs
+  PASS  env hash frozen
+  PASS  one temperature throughout (0.2)
+  PASS  served locally
+  PASS  no upstream pinned
+  PASS  no cost recorded
+  PASS  no api key recorded
+
+  input  tokens/run :    366,493
+  output tokens/run :     44,647
+  seconds/run       :        552
+  parse statuses    : {'ok': 585494, 'ok_retry1': 106}
+  llm errors        : 0 (retried transport events)
+  first, last utc   : 2026-10-25T02:11:59Z, 2026-10-25T09:07:22Z
+
+VALIDATION: PASS (19/19)
