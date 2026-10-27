@@ -22,8 +22,13 @@ v2.1 Phase 9 -- E9.2: the roster variance pilots and the stage-1 seed count they
             closed-form limit at R' = R, P8-15).  Flash's R = 1 limit is E8.5's closed form (e8_5/components.csv).
             The plug-in is the MAXIMUM of the band-MAS limit over the roster (P8-16, applied to measured models), and
             stage 1's seeds follow Appendix A as written at alpha' = 0.05 / 36, with the paired-correct count beside.
+`open`      DECISION_LOG P9-13: the same rule over the open-weight headline's six configurations only
+            (e9_roster.HEADLINE_OPEN), at the paired-correct count; per-model power and MDD at it.
+`open_b2`   DECISION_LOG P9-17: `open` over the second batch (e9_roster.HEADLINE_OPEN_B2), with the predictions
+            PREREG_PHASE_9_STAGE1_OPEN.md 4's rule gives from its pilots.
 
-Outputs: docs/env_v2/generated/v2_1/e9_2/{shape.json, manifest.json, per_run.csv, sigma.csv, sizing.json}
+Outputs: docs/env_v2/generated/v2_1/e9_2/{shape.json, manifest.json, per_run.csv, sigma.csv, sizing.json,
+         per_run_open.csv, sizing_open.json, per_run_open_b2.csv, sizing_open_b2.json}
 """
 from __future__ import annotations
 
@@ -234,12 +239,107 @@ def stage_analyse():
     print({k: doc[k] for k in ("complete", "missing_models", "plugin_sigma_d_band_mas", "plugin_model", "stage1_seeds_appA", "stage1_seeds_paired_correct")})
 
 
+def pilot_predictions(t: pd.DataFrame, models) -> dict:
+    """PREREG_PHASE_9_STAGE1_OPEN.md 4's rule: a direction is predicted for a model x persona where its pilot's
+    memory - static band-MAS difference over its 16 pairs (4 scenarios x 4 seeds) has |t| >= 2 and |mean| >= 0.005, a
+    tenth of Delta; otherwise none.  Higher band-MAS is worse adherence."""
+    out = {}
+    for key in models:
+        g = t[t.Model == key].groupby(["Persona", "Scenario", "Seed", "Arm"])["band_mas"].mean().unstack("Arm")
+        d = (g["memory"] - g["static"]).dropna()
+        for p in PERSONAS:
+            dp = d.xs(p, level="Persona") if p in d.index.get_level_values("Persona") else d.iloc[:0]
+            n, mean = int(len(dp)), float(dp.mean()) if len(dp) else float("nan")
+            sd = float(dp.std(ddof=1)) if n > 1 else float("nan")
+            tt = mean / (sd / math.sqrt(n)) if n > 1 and sd > 0 else float("nan")
+            hit = np.isfinite(tt) and abs(tt) >= 2 and abs(mean) >= 0.005
+            out.setdefault(key, {})[p] = {"n_pairs": n, "mean_d": mean, "t": tt,
+                                          "direction": ("higher" if mean > 0 else "lower") if hit else "none"}
+    return out
+
+
+def stage_open(roster=None, suffix="", registered=None):
+    """DECISION_LOG P9-13: the open-weight headline's sizing, over `e9_roster.HEADLINE_OPEN` only.  The six pilots are
+    scored exactly as `stage_score` scores (into per_run_open.csv; the September per_run.csv and sizing.json stay as they
+    are), the plug-in is the maximum band-MAS limit over the six (P8-16's rule), and stage 1 of this roster runs the
+    PAIRED-CORRECT count -- the amendment PREREG_PHASE_8.md 5.5 flags, adopted in P9-13 -- with Appendix A as written
+    beside.  Each model's power and paired MDD at that count are recorded, because each model's family is its own
+    confirmatory family (P9-14).
+
+    DECISION_LOG P9-17: `open_b2` is the same over the second batch (`e9_roster.HEADLINE_OPEN_B2`), into
+    per_run_open_b2.csv and sizing_open_b2.json, with section 4's predictions from its pilots beside."""
+    from evaluation import scoring_params as SP
+    SP.load()
+    from evaluation.metrics_v2 import score_run
+    from experiments import inference_params as IP
+    from tools.phase8.e8_5_analyse import metric_names, n_seeds, mdd
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9 import e9_runner as R
+    roster = tuple(roster or RO.HEADLINE_OPEN)
+    rows, planned, done = [], {}, {}
+    for mpath in pilot_manifests():
+        m = R.load_manifest(mpath)
+        for key in [k for k in m["configs"] if k in roster]:
+            mc = RO.by_key(key)
+            dk = R.done_keys(m["subdir"], mc, m["cells"])
+            planned[key] = planned.get(key, 0) + len(m["cells"])
+            done[key] = done.get(key, 0) + len(dk)
+            for c in m["cells"]:
+                cfg = R.cfg_for(mc, c, m["subdir"])
+                if R.run_key(c, cfg) not in dk:
+                    continue
+                sc = score_run(pd.read_csv(R.run_paths(cfg)["csv"]), cfg.persona, scoring="v2_1")
+                rows.append({"Model": key, "Manifest": os.path.basename(mpath), "Persona": cfg.persona, "Arm": cfg.arm,
+                             "Scenario": cfg.scenario, "Seed": cfg.seed, "Decode_Replicate": 0,
+                             **{k: sc.get(k) for k in metric_names() + ["mdd_pct", "return_pct", "fallback_share", "trade_count"]}})
+    t = pd.DataFrame(rows)
+    t.to_csv(os.path.join(OUT, f"per_run_open{suffix}.csv"), index=False)
+    alpha_b = float(IP.block("main_grid_sizing")["value"]["alpha_bonferroni"])
+    delta = float(IP.block("min_effect")["value"]["band_mas"])
+    sig = {key: {mt: sigma_r1(tm.dropna(subset=[mt]), mt) for mt in metric_names()} for key, tm in t.groupby("Model")}
+    lim = {k: sig[k]["band_mas"]["sigma_d_R1_limit90"] for k in roster if k in sig}
+    plug_model = max(lim, key=lim.get)
+    plug = lim[plug_model]
+    seeds = n_seeds(plug, delta, alpha_b, factor2=False)
+    z = stats.norm.ppf(1 - alpha_b / 2)
+    doc = {"registered": registered or ("DECISION_LOG P9-13 (PREREG_PHASE_8.md 5.5's paired-correct count, adopted) and "
+                                        "P9-14; the plug-in is P8-16's maximum, over the six configurations of "
+                                        "e9_roster.HEADLINE_OPEN"),
+           "roster": list(roster), "missing_models": [k for k in roster if k not in lim],
+           "runs_done_vs_planned": {k: [done.get(k, 0), planned.get(k, 0)] for k in roster},
+           "complete": all(k in lim and done.get(k, 0) == planned.get(k, -1) for k in roster),
+           "plugin_sigma_d_band_mas": plug, "plugin_model": plug_model, "alpha_bonferroni": alpha_b, "delta": delta,
+           "stage1_seeds": seeds, "stage1_seeds_rule": "paired-correct (P9-13)",
+           "stage1_seeds_appA": n_seeds(plug, delta, alpha_b), "stage1_seeds_paired_correct": seeds,
+           "per_model_band_mas": {k: {x: sig[k]["band_mas"][x] for x in ("n_pairs", "df_d", "sigma_d_R1", "sigma_d_R1_limit90", "mean_d")}
+                                  for k in lim},
+           "power_band_mas_at_stage1_seeds": {k: float(stats.norm.cdf(delta * math.sqrt(seeds) / v - z)) for k, v in lim.items()},
+           "mdd_paired_at_stage1_seeds": {mt: {k: mdd(sig[k][mt]["sigma_d_R1_limit90"], seeds, alpha_b, factor2=False) for k in lim}
+                                          for mt in metric_names()},
+           "scoring_json_sha256": SP.SHA256, "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    if suffix:
+        doc["predictions"] = pilot_predictions(t, roster)
+    json.dump(doc, open(os.path.join(OUT, f"sizing_open{suffix}.json"), "w", encoding="utf-8"), indent=1)
+    for k in roster:
+        print(f"{k:52s} runs {doc['runs_done_vs_planned'][k]}  limit {lim.get(k, float('nan')):.4f}  "
+              f"power at {seeds} {doc['power_band_mas_at_stage1_seeds'].get(k, float('nan')):.3f}")
+    print({k: doc[k] for k in ("complete", "plugin_model", "plugin_sigma_d_band_mas", "stage1_seeds", "stage1_seeds_appA")})
+
+
+def stage_open_b2():
+    from tools.phase9 import e9_roster as RO
+    stage_open(RO.HEADLINE_OPEN_B2, "_b2", "DECISION_LOG P9-17: P9-13's paired-correct count and P8-16's maximum, over "
+                                         "the second batch's configurations (e9_roster.HEADLINE_OPEN_B2); predictions by "
+                                         "PREREG_PHASE_9_STAGE1_OPEN.md 4's rule")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--stages", default="shape,manifest")
     a = ap.parse_args(argv)
     for st in [x.strip() for x in a.stages.split(",") if x.strip()]:
-        {"shape": stage_shape, "manifest": stage_manifest, "score": stage_score, "analyse": stage_analyse}[st]()
+        {"shape": stage_shape, "manifest": stage_manifest, "score": stage_score, "analyse": stage_analyse, "open": stage_open,
+         "open_b2": stage_open_b2}[st]()
     return 0
 
 

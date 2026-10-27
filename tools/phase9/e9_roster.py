@@ -162,6 +162,36 @@ CANDIDATES = (
     _v("vllm/google/gemma-4-e4b-it",
        "open-weight (Google, 8.0B dense, 16 GB), served locally; the ladder's bottom rung against gemma-4-31b-it; "
        "pinned to HF revision ee0ef6023621cff504d758262d4e04895a5af4a2"),
+    # DECISION_LOG P9-12 (24 Oct 2026): the headline runs first on open weights served on the FinAI HiPerGator
+    # allocation, whose policy forbids models developed by Chinese organisations on the cluster.  One configuration per
+    # lab -- Google, OpenAI, Meta, AI2, Mistral -- plus gemma-4-e4b-it as the within-lab size contrast.  These three join
+    # the roster for that run; each is Apache-2.0, fits one B200, and is pinned by Hugging Face revision.
+    # DECISION_LOG P9-13 (24 Oct 2026): OpenAI's configuration in that headline is gpt-oss-20b.  gpt-oss-120b was piloted
+    # and is no quieter (band-MAS sigma_d limit 0.1496 against 0.1364, F-test p = 0.58), so it stays here as a pilot.
+    _v("vllm/openai/gpt-oss-120b",
+       "open-weight (OpenAI, 116.8B MoE with 5.1B active, MXFP4, 65 GB), served locally; piloted 24 Oct 2026 and not "
+       "in the headline (DECISION_LOG P9-13); pinned to HF revision b5c939de8f754692c1647ca79fbf85e8c1e70f8a"),
+    _v("vllm/allenai/olmo-3.1-32b-instruct",
+       "open-weight (AI2, 32.2B dense, 64 GB, training data released), served locally; pinned to HF revision "
+       "ac0587e4a7744a551c059d8cd17ba220bc940dae"),
+    _v("vllm/mistralai/ministral-3-14b-instruct-2512",
+       "open-weight (Mistral, 13.9B dense, the BF16 release mistralai/Ministral-3-14B-Instruct-2512-BF16, 28 GB), "
+       "served locally; pinned to HF revision 3cea74c1ebaf5ce5f5a2553de470e2ceab825142"),
+    # DECISION_LOG P9-17 (26 Oct 2026): the second stage-1 batch, the open models comparable published studies run --
+    # Llama 3.1 at 8B and 70B, the pair most of them use, and Microsoft's Phi-4 (Cook et al., FEDS 2026-006).  Llama 3.1
+    # is gated, so its files come from NousResearch's open copy, equal to Meta's on every weight shard, config and
+    # tokenizer file, with Meta's own tokenizer_config.json (the current chat template) put back; the pin is Meta's.
+    _v("vllm/meta-llama/llama-3.1-8b-instruct",
+       "open-weight (Meta, 8.0B dense, 16 GB, Llama 3.1 Community License), served locally; pinned to Meta's HF revision "
+       "0e9e39f249a16976918f6564b8830bc894c89659, files from NousResearch/Meta-Llama-3.1-8B-Instruct@d10aef7 with "
+       "Meta's tokenizer_config.json"),
+    _v("vllm/meta-llama/llama-3.1-70b-instruct",
+       "open-weight (Meta, 70.6B dense, 141 GB, Llama 3.1 Community License), served locally; pinned to Meta's HF "
+       "revision 1605565b47bb9346c5515c34102e054115b4f98b, files from NousResearch/Meta-Llama-3.1-70B-Instruct@d50656e "
+       "with Meta's tokenizer_config.json"),
+    _v("vllm/microsoft/phi-4",
+       "open-weight (Microsoft, 14.7B dense, 29 GB, MIT, a 16,384-token context), served locally; pinned to HF revision "
+       "2db69c1c3e91a05d2c64a3185acfbaf36f744e25"),
 )
 TIMED_IN_E8_5 = {"gemini-2.5-flash|thinking0", "gpt-5-mini|default"}
 # DECISION_LOG P9-2 (11 Sep 2026): the roster was every candidate that passed its smoke (13).
@@ -177,6 +207,15 @@ ROSTER = tuple(c.key for c in CANDIDATES if c.key not in EXCLUDED)
 # the configurations whose band-MAS sigma_d was measured in the grid's configuration on the grid's four scenarios (E8.5,
 # P8-16); every other roster member is piloted (PREREG_PHASE_9.md 2).  GPT-5 mini's E8.5 transfer ran on one scenario only
 MEASURED_IN_GRID_CONFIG = {"gemini-2.5-flash|thinking0"}
+# DECISION_LOG P9-12, P9-13, P9-14 (24 Oct 2026): the open-weight headline, one configuration per lab plus Gemma 4 E4B as
+# the size contrast.  Sized over these six only (`e9_2_pilot --stages open`); its manifest is
+# e9_4/manifest_headline_open.json, registered in PREREG_PHASE_9_STAGE1_OPEN.md.
+HEADLINE_OPEN = ("vllm/google/gemma-4-31b-it|default", "vllm/google/gemma-4-e4b-it|default",
+                 "vllm/openai/gpt-oss-20b|default", "vllm/meta/muse-glimmer-30b|default",
+                 "vllm/allenai/olmo-3.1-32b-instruct|default", "vllm/mistralai/ministral-3-14b-instruct-2512|default")
+# DECISION_LOG P9-17 (26 Oct 2026): the second batch, analysed as the six are, each model its own family.
+HEADLINE_OPEN_B2 = ("vllm/meta-llama/llama-3.1-8b-instruct|default", "vllm/meta-llama/llama-3.1-70b-instruct|default",
+                    "vllm/microsoft/phi-4|default")
 
 
 def by_key(key: str) -> ModelConfig:

@@ -430,3 +430,78 @@ def test_prompt_hash_key_carries_the_prompt_affecting_factors():
                               "factors": {"start_design": "common"}}) == "m|ISFJ|static"
     assert R.prompt_key("m", {"persona": "ISFJ", "arm": "static",
                               "factors": {"track": "A"}}) == "m|ISFJ|static|track=A"
+
+
+def test_open_headline_manifest_is_its_sizing_and_its_pilots():
+    """P9-12 to P9-14: the open-weight headline runs exactly e9_roster.HEADLINE_OPEN on PREREG_PHASE_9.md 4.1's headline
+    cells at sizing_open.json's paired-correct count, in its own subdir; and every configuration's prompts equal its
+    variance pilot's (PREREG_PHASE_9.md 2: a pilot measures the configuration the grid runs)."""
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9.e9_4_grid import OPEN_MANIFEST, OUT, SIZING_OPEN
+    path = os.path.join(OUT, OPEN_MANIFEST)
+    if not (os.path.exists(path) and os.path.exists(SIZING_OPEN)):
+        pytest.skip("the open headline's sizing or manifest is not written yet")
+    m, sz = json.load(open(path, encoding="utf-8")), json.load(open(SIZING_OPEN, encoding="utf-8"))
+    S = sz["stage1_seeds"]
+    assert sz["complete"] and sz["roster"] == list(RO.HEADLINE_OPEN) and S == sz["stage1_seeds_paired_correct"]
+    assert m["configs"] == list(RO.HEADLINE_OPEN) and m["subdir"] == "stage1_open"
+    assert m["seeds"] == list(range(10001, 10001 + S)) and len(m["cells"]) == 3 * 2 * 4 * S
+    assert {(c["persona"], c["arm"]) for c in m["cells"]} == {(p, a) for p in ("ISFJ", "INTJ", "ENTJ") for a in ("static", "memory")}
+    pilots = {}
+    for f in os.listdir(os.path.join(GEN, "e9_2")):
+        if f.startswith("manifest_vllm_") and f.endswith(".json"):
+            pm = json.load(open(os.path.join(GEN, "e9_2", f), encoding="utf-8"))
+            for k in pm["configs"]:
+                pilots.setdefault(k, []).append(pm["fingerprint"])
+    for key in RO.HEADLINE_OPEN:
+        hashes = {k: v for k, v in m["fingerprint"]["prompt_hash"].items() if k.startswith(key + "|")}
+        assert len(hashes) == 6, key
+        assert any(all(fp["prompt_hash"].get(k) == v for k, v in hashes.items()) and
+                   fp["Env_Code_Hash"] == m["fingerprint"]["Env_Code_Hash"] for fp in pilots[key]), (key, "prompts moved since its pilot")
+
+
+def test_open_headline_b2_manifest_is_the_six_cells_and_its_pilots():
+    """P9-17, P9-18: the second batch runs exactly e9_roster.HEADLINE_OPEN_B2 on the six's cells and seeds (the six's
+    count, not its own sizing's), in the six's subdir and with none of their configurations; its sizing is complete
+    over the batch; and every configuration's prompts equal its pilot's."""
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9.e9_4_grid import OPEN_MANIFEST, OPEN_B2_MANIFEST, OUT, SIZING_OPEN_B2
+    path = os.path.join(OUT, OPEN_B2_MANIFEST)
+    if not (os.path.exists(path) and os.path.exists(SIZING_OPEN_B2)):
+        pytest.skip("the second batch's sizing or manifest is not written yet")
+    m, six = json.load(open(path, encoding="utf-8")), json.load(open(os.path.join(OUT, OPEN_MANIFEST), encoding="utf-8"))
+    sz = json.load(open(SIZING_OPEN_B2, encoding="utf-8"))
+    assert sz["complete"] and sz["roster"] == list(RO.HEADLINE_OPEN_B2)
+    assert m["configs"] == list(RO.HEADLINE_OPEN_B2) and m["subdir"] == six["subdir"] == "stage1_open"
+    assert m["cells"] == six["cells"] and m["seeds"] == six["seeds"] and m["sizing"]["seeds_run"] == len(six["seeds"])
+    assert not set(m["configs"]) & set(six["configs"])
+    pilots = {}
+    for f in os.listdir(os.path.join(GEN, "e9_2")):
+        if f.startswith("manifest_vllm_") and f.endswith(".json"):
+            pm = json.load(open(os.path.join(GEN, "e9_2", f), encoding="utf-8"))
+            for k in pm["configs"]:
+                pilots.setdefault(k, []).append(pm["fingerprint"])
+    for key in RO.HEADLINE_OPEN_B2:
+        hashes = {k: v for k, v in m["fingerprint"]["prompt_hash"].items() if k.startswith(key + "|")}
+        assert len(hashes) == 6, key
+        assert any(all(fp["prompt_hash"].get(k) == v for k, v in hashes.items()) and
+                   fp["Env_Code_Hash"] == m["fingerprint"]["Env_Code_Hash"] for fp in pilots[key]), (key, "prompts moved since its pilot")
+
+
+def test_pilot_predictions_reproduce_the_six_table():
+    """PREREG_PHASE_9_STAGE1_OPEN.md 4: the rule as `e9_2_pilot.pilot_predictions` applies it to the second batch
+    reproduces the six's registered table from their pilots' scores, ENTJ / INTJ / ISFJ."""
+    path = os.path.join(GEN, "e9_2", "per_run_open.csv")
+    if not os.path.exists(path):
+        pytest.skip("e9_2/per_run_open.csv is not written yet")
+    import pandas as pd
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9.e9_2_pilot import pilot_predictions
+    want = {"gemma-4-31b-it": ("higher", "higher", "higher"), "gemma-4-e4b-it": ("none", "higher", "none"),
+            "gpt-oss-20b": ("none", "none", "higher"), "muse-glimmer-30b": ("none", "higher", "higher"),
+            "olmo-3.1-32b-instruct": ("lower", "lower", "higher"),
+            "ministral-3-14b-instruct-2512": ("lower", "higher", "higher")}
+    got = pilot_predictions(pd.read_csv(path), RO.HEADLINE_OPEN)
+    for key in RO.HEADLINE_OPEN:
+        name = key.split("|")[0].split("/")[-1]
+        assert tuple(got[key][p]["direction"] for p in ("ENTJ", "INTJ", "ISFJ")) == want[name], name

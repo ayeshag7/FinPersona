@@ -21,6 +21,10 @@ communicated-target mirror of the headline grid runs last.
             * track_a: the headline cells exactly, each at `track="A"` (the persona's cash band is stated in the
               system prompt), setting "track_a".
             All three carry the fingerprint `tools/phase9/e9_runner.fingerprint` computes.
+`manifest_open`  DECISION_LOG P9-12 to P9-14: the headline cells on the open-weight six (e9_roster.HEADLINE_OPEN) at
+            `e9_2/sizing_open.json`'s paired-correct count, subdir "stage1_open" -> manifest_headline_open.json.
+`manifest_open_b2`  DECISION_LOG P9-17, P9-18: the second batch (e9_roster.HEADLINE_OPEN_B2) on the six's cells and
+            seeds -> manifest_headline_open_b2.json.
 `verify`    For every planned cell with a run on disk: the run's `Prompt_Hash` equals the manifest's for that
             (configuration, persona, arm), `Env_Code_Hash` equals the manifest's, the harness and placebo versions are
             v2_1, `Provider_Options` names the cell's configuration, and the scenario, seed and start design are the
@@ -56,6 +60,14 @@ SLICE_ARMS = ("static", "memory", "swapped")
 GRID_SEED0 = 10001
 MANIFESTS = {"headline": "manifest_headline.json", "slice": "manifest_slice.json",
              "track_a": "manifest_track_a.json"}
+# DECISION_LOG P9-12 to P9-14: the open-weight headline is a fourth manifest, built by its own stage from its own sizing;
+# verify, status and score read it with the other three
+OPEN_MANIFEST = "manifest_headline_open.json"
+SIZING_OPEN = os.path.join(GEN, "e9_2", "sizing_open.json")
+# DECISION_LOG P9-17, P9-18: the second batch, on the six's cells and seeds
+OPEN_B2_MANIFEST = "manifest_headline_open_b2.json"
+SIZING_OPEN_B2 = os.path.join(GEN, "e9_2", "sizing_open_b2.json")
+ALL_MANIFESTS = {**MANIFESTS, "headline_open": OPEN_MANIFEST, "headline_open_b2": OPEN_B2_MANIFEST}
 
 
 def seeds_from_sizing() -> tuple:
@@ -142,11 +154,79 @@ def stage_manifest():
         print(f"{fname}: {len(m['configs'])} configurations x {len(cells):,} runs at {S} seeds per cell")
 
 
+def stage_manifest_open():
+    """PREREG_PHASE_9_STAGE1_OPEN.md; DECISION_LOG P9-12 to P9-14: PREREG_PHASE_9.md 4.1's headline cells on
+    `e9_roster.HEADLINE_OPEN`, at `e9_2/sizing_open.json`'s paired-correct count.  The D11 slice and Track A are not
+    built for this roster (P9-14).  Its own subdir, so none of its runs can mix with the API headline's."""
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9 import e9_runner as R
+    if not os.path.exists(SIZING_OPEN):
+        raise SystemExit(f"{os.path.relpath(SIZING_OPEN, ROOT)} does not exist: run `e9_2_pilot --stages open` first")
+    sz = json.load(open(SIZING_OPEN, encoding="utf-8"))
+    if not sz.get("complete") or sz.get("roster") != list(RO.HEADLINE_OPEN):
+        raise SystemExit("the open sizing is incomplete, or was taken over a roster other than e9_roster.HEADLINE_OPEN")
+    S = int(sz["stage1_seeds"])
+    seeds = list(range(GRID_SEED0, GRID_SEED0 + S))
+    cells = cells_for("headline", seeds)
+    m = {"name": "e9_4_stage1_headline_open", "kind": "grid", "subdir": "stage1_open", "ledger_dir": "e9_4",
+         "T": 200, "configs": list(RO.HEADLINE_OPEN), "cells": cells, "seeds": seeds, "seeds_per_cell": S,
+         "sizing": {k: sz[k] for k in ("plugin_sigma_d_band_mas", "plugin_model", "alpha_bonferroni", "delta",
+                                       "stage1_seeds", "stage1_seeds_rule", "stage1_seeds_appA")},
+         "registered": "PREREG_PHASE_9_STAGE1_OPEN.md; PREREG_PHASE_9.md 4.1 (headline cells); "
+                       "DECISION_LOG P9-5, P9-12, P9-13, P9-14",
+         "written_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    path = os.path.join(OUT, OPEN_MANIFEST)
+    if os.path.exists(path):
+        R.verify_fingerprint(json.load(open(path, encoding="utf-8")))
+        print(f"{OPEN_MANIFEST}: exists and its fingerprint matches; not rewritten")
+        return
+    m["fingerprint"] = R.fingerprint(m)
+    os.makedirs(OUT, exist_ok=True)
+    json.dump(m, open(path, "w", encoding="utf-8", newline="\n"), indent=1)
+    print(f"{OPEN_MANIFEST}: {len(m['configs'])} configurations x {len(cells):,} runs at {S} seeds per cell")
+
+
+def stage_manifest_open_b2():
+    """PREREG_PHASE_9_STAGE1_OPEN_B2.md; DECISION_LOG P9-17, P9-18: the second batch (`e9_roster.HEADLINE_OPEN_B2`) on
+    exactly the six's cells and seeds.  Its own sizing (`e9_2/sizing_open_b2.json`) gives 19 seeds; the batch runs the
+    six's 122 instead, so all nine models are compared on the same market paths (P9-18), and the manifest records both.
+    Same subdir as the six: every run lives under its own configuration's directory and ledger."""
+    from tools.phase9 import e9_roster as RO
+    from tools.phase9 import e9_runner as R
+    if not os.path.exists(SIZING_OPEN_B2):
+        raise SystemExit(f"{os.path.relpath(SIZING_OPEN_B2, ROOT)} does not exist: run `e9_2_pilot --stages open_b2` first")
+    sz = json.load(open(SIZING_OPEN_B2, encoding="utf-8"))
+    if not sz.get("complete") or sz.get("roster") != list(RO.HEADLINE_OPEN_B2):
+        raise SystemExit("the second batch's sizing is incomplete, or was taken over a roster other than HEADLINE_OPEN_B2")
+    six = json.load(open(os.path.join(OUT, OPEN_MANIFEST), encoding="utf-8"))
+    seeds = list(six["seeds"])
+    cells = cells_for("headline", seeds)
+    if cells != six["cells"]:
+        raise SystemExit("the headline cells no longer equal the six's manifest: refusing to build the second batch")
+    m = {"name": "e9_4_stage1_headline_open_b2", "kind": "grid", "subdir": "stage1_open", "ledger_dir": "e9_4",
+         "T": 200, "configs": list(RO.HEADLINE_OPEN_B2), "cells": cells, "seeds": seeds, "seeds_per_cell": len(seeds),
+         "sizing": {**{k: sz[k] for k in ("plugin_sigma_d_band_mas", "plugin_model", "alpha_bonferroni", "delta",
+                                          "stage1_seeds", "stage1_seeds_rule", "stage1_seeds_appA")},
+                    "seeds_run": len(seeds), "seeds_run_rule": "the six's count, so all nine share their market paths "
+                                                               "(P9-18)"},
+         "registered": "PREREG_PHASE_9_STAGE1_OPEN_B2.md; PREREG_PHASE_9_STAGE1_OPEN.md (cells, analysis); "
+                       "DECISION_LOG P9-17, P9-18",
+         "written_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    path = os.path.join(OUT, OPEN_B2_MANIFEST)
+    if os.path.exists(path):
+        R.verify_fingerprint(json.load(open(path, encoding="utf-8")))
+        print(f"{OPEN_B2_MANIFEST}: exists and its fingerprint matches; not rewritten")
+        return
+    m["fingerprint"] = R.fingerprint(m)
+    json.dump(m, open(path, "w", encoding="utf-8", newline="\n"), indent=1)
+    print(f"{OPEN_B2_MANIFEST}: {len(m['configs'])} configurations x {len(cells):,} runs at {len(seeds)} seeds per cell")
+
+
 def stage_verify():
     from tools.phase9 import e9_roster as RO
     from tools.phase9 import e9_runner as R
     rows, missing = [], []
-    for kind, fname in MANIFESTS.items():
+    for kind, fname in ALL_MANIFESTS.items():
         path = os.path.join(OUT, fname)
         if not os.path.exists(path):
             continue
@@ -229,7 +309,7 @@ def stage_score():
     from tools.phase9 import e9_runner as R
     SP.load()
     rows, planned = [], {}
-    for kind, fname in MANIFESTS.items():
+    for kind, fname in ALL_MANIFESTS.items():
         path = os.path.join(OUT, fname)
         if not os.path.exists(path):
             continue
@@ -253,7 +333,7 @@ def stage_score():
 def stage_status():
     from tools.phase9 import e9_roster as RO
     from tools.phase9 import e9_runner as R
-    for kind, fname in MANIFESTS.items():
+    for kind, fname in ALL_MANIFESTS.items():
         path = os.path.join(OUT, fname)
         if not os.path.exists(path):
             continue
@@ -274,6 +354,10 @@ def main(argv=None):
     for st in [x.strip() for x in a.stages.split(",") if x.strip()]:
         if st == "manifest":
             stage_manifest()
+        elif st == "manifest_open":
+            stage_manifest_open()
+        elif st == "manifest_open_b2":
+            stage_manifest_open_b2()
         elif st == "verify":
             rc = stage_verify() or rc
         elif st == "status":

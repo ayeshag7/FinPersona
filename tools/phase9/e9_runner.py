@@ -22,8 +22,9 @@ Rules carried from E8.5:
 
 New in Phase 9:
 
-* **Concurrency (P9-1).** `--workers` above 15 is refused. Every process registers the in-flight calls it will make
-  per model under `results_v2/phase9/active/`; a process that would take a model above 15 refuses to start.
+* **Concurrency (P9-1, P9-11).** `--workers` above 15 is refused, or above 64 for a model served by our own vLLM.
+  Every process registers the in-flight calls it will make per model under `results_v2/phase9/active/`; a process
+  that would take a model above its cap refuses to start.
 * **No cost gate.** Cost is not a constraint (P9-1). Tokens are logged per run, and dollars only where a price was
   read.
 * **The harness is the grid's:** `harness_version="v2_1"`, `placebo_version="v2_1"` (P8-4, P8-5), dividends paid
@@ -66,6 +67,7 @@ SMOKE_DIR = os.path.join(GEN, "e9_0", "smoke")
 T = 200
 CRASH_DISCOUNT = 0.70
 MAX_INFLIGHT_PER_MODEL = 15                         # P9-1
+MAX_INFLIGHT_LOCAL = 64                             # P9-11: open weights served by our own vLLM have no provider to rate-limit
 MAX_ATTEMPTS = 3
 HARNESS = {"harness_version": "v2_1", "placebo_version": "v2_1"}    # P8-4, P8-5: the grid's harness
 SMOKE_CELLS = ({"persona": "ISFJ", "arm": "static", "scenario": "bull_trap", "seed": 2001, "rep": 0},
@@ -116,14 +118,19 @@ def inflight(model: str) -> int:
     return n
 
 
+def cap_for(model: str) -> int:
+    return MAX_INFLIGHT_LOCAL if model.startswith("vllm/") else MAX_INFLIGHT_PER_MODEL
+
+
 def register(model: str, calls: int) -> str:
-    if calls > MAX_INFLIGHT_PER_MODEL:
-        raise SystemExit(f"REFUSED: {calls} concurrent calls for {model} exceed the team's cap of {MAX_INFLIGHT_PER_MODEL} (P9-1)")
+    cap = cap_for(model)
+    if calls > cap:
+        raise SystemExit(f"REFUSED: {calls} concurrent calls for {model} exceed the team's cap of {cap} (P9-1, P9-11)")
     with _LOCK:
         have = inflight(model)
-        if have + calls > MAX_INFLIGHT_PER_MODEL:
+        if have + calls > cap:
             raise SystemExit(f"REFUSED: {model} already has {have} in-flight calls registered by live processes; "
-                             f"{calls} more would exceed the cap of {MAX_INFLIGHT_PER_MODEL} (P9-1)")
+                             f"{calls} more would exceed the cap of {cap} (P9-1, P9-11)")
         os.makedirs(ACTIVE, exist_ok=True)
         p = os.path.join(ACTIVE, f"{RO.ModelConfig(model, '', '', None).slug}__{os.getpid()}__{threading.get_ident()}.json")
         json.dump({"pid": os.getpid(), "model": model, "calls": calls, "started_utc": _utc()}, open(p, "w", encoding="utf-8"))
@@ -534,8 +541,9 @@ def main(argv=None):
     if a.stage == "smoke":
         return stage_smoke(a.configs, a.cells)
     if a.stage == "run":
-        if a.workers > MAX_INFLIGHT_PER_MODEL:
-            raise SystemExit(f"REFUSED: --workers {a.workers} exceeds the team's cap of {MAX_INFLIGHT_PER_MODEL} per model (P9-1)")
+        if a.workers > cap_for(a.config):
+            raise SystemExit(f"REFUSED: --workers {a.workers} exceeds the team's cap of {cap_for(a.config)} per model "
+                             f"(P9-1, P9-11)")
         return stage_run(a.manifest, a.config, a.workers, a.max_runs)
     return stage_status(a.manifest)
 
