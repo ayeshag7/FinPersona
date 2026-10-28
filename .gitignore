@@ -61,3 +61,10 @@ docs/env_v2/generated/v2_1/e6_1/cache/
 # tools/phase9/e9_3_simulate.py from the registered streams; its SUMMARIES (criteria.csv/json,
 # refdist*.csv/json, rule_check.*) are committed and are what the report cites
 docs/env_v2/generated/v2_1/e9_3/_cache/
+docs/COMPUTE_HIPERGATOR_GUIDE.md
+docs/FinPersona_Model_Costs.docx
+docs/FinPersona_Model_Costs.pdf
+docs/COMPUTE_KAGGLE_GUIDE.md
+docs/HIPERGATOR_GPU_GUIDE.md
+docs/env_v2/generated/v2_1
+tools/cluster
