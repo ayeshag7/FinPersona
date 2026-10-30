@@ -1,0 +1,6 @@
+# Files whose raw-byte sha256 is pinned in a pre-registration or a decision-log row must stay LF on every
+# platform, or the recorded hash cannot be reproduced after a Windows checkout.  This is what broke
+# e9_2/sizing_open.json, whose registered d24f92de... does not match the copy in git.
+docs/env_v2/generated/**/*.json  text eol=lf
+docs/env_v2/generated/**/*.jsonl text eol=lf
+docs/env_v2/generated/**/*.csv   text eol=lf

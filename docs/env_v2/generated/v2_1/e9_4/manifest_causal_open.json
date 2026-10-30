@@ -1,0 +1,8791 @@
+{
+ "name": "e9_4_stage2_causal",
+ "kind": "grid",
+ "subdir": "stage2_causal",
+ "ledger_dir": "e9_4",
+ "T": 200,
+ "configs": [
+  "vllm/google/gemma-4-e4b-it|default",
+  "vllm/allenai/olmo-3.1-32b-instruct|default",
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+  "vllm/meta-llama/llama-3.1-8b-instruct|default",
+  "vllm/microsoft/phi-4|default",
+  "vllm/google/gemma-4-31b-it|default"
+ ],
+ "cells": [
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_declarative",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "placebo_directive",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "flat",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10001,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10002,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10003,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10004,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10005,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10006,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10007,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10008,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10009,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10010,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10011,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10012,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10013,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10014,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10015,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10016,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10017,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10018,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10019,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10020,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10021,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10022,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10023,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10024,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10025,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10026,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10027,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10028,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10029,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10030,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10031,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10032,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10033,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10034,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10035,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10036,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10037,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10038,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10039,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10040,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10041,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10042,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10043,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10044,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10045,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10046,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10047,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10048,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10049,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10050,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10051,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10052,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10053,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10054,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10055,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10056,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10057,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10058,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10059,
+   "rep": 0,
+   "setting": "causal"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "wrapper_only",
+   "scenario": "crash",
+   "seed": 10060,
+   "rep": 0,
+   "setting": "causal"
+  }
+ ],
+ "seeds": [
+  10001,
+  10002,
+  10003,
+  10004,
+  10005,
+  10006,
+  10007,
+  10008,
+  10009,
+  10010,
+  10011,
+  10012,
+  10013,
+  10014,
+  10015,
+  10016,
+  10017,
+  10018,
+  10019,
+  10020,
+  10021,
+  10022,
+  10023,
+  10024,
+  10025,
+  10026,
+  10027,
+  10028,
+  10029,
+  10030,
+  10031,
+  10032,
+  10033,
+  10034,
+  10035,
+  10036,
+  10037,
+  10038,
+  10039,
+  10040,
+  10041,
+  10042,
+  10043,
+  10044,
+  10045,
+  10046,
+  10047,
+  10048,
+  10049,
+  10050,
+  10051,
+  10052,
+  10053,
+  10054,
+  10055,
+  10056,
+  10057,
+  10058,
+  10059,
+  10060
+ ],
+ "seeds_per_cell": 60,
+ "registered": "GRID_EXPERIMENT_PLAN.md 3 (E2); HEADLINE_MODEL_SELECTION.md 4.3 (e9_4/selection); the core less gpt-oss-20b (R_effect) plus Gemma 4 31B",
+ "written_utc": "2026-10-29T19:45:43Z",
+ "fingerprint": {
+  "prompt_hash": {
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|placebo_declarative": "784680e850d3b6c4",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|placebo_directive": "96f247e9cb2e0415",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|wrapper_only": "83deec4d484cd7f1",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|placebo_declarative": "e0797b2d72c6ecae",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|placebo_directive": "0fc55672772885eb",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|wrapper_only": "dda79a2a82cfabd6",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|placebo_declarative": "2ee466d40f2d9b73",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|placebo_directive": "2a26e465b32db217",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|wrapper_only": "59045987cce1a4ff",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|placebo_declarative": "784680e850d3b6c4",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|placebo_directive": "96f247e9cb2e0415",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|wrapper_only": "83deec4d484cd7f1",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|placebo_declarative": "e0797b2d72c6ecae",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|placebo_directive": "0fc55672772885eb",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|wrapper_only": "dda79a2a82cfabd6",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|placebo_declarative": "2ee466d40f2d9b73",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|placebo_directive": "2a26e465b32db217",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|wrapper_only": "59045987cce1a4ff",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|placebo_declarative": "784680e850d3b6c4",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|placebo_directive": "96f247e9cb2e0415",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|wrapper_only": "83deec4d484cd7f1",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|placebo_declarative": "e0797b2d72c6ecae",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|placebo_directive": "0fc55672772885eb",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|wrapper_only": "dda79a2a82cfabd6",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|placebo_declarative": "2ee466d40f2d9b73",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|placebo_directive": "2a26e465b32db217",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|wrapper_only": "59045987cce1a4ff",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|placebo_declarative": "784680e850d3b6c4",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|placebo_directive": "96f247e9cb2e0415",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|wrapper_only": "83deec4d484cd7f1",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|placebo_declarative": "e0797b2d72c6ecae",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|placebo_directive": "0fc55672772885eb",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|wrapper_only": "dda79a2a82cfabd6",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|placebo_declarative": "2ee466d40f2d9b73",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|placebo_directive": "2a26e465b32db217",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|wrapper_only": "59045987cce1a4ff",
+   "vllm/microsoft/phi-4|default|ENTJ|placebo_declarative": "784680e850d3b6c4",
+   "vllm/microsoft/phi-4|default|ENTJ|placebo_directive": "96f247e9cb2e0415",
+   "vllm/microsoft/phi-4|default|ENTJ|wrapper_only": "83deec4d484cd7f1",
+   "vllm/microsoft/phi-4|default|INTJ|placebo_declarative": "e0797b2d72c6ecae",
+   "vllm/microsoft/phi-4|default|INTJ|placebo_directive": "0fc55672772885eb",
+   "vllm/microsoft/phi-4|default|INTJ|wrapper_only": "dda79a2a82cfabd6",
+   "vllm/microsoft/phi-4|default|ISFJ|placebo_declarative": "2ee466d40f2d9b73",
+   "vllm/microsoft/phi-4|default|ISFJ|placebo_directive": "2a26e465b32db217",
+   "vllm/microsoft/phi-4|default|ISFJ|wrapper_only": "59045987cce1a4ff",
+   "vllm/google/gemma-4-31b-it|default|ENTJ|placebo_declarative": "784680e850d3b6c4",
+   "vllm/google/gemma-4-31b-it|default|ENTJ|placebo_directive": "96f247e9cb2e0415",
+   "vllm/google/gemma-4-31b-it|default|ENTJ|wrapper_only": "83deec4d484cd7f1",
+   "vllm/google/gemma-4-31b-it|default|INTJ|placebo_declarative": "e0797b2d72c6ecae",
+   "vllm/google/gemma-4-31b-it|default|INTJ|placebo_directive": "0fc55672772885eb",
+   "vllm/google/gemma-4-31b-it|default|INTJ|wrapper_only": "dda79a2a82cfabd6",
+   "vllm/google/gemma-4-31b-it|default|ISFJ|placebo_declarative": "2ee466d40f2d9b73",
+   "vllm/google/gemma-4-31b-it|default|ISFJ|placebo_directive": "2a26e465b32db217",
+   "vllm/google/gemma-4-31b-it|default|ISFJ|wrapper_only": "59045987cce1a4ff"
+  },
+  "Env_Code_Hash": "1d689aaf82a33a2e",
+  "sources_sha256_lf": {
+   "agent/v2_agent.py": "107e261ce9ed561e62b6cb731eb914251ef2506d468f5bea05a31ece53b5c43e",
+   "agent/v2_prompts.py": "8949ee555bd9e8ec9c9f78818c4c04499a1651f6b7059e9f0d1625b99427077c",
+   "agent/render.py": "28404eb028db237665c960864b99d08e481ddb38845b33fccc26a5940cfb8cb4",
+   "agent/stateful_agent.py": "e15bd9f936d27ea70b47443b2b96b2727ff3bf7055d9f1ad49c1bc80468feb73",
+   "simulation/runner_v2.py": "d0741c8f08739f52995ba0f636a72f1651cdf6375776a8764f462d7aeb9e5e5f",
+   "simulation/portfolio_v2.py": "130c46522356308a3d4e59390fb92dea73331610d0d5a75c23ae38f8d32ef54e",
+   "experiments/arms_v2.py": "66ba7e7928e395bb0ba4bda5c3a8de67d4f68c80a651902e9cc88d0754a0f029",
+   "tools/phase9/e9_roster.py": "cc2442b525dcd95d4da4c8f71aa934325208301cf498df2836b75fe079307b0d"
+  }
+ }
+}
