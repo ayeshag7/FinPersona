@@ -27,6 +27,7 @@ def main(argv=None):
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--workers", type=int, default=15)
     ap.add_argument("--configs", default="", help="comma list; default every configuration in the manifest")
+    ap.add_argument("--shard", default="", help="i/n, passed through to every runner (P9-22)")
     a = ap.parse_args(argv)
     m = json.load(open(a.manifest, encoding="utf-8"))
     keys = [k.strip() for k in a.configs.split(",") if k.strip()] or m["configs"]
@@ -35,10 +36,12 @@ def main(argv=None):
     env = dict(os.environ, PYTHONIOENCODING="utf-8")
     for k in keys:
         mc = RO.by_key(k)
-        log = os.path.join(logdir, f"run_{mc.config_tag}_{mc.slug}.log")
+        tag = f"_sh{a.shard.replace(chr(47), chr(45))}" if a.shard else ""
+        log = os.path.join(logdir, f"run_{mc.config_tag}_{mc.slug}{tag}.log")
         fh = open(log, "a", encoding="utf-8")
         p = subprocess.Popen([sys.executable, "-u", "-m", "tools.phase9.e9_runner", "run", "--manifest", a.manifest,
-                              "--config", k, "--workers", str(a.workers)], cwd=ROOT, stdout=fh, stderr=subprocess.STDOUT, env=env)
+                              "--config", k, "--workers", str(a.workers)]
+                             + (["--shard", a.shard] if a.shard else []), cwd=ROOT, stdout=fh, stderr=subprocess.STDOUT, env=env)
         procs[k] = (p, fh, log, time.time())
         print(f"[launch] {k}: pid {p.pid} -> {os.path.relpath(log, ROOT)}", flush=True)
     while procs:

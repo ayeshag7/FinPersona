@@ -217,6 +217,20 @@ HEADLINE_OPEN = ("vllm/google/gemma-4-31b-it|default", "vllm/google/gemma-4-e4b-
 HEADLINE_OPEN_B2 = ("vllm/meta-llama/llama-3.1-8b-instruct|default", "vllm/meta-llama/llama-3.1-70b-instruct|default",
                     "vllm/microsoft/phi-4|default")
 
+# ---------------------------------------------------------------------------------------- stage 2 (E2-E5)
+# `HEADLINE_MODEL_SELECTION.md` section 4.3, from the rule `e9_4/selection/CRITERIA.md` as `tools/phase9/e9_4_select.py`
+# implements it: the core is the size-6 subset of the nine with the smallest coverage loss (0.0395), the same six in
+# 200 of 200 path-bootstrap draws.  Muse Glimmer 30B and Llama 3.1 70B are out -- each has its nearest neighbour inside
+# the core, and they are two of the three most expensive per run (0.0172 and 0.0076 GPU-hours against 0.0009-0.0037).
+CORE_OPEN = ("vllm/google/gemma-4-e4b-it|default", "vllm/openai/gpt-oss-20b|default",
+             "vllm/allenai/olmo-3.1-32b-instruct|default", "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+             "vllm/meta-llama/llama-3.1-8b-instruct|default", "vllm/microsoft/phi-4|default")
+# E2 and E3 need an effect to decompose (R_effect).  gpt-oss-20b's POOLED band-MAS CI includes 0 -- its cells cancel,
+# 7 of 12 excluding 0 with opposite signs -- so it is pruned, and the rule's top-up is the excluded model that covers
+# the nine best: Gemma 4 31B, which is also the model whose ENTJ cells most show re-injection WORSENING adherence
+# (3 of 4 positive and significant), so E2 and E3 keep that sign in view.
+CAUSAL_OPEN = tuple(k for k in CORE_OPEN if k != "vllm/openai/gpt-oss-20b|default") + ("vllm/google/gemma-4-31b-it|default",)
+
 
 def by_key(key: str) -> ModelConfig:
     for c in CANDIDATES:

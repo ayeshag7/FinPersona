@@ -360,10 +360,202 @@
    "verified": 2928,
    "missing": 0,
    "mismatched": 0
+  },
+  {
+   "manifest": "causal_open",
+   "config": "vllm/google/gemma-4-e4b-it|default",
+   "planned": 1080,
+   "verified": 0,
+   "missing": 1080,
+   "mismatched": 0
+  },
+  {
+   "manifest": "causal_open",
+   "config": "vllm/allenai/olmo-3.1-32b-instruct|default",
+   "planned": 1080,
+   "verified": 0,
+   "missing": 1080,
+   "mismatched": 0
+  },
+  {
+   "manifest": "causal_open",
+   "config": "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+   "planned": 1080,
+   "verified": 0,
+   "missing": 1080,
+   "mismatched": 0
+  },
+  {
+   "manifest": "causal_open",
+   "config": "vllm/meta-llama/llama-3.1-8b-instruct|default",
+   "planned": 1080,
+   "verified": 0,
+   "missing": 1080,
+   "mismatched": 0
+  },
+  {
+   "manifest": "causal_open",
+   "config": "vllm/microsoft/phi-4|default",
+   "planned": 1080,
+   "verified": 0,
+   "missing": 1080,
+   "mismatched": 0
+  },
+  {
+   "manifest": "causal_open",
+   "config": "vllm/google/gemma-4-31b-it|default",
+   "planned": 1080,
+   "verified": 0,
+   "missing": 1080,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice_open",
+   "config": "vllm/google/gemma-4-e4b-it|default",
+   "planned": 2400,
+   "verified": 0,
+   "missing": 2400,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice_open",
+   "config": "vllm/allenai/olmo-3.1-32b-instruct|default",
+   "planned": 2400,
+   "verified": 0,
+   "missing": 2400,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice_open",
+   "config": "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+   "planned": 2400,
+   "verified": 0,
+   "missing": 2400,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice_open",
+   "config": "vllm/meta-llama/llama-3.1-8b-instruct|default",
+   "planned": 2400,
+   "verified": 0,
+   "missing": 2400,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice_open",
+   "config": "vllm/microsoft/phi-4|default",
+   "planned": 2400,
+   "verified": 0,
+   "missing": 2400,
+   "mismatched": 0
+  },
+  {
+   "manifest": "slice_open",
+   "config": "vllm/google/gemma-4-31b-it|default",
+   "planned": 2400,
+   "verified": 0,
+   "missing": 2400,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a_open",
+   "config": "vllm/google/gemma-4-e4b-it|default",
+   "planned": 1440,
+   "verified": 0,
+   "missing": 1440,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a_open",
+   "config": "vllm/openai/gpt-oss-20b|default",
+   "planned": 1440,
+   "verified": 0,
+   "missing": 1440,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a_open",
+   "config": "vllm/allenai/olmo-3.1-32b-instruct|default",
+   "planned": 1440,
+   "verified": 0,
+   "missing": 1440,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a_open",
+   "config": "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+   "planned": 1440,
+   "verified": 0,
+   "missing": 1440,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a_open",
+   "config": "vllm/meta-llama/llama-3.1-8b-instruct|default",
+   "planned": 1440,
+   "verified": 0,
+   "missing": 1440,
+   "mismatched": 0
+  },
+  {
+   "manifest": "track_a_open",
+   "config": "vllm/microsoft/phi-4|default",
+   "planned": 1440,
+   "verified": 0,
+   "missing": 1440,
+   "mismatched": 0
+  },
+  {
+   "manifest": "sensitivity_open",
+   "config": "vllm/google/gemma-4-e4b-it|default",
+   "planned": 17280,
+   "verified": 0,
+   "missing": 17280,
+   "mismatched": 0
+  },
+  {
+   "manifest": "sensitivity_open",
+   "config": "vllm/openai/gpt-oss-20b|default",
+   "planned": 17280,
+   "verified": 0,
+   "missing": 17280,
+   "mismatched": 0
+  },
+  {
+   "manifest": "sensitivity_open",
+   "config": "vllm/allenai/olmo-3.1-32b-instruct|default",
+   "planned": 17280,
+   "verified": 0,
+   "missing": 17280,
+   "mismatched": 0
+  },
+  {
+   "manifest": "sensitivity_open",
+   "config": "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+   "planned": 17280,
+   "verified": 0,
+   "missing": 17280,
+   "mismatched": 0
+  },
+  {
+   "manifest": "sensitivity_open",
+   "config": "vllm/meta-llama/llama-3.1-8b-instruct|default",
+   "planned": 17280,
+   "verified": 0,
+   "missing": 17280,
+   "mismatched": 0
+  },
+  {
+   "manifest": "sensitivity_open",
+   "config": "vllm/microsoft/phi-4|default",
+   "planned": 17280,
+   "verified": 0,
+   "missing": 17280,
+   "mismatched": 0
   }
  ],
  "mismatches": [],
  "pass": true,
  "complete": false,
- "generated_utc": "2026-10-27T19:15:00Z"
+ "generated_utc": "2026-10-30T05:32:33Z"
 }

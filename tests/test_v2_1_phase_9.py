@@ -505,3 +505,86 @@ def test_pilot_predictions_reproduce_the_six_table():
     for key in RO.HEADLINE_OPEN:
         name = key.split("|")[0].split("/")[-1]
         assert tuple(got[key][p]["direction"] for p in ("ENTJ", "INTJ", "ISFJ")) == want[name], name
+
+
+# ================================================================================================ the per-server cap (P9-20)
+def test_cap_is_per_server_for_our_own_vllm_and_per_model_for_a_provider(tmp_path, monkeypatch):
+    """P9-20: a hosted provider rate-limits per MODEL across every process we run, so its budget stays keyed on the
+    model name (P9-1).  A model served by our own vLLM is limited by THAT SERVER: two tasks serving the same weights
+    on two GPUs are two servers, and each gets the full budget.  Stage 1 could not do this -- `inflight` counted by
+    model, so one model's runs could occupy only one GPU at a time, which is why 33.7 of its 61.4 hours ran on a
+    single busy GPU."""
+    from tools.phase9 import e9_runner as R
+    monkeypatch.setattr(R, "ACTIVE", str(tmp_path))
+
+    # a provider configuration: one budget, whatever endpoint happens to be set
+    monkeypatch.setenv("VLLM_BASE_URL", "http://127.0.0.1:8001/v1")
+    assert R.cap_key("gpt-5-mini") == "gpt-5-mini"
+    monkeypatch.setenv("VLLM_BASE_URL", "http://127.0.0.1:8002/v1")
+    assert R.cap_key("gpt-5-mini") == "gpt-5-mini"
+
+    # our own vLLM: the endpoint is part of the key, so the same model on two GPUs has two budgets
+    model = "vllm/microsoft/phi-4"
+    monkeypatch.setenv("VLLM_BASE_URL", "http://127.0.0.1:8001/v1")
+    k1 = R.cap_key(model)
+    reg = R.register(model, R.MAX_INFLIGHT_LOCAL)        # GPU A takes its whole budget
+    try:
+        assert R.inflight(k1) == R.MAX_INFLIGHT_LOCAL
+        with pytest.raises(SystemExit):                  # a second claim on the SAME server is refused
+            R.register(model, 1)
+        monkeypatch.setenv("VLLM_BASE_URL", "http://127.0.0.1:8002/v1")
+        k2 = R.cap_key(model)
+        assert k2 != k1 and R.inflight(k2) == 0          # GPU B starts empty
+        reg2 = R.register(model, R.MAX_INFLIGHT_LOCAL)   # and may take its own full budget
+        R.unregister(reg2)
+    finally:
+        R.unregister(reg)
+    assert R.inflight(k1) == 0
+
+
+def test_cap_ceiling_is_a_ceiling_not_the_operating_point():
+    """The constant is the safety limit on one server; the operating point is the task's own --workers, which is what
+    the stage-2 ramp varies.  Above the ceiling the runner refuses rather than silently clamping."""
+    from tools.phase9 import e9_runner as R
+    assert R.cap_for("vllm/microsoft/phi-4") == R.MAX_INFLIGHT_LOCAL == 256
+    assert R.cap_for("gpt-5-mini") == R.MAX_INFLIGHT_PER_MODEL == 15
+    with pytest.raises(SystemExit):
+        R.register("vllm/microsoft/phi-4", R.MAX_INFLIGHT_LOCAL + 1)
+
+
+# ================================================================================================ sharding (P9-22)
+def test_shards_are_disjoint_complete_and_stable():
+    """P9-22: with the cap per server (P9-20), one model may be served on several GPUs -- but only if the tasks run
+    DISJOINT runs, or they double the GPU-hours and write the same CSV, meta and usage files with no locking.
+
+    The partition must also be STABLE.  `pending[i::n]` re-partitions every time the pending list shrinks, so a run
+    could move between shards on a resume and two live tasks could claim it at once; a hash of the run key never
+    moves.  That is what the third block checks."""
+    from tools.phase9.e9_runner import parse_shard, shard_of
+    keys = [f"default|vllm_x__{p}__{a}__{s}__seed{seed}__rep0"
+            for p in ("ISFJ", "INTJ", "ENTJ") for a in ("static", "memory")
+            for s in ("flat", "crash") for seed in range(10001, 10061)]
+    assert len(keys) == 720
+
+    for n in (1, 2, 3, 4, 6):
+        buckets = [[k for k in keys if shard_of(k, n) == i] for i in range(n)]
+        flat = [k for b in buckets for k in b]
+        assert len(flat) == len(keys), f"n={n}: shards do not cover every run"
+        assert len(set(flat)) == len(keys), f"n={n}: a run is in more than one shard"
+        assert all(b for b in buckets), f"n={n}: an empty shard would idle a GPU"
+
+    # stability: whatever the other shards have already finished, a shard's membership never changes
+    import random
+    rng = random.Random(0)
+    for n in (2, 4):
+        for _ in range(20):
+            remaining = [k for k in keys if rng.random() > 0.4]
+            for i in range(n):
+                before = {k for k in keys if shard_of(k, n) == i}
+                after = {k for k in remaining if shard_of(k, n) == i}
+                assert after <= before, "a run moved INTO a shard as the pending list shrank"
+
+    assert parse_shard("") == (0, 1) and parse_shard("3/4") == (3, 4)
+    for bad in ("4/4", "-1/2", "x/2", "1/0"):
+        with pytest.raises(SystemExit):
+            parse_shard(bad)

@@ -26,6 +26,16 @@ dependencies = [
     "python-dotenv",
     "tqdm",
     "streamlit>=1.30",
+    # the v2.1 analysis layer: imported by evaluation/ and tools/ and undeclared until 30 Oct 2026.  Lower bounds
+    # only -- the versions in use are recorded beside, because the Phase-8 known answers were re-checked under them.
+    "numpy>=1.26",          # in use: 2.2.6
+    "scipy>=1.11",          # in use: 1.16.1
+    "scikit-learn>=1.3",    # in use: 1.9.1   -- evaluation/salience.py, evaluation/leakage_audit.py
+    "joblib>=1.3",          # in use: 1.6.0   -- evaluation/salience.py thread control
+    "statsmodels>=0.14",    # in use: 0.15.0  -- tools/stats_v2.py crossed mixed model, evaluation/stylized_facts.py
+    "arch>=6.2",            # GARCH fits in tools/phase1 and tools/phase3
+    "matplotlib>=3.7",      # tools/history_figures.py
+    "python-docx>=1.1",     # tools/history_docx.py
 ]
 
 [project.optional-dependencies]

@@ -1,10 +1,46 @@
 {
- "scoring_json_sha256": "112843968c060d88bf8ee88fc4d8735b01d22a071e430c3c13d2a6a544ede45a",
- "n_runs_scored": 4,
+ "scoring_json_sha256": "4e3e63eab9574a3bfd0a44a26dfc4917f9be1b9b60409dcde7a9cc6cb766e2ac",
+ "n_runs_scored": 27166,
  "n_score_errors": 0,
  "scored_vs_planned": {
+  "e9_4_stage1_headline_open_b2|vllm/meta-llama/llama-3.1-70b-instruct|default": [
+   2928,
+   2928
+  ],
+  "e9_4_stage1_headline_open_b2|vllm/meta-llama/llama-3.1-8b-instruct|default": [
+   2928,
+   2928
+  ],
+  "e9_4_stage1_headline_open_b2|vllm/microsoft/phi-4|default": [
+   2928,
+   2928
+  ],
+  "e9_4_stage1_headline_open|vllm/allenai/olmo-3.1-32b-instruct|default": [
+   2928,
+   2928
+  ],
+  "e9_4_stage1_headline_open|vllm/google/gemma-4-31b-it|default": [
+   2928,
+   2928
+  ],
+  "e9_4_stage1_headline_open|vllm/google/gemma-4-e4b-it|default": [
+   2928,
+   2928
+  ],
+  "e9_4_stage1_headline_open|vllm/meta/muse-glimmer-30b|default": [
+   2928,
+   2928
+  ],
+  "e9_4_stage1_headline_open|vllm/mistralai/ministral-3-14b-instruct-2512|default": [
+   2928,
+   2928
+  ],
+  "e9_4_stage1_headline_open|vllm/openai/gpt-oss-20b|default": [
+   2928,
+   2928
+  ],
   "e9_4_stage1_headline|gemini-2.5-flash-lite|default": [
-   0,
+   810,
    2880
   ],
   "e9_4_stage1_headline|gemini-2.5-flash|thinking0": [
@@ -148,5 +184,5 @@
    2880
   ]
  },
- "generated_utc": "2026-09-16T21:15:37Z"
+ "generated_utc": "2026-10-29T19:21:55Z"
 }

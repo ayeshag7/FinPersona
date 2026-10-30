@@ -67,7 +67,23 @@ SIZING_OPEN = os.path.join(GEN, "e9_2", "sizing_open.json")
 # DECISION_LOG P9-17, P9-18: the second batch, on the six's cells and seeds
 OPEN_B2_MANIFEST = "manifest_headline_open_b2.json"
 SIZING_OPEN_B2 = os.path.join(GEN, "e9_2", "sizing_open_b2.json")
-ALL_MANIFESTS = {**MANIFESTS, "headline_open": OPEN_MANIFEST, "headline_open_b2": OPEN_B2_MANIFEST}
+
+# ------------------------------------------------------------------------------------------ stage 2 (E2-E5)
+# GRID_EXPERIMENT_PLAN.md 3 at its own quoted scale, S = 60, on the models HEADLINE_MODEL_SELECTION.md 4.3 assigns.
+# Seeds are the FIRST 60 of the headline's 10001-10122, so every stage-2 cell shares its market paths with the
+# headline's static and memory runs already on disk -- which is what lets E2 compare against them without re-running
+# them, and what P9-21 relies on for E5's default level.
+S_STAGE2 = 60
+CAUSAL_ARMS = ("placebo_declarative", "placebo_directive", "wrapper_only")   # E2: static and memory are the headline's
+CAUSAL_SCENARIOS = ("flat", "crash")                                        # E2: the plan's 1,080 = 3 x 3 x 2 x 60
+CAUSAL_MANIFEST = "manifest_causal_open.json"                               # E2
+SLICE_OPEN_MANIFEST = "manifest_slice_open.json"                            # E3
+TRACK_A_OPEN_MANIFEST = "manifest_track_a_open.json"                        # E4
+SENSITIVITY_MANIFEST = "manifest_sensitivity_open.json"                     # E5
+STAGE2_MANIFESTS = {"causal_open": CAUSAL_MANIFEST, "slice_open": SLICE_OPEN_MANIFEST,
+                    "track_a_open": TRACK_A_OPEN_MANIFEST, "sensitivity_open": SENSITIVITY_MANIFEST}
+ALL_MANIFESTS = {**MANIFESTS, "headline_open": OPEN_MANIFEST, "headline_open_b2": OPEN_B2_MANIFEST,
+                 **STAGE2_MANIFESTS}
 
 
 def seeds_from_sizing() -> tuple:
@@ -104,6 +120,15 @@ def grid_configs(sizing: dict) -> tuple:
 
 def cells_for(kind: str, seeds) -> list:
     out = []
+    if kind == "causal":
+        # E2: the three arms that separate CONTENT from IMPERATIVE FORCE from POSITION.  static and memory are not
+        # here -- the headline already ran them on these same seeds and paths, so E2 is scored against those rows.
+        for p in PERSONAS:
+            for a in CAUSAL_ARMS:
+                for sc in CAUSAL_SCENARIOS:
+                    for s in seeds:
+                        out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0, "setting": "causal"})
+        return out
     if kind in ("headline", "track_a"):
         # track_a mirrors the headline grid cell for cell; only the communicated-target factor and the setting (a path
         # and run-key component, so a track_a run never collides with its headline twin) differ.
@@ -222,6 +247,96 @@ def stage_manifest_open_b2():
     print(f"{OPEN_B2_MANIFEST}: {len(m['configs'])} configurations x {len(cells):,} runs at {len(seeds)} seeds per cell")
 
 
+# ================================================================================================ stage 2 (E2-E5)
+def sensitivity_cells(seeds) -> list:
+    """E5: the headline's 24 cells at each of the twelve NON-DEFAULT generator levels -- P9-6's data-driven six
+    (the GARCH set, sbar, mu_V, the half-life, sigma_V, the jump rate) at two levels each, taken from
+    `e9_1_ranking.level_configs()`, which is the code that produced the ranking those six come from.
+
+    The default level is NOT here: P9-21 reads it from the 122 stage-1 seeds already on disk, so the sweep runs only
+    what does not exist yet.  Each level is its own `setting`, which `e9_runner.cfg_for` makes a path and run-key
+    component, so two levels of one cell cannot collide; the level's GenConfig override rides on the cell as
+    `env_config`, which `cfg_for` passes to `SyntheticMarketEnv`.  A cell that ran at the default parameters would
+    therefore have a different `Gen_Config_Hash` from the one its level implies, which `stage_verify` checks."""
+    from tools.phase9.e9_1_ranking import level_configs
+    six = ("garch_set", "sbar", "mu_V", "half_life", "sigma_V", "jump_rate")      # P9-6, e9_1/ranking.json
+    lv = {k: v for k, v in level_configs().items() if k != "default" and k.split("__")[0] in six}
+    if len(lv) != 2 * len(six):
+        raise SystemExit(f"expected {2 * len(six)} non-default levels for the data-driven six, got "
+                         f"{len(lv)}: {sorted(lv)}. E9.1's calibration.json must exist for the half-life levels")
+    out = []
+    for level in sorted(lv):
+        for p in PERSONAS:
+            for a in HEADLINE_ARMS:
+                for sc in SCENARIOS:
+                    for s in seeds:
+                        out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0,
+                                    "setting": f"sens_{level}", "env_config": lv[level]})
+    return out
+
+
+def _write_stage2(kind: str, fname: str, configs, cells, seeds, registered: str) -> None:
+    """One stage-2 manifest.  Its own subdir, so its checkpoints and runs never mix with the headline's or another
+    stage's; its fingerprint is `e9_runner.fingerprint`, as every other manifest's is, and a manifest already on disk
+    is checked rather than rewritten."""
+    from tools.phase9 import e9_runner as R
+    m = {"name": f"e9_4_stage2_{kind}", "kind": "grid", "subdir": f"stage2_{kind}", "ledger_dir": "e9_4",
+         "T": 200, "configs": list(configs), "cells": cells, "seeds": list(seeds), "seeds_per_cell": len(seeds),
+         "registered": registered, "written_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    path = os.path.join(OUT, fname)
+    if os.path.exists(path):
+        R.verify_fingerprint(json.load(open(path, encoding="utf-8")))
+        print(f"{fname}: exists and its fingerprint matches; not rewritten")
+        return
+    m["fingerprint"] = R.fingerprint(m)
+    os.makedirs(OUT, exist_ok=True)
+    json.dump(m, open(path, "w", encoding="utf-8", newline="\n"), indent=1)
+    settings = sorted({c.get("setting", "default") for c in cells})
+    print(f"{fname}: {len(m['configs'])} configurations x {len(cells):,} runs "
+          f"({len(settings)} setting(s)) at {len(seeds)} seeds per cell "
+          f"= {len(m['configs']) * len(cells):,} runs in all")
+
+
+def stage_manifest_stage2():
+    """E2-E5 on the models HEADLINE_MODEL_SELECTION.md 4.3 assigns, at GRID_EXPERIMENT_PLAN.md 3's own S = 60, on the
+    first 60 of the headline's seeds so every cell shares its market paths with the headline runs already on disk."""
+    from tools.phase9 import e9_roster as RO
+    seeds = list(range(GRID_SEED0, GRID_SEED0 + S_STAGE2))
+    sel = "HEADLINE_MODEL_SELECTION.md 4.3 (e9_4/selection)"
+    _write_stage2("causal", CAUSAL_MANIFEST, RO.CAUSAL_OPEN, cells_for("causal", seeds), seeds,
+                  f"GRID_EXPERIMENT_PLAN.md 3 (E2); {sel}; the core less gpt-oss-20b (R_effect) plus Gemma 4 31B")
+    _write_stage2("slice", SLICE_OPEN_MANIFEST, RO.CAUSAL_OPEN, cells_for("slice", seeds), seeds,
+                  f"GRID_EXPERIMENT_PLAN.md 3 (E3); {sel}; DECISION_LOG P8-13, P8-14 (D11, the identified design)")
+    _write_stage2("track_a", TRACK_A_OPEN_MANIFEST, RO.CORE_OPEN, cells_for("track_a", seeds), seeds,
+                  f"GRID_EXPERIMENT_PLAN.md 3 (E4); {sel}; the headline cells at track=A")
+    _write_stage2("sens", SENSITIVITY_MANIFEST, RO.CORE_OPEN, sensitivity_cells(seeds), seeds,
+                  f"GRID_EXPERIMENT_PLAN.md 3 (E5); {sel}; DECISION_LOG P9-6 (the data-driven six), P9-21 (the "
+                  f"default read from the 122 stage-1 seeds, so the twelve non-default levels run)")
+
+
+def gen_config_collisions(gen_hashes: dict) -> list:
+    """Where two settings of one (configuration, scenario, seed) ran the SAME generator configuration.
+
+    `Gen_Config_Hash` is the sha256 of everything the generator was built with, so two sensitivity levels of one cell
+    must differ in it.  If they do not, a level's `env_config` never reached the generator and those runs are the
+    default's under another name -- the one failure mode `Env_Code_Hash` cannot see, because the CODE is identical and
+    only the parameters differ.  A setting that produced more than one hash on one cell is also reported: that means
+    the level changed under the runs."""
+    out = []
+    for (key, scenario, seed), by_setting in sorted(gen_hashes.items()):
+        inconsistent = sorted(s for s, h in by_setting.items() if len(h) > 1)
+        seen = {}
+        for s, h in sorted(by_setting.items()):
+            if len(h) == 1:
+                seen.setdefault(next(iter(h)), []).append(s)
+        shared = {h: ss for h, ss in seen.items() if len(ss) > 1}
+        if shared or inconsistent:
+            out.append({"config": key, "scenario": scenario, "seed": seed,
+                        "settings_sharing_one_gen_config": shared,
+                        "settings_with_more_than_one_gen_config": inconsistent})
+    return out
+
+
 def stage_verify():
     from tools.phase9 import e9_roster as RO
     from tools.phase9 import e9_runner as R
@@ -232,6 +347,12 @@ def stage_verify():
             continue
         m = R.load_manifest(path)
         fp = m["fingerprint"]
+        # P9-20/E5: a cell carrying an `env_config` runs a NON-DEFAULT generator.  Env_Code_Hash cannot see that --
+        # the code is identical, only the parameters passed to it differ -- so a level that silently ran at the
+        # default would verify clean, which would void the whole sweep.  Gen_Config_Hash is the sha256 of the
+        # generator's full configuration, so on one (scenario, seed) the settings must map to DISTINCT hashes.
+        gen_hashes = {}
+        has_env_config = any(c.get("env_config") for c in m["cells"])
         for key in m["configs"]:
             mc = RO.by_key(key)
             n_ok = n_missing = 0
@@ -255,7 +376,15 @@ def stage_verify():
                     "scenario": rc.get("scenario") == c["scenario"],
                     "seed": int(rc.get("seed", -1)) == int(c["seed"]),
                     "start_design": rc.get("start_design") == ("common" if c.get("setting") == "common_start" else "target"),
+                    # the generator's PARAMETERS, which Env_Code_Hash cannot see: it hashes the code, and an E5 level
+                    # that silently ran at the default has identical code and a hash no other setting shares (P9-21
+                    # leaves no default level in the manifest), so only the override itself distinguishes them
+                    "env_config": (rc.get("env_config") or {}) == (c.get("env_config") or {}),
+                    "gen_config_hash_present": bool(prov.get("Gen_Config_Hash")),
                 }
+                if has_env_config:
+                    g = gen_hashes.setdefault((key, c["scenario"], int(c["seed"])), {})
+                    g.setdefault(c.get("setting", "default"), set()).add(prov.get("Gen_Config_Hash"))
                 if all(checks.values()):
                     n_ok += 1
                 else:
@@ -264,8 +393,16 @@ def stage_verify():
                          "missing": n_missing, "mismatched": len(bad)})
             missing += bad[:20]
             print(f"  {kind:9s} {key:34s} verified {n_ok}/{len(m['cells'])}, missing {n_missing}, mismatched {len(bad)}", flush=True)
+        collisions = gen_config_collisions(gen_hashes)
+        if collisions:
+            for r in rows:
+                if r["manifest"] == kind:
+                    r["gen_config_collisions"] = sum(1 for c in collisions if c["config"] == r["config"])
+            missing += [{"gen_config_collision": c} for c in collisions[:20]]
+            print(f"  {kind:9s} GEN_CONFIG COLLISIONS: {len(collisions)} (scenario, seed) groups where two settings "
+                  f"ran the SAME generator configuration -- a level did not take effect", flush=True)
     doc = {"registered": "plan 13.4; PREREG_PHASE_9.md 4.1", "rows": rows, "mismatches": missing,
-           "pass": bool(rows) and all(r["mismatched"] == 0 for r in rows),
+           "pass": bool(rows) and all(r["mismatched"] == 0 and not r.get("gen_config_collisions") for r in rows),
            "complete": bool(rows) and all(r["missing"] == 0 for r in rows),
            "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
     os.makedirs(OUT, exist_ok=True)
@@ -358,6 +495,8 @@ def main(argv=None):
             stage_manifest_open()
         elif st == "manifest_open_b2":
             stage_manifest_open_b2()
+        elif st == "manifest_stage2":
+            stage_manifest_stage2()
         elif st == "verify":
             rc = stage_verify() or rc
         elif st == "status":

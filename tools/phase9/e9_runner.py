@@ -22,7 +22,7 @@ Rules carried from E8.5:
 
 New in Phase 9:
 
-* **Concurrency (P9-1, P9-11).** `--workers` above 15 is refused, or above 64 for a model served by our own vLLM.
+* **Concurrency (P9-1, P9-11).** `--workers` above 15 is refused, or above the per-server ceiling for a model served by our own vLLM.
   Every process registers the in-flight calls it will make per model under `results_v2/phase9/active/`; a process
   that would take a model above its cap refuses to start.
 * **No cost gate.** Cost is not a constraint (P9-1). Tokens are logged per run, and dollars only where a price was
@@ -67,7 +67,9 @@ SMOKE_DIR = os.path.join(GEN, "e9_0", "smoke")
 T = 200
 CRASH_DISCOUNT = 0.70
 MAX_INFLIGHT_PER_MODEL = 15                         # P9-1
-MAX_INFLIGHT_LOCAL = 64                             # P9-11: open weights served by our own vLLM have no provider to rate-limit
+MAX_INFLIGHT_LOCAL = 256                            # P9-20 (was 64, P9-11): open weights served by our own vLLM have no
+                                                    # provider to rate-limit, so this is a SAFETY ceiling on one server,
+                                                    # not the operating point -- that is the task's own --workers
 MAX_ATTEMPTS = 3
 HARNESS = {"harness_version": "v2_1", "placebo_version": "v2_1"}    # P8-4, P8-5: the grid's harness
 SMOKE_CELLS = ({"persona": "ISFJ", "arm": "static", "scenario": "bull_trap", "seed": 2001, "rep": 0},
@@ -104,7 +106,23 @@ def _pid_alive(pid: int) -> bool:
         return False
 
 
-def inflight(model: str) -> int:
+def cap_key(model: str) -> str:
+    """What an in-flight budget is counted against.
+
+    A hosted provider rate-limits per MODEL across every process we run, so the model name is the key (P9-1).  A model
+    served by our own vLLM is limited by THAT SERVER, not by the model: two tasks serving the same weights on two GPUs
+    are two independent servers and each gets the full budget.  Keying on the endpoint is what lets one model's runs
+    span GPUs, which is why stage 1 spent 33.7 of its 61.4 hours on a single busy GPU (P9-20).
+    """
+    if not model.startswith("vllm/"):
+        return model
+    u = os.getenv("VLLM_BASE_URL", "http://127.0.0.1:8000/v1").strip().rstrip("/")
+    sch, _, rest = u.partition("://")
+    rest = rest.replace("localhost:", "127.0.0.1:", 1)
+    return f"{model}@{sch.lower()}://{rest}"
+
+
+def inflight(key: str) -> int:
     n = 0
     if not os.path.isdir(ACTIVE):
         return 0
@@ -113,7 +131,8 @@ def inflight(model: str) -> int:
             r = json.load(open(os.path.join(ACTIVE, f), encoding="utf-8"))
         except Exception:                                     # noqa: BLE001 -- a half-written file from a dead process
             continue
-        if r.get("model") == model and _pid_alive(int(r["pid"])):
+        # files written before P9-20 carry no cap_key; their model name WAS the key
+        if r.get("cap_key", r.get("model")) == key and _pid_alive(int(r["pid"])):
             n += int(r["calls"])
     return n
 
@@ -123,17 +142,20 @@ def cap_for(model: str) -> int:
 
 
 def register(model: str, calls: int) -> str:
-    cap = cap_for(model)
+    key, cap = cap_key(model), cap_for(model)
     if calls > cap:
-        raise SystemExit(f"REFUSED: {calls} concurrent calls for {model} exceed the team's cap of {cap} (P9-1, P9-11)")
+        raise SystemExit(f"REFUSED: {calls} concurrent calls for {model} exceed the team's cap of {cap} "
+                         f"(P9-1, P9-11, P9-20)")
     with _LOCK:
-        have = inflight(model)
+        have = inflight(key)
         if have + calls > cap:
-            raise SystemExit(f"REFUSED: {model} already has {have} in-flight calls registered by live processes; "
-                             f"{calls} more would exceed the cap of {cap} (P9-1, P9-11)")
+            raise SystemExit(f"REFUSED: {key} already has {have} in-flight calls registered by live processes; "
+                             f"{calls} more would exceed the cap of {cap} (P9-1, P9-11, P9-20)")
         os.makedirs(ACTIVE, exist_ok=True)
-        p = os.path.join(ACTIVE, f"{RO.ModelConfig(model, '', '', None).slug}__{os.getpid()}__{threading.get_ident()}.json")
-        json.dump({"pid": os.getpid(), "model": model, "calls": calls, "started_utc": _utc()}, open(p, "w", encoding="utf-8"))
+        kh = hashlib.sha256(key.encode("utf-8")).hexdigest()[:8]
+        p = os.path.join(ACTIVE, f"{RO.ModelConfig(model, '', '', None).slug}__{kh}__{os.getpid()}__{threading.get_ident()}.json")
+        json.dump({"pid": os.getpid(), "model": model, "cap_key": key, "calls": calls, "started_utc": _utc()},
+                  open(p, "w", encoding="utf-8"))
         return p
 
 
@@ -478,7 +500,29 @@ def verify_fingerprint(m: dict):
                          f"moved after its first batch is not the pre-registered design.")
 
 
-def stage_run(manifest_path: str, config: str, workers: int, max_runs: int = 0) -> int:
+def shard_of(key: str, n: int) -> int:
+    """Which shard a run belongs to: a stable hash of its run key, modulo n.
+
+    Stable, not positional.  `pending[i::n]` would re-partition every time the pending list shrinks, so a run could
+    move between shards on a resume and two live tasks could pick it up at once.  A hash of the run key never moves,
+    so a shard owns exactly the same runs on the first submission and on every resume (P9-22)."""
+    return int(hashlib.sha256(key.encode("utf-8")).hexdigest()[:8], 16) % n
+
+
+def parse_shard(shard: str) -> tuple:
+    """`"i/n"` -> (i, n), validated.  `""` or None means "every run", the historic behaviour."""
+    if not shard:
+        return 0, 1
+    try:
+        i, n = (int(x) for x in str(shard).split("/", 1))
+    except ValueError:
+        raise SystemExit(f"--shard must read i/n, got {shard!r}")
+    if not (n >= 1 and 0 <= i < n):
+        raise SystemExit(f"--shard {shard!r} is out of range: need 1 <= n and 0 <= i < n")
+    return i, n
+
+
+def stage_run(manifest_path: str, config: str, workers: int, max_runs: int = 0, shard: str = "") -> int:
     m = load_manifest(manifest_path)
     mc = RO.by_key(config)
     if mc.key not in m["configs"]:
@@ -486,19 +530,24 @@ def stage_run(manifest_path: str, config: str, workers: int, max_runs: int = 0) 
     verify_fingerprint(m)
     cells = m["cells"]
     T_run = int(m.get("T", T))
+    si, sn = parse_shard(shard)
     have = done_keys(m["subdir"], mc, cells)
     tries: Dict[str, int] = {}
     for r in read_ledger(ledger_file(m["ledger_dir"], mc)):
         if r.get("status") != "ok":
             tries[r["run_key"]] = tries.get(r["run_key"], 0) + 1
     keyed = [(run_key(c, cfg_for(mc, c, m["subdir"])), c) for c in cells]
-    pending = [c for k, c in keyed if k not in have and tries.get(k, 0) < MAX_ATTEMPTS]
-    abandoned = [k for k, c in keyed if k not in have and tries.get(k, 0) >= MAX_ATTEMPTS]
+    # P9-22: with the cap now per server (P9-20), one model may be served on several GPUs at once -- but only if the
+    # tasks run DISJOINT runs.  Without this they would each take the whole pending list, double the GPU-hours and
+    # write the same CSV, meta and usage files with no locking.
+    pending = [c for k, c in keyed if k not in have and tries.get(k, 0) < MAX_ATTEMPTS and shard_of(k, sn) == si]
+    abandoned = [k for k, c in keyed if k not in have and tries.get(k, 0) >= MAX_ATTEMPTS and shard_of(k, sn) == si]
     if max_runs:
         pending = pending[:max_runs]
     reg = register(mc.model, workers)
     print(f"[{m['name']}] {mc.key}: {len(cells)} runs in the manifest, {len(have)} done, {len(pending)} pending, "
-          f"{len(abandoned)} abandoned after {MAX_ATTEMPTS} non-ok attempts; {workers} workers; started {_utc()}", flush=True)
+          f"{len(abandoned)} abandoned after {MAX_ATTEMPTS} non-ok attempts; {workers} workers; "
+          f"shard {si}/{sn}; started {_utc()}", flush=True)
     t0 = time.time(); n = 0; bad = 0
     try:
         with ThreadPoolExecutor(max_workers=workers) as ex:
@@ -522,7 +571,7 @@ def stage_status(manifest_path: str) -> int:
         led = read_ledger(ledger_file(m["ledger_dir"], mc))
         st = pd.Series([r["status"] for r in led]).value_counts().to_dict() if led else {}
         print(f"{key}: {len(done_keys(m['subdir'], mc, m['cells']))}/{len(m['cells'])} done; attempts {st}; in-flight "
-              f"registered {inflight(mc.model)}")
+              f"registered {inflight(cap_key(mc.model))}")
     return 0
 
 
@@ -535,6 +584,7 @@ def main(argv=None):
     ap.add_argument("--manifest", default="")
     ap.add_argument("--workers", type=int, default=MAX_INFLIGHT_PER_MODEL)
     ap.add_argument("--max-runs", type=int, default=0)
+    ap.add_argument("--shard", default="", help="i/n: run only the runs whose stable key-hash is i mod n (P9-22)")
     a = ap.parse_args(argv)
     if a.stage == "check-clients":
         return stage_check_clients()
@@ -544,7 +594,7 @@ def main(argv=None):
         if a.workers > cap_for(a.config):
             raise SystemExit(f"REFUSED: --workers {a.workers} exceeds the team's cap of {cap_for(a.config)} per model "
                              f"(P9-1, P9-11)")
-        return stage_run(a.manifest, a.config, a.workers, a.max_runs)
+        return stage_run(a.manifest, a.config, a.workers, a.max_runs, a.shard)
     return stage_status(a.manifest)
 
 
