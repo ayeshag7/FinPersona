@@ -18,8 +18,19 @@ Match the existing history — `git log --oneline -10` shows the house style.
 
 - Work stays on `main`. **Do not create branches.**
 - Commit only when asked, in that message. Never push unless asked.
-- `docs/` is intentionally git-ignored and untracked. Files live on disk only —
-  do not re-add them, and do not treat their absence from `git status` as a problem.
+- `docs/` **is tracked** — 1,571 files, and documents there belong in commits.
+  Three narrower rules apply, and the middle one bites silently:
+  - `docs/env_v2/generated/v2_1` is matched by `.gitignore:69`, but **1,326 files
+    under it are tracked anyway**, force-added. A *new* file there — a manifest, a
+    ledger, a stats directory — is dropped from `git add` without a word and the
+    commit looks complete. Add it with `git add -f`, then check `git show --stat`.
+    This has already cost one commit (`bc46d12` exists only to repair `340c4e2`).
+  - The compute guides and the model-cost files are genuinely never committed:
+    this repo is public and they carry cluster and account detail. `tools/cluster/`
+    and `compute and storage guides/` are the same, and `tools/hf_backup.py`
+    refuses to upload them too.
+  - `.gitattributes` pins generated JSON, JSONL and CSV to LF, so a sha256
+    recorded in a pre-registration survives a Windows checkout.
 - `datasets/` is git-ignored: third-party data, several sources forbid
   redistribution. Re-downloadable via `tools/e1_0_data/`.
 
