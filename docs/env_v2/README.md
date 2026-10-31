@@ -30,7 +30,7 @@ For the whole story in one place, read `history/SYNTHETIC_ENVIRONMENT_HISTORY.pd
 5. The environment in force: `history/SYNTHETIC_ENVIRONMENT_HISTORY.md` section 17, and the parameter files themselves.
 6. What runs on it next: `v2_1/GRID_EXPERIMENT_PLAN.md` and `v2_1/PREREG_PHASE_9_STAGE1_OPEN.md`.
 
-## Status (29 October 2026)
+## Status (31 October 2026)
 
 **The environment is complete and frozen.** `Env_Code_Hash` is **1d689aaf82a33a2e**, the first 16 characters of the manifest hash over 30 files (`tests/v2_freeze_manifest.json`, written 17 Sep 2026), and every run row carries it. Phases 7, 8 and 9 and the pre-grid build each moved **0 of 95** path configurations. Every parameter in force carries a provenance label (LIT / FIT / CAL / DESIGN / DERIVED), its interval and its n; the table is `history/SYNTHETIC_ENVIRONMENT_HISTORY.md` section 17.1, and the loader fails loudly on a missing or malformed parameter file.
 
@@ -67,19 +67,21 @@ Phase 9's API roster was set aside — stage 1 as first designed priced at \$126
 - **`e9_4 --stages verify` passes: 2,928 of 2,928 present for all nine, 0 missing, 0 mismatched.** Seven models pass all 19 validation checks; Gemma 4 31B (38 parse fallbacks in 585,600 decisions) and Muse Glimmer 30B (2) fail only the zero-fallbacks check and keep them as model behaviour.
 - The per-run CSVs are **not in this working tree**: they live on the cluster and in the private Kaggle dataset `finpersona-open-headline-stage1` (81,194 files, 7.6 GB — see `docs/KAGGLE_DATASETS.md`). What is tracked here is the manifests, the nine ledgers (one JSON row per run), the verification and validation reports, the sizing and the cluster logs, under `generated/v2_1/e9_4/`.
 
-**Not yet done: the runs are not scored.** `generated/v2_1/e9_4/per_run.csv` holds the four rows of the E0 dress rehearsal. The confirmatory analysis registered in `v2_1/PREREG_PHASE_9_STAGE1_OPEN.md` §3 — BH within each model's own family of 36 (3 personas × 4 scenarios × 3 tier-C metrics) through `tools/stats_v2.run_stats_v21`, with the parse-fallback, zero-trade and static-arm cash preconditions reported per cell before any claim, and the 18 registered per-model-and-persona predictions read against their signs — is the next step.
+**Stage 1 is scored.** `generated/v2_1/e9_4/per_run.csv` holds **27,166 scored runs with 0 scoring errors**, and the confirmatory analysis registered in `v2_1/PREREG_PHASE_9_STAGE1_OPEN.md` §3 has been run: BH within each model's own family of 36 (3 personas × 4 scenarios × 3 tier-C metrics) through `tools/stats_v2.run_stats_v21`, preconditions clean (maximum parse-fallback share 0.0002; zero-trade 0 except Llama 3.1 70B at 6.2 %). **The memory effect's sign flips across models and within them**: Gemma 4 31B is worse under memory in 11 of its 12 cells (+0.0394 on band-MAS), Llama 3.1 70B better (−0.0990), and Llama 3.1 8B and OLMo 3.1 better in half their cells. **The one effect common to all nine is that memory raises ISFJ band-MAS**, |t| from 5.00 to 108.62 — the conservative persona conforms *less* when its mandate is re-injected. That is the load-bearing prediction in all four stage-2 pre-registrations.
 
 ### What runs after it
 
 `v2_1/GRID_EXPERIMENT_PLAN.md` holds the stages with their cell arithmetic. Its state table and backlog are written as of 17 Sep and are overtaken on two points: the E0 dress rehearsal has run, and the `fingerprint()` keying bug it describes is fixed (the probe is built from a real manifest cell, so Track A verifies).
 
+**Stage 2 opened on 30 October 2026** under four pre-registrations (`PREREG_PHASE_9_STAGE2_E2.md` … `_E5.md`), on four B200s for the week from 29 Oct, one SLURM array at a time so the four GPUs are never exceeded (`DECISION_LOG.md` P9-24 … P9-29). Each stage's array is sharded from the measured per-model cost in `e9_4/selection/cost.csv`, which took E2 from 72.5 % to 89.5 % of the allocation and sizes E3, E4 and E5 at 96.9 %, 94.4 % and 99.1 %.
+
 | Stage | State |
 |---|---|
-| E1 headline | stage 1 done on nine open-weight configurations, **unscored**; the API roster is set aside |
-| E2 causal package (declarative and directive placebos, wrapper-only) | not run; needs a manifest stage. It decides whether the headline is written as content attribution or as a negative control |
-| E3 common-start slice | manifest built; **deferred out of stage 1** by P9-14 (4,880 runs per model at 122 seeds). It is the only design in which the salience shares are identified |
-| E4 Track A (stated vs unstated target) | manifest built, keying fixed, 0 runs |
-| E5 parameter sensitivity, the data-driven six | not run; needs a manifest stage with per-cell `env_config`. This is Phase 9's actual purpose, and the robustness table (E9.5) needs it together with E1 |
+| E1 headline | stage 1 done on nine open-weight configurations and **scored**; the API roster is set aside |
+| E2 causal package (declarative and directive placebos, wrapper-only) | **ran 30 Oct** as array 48276232. **Five of six models complete**: 5,400 runs, verify 1,080/1,080 each with 0 missing and 0 mismatched, 86 parse fallbacks in 1,080,000 calls (all Gemma 4 31B, 0.0398 %). **Llama 3.1 8B stopped at the parse preflight** — 4 of its 6 `placebo_directive` calls fell back, because that placebo instructs *“State the date first … in full sentences”* and the model obeys it over the JSON contract. Re-running under deviation 1 of its pre-registration |
+| E3 common-start slice | manifest built and pre-registered at 60 seeds; **queued behind E5**, 12 tasks, 39.2 GPU-h. It is the only design in which the salience shares are identified |
+| E4 Track A (stated vs unstated target) | manifest built, keying fixed, pre-registered; **queued**, 10 tasks, 18.8 GPU-h |
+| E5 parameter sensitivity, the data-driven six | **running** as array 48312120 since 30 Oct 12:50 UTC: 12 tasks, 103,680 runs over 12 levels, 225 GPU-h budgeted. Its default level is read from the 122 stage-1 seeds rather than re-run (P9-21), and every cell carries an `env_config` checked per run against a `Gen_Config_Hash`. This is Phase 9's actual purpose, and the robustness table (E9.5) needs it together with E1 |
 | E6 context length, the decay thesis | not run; the stateful arms have never been sized, so it needs a pilot first |
 | E7 OCEAN vocabulary gradient | the O1/O2 personas are on the v2 harness; not run |
 | E8 re-injection frequency k-sweep | small; a replication of Li et al. (COLM 2024), to be cited and not headlined |

@@ -93,6 +93,9 @@ def read_ledgers() -> pd.DataFrame:
     t.attrs["uncapped_openrouter_rows_dropped"] = n_uncapped
     # E8.5's first smoke predates configuration tags (Flash at the provider-default thinking; addendum 8)
     t["config_tag"] = t["config_tag"].fillna("untagged") if "config_tag" in t else "untagged"
+    # Stage 2 shares config_tag "default" and kind "grid" with the stage-1 headline in the same ledger file,
+    # so the setting is the only thing that separates them.  E8.5 predates settings and groups as "-".
+    t["setting"] = t["setting"].fillna("-") if "setting" in t else "-"
     t["calls_expected"] = t["calls_expected"].fillna(T) if "calls_expected" in t else T
     t["end"] = pd.to_datetime(t["utc"], utc=True).map(lambda x: x.timestamp())
     t["start"] = t["end"] - t["seconds"].astype(float)
@@ -117,13 +120,13 @@ def busy_seconds(starts, ends) -> float:
 def throughput_table(t: pd.DataFrame) -> pd.DataFrame:
     done = t[t["n_llm_calls"].astype(float) >= t["calls_expected"].astype(float)]
     out = []
-    for (model, tag, kind), g in done.groupby(["model", "config_tag", "kind"], sort=True):
+    for (model, tag, setting, kind), g in done.groupby(["model", "config_tag", "setting", "kind"], sort=True):
         sec = g["seconds"].astype(float)
         busy = busy_seconds(g["start"], g["end"])
         calls = g["n_llm_calls"].astype(float)
         usd = pd.to_numeric(g.get("usd"), errors="coerce") if "usd" in g else pd.Series(dtype=float)
         out.append({
-            "model": model, "config_tag": tag, "kind": kind, "n_runs": int(len(g)),
+            "model": model, "config_tag": tag, "setting": setting, "kind": kind, "n_runs": int(len(g)),
             "n_status_ok": int((g["status"] == "ok").sum()),
             "mean_s_per_run": float(sec.mean()), "median_s_per_run": float(sec.median()),
             "p90_s_per_run": float(sec.quantile(0.9)), "s_per_call": float(sec.sum() / calls.sum()),

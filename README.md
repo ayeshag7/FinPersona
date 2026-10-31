@@ -14,8 +14,8 @@ be, given what the hidden market state actually was.
 | | |
 |---|---|
 | **Environment** | v2.1, complete and **frozen**. `Env_Code_Hash` `1d689aaf82a33a2e` over 30 files; every parameter fitted, derived or a named design choice, each with its label, interval and n |
-| **Main experiment** | Stage 1 of the open-weight headline has run: **nine models × 2,928 runs = 26,352 runs**, all verified against their manifest with 0 missing and 0 mismatched. **Not yet scored** |
-| **Next** | Score stage 1 under its pre-registration, then the causal package, the common-start slice, Track A and the generator sensitivity sweep |
+| **Main experiment** | Stage 1 of the open-weight headline has run and is **scored**: **nine models × 2,928 runs = 26,352 runs**, all verified with 0 missing and 0 mismatched, 27,166 rows scored with 0 errors. Memory raises ISFJ band-MAS in **all nine models** (|t| 5.00–108.62) while its sign flips everywhere else |
+| **Stage 2** | Opened 30 Oct 2026 on four B200s. **E2** (causal package) complete on five of six models, 5,400 runs verified; Llama 3.1 8B re-running under a registered deviation after the directive placebo broke its output contract. **E5** (generator sensitivity, 103,680 runs) running. **E3** and **E4** queued |
 | **Paper** | The submitted COLM draft describes the v1 pipeline. Three review cycles found its instrument did not measure what it claimed; the environment was rebuilt in response, and the benchmark's claim is now restricted to a one-shot mandate-conflict benchmark |
 
 Full status, with the evidence behind each line: **[`docs/env_v2/README.md`](docs/env_v2/README.md)**.

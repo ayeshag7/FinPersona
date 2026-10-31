@@ -207,16 +207,20 @@ def test_power_fast_equals_integral():
         assert abs(power_t_two_sided_fast(tc, M - 1, ncp) - power_t_two_sided(tc, M - 1, ncp)) < 1e-9
 
 
-def test_grid_manifest_matches_runs():
+def test_grid_manifest_matches_runs(tmp_path):
     """Plan 13.4: every planned cell has a run with the right hashes and configuration.  While the manifests do not
     exist the test skips; once they do, every run ON DISK must match its manifest (prompt hash, environment code hash,
     harness and placebo versions, configuration tag, model, scenario, seed and start design), and runs still missing
-    are counted, never silently passed."""
+    are counted, never silently passed.
+
+    The report goes to `tmp_path`: `e9_4/verify.json` is a TRACKED generated file, and a test run must not
+    rewrite it against whatever subset of `results_v2/` happens to be on the machine running the suite."""
     from tools.phase9.e9_4_grid import MANIFESTS, OUT, stage_verify
     if not any(os.path.exists(os.path.join(OUT, f)) for f in MANIFESTS.values()):
         pytest.skip("stage 1's manifests are not written yet")
-    assert stage_verify() == 0, "a run on disk does not match the manifest it was planned in"
-    v = json.load(open(os.path.join(OUT, "verify.json"), encoding="utf-8"))
+    report = tmp_path / "verify.json"
+    assert stage_verify(out_path=str(report)) == 0, "a run on disk does not match the manifest it was planned in"
+    v = json.load(open(report, encoding="utf-8"))
     assert v["rows"], "verify wrote no rows"
 
 

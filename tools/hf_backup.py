@@ -66,6 +66,11 @@ ARCHIVE_FORMAT = "tar.gz v1"  # part of every archive's fingerprint: change it t
 ENV_NAME = re.compile(r"(^|/)(\.env(\..*)?|env|[^/]*\.env)$")
 ACCESS = {"docs/COMPUTE_HIPERGATOR_GUIDE.md", "docs/HIPERGATOR_GPU_GUIDE.md", "docs/COMPUTE_GPU_ACCESS.md",
           "docs/COMPUTE_KAGGLE_GUIDE.md"}
+# The guides moved out of docs/ into "compute and storage guides/", and the fixed paths above stopped
+# matching two of them -- `scan` caught it and refused, which is the design working, but the rule should not
+# depend on where a file happens to sit.  Match the names at any depth, and the access folders outright.
+ACCESS_NAMES = {n.rsplit("/", 1)[-1] for n in ACCESS}
+ACCESS_DIRS = ("tools/cluster/", "compute and storage guides/")
 CACHE = re.compile(r"_prepared\.pkl$|/_?cache/|_panels/.*\.pkl$|__pycache__")
 
 KEY_SHAPES = [  # (label, anchors, pattern): the pattern runs only around an anchor
@@ -129,7 +134,8 @@ def exclusion(rel, extra=()):
     """Why `rel` never leaves this machine, or None."""
     if ENV_NAME.search(rel):
         return "credentials"
-    if rel in ACCESS or rel.startswith("tools/cluster/"):
+    if (rel in ACCESS or rel.rsplit("/", 1)[-1] in ACCESS_NAMES
+            or any(rel.startswith(d) for d in ACCESS_DIRS)):
         return "GPU / Kaggle access"
     if "/cluster_logs/" in "/" + rel:
         return "cluster logs"

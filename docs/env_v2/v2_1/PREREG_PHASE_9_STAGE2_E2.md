@@ -1,7 +1,9 @@
 # Pre-registration — Phase 9, stage 2, E2: the causal package (mandate reminder ablation)
 
-**DRAFT, 30 Oct 2026 — not yet registered.** It becomes the registration when the team approves it, and no run of
-`docs/env_v2/generated/v2_1/e9_4/manifest_causal_open.json` may start before then. Nothing of this experiment has run.
+**REGISTERED 30 Oct 2026**, approved by the team that day and submitted before any run of
+`docs/env_v2/generated/v2_1/e9_4/manifest_causal_open.json` existed, as SLURM array 48276232
+(`DECISION_LOG.md` P9-24). Five of its six models completed on 30 Oct and verify 1,080/1,080 against this
+manifest with no mismatches. Llama 3.1 8B did not run and is governed by **deviation 1** in section 8.
 Where it changes `PREREG_PHASE_9.md` 4.1, the change is named in section 0 with its decision; everything 4.1 fixes that
 section 0 does not name stands.
 
@@ -172,3 +174,50 @@ recorded stage 1's, with the cluster state checked at submission.
 
 Nothing above changes after the first run of this manifest. A deviation is recorded as a numbered addendum to this
 file with its reason and with what had already been seen when it was made.
+
+### Deviation 1 — Llama 3.1 8B runs with the parse preflight ADVISORY, not blocking (31 Oct 2026)
+
+**What had already been seen when this was made.** Array 48276232 ran 30 Oct 02:36–06:34 UTC. Gemma 4 31B (both
+shards), OLMo 3.1 32B, Ministral 3 14B, Phi-4 and Gemma 4 E4B each completed **1,080/1,080**, verified against this
+manifest with **0 missing and 0 mismatched**, at **86 parse fallbacks in 1,080,000 calls** — every one Gemma 4 31B,
+0.0398 % of its calls, the behaviour stage 1 already recorded for that model. Llama 3.1 8B's task exited 3 at the
+twelve-to-eighteen-call parse preflight with **12 ok, 2 retry, 4 fallback**, and **all four fallbacks fell in
+`placebo_directive`** — 4 of its 6 calls in that arm, against 12 of 12 ok in `placebo_declarative` and
+`wrapper_only`. The preflight's bar is `fallback == 0 and retry <= 1` (`tools/cluster/preflight_vllm.py`), so it
+failed on both counts. **No run of this manifest by Llama 3.1 8B exists.** The scored results of the five that did
+run have not been read, and nothing below depends on them.
+
+**The cause is this experiment's own registered placebo, not a defect.** `PLACEBO_DIRECTIVE`
+(`agent/v2_prompts.py`) reads *“REMINDER: You are a DILIGENT RECORD-KEEPER … Write your rationale in full
+sentences. State the date first. Use plain language …”* inside a block closing *“Write this decision ONLY in the
+manner of this procedure.”* Llama 3.1 8B follows it over the JSON IO contract: its failed outputs open with a
+literal `Day-1` line and continue in prose. The block is byte-identical at `placebo_version` v2 and v2_1, so no
+variant of this experiment avoids it. The wording is the published v1/v2 placebo every placebo result in the paper
+is measured against and is **not** changed.
+
+**What changes.** For this one model the preflight still runs and its counts are still written to the task log; it
+no longer gates the run (`PREFLIGHT_ADVISORY=1`). Nothing else moves: the same manifest, sha256
+`e44d9c96f4e45f24…`, the same 1,080 cells, seeds, personas, arms, scenarios, prompts, decoding settings and
+`Env_Code_Hash` **1d689aaf82a33a2e**. The preflight is an operational guard against spending GPU time on a model
+that cannot produce parseable output; it is not one of section 3's criteria, and section 3 already commits to
+reporting the parse-fallback share per cell before any claim. At n = 18 it estimates the directive arm's fallback
+rate from **6 calls**; the full manifest measures it over **216,000**.
+
+**What is claimed, decided here and not after seeing the result.** Llama 3.1 8B's family is its own (section 3:
+one family per model, BH within it, no claim about models in general), so this adds a family and changes nothing
+about the other five. Within it:
+
+1. The **parse-fallback share is reported per cell beside every estimate**, against the other five models' 0–0.04 %.
+2. Every confirmatory contrast in this model's family is **recomputed on the subset of runs containing no fallback**.
+   Where the sign or the BH decision differs between the full set and that subset, **the cell carries no claim** and
+   is reported as uninterpretable — not as a null.
+3. Where the fallback-free subset holds **fewer than 30 of the 60 seeds** in a cell, that cell carries no claim
+   either, for the same reason: the registered test was sized at 60.
+4. The 720 runs in `placebo_declarative` and `wrapper_only` — the two arms the preflight cleared 12 of 12 — are read
+   under the ordinary rules of section 3.
+
+A fallback still yields a `target_cash_share`, so these runs are not errors; the question is whether a decision
+recovered from prose differs from one parsed from JSON, and 2 answers it **from the data** rather than from a
+stipulated cutoff.
+
+**Cost.** ~2.6 B200 GPU-hours, inside the allocation (`DECISION_LOG.md` P9-29).

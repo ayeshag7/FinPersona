@@ -1,0 +1,169 @@
+"""E2's registered read: the causal package, one BH family per model (`PREREG_PHASE_9_STAGE2_E2.md` 3).
+
+    python -u -m tools.phase9.e9_5_e2_analyse
+
+What this does, and why each step is the way it is:
+
+*   **The confirmatory frame holds the three placebo arms and `static`, and NOT `memory`.**  `run_stats_v21`
+    iterates `stats_v2.question_families()`, a fixed dict.  With `memory` in the frame, Q1's (memory, static)
+    contrast fires as well as Q3's three, the run yields TWO confirmatory families, and
+    `inference_params.decision_rule(2)` flips from `bh_within` to `by_across` -- a rule E2 did not register.
+    Section 3 says to re-frame rather than report under a rule the run did not use, so `memory` is held back
+    for the absorption ratio, which is computed on its own frame.
+
+*   **`seed_level_pairs` groups on (Model, Persona, Scenario_Cell, Seed, Arm) and ignores `Setting`.**  Here
+    `static` and `memory` come from the stage-1 headline at setting `default` and the three placebo arms from
+    E2 at setting `causal`; no (arm, seed) key appears under both, so nothing is averaged across settings.
+    That is checked rather than assumed, per model, before any test runs.
+
+*   **One model at a time.**  Section 3's family is per model, m = 54, and no claim about models in general is
+    made from these tests.
+
+Preconditions (section 3, Cycle 2's) are reported per model and cell before any claim is read: the
+parse-fallback share, the zero-trade share and the static arm's mean cash share.
+"""
+from __future__ import annotations
+
+import json
+import os
+import time
+
+import pandas as pd
+
+from tools.phase9.e9_absorption import absorption, guard_counts
+from tools.stats_v2 import TIER_C, run_stats_v21, scenario_cell
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+E94 = os.path.join(ROOT, "docs", "env_v2", "generated", "v2_1", "e9_4")
+OUT = os.path.join(E94, "stats_e2_causal")
+
+E2_MANIFEST = "e9_4_stage2_causal"
+HEADLINE = ("e9_4_stage1_headline_open", "e9_4_stage1_headline_open_b2")
+PLACEBOS = ("placebo_declarative", "placebo_directive", "wrapper_only")
+PERSONAS = ("ISFJ", "INTJ", "ENTJ")
+SEEDS = range(10001, 10061)
+
+
+def _slug(model: str) -> str:
+    return model.replace("/", "_").replace("|", "_").replace(".", "_")
+
+
+def frames(per_run: pd.DataFrame, model: str):
+    """(confirmatory frame, absorption frame) for one model, or (None, None) with a reason."""
+    e2 = per_run[(per_run["Manifest"] == E2_MANIFEST) & (per_run["Model"] == model)]
+    head = per_run[(per_run["Manifest"].isin(HEADLINE)) & (per_run["Model"] == model)
+                   & (per_run["Seed"].isin(SEEDS)) & (per_run["Persona"].isin(PERSONAS))
+                   & (per_run["Scenario"].isin(sorted(set(e2["Scenario"]))))]
+    if e2.empty or head.empty:
+        return None, None, f"no rows (E2 {len(e2)}, headline {len(head)})"
+    static = head[head["Arm"] == "static"]
+    memory = head[head["Arm"] == "memory"]
+    conf = pd.concat([e2, static], ignore_index=True)
+    absorb = pd.concat([e2, static, memory], ignore_index=True)
+    return conf, absorb, ""
+
+
+def key_collision(df: pd.DataFrame) -> pd.DataFrame:
+    """Any (Model, Persona, Scenario_Cell, Seed, Arm) carrying more than one Setting would be silently
+    averaged by `seed_level_pairs`.  Returns the offending keys; empty is the required state."""
+    d = df.copy()
+    d["Scenario_Cell"] = scenario_cell(d)
+    g = d.groupby(["Model", "Persona", "Scenario_Cell", "Seed", "Arm"])["Setting"].nunique()
+    return g[g > 1].reset_index()
+
+
+def preconditions(conf: pd.DataFrame) -> pd.DataFrame:
+    d = conf.copy()
+    d["Scenario_Cell"] = scenario_cell(d)
+    out = d.groupby(["Persona", "Scenario_Cell", "Arm"]).agg(
+        n=("band_mas", "size"),
+        fallback_share=("fallback_share", "mean"),
+        max_fallback_share=("fallback_share", "max"),
+        zero_trade_share=("trade_count", lambda s: float((s == 0).mean())),
+        score_errors=("score_error", lambda s: int((s.fillna("") != "").sum())),
+    ).reset_index()
+    return out
+
+
+def main() -> int:
+    per_run = pd.read_csv(os.path.join(E94, "per_run.csv"))
+    if E2_MANIFEST not in set(per_run["Manifest"]):
+        raise SystemExit(f"{E2_MANIFEST} is not in per_run.csv -- run `e9_4_grid --stages score` first")
+    os.makedirs(OUT, exist_ok=True)
+    models = sorted(per_run[per_run["Manifest"] == E2_MANIFEST]["Model"].unique())
+    print(f"E2 models present: {len(models)}")
+
+    summary = {"models": {}, "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    for model in models:
+        conf, absorb, why = frames(per_run, model)
+        print(f"\n=== {model} ===")
+        if conf is None:
+            print(f"  SKIPPED: {why}")
+            summary["models"][model] = {"skipped": why}
+            continue
+
+        bad = key_collision(conf)
+        if len(bad):
+            print(f"  REFUSING: {len(bad)} keys carry two settings and would be averaged silently")
+            summary["models"][model] = {"skipped": f"{len(bad)} cross-setting key collisions"}
+            continue
+
+        pre = preconditions(conf)
+        pre.to_csv(os.path.join(OUT, f"{_slug(model)}_preconditions.csv"), index=False)
+        worst = pre.sort_values("max_fallback_share", ascending=False).iloc[0]
+        print(f"  preconditions: worst cell fallback_share max={worst['max_fallback_share']:.4%} "
+              f"({worst['Persona']} {worst['Scenario_Cell']} {worst['Arm']}); "
+              f"zero-trade max={pre['zero_trade_share'].max():.2%}; "
+              f"score errors={int(pre['score_errors'].sum())}")
+
+        res = run_stats_v21(conf, os.path.join(OUT, _slug(model)))
+        t = res["contrasts"]
+        tc = t[t["tier"] == "C"]
+        rule = str(t["decision_rule"].iloc[0]) if len(t) else "none"
+        n_fam = int(t["n_confirmatory_families"].iloc[0]) if len(t) else 0
+        m_fam = sorted(set(int(x) for x in tc["m_family"])) if len(tc) else []
+        claims = tc[tc["claim"]]
+        print(f"  confirmatory: {len(tc)} tests, families={n_fam}, m_family={m_fam}, rule={rule}")
+        if rule != "bh_within":
+            print("  WARNING: the run did not use the registered rule; re-frame rather than report this")
+        print(f"  claims at q<=0.05: {len(claims)} of {len(tc)}")
+        for _, r in claims.sort_values("q_bh_within_family").head(8).iterrows():
+            print(f"      {r['contrast']:38s} {r['Persona']:5s} {r['Scenario_Cell']:6s} {r['metric']:17s} "
+                  f"est={r['estimate']:+.4f} q={r['q_bh_within_family']:.4g}")
+
+        arows = []
+        for arm in PLACEBOS:
+            a = absorption(absorb, arm=arm)
+            if len(a):
+                arows.append(a)
+        A = pd.concat(arows, ignore_index=True) if arows else pd.DataFrame()
+        if len(A):
+            A.to_csv(os.path.join(OUT, f"{_slug(model)}_absorption.csv"), index=False)
+            gc = guard_counts(A)
+            adm = A[A["admitted"]]
+            print(f"  absorption: {gc['admitted']} of {gc['cells']} cells admitted "
+                  f"(CI covers 0: {gc['excluded_ci_includes_0']}, below floor: {gc['excluded_below_floor']}, "
+                  f"both: {gc['excluded_by_both']}); {gc['admitted_negative_mandate']} admitted cells have a "
+                  f"negative mandate effect")
+            if len(adm):
+                for arm in PLACEBOS:
+                    s = adm[adm["arm"] == arm]["A"]
+                    if len(s):
+                        print(f"      A[{arm:20s}] n={len(s):2d} median={s.median():+.3f} "
+                              f"min={s.min():+.3f} max={s.max():+.3f}")
+        summary["models"][model] = {
+            "n_confirmatory_tests": int(len(tc)), "n_confirmatory_families": n_fam,
+            "m_family": m_fam, "decision_rule": rule, "n_claims": int(len(claims)),
+            "max_fallback_share": float(pre["max_fallback_share"].max()),
+            "max_zero_trade_share": float(pre["zero_trade_share"].max()),
+            "n_score_errors": int(pre["score_errors"].sum()),
+            "absorption": guard_counts(A) if len(A) else {},
+        }
+
+    json.dump(summary, open(os.path.join(OUT, "summary.json"), "w", encoding="utf-8"), indent=1)
+    print(f"\nwritten -> {OUT}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

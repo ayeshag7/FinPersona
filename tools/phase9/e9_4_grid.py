@@ -337,11 +337,26 @@ def gen_config_collisions(gen_hashes: dict) -> list:
     return out
 
 
-def stage_verify():
+def stage_verify(only=(), out_path=""):
+    """Verify stored runs against their manifests.  `only` restricts it to those ALL_MANIFESTS keys.
+
+    One array at a time means a later manifest is usually mid-run while an earlier one is being checked, and an
+    unrestricted pass would walk the running stage's cells (E5 alone is 103,680 x 6) to report a missing count that
+    is only the clock.  It would also write that half-finished picture over verify.json.
+
+    `out_path` sends the report somewhere else entirely.  verify.json is a TRACKED generated file, so a caller that
+    only wants the return code -- a test -- must not write it: the run would otherwise show up in `git status` as a
+    changed artefact, and a verification made against a partial `results_v2/` would be committable."""
     from tools.phase9 import e9_roster as RO
     from tools.phase9 import e9_runner as R
+    only = tuple(only or ())
+    unknown = [k for k in only if k not in ALL_MANIFESTS]
+    if unknown:
+        raise SystemExit(f"unknown manifest key(s) {unknown}; known: {sorted(ALL_MANIFESTS)}")
     rows, missing = [], []
     for kind, fname in ALL_MANIFESTS.items():
+        if only and kind not in only:
+            continue
         path = os.path.join(OUT, fname)
         if not os.path.exists(path):
             continue
@@ -406,7 +421,8 @@ def stage_verify():
            "complete": bool(rows) and all(r["missing"] == 0 for r in rows),
            "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
     os.makedirs(OUT, exist_ok=True)
-    json.dump(doc, open(os.path.join(OUT, "verify.json"), "w", encoding="utf-8"), indent=1)
+    name = "verify.json" if not only else "verify_" + "_".join(sorted(only)) + ".json"
+    json.dump(doc, open(out_path or os.path.join(OUT, name), "w", encoding="utf-8"), indent=1)
     print(json.dumps({k: doc[k] for k in ("pass", "complete")}, indent=1))
     return 0 if doc["pass"] else 1
 
@@ -439,14 +455,25 @@ def score_rows(m: dict) -> list:
     return rows
 
 
-def stage_score():
-    """Every completed run of every stage-1 manifest -> e9_4/per_run.csv, with per_run.meta.json carrying the scoring
-    file's hash and the scored / planned counts per configuration."""
+def stage_score(only=()):
+    """Every completed run of every manifest -> e9_4/per_run.csv, with per_run.meta.json carrying the scoring
+    file's hash and the scored / planned counts per configuration.
+
+    `only` restricts it to those ALL_MANIFESTS keys, as `stage_verify` does and for the same reason: scoring
+    scores whatever is COMPLETE on disk, so a manifest whose array is still running would fold a partial,
+    growing subset of its runs into per_run.csv with nothing to mark them as partial.  A restricted pass writes
+    per_run_<keys>.csv so it cannot overwrite the full one."""
     from evaluation import scoring_params as SP
     from tools.phase9 import e9_runner as R
+    only = tuple(only or ())
+    unknown = [k for k in only if k not in ALL_MANIFESTS]
+    if unknown:
+        raise SystemExit(f"unknown manifest key(s) {unknown}; known: {sorted(ALL_MANIFESTS)}")
     SP.load()
     rows, planned = [], {}
     for kind, fname in ALL_MANIFESTS.items():
+        if only and kind not in only:
+            continue
         path = os.path.join(OUT, fname)
         if not os.path.exists(path):
             continue
@@ -456,13 +483,14 @@ def stage_score():
             planned[f"{m['name']}|{key}"] = len(m["cells"])
     t = pd.DataFrame(rows)
     os.makedirs(OUT, exist_ok=True)
-    t.to_csv(os.path.join(OUT, "per_run.csv"), index=False)
+    stem = "per_run" if not only else "per_run_" + "_".join(sorted(only))
+    t.to_csv(os.path.join(OUT, f"{stem}.csv"), index=False)
     scored = t.groupby(["Manifest", "Model"]).size().to_dict() if len(t) else {}
     json.dump({"scoring_json_sha256": SP.SHA256, "n_runs_scored": int(len(t)),
                "n_score_errors": int((t["score_error"] != "").sum()) if len(t) else 0,
                "scored_vs_planned": {k: [int(scored.get(tuple(k.split("|", 1)), 0)), v] for k, v in sorted(planned.items())},
                "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
-              open(os.path.join(OUT, "per_run.meta.json"), "w", encoding="utf-8"), indent=1)
+              open(os.path.join(OUT, f"{stem}.meta.json"), "w", encoding="utf-8"), indent=1)
     print(f"scored {len(t)} runs" + (f"; {int((t['score_error'] != '').sum())} scoring errors" if len(t) else ""))
     return 0
 
@@ -486,6 +514,8 @@ def stage_status():
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--stages", default="manifest")
+    ap.add_argument("--only", default="", help="comma-separated ALL_MANIFESTS keys; verify writes "
+                                               "verify_<keys>.json instead of verify.json when set")
     a = ap.parse_args(argv)
     rc = 0
     for st in [x.strip() for x in a.stages.split(",") if x.strip()]:
@@ -498,11 +528,11 @@ def main(argv=None):
         elif st == "manifest_stage2":
             stage_manifest_stage2()
         elif st == "verify":
-            rc = stage_verify() or rc
+            rc = stage_verify([x.strip() for x in a.only.split(",") if x.strip()]) or rc
         elif st == "status":
             stage_status()
         elif st == "score":
-            rc = stage_score() or rc
+            rc = stage_score([x.strip() for x in a.only.split(",") if x.strip()]) or rc
         else:
             raise SystemExit(f"unknown stage {st!r}")
     return rc

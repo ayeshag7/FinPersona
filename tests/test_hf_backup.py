@@ -22,6 +22,26 @@ def test_never_uploaded():
     assert hb.exclusion("references/a.pdf", ["references"]) is None  # only '/'-terminated entries are prefixes
 
 
+def test_access_guides_are_excluded_wherever_they_sit():
+    """The rule must not depend on a path that can drift.
+
+    `ACCESS` named the four compute guides at fixed `docs/` paths.  They were later moved into
+    "compute and storage guides/", and two of them stopped being excluded from the off-site backup -- `scan`
+    refused to archive because they hold cluster identifiers, which is the second line of defence doing the first
+    line's job.  A guide is excluded by NAME at any depth, and the access folders outright."""
+    for rel in ("compute and storage guides/COMPUTE_HIPERGATOR_GUIDE.md",
+                "compute and storage guides/HIPERGATOR_GPU_GUIDE.md",
+                "compute and storage guides/COMPUTE_KAGGLE_GUIDE.md",
+                "compute and storage guides/GPU Usage Policy .docx",
+                "docs/COMPUTE_HIPERGATOR_GUIDE.md",
+                "somewhere/else/COMPUTE_GPU_ACCESS.md",
+                "tools/cluster/stage2_b200.sbatch"):
+        assert hb.exclusion(rel) == "GPU / Kaggle access", rel
+    # a name that merely contains a guide's name is not one
+    assert hb.exclusion("docs/NOTES_ON_COMPUTE_GPU_ACCESS.md") is None
+
+
+
 def test_results_v2_groups_and_tiers():
     assert hb.archive_of("results_v2/phase9/pilot/default/r.csv") == "results_v2/phase9/pilot.tar.gz"
     assert hb.archive_of("results_v2/phase9/x.json") == "-"

@@ -488,11 +488,20 @@ def _utc(s: str) -> float:
     return datetime.strptime(s, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc).timestamp()
 
 
-def cost_table() -> pd.DataFrame:
+def cost_table(setting: str = "default") -> pd.DataFrame:
+    """Per-model GPU cost of ONE setting, by default the stage-1 headline.
+
+    The ledger is named for the `config_tag`, not the setting, and every stage-2 manifest carries
+    `ledger_dir` "e9_4", `kind` "grid" and `config_tag` "default" -- so stage 2's runs append to the very
+    file stage 1 wrote.  Unfiltered, `span_hours` would stretch from stage 1's first run to stage 2's last
+    and carry `gpu_hours_per_run`, `mean_concurrency` and every projection built on them with it."""
     out = []
     for key in models():
         with open(os.path.join(E94, f"ledger_default_{slug(key)}.jsonl"), encoding="utf-8") as fh:
-            led = [json.loads(line) for line in fh if line.strip()]
+            led = [r for r in (json.loads(line) for line in fh if line.strip())
+                   if (r.get("setting") or "default") == setting]
+        if not led:
+            raise ValueError(f"no ledger rows at setting {setting!r} for {key}")
         ends = np.array([_utc(r["utc"]) for r in led])
         secs = np.array([float(r["seconds"]) for r in led])
         iv = sorted(zip(ends - secs, ends))
