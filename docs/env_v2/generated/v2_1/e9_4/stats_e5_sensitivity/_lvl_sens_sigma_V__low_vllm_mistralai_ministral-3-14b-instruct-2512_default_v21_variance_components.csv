@@ -1,0 +1,4 @@
+metric,vc_path,residual,converged,at_boundary,optimizer,reml_llf,role,error
+band_mas,0.00032818362917351435,0.003260817826051956,True,,best,1939.7558847529717,descriptive (P8-17),
+v21_mcr_D_0.05,4.9741886395781946e-05,0.002914006953814794,True,,best,2063.6091718354573,descriptive (P8-17),
+v21_mcr_D_0.002,3.17171179555628e-05,0.0013998601919072721,True,,best,2579.149239511831,descriptive (P8-17),

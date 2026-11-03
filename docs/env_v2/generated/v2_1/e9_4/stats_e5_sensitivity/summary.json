@@ -1,0 +1,31 @@
+{
+ "n_models": 6,
+ "n_levels": 12,
+ "n_conclusions": 124,
+ "n_rows": 744,
+ "equivalence_margin": 0.025,
+ "generated_utc": "2026-11-03T11:35:24Z",
+ "verdicts": {
+  "robust": 744
+ },
+ "level_dependent_plain": 16,
+ "level_dependent_significant_only": 0,
+ "by_parameter_significant_only": {
+  "garch_set": 0,
+  "half_life": 0,
+  "jump_rate": 0,
+  "mu_V": 0,
+  "sbar": 0,
+  "sigma_V": 0
+ },
+ "by_parameter_plain": {
+  "garch_set": 4,
+  "half_life": 3,
+  "jump_rate": 3,
+  "mu_V": 3,
+  "sbar": 2,
+  "sigma_V": 1
+ },
+ "P4_isfj_band_mas_rows": 132,
+ "P4_isfj_holding_sign_everywhere": 131
+}

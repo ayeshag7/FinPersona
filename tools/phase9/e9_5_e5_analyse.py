@@ -25,12 +25,18 @@ What this does, and why each step is the way it is:
     level-dependent only if some level is significant with the opposite sign.  *plain* (the plan's sentence):
     level-dependent if the sign differs at any level, significant or not.  Neither is collapsed into the other.
 
-*   **R5** is `tools.phase9.e9_3_simulate.analytic`'s `p_R5` -- R4's two-way variance referred to t(M - 1),
-    addendum 1's adopted candidate -- computed on the (model x path) matrix of memory - static at that level, then
-    BH-adjusted within the stage-1 family the conclusion came from.
+*   **R5 and the interaction are statistics ACROSS the six models, not within one.**  R5 is
+    `tools.phase9.e9_3_simulate.analytic`'s `p_R5` -- R4's two-way variance referred to t(M - 1), addendum 1's
+    adopted candidate -- and section 3 fixes its power "at M = 6", so its matrix is (6 models x 60 paths) of
+    memory - static at that level, one value per level x cell x metric, shared by every conclusion in that cell.
+    Computing it per model gives M = 1 and the statistic is undefined; the first version of this file did exactly
+    that and returned NaN in all 744 rows, where a NaN compared against the margin is False and the verdict read
+    *robust* while two of the four criteria had not been computed at all.  Both are now pooled over models and a
+    row whose criteria could not be computed is reported as such, never as robust.
 
-*   **The level x arm interaction** is (level effect - matched-default effect) per model and path, with a 90 %
-    interval on t(M - 1), against the registered equivalence margin of 0.025 (half the minimum effect, D12).
+*   **The level x arm interaction** is (level effect - matched-default effect) per model and path, averaged within
+    model, with a 90 % interval on t(M - 1) over the six, against the registered equivalence margin of 0.025 (half
+    the minimum effect, D12).
 
 Each criterion is reported in its own column and the verdict names which one fired; no criterion is collapsed
 into another.
@@ -148,6 +154,22 @@ def main() -> int:
                 lvl[(m, L)] = t.set_index(["Persona", "Scenario_Cell", "metric"])
         print(f"  levels done for {m.split('/')[-1][:38]}", flush=True)
 
+    # ---- R5 and the interaction, pooled over the six models, one per level x cell x metric ----
+    print("R5 and the level x arm interaction, pooled over models ...", flush=True)
+    pooled = {}
+    base_mats = {}
+    cells = sorted({(k[0], k[1], k[2]) for c in concl.values() for k in c.index})
+    for persona, cell, metric in cells:
+        base_mats[(persona, cell, metric)] = paired(head60, persona, cell, metric)
+    for L in levels:
+        sub_L = sens[sens["Setting"] == L]
+        for persona, cell, metric in cells:
+            lmat = paired(sub_L, persona, cell, metric)
+            bmat = base_mats[(persona, cell, metric)]
+            pooled[(L, persona, cell, metric)] = (r5_p(lmat),) + interaction_ci(lmat, bmat)
+    nfin = sum(1 for v in pooled.values() if np.isfinite(v[0]))
+    print(f"  {nfin} of {len(pooled)} level x cell x metric combinations gave a finite R5", flush=True)
+
     # ---- the table ----
     rows = []
     for m in models:
@@ -160,7 +182,6 @@ def main() -> int:
             base = base60.get(m, pd.DataFrame())
             b_est = float(base.loc[key, "estimate"]) if (len(base) and key in base.index) else float("nan")
             sign_ref = np.sign(b_est if np.isfinite(b_est) else c["estimate"])
-            bmat = paired(head60[head60["Model"] == m], persona, cell, metric)
             for param in sorted({PARAM_OF(L) for L in levels}):
                 plv = [L for L in levels if PARAM_OF(L) == param]
                 flips_plain, flips_sig, r5s, inter = [], [], [], []
@@ -174,15 +195,22 @@ def main() -> int:
                         flips_plain.append(L)
                         if bool(r["claim"]):
                             flips_sig.append(L)
-                    sub = sens[(sens["Model"] == m) & (sens["Setting"] == L)]
-                    lmat = paired(sub, persona, cell, metric)
-                    r5s.append((L, r5_p(lmat)))
-                    inter.append((L,) + interaction_ci(lmat, bmat))
+                    pr5, pe, plo, phi = pooled.get((L, persona, cell, metric),
+                                                   (float("nan"),) * 4)
+                    r5s.append((L, pr5))
+                    inter.append((L, pe, plo, phi))
                 worst = max((abs(e) for _, e, _, _ in inter if np.isfinite(e)), default=float("nan"))
                 not_equiv = any(np.isfinite(lo) and np.isfinite(hi) and (lo > MARGIN or hi < -MARGIN)
                                 for _, _, lo, hi in inter)
+                n_equiv_ok = sum(1 for _, _, lo, hi in inter if np.isfinite(lo) and np.isfinite(hi))
+                n_r5_ok = sum(1 for _, q in r5s if np.isfinite(q))
+                # A criterion that did not compute may not pass by default: NaN compares False against the
+                # margin, which would read as equivalence.  Say so instead.
+                incomputable = (n_equiv_ok < len(inter)) or (n_r5_ok < len(r5s))
                 verdict = ("level-dependent (significant-only)" if flips_sig else
-                           "not equivalent" if not_equiv else "robust")
+                           "not equivalent" if not_equiv else
+                           "robust (sign only; criteria ii/iii not computable)" if incomputable else
+                           "robust")
                 rows.append({
                     "Model": m, "Persona": persona, "Scenario_Cell": cell, "metric": metric,
                     "parameter": param, "n_levels": len(plv),
@@ -196,7 +224,9 @@ def main() -> int:
                     "max_abs_interaction": worst,
                     "equivalence_margin": MARGIN,
                     "not_equivalent": bool(not_equiv),
-                    "r5_p_min": float(np.nanmin([p for _, p in r5s])) if r5s else float("nan"),
+                    "r5_p_min": float(np.nanmin([p for _, p in r5s])) if n_r5_ok else float("nan"),
+                    "n_levels_with_r5": n_r5_ok,
+                    "n_levels_with_interaction_ci": n_equiv_ok,
                     "verdict": verdict,
                 })
     T = pd.DataFrame(rows)

@@ -365,6 +365,53 @@ superset of the smaller, and unpacking the larger alone is enough.
    write, inference, jobs, webhooks and public posting (section 8). The exception is meant to last hours, not
    to become the state of the account.
 
+## 10. The registered reads, and the two the shared dict could not express
+
+**No re-run is required anywhere.** A precondition sweep over all four manifests and both stage-1 batches gives,
+per model: E3 max fallback 0.075 in a single run and **0 cells** above a 5 % cell mean, E4 max 0.005 and 0 cells,
+**E5 0.000 across all 103,680 runs**, zero-trade 0 % and 0 score errors throughout. Two flags, both already known
+and both already handled: Llama 3.1 8B's six E2 directive cells (section 9, and section 8 of its pre-registration
+forbids re-running with changed wording), and stage-1 Llama 3.1 70B's 6.2 % zero-trade, reported in `E2_RESULTS.md`
+since the five-model read.
+
+### `question_families()` does not hold E3's or E4's family, and for E4 the failure is silent
+
+`tools/stats_v2.run_stats_v21` iterates a **fixed** dict of (arm, reference) pairs. Checking what that dict would
+actually fire on each experiment's frame, rather than assuming it fires what the pre-registration registered:
+
+| experiment | registered | what the fixed dict fires | |
+|---|---|---|---|
+| E3 | `{memory, swapped} - static`, one family, m = 72 | `memory - static` **and `swapped - memory`** -> 2 families -> `by_across` | `swapped - static` is **absent from the dict** |
+| E4 | `(Track A - Track B)` within arm, one family, m = 72 | **only `memory - static`, within Track A** | 1 family, `bh_within` -- the registered rule on the wrong question |
+| E5 | `memory - static` per level, m = 36 | `memory - static`, 1 family, `bh_within` | faithful; no override needed |
+
+E4 is the dangerous one. Relabelling Track B exactly as its section 3 words it (`static_B`, `memory_B`) yields a
+frame that fires **one** tier-C family and therefore reports `bh_within`, the registered rule, while computing a
+contrast E4 never asked for. Nothing in the output says so.
+
+**The fix is an optional `families=` argument on `run_stats_v21`**, defaulting to `None` so every existing caller
+is bit-identical -- checked by re-running E2, which returns 45, 24, 18, 12, 26 and 15 claims exactly as before.
+Each experiment's analysis script states the family its own pre-registration registers. The estimator, the
+bootstrap, the BH step and the rule logic are untouched; only the list of contrasts asked for changes. Both E3 and
+E4 now report **72 tests, m_family = [72], `bh_within`** on all six models, and E4's pairing check confirms
+**720 of 720 keys carry all four arms with 0 cross-setting collisions** -- the relabelling is what stops
+`seed_level_pairs`, which ignores `Setting`, averaging the two tracks into one number.
+
+### What E3 cannot answer from `per_run.csv`
+
+Section 3 also registers the salience shares, the persona side of the day-1 gate, and **the static arm's mean cash
+share** as a precondition. All three read the per-**step** series; `per_run.csv` is one row per run and carries no
+cash share at all. Predictions P1, P2 and P4 depend on them. They need a job where the runs are, as the scoring
+did, and are left unevaluated rather than approximated.
+
+### E5's own trap, found in this file's first version of the script
+
+Criterion (ii), R5, and criterion (iii), the level x arm interval, are statistics **across the six models** --
+section 3 fixes R5's power "at M = 6". Computed inside a per-model loop they get M = 1 and return NaN, and **a NaN
+compared against the equivalence margin is False**, so the verdict column read *robust* in all 744 rows while two
+of the four criteria had not been computed at all. They are now pooled over models, and a row whose criteria did
+not compute is labelled as such rather than passing by default.
+
 **Idle and unrevoked, as of 3 Nov 10:19 UTC.**
 
 * **The queue is empty and has been since the push finished at 15:33 UTC on 2 Nov** — about nineteen hours of
