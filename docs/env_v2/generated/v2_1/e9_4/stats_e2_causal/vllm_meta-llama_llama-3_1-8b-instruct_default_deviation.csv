@@ -1,0 +1,55 @@
+contrast,Persona,Scenario_Cell,metric,n_seeds,n_fallback_free,estimate_full,claim_full,estimate_fallback_free,claim_fallback_free,rule_3_ok,same_sign,same_bh_decision,verdict
+placebo_directive - static,ENTJ,crash,band_mas,60,0,-0.0530232340523991,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ENTJ,flat,band_mas,60,0,-0.0558361960472508,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,INTJ,crash,band_mas,60,0,0.006751982738350519,False,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,INTJ,flat,band_mas,60,0,-0.032574843355591555,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ISFJ,crash,band_mas,60,0,0.0056804535681527785,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ISFJ,flat,band_mas,60,0,0.007512385657629321,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ENTJ,crash,v21_mcr_D_0.05,60,0,-0.015197678879406163,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ENTJ,flat,v21_mcr_D_0.05,60,0,-0.015476279243852592,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,INTJ,crash,v21_mcr_D_0.05,60,0,0.006130732861404596,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,INTJ,flat,v21_mcr_D_0.05,60,0,0.009674724682089368,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ISFJ,crash,v21_mcr_D_0.05,60,0,-2.9689316957268638e-05,False,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ISFJ,flat,v21_mcr_D_0.05,60,0,-0.012362932791062407,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ENTJ,crash,v21_mcr_D_0.002,60,0,-0.007105464081718238,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ENTJ,flat,v21_mcr_D_0.002,60,0,-0.00920240960821365,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,INTJ,crash,v21_mcr_D_0.002,60,0,0.004728326457853251,True,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,INTJ,flat,v21_mcr_D_0.002,60,0,0.004590933931578962,False,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ISFJ,crash,v21_mcr_D_0.002,60,0,-0.0031804331851415656,False,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_directive - static,ISFJ,flat,v21_mcr_D_0.002,60,0,-0.006099462749036308,False,,,False,,,"no claim (rule 3: 0 of 60 seeds fallback-free, needs 30)"
+placebo_declarative - static,ENTJ,crash,band_mas,60,60,0.05807953193003228,True,0.05807953193003228,True,True,True,True,read
+placebo_declarative - static,ENTJ,flat,band_mas,60,60,0.019991376514424116,True,0.019991376514424116,True,True,True,True,read
+placebo_declarative - static,INTJ,crash,band_mas,60,60,0.045966121867415506,True,0.045966121867415506,True,True,True,True,read
+placebo_declarative - static,INTJ,flat,band_mas,60,60,0.036304008258101025,True,0.036304008258101025,True,True,True,True,read
+placebo_declarative - static,ISFJ,crash,band_mas,60,60,0.0075649672081934535,True,0.0075649672081934535,True,True,True,True,read
+placebo_declarative - static,ISFJ,flat,band_mas,60,60,0.010705185700752155,True,0.010705185700752155,True,True,True,True,read
+placebo_declarative - static,ENTJ,crash,v21_mcr_D_0.05,60,60,0.0008406156712503042,False,0.0008406156712503042,False,True,True,True,read
+placebo_declarative - static,ENTJ,flat,v21_mcr_D_0.05,60,60,-0.00019999470617546123,False,-0.00019999470617546123,False,True,True,True,read
+placebo_declarative - static,INTJ,crash,v21_mcr_D_0.05,60,60,0.0025096901162679395,False,0.0025096901162679395,False,True,True,True,read
+placebo_declarative - static,INTJ,flat,v21_mcr_D_0.05,60,60,0.0018617267517388174,False,0.0018617267517388174,False,True,True,True,read
+placebo_declarative - static,ISFJ,crash,v21_mcr_D_0.05,60,60,0.0029389050537415268,False,0.0029389050537415268,False,True,True,True,read
+placebo_declarative - static,ISFJ,flat,v21_mcr_D_0.05,60,60,-0.010703419478780259,False,-0.010703419478780259,False,True,True,True,read
+placebo_declarative - static,ENTJ,crash,v21_mcr_D_0.002,60,60,0.0007816557867103622,False,0.0007816557867103622,False,True,True,True,read
+placebo_declarative - static,ENTJ,flat,v21_mcr_D_0.002,60,60,0.0004437241424262553,False,0.0004437241424262553,False,True,True,True,read
+placebo_declarative - static,INTJ,crash,v21_mcr_D_0.002,60,60,0.0013482672886592653,False,0.0013482672886592653,False,True,True,True,read
+placebo_declarative - static,INTJ,flat,v21_mcr_D_0.002,60,60,0.0019296376625179874,False,0.0019296376625179874,False,True,True,True,read
+placebo_declarative - static,ISFJ,crash,v21_mcr_D_0.002,60,60,0.0006727318587895025,False,0.0006727318587895025,False,True,True,True,read
+placebo_declarative - static,ISFJ,flat,v21_mcr_D_0.002,60,60,-0.0038108526087785935,False,-0.0038108526087785935,False,True,True,True,read
+wrapper_only - static,ENTJ,crash,band_mas,60,60,0.0777760850956274,True,0.0777760850956274,True,True,True,True,read
+wrapper_only - static,ENTJ,flat,band_mas,60,60,0.04889626866171991,True,0.04889626866171991,True,True,True,True,read
+wrapper_only - static,INTJ,crash,band_mas,60,60,0.03932921817533678,True,0.03932921817533678,True,True,True,True,read
+wrapper_only - static,INTJ,flat,band_mas,60,60,0.04667988160977976,True,0.04667988160977976,True,True,True,True,read
+wrapper_only - static,ISFJ,crash,band_mas,60,60,0.01588011953758605,True,0.01588011953758605,True,True,True,True,read
+wrapper_only - static,ISFJ,flat,band_mas,60,60,0.01997241913938376,True,0.01997241913938376,True,True,True,True,read
+wrapper_only - static,ENTJ,crash,v21_mcr_D_0.05,60,60,-0.0016920293092136903,False,-0.0016920293092136903,False,True,True,True,read
+wrapper_only - static,ENTJ,flat,v21_mcr_D_0.05,60,60,-0.0015389241494933763,False,-0.0015389241494933763,False,True,True,True,read
+wrapper_only - static,INTJ,crash,v21_mcr_D_0.05,60,60,-0.00179643573516662,False,-0.00179643573516662,False,True,True,True,read
+wrapper_only - static,INTJ,flat,v21_mcr_D_0.05,60,60,-0.00022075258100998188,False,-0.00022075258100998188,False,True,True,True,read
+wrapper_only - static,ISFJ,crash,v21_mcr_D_0.05,60,60,0.005450740423941117,False,0.005450740423941117,False,True,True,True,read
+wrapper_only - static,ISFJ,flat,v21_mcr_D_0.05,60,60,-0.009094198359103918,False,-0.009094198359103918,False,True,True,True,read
+wrapper_only - static,ENTJ,crash,v21_mcr_D_0.002,60,60,-0.00040256242210759706,False,-0.00040256242210759706,False,True,True,True,read
+wrapper_only - static,ENTJ,flat,v21_mcr_D_0.002,60,60,-0.0002794061936674748,False,-0.0002794061936674748,False,True,True,True,read
+wrapper_only - static,INTJ,crash,v21_mcr_D_0.002,60,60,-0.0009519586118583472,False,-0.0009519586118583472,False,True,True,True,read
+wrapper_only - static,INTJ,flat,v21_mcr_D_0.002,60,60,-0.000628231422396466,False,-0.000628231422396466,False,True,True,True,read
+wrapper_only - static,ISFJ,crash,v21_mcr_D_0.002,60,60,0.0009356774194102245,False,0.0009356774194102245,False,True,True,True,read
+wrapper_only - static,ISFJ,flat,v21_mcr_D_0.002,60,60,-0.004306563761868031,False,-0.004306563761868031,False,True,True,True,read

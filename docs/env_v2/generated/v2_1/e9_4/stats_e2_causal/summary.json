@@ -60,6 +60,32 @@
     "admitted_negative_mandate": 0
    }
   },
+  "vllm/meta-llama/llama-3.1-8b-instruct|default": {
+   "n_confirmatory_tests": 54,
+   "n_confirmatory_families": 1,
+   "m_family": [
+    54
+   ],
+   "decision_rule": "bh_within",
+   "n_claims": 12,
+   "max_fallback_share": 0.645,
+   "max_zero_trade_share": 0.0,
+   "n_score_errors": 0,
+   "absorption": {
+    "cells": 18,
+    "admitted": 18,
+    "excluded_ci_includes_0": 0,
+    "excluded_below_floor": 0,
+    "excluded_by_both": 0,
+    "admitted_negative_mandate": 12
+   },
+   "deviation": "PREREG_PHASE_9_STAGE2_E2.md section 8",
+   "n_claims_withdrawn": 13,
+   "n_contrasts_without_claim": 18,
+   "arms_failing_rule_3": [
+    "placebo_directive - static"
+   ]
+  },
   "vllm/microsoft/phi-4|default": {
    "n_confirmatory_tests": 54,
    "n_confirmatory_families": 1,
@@ -101,5 +127,5 @@
    }
   }
  },
- "generated_utc": "2026-10-30T20:30:01Z"
+ "generated_utc": "2026-11-03T10:35:14Z"
 }
