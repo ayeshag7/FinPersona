@@ -31,6 +31,8 @@ import time
 import pandas as pd
 
 from tools.phase9.e9_absorption import absorption, guard_counts
+from tools.phase9.e9_5_predictions import Prediction, verdict_of
+from tools.phase9.e9_5_predictions import write as write_predictions
 from tools.stats_v2 import TIER_C, run_stats_v21, scenario_cell
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -152,6 +154,67 @@ def deviation_read(conf: pd.DataFrame, tc: pd.DataFrame, out_prefix: str) -> pd.
     return pd.DataFrame(rows)
 
 
+def predictions(absorb: pd.DataFrame, contr: pd.DataFrame) -> list:
+    """Section 4's four, on the pooled artefacts the loop above wrote.
+
+    Both frames arrive with section 8's deviation already applied: the deviation model's directive rows
+    are out of `absorb`, because its absorption for that arm is computed on runs that are not
+    fallback-free, and out of `contr`, because the contrasts they would support are uninterpretable
+    rather than null.  A model that contributes no readable cell to a prediction is named in `stat`
+    rather than counted against it.
+    """
+    adm = absorb[absorb["admitted"]]
+    med = adm.groupby("arm")["A"].median()
+    d, w, dec = (float(med.get(a, float("nan")))
+                 for a in ("placebo_directive", "wrapper_only", "placebo_declarative"))
+    n = {a: int((adm["arm"] == a).sum()) for a in PLACEBOS}
+
+    isfj = contr[(contr["contrast"] == "placebo_directive - static")
+                 & (contr["metric"] == "band_mas") & (contr["Persona"] == "ISFJ")]
+    per_model = isfj.groupby("Model")["estimate"].agg(["size", lambda s: int((s > 0).sum())])
+    per_model.columns = ["cells", "cells_up"]
+    all_up = int((per_model["cells_up"] == per_model["cells"]).sum())
+    any_up = int((per_model["cells_up"] > 0).sum())
+    read = sorted(set(contr["Model"]) & set(isfj["Model"]))
+    silent = sorted(set(contr["Model"]) - set(isfj["Model"]))
+
+    entj = contr[(contr["contrast"] == "placebo_directive - static") & (contr["metric"] == "band_mas")
+                 & (contr["Persona"] == "ENTJ") & (contr["Model"].str.contains("gemma-4-31b"))]
+
+    return [
+        Prediction(
+            "P1", "the directive placebo absorbs less than 30 % of the mandate effect",
+            "median A over the defined cells < 0.30", verdict_of(d < 0.30),
+            f"median A(placebo_directive) = {d:+.4f} over {n['placebo_directive']} admitted cells",
+            {"median_A_directive": d, "n_cells": n["placebo_directive"], "threshold": 0.30}),
+        Prediction(
+            "P2", "the declarative placebo absorbs least, the wrapper sits between",
+            "A(declarative) <= A(wrapper_only) <= A(directive) on the medians",
+            verdict_of(dec <= w <= d),
+            f"{dec:+.4f} <= {w:+.4f} <= {d:+.4f} is false -- the registered order is reversed, the "
+            f"directive placebo absorbing least of the three"
+            if not dec <= w <= d else f"{dec:+.4f} <= {w:+.4f} <= {d:+.4f}",
+            {"median_A_declarative": dec, "median_A_wrapper_only": w, "median_A_directive": d,
+             "n_cells": n}),
+        Prediction(
+            "P3", "ISFJ moves under every arm: its band-MAS rises under placebo_directive",
+            "rises in at least four of the six models", verdict_of(all_up >= 4),
+            f"rises in every cell in {all_up} of {len(read)} readable models (in any cell: {any_up}); "
+            f"{int(per_model['cells_up'].sum())} of {int(per_model['cells'].sum())} cells positive"
+            + (f"; uninterpretable under section 8: {silent}" if silent else ""),
+            {"models_rising_everywhere": all_up, "models_rising_anywhere": any_up,
+             "models_readable": len(read), "cells_positive": int(per_model["cells_up"].sum()),
+             "cells": int(per_model["cells"].sum()), "models_uninterpretable": silent,
+             "threshold": 4}),
+        Prediction(
+            "P4", "Gemma 4 31B keeps its ENTJ sign under placebo_directive",
+            "its ENTJ band-MAS rises, as it does under memory",
+            verdict_of(len(entj) > 0 and bool((entj["estimate"] > 0).all())),
+            f"estimates {[round(float(x), 4) for x in entj['estimate']]} over {len(entj)} cells",
+            {"estimates": [float(x) for x in entj["estimate"]], "n_cells": int(len(entj))}),
+    ]
+
+
 def main() -> int:
     per_run = pd.read_csv(os.path.join(E94, "per_run.csv"))
     if E2_MANIFEST not in set(per_run["Manifest"]):
@@ -161,6 +224,10 @@ def main() -> int:
     print(f"E2 models present: {len(models)}")
 
     summary = {"models": {}, "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    # Section 4's predictions are statements about the roster, not about one model, so the loop below
+    # collects what each model contributes and they are evaluated once, after it.  Only rows section 8
+    # leaves readable go in.
+    pool_absorb, pool_contr = [], []
     for model in models:
         conf, absorb, why = frames(per_run, model)
         print(f"\n=== {model} ===")
@@ -191,6 +258,7 @@ def main() -> int:
         m_fam = sorted(set(int(x) for x in tc["m_family"])) if len(tc) else []
         dev = None
         withdrawn = 0
+        keep = None
         if model == DEVIATION_MODEL:
             dev = deviation_read(conf, tc, os.path.join(OUT, _slug(model)))
             dev.to_csv(os.path.join(OUT, f"{_slug(model)}_deviation.csv"), index=False)
@@ -236,6 +304,14 @@ def main() -> int:
             if len(a):
                 arows.append(a)
         A = pd.concat(arows, ignore_index=True) if arows else pd.DataFrame()
+        # What this model contributes to section 4.  An arm that failed rule 3 is dropped from both, not
+        # marked: its absorption is computed on runs that are not fallback-free and its contrasts are
+        # uninterpretable, so counting either -- even as a negative -- would be reading contaminated runs.
+        pool_contr.append((tc if keep is None else tc[keep]).assign(Model=model))
+        if len(A):
+            bad_arms = (set(dev.loc[dev["n_fallback_free"] < MIN_FREE_SEEDS, "contrast"].str.split(" - ").str[0])
+                        if dev is not None else set())
+            pool_absorb.append(A[~A["arm"].isin(bad_arms)])          # A already carries `Model`
         if len(A):
             A.to_csv(os.path.join(OUT, f"{_slug(model)}_absorption.csv"), index=False)
             gc = guard_counts(A)
@@ -269,6 +345,11 @@ def main() -> int:
             if contaminated:
                 print(f"  NOTE: absorption for {contaminated} is computed on runs that are not fallback-free "
                       f"and is not readable for the same reason the contrasts are not")
+
+    if pool_absorb and pool_contr:
+        summary["predictions"] = write_predictions(
+            "E2", predictions(pd.concat(pool_absorb, ignore_index=True),
+                              pd.concat(pool_contr, ignore_index=True)), OUT)
 
     json.dump(summary, open(os.path.join(OUT, "summary.json"), "w", encoding="utf-8"), indent=1)
     print(f"\nwritten -> {OUT}")

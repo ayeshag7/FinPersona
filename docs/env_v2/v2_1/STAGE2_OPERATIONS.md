@@ -412,6 +412,68 @@ compared against the equivalence margin is False**, so the verdict column read *
 of the four criteria had not been computed at all. They are now pooled over models, and a row whose criteria did
 not compute is labelled as such rather than passing by default.
 
+## 11. The registered predictions, and the floor underneath three of E4's
+
+Sixteen predictions are registered across E2-E5, four per pre-registration, each descriptive, outside every BH
+family, and governed by the same sentence: *"A wrong prediction is reported as wrong."*  **Not one of the four
+analysers evaluated any of them.**  The contrasts, the absorption tables and the robustness table held the
+material, so a verdict could always be read off by hand -- and that is how a wrong prediction goes unreported:
+nothing fails, because nothing is computed.  They are now evaluated by `tools/phase9/e9_5_predictions.py` and
+written to `predictions.csv` beside each experiment's statistics.
+
+| | P1 | P2 | P3 | P4 |
+|---|---|---|---|---|
+| **E2** | holds | **FAILS** | **FAILS** | holds |
+| **E3** | unevaluated | unevaluated | holds | unevaluated |
+| **E4** | holds | **degenerate** | holds, at the floor | holds, at the floor |
+| **E5** | holds | holds | holds | holds |
+
+There are four verdicts rather than two.  `unevaluated` is for inputs that are not in `per_run.csv` -- E3's three
+read the per-STEP series -- and is never counted as holding.  `degenerate` is for a bar that is met by arithmetic
+rather than by evidence, and exists so that E4's P2 can never be quoted as support.
+
+### Track A sits on the metric's floor, and three of E4's four are read against it
+
+Measured on the 8,640 Track A runs beside the 8,640 Track B runs they pair with:
+
+| | Track A (target stated) | Track B (target unstated) |
+|---|---|---|
+| mean band-MAS | **0.00342** | 0.15740 |
+| runs scoring exactly 0 | **73.0 %** | 9.3 % |
+| static-arm cells below 0.001 | **17 of 18** | 1 of 18 |
+
+**P1 is confirmed, and confirmed as reasoned**: its own rationale anticipated this -- *"v1's O3 ablation, which
+stated the target in words, pegged MAS at 0.000"* -- and a contrast predicted to drive a metric to its floor,
+which does, is a prediction that worked.  What section 4 does not carry through is what the same floor does to
+the other three.
+
+* **P2 is degenerate.**  It correlates the size of the Track-A reduction against the static arm's headroom.  With
+  the reduced arm at zero the reduction **is** the headroom, so Spearman returns +1.000 whatever the models did.
+  Its sub-clause (headroom below 0.05 moves by less than 0.02) holds in 2 of the 3 named cells; Llama 3.1 8B ISFJ
+  moves +0.0291 because its headroom is 0.0292.
+* **P3 holds in 6 of 6 but cannot discriminate.**  Mean \|memory - static\| at Track A is exactly 0.0000 for OLMo,
+  Gemma 4 E4B and Phi-4.  Two arms pinned at zero must differ by zero, so the comparison cannot separate "memory
+  adds less when the target is stated" from "both arms solve the task exactly".
+* **P4 holds in 5 of 6 on a largest difference of 7.96e-04** -- a sign that survives at the floor, not an effect.
+
+So E4's statistics are strong and P1 is sound, but **E4 cannot speak to the size of the memory effect under
+Track A**, only to the fact that stating the target removes the headroom the effect was measured in.  A claim that
+the memory effect "is about knowing the target" reads more into E4 than E4 contains.  The two cells that did not
+saturate are where any signal remains: Llama 3.1 8B ENTJ (memory 0.1033 against static 0.0027) and gpt-oss-20b
+ENTJ (0.0148 against 0.00001).
+
+The same saturation is on record in v1.  `docs/env_v2/generated/E0_SEPARABILITY_GATE_V1.md` section 5's O3
+numerical-only arm states the target in words and is described there as showing "what the same statistics reach
+when the target is stated in the prompt".  It is not a v2.1 artefact; it reproduces.
+
+### E2's two failures
+
+Both are reported in `E2_RESULTS.md`.  In short: P2 encoded additivity across the three placebo arms and the data
+reverse the order; P3 encoded the recency position and ISFJ moves the other way, in 9 of the 10 readable cells.
+The two that failed are the two that encoded form and position as the mechanism, so their failure removes a
+competing explanation rather than damaging the content account -- but they are reported as failures, in the terms
+section 4 set.
+
 **Idle and unrevoked, as of 3 Nov 10:19 UTC.**
 
 * **The queue is empty and has been since the push finished at 15:33 UTC on 2 Nov** — about nineteen hours of
@@ -438,6 +500,6 @@ not compute is labelled as such rather than passing by default.
   record both values and the command that reproduces each. **Not edited without being asked.**
 * No `backup_identifiers.txt`, so the backup scrubber runs on its built-in markers only.
 * `_write_stage2` re-verifies the manifest fingerprint but not the cells behind it.
-* **Nothing from this programme is committed yet.** `e5_path_change.json` and `verify_causal_open.json` sit under
-  `docs/env_v2/generated/v2_1`, which `.gitignore:69` matches, so `git add` drops them silently and they need
+* Six commits carry this programme, `be14108` through `ab549f6`, pushed to `origin/main` on 3 Nov.
+  Anything new under `docs/env_v2/generated/v2_1` is still matched by `.gitignore:69` and still needs
   `git add -f` followed by a check of `git show --stat`.

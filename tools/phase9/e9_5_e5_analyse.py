@@ -52,6 +52,8 @@ import pandas as pd
 from scipy import stats
 
 from tools.phase9.e9_3_simulate import analytic
+from tools.phase9.e9_5_predictions import Prediction, verdict_of
+from tools.phase9.e9_5_predictions import write as write_predictions
 from tools.stats_v2 import TIER_C, run_stats_v21, scenario_cell
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -248,6 +250,47 @@ def main() -> int:
         isfj = T[(T["Persona"] == "ISFJ") & (T["metric"] == "band_mas")]
         summary["P4_isfj_band_mas_rows"] = int(len(isfj))
         summary["P4_isfj_holding_sign_everywhere"] = int((~isfj["level_dependent_plain"]).sum())
+
+        # ---- section 4's four, written beside the table they are read from ----
+        n_robust = int((T["verdict"] == "robust").sum())
+        plain = T.groupby("parameter")["level_dependent_plain"].sum()
+        sig = T.groupby("parameter")["level_dependent_significant_only"].sum()
+        top = list(plain[plain == plain.max()].index)
+        n_more = int((plain > sig).sum())
+        by_model = isfj.groupby("Model")["level_dependent_plain"].any()
+        n_models_hold = int((~by_model).sum())
+        summary["predictions"] = write_predictions("E5", [
+            Prediction("P1", "most conclusions are robust",
+                       "at least two thirds of the conclusion x parameter rows return robust under the "
+                       "significant-only reading", verdict_of(n_robust >= 2 * len(T) / 3),
+                       f"{n_robust} of {len(T)} rows robust ({n_robust / len(T):.1%}), bar 66.7 %",
+                       {"n_robust": n_robust, "n_rows": int(len(T)), "threshold_fraction": 2 / 3}),
+            # P2 names the significant-only reading nowhere, and under it every parameter returns 0, so the
+            # comparison it asks for is empty there.  It is read on the plain counts, and said to be.
+            Prediction("P2", "the GARCH set moves the most rows",
+                       "of the six it produces the largest number of level-dependent verdicts",
+                       verdict_of(top == ["garch_set"]),
+                       f"plain reading {dict(plain.astype(int))}; largest: {top}. Under the "
+                       f"significant-only reading every parameter returns "
+                       f"{sorted(set(sig.astype(int)))}, so the comparison is empty there",
+                       {"by_parameter_plain": {k: int(v) for k, v in plain.items()},
+                        "by_parameter_significant_only": {k: int(v) for k, v in sig.items()},
+                        "largest_plain": top}),
+            Prediction("P3", "the plain reading inflates level-dependence",
+                       "it returns more level-dependent verdicts than the significant-only reading on at "
+                       "least three of the six parameters", verdict_of(n_more >= 3),
+                       f"plain exceeds significant-only on {n_more} of {len(plain)} parameters",
+                       {"n_parameters_higher_plain": n_more, "n_parameters": int(len(plain)),
+                        "threshold": 3}),
+            Prediction("P4", "ISFJ's worsening under memory is robust everywhere",
+                       "the conclusion holds its sign at all 12 levels in at least five of the six models",
+                       verdict_of(n_models_hold >= 5),
+                       f"{n_models_hold} of {len(by_model)} models hold the sign at every level; "
+                       f"{int((~isfj['level_dependent_plain']).sum())} of {len(isfj)} ISFJ band-MAS rows",
+                       {"models_holding": n_models_hold, "models": int(len(by_model)),
+                        "rows_holding": int((~isfj["level_dependent_plain"]).sum()),
+                        "rows": int(len(isfj)), "threshold": 5}),
+        ], OUT)
     json.dump(summary, open(os.path.join(OUT, "summary.json"), "w", encoding="utf-8"), indent=1)
     print("\n" + json.dumps(summary, indent=1), flush=True)
     print(f"\nwritten -> {OUT}", flush=True)

@@ -34,6 +34,8 @@ import time
 
 import pandas as pd
 
+from tools.phase9.e9_5_predictions import UNEVALUATED, Prediction, verdict_of
+from tools.phase9.e9_5_predictions import write as write_predictions
 from tools.stats_v2 import run_stats_v21, scenario_cell
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -138,6 +140,34 @@ def main() -> int:
             "max_zero_trade_share": float(pre["zero_trade_share"].max()),
             "n_score_errors": int(pre["score_errors"].sum()),
         }
+
+    # Section 4's four.  Three of them read the per-STEP series and `per_run.csv` is one row per run, so
+    # they are recorded `unevaluated` with the reason rather than approximated by something the frame
+    # happens to carry -- an approximated prediction that holds is worse than none.
+    rows = [v for v in summary["models"].values() if "isfj_band_mas_cells" in v]
+    up = sum(1 for v in rows if v["isfj_band_mas_cells"]
+             and v["isfj_band_mas_rises_under_memory"] == v["isfj_band_mas_cells"])
+    per_step = ("reads the per-STEP run series; per_run.csv is one row per run and carries no cash share. "
+                "The runs are on the cluster and in the archived tarballs")
+    summary["predictions"] = write_predictions("E3", [
+        Prediction("P1", "the persona share dominates the directive share",
+                   "the persona share is the larger of the two", UNEVALUATED,
+                   f"salience shares: {per_step}"),
+        Prediction("P2", "the swapped mandate moves behaviour toward the text, not the label",
+                   "the swapped arm tracks the text", UNEVALUATED, f"salience shares: {per_step}"),
+        Prediction("P3", "ISFJ worsens under memory at common start too",
+                   "its band-MAS rises under memory in at least five of the six models",
+                   verdict_of(up >= 5),
+                   f"rises in every cell in {up} of {len(rows)} models; "
+                   f"{sum(v['isfj_band_mas_rises_under_memory'] for v in rows)} of "
+                   f"{sum(v['isfj_band_mas_cells'] for v in rows)} cells positive",
+                   {"models_rising_everywhere": up, "models": len(rows), "threshold": 5,
+                    "cells_positive": sum(v["isfj_band_mas_rises_under_memory"] for v in rows),
+                    "cells": sum(v["isfj_band_mas_cells"] for v in rows)}),
+        Prediction("P4", "the persona side of the day-1 gate separates poorly",
+                   "macro one-versus-rest AUC of the day-1 cash share", UNEVALUATED,
+                   f"day-1 cash share: {per_step}"),
+    ], OUT)
 
     json.dump(summary, open(os.path.join(OUT, "summary.json"), "w", encoding="utf-8"), indent=1)
     print(f"\nwritten -> {OUT}")

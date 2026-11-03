@@ -138,6 +138,40 @@ every model but Llama 3.1 70B at 6.2 %.
 
 **Score errors.** 0 in all 5,400 runs.
 
+## The four registered predictions (§4)
+
+§4 registers four predictions. Each is descriptive, outside every BH family, and governed by one sentence:
+*"A wrong prediction is reported as wrong."* Until 3 Nov 2026 **not one of them had been computed** --
+`e9_5_e2_analyse.py` evaluated none, and because the absorption and contrast tables held the material a verdict
+could always be read off by hand. That is exactly how a wrong prediction goes unreported: nothing fails, because
+nothing is computed. Two of the four are wrong.
+
+| | prediction | bar | verdict | what the data give |
+|---|---|---|---|---|
+| P1 | the directive placebo absorbs less than 30 % of the mandate effect | median A < 0.30 | **holds** | median A = **-0.219** over 26 admitted cells |
+| P2 | the declarative placebo absorbs least, the wrapper sits between | A(decl) <= A(wrapper) <= A(dir) | **FAILS** | -0.044 <= -0.051 <= -0.219 is false; the registered order is **reversed** |
+| P3 | ISFJ's band-MAS rises under `placebo_directive` | in at least four of the six models | **FAILS** | rises in **0** of the five readable models; **1 of 10** cells positive |
+| P4 | Gemma 4 31B keeps its ENTJ sign | its ENTJ band-MAS rises | **holds** | +0.017 and +0.023 |
+
+Llama 3.1 8B is out of P3's denominator under deviation 1, so five models were readable and the bar of four was
+still reachable. It was not reached by any margin: the contrast is **negative in nine of the ten readable cells**,
+the single positive one being OLMo's ENTJ crash cell at +0.0053.
+
+**Both failures point the same way, and it is the direction the headline already argues.** P2 encoded additivity --
+its rationale is that "each arm adds one more of the three ingredients", so absorption should climb across the
+three. It does the reverse: the arm carrying the most ingredients absorbs the **least**. Imperative force without
+content does not partially substitute for the mandate; it moves behaviour away from it. P3 encoded position: stage 1
+raised ISFJ's band-MAS under memory in all nine open-weight models measured, so ISFJ was expected to be the persona
+most sensitive to anything at the recency slot, and the test was whether irrelevant imperative text would do it too.
+It does the opposite.
+
+So the two predictions that failed are the two that encoded **form and position** as the mechanism, and their
+failure removes a competing explanation rather than damaging the content account. That is a better outcome for the
+paper than either holding would have been -- but it is reported here as a failure, in the terms §4 set, and not
+rewritten after the fact into a prediction that succeeded.
+
+Verdicts, bars and the numbers behind them are in `stats_e2_causal/predictions.csv`.
+
 ## What this does and does not settle
 
 It settles the framing question E2 was built for: the headline is **content attribution**. A content-free block of

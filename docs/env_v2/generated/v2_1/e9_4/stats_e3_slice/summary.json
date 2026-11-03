@@ -105,5 +105,39 @@
   "P2",
   "P4"
  ],
- "generated_utc": "2026-11-03T11:00:52Z"
+ "generated_utc": "2026-11-03T17:02:26Z",
+ "predictions": [
+  {
+   "experiment": "E3",
+   "prediction": "P1",
+   "verdict": "unevaluated",
+   "bar": "the persona share is the larger of the two",
+   "evidence": "salience shares: reads the per-STEP run series; per_run.csv is one row per run and carries no cash share. The runs are on the cluster and in the archived tarballs",
+   "stat": "{}"
+  },
+  {
+   "experiment": "E3",
+   "prediction": "P2",
+   "verdict": "unevaluated",
+   "bar": "the swapped arm tracks the text",
+   "evidence": "salience shares: reads the per-STEP run series; per_run.csv is one row per run and carries no cash share. The runs are on the cluster and in the archived tarballs",
+   "stat": "{}"
+  },
+  {
+   "experiment": "E3",
+   "prediction": "P3",
+   "verdict": "holds",
+   "bar": "its band-MAS rises under memory in at least five of the six models",
+   "evidence": "rises in every cell in 5 of 6 models; 20 of 24 cells positive",
+   "stat": "{\"cells\": 24, \"cells_positive\": 20, \"models\": 6, \"models_rising_everywhere\": 5, \"threshold\": 5}"
+  },
+  {
+   "experiment": "E3",
+   "prediction": "P4",
+   "verdict": "unevaluated",
+   "bar": "macro one-versus-rest AUC of the day-1 cash share",
+   "evidence": "day-1 cash share: reads the per-STEP run series; per_run.csv is one row per run and carries no cash share. The runs are on the cluster and in the archived tarballs",
+   "stat": "{}"
+  }
+ ]
 }
