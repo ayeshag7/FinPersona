@@ -428,16 +428,27 @@ def family_table(tests: pd.DataFrame) -> pd.DataFrame:
     return t
 
 
-def run_stats_v21(per_run: pd.DataFrame, out_prefix: str, n_boot: int = 1999, seed: int = 0) -> Dict[str, pd.DataFrame]:
+def run_stats_v21(per_run: pd.DataFrame, out_prefix: str, n_boot: int = 1999, seed: int = 0,
+                  families: Optional[Dict[str, List[tuple]]] = None) -> Dict[str, pd.DataFrame]:
     """The v2.1 statistics track: every registered contrast present in the table, per persona x scenario cell x metric,
     with its two-way cluster-bootstrap interval and p, Cliff's delta beside, BH within its question family, BY across
     all confirmatory (tier C) families and separately across the secondary ones, and the decision rule the parameter
     file names for this grid's number of confirmatory families.  THE FAMILY SIZE IS WRITTEN BESIDE EVERY q-VALUE
-    (`test_bh_family_size_logged`)."""
+    (`test_bh_family_size_logged`).
+
+    `families` overrides `question_families()` for an experiment whose registered family is not in that dict.  It
+    exists because the dict is shared and fixed, and two stage-2 experiments register contrasts it does not hold:
+    E3's `swapped - static` is absent (the dict offers `swapped - memory`, a different question), and neither of
+    E4's two Track A - Track B contrasts is there.  Left to the dict, E3 yields two tier-C families and the rule
+    flips to `by_across`; **E4 yields one family under `bh_within` while computing `memory - static` within Track A
+    -- the right-looking rule on the wrong question.**  Passing the family the experiment registered leaves the
+    estimator, the bootstrap, the BH step and the rule logic untouched and changes only which contrasts are asked
+    for.  The default is `None`, so every existing caller behaves exactly as before.
+    """
     rows = []
     personas = [p for p in sorted(per_run["Persona"].astype(str).unique()) if p not in NO_PERSONA]
     tiers = {"C": [m for m in TIER_C if m in per_run.columns], "S": [m for m in TIER_S if m in per_run.columns]}
-    for q, pairs in question_families().items():
+    for q, pairs in (families or question_families()).items():
         for arm, ref in pairs:
             if arm not in set(per_run["Arm"]) or ref not in set(per_run["Arm"]):
                 continue

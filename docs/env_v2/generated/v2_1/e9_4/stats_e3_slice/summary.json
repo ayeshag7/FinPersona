@@ -1,0 +1,109 @@
+{
+ "models": {
+  "vllm/allenai/olmo-3.1-32b-instruct|default": {
+   "n_confirmatory_tests": 72,
+   "m_family": [
+    72
+   ],
+   "decision_rule": "bh_within",
+   "n_claims": 48,
+   "isfj_band_mas_cells": 4,
+   "isfj_band_mas_rises_under_memory": 4,
+   "isfj_band_mas_rises_and_claimed": 4,
+   "max_fallback_share": 0.0,
+   "max_zero_trade_share": 0.0,
+   "n_score_errors": 0
+  },
+  "vllm/google/gemma-4-31b-it|default": {
+   "n_confirmatory_tests": 72,
+   "m_family": [
+    72
+   ],
+   "decision_rule": "bh_within",
+   "n_claims": 59,
+   "isfj_band_mas_cells": 4,
+   "isfj_band_mas_rises_under_memory": 4,
+   "isfj_band_mas_rises_and_claimed": 4,
+   "max_fallback_share": 0.035,
+   "max_zero_trade_share": 0.0,
+   "n_score_errors": 0
+  },
+  "vllm/google/gemma-4-e4b-it|default": {
+   "n_confirmatory_tests": 72,
+   "m_family": [
+    72
+   ],
+   "decision_rule": "bh_within",
+   "n_claims": 36,
+   "isfj_band_mas_cells": 4,
+   "isfj_band_mas_rises_under_memory": 0,
+   "isfj_band_mas_rises_and_claimed": 0,
+   "max_fallback_share": 0.075,
+   "max_zero_trade_share": 0.0,
+   "n_score_errors": 0
+  },
+  "vllm/meta-llama/llama-3.1-8b-instruct|default": {
+   "n_confirmatory_tests": 72,
+   "m_family": [
+    72
+   ],
+   "decision_rule": "bh_within",
+   "n_claims": 54,
+   "isfj_band_mas_cells": 4,
+   "isfj_band_mas_rises_under_memory": 4,
+   "isfj_band_mas_rises_and_claimed": 4,
+   "max_fallback_share": 0.005,
+   "max_zero_trade_share": 0.0,
+   "n_score_errors": 0
+  },
+  "vllm/microsoft/phi-4|default": {
+   "n_confirmatory_tests": 72,
+   "m_family": [
+    72
+   ],
+   "decision_rule": "bh_within",
+   "n_claims": 47,
+   "isfj_band_mas_cells": 4,
+   "isfj_band_mas_rises_under_memory": 4,
+   "isfj_band_mas_rises_and_claimed": 4,
+   "max_fallback_share": 0.0,
+   "max_zero_trade_share": 0.0,
+   "n_score_errors": 0
+  },
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default": {
+   "n_confirmatory_tests": 72,
+   "m_family": [
+    72
+   ],
+   "decision_rule": "bh_within",
+   "n_claims": 47,
+   "isfj_band_mas_cells": 4,
+   "isfj_band_mas_rises_under_memory": 4,
+   "isfj_band_mas_rises_and_claimed": 4,
+   "max_fallback_share": 0.0,
+   "max_zero_trade_share": 0.0,
+   "n_score_errors": 0
+  }
+ },
+ "family": {
+  "E3": [
+   [
+    "memory",
+    "static"
+   ],
+   [
+    "swapped",
+    "static"
+   ]
+  ]
+ },
+ "not_computed_here": [
+  "salience shares (per-step)",
+  "day-1 gate AUC (per-step)",
+  "static-arm mean cash share (per-step)",
+  "P1",
+  "P2",
+  "P4"
+ ],
+ "generated_utc": "2026-11-03T11:00:52Z"
+}

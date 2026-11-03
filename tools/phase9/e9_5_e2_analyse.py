@@ -201,6 +201,21 @@ def main() -> int:
             withdrawn = int((tc["claim"] & ~keep).sum())
             tc = tc.assign(claim=tc["claim"] & keep)
 
+            # run_stats_v21 has already written the contrasts file with the unrestricted `claim`, and a reader
+            # who opens it alone would count 13 claims section 8 withdraws.  Rewrite it with the verdict beside
+            # every tier-C row and `claim` as the rules leave it, keeping the unrestricted value in its own
+            # column so nothing is lost.
+            cpath = os.path.join(OUT, f"{_slug(model)}_v21_contrasts.csv")
+            allc = pd.read_csv(cpath)
+            vmap = {tuple(r[:4]): r[4] for r in
+                    dev[["contrast", "Persona", "Scenario_Cell", "metric", "verdict"]].values}
+            key = list(zip(allc["contrast"], allc["Persona"], allc["Scenario_Cell"], allc["metric"]))
+            allc["deviation_verdict"] = [vmap.get(k, "") for k in key]
+            allc["claim_before_deviation"] = allc["claim"]
+            allc["claim"] = [bool(c) and vmap.get(k, "read") == "read"
+                             for c, k in zip(allc["claim"], key)]
+            allc.to_csv(cpath, index=False)
+
         claims = tc[tc["claim"]]
         print(f"  confirmatory: {len(tc)} tests, families={n_fam}, m_family={m_fam}, rule={rule}")
         if dev is not None:
