@@ -1,0 +1,214 @@
+{
+ "registered": "PREREG_PHASE_9_STAGE2_E6_PILOT.md 1; HEADLINE_MODEL_SELECTION.md 3.7, 6 (the three unread windows)",
+ "served_max_len": 65536,
+ "windows": {
+  "vllm/google/gemma-4-e4b-it|default": {
+   "native_window": 131072,
+   "hf_id": "google/gemma-4-E4B-it",
+   "revision": "ee0ef6023621cff504d758262d4e04895a5af4a2",
+   "field": "text_config.max_position_embeddings",
+   "source": "config.json at the pinned revision (Hub, read 4 Nov 2026); sliding_window 512 on the local layers",
+   "checked_against_file": false,
+   "cache_value": null,
+   "path": "C:\\Users\\WM Laptop\\.cache\\huggingface\\hub\\models--google--gemma-4-E4B-it\\snapshots\\ee0ef6023621cff504d758262d4e04895a5af4a2\\config.json"
+  },
+  "vllm/google/gemma-4-31b-it|default": {
+   "native_window": 262144,
+   "hf_id": "google/gemma-4-31B-it",
+   "revision": "842da3794eaa0b77d5f08bae87a17459d91ff475",
+   "field": "text_config.max_position_embeddings",
+   "source": "config.json at the pinned revision (Hub, read 4 Nov 2026); sliding_window 1024 on the local layers",
+   "checked_against_file": false,
+   "cache_value": null,
+   "path": "C:\\Users\\WM Laptop\\.cache\\huggingface\\hub\\models--google--gemma-4-31B-it\\snapshots\\842da3794eaa0b77d5f08bae87a17459d91ff475\\config.json"
+  },
+  "vllm/allenai/olmo-3.1-32b-instruct|default": {
+   "native_window": 65536,
+   "hf_id": "allenai/Olmo-3.1-32B-Instruct",
+   "revision": "ac0587e4a7744a551c059d8cd17ba220bc940dae",
+   "field": "max_position_embeddings",
+   "source": "config.json at the pinned revision (Hub, read 4 Nov 2026); YaRN factor 8 over 8,192 original positions; sliding_window 4,096 on three layers in four",
+   "checked_against_file": false,
+   "cache_value": null,
+   "path": "C:\\Users\\WM Laptop\\.cache\\huggingface\\hub\\models--allenai--Olmo-3.1-32B-Instruct\\snapshots\\ac0587e4a7744a551c059d8cd17ba220bc940dae\\config.json"
+  },
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default": {
+   "native_window": 262144,
+   "hf_id": "mistralai/Ministral-3-14B-Instruct-2512-BF16",
+   "revision": "3cea74c1ebaf5ce5f5a2553de470e2ceab825142",
+   "field": "text_config.max_position_embeddings",
+   "source": "config.json at the pinned revision (Hub, read 4 Nov 2026); YaRN factor 16 over 16,384 original positions",
+   "checked_against_file": false,
+   "cache_value": null,
+   "path": "C:\\Users\\WM Laptop\\.cache\\huggingface\\hub\\models--mistralai--Ministral-3-14B-Instruct-2512-BF16\\snapshots\\3cea74c1ebaf5ce5f5a2553de470e2ceab825142\\config.json"
+  },
+  "vllm/meta-llama/llama-3.1-8b-instruct|default": {
+   "native_window": 131072,
+   "hf_id": "meta-llama/Llama-3.1-8B-Instruct",
+   "revision": "0e9e39f249a16976918f6564b8830bc894c89659",
+   "field": "model_max_length",
+   "source": "Meta's tokenizer_config.json (HEADLINE_MODEL_SELECTION.md 3.7, checked against the file)",
+   "checked_against_file": false,
+   "cache_value": null,
+   "path": "C:\\Users\\WM Laptop\\.cache\\huggingface\\hub\\models--meta-llama--Llama-3.1-8B-Instruct\\snapshots\\0e9e39f249a16976918f6564b8830bc894c89659\\config.json"
+  },
+  "vllm/microsoft/phi-4|default": {
+   "native_window": 16384,
+   "hf_id": "microsoft/phi-4",
+   "revision": "2db69c1c3e91a05d2c64a3185acfbaf36f744e25",
+   "field": "max_position_embeddings",
+   "source": "roster entry; served at 16,384 (HEADLINE_MODEL_SELECTION.md 3.7)",
+   "checked_against_file": false,
+   "cache_value": null,
+   "path": "C:\\Users\\WM Laptop\\.cache\\huggingface\\hub\\models--microsoft--phi-4\\snapshots\\2db69c1c3e91a05d2c64a3185acfbaf36f744e25\\config.json"
+  }
+ },
+ "kv_tokens_source": {
+  "vllm/google/gemma-4-31b-it|default": "HEADLINE_MODEL_SELECTION.md 3.7",
+  "vllm/google/gemma-4-e4b-it|default": "HEADLINE_MODEL_SELECTION.md 3.7",
+  "vllm/openai/gpt-oss-20b|default": "HEADLINE_MODEL_SELECTION.md 3.7",
+  "vllm/meta/muse-glimmer-30b|default": "HEADLINE_MODEL_SELECTION.md 3.7",
+  "vllm/allenai/olmo-3.1-32b-instruct|default": "HEADLINE_MODEL_SELECTION.md 3.7",
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default": "HEADLINE_MODEL_SELECTION.md 3.7",
+  "vllm/meta-llama/llama-3.1-8b-instruct|default": "HEADLINE_MODEL_SELECTION.md 3.7",
+  "vllm/meta-llama/llama-3.1-70b-instruct|default": "HEADLINE_MODEL_SELECTION.md 3.7",
+  "vllm/microsoft/phi-4|default": "HEADLINE_MODEL_SELECTION.md 3.7"
+ },
+ "note_committed_csv": "selection/context_e6.csv carries no kv_tokens and a rho of 0.88-0.93 where the document's table has the KV sizes and rho 1.01-1.06; the KV sizes are taken from the document (KV_TOKENS_DOC) and the document's full-level needs are checked beside the CSV's (fits_window_doc_3_7)",
+ "r_context": [
+  {
+   "Model": "vllm/google/gemma-4-31b-it|default",
+   "label": "Gemma 4 31B",
+   "native_window": 262144.0,
+   "R_context_selection": "conditional",
+   "R_context": "met",
+   "R_effect": true,
+   "full_need_tokens": 57548.1,
+   "full_need_doc_3_7": 65500.0,
+   "fits_window_doc_3_7": true,
+   "full_reply_room_at_served": 8140.9,
+   "full_max_concurrent": 2
+  },
+  {
+   "Model": "vllm/google/gemma-4-e4b-it|default",
+   "label": "Gemma 4 E4B",
+   "native_window": 131072.0,
+   "R_context_selection": "conditional",
+   "R_context": "met",
+   "R_effect": true,
+   "full_need_tokens": 57693.4,
+   "full_need_doc_3_7": 65700.0,
+   "fits_window_doc_3_7": true,
+   "full_reply_room_at_served": 8222.6,
+   "full_max_concurrent": 46
+  },
+  {
+   "Model": "vllm/openai/gpt-oss-20b|default",
+   "label": "gpt-oss-20b",
+   "native_window": null,
+   "R_context_selection": "conditional",
+   "R_context": "conditional",
+   "R_effect": false,
+   "full_need_tokens": 87779.8,
+   "full_need_doc_3_7": 95200.0,
+   "fits_window_doc_3_7": null,
+   "full_reply_room_at_served": null,
+   "full_max_concurrent": 35
+  },
+  {
+   "Model": "vllm/meta/muse-glimmer-30b|default",
+   "label": "Muse Glimmer 30B",
+   "native_window": null,
+   "R_context_selection": "conditional",
+   "R_context": "conditional",
+   "R_effect": true,
+   "full_need_tokens": 86768.2,
+   "full_need_doc_3_7": 93900.0,
+   "fits_window_doc_3_7": null,
+   "full_reply_room_at_served": null,
+   "full_max_concurrent": 23
+  },
+  {
+   "Model": "vllm/allenai/olmo-3.1-32b-instruct|default",
+   "label": "OLMo 3.1 32B",
+   "native_window": 65536.0,
+   "R_context_selection": "conditional",
+   "R_context": "met",
+   "R_effect": true,
+   "full_need_tokens": 57035.6,
+   "full_need_doc_3_7": 64500.0,
+   "fits_window_doc_3_7": true,
+   "full_reply_room_at_served": 10211.4,
+   "full_max_concurrent": 6
+  },
+  {
+   "Model": "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+   "label": "Ministral 3 14B",
+   "native_window": 262144.0,
+   "R_context_selection": "conditional",
+   "R_context": "met",
+   "R_effect": true,
+   "full_need_tokens": 58660.9,
+   "full_need_doc_3_7": 66200.0,
+   "fits_window_doc_3_7": true,
+   "full_reply_room_at_served": 8125.1,
+   "full_max_concurrent": 14
+  },
+  {
+   "Model": "vllm/meta-llama/llama-3.1-8b-instruct|default",
+   "label": "Llama 3.1 8B",
+   "native_window": 131072.0,
+   "R_context_selection": "conditional",
+   "R_context": "met",
+   "R_effect": true,
+   "full_need_tokens": 87086.8,
+   "full_need_doc_3_7": 94500.0,
+   "fits_window_doc_3_7": true,
+   "full_reply_room_at_served": 9372.2,
+   "full_max_concurrent": 13
+  },
+  {
+   "Model": "vllm/meta-llama/llama-3.1-70b-instruct|default",
+   "label": "Llama 3.1 70B",
+   "native_window": null,
+   "R_context_selection": "conditional",
+   "R_context": "conditional",
+   "R_effect": true,
+   "full_need_tokens": 56595.4,
+   "full_need_doc_3_7": 63600.0,
+   "fits_window_doc_3_7": null,
+   "full_reply_room_at_served": null,
+   "full_max_concurrent": 1
+  },
+  {
+   "Model": "vllm/microsoft/phi-4|default",
+   "label": "Phi-4",
+   "native_window": 16384.0,
+   "R_context_selection": "not met",
+   "R_context": "not met",
+   "R_effect": true,
+   "full_need_tokens": 55956.6,
+   "full_need_doc_3_7": 63400.0,
+   "fits_window_doc_3_7": false,
+   "full_reply_room_at_served": -38843.6,
+   "full_max_concurrent": 12
+  }
+ ],
+ "resolved_from_conditional": [
+  "vllm/google/gemma-4-31b-it|default",
+  "vllm/google/gemma-4-e4b-it|default",
+  "vllm/allenai/olmo-3.1-32b-instruct|default",
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+  "vllm/meta-llama/llama-3.1-8b-instruct|default"
+ ],
+ "e6_roster": [
+  "vllm/google/gemma-4-e4b-it|default",
+  "vllm/allenai/olmo-3.1-32b-instruct|default",
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+  "vllm/meta-llama/llama-3.1-8b-instruct|default"
+ ],
+ "e6_roster_n": 4,
+ "plan_e6_models": 4,
+ "rule": "e9_4_select.EXPERIMENT_REQ['E6'] = (R_effect, R_context) over e9_roster.CORE_OPEN",
+ "generated_utc": "2026-11-04T14:45:46Z"
+}

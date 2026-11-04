@@ -30,6 +30,11 @@ communicated-target mirror of the headline grid runs last.
             on `e9_roster.CAUSAL_OPEN` -> manifest_ocean_open.json, subdir "stage2_ocean".  No NONE cells: the
             reference level is E3's trader runs, already on disk on the same six models, seeds and paths.  Its own
             stage, not part of `manifest_stage2`, so the four E2-E5 manifests are never touched by building it.
+`manifest_e6_pilot`  E6's stateful sizing pilot (PREREG_PHASE_9_STAGE2_E6_PILOT.md): the context-length factor's eight
+            arms (experiments/arms_v2.CONTEXT_LEVELS) x the headline's 12 cells x the pilot seeds 5001.. that
+            `e9_4_context_pilot --stages shape` chose, on the models `--stages windows` assigns to E6
+            -> manifest_context_pilot.json, subdir "pilot_context", kind "pilot".  verify, status and score read it
+            under the key `context_pilot`.
 `verify`    For every planned cell with a run on disk: the run's `Prompt_Hash` equals the manifest's for that
             (configuration, persona, arm), `Env_Code_Hash` equals the manifest's, the harness and placebo versions are
             v2_1, `Provider_Options` names the cell's configuration, and the scenario, seed and start design are the
@@ -87,11 +92,20 @@ TRACK_A_OPEN_MANIFEST = "manifest_track_a_open.json"                        # E4
 SENSITIVITY_MANIFEST = "manifest_sensitivity_open.json"                     # E5
 OCEAN_MANIFEST = "manifest_ocean_open.json"                                 # E7
 OCEAN_PERSONAS = ("O1_conservative", "O2_aggressive")                       # E7: the OCEAN vocabulary pair
+# E6's stateful sizing pilot (PREREG_PHASE_9_STAGE2_E6_PILOT.md): the context-length factor's eight arms on the
+# headline's twelve cells at the pilot seeds the shape rule gives (e9_4/context_pilot/shape.json), on the four models
+# whose window and KV cache hold every level now that the three unread windows are read (context_pilot/windows.json).
+# Seeds 5001 upward: disjoint from E8.5's 2001-2008, E9.2's 3001-3016 and the grid's 10001-10122, so no pilot run can
+# be folded into E6's confirmatory set by accident.  Subdir "pilot_context", kind "pilot", setting "default".
+CONTEXT_PILOT_MANIFEST = "manifest_context_pilot.json"
+CONTEXT_PILOT_SEED0 = 5001
+CONTEXT_PILOT_SUBDIR = "pilot_context"
+CONTEXT_PILOT_SHAPE = os.path.join(OUT, "context_pilot", "shape.json")
 STAGE2_MANIFESTS = {"causal_open": CAUSAL_MANIFEST, "slice_open": SLICE_OPEN_MANIFEST,
                     "track_a_open": TRACK_A_OPEN_MANIFEST, "sensitivity_open": SENSITIVITY_MANIFEST,
                     "ocean_open": OCEAN_MANIFEST}
 ALL_MANIFESTS = {**MANIFESTS, "headline_open": OPEN_MANIFEST, "headline_open_b2": OPEN_B2_MANIFEST,
-                 **STAGE2_MANIFESTS}
+                 **STAGE2_MANIFESTS, "context_pilot": CONTEXT_PILOT_MANIFEST}
 
 
 def seeds_from_sizing() -> tuple:
@@ -160,6 +174,20 @@ def cells_for(kind: str, seeds) -> list:
                     for s in seeds:
                         out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0,
                                     "setting": "common_start", "factors": {"start_design": "common"}})
+        return out
+    if kind == "context_pilot":
+        # E6's sizing pilot: the context-length factor's levels {5, 20, 50, full}, each its static and memory arm
+        # (experiments/arms_v2.CONTEXT_LEVELS), on the headline's twelve persona x scenario cells at the default start
+        # -- the cell structure the stage-1 noise rule reads (HEADLINE_MODEL_SELECTION.md 3.5: the largest cell's
+        # sigma_d), so that the pilot's sigma_d is the quantity E6's seed count is derived from.  No summary arm: it is
+        # not a level of the factor (PREREG_PHASE_8.md 2), and its matched control is the 5 level itself.
+        from experiments.arms_v2 import CONTEXT_LEVELS
+        for level, arms in CONTEXT_LEVELS.items():
+            for a in arms:
+                for p in PERSONAS:
+                    for sc in SCENARIOS:
+                        for s in seeds:
+                            out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0, "setting": "default"})
         return out
     for p in PERSONAS:
         for a in SLICE_ARMS:
@@ -296,12 +324,15 @@ def sensitivity_cells(seeds) -> list:
     return out
 
 
-def _write_stage2(kind: str, fname: str, configs, cells, seeds, registered: str) -> None:
+def _write_stage2(kind: str, fname: str, configs, cells, seeds, registered: str, name: str = "", subdir: str = "",
+                  manifest_kind: str = "grid") -> None:
     """One stage-2 manifest.  Its own subdir, so its checkpoints and runs never mix with the headline's or another
     stage's; its fingerprint is `e9_runner.fingerprint`, as every other manifest's is, and a manifest already on disk
-    is checked rather than rewritten."""
+    is checked rather than rewritten.  `name`, `subdir` and `manifest_kind` default to the stage-2 convention; E6's
+    pilot names its own, so a pilot run never sits in a `stage2_*` tree."""
     from tools.phase9 import e9_runner as R
-    m = {"name": f"e9_4_stage2_{kind}", "kind": "grid", "subdir": f"stage2_{kind}", "ledger_dir": "e9_4",
+    m = {"name": name or f"e9_4_stage2_{kind}", "kind": manifest_kind, "subdir": subdir or f"stage2_{kind}",
+         "ledger_dir": "e9_4",
          "T": 200, "configs": list(configs), "cells": cells, "seeds": list(seeds), "seeds_per_cell": len(seeds),
          "registered": registered, "written_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
     path = os.path.join(OUT, fname)
@@ -350,6 +381,33 @@ def stage_manifest_e7():
                   "GRID_EXPERIMENT_PLAN.md 3 (E7); PREREG_PHASE_9_STAGE2_E7.md; HEADLINE_MODEL_SELECTION.md 4.3 "
                   "(e9_4/selection) extended from the rule's three to the six E3 ran, so the reference level and the "
                   "MBTI side exist on every E7 model; DECISION_LOG P8-14 (NONE only; O3 cannot run in v2)")
+
+
+def context_pilot_configs() -> tuple:
+    """The pilot's roster: the models the selection assigns to E6 once the unread windows are read
+    (`e9_4/context_pilot/windows.json`, written by `e9_4_context_pilot --stages windows`): every core model that meets
+    R_effect and whose native window and one B200's KV cache hold the full level.  The rule's own list, not a choice."""
+    from tools.phase9 import e9_4_context_pilot as CP
+    w = CP.load_windows()
+    return tuple(w["e6_roster"])
+
+
+def stage_manifest_e6_pilot():
+    """E6's stateful sizing pilot (PREREG_PHASE_9_STAGE2_E6_PILOT.md; GRID_EXPERIMENT_PLAN.md 2's gate and 4's M3).
+    Its own function for the reason `stage_manifest_e7` has one: the four E2-E5 manifests record a harness that has
+    since moved, and a stage that writes this manifest must not need them to re-verify."""
+    if not os.path.exists(CONTEXT_PILOT_SHAPE):
+        raise SystemExit(f"{os.path.relpath(CONTEXT_PILOT_SHAPE, ROOT)} does not exist: run "
+                         f"`python -m tools.phase9.e9_4_context_pilot --stages shape,windows` first")
+    shape = json.load(open(CONTEXT_PILOT_SHAPE, encoding="utf-8"))
+    sp = int(shape["chosen_seeds_per_cell"])
+    seeds = list(range(CONTEXT_PILOT_SEED0, CONTEXT_PILOT_SEED0 + sp))
+    _write_stage2("context_pilot", CONTEXT_PILOT_MANIFEST, context_pilot_configs(), cells_for("context_pilot", seeds),
+                  seeds, "PREREG_PHASE_9_STAGE2_E6_PILOT.md; GRID_EXPERIMENT_PLAN.md 2 (the stateful sizing pilot that "
+                  "gates E6) and 3 (E6); PREREG_PHASE_9.md 2's pilot rule applied to the context-length factor; "
+                  "HEADLINE_MODEL_SELECTION.md 4.3 / 6 (E6's roster once the three unread windows are read, "
+                  "context_pilot/windows.json)",
+                  name="e9_4_context_pilot", subdir=CONTEXT_PILOT_SUBDIR, manifest_kind="pilot")
 
 
 def gen_config_collisions(gen_hashes: dict) -> list:
@@ -567,6 +625,8 @@ def main(argv=None):
             stage_manifest_stage2()
         elif st == "manifest_e7":
             stage_manifest_e7()
+        elif st == "manifest_e6_pilot":
+            stage_manifest_e6_pilot()
         elif st == "verify":
             rc = stage_verify([x.strip() for x in a.only.split(",") if x.strip()]) or rc
         elif st == "status":

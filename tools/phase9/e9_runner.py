@@ -465,15 +465,24 @@ def fingerprint(manifest: dict) -> dict:
             if pf:
                 probe["factors"] = pf
             cfg = cfg_for(mc, probe, manifest["subdir"])
-            if cfg.context_mode != "stateless":
-                continue
-            ag = V2Agent(persona=cfg.persona, model_name=cfg.model_name, mandate_block=cfg.mandate_block,
-                         mandate_persona=cfg.mandate_persona, wording=cfg.wording, track=cfg.track,
-                         action_interface=cfg.action_interface, n_assets=cfg.n_assets, disclose_horizon=cfg.disclose_horizon,
-                         T=cfg.T, cost_visible=cfg.cost_visible, cost_bp=cfg.cost_bp, objective=cfg.objective,
-                         mandate_in_system=cfg.mandate_in_system, temperature=cfg.temperature,
-                         liquidity_condition=cfg.liquidity_condition, llm=RunnableLambda(lambda m: None),
-                         placebo_version=cfg.placebo_version)
+            agent_kw = dict(persona=cfg.persona, model_name=cfg.model_name, mandate_block=cfg.mandate_block,
+                            mandate_persona=cfg.mandate_persona, wording=cfg.wording, track=cfg.track,
+                            action_interface=cfg.action_interface, n_assets=cfg.n_assets, disclose_horizon=cfg.disclose_horizon,
+                            T=cfg.T, cost_visible=cfg.cost_visible, cost_bp=cfg.cost_bp, objective=cfg.objective,
+                            mandate_in_system=cfg.mandate_in_system, temperature=cfg.temperature,
+                            liquidity_condition=cfg.liquidity_condition, llm=RunnableLambda(lambda m: None),
+                            placebo_version=cfg.placebo_version)
+            if cfg.context_mode == "stateless":
+                ag = V2Agent(**agent_kw)
+            else:
+                # E6's pilot (PREREG_PHASE_9_STAGE2_E6_PILOT.md): a stateful cell used to be SKIPPED here, so a manifest
+                # of stateful arms would have carried no prompt hash at all and `stage_verify` would have checked
+                # nothing about its prompts.  The agent is built exactly as simulation/runner_v2.run_simulation_v2
+                # builds it, so the stored hash is the hash the run's meta.json will record.  Every manifest written
+                # before this had stateless cells only, so none of their stored hashes moves (test_v2_1_e6_pilot).
+                from agent.stateful_agent import StatefulV2Agent
+                ag = StatefulV2Agent(context_mode=cfg.context_mode, window=cfg.context_window,
+                                     token_budget=cfg.context_token_budget, harness=cfg.harness_version, **agent_kw)
             out["prompt_hash"][prompt_key(key, rep)] = agent_provenance(ag)["Prompt_Hash"]
     out["Env_Code_Hash"] = env_provenance(SyntheticMarketEnv("flat", T, 1))["Env_Code_Hash"]
     out["sources_sha256_lf"] = {rel: hashlib.sha256(open(os.path.join(ROOT, rel), "rb").read().replace(b"\r\n", b"\n")).hexdigest()
@@ -522,13 +531,32 @@ def parse_shard(shard: str) -> tuple:
     return i, n
 
 
-def stage_run(manifest_path: str, config: str, workers: int, max_runs: int = 0, shard: str = "") -> int:
+def parse_arms(arms: str, cells: list) -> frozenset:
+    """`--arms a,b` -> the arms this task runs, every one of which must be in the manifest; `""` means every arm.
+
+    E6's pilot runs one array task per (model, context level) because the levels differ in what one GPU can hold in
+    flight -- a level's two arms are a partition of the manifest as disjoint and complete as a shard's, and a task
+    restricted to them clears nothing another level's task owns."""
+    if not arms:
+        return frozenset()
+    want = frozenset(a.strip() for a in arms.split(",") if a.strip())
+    have = {c["arm"] for c in cells}
+    unknown = sorted(want - have)
+    if unknown:
+        raise SystemExit(f"--arms names arms the manifest has no cell for: {unknown}; it has {sorted(have)}")
+    return want
+
+
+def stage_run(manifest_path: str, config: str, workers: int, max_runs: int = 0, shard: str = "", arms: str = "") -> int:
     m = load_manifest(manifest_path)
     mc = RO.by_key(config)
     if mc.key not in m["configs"]:
         raise SystemExit(f"{mc.key} is not in manifest {m['name']!r}: {m['configs']}")
     verify_fingerprint(m)
     cells = m["cells"]
+    only_arms = parse_arms(arms, cells)
+    if only_arms:
+        cells = [c for c in cells if c["arm"] in only_arms]
     T_run = int(m.get("T", T))
     si, sn = parse_shard(shard)
     have = done_keys(m["subdir"], mc, cells)
@@ -545,7 +573,8 @@ def stage_run(manifest_path: str, config: str, workers: int, max_runs: int = 0, 
     if max_runs:
         pending = pending[:max_runs]
     reg = register(mc.model, workers)
-    print(f"[{m['name']}] {mc.key}: {len(cells)} runs in the manifest, {len(have)} done, {len(pending)} pending, "
+    print(f"[{m['name']}] {mc.key}: {len(cells)} runs in the manifest"
+          f"{' (arms ' + ','.join(sorted(only_arms)) + ')' if only_arms else ''}, {len(have)} done, {len(pending)} pending, "
           f"{len(abandoned)} abandoned after {MAX_ATTEMPTS} non-ok attempts; {workers} workers; "
           f"shard {si}/{sn}; started {_utc()}", flush=True)
     t0 = time.time(); n = 0; bad = 0
@@ -585,6 +614,7 @@ def main(argv=None):
     ap.add_argument("--workers", type=int, default=MAX_INFLIGHT_PER_MODEL)
     ap.add_argument("--max-runs", type=int, default=0)
     ap.add_argument("--shard", default="", help="i/n: run only the runs whose stable key-hash is i mod n (P9-22)")
+    ap.add_argument("--arms", default="", help="a,b: run only the cells of these arms (E6's pilot: one task per level)")
     a = ap.parse_args(argv)
     if a.stage == "check-clients":
         return stage_check_clients()
@@ -594,7 +624,7 @@ def main(argv=None):
         if a.workers > cap_for(a.config):
             raise SystemExit(f"REFUSED: --workers {a.workers} exceeds the team's cap of {cap_for(a.config)} per model "
                              f"(P9-1, P9-11)")
-        return stage_run(a.manifest, a.config, a.workers, a.max_runs, a.shard)
+        return stage_run(a.manifest, a.config, a.workers, a.max_runs, a.shard, a.arms)
     return stage_status(a.manifest)
 
 

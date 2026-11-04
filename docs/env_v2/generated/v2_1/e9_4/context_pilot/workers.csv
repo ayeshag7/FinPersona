@@ -1,0 +1,37 @@
+Model,label,level,context_tokens,run_max_output_median,largest_output_per_call,need_tokens,need_typical,native_window,served_len,fits_window,fits_served,reply_room_at_served,full_need_doc_3_7,fits_window_doc_3_7,kv_tokens,kv_source,max_concurrent_runs,workers_typical,workers_p99
+vllm/google/gemma-4-31b-it|default,Gemma 4 31B,5,5023.52,118.0,153.0,5176.52,5141.52,262144.0,65536.0,True,True,60512.479999999996,,,116137,HEADLINE_MODEL_SELECTION.md 3.7,22,22,22
+vllm/google/gemma-4-31b-it|default,Gemma 4 31B,20,13949.3,118.0,153.0,14102.3,14067.3,262144.0,65536.0,True,True,51586.7,,,116137,HEADLINE_MODEL_SELECTION.md 3.7,8,8,8
+vllm/google/gemma-4-31b-it|default,Gemma 4 31B,50,31932.8,118.0,153.0,32085.8,32050.8,262144.0,65536.0,True,True,33603.2,,,116137,HEADLINE_MODEL_SELECTION.md 3.7,3,3,3
+vllm/google/gemma-4-31b-it|default,Gemma 4 31B,full,57395.1,118.0,153.0,57548.1,57513.1,262144.0,65536.0,True,True,8140.9000000000015,65500.0,True,116137,HEADLINE_MODEL_SELECTION.md 3.7,2,2,2
+vllm/google/gemma-4-e4b-it|default,Gemma 4 E4B,5,5014.19,141.0,380.0,5394.19,5155.19,131072.0,65536.0,True,True,60521.81,,,2660804,HEADLINE_MODEL_SELECTION.md 3.7,493,192,192
+vllm/google/gemma-4-e4b-it|default,Gemma 4 E4B,20,13928.8,141.0,380.0,14308.8,14069.8,131072.0,65536.0,True,True,51607.2,,,2660804,HEADLINE_MODEL_SELECTION.md 3.7,185,189,185
+vllm/google/gemma-4-e4b-it|default,Gemma 4 E4B,50,32031.6,141.0,380.0,32411.6,32172.6,131072.0,65536.0,True,True,33504.4,,,2660804,HEADLINE_MODEL_SELECTION.md 3.7,82,82,82
+vllm/google/gemma-4-e4b-it|default,Gemma 4 E4B,full,57313.4,141.0,380.0,57693.4,57454.4,131072.0,65536.0,True,True,8222.599999999999,65700.0,True,2660804,HEADLINE_MODEL_SELECTION.md 3.7,46,46,46
+vllm/openai/gpt-oss-20b|default,gpt-oss-20b,5,4964.35,1360.5,31109.0,36073.3,6324.85,,,,,,,,3139385,HEADLINE_MODEL_SELECTION.md 3.7,87,192,87
+vllm/openai/gpt-oss-20b|default,gpt-oss-20b,20,13768.4,1360.5,31109.0,44877.4,15128.9,,,,,,,,3139385,HEADLINE_MODEL_SELECTION.md 3.7,69,192,69
+vllm/openai/gpt-oss-20b|default,gpt-oss-20b,50,31376.4,1360.5,31109.0,62485.4,32736.9,,,,,,,,3139385,HEADLINE_MODEL_SELECTION.md 3.7,50,95,50
+vllm/openai/gpt-oss-20b|default,gpt-oss-20b,full,56670.8,1360.5,31109.0,87779.8,58031.3,,,,,,95200.0,,3139385,HEADLINE_MODEL_SELECTION.md 3.7,35,54,35
+vllm/meta/muse-glimmer-30b|default,Muse Glimmer 30B,5,4828.52,2483.5,31157.0,35985.5,7312.02,,,,,,,,2016825,HEADLINE_MODEL_SELECTION.md 3.7,56,192,56
+vllm/meta/muse-glimmer-30b|default,Muse Glimmer 30B,20,13378.3,2483.5,31157.0,44535.3,15861.8,,,,,,,,2016825,HEADLINE_MODEL_SELECTION.md 3.7,45,127,45
+vllm/meta/muse-glimmer-30b|default,Muse Glimmer 30B,50,30502.9,2483.5,31157.0,61659.9,32986.4,,,,,,,,2016825,HEADLINE_MODEL_SELECTION.md 3.7,32,61,32
+vllm/meta/muse-glimmer-30b|default,Muse Glimmer 30B,full,55611.2,2483.5,31157.0,86768.2,58094.7,,,,,,93900.0,,2016825,HEADLINE_MODEL_SELECTION.md 3.7,23,34,23
+vllm/allenai/olmo-3.1-32b-instruct|default,OLMo 3.1 32B,5,4937.32,147.0,1711.0,6648.32,5084.32,65536.0,65536.0,True,True,60598.68,,,394123,HEADLINE_MODEL_SELECTION.md 3.7,59,77,59
+vllm/allenai/olmo-3.1-32b-instruct|default,OLMo 3.1 32B,20,14154.4,147.0,1711.0,15865.4,14301.4,65536.0,65536.0,True,True,51381.6,,,394123,HEADLINE_MODEL_SELECTION.md 3.7,24,27,24
+vllm/allenai/olmo-3.1-32b-instruct|default,OLMo 3.1 32B,50,32822.3,147.0,1711.0,34533.3,32969.3,65536.0,65536.0,True,True,32713.699999999997,,,394123,HEADLINE_MODEL_SELECTION.md 3.7,11,11,11
+vllm/allenai/olmo-3.1-32b-instruct|default,OLMo 3.1 32B,full,55324.6,147.0,1711.0,57035.6,55471.6,65536.0,65536.0,True,True,10211.400000000001,64500.0,True,394123,HEADLINE_MODEL_SELECTION.md 3.7,6,7,6
+vllm/mistralai/ministral-3-14b-instruct-2512|default,Ministral 3 14B,5,5465.59,339.0,1250.0,6715.59,5804.59,262144.0,65536.0,True,True,60070.41,,,859728,HEADLINE_MODEL_SELECTION.md 3.7,128,148,128
+vllm/mistralai/ministral-3-14b-instruct-2512|default,Ministral 3 14B,20,16324.2,339.0,1250.0,17574.2,16663.2,262144.0,65536.0,True,True,49211.8,,,859728,HEADLINE_MODEL_SELECTION.md 3.7,48,51,48
+vllm/mistralai/ministral-3-14b-instruct-2512|default,Ministral 3 14B,50,38153.2,339.0,1250.0,39403.2,38492.2,262144.0,65536.0,True,True,27382.800000000003,,,859728,HEADLINE_MODEL_SELECTION.md 3.7,21,22,21
+vllm/mistralai/ministral-3-14b-instruct-2512|default,Ministral 3 14B,full,57410.9,339.0,1250.0,58660.9,57749.9,262144.0,65536.0,True,True,8125.0999999999985,66200.0,True,859728,HEADLINE_MODEL_SELECTION.md 3.7,14,14,14
+vllm/meta-llama/llama-3.1-8b-instruct|default,Llama 3.1 8B,5,4968.78,483.0,30923.0,35891.8,5451.78,131072.0,65536.0,True,True,60567.22,,,1169904,HEADLINE_MODEL_SELECTION.md 3.7,32,192,32
+vllm/meta-llama/llama-3.1-8b-instruct|default,Llama 3.1 8B,20,13873.5,483.0,30923.0,44796.5,14356.5,131072.0,65536.0,True,True,51662.5,,,1169904,HEADLINE_MODEL_SELECTION.md 3.7,26,81,26
+vllm/meta-llama/llama-3.1-8b-instruct|default,Llama 3.1 8B,50,31682.9,483.0,30923.0,62605.9,32165.9,131072.0,65536.0,True,True,33853.1,,,1169904,HEADLINE_MODEL_SELECTION.md 3.7,18,36,18
+vllm/meta-llama/llama-3.1-8b-instruct|default,Llama 3.1 8B,full,56163.8,483.0,30923.0,87086.8,56646.8,131072.0,65536.0,True,True,9372.199999999997,94500.0,True,1169904,HEADLINE_MODEL_SELECTION.md 3.7,13,20,17
+vllm/meta-llama/llama-3.1-70b-instruct|default,Llama 3.1 70B,5,4951.75,283.0,454.0,5405.75,5234.75,,,,,,,,79952,HEADLINE_MODEL_SELECTION.md 3.7,14,15,14
+vllm/meta-llama/llama-3.1-70b-instruct|default,Llama 3.1 70B,20,13806.3,283.0,454.0,14260.3,14089.3,,,,,,,,79952,HEADLINE_MODEL_SELECTION.md 3.7,5,5,5
+vllm/meta-llama/llama-3.1-70b-instruct|default,Llama 3.1 70B,50,31515.3,283.0,454.0,31969.3,31798.3,,,,,,,,79952,HEADLINE_MODEL_SELECTION.md 3.7,2,2,2
+vllm/meta-llama/llama-3.1-70b-instruct|default,Llama 3.1 70B,full,56141.4,283.0,454.0,56595.4,56424.4,,,,,,63600.0,,79952,HEADLINE_MODEL_SELECTION.md 3.7,1,1,1
+vllm/microsoft/phi-4|default,Phi-4,5,5031.49,294.0,729.0,5760.49,5325.49,16384.0,16384.0,True,True,11352.51,,,681360,HEADLINE_MODEL_SELECTION.md 3.7,118,127,118
+vllm/microsoft/phi-4|default,Phi-4,20,14237.3,294.0,729.0,14966.3,14531.3,16384.0,16384.0,True,True,2146.7000000000007,,,681360,HEADLINE_MODEL_SELECTION.md 3.7,45,46,45
+vllm/microsoft/phi-4|default,Phi-4,50,33032.6,294.0,729.0,33761.6,33326.6,16384.0,16384.0,False,False,-16648.6,,,681360,HEADLINE_MODEL_SELECTION.md 3.7,20,20,41
+vllm/microsoft/phi-4|default,Phi-4,full,55227.6,294.0,729.0,55956.6,55521.6,16384.0,16384.0,False,False,-38843.6,63400.0,False,681360,HEADLINE_MODEL_SELECTION.md 3.7,12,12,41

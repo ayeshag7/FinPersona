@@ -1,6 +1,6 @@
 # Stage 2 — operational state
 
-**Written 31 October 2026; last updated 3 November 2026.** A running record of what is on the cluster, what runs next and what has
+**Written 31 October 2026; last updated 4 November 2026.** A running record of what is on the cluster, what runs next and what has
 already been decided, so that none of it lives only in a chat session. Scientific results belong in
 `E2_RESULTS.md` and `DECISION_LOG.md`; this file is the operations log beside them.
 
@@ -546,3 +546,54 @@ hash — exactly as it already did for the five stage-1 manifests after `e9_rost
    P5 `unevaluated`.
 8. New files under `docs/env_v2/generated/v2_1/` — the manifest, `verify_ocean_open.json`, `stats_e7_ocean/` — are
    invisible to `git status` (`.gitignore:69`) and need `git add -f`, then `git show --stat`.
+
+---
+
+## 12. E6's sizing pilot: designed and built 4 Nov, REGISTERED 4 Nov, not yet submitted
+
+**State.** `PREREG_PHASE_9_STAGE2_E6_PILOT.md` is **registered** (P9-37, 4 Nov, both hashes recorded there);
+`e9_4/manifest_context_pilot.json` is written (sha256 `05d54102…`, 4 configurations × 768 runs, subdir `pilot_context`,
+kind `pilot`, seeds 5001–5008); `e9_4/context_pilot/` holds the shape, the windows, the requirement table, the
+in-flight budgets and the projection; `stage2_b200.sbatch` and `pack_stage.sbatch` carry a `STAGE=e6pilot` entry.
+**Nothing has been submitted yet**; the array goes in when the cluster clone is at the registered commit, step 2 below,
+and the allocation extension is in hand.
+
+**What it is.** The gate section 2 of `GRID_EXPERIMENT_PLAN.md` put in front of E6: no stateful arm has ever run on an
+open-weight model, so E6 has no σ_d and no cost. The pilot runs the context-length factor's eight arms on the
+headline's twelve cells at 8 seeds on the four models the selection's rule gives E6 now that the three unread windows
+are read (E4B 131,072; OLMo 65,536; Ministral 262,144), and writes E6's seed count by E9.2's rule, its GPU-hours per
+run per level, and the gates. E6's own pre-registration comes after it.
+
+**The array is 16 tasks, one per (model, level)**, because the levels differ in what one B200's KV cache holds in
+flight: at the full level OLMo 3.1 32B holds 7 calls, Ministral 14, Llama 3.1 8B 20, Gemma 4 E4B 46, against 192 at
+level 5 (`context_pilot/workers.csv`). Each task serves its model at **65,536** (stages 1 and 2 served 32,768, which
+the 50 and full levels do not fit) and runs only its level's two arms (`e9_runner run --arms`). The roster order is
+longest-per-run first: `olmo31@full olmo31@50 ministral14@full ministral14@50 llama8@full llama8@50 olmo31@20
+ministral14@20 llama8@20 gemmae4b@full gemmae4b@50 olmo31@5 ministral14@5 llama8@5 gemmae4b@20 gemmae4b@5`.
+
+**Cost is a projection: 108 GPU-h for the pilot, 810 for E6 at S = 60**, from Phase 8's measured input tokens per run
+per level over stage 1's measured input tokens per GPU-second (`context_pilot/projection.json`). The rate at 60k
+tokens is not measured — that is one of the things the pilot measures (prediction P1, a factor-2 bar). Per model the
+pilot projects OLMo 45.9, Ministral 29.0, Llama 3.1 8B 22.3, Gemma 4 E4B 10.9. **This exceeds what is left of the
+week's 300 GPU-hours** (section 3: about 242 projected through E4, plus E7's 23.5), so the pilot needs the extension
+the team said it would request; the E6 figure says why the pilot comes before E6 and not instead of it.
+
+**Order of operations.**
+
+1. Done 4 Nov: approval with the four judgment calls as recommended (8 seeds per cell; one served length; disjoint
+   seeds; the ρ discrepancy carried); the DRAFT line replaced; the registration row P9-37 with both hashes.
+2. `git pull` in `repo_s2` to the registered commit; the manifest's fingerprint refuses an older tree.
+3. `sbatch --export=ALL,STAGE=e6pilot --array=0-15%4 tools/cluster/stage2_b200.sbatch`. **With `%4`.** It can sit
+   behind E7's array on a dependency; the two must not run at once.
+4. `sbatch --export=ALL,STAGE=e6pilot --dependency=afterany:<array id> tools/cluster/pack_stage.sbatch`.
+5. On the cluster: `e9_4_grid --stages verify,score --only context_pilot`, then
+   `e9_4_context_pilot --stages summarise --server-logs '<logs>/vllm_srv_<array id>_*.log'`, then the push.
+6. Pull `per_run_context_pilot.csv`, `verify_context_pilot.json`, `context_pilot/per_run_context.csv` and
+   `servers.json`; on the laptop `e9_4_context_pilot --stages analyse`.
+7. New files under `docs/env_v2/generated/v2_1/` need `git add -f`, then `git show --stat`.
+8. E6's pre-registration from `context_pilot/{sizing.json, cost.csv, gates.csv, summary.json}`.
+
+**Two things the build found that are not E6's.** `selection/context_e6.csv` as committed has no KV-cache column and a
+ρ that differs from the document's table (section 3.7 was written with the server logs, the CSV without); and
+`e9_runner.fingerprint` skipped stateful cells until today, so no stateful manifest could have been verified on its
+prompts. Both are in P9-36.

@@ -1,0 +1,10 @@
+Model,label,native_window,R_context_selection,R_context,R_effect,full_need_tokens,full_need_doc_3_7,fits_window_doc_3_7,full_reply_room_at_served,full_max_concurrent
+vllm/google/gemma-4-31b-it|default,Gemma 4 31B,262144.0,conditional,met,True,57548.1,65500.0,True,8140.9000000000015,2
+vllm/google/gemma-4-e4b-it|default,Gemma 4 E4B,131072.0,conditional,met,True,57693.4,65700.0,True,8222.599999999999,46
+vllm/openai/gpt-oss-20b|default,gpt-oss-20b,,conditional,conditional,False,87779.8,95200.0,,,35
+vllm/meta/muse-glimmer-30b|default,Muse Glimmer 30B,,conditional,conditional,True,86768.2,93900.0,,,23
+vllm/allenai/olmo-3.1-32b-instruct|default,OLMo 3.1 32B,65536.0,conditional,met,True,57035.6,64500.0,True,10211.400000000001,6
+vllm/mistralai/ministral-3-14b-instruct-2512|default,Ministral 3 14B,262144.0,conditional,met,True,58660.9,66200.0,True,8125.0999999999985,14
+vllm/meta-llama/llama-3.1-8b-instruct|default,Llama 3.1 8B,131072.0,conditional,met,True,87086.8,94500.0,True,9372.199999999997,13
+vllm/meta-llama/llama-3.1-70b-instruct|default,Llama 3.1 70B,,conditional,conditional,True,56595.4,63600.0,,,1
+vllm/microsoft/phi-4|default,Phi-4,16384.0,not met,not met,True,55956.6,63400.0,False,-38843.6,12

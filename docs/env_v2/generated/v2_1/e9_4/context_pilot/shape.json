@@ -1,0 +1,78 @@
+{
+ "registered": "PREREG_PHASE_9.md 2 (the shape rule), applied to E6's own counts; PREREG_PHASE_9_STAGE2_E6_PILOT.md 2",
+ "reference_seeds": 60,
+ "e6_runs_at_reference": 5760,
+ "G_ref": 4654.35997752688,
+ "e8_5_df_d": 84,
+ "f2_at_e8_5_df_d": 1.23754931458065,
+ "levels": [
+  "5",
+  "20",
+  "50",
+  "full"
+ ],
+ "cells": 12,
+ "arms_per_level": 2,
+ "table": [
+  {
+   "seeds_per_cell": 4,
+   "runs": 384,
+   "pairs_per_level": 48,
+   "df_d_per_level": 36,
+   "f2": 1.4038754828,
+   "f": 1.1848525152,
+   "expected_total_runs_per_model": 6918.1418606824
+  },
+  {
+   "seeds_per_cell": 8,
+   "runs": 768,
+   "pairs_per_level": 96,
+   "df_d_per_level": 84,
+   "f2": 1.2375493146,
+   "f": 1.1124519381,
+   "expected_total_runs_per_model": 6528.0
+  },
+  {
+   "seeds_per_cell": 12,
+   "runs": 1152,
+   "pairs_per_level": 144,
+   "df_d_per_level": 132,
+   "f2": 1.182241477,
+   "f": 1.087309283,
+   "expected_total_runs_per_model": 6654.5774142012
+  },
+  {
+   "seeds_per_cell": 16,
+   "runs": 1536,
+   "pairs_per_level": 192,
+   "df_d_per_level": 180,
+   "f2": 1.1527183654,
+   "f": 1.0736472258,
+   "expected_total_runs_per_model": 6901.1662252332
+  },
+  {
+   "seeds_per_cell": 24,
+   "runs": 2304,
+   "pairs_per_level": 288,
+   "df_d_per_level": 276,
+   "f2": 1.120352616,
+   "f": 1.0584671067,
+   "expected_total_runs_per_model": 7518.5243766848
+  },
+  {
+   "seeds_per_cell": 32,
+   "runs": 3072,
+   "pairs_per_level": 384,
+   "df_d_per_level": 372,
+   "f2": 1.1022218812,
+   "f": 1.0498675541,
+   "expected_total_runs_per_model": 8202.1374104349
+  }
+ ],
+ "chosen_seeds_per_cell": 8,
+ "chosen_runs_per_model": 768,
+ "chosen_pairs_per_level": 96,
+ "chosen_df_d_per_level": 84,
+ "chosen_f": 1.1124519380991926,
+ "generated_utc": "2026-11-04T14:44:27Z"
+}

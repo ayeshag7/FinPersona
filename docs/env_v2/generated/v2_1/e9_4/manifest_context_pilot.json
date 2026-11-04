@@ -1,0 +1,6283 @@
+{
+ "name": "e9_4_context_pilot",
+ "kind": "pilot",
+ "subdir": "pilot_context",
+ "ledger_dir": "e9_4",
+ "T": 200,
+ "configs": [
+  "vllm/google/gemma-4-e4b-it|default",
+  "vllm/allenai/olmo-3.1-32b-instruct|default",
+  "vllm/mistralai/ministral-3-14b-instruct-2512|default",
+  "vllm/meta-llama/llama-3.1-8b-instruct|default"
+ ],
+ "cells": [
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_r5_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_w50_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_static",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ISFJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "INTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "flat",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "bull_trap",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "crash",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5001,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5002,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5003,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5004,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5005,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5006,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5007,
+   "rep": 0,
+   "setting": "default"
+  },
+  {
+   "persona": "ENTJ",
+   "arm": "stateful_full_memory",
+   "scenario": "sustained_bull",
+   "seed": 5008,
+   "rep": 0,
+   "setting": "default"
+  }
+ ],
+ "seeds": [
+  5001,
+  5002,
+  5003,
+  5004,
+  5005,
+  5006,
+  5007,
+  5008
+ ],
+ "seeds_per_cell": 8,
+ "registered": "PREREG_PHASE_9_STAGE2_E6_PILOT.md; GRID_EXPERIMENT_PLAN.md 2 (the stateful sizing pilot that gates E6) and 3 (E6); PREREG_PHASE_9.md 2's pilot rule applied to the context-length factor; HEADLINE_MODEL_SELECTION.md 4.3 / 6 (E6's roster once the three unread windows are read, context_pilot/windows.json)",
+ "written_utc": "2026-11-04T14:46:03Z",
+ "fingerprint": {
+  "prompt_hash": {
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|stateful_full_memory": "e71d39b214231be5",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|stateful_full_static": "71e5cea487911689",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|stateful_memory": "e71d39b214231be5",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|stateful_r5_memory": "e71d39b214231be5",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|stateful_r5_static": "71e5cea487911689",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|stateful_static": "71e5cea487911689",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|stateful_w50_memory": "e71d39b214231be5",
+   "vllm/google/gemma-4-e4b-it|default|ENTJ|stateful_w50_static": "71e5cea487911689",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|stateful_full_memory": "00b5f851991455c7",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|stateful_full_static": "93ce718723f4ccce",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|stateful_memory": "00b5f851991455c7",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|stateful_r5_memory": "00b5f851991455c7",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|stateful_r5_static": "93ce718723f4ccce",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|stateful_static": "93ce718723f4ccce",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|stateful_w50_memory": "00b5f851991455c7",
+   "vllm/google/gemma-4-e4b-it|default|INTJ|stateful_w50_static": "93ce718723f4ccce",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|stateful_full_memory": "56c70bda68fb539b",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|stateful_full_static": "83dd2e59dbbf11f6",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|stateful_memory": "56c70bda68fb539b",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|stateful_r5_memory": "56c70bda68fb539b",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|stateful_r5_static": "83dd2e59dbbf11f6",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|stateful_static": "83dd2e59dbbf11f6",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|stateful_w50_memory": "56c70bda68fb539b",
+   "vllm/google/gemma-4-e4b-it|default|ISFJ|stateful_w50_static": "83dd2e59dbbf11f6",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|stateful_full_memory": "e71d39b214231be5",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|stateful_full_static": "71e5cea487911689",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|stateful_memory": "e71d39b214231be5",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|stateful_r5_memory": "e71d39b214231be5",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|stateful_r5_static": "71e5cea487911689",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|stateful_static": "71e5cea487911689",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|stateful_w50_memory": "e71d39b214231be5",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ENTJ|stateful_w50_static": "71e5cea487911689",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|stateful_full_memory": "00b5f851991455c7",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|stateful_full_static": "93ce718723f4ccce",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|stateful_memory": "00b5f851991455c7",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|stateful_r5_memory": "00b5f851991455c7",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|stateful_r5_static": "93ce718723f4ccce",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|stateful_static": "93ce718723f4ccce",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|stateful_w50_memory": "00b5f851991455c7",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|INTJ|stateful_w50_static": "93ce718723f4ccce",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|stateful_full_memory": "56c70bda68fb539b",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|stateful_full_static": "83dd2e59dbbf11f6",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|stateful_memory": "56c70bda68fb539b",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|stateful_r5_memory": "56c70bda68fb539b",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|stateful_r5_static": "83dd2e59dbbf11f6",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|stateful_static": "83dd2e59dbbf11f6",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|stateful_w50_memory": "56c70bda68fb539b",
+   "vllm/allenai/olmo-3.1-32b-instruct|default|ISFJ|stateful_w50_static": "83dd2e59dbbf11f6",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|stateful_full_memory": "e71d39b214231be5",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|stateful_full_static": "71e5cea487911689",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|stateful_memory": "e71d39b214231be5",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|stateful_r5_memory": "e71d39b214231be5",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|stateful_r5_static": "71e5cea487911689",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|stateful_static": "71e5cea487911689",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|stateful_w50_memory": "e71d39b214231be5",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ENTJ|stateful_w50_static": "71e5cea487911689",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|stateful_full_memory": "00b5f851991455c7",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|stateful_full_static": "93ce718723f4ccce",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|stateful_memory": "00b5f851991455c7",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|stateful_r5_memory": "00b5f851991455c7",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|stateful_r5_static": "93ce718723f4ccce",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|stateful_static": "93ce718723f4ccce",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|stateful_w50_memory": "00b5f851991455c7",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|INTJ|stateful_w50_static": "93ce718723f4ccce",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|stateful_full_memory": "56c70bda68fb539b",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|stateful_full_static": "83dd2e59dbbf11f6",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|stateful_memory": "56c70bda68fb539b",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|stateful_r5_memory": "56c70bda68fb539b",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|stateful_r5_static": "83dd2e59dbbf11f6",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|stateful_static": "83dd2e59dbbf11f6",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|stateful_w50_memory": "56c70bda68fb539b",
+   "vllm/mistralai/ministral-3-14b-instruct-2512|default|ISFJ|stateful_w50_static": "83dd2e59dbbf11f6",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|stateful_full_memory": "e71d39b214231be5",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|stateful_full_static": "71e5cea487911689",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|stateful_memory": "e71d39b214231be5",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|stateful_r5_memory": "e71d39b214231be5",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|stateful_r5_static": "71e5cea487911689",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|stateful_static": "71e5cea487911689",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|stateful_w50_memory": "e71d39b214231be5",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ENTJ|stateful_w50_static": "71e5cea487911689",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|stateful_full_memory": "00b5f851991455c7",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|stateful_full_static": "93ce718723f4ccce",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|stateful_memory": "00b5f851991455c7",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|stateful_r5_memory": "00b5f851991455c7",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|stateful_r5_static": "93ce718723f4ccce",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|stateful_static": "93ce718723f4ccce",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|stateful_w50_memory": "00b5f851991455c7",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|INTJ|stateful_w50_static": "93ce718723f4ccce",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|stateful_full_memory": "56c70bda68fb539b",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|stateful_full_static": "83dd2e59dbbf11f6",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|stateful_memory": "56c70bda68fb539b",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|stateful_r5_memory": "56c70bda68fb539b",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|stateful_r5_static": "83dd2e59dbbf11f6",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|stateful_static": "83dd2e59dbbf11f6",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|stateful_w50_memory": "56c70bda68fb539b",
+   "vllm/meta-llama/llama-3.1-8b-instruct|default|ISFJ|stateful_w50_static": "83dd2e59dbbf11f6"
+  },
+  "Env_Code_Hash": "1d689aaf82a33a2e",
+  "sources_sha256_lf": {
+   "agent/v2_agent.py": "107e261ce9ed561e62b6cb731eb914251ef2506d468f5bea05a31ece53b5c43e",
+   "agent/v2_prompts.py": "37c96ed447afdc7188475baa06e9c2c29d1912565ac9707a984e23b126d2326f",
+   "agent/render.py": "28404eb028db237665c960864b99d08e481ddb38845b33fccc26a5940cfb8cb4",
+   "agent/stateful_agent.py": "e15bd9f936d27ea70b47443b2b96b2727ff3bf7055d9f1ad49c1bc80468feb73",
+   "simulation/runner_v2.py": "d0741c8f08739f52995ba0f636a72f1651cdf6375776a8764f462d7aeb9e5e5f",
+   "simulation/portfolio_v2.py": "130c46522356308a3d4e59390fb92dea73331610d0d5a75c23ae38f8d32ef54e",
+   "experiments/arms_v2.py": "66ba7e7928e395bb0ba4bda5c3a8de67d4f68c80a651902e9cc88d0754a0f029",
+   "tools/phase9/e9_roster.py": "cc2442b525dcd95d4da4c8f71aa934325208301cf498df2836b75fe079307b0d"
+  }
+ }
+}
