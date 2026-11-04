@@ -25,6 +25,11 @@ communicated-target mirror of the headline grid runs last.
             `e9_2/sizing_open.json`'s paired-correct count, subdir "stage1_open" -> manifest_headline_open.json.
 `manifest_open_b2`  DECISION_LOG P9-17, P9-18: the second batch (e9_roster.HEADLINE_OPEN_B2) on the six's cells and
             seeds -> manifest_headline_open_b2.json.
+`manifest_e7`  E7 (PREREG_PHASE_9_STAGE2_E7.md): the OCEAN vocabulary pair O1_conservative / O2_aggressive x
+            (static, memory, swapped) x the four scenarios x the stage-2 seeds, every cell at `start_design="common"`,
+            on `e9_roster.CAUSAL_OPEN` -> manifest_ocean_open.json, subdir "stage2_ocean".  No NONE cells: the
+            reference level is E3's trader runs, already on disk on the same six models, seeds and paths.  Its own
+            stage, not part of `manifest_stage2`, so the four E2-E5 manifests are never touched by building it.
 `verify`    For every planned cell with a run on disk: the run's `Prompt_Hash` equals the manifest's for that
             (configuration, persona, arm), `Env_Code_Hash` equals the manifest's, the harness and placebo versions are
             v2_1, `Provider_Options` names the cell's configuration, and the scenario, seed and start design are the
@@ -80,8 +85,11 @@ CAUSAL_MANIFEST = "manifest_causal_open.json"                               # E2
 SLICE_OPEN_MANIFEST = "manifest_slice_open.json"                            # E3
 TRACK_A_OPEN_MANIFEST = "manifest_track_a_open.json"                        # E4
 SENSITIVITY_MANIFEST = "manifest_sensitivity_open.json"                     # E5
+OCEAN_MANIFEST = "manifest_ocean_open.json"                                 # E7
+OCEAN_PERSONAS = ("O1_conservative", "O2_aggressive")                       # E7: the OCEAN vocabulary pair
 STAGE2_MANIFESTS = {"causal_open": CAUSAL_MANIFEST, "slice_open": SLICE_OPEN_MANIFEST,
-                    "track_a_open": TRACK_A_OPEN_MANIFEST, "sensitivity_open": SENSITIVITY_MANIFEST}
+                    "track_a_open": TRACK_A_OPEN_MANIFEST, "sensitivity_open": SENSITIVITY_MANIFEST,
+                    "ocean_open": OCEAN_MANIFEST}
 ALL_MANIFESTS = {**MANIFESTS, "headline_open": OPEN_MANIFEST, "headline_open_b2": OPEN_B2_MANIFEST,
                  **STAGE2_MANIFESTS}
 
@@ -139,6 +147,19 @@ def cells_for(kind: str, seeds) -> list:
                 for sc in SCENARIOS:
                     for s in seeds:
                         out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0, **extra})
+        return out
+    if kind == "ocean":
+        # E7: the slice's three arms on the OCEAN vocabulary pair, at common start -- the one design in which the
+        # persona / directive shares are identified (evaluation/salience.identification_check).  The NONE reference is
+        # not re-run: E3's trader cells exist on the same six models, seeds and paths, verified, and the salience frame
+        # is assembled from both subdirs by tools/phase9/e9_5_e7_salience.py.  Setting "common_start" as in E3, so the
+        # verify stage's start-design rule applies unchanged; the subdir keeps the run trees apart.
+        for p in OCEAN_PERSONAS:
+            for a in SLICE_ARMS:
+                for sc in SCENARIOS:
+                    for s in seeds:
+                        out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0,
+                                    "setting": "common_start", "factors": {"start_design": "common"}})
         return out
     for p in PERSONAS:
         for a in SLICE_ARMS:
@@ -312,6 +333,23 @@ def stage_manifest_stage2():
     _write_stage2("sens", SENSITIVITY_MANIFEST, RO.CORE_OPEN, sensitivity_cells(seeds), seeds,
                   f"GRID_EXPERIMENT_PLAN.md 3 (E5); {sel}; DECISION_LOG P9-6 (the data-driven six), P9-21 (the "
                   f"default read from the 122 stage-1 seeds, so the twelve non-default levels run)")
+
+
+def stage_manifest_e7():
+    """E7 on `e9_roster.CAUSAL_OPEN` -- the six models E3's slice ran on, so the MBTI side of the vocabulary gradient and
+    the NONE reference exist for every E7 model on the same seeds and paths -- at GRID_EXPERIMENT_PLAN.md 3's S = 60.
+    Its own function: `stage_manifest_stage2` re-verifies the four E2-E5 manifests against the CURRENT harness before
+    it does anything, and E7's counterpart map (agent/v2_prompts.MANDATE_COUNTERPART) moved `agent/v2_prompts.py`, one
+    of the fingerprint's hashed sources, after those four had run to completion.  Every MBTI prompt hash they store is
+    unchanged (tests/test_v2_1_e7.py), the runs on disk still verify, and nothing of theirs is resumed; but their
+    fingerprints now record a harness that has moved, exactly as the stage-1 manifests' do for e9_roster.py, and a
+    stage that writes E7 must not need them to pass."""
+    from tools.phase9 import e9_roster as RO
+    seeds = list(range(GRID_SEED0, GRID_SEED0 + S_STAGE2))
+    _write_stage2("ocean", OCEAN_MANIFEST, RO.CAUSAL_OPEN, cells_for("ocean", seeds), seeds,
+                  "GRID_EXPERIMENT_PLAN.md 3 (E7); PREREG_PHASE_9_STAGE2_E7.md; HEADLINE_MODEL_SELECTION.md 4.3 "
+                  "(e9_4/selection) extended from the rule's three to the six E3 ran, so the reference level and the "
+                  "MBTI side exist on every E7 model; DECISION_LOG P8-14 (NONE only; O3 cannot run in v2)")
 
 
 def gen_config_collisions(gen_hashes: dict) -> list:
@@ -527,6 +565,8 @@ def main(argv=None):
             stage_manifest_open_b2()
         elif st == "manifest_stage2":
             stage_manifest_stage2()
+        elif st == "manifest_e7":
+            stage_manifest_e7()
         elif st == "verify":
             rc = stage_verify([x.strip() for x in a.only.split(",") if x.strip()]) or rc
         elif st == "status":

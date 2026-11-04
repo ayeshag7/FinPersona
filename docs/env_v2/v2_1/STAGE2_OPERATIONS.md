@@ -1,6 +1,6 @@
 # Stage 2 — operational state
 
-**Written 31 October 2026; last updated 2 November 2026.** A running record of what is on the cluster, what runs next and what has
+**Written 31 October 2026; last updated 3 November 2026.** A running record of what is on the cluster, what runs next and what has
 already been decided, so that none of it lives only in a chat session. Scientific results belong in
 `E2_RESULTS.md` and `DECISION_LOG.md`; this file is the operations log beside them.
 
@@ -503,3 +503,46 @@ section 4 set.
 * Six commits carry this programme, `be14108` through `ab549f6`, pushed to `origin/main` on 3 Nov.
   Anything new under `docs/env_v2/generated/v2_1` is still matched by `.gitignore:69` and still needs
   `git add -f` followed by a check of `git show --stat`.
+
+## 11. E7, the OCEAN vocabulary gradient: built on 3 Nov, REGISTERED 4 Nov, not yet submitted
+
+**State.** `PREREG_PHASE_9_STAGE2_E7.md` is **registered** (P9-35, 4 Nov, both hashes recorded there);
+`e9_4/manifest_ocean_open.json` is written (sha256 `03d13524…`, 6 configurations × 1,440 runs, subdir `stage2_ocean`,
+setting `common_start`); the analysis scripts and their tests exist; `stage2_b200.sbatch` and `pack_stage.sbatch`
+carry a `STAGE=ocean` entry. **Nothing has been submitted yet**; the allocation deadline is lifted (more time is
+requested as needed), so the array goes in when the cluster clone is at the registered commit, step 2 below.
+
+**What it is**, in one line: O1_conservative and O2_aggressive under static, memory and swapped at common start on the
+six E3 models, with E3's ISFJ/ENTJ rows as the MBTI side and E3's NONE trader as the reference, so the persona /
+directive decomposition is identified and the vocabulary contrast is paired on the same seeds and paths.
+
+**The harness moved, and every fingerprint knows it.** `agent/v2_prompts.MANDATE_COUNTERPART` makes an OCEAN
+persona's mandate its MBTI counterpart's at every wording level (before it, O1 at `rewritten` carried v1's "Buy
+insurance (puts/hedges)" while ISFJ carried the cash-cushion rewrite). `agent/v2_prompts.py` is one of the eight
+sources the manifest fingerprint hashes, so `verify_fingerprint` now refuses the nine older manifests on the source
+hash — exactly as it already did for the five stage-1 manifests after `e9_roster.py` was edited — while **0 of the
+540 prompt hashes they store moved** and their runs still verify. Consequences for operations:
+
+* `e9_4_grid --stages manifest_stage2` will now raise on the first E2–E5 manifest it re-verifies. Those four are
+  complete; do not re-run that stage. E7 has its own `--stages manifest_e7`.
+* `repo_s2` on the cluster must be at the commit that carries the map **before** `STAGE=ocean` is submitted, or the
+  runner's resume check refuses the manifest, and — worse if it did not — the O1 runs would inject the v1 text.
+* `--stages verify` and `score` are unaffected: they compare each run's stored prompt hash and `Env_Code_Hash`, not
+  the source hashes.
+
+**Order of operations.**
+
+1. Done 4 Nov: approval, the registration row P9-35 with both hashes, the DRAFT line replaced.
+2. `git pull` in `repo_s2` to the registered commit; `tools.cluster.preflight_vllm` runs inside the array as usual.
+3. `sbatch --export=ALL,STAGE=ocean --array=0-11%4 tools/cluster/stage2_b200.sbatch` — 23.5 GPU-h projected,
+   floor 5.9 h, every model in two shards at 96.6 %. A larger plan is not worth its model loads.
+4. `sbatch --export=ALL,STAGE=ocean --dependency=afterany:<array id> tools/cluster/pack_stage.sbatch`.
+5. `e9_4_grid --stages verify,score --only ocean_open` on the cluster (section 7), then the Hugging Face push.
+6. **The per-step job, on the cluster**: `python -u -m tools.phase9.e9_5_e7_salience --results results_v2/phase9
+   --n_boot 200 --n_jobs 6`. It needs both `stage2_ocean/` and `stage2_slice/` on disk; it writes
+   `stats_e7_ocean/salience_summary.json`, which comes down with `per_run.csv`. The same job is the natural place to
+   close E3's three unevaluated predictions, but that is E3's read and is not folded in here.
+7. `python -u -m tools.phase9.e9_5_e7_analyse` on the laptop. Without step 6's file it still runs and reports P1 and
+   P5 `unevaluated`.
+8. New files under `docs/env_v2/generated/v2_1/` — the manifest, `verify_ocean_open.json`, `stats_e7_ocean/` — are
+   invisible to `git status` (`.gitignore:69`) and need `git add -f`, then `git show --stat`.

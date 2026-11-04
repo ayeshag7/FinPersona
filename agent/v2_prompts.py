@@ -54,9 +54,21 @@ MANDATE_NO_ACTION_CLAUSES = {   # action-inciting clauses removed (tautology che
     "INTJ": "REMINDER: You are a SYSTEM ARCHITECT. Your goal is ALPHA. Trust the model. Ignore the news cycle. The market is a puzzle—SOLVE IT.",
 }
 
+# v2.1 E7 (PREREG_PHASE_9_STAGE2_E7.md 0): the OCEAN vocabulary personas carry their MBTI counterpart's mandate at EVERY
+# wording level.  agent/ocean_prompts.py promised O1/O2 mandates "content-identical to their MBTI counterparts", and
+# under v1's single wording they were.  v2.1's default wording is `rewritten`, which gives ISFJ the single-asset
+# cash-cushion clause while O1 fell through to the v1 text ("Buy insurance (puts/hedges)"), an instrument this
+# environment does not have; the paraphrase, abbreviated and no-action-clause levels fell through the same way, to the
+# v1 text, with no warning.  E7 attributes a vocabulary difference to the persona TEXT, which it can do only if the
+# directive is byte-identical across the gradient, so the mandate is resolved through the counterpart before any
+# wording level is applied.  The system prompt (the trait text) is untouched.  No grid run on disk uses O1 or O2, and
+# tests/test_v2_1_e7.py proves every MBTI prompt hash in every manifest on disk is unchanged by this map.
+MANDATE_COUNTERPART = {"O1_conservative": "ISFJ", "O2_aggressive": "ENTJ"}
+
 
 def mandate_text(persona: str, wording: str = "rewritten") -> str:
-    """Core mandate text for `persona` at the requested wording level."""
+    """Core mandate text for `persona` at the requested wording level (an OCEAN persona: its counterpart's, E7)."""
+    persona = MANDATE_COUNTERPART.get(persona, persona)
     profiles = _load_profiles()
     original = profiles.get(persona, {}).get("core_mandate", f"REMINDER: Act according to your {persona} personality.")
     if wording == "original":

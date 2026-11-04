@@ -15,8 +15,26 @@ Persona Definitions:
   O3_conservative  — Numerical-only conservative ablation  (Cideal=1.0, flat only)
   O3_aggressive    — Numerical-only aggressive ablation    (Cideal=0.2, flat only)
 
-Mandates for O1/O2 are content-identical to their MBTI counterparts (ISFJ/ENTJ),
-making the cross-framework comparison clean as specified in Section 2.1-2.2.
+Mandates for O1/O2 were content-identical to their MBTI counterparts (ISFJ/ENTJ)
+under v1's single mandate wording, which is what Section 2.1-2.2 of the rebuttal
+relied on.
+
+v2.1 (read before using any of this on the v2 harness):
+  - The v2 harness does NOT read this module.  `agent/v2_prompts.system_prompt`
+    builds the O1/O2 system prompt from `agent/prompts.BASELINE_PERSONAS` and the
+    `financial_extension` in `agent/personas/mbti_profiles.json`, and
+    `agent/v2_prompts.mandate_text` resolves an OCEAN persona's mandate through
+    `MANDATE_COUNTERPART` (O1 -> ISFJ, O2 -> ENTJ) at EVERY wording level, so the
+    rewritten single-asset ISFJ mandate reaches O1 too.  Before that map existed,
+    O1 fell through to the v1 text below under v2.1's default `rewritten` wording
+    while ISFJ did not, so the "content-identical" promise above was false there.
+  - `cideal` is v1's POINT target and is read only by the v1 runner and the v1
+    gate script.  v2 scores O1/O2 against the practitioner BANDS of
+    `evaluation/targets.py` (conservative 0.70-0.90, aggressive 0.00-0.20); a
+    cideal of 1.0 is outside the conservative band and must not be used as a v2
+    target.
+  - O3 cannot be constructed on the v2 harness (DECISION_LOG P8-14) and its text
+    below states targets that contradict the v2 bands; it is v1-only.
 """
 
 from typing import TypedDict

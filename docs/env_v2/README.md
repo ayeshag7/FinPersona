@@ -83,7 +83,7 @@ Phase 9's API roster was set aside — stage 1 as first designed priced at \$126
 | E4 Track A (stated vs unstated target) | manifest built, keying fixed, pre-registered; **queued**, 10 tasks, 18.8 GPU-h |
 | E5 parameter sensitivity, the data-driven six | **running** as array 48312120 since 30 Oct 12:50 UTC: 12 tasks, 103,680 runs over 12 levels, 225 GPU-h budgeted. Its default level is read from the 122 stage-1 seeds rather than re-run (P9-21), and every cell carries an `env_config` checked per run against a `Gen_Config_Hash`. This is Phase 9's actual purpose, and the robustness table (E9.5) needs it together with E1 |
 | E6 context length, the decay thesis | not run; the stateful arms have never been sized, so it needs a pilot first |
-| E7 OCEAN vocabulary gradient | the O1/O2 personas are on the v2 harness; not run |
+| E7 OCEAN vocabulary gradient | **designed, built and REGISTERED 4 Nov** (`PREREG_PHASE_9_STAGE2_E7.md`, P9-35): O1/O2 under static, memory and swapped at common start on the six E3 models, 1,440 runs each, manifest written, 23.5 GPU-h projected; the OCEAN mandates were not content-identical to the MBTI ones under v2.1 and are now (`agent/v2_prompts.MANDATE_COUNTERPART`); **not run** |
 | E8 re-injection frequency k-sweep | small; a replication of Li et al. (COLM 2024), to be cited and not headlined |
 | E9 mechanistic M2 / M3 | greenfield; see `MECH_INTERP_BRIEF.md` at the repo root. Gated on E2 |
 
