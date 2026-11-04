@@ -37,9 +37,23 @@ class V2Agent(BaseAgent):
                  track: str = "B", action_interface: str = "target", n_assets: int = 1,
                  disclose_horizon: bool = False, T: int = 200, cost_visible: bool = False, cost_bp: float = 5.0,
                  objective: str = "none", mandate_in_system: bool = False, temperature: float = 0.2,
-                 liquidity_condition: bool = False, llm=None, placebo_version: str = "v2"):
+                 liquidity_condition: bool = False, llm=None, placebo_version: str = "v2",
+                 mandate_every: int = 1, mandate_phase: int = 0):
         super().__init__(persona)
         self.placebo_version = placebo_version          # v2.1 Phase 8 (E8.1(e)): "v2" = the published placebo
+        # v2.1 Phase 9, stage 2, E8 (PREREG_PHASE_9_STAGE2_E8.md): the re-injection cadence.  The per-step block is
+        # rendered into the human turn on day t (1-based) iff (t - 1 - phase) % every == 0; every = 1 is the behaviour
+        # of every published run (the block on every day), and a block arm at every = k injects T / k times.  The
+        # phase is the runner's (seed mod k), so the injected days differ across seeds and no cadence sits on the
+        # scripted event in every run.  A stateless agent carries nothing between days, so on a non-injected day the
+        # prompt is byte-for-byte the static arm's: the cadence works through the portfolio state alone.
+        self.mandate_every, self.mandate_phase = int(mandate_every), int(mandate_phase)
+        if self.mandate_every < 1 or not (0 <= self.mandate_phase < self.mandate_every):
+            raise ValueError(f"mandate_every must be >= 1 and 0 <= mandate_phase < mandate_every; got "
+                             f"{mandate_every}, {mandate_phase}")
+        self.last_mandate_injected = False
+        self.mandate_injections = 0
+        self._decisions = 0
         self.persona = persona
         self.model_name = model_name
         self.mandate_block_kind = mandate_block
@@ -92,11 +106,25 @@ class V2Agent(BaseAgent):
         return {"system": self.full_system_prompt, "human": self.human_template,
                 "format_instructions": self.parser.get_format_instructions(), "mandate": self.core_mandate}
 
-    def rendered_human_message(self, market_state, portfolio_state) -> str:
+    def injects_on(self, market_state: Dict[str, Any], decision_index: Optional[int] = None) -> bool:
+        """Whether the per-step block is rendered for this decision (E8).  The day is the observation's 1-based `day`;
+        a state without one (a bare test) counts decisions instead.  Always True at every = 1 for a block arm."""
+        if not self.core_mandate:
+            return False
+        if self.mandate_every == 1:
+            return True
+        day = market_state.get("day") if isinstance(market_state, dict) else None
+        t = int(day) - 1 if day is not None else int(decision_index if decision_index is not None else self._decisions)
+        return (t - self.mandate_phase) % self.mandate_every == 0
+
+    def mandate_block_for(self, market_state: Dict[str, Any], decision_index: Optional[int] = None) -> str:
+        return self.core_mandate if self.injects_on(market_state, decision_index) else ""
+
+    def rendered_human_message(self, market_state, portfolio_state, decision_index: Optional[int] = None) -> str:
         """Exact human message text (for logging / publication)."""
         inp = self.render_input(market_state, portfolio_state)
         if self.action_interface == "target":
-            return P.HUMAN_TEMPLATE_V2.format(input_data=inp, mandate_block=self.core_mandate,
+            return P.HUMAN_TEMPLATE_V2.format(input_data=inp, mandate_block=self.mandate_block_for(market_state, decision_index),
                                               format_instructions=self.parser.get_format_instructions())
         return HUMAN_TEMPLATE_STATIC.format(input_data=inp, format_instructions=self.parser.get_format_instructions())
 
@@ -104,8 +132,12 @@ class V2Agent(BaseAgent):
     def decide(self, market_state: Dict[str, Any], portfolio_state: Dict[str, float]):
         inp = self.render_input(market_state, portfolio_state)
         payload = {"input_data": inp}
+        self.last_mandate_injected = self.injects_on(market_state)
+        self._decisions += 1
+        if self.last_mandate_injected:
+            self.mandate_injections += 1
         if self.action_interface == "target":
-            payload["mandate_block"] = self.core_mandate
+            payload["mandate_block"] = self.core_mandate if self.last_mandate_injected else ""
         last_error = None
         for attempt in range(3):
             try:

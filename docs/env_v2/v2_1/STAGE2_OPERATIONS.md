@@ -597,3 +597,55 @@ the team said it would request; the E6 figure says why the pilot comes before E6
 ρ that differs from the document's table (section 3.7 was written with the server logs, the CSV without); and
 `e9_runner.fingerprint` skipped stateful cells until today, so no stateful manifest could have been verified on its
 prompts. Both are in P9-36.
+
+---
+
+## 13. E8, the re-injection cadence: designed and built 4 Nov, REGISTERED 4 Nov, not yet submitted
+
+**State.** `PREREG_PHASE_9_STAGE2_E8.md` is **registered** (P9-39, 4 Nov, both hashes recorded there);
+`e9_4/manifest_cadence_open.json` is written (sha256 `6114d0ec…`, 6 configurations × 2,880 runs, subdir
+`stage2_cadence`, setting `cadence`, seeds 10001–10060); `stage2_b200.sbatch` and `pack_stage.sbatch` carry a
+`STAGE=cadence` entry and a `REPO=` override. **Nothing has been submitted yet**; the array goes in at the end of the
+chain below, from a clone at the registered commit, once the allocation extension is in hand.
+
+**What it is.** The mandate block injected every k-th day for k in {2, 5, 10, 20}, with the headline's every-day
+(`memory`) and never (`static`) runs as the endpoints on the same seeds and paths. Stateless, so on a non-injected day
+the prompt is the static arm's and the cadence acts only through the portfolio state; the quantity is the retention
+r(k) = d(k) / d(1), and the registered prediction P3 reads it against the exact stateless null r(k) = 1 / k. 47.0
+GPU-h projected from `cost.csv` (E5's ratio: 35–38); every model in two shards, 12.2 h wall at 96.6 %.
+
+**The harness change and the two clones.** The factor moved three of the eight sources the manifest fingerprint
+hashes. Every prompt hash and `Env_Code_Hash` of every manifest recomputes unchanged, and the completed stages are
+untouched; but the runner **refuses to run** a manifest whose stored source hashes differ from the tree, and E7's and
+the E6 pilot's manifests were registered before this change. So:
+
+- **`repo_s2` stays at `b5baebb`** until E7's array and the E6 pilot's array have both finished. Do not pull E8's
+  commit into it before then: a task that starts after the pull (the `%4` cap starts tail tasks late) would refuse
+  its manifest and exit.
+- **E8 runs from `repo_s3`**, a second clone at the registered E8 commit: `REPO=$BASE/repo_s3` on both the array and
+  the pack job. The batch script's `REPO` defaults to `repo_s2`.
+- Scoring and verifying E7 and the E6 pilot from the newer tree is fine afterwards: `verify` and `score` read prompt
+  and environment hashes per run, not the source hashes.
+
+**Order of operations.**
+
+1. Done 4 Nov: approval with the four judgment calls as recommended (deterministic cadence with a seed phase; the
+   six models; the levels {2, 5, 10, 20}; two clones); the DRAFT line replaced; the registration row P9-39 with both
+   hashes.
+2. `git clone` to `repo_s3` at the registered E8 commit (the venv, the container and `hf_cache` are shared through
+   `$BASE`; nothing else is per clone). `repo_s2` untouched.
+3. Submit E7 (`STAGE=ocean`, from `repo_s2`), then the E6 pilot (`STAGE=e6pilot`, from `repo_s2`,
+   `--dependency=afterany:` E7), then E8 (`STAGE=cadence,REPO=$BASE/repo_s3`, `--array=0-11%4`,
+   `--dependency=afterany:` the E6 pilot) — one chain, one array on the GPUs at a time, nothing left to queue by
+   hand later (section 2's lesson).
+4. `sbatch --export=ALL,STAGE=cadence,REPO=$BASE/repo_s3 --dependency=afterany:<E8 array> tools/cluster/pack_stage.sbatch`.
+5. On the cluster, from `repo_s3`: `e9_4_grid --stages verify,score --only cadence_open` (two new checks per run: the
+   cadence reached the configuration, and the injection count is T / k), then
+   `python -u -m tools.phase9.e9_5_e8_steps --results results_v2/phase9 --headline-results $BASE/repo/results_v2/phase9`
+   (the stage-1 record holds the endpoint runs), then the push.
+6. Pull `per_run.csv` and `stats_e8_cadence/steps_summary.csv`; on the laptop `python -u -m tools.phase9.e9_5_e8_analyse`.
+   Without the steps file it runs and reports P4 `unevaluated`.
+7. New files under `docs/env_v2/generated/v2_1/` need `git add -f`, then `git show --stat`.
+
+**Projected GPU-hours for the three arrays together:** E7 23.5, the E6 pilot 108, E8 47.0 — about 180 on the
+projections, against the week's remaining allocation (section 3), so the extension request covers all three.

@@ -69,6 +69,10 @@ class RunConfig:
     # v2.1 Phase 8 (PREREG_PHASE_8.md 1.1, 1.6): both default to the behaviour every published run used
     harness_version: str = "v2"           # v2 | v2_1 (stateful arm corrections E8.1(a)-(d))
     placebo_version: str = "v2"           # v2 | v2_1 (the per-persona matched directive placebo, E8.1(e))
+    # v2.1 Phase 9, stage 2, E8 (PREREG_PHASE_9_STAGE2_E8.md): the per-step block is injected every k-th day, phase
+    # seed mod k.  1 = every day, the behaviour of every published run; the arms memory_k{2,5,10,20} set it.  A
+    # stateless factor: the runner refuses it on a stateful arm.
+    mandate_every: int = 1
     # v2.1 Phase 9 (PREREG_PHASE_8_ADDENDUM.md 9, carried): the options the run's client was built with -- the provider,
     # the configuration tag, the temperature actually sent (None = none sent), the thinking / reasoning settings.  None
     # (the default) leaves the log unchanged; a dict is written to every row as the JSON column `Provider_Options`.
@@ -100,6 +104,12 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
                     cost_bp=cfg.cost_bp, objective=cfg.objective, mandate_in_system=cfg.mandate_in_system,
                     temperature=cfg.temperature, liquidity_condition=cfg.liquidity_condition, llm=cfg.agent_llm,
                     placebo_version=cfg.placebo_version)
+    if int(cfg.mandate_every) != 1:
+        if cfg.context_mode != "stateless":
+            raise ValueError("mandate_every (E8's re-injection cadence) is a stateless factor: a stateful arm re-injects "
+                             "every step or never, and its retained history would carry the injected days")
+        # the phase is seed mod k: injected days differ across seeds, and k | T gives exactly T / k injections per run
+        agent_kw.update(mandate_every=int(cfg.mandate_every), mandate_phase=int(cfg.seed) % int(cfg.mandate_every))
     if cfg.context_mode == "stateless":
         agent = V2Agent(**agent_kw)
     else:
@@ -203,6 +213,8 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
         row.update(prov)
         if cfg.phase_probe_every:                     # REG-9: its own column, absent from a run without the phase probe
             row["Phase_Probe"] = phase_probe
+        if int(cfg.mandate_every) != 1:               # E8: its own column, absent from a run without the cadence factor
+            row["Mandate_Injected"] = bool(getattr(agent, "last_mandate_injected", False))
         if cfg.provider_options is not None:          # v2.1 Phase 9: absent from a log run without provider options
             row["Provider_Options"] = json.dumps(cfg.provider_options, sort_keys=True, default=str)
         rows.append(row)
@@ -222,13 +234,17 @@ def run_simulation_v2(cfg: RunConfig, verbose: bool = True) -> Optional[pd.DataF
     # and then failed here (found by E8.5's smoke; tests/test_v2_1_phase_8.py::test_runner_meta_with_live_client).
     # For a run without an injected client the JSON is identical to the asdict construction.
     run_config = {f.name: getattr(cfg, f.name) for f in fields(cfg) if f.name != "agent_llm"}
+    meta_doc = {"run_config": run_config,
+                "env_metadata": meta, "provenance": prov,
+                "turnover": port.turnover_value / cfg.initial_value, "cost_paid_total": port.cost_paid_total,
+                "n_trades": len(port.trades),
+                "system_prompt": agent.full_system_prompt, "human_template": agent.human_template,
+                "mandate_block_text": agent.core_mandate}
+    if int(cfg.mandate_every) != 1:                   # E8: the realised cadence, which the verify stage checks against T / k
+        meta_doc["n_mandate_injections"] = int(getattr(agent, "mandate_injections", 0))
+        meta_doc["mandate_phase"] = int(getattr(agent, "mandate_phase", 0))
     with open(os.path.join(out_dir, f"{run_id}.meta.json"), "w", encoding="utf-8") as fh:
-        json.dump({"run_config": run_config,
-                   "env_metadata": meta, "provenance": prov,
-                   "turnover": port.turnover_value / cfg.initial_value, "cost_paid_total": port.cost_paid_total,
-                   "n_trades": len(port.trades),
-                   "system_prompt": agent.full_system_prompt, "human_template": agent.human_template,
-                   "mandate_block_text": agent.core_mandate}, fh, indent=1, default=str)
+        json.dump(meta_doc, fh, indent=1, default=str)
     if verbose:
         print(f"[RunnerV2] done {run_id}: final value {df['Portfolio_Value'].iloc[-1]:.2f}, trades {len(port.trades)}")
     return df

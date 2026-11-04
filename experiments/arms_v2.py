@@ -14,6 +14,7 @@ Arms (each a dict of RunConfig overrides):
   stateful_static     E5: rolling-window context (last 20 steps as prior turns), mandate in system prompt
   stateful_memory     E5: rolling-window context AND per-step re-injection
   stateful_full_*     E5: full transcript up to a 60k-token budget
+  memory_k{2,5,10,20} E8: the mandate re-injected every k-th day (phase seed mod k); memory is k = 1, static never
 Wording levels, Track A/B, start design, action interface, cost tier/visibility,
 horizon disclosure, field order, execution and decode replicates are factors.
 
@@ -62,7 +63,18 @@ ARMS: Dict[str, Dict] = {
     # {5, 20, 50, full} (PREREG_PHASE_8.md 2); the 50 level did not exist and is added here.
     "stateful_w50_static": {"mandate_block": "none", "mandate_in_system": True, "context_mode": "rolling", "context_window": 50},
     "stateful_w50_memory": {"mandate_block": "mandate", "mandate_in_system": True, "context_mode": "rolling", "context_window": 50},
+    # v2.1 Phase 9, stage 2, E8 (PREREG_PHASE_9_STAGE2_E8.md): the re-injection cadence.  `memory` injects the mandate
+    # block every day (k = 1) and `static` never; these inject it every k-th day, phase seed mod k, so a run at k
+    # carries T / k injected days.  Stateless, like memory and static: on a non-injected day the prompt is the static
+    # arm's, so the cadence acts through the portfolio state the agent is shown, not through any retained context.
+    "memory_k2": {"mandate_block": "mandate", "mandate_every": 2},
+    "memory_k5": {"mandate_block": "mandate", "mandate_every": 5},
+    "memory_k10": {"mandate_block": "mandate", "mandate_every": 10},
+    "memory_k20": {"mandate_block": "mandate", "mandate_every": 20},
 }
+
+# The cadence factor (E8): k -> the arm that injects every k-th day; static is the never level.
+CADENCE_LEVELS = {1: "memory", 2: "memory_k2", 5: "memory_k5", 10: "memory_k10", 20: "memory_k20"}
 
 # The context-length factor (E8.2): level -> (static arm, memory arm).  `full` is the 60,000-token budget.
 CONTEXT_LEVELS = {5: ("stateful_r5_static", "stateful_r5_memory"), 20: ("stateful_static", "stateful_memory"),

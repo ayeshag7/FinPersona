@@ -35,6 +35,11 @@ communicated-target mirror of the headline grid runs last.
             `e9_4_context_pilot --stages shape` chose, on the models `--stages windows` assigns to E6
             -> manifest_context_pilot.json, subdir "pilot_context", kind "pilot".  verify, status and score read it
             under the key `context_pilot`.
+`manifest_e8`  E8 (PREREG_PHASE_9_STAGE2_E8.md): the re-injection cadence memory_k{2,5,10,20} (experiments/arms_v2
+            .CADENCE_LEVELS) x the headline's 12 cells x the stage-2 seeds, setting "cadence", on `e9_roster
+            .CAUSAL_OPEN` -> manifest_cadence_open.json, subdir "stage2_cadence".  The k = 1 and never levels are the
+            headline's memory and static runs on the same seeds.  verify adds two checks for it: the run's
+            mandate_every is the arm's, and its meta's injection count is T / k.
 `verify`    For every planned cell with a run on disk: the run's `Prompt_Hash` equals the manifest's for that
             (configuration, persona, arm), `Env_Code_Hash` equals the manifest's, the harness and placebo versions are
             v2_1, `Provider_Options` names the cell's configuration, and the scenario, seed and start design are the
@@ -101,9 +106,13 @@ CONTEXT_PILOT_MANIFEST = "manifest_context_pilot.json"
 CONTEXT_PILOT_SEED0 = 5001
 CONTEXT_PILOT_SUBDIR = "pilot_context"
 CONTEXT_PILOT_SHAPE = os.path.join(OUT, "context_pilot", "shape.json")
+# E8 (PREREG_PHASE_9_STAGE2_E8.md): the re-injection cadence, memory_k{2,5,10,20} on the headline's cells and seeds, so
+# the k = 1 (memory) and never (static) levels are the headline runs already on disk, on the same paths.
+CADENCE_MANIFEST = "manifest_cadence_open.json"
+CADENCE_SETTING = "cadence"
 STAGE2_MANIFESTS = {"causal_open": CAUSAL_MANIFEST, "slice_open": SLICE_OPEN_MANIFEST,
                     "track_a_open": TRACK_A_OPEN_MANIFEST, "sensitivity_open": SENSITIVITY_MANIFEST,
-                    "ocean_open": OCEAN_MANIFEST}
+                    "ocean_open": OCEAN_MANIFEST, "cadence_open": CADENCE_MANIFEST}
 ALL_MANIFESTS = {**MANIFESTS, "headline_open": OPEN_MANIFEST, "headline_open_b2": OPEN_B2_MANIFEST,
                  **STAGE2_MANIFESTS, "context_pilot": CONTEXT_PILOT_MANIFEST}
 
@@ -174,6 +183,19 @@ def cells_for(kind: str, seeds) -> list:
                     for s in seeds:
                         out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0,
                                     "setting": "common_start", "factors": {"start_design": "common"}})
+        return out
+    if kind == "cadence":
+        # E8: the four interior cadences on the headline's 12 cells.  memory (k = 1) and static (never) are not here:
+        # the headline ran them on these seeds and paths, so E8 is scored against those rows, as E2 is.  Setting
+        # "cadence", a run-key and path component, so no E8 run can collide with a headline twin.
+        from experiments.arms_v2 import CADENCE_LEVELS
+        for k, a in CADENCE_LEVELS.items():
+            if k == 1:
+                continue
+            for p in PERSONAS:
+                for sc in SCENARIOS:
+                    for s in seeds:
+                        out.append({"persona": p, "arm": a, "scenario": sc, "seed": s, "rep": 0, "setting": CADENCE_SETTING})
         return out
     if kind == "context_pilot":
         # E6's sizing pilot: the context-length factor's levels {5, 20, 50, full}, each its static and memory arm
@@ -410,6 +432,32 @@ def stage_manifest_e6_pilot():
                   name="e9_4_context_pilot", subdir=CONTEXT_PILOT_SUBDIR, manifest_kind="pilot")
 
 
+def stage_manifest_e8():
+    """E8 on `e9_roster.CAUSAL_OPEN` -- the six models E2, E3 and E7 ran on, so the stage-2 package reads on one
+    roster and the k = 1 and never levels exist for every E8 model on the same seeds and paths -- at S = 60.  Its own
+    function, for the reason E7's and the E6 pilot's have one: the older manifests record a harness that has moved."""
+    from tools.phase9 import e9_roster as RO
+    seeds = list(range(GRID_SEED0, GRID_SEED0 + S_STAGE2))
+    _write_stage2("cadence", CADENCE_MANIFEST, RO.CAUSAL_OPEN, cells_for("cadence", seeds), seeds,
+                  "GRID_EXPERIMENT_PLAN.md 3 (E8); PREREG_PHASE_9_STAGE2_E8.md; HEADLINE_MODEL_SELECTION.md 4.3 "
+                  "(e9_4/selection: R_effect) extended from the rule's three to the six of E2, E3 and E7, so the stage-2 "
+                  "package reads on one roster; the k = 1 and never levels are the headline runs on disk")
+
+
+def cadence_checks(rc: dict, meta: dict, cell: dict, T: int) -> dict:
+    """E8's two verify checks on a stored run: the cadence the arm registers reached the run's configuration, and the
+    realised injection count is exactly T / k.  A k-arm that silently ran at every step would score like memory and
+    verify clean on every other check, which is why the count is in the meta and read here.  Trivially true for a
+    run without the factor, so every older manifest verifies as before."""
+    from experiments.arms_v2 import ARMS
+    want = int(ARMS.get(cell["arm"], {}).get("mandate_every", 1))
+    have = int(rc.get("mandate_every", 1))
+    out = {"mandate_every": have == want}
+    if want != 1:
+        out["mandate_injections"] = meta.get("n_mandate_injections") == T // want
+    return out
+
+
 def gen_config_collisions(gen_hashes: dict) -> list:
     """Where two settings of one (configuration, scenario, seed) ran the SAME generator configuration.
 
@@ -492,6 +540,7 @@ def stage_verify(only=(), out_path=""):
                     # leaves no default level in the manifest), so only the override itself distinguishes them
                     "env_config": (rc.get("env_config") or {}) == (c.get("env_config") or {}),
                     "gen_config_hash_present": bool(prov.get("Gen_Config_Hash")),
+                    **cadence_checks(rc, meta, c, int(m.get("T", 200))),
                 }
                 if has_env_config:
                     g = gen_hashes.setdefault((key, c["scenario"], int(c["seed"])), {})
@@ -627,6 +676,8 @@ def main(argv=None):
             stage_manifest_e7()
         elif st == "manifest_e6_pilot":
             stage_manifest_e6_pilot()
+        elif st == "manifest_e8":
+            stage_manifest_e8()
         elif st == "verify":
             rc = stage_verify([x.strip() for x in a.only.split(",") if x.strip()]) or rc
         elif st == "status":

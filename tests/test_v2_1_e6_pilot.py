@@ -114,7 +114,14 @@ def test_pilot_manifest_on_disk_is_its_shape_its_windows_and_its_roster():
     assert m["seeds"] == list(range(5001, 5009))
     assert len(m["fingerprint"]["prompt_hash"]) == 4 * 3 * 8 == 96
     assert m["fingerprint"]["Env_Code_Hash"] == "1d689aaf82a33a2e"
-    R.verify_fingerprint(m)                        # the current harness is the registered one
+    cur = R.fingerprint(m)
+    assert cur["prompt_hash"] == m["fingerprint"]["prompt_hash"] and cur["Env_Code_Hash"] == m["fingerprint"]["Env_Code_Hash"]
+    # The registered sources are b5baebb's.  E8's cadence factor (P9-38) moved three of the eight hashed sources after
+    # this manifest was registered, so a tree carrying E8 REFUSES to run it (`verify_fingerprint`), which is why the
+    # pilot runs from a clone pinned at its own commit (STAGE2_OPERATIONS.md 13).  Nothing of its prompts or its
+    # environment moved, and nothing else may have.
+    moved = {k for k, v in m["fingerprint"]["sources_sha256_lf"].items() if cur["sources_sha256_lf"][k] != v}
+    assert moved <= {"agent/v2_agent.py", "simulation/runner_v2.py", "experiments/arms_v2.py"}, moved
 
 
 def test_pilot_verify_stage_plans_it(tmp_path):
